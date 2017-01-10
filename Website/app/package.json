@@ -1,0 +1,14 @@
+{
+  "name": "barde",
+  "private": true,
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "~1.5.0",
+    "angular-route": "~1.5.0",
+    "bootstrap": "^3.3.7",
+    "http-server": "^0.9.0"
+  },
+  "scripts": {
+    "start": "http-server -a localhost -p 8000 -c-1 ."
+  }
+}
