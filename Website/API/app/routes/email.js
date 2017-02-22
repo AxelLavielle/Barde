@@ -55,12 +55,12 @@ function add(req, res, next) {
 
                 addToMailChimp(req.body.email);
 
-                res.status(200).send({msg: "Email added"});
+                res.status(200).send({msg: "Email added", data: { message: "Votre inscription a bien été pris en compte."}});
             });
 
         }
         else {
-            return res.status(409).send({msg: 'Email already exists.'});
+            return res.status(409).send({msg: 'Email already exists.', data: {message: "Vous êtes déjà inscrit à nos newsletters !"}});
         }
     });
 }
