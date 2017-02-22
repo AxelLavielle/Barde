@@ -46,24 +46,15 @@ angular.module('app.controllers', ['angular-md5', 'vcRecaptcha'])
           $scope.newsletterForm = function (email)
           {
             var url       = "http://api.barde.io/email/"
-            var data      = {'email' : email,'subscribe' : true};
-            var options   =
-            $http.put(url, data)
+            var data      = {'email' : "valer@gmail.com" ,'subscribe' : true};
+            var headers   =    {headers:{'content-type': 'application/json' }}
+
+            $http.put(url, data, headers)
 
             .then(function (response) {
-                    if (response.msg == "Email already exists."){
-                      $scope.resClass = "red-text";
-                      $scope.resValue = "Vous êtes déjà inscrit !";
-                    }
-                    else if (response.msg == "Email added"){
-                      $scope.res_class = "green-text";
-                      $scope.resValue = "Vous êtes maintenant inscrit à la newsletter";
-                    }
-                    else {
-                      $scope.resClass = "red-text";
-                      $scope.resValue = "Inscription impossible";
-                    }
-            }, function (err)
+              $scope.resValue = response.data.message;
+              }
+            , function (err)
           {
             $scope.resClass = "red-text";
             $scope.resValue = "Inscription impossible";

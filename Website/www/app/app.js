@@ -36,7 +36,7 @@ angular.module('app', ['app.controllers', 'ngRoute']).config(function($routeProv
     .otherwise({templateUrl: 'templates/static/404.tpl.htm'});
 
 }).config(function ($httpProvider) {
-  $httpProvider.defaults.withCredentials = true;
+  $httpProvider.defaults.withCredentials = false;
   $httpProvider.defaults.headers.put = {};
   $httpProvider.defaults.headers.patch = {};
   $httpProvider.defaults.useXDomain = true;
