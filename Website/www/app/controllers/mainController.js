@@ -3,24 +3,58 @@ angular.module('app.controllers', ['angular-md5', 'vcRecaptcha'])
 
         .controller('mainController', ['$scope', '$http', 'vcRecaptchaService', function($scope, $http, vcRecaptchaService)
         {
-          $scope.verified = false;
+
+
+
+
+
+          $scope.validated = false;
+
+          $scope.setResponse = function (response) {
+
+
+            var data      = {'response' : response};
+            var headers =   {'content-type':"application/json"};
+
+
+            $http.post("http://api.barde.io/captcha/verify", data, headers)
+            .then(function(res)
+            {
+              if (res.data.success)
+              {
+                $scope.callbackClass = "green-text";
+                $scope.callback = "Vous n'êtes pas un robot";
+                $scope.validated = true;
+
+              }
+              else {
+                $scope.callbackClass = "red-text";
+            $scope.callback = "Vous êtes un robot";
+              }
+
+            });
+          }
+
 
           $scope.model = {
             key: '6LfJQBYUAAAAAPU40FqbVcOjnza1BiSrUDZJnU3W'
           };
 
-          $scope.contactForm = function(firstname, lastname, email, message)
+          $scope.contactForm = function(Data)
           {
-            if ($scope.verified)
+            if ($scope.validated)
             {
-
-              var data      = {'name' : firstname + ' ' + lastname, 'email' : email, 'message' : message}
-              var header = {headers : {'content-type':"application/json",'Access-Control-Allow-Origin' : "*"}};
+              var data = {'name' : Data.firstname + ' ' + Data.lastname, 'email' : Data.email, 'message' : Data.message}
+              var header = {headers : {'content-type':"application/json"}};
 
               $http.post("http://api.barde.io/email/send", data, header)
               .then(function (res)
             {
-              console.log(res);
+              $scope.callbackClass = "green-text";
+              $scope.callback = "Le message à bien été envoyé";
+              $('#newsletterModal').modal('open');
+
+
             });
             }
             else {
@@ -30,55 +64,27 @@ angular.module('app.controllers', ['angular-md5', 'vcRecaptcha'])
 
           }
 
-          $scope.setResponse = function (response) {
-            console.log("token:" + response);
-            var data      = "secret=6LfJQBYUAAAAAJIkpcszGK1vwNxXoPhbN3UGxr_O&response=" + response;
-            var header = {headers : {'content-type':"application/x-www-form-urlencoded",'Access-Control-Allow-Origin' : "*"}};
-
-
-            $http.post("https://www.google.com/recaptcha/api/siteverify", data, header)
-            .then(function(res)
-            {
-              console.log(res);
-              if (res.sucess)
-              {
-                $scope.callbackClass = "green-text";
-                $scope.callback = "Vous n'êtes pas un robot";          }
-              else {
-                  $scope.callbackClass = "red-text";
-              $scope.callback = "Vous êtes un robot";
-            }
-            }, function (err)
-            {
-              $scope.callbackClass = "red-text";
-              $scope.callback = "Vous êtes un robot";
-            });
-          };
 
           $scope.newsletterForm = function (email)
           {
             var url       = "http://api.barde.io/email/"
             var data      = {'email' : email ,'subscribe' : true};
-            var headers   =    {headers:{'content-type': 'application/x-www-form-urlencoded' }}
+            var headers   =    {headers:{'content-type': 'application/json' }}
 
             $http.put(url, data, headers)
+            .error(function (response)
+            {
+                if (response.data.message)
+                  Materialize.toast(response.data.message, 4000, 'top', 'center', 'red');
+                else
+                Materialize.toast('Une erreur est survenue', 4000, 'top', 'center', 'red');
 
-            .then(function (response) {
-                if (response.status == 200)
-                {
-                  $scope.resValue = "Inscription réussie";
-                  $scope.resClass = "green-text";
-                }
-                else if (response.status == 409) {
-                  $scope.resValue = "Vous êtes déjà inscrit";
-                  $scope.resClass = "red-text";
-                }
-                else {
-                  $scope.resValue = "Une erreur est survenue";
-                  $scope.resClass = "red-text";
-                }
+
+            })
+            .success(function (response) {
+                Materialize.toast(response.data.message, 4000, 'top', 'center', 'green');
               }
-              );
+            );
           }
 
         }]);
