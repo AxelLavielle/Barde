@@ -1,0 +1,39 @@
+<div class="container padding-top">
+<div class="container">
+
+  <h4 class="barde-purple-font">Contactez-nous</h4>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+
+    <form class="col s12" ng-submit="contactForm(contactForm)">
+      <div class="row">
+        <div class="input-field col s6">
+          <input  placeholder="Nom" ng-model="contactForm.firstname" type="text" autofocus class="normal-input">
+        </div>
+        <div class="input-field col s6">
+          <input ng-model="contactForm.lastname" placeholder="Prénom" type="text" class="normal-input">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input ng-model="contactForm.email" placeholder="Email" type="email" class="normal-input">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+            <textarea placeholder="Votre message" ng-model="contactForm.message" arows="5" id="textarea1" class="materialize-textarea normal-input"></textarea>
+
+            <div class="col s12 m6 l6">
+              <div vc-recaptcha key="model.key" ng-model="contactForm.Recaptcha" on-success="setResponse(response)"></div>
+
+            </div>
+
+            <div class="col s12 m6 l6">
+              <input ng-show="submitBtn" type="submit" class="waves-effect waves-light pink btn" value="Envoyer"/>
+            </div>
+        </div>
+        <span class="{{callbackClass}}">{{callback}}</span>
+
+      </div>
+    </form>
+  </div>
+</div>
