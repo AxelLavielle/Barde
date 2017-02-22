@@ -15,14 +15,14 @@
   <meta name="twitter:site" content="@barde_io" />
   <meta name="twitter:title" content="Barde est une application multiplateforme de génération de musiques d'ambiance procédurales" />
   <meta name="twitter:description" content="Accéder au site" />
-  <meta name="twitter:image" content="http://valerian-polizzi.fr/img/VP.png" />
+  <meta name="twitter:image" content="img/barde-social.png" />
 
   <!-- Facebook -->
-  <meta property="og:url"                content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html" />
+  <meta property="og:url"                content="http://www.barde.io" />
   <meta property="og:type"               content="website" />
-  <meta property="og:title"              content="TITLE" />
-  <meta property="og:description"        content="DESC" />
-  <meta property="og:image"              content="http://valerian-polizzi.fr/img/VP.png" />
+  <meta property="og:title"              content="Barde" />
+  <meta property="og:description"        content="Barde est une application multiplateforme de génération de musiques d'ambiance procédurales" />
+  <meta property="og:image"              content="img/barde-social.png" />
 
   <script src="js/javascript-concat.js"></script>
   <script src="app/app.concat.js" type="text/javascript"></script>
@@ -31,14 +31,17 @@
 
 </head>
 
-<body id="root" class="white" ng-app="app">
-      <div class=" s12 l12 m12">
-        <div ng-include="'templates/static/navbar.tpl.htm'"></div>
-
-        <div ng-view class="s12 l12 m12">
-
-        </div>
-      </div>
+<body class="Site" ng-app="app">
+        <header>
+                <div class=" s12 l12 m12">
+                <div ng-include="'templates/static/navbar.tpl.htm'">
+                </div>
+        </header>
+  <main class="Site-content">
+<div ng-view class="s12 l12 m12"></div>
+</main>
+  <footer>
       <div ng-include="'templates/static/footer.tpl.htm'"></div>
+</footer>
 </body>
 </html>

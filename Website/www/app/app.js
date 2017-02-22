@@ -2,8 +2,6 @@ angular.module('app', ['ngRoute', 'app.directives', 'app.controllers', 'ngCookie
 
 angular.module('app', ['app.controllers', 'ngRoute']).config(function($routeProvider, $locationProvider) {
 
-    $locationProvider.html5Mode({
-        enabled: true});
 
         $routeProvider
 
