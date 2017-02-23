@@ -45,10 +45,18 @@ function getOne(req, res, next) {
 
 
 function add(req, res, next) {
+
+    if (!req.body.email)
+    {
+        return res.status(400).send({msg: 'No content', data: {message: "Vous devez inscrire votre email."}});
+    }
+
     Email.findOne({'email': req.body.email}, function (err, response) {
+
         if (err)
             return next(err);
         if (!response) {
+
             Email.create(req.body, function (err, response) {
                 if (err)
                     return next(err);
@@ -60,9 +68,10 @@ function add(req, res, next) {
 
         }
         else {
-            return res.status(409).send({msg: 'Email already exists.', data: {message: "Vous êtes déjà inscrit à nos newsletters !"}});
+            return res.status(304).send({msg: 'Email already exists', data: {message: "Vous êtes déjà inscrit à nos newsletters !"}});
         }
     });
+
 }
 
 function addToMailChimp(email) {
@@ -108,8 +117,6 @@ function del(req, res, next) {
 }
 
 function sendMail(req, res, next) {
-
-    add(req, res, next);
 
     //Envoie email
     var name = req.body.name,
