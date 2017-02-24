@@ -58,7 +58,7 @@ background-size: cover;
 
 #slider1
 {
-  background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,0.2) 0%,rgba(0,0,0,0.9) 100%), url('../img/sliders/barde-mise-en-situation2.png');
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,0.2) 0%,rgba(0,0,0,0.9) 100%), url('../img/sliders/barde-mise-en-situation2.jpg');
   -webkit-background-size: cover;
 -moz-background-size: cover;
 -o-background-size: cover;

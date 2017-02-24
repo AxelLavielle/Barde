@@ -10,6 +10,7 @@ gulp.task('concat-app', function() {
         'app/components/angular-route.js',
         'app/components/angular-cookies.js',
         'node_modules/angular-md5/angular-md5.js',
+        'node_modules/angular-materialize/src/angular-materialize.js',
         'node_modules/angular-recaptcha/release/angular-recaptcha.js',
         'app/controllers/*.js',
         'app/app.js',
