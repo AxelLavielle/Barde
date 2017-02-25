@@ -1,2 +1,7 @@
+
 .DS_STORE
+
+Website/**/node_modules/
+Website/**/.idea
+Website/**/.DS_STORE
 
