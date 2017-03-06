@@ -1,0 +1,192 @@
+.full_width
+{
+  min-width: 100% !important;
+}
+
+.fixed-bottom {
+    position: absolute;
+    bottom: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    left: 0px;
+    right: 0px;
+}
+
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.site-content {
+  flex: 1;
+}
+
+.padding-top
+{
+  padding-top: 64px !important;
+}
+
+.full_height
+{
+  height: 100vh !important;
+}
+
+.no-bottom-margin
+{
+   margin-bottom: 0px !important;
+}
+
+.barde_font
+{
+  font-family: Ethnocentric;
+
+}
+
+.no-pad
+{
+  margin-top: -64px !important;
+}
+
+.slider
+{
+  -webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+
+
+#slider1
+{
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,0.2) 0%,rgba(0,0,0,0.9) 100%), url('../img/sliders/barde-mise-en-situation2.jpg');
+  -webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+
+.margin-bottom
+{
+  margin-bottom: 50px !important;
+}
+
+.margin-left
+{
+  margin-left: 2% !important;
+}
+
+#slider2
+{
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,0.2) 0%,rgba(0,0,0,0.9) 100%), url('../img/sliders/slider2.jpg');
+  -webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+
+#slider3
+{
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,0.2) 0%,rgba(0,0,0,0.9) 100%), url('../img/sliders/slider3.jpg');
+  -webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+
+@font-face {
+    font-family: Ethnocentric;
+    src: url('../fonts/ethnocentric_rg_it.ttf');
+}
+
+main {
+   flex: 1 0 auto;
+ }
+
+ .container
+ {
+ }
+
+.h100
+{
+  height: 90vh;
+}
+
+.pink-sep
+{
+  height: 16px !important;
+}
+.social-container
+{
+margin-top: -20px;
+}
+
+
+.pad-bottom
+{
+    padding-bottom: 55px !important
+}
+
+.no-pad
+{
+  margin-top: -64px !important;
+}
+
+.icon-social
+{
+  height: 50px;
+  width: 50px;
+}
+.barde-pink
+{
+  background-color: #e91e63 !important;
+}
+
+.justify
+{
+  text-align: justify !important
+}
+
+.absolute
+{
+  position: absolute !important;
+  z-index: 10;
+}
+
+.barde-purple
+{
+  background-color: #506394 !important;
+}
+
+.barde-purple-font
+{
+  color: #415993 !important;
+}
+
+.barde-purple-darken
+{
+  background-color: #415993 !important;
+}
+
+.center-carousel-content
+{
+  margin-top: 150px !important;
+}
+
+.normal-input
+{
+  background-color: white !important;
+  color: black !important;
+  padding-left: 10px !important;
+  border-radius: 5px !important;
+  box-shadow:inset 0 0 2px 2px #888 !important;
+background: #fff !important;
+}
+
+.opacity-50
+{
+  opacity: 0.8 !important;
+}
+
+nav {
+  overflow: inherit;
+}
