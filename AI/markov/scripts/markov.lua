@@ -27,7 +27,7 @@ local function nextNode(actualScale, actualNote)
   local i = 0
   for key, value in pairs(actualProbScale) do
     i = i + value
-    if (i > randomScale) then
+    if (i >= randomScale and value > 0) then
       tmpNode.scale = key
       break
     end
@@ -35,7 +35,7 @@ local function nextNode(actualScale, actualNote)
   i = 0
   for key, value in pairs(actualProbNote) do
     i = i + value
-    if (i > randomNote) then
+    if (i >= randomNote and value > 0) then
       tmpNode.note = key
       break
     end
