@@ -45,7 +45,34 @@ std::vector<std::pair<char, char> >	Resolution::parsingMarkov(std::vector<std::p
 
 char		Resolution::fixingMarkov(char prev, char next)
 {
-  return (0);
+  char		tmp;
+  std::vector<char> 	save;
+  float		prob;
+  float		probSave;
+
+  tmp = 'A' == prev ? 'B' : 'A';
+  save.push_back(prev);
+  probSave = 0;
+  while (tmp != 'H')
+    {
+      prob = _style.getProbaFromNote(prev, tmp);
+      if (next != -1)
+	prob *= _style.getProbaFromNote(tmp, next);
+      if (prob > probSave)
+	{
+	  probSave = prob;
+	  save.clear();
+	  save.push_back(tmp);
+	}
+      else if (prob == probSave)
+	{
+	  save.push_back(tmp);
+	}
+      tmp++;
+      if (tmp == prev)
+	tmp++;
+    }
+  return (save[rand() % save.size()]);
 }
 
 void		Resolution::addBridge()
