@@ -1,0 +1,1 @@
+reset && g++ main.cpp ObjectMarkof.cpp -ljsoncpp -llua -ldl && ./a.out
