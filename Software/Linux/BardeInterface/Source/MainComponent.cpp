@@ -17,6 +17,7 @@ MainContentComponent::MainContentComponent()
 
 MainContentComponent::~MainContentComponent()
 {
+	startJazzButton.removeListener(this);
 }
 
 void MainContentComponent::paint (Graphics& g)
@@ -26,20 +27,19 @@ void MainContentComponent::paint (Graphics& g)
   int imgH;
   int imgW;
   int ratio;
-
+  
   ratio = 5;
-  imgH = 1024 / ratio;
-  imgW = 927 / ratio;
+  imgH = 927 / ratio;
+  imgW = 1024 / ratio;
   imgX = (getWidth() / 2) - (imgW / 2);
   imgY = (getHeight() / 15);
 
-    g.fillAll (Colour (0xff001F36));
     g.setColour (Colours::white);
     Image logo = ImageCache::getFromMemory (BinaryData::logo_png,    
 					      BinaryData::logo_pngSize);
     Image background = ImageCache::getFromMemory(BinaryData::back_png, BinaryData::back_pngSize);
-    g.drawImage(background, 0, 0, 1000, 1000, 0, 0, 2050, 1600, false);
-    g.drawImage(logo, imgX, imgY, imgH, imgW, 0, 0, 1024, 927, false);
+    g.drawImage(background, 0, 0, getWidth(), getHeight(), 0, 0, 2050, 1600, false);
+    g.drawImage(logo, imgX, imgY, imgW, imgH, 0, 0, 1024, 927, false);
 }
 
 void MainContentComponent::resized()
@@ -48,3 +48,4 @@ void MainContentComponent::resized()
     // If you add any child components, this is where you should
     // update their positions.
 }
+

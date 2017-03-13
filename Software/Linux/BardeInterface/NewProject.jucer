@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="c7rFyT" name="NewProject" projectType="guiapp" version="1.0.0"
-              bundleIdentifier="com.yourcompany.NewProject" includeBinaryInAppConfig="1"
+<JUCERPROJECT id="c7rFyT" name="Barde" projectType="guiapp" version="1.0.0"
+              bundleIdentifier="com.barde.software" includeBinaryInAppConfig="1"
               jucerVersion="4.3.1">
-  <MAINGROUP id="xj4wje" name="NewProject">
+  <MAINGROUP id="xj4wje" name="Barde">
     <GROUP id="{311E32A5-F1CD-8623-97FC-5AEDE0676796}" name="Source">
       <FILE id="Dkfrxr" name="back.png" compile="0" resource="1" file="back.png"/>
       <FILE id="lxIP38" name="logo.png" compile="0" resource="1" file="logo.png"/>
@@ -16,8 +16,8 @@
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="NewProject"/>
-        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="NewProject"/>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="Barde"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="Barde"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../../../JUCE/modules"/>
@@ -38,9 +38,9 @@
     <VS2015 targetFolder="Builds/VisualStudio2015">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="1" optimisation="1" targetName="NewProject"/>
+                       isDebug="1" optimisation="1" targetName="Barde"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="0" optimisation="3" targetName="NewProject"/>
+                       isDebug="0" optimisation="3" targetName="Barde"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../../../JUCE/modules"/>
@@ -60,8 +60,8 @@
     </VS2015>
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="NewProject"/>
-        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="NewProject"/>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="Barde"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="Barde"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../../../JUCE/modules"/>
@@ -96,4 +96,7 @@
     <MODULE id="juce_video" showAllCode="1" useLocalCopy="0"/>
   </MODULES>
   <JUCEOPTIONS/>
+  <LIVE_SETTINGS>
+    <WINDOWS/>
+  </LIVE_SETTINGS>
 </JUCERPROJECT>
