@@ -1,6 +1,6 @@
-#include "ObjectMarkof.hh"
+#include "ObjectMarkov.hh"
 
 int main()
 {
-  ObjectMarkof test;
+  ObjectMarkov test;
 }
