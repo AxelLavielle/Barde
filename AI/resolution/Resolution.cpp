@@ -23,9 +23,9 @@ std::vector<std::pair<char, char> >	Resolution::parsingMarkov(std::vector<std::p
   int	percentage;
 
   srand(time(NULL));
-  i = 0;
+  i = -1;
   save = -1;
-  while (i != sequence.size())
+  while (++i != sequence.size())
     {
       if (save == sequence[i].first)
 	{
@@ -38,7 +38,6 @@ std::vector<std::pair<char, char> >	Resolution::parsingMarkov(std::vector<std::p
 	  save = sequence[i].first;
 	  percentage = _style.getProbaFromNote(save, save);
 	}
-      i++;
     }
   return (sequence);
 }
@@ -68,9 +67,7 @@ char		Resolution::fixingMarkov(char prev, char next)
 	{
 	  save.push_back(tmp);
 	}
-      tmp++;
-      if (tmp == prev)
-	tmp++;
+      tmp += tmp == prev ? 2 : 1;
     }
   return (save[rand() % save.size()]);
 }
