@@ -65,12 +65,8 @@ char		Resolution::fixingMarkov(char prev, char next)
 	  save.push_back(tmp);
 	}
       else if (prob == probSave)
-	{
-	  save.push_back(tmp);
-	}
-      tmp++;
-      if (tmp == prev)
-	tmp++;
+	save.push_back(tmp);
+      tmp += tmp == prev ? 2 : 1;
     }
   return (save[rand() % save.size()]);
 }
