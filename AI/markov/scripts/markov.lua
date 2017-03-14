@@ -43,8 +43,8 @@ local function nextNode(actualScale, actualNote)
   return tmpNode
 end
 
-function markov.generateNote(scale, note, nbNote)
-  math.randomseed(os.time())
+function markov.generateNote(scale, note, nbNote, randomValue)
+  math.randomseed(randomValue)
   probScale = scale;
   probNote = note;
   actualScale = "begin"
