@@ -11,7 +11,7 @@ Resolution::~Resolution()
 
 }
 
-void		Resolution::setStyleSettings(StyleSettings style)
+void		Resolution::setStyleSettings(const StyleSettings &style)
 {
   _style = style;
 }
@@ -42,17 +42,17 @@ std::vector<std::pair<char, char> >	Resolution::parsingMarkov(std::vector<std::p
   return (sequence);
 }
 
-char		Resolution::fixingMarkov(char prev, char next)
+char		Resolution::fixingMarkov(const char prev, const char next)
 {
   char		tmp;
   std::vector<char> 	save;
   float		prob;
   float		probSave;
 
-  tmp = 'A' == prev ? 'B' : 'A';
+  tmp = prev ? 0 : 1;
   save.push_back(prev);
   probSave = 0;
-  while (tmp != 'H')
+  while (tmp != END)
     {
       prob = _style.getProbaFromNote(prev, tmp);
       if (next != -1)

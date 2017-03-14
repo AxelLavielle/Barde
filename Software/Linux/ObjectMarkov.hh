@@ -1,10 +1,10 @@
 #ifndef ObjectMarkov_HH_INCLUDED
 # define ObjectMarkov_HH_INCLUDED
 
-#include "json/json.h"
 # include <cstdio>
 # include <fstream>
-#include "StyleSettings.hh"
+# include "json/json.h"
+# include "StyleSettings.hh"
 
 class ObjectMarkov
 {
