@@ -1,13 +1,17 @@
+/**
+ * APLT
+ * < arnaud perrault />
+ * barde-api - Created on 19/02/2017
+ */
+
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var bcrypt = require('bcrypt');
+var Schema   = mongoose.Schema;
+var bcrypt   = require('bcrypt');
 
 var UserSchema = new Schema({
-    id: {
-        type: String,
-    },
     email: {
         type: String,
+        lowercase: true,
         unique: true,
         required: true
     },
@@ -15,34 +19,14 @@ var UserSchema = new Schema({
         type: String,
         required: true
     },
-    name: {
-        firstName: {
-            type: String,
-            required: true
-        },
-        lastName: {
-            type: String,
-            required: true
-        },
-        userName: {
-            type: String,
-            unique: true,
-            required: true
-        }
-    },
-    social: {
-        facebook: {
-            id: { type: String},
-            token: { type: String},
-        },
-        twitter: {
-            id: { type: String},
-            token: { type: String},
-        },
+    role: {
+        type: String,
+        enum: ['Client', 'Admin'],
+        default: 'Client'
     }
-
 });
 
+// Saves the user's password hashed
 UserSchema.pre('save', function (next) {
     var user = this;
     if (this.isModified('password') || this.isNew) {
@@ -63,13 +47,15 @@ UserSchema.pre('save', function (next) {
     }
 });
 
-UserSchema.methods.comparePassword = function (passw, cb) {
-    bcrypt.compare(passw, this.password, function (err, isMatch) {
+// Create method to compare password input to password saved in database
+UserSchema.methods.comparePassword = function (pw, cb) {
+    bcrypt.compare(pw, this.password, function (err, isMatch) {
         if (err) {
             return cb(err);
         }
         cb(null, isMatch);
     });
 };
+
 
 module.exports = mongoose.model('User', UserSchema);
