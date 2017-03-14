@@ -10,6 +10,7 @@
 #define MAINCOMPONENT_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "MusicStyleButton.h"
 
 
 //==============================================================================
@@ -17,12 +18,15 @@
     This component lives inside our window, and this is where you should put all
     your controls and content.
 */
-class MainContentComponent   : public Component, public Button::Listener
+class MainContentComponent   : public Component
 {
 public:
     //==============================================================================
-    MainContentComponent();
+	MusicStyleButton *blues;
+
+	MainContentComponent();
     ~MainContentComponent();
+
 
     void paint (Graphics&) override;
     void resized() override;

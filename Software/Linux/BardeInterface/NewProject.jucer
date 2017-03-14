@@ -5,6 +5,10 @@
               jucerVersion="4.3.1">
   <MAINGROUP id="xj4wje" name="Barde">
     <GROUP id="{311E32A5-F1CD-8623-97FC-5AEDE0676796}" name="Source">
+      <FILE id="XVxL3P" name="MusicStyleButton.cpp" compile="1" resource="0"
+            file="Source/MusicStyleButton.cpp"/>
+      <FILE id="JG5DNh" name="MusicStyleButton.h" compile="0" resource="0"
+            file="Source/MusicStyleButton.h"/>
       <FILE id="Dkfrxr" name="back.png" compile="0" resource="1" file="back.png"/>
       <FILE id="lxIP38" name="logo.png" compile="0" resource="1" file="logo.png"/>
       <FILE id="qzPgb9" name="MainComponent.cpp" compile="1" resource="0"
