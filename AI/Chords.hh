@@ -112,10 +112,9 @@ public:
   Chords();
   ~Chords();
   std::vector<char>	getChordFromName(const char name);
-  std::vector<char>	getScaleFromName(const char name);
 
 private:
-  std::map<char, std::pair<std::vector<char>, std::vector<char> > >	_chords;
+  std::map<char, std::vector<char> >	_chords;
 };
 
 #endif	//	__CHORDS__
