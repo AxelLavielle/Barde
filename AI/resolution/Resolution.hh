@@ -1,11 +1,10 @@
 #ifndef		__RESOLUTION__
 # define	__RESOLUTION__
 
-#include	<iostream>
-#include	<vector>
 #include	<time.h>
 #include	<stdlib.h>
 #include	"StyleSettings.hh"
+#include	"Chords.hh"
 
 # define	NOT_ENOUGH_CHANCE	25
 
@@ -15,9 +14,9 @@ public:
   Resolution(// MusicParameters &params, Disposition &disposition
 	     );
   ~Resolution();
-  void			setStyleSettings(StyleSettings style);
+  void			setStyleSettings(const StyleSettings &style);
   std::vector<std::pair<char, char> >	parsingMarkov(std::vector<std::pair<char, char> > sequence);
-  char			fixingMarkov(char prev, char next);
+  char			fixingMarkov(const char prev, const char next);
   void			addBridge();
   void			parsingDisposition();
   void			fixingDisposition();
