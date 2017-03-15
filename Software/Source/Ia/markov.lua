@@ -1,10 +1,13 @@
-local markov = {}
-local probScale = {}
-local probNote = {}
-local node = nil
 local json = require ("dkjson")
 
-local function addNode (actualNode)
+local markov = {}
+
+local probScale = {}
+local probNote = {}
+
+local node = nil
+
+local function addNode(actualNode)
   if node == nil then
     node = actualNode
   else
@@ -17,7 +20,7 @@ local function addNode (actualNode)
   return actualNode.scale, actualNode.note
 end
 
-local function nextNode (actualScale, actualNote)
+local function nextNode(actualScale, actualNote)
   local tmpNode = {note = nil, scale = nil, next = nil}
   local actualProbScale = probScale[actualScale]
   local actualProbNote = probNote[actualNote]
@@ -42,14 +45,10 @@ local function nextNode (actualScale, actualNote)
   return tmpNode
 end
 
-function sous ( xtata, ytata , ztat)
-	return 10
-end
-
-function generateNote (scale, note, nbNote)
+function generateNote(scale, note, nbNote, randomValue)
   scale = json.decode(scale)
   note = json.decode(note)
-  math.randomseed(os.time() )
+  math.randomseed(randomValue)
   probScale = scale;
   probNote = note;
   actualScale = "begin"
@@ -59,11 +58,10 @@ function generateNote (scale, note, nbNote)
     actualScale,actualNote = addNode(nextNode(actualScale, actualNote))
     i = i + 1
   end
-  markov.printNode(node)
   return json.encode(node)
 end
 
-function markov.printNode (node)
+function markov.printNode(node)
   local tmp = node
   while tmp do
     print("Note = ", tmp.note, " Gamme = ", tmp.scale)

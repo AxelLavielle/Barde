@@ -18,8 +18,8 @@ extern "C" {
 class ObjectMarkov
 {
 public:
-  ObjectMarkov(std::string styleJson);
-  ObjectMarkov(std::string styleJson, std::string luaMarkovFunction);
+  ObjectMarkov(std::string styleJson, unsigned int seed);
+  ObjectMarkov(std::string styleJson, std::string luaMarkovFunction, unsigned int seed);
   void callLuaMarkov();
   ~ObjectMarkov();
   std::vector<std::pair<char, char> >  getVectorFromJson();
@@ -31,6 +31,7 @@ private:
   Json::Value _jsonNote;
   Json::Value _response;
   Json::Value _rootJson;
+  unsigned int _seed;
 };
 
 #endif /* ObjectMarkov_HH_INCLUDED */
