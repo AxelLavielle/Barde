@@ -1,15 +1,15 @@
 /**
  * APLT
  * < arnaud perrault />
- * Created on 19/02/2017.
+ * barde-api - Created on 19/02/2017
  */
 
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var bcrypt = require('bcrypt');
+var Schema   = mongoose.Schema;
+var bcrypt   = require('bcrypt');
 
 var EmailSchema = new Schema({
-   email: {
+    email: {
         type: String,
         unique: true,
         required: true
@@ -17,8 +17,7 @@ var EmailSchema = new Schema({
     subscribe: {
         type: Boolean,
         required: true
-    },
-
+    }
 });
 
 module.exports = mongoose.model('Email', EmailSchema);
