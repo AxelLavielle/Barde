@@ -4,6 +4,12 @@
  * barde-api - Created on 22/02/2017
  */
 
+/**
+ * @apiDefine Captcha Captcha
+ *
+ * All routes for captcha
+ */
+
 var request = require("request");
 
 module.exports = function (apiRoutes, passport) {
@@ -12,6 +18,30 @@ module.exports = function (apiRoutes, passport) {
 
 };
 
+
+/**
+ * @api {post} /captcha/verify Verify if client is bot
+ * @apiName Verify
+ * @apiGroup Captcha
+ *
+ * @apiParam {String} response Response for verification.
+ *
+ * @apiErrorExample 200 - Success
+ *     {
+ *       "msg": "Success"
+ *       "data": {
+ *          "message": ""
+ *       }
+ *     }
+ *
+ * @apiErrorExample 400 - Error
+ *     {
+ *       "msg": "Error"
+ *       "data": {
+ *          "message": ""
+ *       }
+ *     }
+ */
 function verifyCaptcha(req, res, next) {
 
     var options = "https://www.google.com/recaptcha/api/siteverify?secret=6LfJQBYUAAAAAJIkpcszGK1vwNxXoPhbN3UGxr_O&response=" + req.body.response;
