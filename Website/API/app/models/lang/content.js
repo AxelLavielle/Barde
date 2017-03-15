@@ -6,11 +6,17 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var translationSchema = require('./translation');
+var translation = translationSchema.model('LangTranslation').schema;
 
 var LangContent = new Schema({
     content_id : { type: String, required: true},
-    default : { type : String},
-    data : [ translationSchema ]
-});
+    data : [{
+              lang_code : {type: String},
+              content : {type : String}
+            }]
+  }
+);
 
-module.exports = mongoose.model('LangContent', ContentSchema);
+
+module.exports = mongoose.model('LangContent', LangContent);
