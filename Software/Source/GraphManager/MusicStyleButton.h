@@ -16,7 +16,9 @@
 class MusicStyleButton : public Button
 {
 public:
-	MusicStyleButton(const String &buttonName);
+	int width;
+	int height;
+	MusicStyleButton(const String &buttonName, int w, int h);
 	~MusicStyleButton();
 	
 	void paintButton(Graphics& g, bool isMouseOverButton, bool isButtonDown);

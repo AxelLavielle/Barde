@@ -16,15 +16,15 @@ MainWindow::MainWindow(const std::string name) : DocumentWindow(name,
 																DocumentWindow::allButtons)
 {
 	setUsingNativeTitleBar(true);
-	//setContentOwned(new MainContentComponent(), true);
-
 	setResizable(true, false);
 
 #if JUCE_IOS || JUCE_ANDROID
 	setFullScreen(true);
 #endif
+	setFullScreen(true);
+	setSize(getWidth(), getHeight());
 	setContentOwned(new MainContentComponent(), true);
-	centreWithSize(getWidth(), getHeight());
+	//centreWithSize(getWidth(), getHeight());
 	setVisible(true);
 }
 

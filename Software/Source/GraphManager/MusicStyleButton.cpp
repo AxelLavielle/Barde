@@ -11,9 +11,10 @@
 #include "MusicStyleButton.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
-MusicStyleButton::MusicStyleButton(const String & buttonName) : Button(buttonName)
+MusicStyleButton::MusicStyleButton(const String & buttonName, int width, int height) : Button(buttonName)
 {
-	setSize(50, 50);
+	this->width = width;
+	this->height = height;
 }
 
 MusicStyleButton::~MusicStyleButton()
@@ -23,6 +24,7 @@ MusicStyleButton::~MusicStyleButton()
 
 void MusicStyleButton::paintButton(Graphics& g, bool isMouseOverButton, bool isButtonDown)
 {
+	//Background Color
 	if (isButtonDown)
 	{
 		g.setColour(Colour(0xff4169E1));
@@ -36,10 +38,11 @@ void MusicStyleButton::paintButton(Graphics& g, bool isMouseOverButton, bool isB
 		g.setColour(Colour(0xff4682B4));
 	}
 
-	g.fillRoundedRectangle(0, 0, 400, 50, 20);
+	//Background
+	g.fillRoundedRectangle(0, 0, this->width, this->height, 30);
 	//Text
 	g.setColour(Colours::white);
 	g.setFont(14.0f);
-	g.drawText("Generer du Blues", 0, 0, 400, 50, Justification::centred, true);
+	g.drawText(this->getName(), 0, 0, this->width, this->height, Justification::centred, true);
 }
 

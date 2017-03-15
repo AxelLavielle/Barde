@@ -13,11 +13,11 @@ MainContentComponent::MainContentComponent()
 {
 	int rectX;
 	int rectY;
-
-    setSize (600, 400);
-	addAndMakeVisible(blues = new MusicStyleButton("Jazz"));
+	
+	setSize(getParentWidth(), getParentHeight() - 10);
+	addAndMakeVisible(blues = new MusicStyleButton("Generate some blues", 400, 50));
 	rectX = (600 / 2) - (400 / 2);
-	rectY = (400 / 15) + (927 / 2) + 100;
+	rectY = (400 / 15) + (LOGO_WIDTH) + 100;
 	blues->setBounds(rectX, rectY, 400, 50);
 }
 
@@ -35,12 +35,13 @@ void MainContentComponent::paint (Graphics& g)
   int rectX;
   int rectY;
 
-  imgH = (927 / 2);
-  imgW = (1024 / 2);
+  imgH = (LOGO_HEIGHT);
+  imgW = (LOGO_WIDTH);
+
   imgX = (getWidth() / 2) - (imgW / 2);
   imgY = (getHeight() / 15);
   rectX = (getWidth() / 2) - (400 / 2);
-  rectY = (getHeight() / 15) + (927 / 2) + 100;
+  rectY = (getHeight() / 15) + (LOGO_HEIGHT) + 50;
 
 	g.setColour (Colours::white);
     Image logo = ImageCache::getFromMemory (BinaryData::logo_png,    
@@ -53,12 +54,6 @@ void MainContentComponent::paint (Graphics& g)
 
 void MainContentComponent::resized()
 {
-/*	int rectX;
-	int rectY;
-
-	rectX = (getWidth() / 2) - (400 / 2);
-	rectY = (getHeight() / 15) + (927 / 5) + 100;
-	jazz->setBounds(rectX, rectY, 400, 1000);*/
     // This is called when the MainContentComponent is resized.
     // If you add any child components, this is where you should
     // update their positions.

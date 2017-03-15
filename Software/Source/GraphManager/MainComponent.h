@@ -13,6 +13,8 @@
 #include "MusicStyleButton.h"
 
 
+#define LOGO_WIDTH 1024 / 2
+#define LOGO_HEIGHT 927 / 2
 //==============================================================================
 /*
     This component lives inside our window, and this is where you should put all
