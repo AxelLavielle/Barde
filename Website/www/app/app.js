@@ -1,6 +1,6 @@
 angular.module('app', ['ngRoute', 'app.directives', 'app.controllers', 'ngCookies', 'vcRecaptcha', 'ui.materialize']);
 
-angular.module('app', ['app.controllers', 'ngRoute']).config(function($routeProvider, $locationProvider) {
+angular.module('app', ['app.controllers', 'ngRoute', 'app.directives']).config(function($routeProvider, $locationProvider) {
 
 
         $routeProvider
