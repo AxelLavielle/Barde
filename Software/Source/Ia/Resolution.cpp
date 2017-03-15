@@ -62,18 +62,3 @@ char		Resolution::fixingMarkov(const StyleSettings &style, const char prev, cons
     }
   return (save[rand() % save.size()]);
 }
-
-void		Resolution::addBridge()
-{
-
-}
-
-void		Resolution::parsingDisposition()
-{
-
-}
-
-void		Resolution::fixingDisposition()
-{
-
-}

@@ -13,7 +13,7 @@ public:
   ~Resolution();
   static std::vector<std::pair<char, char> >	parsingMarkov(const StyleSettings &style, std::vector<std::pair<char, char> > &sequence);
 private:
-  char			fixingMarkov(const char prev, const char next);
+  static char			fixingMarkov(const StyleSettings &style, const char prev, const char next);
 };
 
 #endif //	__RESOLUTION__
