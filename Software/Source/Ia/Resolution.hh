@@ -11,7 +11,7 @@ class		Resolution
 public:
   Resolution();
   ~Resolution();
-  static std::vector<std::pair<char, char> >	Resolution::parsingMarkov(const StyleSettings &style, std::vector<std::pair<char, char> > &sequence);
+  static std::vector<std::pair<char, char> >	parsingMarkov(const StyleSettings &style, std::vector<std::pair<char, char> > &sequence);
 private:
   char			fixingMarkov(const char prev, const char next);
 };

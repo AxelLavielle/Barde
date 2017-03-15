@@ -37,12 +37,12 @@ void		StyleSettings::addNoteFromNote(const char baseNote, const char noteName, c
   _param[baseNote].second.insert(std::pair<char, int>(noteName, noteProba));
 }
 
-int		StyleSettings::getProba(const char note)
+int		StyleSettings::getProba(const char note) const
 {
   return (_param.find(note) == _param.end() ? 0 : _param[note].first);
 }
 
-int		StyleSettings::getProbaFromNote(const char baseNote, const char note)
+int		StyleSettings::getProbaFromNote(const char baseNote, const char note) const
 {
   return ((_param.find(baseNote) == _param.end() ||
 	   _param[baseNote].second.find(note) == _param[baseNote].second.end()) ?
