@@ -5,6 +5,10 @@
               jucerVersion="4.3.1" companyName="Barde" companyWebsite="www.barde.io">
   <MAINGROUP id="r1VLiG" name="BardeClient">
     <GROUP id="{6687DB59-98D3-42FE-E900-5BC523D33DDC}" name="Source">
+      <GROUP id="{3F475B53-E92F-8970-B926-250ECB4D78A3}" name="Ressources">
+        <FILE id="dbqc8v" name="back.png" compile="0" resource="1" file="Source/Ressources/back.png"/>
+        <FILE id="YTFWvq" name="logo.png" compile="0" resource="1" file="Source/Ressources/logo.png"/>
+      </GROUP>
       <GROUP id="{A4D61081-4E48-AE86-F0B8-363A15F7004F}" name="JsoncppLibrary">
         <GROUP id="{9C2520C6-CDB4-0DB8-DA67-ECD1FFF62514}" name="json">
           <FILE id="nrI0oE" name="json-forwards.h" compile="0" resource="0" file="JsoncppLibrary/json/json-forwards.h"/>
@@ -43,8 +47,15 @@
               file="Source/GraphManager/IGraphManager.hpp"/>
         <FILE id="rCMkmr" name="JuceManager.cpp" compile="1" resource="0" file="Source/GraphManager/JuceManager.cpp"/>
         <FILE id="dnE53f" name="JuceManager.hh" compile="0" resource="0" file="Source/GraphManager/JuceManager.hh"/>
+        <FILE id="IO6KsY" name="MainComponent.cpp" compile="1" resource="0"
+              file="Source/GraphManager/MainComponent.cpp"/>
+        <FILE id="o7iJhw" name="MainComponent.h" compile="0" resource="0" file="Source/GraphManager/MainComponent.h"/>
         <FILE id="tmeAhg" name="MainWindow.cpp" compile="1" resource="0" file="Source/GraphManager/MainWindow.cpp"/>
         <FILE id="qOmCTN" name="MainWindow.hh" compile="0" resource="0" file="Source/GraphManager/MainWindow.hh"/>
+        <FILE id="XJbvXy" name="MusicStyleButton.cpp" compile="1" resource="0"
+              file="Source/GraphManager/MusicStyleButton.cpp"/>
+        <FILE id="COOJPI" name="MusicStyleButton.h" compile="0" resource="0"
+              file="Source/GraphManager/MusicStyleButton.h"/>
       </GROUP>
       <GROUP id="{6C1AFA1C-8F32-8804-68F5-0AF88653EE59}" name="Ia">
         <FILE id="gIL7Zp" name="MusicGenerator.cpp" compile="1" resource="0"

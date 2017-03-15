@@ -9,6 +9,7 @@
 */
 
 #include "MainWindow.hh"
+#include "MainComponent.h"
 
 MainWindow::MainWindow(const std::string name) : DocumentWindow(name,
 																Colours::lightgrey,
@@ -22,7 +23,7 @@ MainWindow::MainWindow(const std::string name) : DocumentWindow(name,
 #if JUCE_IOS || JUCE_ANDROID
 	setFullScreen(true);
 #endif
-
+	setContentOwned(new MainContentComponent(), true);
 	centreWithSize(getWidth(), getHeight());
 	setVisible(true);
 }
@@ -37,4 +38,5 @@ void MainWindow::closeButtonPressed()
 
 MainWindow::~MainWindow()
 {
+	deleteAllChildren();
 }
