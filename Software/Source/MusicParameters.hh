@@ -14,7 +14,7 @@
 #include <vector>
 #include "Instrument.hh"
 #include "Ia/StyleSettings.hh"
-#include "MidiManager\Midi.hh"
+#include "MidiManager/Midi.hh"
 
 class MusicParameter
 {

@@ -22,7 +22,10 @@ MusicGenerator::~MusicGenerator()
 
 Midi			MusicGenerator::createMusic()
 {
-	ObjectMarkov	markovObj("blues.json", 1, std::time(nullptr));
+	int seed = 10;
+	srand(seed);
+	ObjectMarkov	markovObj("blues.json", 1, seed);
+
 
    //_resolution.setStyleSettings(_musicParameter);
    //_resolution.parsingMarkov(_musicParameter);
