@@ -16,8 +16,8 @@ public:
   void		addNoteFromNote(const char baseNote, const std::pair<char, int> &note);
   int		getProba(const char note);
   int		getProbaFromNote(const char baseNote, const char note);
-  StyleSettings	&operator=(StyleSettings &old);
-  std::map<char, std::pair<int, std::map<char, int> > >	getParam();
+  StyleSettings	&operator=(const StyleSettings &old);
+  std::map<char, std::pair<int, std::map<char, int> > >	getParam() const;
 
 private:
   std::map<char, std::pair<int, std::map<char, int> > >	_param;

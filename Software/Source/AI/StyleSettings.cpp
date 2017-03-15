@@ -49,12 +49,12 @@ int		StyleSettings::getProbaFromNote(const char baseNote, const char note)
 	  0 : _param[baseNote].second[note]);
 }
 
-std::map<char, std::pair<int, std::map<char, int> > >	StyleSettings::getParam()
+std::map<char, std::pair<int, std::map<char, int> > >	StyleSettings::getParam() const
 {
   return (_param);
 }
 
-StyleSettings	&StyleSettings::operator=(StyleSettings &old)
+StyleSettings	&StyleSettings::operator=(const StyleSettings &old)
 {
   _param = old.getParam();
   return (*this);

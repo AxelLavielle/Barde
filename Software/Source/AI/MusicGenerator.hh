@@ -15,7 +15,7 @@
 #include "../MidiManager/Midi.hh"
 #include "../MusicParameters.hh"
 #include "ObjectMarkov.hh"
-// #include "Disposition.hh"
+#include "Disposition.hh"
 
 class			MusicGenerator
 {
@@ -25,10 +25,7 @@ public:
   Midi			createMusic();
 
 private:
-  Resolution		_resolution;
-  MusicParameter	_musicParameter;
-  // Disposition	_disposition;
-  // MusicParameters	_parameters;
+  MusicParameters	_parameters;
 };
 
 #endif  // MUSICGENERATOR_HH_INCLUDED

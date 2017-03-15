@@ -24,11 +24,13 @@ Midi			MusicGenerator::createMusic()
 {
 	int seed = 10;
 	srand(seed);
-	ObjectMarkov	markovObj("blues.json", 1, seed);
+	ObjectMarkov						markovObj("blues.json", 1, seed);
+	std::vector<std::pair<char, char> >	markov;
+	StyleSettings						style;
 
-
-   //_resolution.setStyleSettings(_musicParameter);
-   //_resolution.parsingMarkov(_musicParameter);
+	markov = markovObj.getVectorFromJson();
+	style = markovObj.getStyleFromJson();
+	Resolution::parsingMarkov(style, markov);
   // Disposition
   // _resolution.parsingDisposition();
   // _resolution.addBridge();
