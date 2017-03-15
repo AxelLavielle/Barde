@@ -15,8 +15,6 @@ module.exports = function (apiRoutes, passport) {
         .post('/register', register)
         .post('/login', login)
 
-        .get ('/info', mAuth.authenticate("Admin"), info)
-
 };
 
 function register(req, res, next) {
