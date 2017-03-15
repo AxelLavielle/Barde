@@ -1,6 +1,6 @@
 #include "ObjectMarkov.hh"
 
-ObjectMarkov::ObjectMarkov(std::string styleJson)
+ObjectMarkov::ObjectMarkov(std::string styleJson, unsigned int seed)
 {
   _L = luaL_newstate();
   luaL_openlibs(_L);
@@ -8,7 +8,7 @@ ObjectMarkov::ObjectMarkov(std::string styleJson)
   _luaMarkovFunction = "markov.lua";
 }
 
-ObjectMarkov::ObjectMarkov(std::string styleJson, std::string luaMarkovFunction)
+ObjectMarkov::ObjectMarkov(std::string styleJson, std::string luaMarkovFunction, unsigned int seed)
 {
   _L = luaL_newstate();
   luaL_openlibs(_L);
@@ -40,7 +40,8 @@ void ObjectMarkov::callLuaMarkov()
   output = writer.write(_rootJson["note"]);
   lua_pushstring(_L, output.c_str());
   lua_pushnumber(_L, 10);
-  lua_call(_L,3,1);
+  lua_pushnumber(_L, _seed);
+  lua_call(_L,4,1);
   if (!lua_isnil(_L, -1))
   {
     if (reader.parse(lua_tostring(_L,-1), _response, false))
