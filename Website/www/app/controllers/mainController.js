@@ -4,9 +4,8 @@ angular.module('app.controllers', ['angular-md5', 'vcRecaptcha'])
         .controller('mainController', ['$scope', '$http', 'vcRecaptchaService', function($scope, $http, vcRecaptchaService)
         {
 
-
-
-
+          var userLang = navigator.language || navigator.userLanguage;
+          alert ("The language is: " + userLang);
 
           $scope.validated = false;
 
