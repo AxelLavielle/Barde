@@ -397,9 +397,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Source\Ia\Resolution.cpp">
-      <Filter>BardeClient\Source</Filter>
-    </ClCompile>
     <ClCompile Include="..\Source\Instrument.cpp">
       <Filter>BardeClient\Source</Filter>
     </ClCompile>
@@ -432,6 +429,12 @@
     </ClCompile>
     <ClCompile Include="..\Source\GraphManager\MusicStyleButton.cpp">
       <Filter>BardeClient\Source\GraphManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Ia\Disposition.cpp">
+      <Filter>BardeClient\Source\Ia</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Ia\Resolution.cpp">
+      <Filter>BardeClient\Source\Ia</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\Ia\MusicGenerator.cpp">
       <Filter>BardeClient\Source\Ia</Filter>
@@ -2282,6 +2285,9 @@
     </ClInclude>
     <ClInclude Include="..\Source\GraphManager\MusicStyleButton.h">
       <Filter>BardeClient\Source\GraphManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Ia\Disposition.hh">
+      <Filter>BardeClient\Source\Ia</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\Ia\MusicGenerator.hh">
       <Filter>BardeClient\Source\Ia</Filter>

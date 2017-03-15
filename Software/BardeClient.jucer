@@ -5,7 +5,6 @@
               jucerVersion="4.3.1" companyName="Barde" companyWebsite="www.barde.io">
   <MAINGROUP id="r1VLiG" name="BardeClient">
     <GROUP id="{6687DB59-98D3-42FE-E900-5BC523D33DDC}" name="Source">
-      <FILE id="BMe9c7" name="Resolution.cpp" compile="1" resource="0" file="Source/Ia/Resolution.cpp"/>
       <FILE id="KYXR5E" name="Instrument.cpp" compile="1" resource="0" file="Source/Instrument.cpp"/>
       <FILE id="GCW7x9" name="Instrument.hh" compile="0" resource="0" file="Source/Instrument.hh"/>
       <GROUP id="{3F475B53-E92F-8970-B926-250ECB4D78A3}" name="Ressources">
@@ -61,6 +60,9 @@
               file="Source/GraphManager/MusicStyleButton.h"/>
       </GROUP>
       <GROUP id="{6C1AFA1C-8F32-8804-68F5-0AF88653EE59}" name="Ia">
+        <FILE id="IwgaNB" name="Disposition.cpp" compile="1" resource="0" file="Source/Ia/Disposition.cpp"/>
+        <FILE id="JfD50t" name="Disposition.hh" compile="0" resource="0" file="Source/Ia/Disposition.hh"/>
+        <FILE id="BMe9c7" name="Resolution.cpp" compile="1" resource="0" file="Source/Ia/Resolution.cpp"/>
         <FILE id="gIL7Zp" name="MusicGenerator.cpp" compile="1" resource="0"
               file="Source/Ia/MusicGenerator.cpp"/>
         <FILE id="LaGC8m" name="MusicGenerator.hh" compile="0" resource="0"

@@ -135,7 +135,6 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Source\Ia\Resolution.cpp"/>
     <ClCompile Include="..\Source\Instrument.cpp"/>
     <ClCompile Include="..\JsoncppLibrary\jsoncpp.cpp"/>
     <ClCompile Include="..\Source\DatabaseManager\ADatabasManager.cpp"/>
@@ -147,6 +146,8 @@
     <ClCompile Include="..\Source\GraphManager\MainComponent.cpp"/>
     <ClCompile Include="..\Source\GraphManager\MainWindow.cpp"/>
     <ClCompile Include="..\Source\GraphManager\MusicStyleButton.cpp"/>
+    <ClCompile Include="..\Source\Ia\Disposition.cpp"/>
+    <ClCompile Include="..\Source\Ia\Resolution.cpp"/>
     <ClCompile Include="..\Source\Ia\MusicGenerator.cpp"/>
     <ClCompile Include="..\Source\Ia\ObjectMarkov.cpp"/>
     <ClCompile Include="..\Source\Ia\StyleSettings.cpp"/>
@@ -1768,6 +1769,7 @@
     <ClInclude Include="..\Source\GraphManager\MainComponent.h"/>
     <ClInclude Include="..\Source\GraphManager\MainWindow.hh"/>
     <ClInclude Include="..\Source\GraphManager\MusicStyleButton.h"/>
+    <ClInclude Include="..\Source\Ia\Disposition.hh"/>
     <ClInclude Include="..\Source\Ia\MusicGenerator.hh"/>
     <ClInclude Include="..\Source\Ia\ObjectMarkov.hh"/>
     <ClInclude Include="..\Source\Ia\StyleSettings.hh"/>
