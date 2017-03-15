@@ -22,12 +22,12 @@ MusicGenerator::~MusicGenerator()
 
 Midi			MusicGenerator::createMusic()
 {
-  // _resolution.setStyleSettings();
-  // _resolution.parsingMarkov();
-  // _resolution.fixingMarkov();
+	ObjectMarkov	markovObj("blues.json", 1, std::time(nullptr));
+
+   //_resolution.setStyleSettings(_musicParameter);
+   //_resolution.parsingMarkov(_musicParameter);
   // Disposition
   // _resolution.parsingDisposition();
-  // _resolution.fixingDisposition();
   // _resolution.addBridge();
 	return (Midi());
 }

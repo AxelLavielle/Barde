@@ -13,8 +13,9 @@
 
 #include "Resolution.hh"
 #include "../MidiManager/Midi.hh"
+#include "../MusicParameters.hh"
+#include "ObjectMarkov.hh"
 // #include "Disposition.hh"
-// #include "MusicParameters"
 
 class			MusicGenerator
 {
@@ -25,6 +26,7 @@ public:
 
 private:
   Resolution		_resolution;
+  MusicParameter	_musicParameter;
   // Disposition	_disposition;
   // MusicParameters	_parameters;
 };

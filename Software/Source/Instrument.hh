@@ -19,6 +19,8 @@ class Instrument
 public:
 	std::string		name;
 	NbInstrument	nb;
+	int				channel;
+	float			velocity;
 };
 
 #endif  // INSTRUMENT_HH_INCLUDED

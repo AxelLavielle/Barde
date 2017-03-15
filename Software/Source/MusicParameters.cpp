@@ -37,3 +37,38 @@ void MusicParameter::setSeed(const int seed)
 {
 	_seed = seed;
 }
+
+void MusicParameter::addInstrument(const Instrument &instrument)
+{
+	_instruments.push_back(instrument);
+}
+
+std::vector<Instrument> MusicParameter::getInstruments() const
+{
+	return (_instruments);
+}
+
+void MusicParameter::setInstruments(const std::vector<Instrument> &instruments)
+{
+	_instruments = instruments;
+}
+
+void MusicParameter::setStyleName(const std::string & name)
+{
+	_styleName = name;
+}
+
+std::string MusicParameter::getStyleName() const
+{
+	return (_styleName);
+}
+
+void MusicParameter::setMidi(const Midi & midi)
+{
+	_midi = midi;
+}
+
+Midi MusicParameter::getMidi() const
+{
+	return (_midi);
+}

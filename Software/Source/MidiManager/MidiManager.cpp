@@ -27,9 +27,32 @@ void MidiManager::noteOn(int channel, int noteNumber, float velocity, double tim
 	_midiSequence.updateMatchedPairs();
 }
 
+void MidiManager::noteOn(const Instrument & instrument, int noteNumber, float velocity, double time) noexcept
+{
+	MidiMessage message = MidiMessage::noteOn(instrument.channel, noteNumber, (uint8)velocity);
+
+	changeInstrument(instrument, time);
+	message.setTimeStamp(time);
+	addMessageToList(message);
+	_midiSequence.addEvent(message);
+	_midiSequence.updateMatchedPairs();
+}
+
 void MidiManager::noteOff(int channel, int noteNumber, float velocity, double time) noexcept
 {
 	MidiMessage message = MidiMessage::noteOff(channel, noteNumber, (uint8)velocity);
+	
+	message.setTimeStamp(time);
+	addMessageToList(message);
+	_midiSequence.addEvent(message);
+	//_midiSequence.updateMatchedPairs();
+}
+
+void MidiManager::noteOff(const Instrument & instrument, int noteNumber, float velocity, double time) noexcept
+{
+	MidiMessage message = MidiMessage::noteOff(instrument.channel, noteNumber, (uint8)velocity);
+
+	changeInstrument(instrument, time);
 	message.setTimeStamp(time);
 	addMessageToList(message);
 	_midiSequence.addEvent(message);
@@ -73,6 +96,14 @@ void MidiManager::setTempo(const int bpm, double time)
 void MidiManager::changeInstrument(const int channel, const int instrumentNb, double time)
 {
 	MidiMessage message = MidiMessage::programChange(channel, instrumentNb);
+
+	message.setTimeStamp(time);
+	_midiSequence.addEvent(message);
+}
+
+void MidiManager::changeInstrument(const Instrument & instrument, double time)
+{
+	MidiMessage message = MidiMessage::programChange(instrument.channel, instrument.nb);
 
 	message.setTimeStamp(time);
 	_midiSequence.addEvent(message);
