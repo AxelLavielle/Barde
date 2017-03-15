@@ -5,6 +5,9 @@
               jucerVersion="4.3.1" companyName="Barde" companyWebsite="www.barde.io">
   <MAINGROUP id="r1VLiG" name="BardeClient">
     <GROUP id="{6687DB59-98D3-42FE-E900-5BC523D33DDC}" name="Source">
+      <FILE id="BMe9c7" name="Resolution.cpp" compile="1" resource="0" file="Source/Ia/Resolution.cpp"/>
+      <FILE id="KYXR5E" name="Instrument.cpp" compile="1" resource="0" file="Source/Instrument.cpp"/>
+      <FILE id="GCW7x9" name="Instrument.hh" compile="0" resource="0" file="Source/Instrument.hh"/>
       <GROUP id="{3F475B53-E92F-8970-B926-250ECB4D78A3}" name="Ressources">
         <FILE id="dbqc8v" name="back.png" compile="0" resource="1" file="Source/Ressources/back.png"/>
         <FILE id="YTFWvq" name="logo.png" compile="0" resource="1" file="Source/Ressources/logo.png"/>

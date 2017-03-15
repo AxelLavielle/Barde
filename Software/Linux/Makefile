@@ -64,6 +64,8 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS := \
+  $(JUCE_OBJDIR)/Resolution_7549cfd3.o \
+  $(JUCE_OBJDIR)/Instrument_44b59881.o \
   $(JUCE_OBJDIR)/jsoncpp_7b1ce7b0.o \
   $(JUCE_OBJDIR)/ADatabasManager_7f537f57.o \
   $(JUCE_OBJDIR)/SQLiteManager_99d2bf74.o \
@@ -133,6 +135,16 @@ clean:
 strip:
 	@echo Stripping BardeClient
 	-@$(STRIP) --strip-unneeded $(JUCE_OUTDIR)/$(TARGET)
+
+$(JUCE_OBJDIR)/Resolution_7549cfd3.o: ../Source/Ia/Resolution.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Resolution.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/Instrument_44b59881.o: ../Source/Instrument.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Instrument.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/jsoncpp_7b1ce7b0.o: ../JsoncppLibrary/jsoncpp.cpp
 	-@mkdir -p $(JUCE_OBJDIR)

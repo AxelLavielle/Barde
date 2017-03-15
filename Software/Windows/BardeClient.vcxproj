@@ -135,6 +135,8 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Source\Ia\Resolution.cpp"/>
+    <ClCompile Include="..\Source\Instrument.cpp"/>
     <ClCompile Include="..\JsoncppLibrary\jsoncpp.cpp"/>
     <ClCompile Include="..\Source\DatabaseManager\ADatabasManager.cpp"/>
     <ClCompile Include="..\Source\DatabaseManager\SQLiteManager.cpp"/>
@@ -1751,6 +1753,7 @@
     <ClCompile Include="..\JuceLibraryCode\juce_video.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\Instrument.hh"/>
     <ClInclude Include="..\JsoncppLibrary\json\json-forwards.h"/>
     <ClInclude Include="..\JsoncppLibrary\json\json.h"/>
     <ClInclude Include="..\Source\DatabaseManager\ADatabasManager.hh"/>

@@ -397,6 +397,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Source\Ia\Resolution.cpp">
+      <Filter>BardeClient\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Instrument.cpp">
+      <Filter>BardeClient\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\JsoncppLibrary\jsoncpp.cpp">
       <Filter>BardeClient\Source\JsoncppLibrary</Filter>
     </ClCompile>
@@ -2232,6 +2238,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\Instrument.hh">
+      <Filter>BardeClient\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\JsoncppLibrary\json\json-forwards.h">
       <Filter>BardeClient\Source\JsoncppLibrary\json</Filter>
     </ClInclude>

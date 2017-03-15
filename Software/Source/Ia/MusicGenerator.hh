@@ -12,7 +12,7 @@
 # define MUSICGENERATOR_HH_INCLUDED
 
 #include "Resolution.hh"
-#include "Midi.hh"
+#include "../MidiManager/Midi.hh"
 // #include "Disposition.hh"
 // #include "MusicParameters"
 

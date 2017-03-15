@@ -12,7 +12,7 @@
 #define INSTRUMENTS_HH_INCLUDED
 
 
-enum	Instrument
+enum	NbInstrument
   {
     ACOUSTICGRANDPIANO		=	1,
     BRIGHTACOUSTICPIANO		=	2,

@@ -29,4 +29,5 @@ Midi			MusicGenerator::createMusic()
   // _resolution.parsingDisposition();
   // _resolution.fixingDisposition();
   // _resolution.addBridge();
+	return (Midi());
 }
