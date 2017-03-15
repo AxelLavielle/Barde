@@ -174,7 +174,8 @@
         <MODULEPATH id="juce_audio_utils" path="JuceLibraryCode\modules"/>
       </MODULEPATHS>
     </VS2015>
-    <LINUX_MAKE targetFolder="Linux">
+    <LINUX_MAKE targetFolder="Linux" externalLibraries="lua" extraLinkerFlags="-L../LuaLibrary"
+                extraCompilerFlags="-I../JsoncppLibrary/&#10;-I../LuaLibrary/include">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="BardeClient"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="BardeClient"/>
