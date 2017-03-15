@@ -9,3 +9,24 @@
 */
 
 #include "MusicGenerator.hh"
+
+MusicGenerator::MusicGenerator()
+{
+  
+}
+
+MusicGenerator::~MusicGenerator()
+{
+
+}
+
+Midi			MusicGenerator::createMusic()
+{
+  // _resolution.setStyleSettings();
+  // _resolution.parsingMarkov();
+  // _resolution.fixingMarkov();
+  // Disposition
+  // _resolution.parsingDisposition();
+  // _resolution.fixingDisposition();
+  // _resolution.addBridge();
+}
