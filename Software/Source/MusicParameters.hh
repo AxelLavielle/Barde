@@ -16,11 +16,11 @@
 #include "AI/StyleSettings.hh"
 #include "MidiManager/Midi.hh"
 
-class MusicParameter
+class MusicParameters
 {
 public:
-	MusicParameter();
-	~MusicParameter();
+	MusicParameters();
+	~MusicParameters();
 	int getBpm() const;
 	void setBpm(const int bpm);
 	int getSeed() const;

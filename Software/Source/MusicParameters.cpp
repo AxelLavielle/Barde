@@ -10,65 +10,65 @@
 
 #include "MusicParameters.hh"
 
-MusicParameter::MusicParameter()
+MusicParameters::MusicParameters()
 {
 }
 
-MusicParameter::~MusicParameter()
+MusicParameters::~MusicParameters()
 {
 }
 
-int MusicParameter::getBpm() const
+int MusicParameters::getBpm() const
 {
 	return (_bpm);
 }
 
-void MusicParameter::setBpm(const int bpm)
+void MusicParameters::setBpm(const int bpm)
 {
 	_bpm = bpm;
 }
 
-int MusicParameter::getSeed() const
+int MusicParameters::getSeed() const
 {
 	return (_seed);
 }
 
-void MusicParameter::setSeed(const int seed)
+void MusicParameters::setSeed(const int seed)
 {
 	_seed = seed;
 }
 
-void MusicParameter::addInstrument(const Instrument &instrument)
+void MusicParameters::addInstrument(const Instrument &instrument)
 {
 	_instruments.push_back(instrument);
 }
 
-std::vector<Instrument> MusicParameter::getInstruments() const
+std::vector<Instrument> MusicParameters::getInstruments() const
 {
 	return (_instruments);
 }
 
-void MusicParameter::setInstruments(const std::vector<Instrument> &instruments)
+void MusicParameters::setInstruments(const std::vector<Instrument> &instruments)
 {
 	_instruments = instruments;
 }
 
-void MusicParameter::setStyleName(const std::string & name)
+void MusicParameters::setStyleName(const std::string & name)
 {
 	_styleName = name;
 }
 
-std::string MusicParameter::getStyleName() const
+std::string MusicParameters::getStyleName() const
 {
 	return (_styleName);
 }
 
-void MusicParameter::setMidi(const Midi & midi)
+void MusicParameters::setMidi(const Midi & midi)
 {
 	_midi = midi;
 }
 
-Midi MusicParameter::getMidi() const
+Midi MusicParameters::getMidi() const
 {
 	return (_midi);
 }

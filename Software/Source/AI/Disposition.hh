@@ -1,16 +1,11 @@
 #include <vector>
-#include <utility>
+#include "../MusicParameters.hh"
 
 class Disposition {
-
-  private:
-    std::vector<std::pair<char, char> > _markov;
-
   public:
     Disposition();
     ~Disposition();
 
-  private:
-    void createMidi();
-
+  static void	placeChords(MusicParameters &parameters);
+  static void	placeArpeggios(MusicParameters &parameters);
 };
