@@ -14,6 +14,7 @@
 #include "JuceHeader.h"
 #include "GraphManager/JuceManager.hh"
 #include "MidiManager/MidiManager.hh"
+#include "AI/MusicGenerator.hh"
 
 class Core : public JUCEApplication
 {

@@ -20,7 +20,7 @@ MusicGenerator::~MusicGenerator()
 
 }
 
-Midi			MusicGenerator::createMusic()
+Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 {
 	int seed = 10;
 	srand(seed);

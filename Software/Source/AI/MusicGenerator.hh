@@ -22,10 +22,9 @@ class			MusicGenerator
 public:
   MusicGenerator();
   ~MusicGenerator();
-  Midi			createMusic();
+  Midi			createMusic(MusicParameters &parameters);
 
 private:
-  MusicParameters	_parameters;
 };
 
 #endif  // MUSICGENERATOR_HH_INCLUDED
