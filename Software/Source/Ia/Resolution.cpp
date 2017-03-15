@@ -10,7 +10,7 @@ Resolution::~Resolution()
 
 }
 
-std::vector<std::pair<char, char> >	Resolution::parsingMarkov(const StyleSettings &style, std::vector<std::pair<char, char> > &sequence)
+std::vector<std::pair<char, char> >	Resolution::parsingMarkov(StyleSettings &style, std::vector<std::pair<char, char> > &sequence)
 {
   char	i;
   char	save;
@@ -35,7 +35,7 @@ std::vector<std::pair<char, char> >	Resolution::parsingMarkov(const StyleSetting
   return (sequence);
 }
 
-char		Resolution::fixingMarkov(const StyleSettings &style, const char prev, const char next)
+char		Resolution::fixingMarkov(StyleSettings &style, const char prev, const char next)
 {
   char		tmp;
   std::vector<char> 	save;

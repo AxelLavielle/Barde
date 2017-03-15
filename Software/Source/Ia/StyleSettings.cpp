@@ -5,7 +5,7 @@ StyleSettings::StyleSettings()
 
 }
 
-StyleSettings::StyleSettings(const StyleSettings &old)
+StyleSettings::StyleSettings(StyleSettings &old)
 {
   _param = old.getParam();
 }
@@ -18,13 +18,13 @@ StyleSettings::~StyleSettings()
 void		StyleSettings::addNote(const std::pair<char, int> &note)
 {
   std::map<char, int>			tmp;
-  _param.insert(std::pair<int, std::pair<int, std::map<char, int> > >(note.first, std::pair<int, std::map<char, int> >(note.second, tmp)));
+  _param.insert(std::make_pair(note.first, std::make_pair(note.second, tmp)));
 }
 
 void		StyleSettings::addNote(const char noteName, const int noteProba)
 {
   std::map<char, int>	tmp;
-  _param.insert(std::pair<char, std::pair<int, std::map<char, int> > >(noteName, std::pair<int, std::map<char, int> >(noteProba, tmp)));
+  _param.insert(std::make_pair(noteName, std::make_pair(noteProba, tmp)));
 }
 
 void		StyleSettings::addNoteFromNote(const char baseNote, const std::pair<char, int> &note)
@@ -34,27 +34,27 @@ void		StyleSettings::addNoteFromNote(const char baseNote, const std::pair<char, 
 
 void		StyleSettings::addNoteFromNote(const char baseNote, const char noteName, const int noteProba)
 {
-  _param[baseNote].second.insert(std::pair<char, int>(noteName, noteProba));
+  _param[baseNote].second.insert(std::make_pair(noteName, noteProba));
 }
 
-int		StyleSettings::getProba(const char note) const
+int		StyleSettings::getProba(const char note)
 {
   return (_param.find(note) == _param.end() ? 0 : _param[note].first);
 }
 
-int		StyleSettings::getProbaFromNote(const char baseNote, const char note) const
+int		StyleSettings::getProbaFromNote(const char baseNote, const char note)
 {
   return ((_param.find(baseNote) == _param.end() ||
 	   _param[baseNote].second.find(note) == _param[baseNote].second.end()) ?
 	  0 : _param[baseNote].second[note]);
 }
 
-std::map<char, std::pair<int, std::map<char, int> > >	StyleSettings::getParam() const
+std::map<char, std::pair<int, std::map<char, int> > >	StyleSettings::getParam()
 {
   return (_param);
 }
 
-StyleSettings	&StyleSettings::operator=(const StyleSettings &old)
+StyleSettings	&StyleSettings::operator=(StyleSettings &old)
 {
   _param = old.getParam();
   return (*this);
