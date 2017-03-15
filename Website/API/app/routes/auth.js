@@ -1,123 +1,74 @@
-var jwt = require('jwt-simple');
-var User = require('../models/user');
-var config = require('../../config/db'); // get db config file
-var popupTools = require('popup-tools');
+/**
+ * APLT
+ * < arnaud perrault />
+ * barde-api - Created on 14/03/2017
+ */
+
+var jwt    = require('jwt-simple');
+var User   = require('../models/user');
+var config = require('../../config/var');
 var bcrypt = require('bcrypt');
 
 module.exports = function (apiRoutes, passport) {
 
     apiRoutes
-        .post('/signup', signup)
-        .post('/authenticate', authenticate)
+        .post('/register', register)
+        .post('/login', login)
 
-        .get('/auth/facebook/callback', passport.authenticate('facebook'), facebookCallback)
-        .get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}))
-
-        .get('/auth/local/callback', passport.authenticate('facebook'), facebookCallback)
-        .get('/auth/local', passport.authenticate('local', {failureRedirect: '/signup'}), localRegister)
-
+        .get ('/info', mAuth.authenticate("Admin"), info)
 
 };
 
-function localRegister(req, res)
-{
-    res.redirect('/');
-}
-
-function facebookCallback(req, res) {
-    res.end(popupTools.popupResponse(req.user))
-}
-
-function signup(req, res, next) {
-    console.log(req.body);
-
-    var password = ((req.body.social.facebook.id != "" || req.body.social.twitter.id != "") ? "*" : req.body.password);
-    var facebookId = (req.body.social.facebook.id == "" ? "" : req.body.social.facebook.id);
-    var twitterId = (req.body.social.twitter.id == "" ? "" : req.body.social.twitter.id);
+function register(req, res, next) {
 
     if (!req.body.email) {
-        res.json({success: false, msg: 'Please enter email and password.'});
-    } else {
+        res.status(400).send({msg: 'No content', data: {message: "Vous devez inscrire votre email."}});
+    } else if (!req.body.email) {
+        res.status(400).send({msg: 'No content', data: {message: "Vous devez inscrire votre mot de passe."}});
+    } else{
         var newUser = new User({
             email: req.body.email,
-            name: {
-                lastName: req.body.name.lastName,
-                firstName: req.body.name.firstName,
-                userName: req.body.name.userName
-            },
-            password: password,
-            social: {
-                facebook: {
-                    id: facebookId
-                },
-                twitter: {
-                    id: twitterId,
-                }
-            }
+            password: req.body.password
         });
-        console.log("=", newUser);
-        // save the user
+
         newUser.save(function (err) {
             console.log(err);
             if (err) {
-                return res.json({success: false, msg: 'Username already exists.'});
+                res.status(409).send({msg: 'Content already exists', data: {message: "L'utilisateur existe déjà."}});
             }
-            res.json({success: true, msg: 'Successful created new user.'});
+            res.status(200).send({msg: 'Content created', data: {message: "Votre inscription a bien été pris en compte."}});
         });
     }
+
 }
 
-function authenticate(req, res, next) {
+function login(req, res, next) {
 
+    User.findOne({
+        email: req.body.email
+    }, function (err, user) {
+        if (err) throw err;
 
-    console.log(req.body);
-
-    if (req.body.social && ((req.body.social.facebook && req.body.social.facebook.id != "") || (req.body.social.twitter && req.body.social.twitter.id != ""))) {
-        User.findOne({
-            'social.facebook.id': req.body.social.facebook.id
-        }, function (err, user) {
-
-            if (err) throw err;
-
-            if (!user) {
-                res.send({success: false, msg: 'Authentication failed. User not found.'});
-            } else {
-                if (req.body.social.facebook.id == user.social.facebook.id || req.body.social.twitter.id == user.social.twitter.id) {
-
-                    var token = jwt.encode(user, config.secret);
-
+        if (!user) {
+            res.status(400).send({msg: 'No content', data: {message: "L'utilisateur n'existe pas."}});
+        } else {
+            // check if password matches
+            user.comparePassword(req.body.password, function (err, isMatch) {
+                if (isMatch && !err) {
+                    // if user is found and password is right create a token
+                    var token = jwt.encode(user, config.jwt.secret);
                     // return the information including token as JSON
                     res.json({success: true, token: 'JWT ' + token});
-                }
-                else {
-                    res.send({success: false, msg: 'Authentication failed. Wrong password.'});
-                }
 
-            }
-        });
-    }
-    else {
-        User.findOne({
-            email: req.body.email
-        }, function (err, user) {
-            if (err) throw err;
+                    res.status(200).send({msg: 'Content created', data: {token: 'JWT ' + token, message: "Vous êtes connecté."}});
 
-            if (!user) {
-                res.send({success: false, msg: 'Authentication failed. User not found.'});
-            } else {
-                // check if password matches
-                user.comparePassword(req.body.password, function (err, isMatch) {
-                    if (isMatch && !err) {
-                        // if user is found and password is right create a token
-                        var token = jwt.encode(user, config.secret);
-                        // return the information including token as JSON
-                        res.json({success: true, token: 'JWT ' + token});
-                    } else {
-                        res.send({success: false, msg: 'Authentication failed. Wrong password.'});
-                    }
-                });
-            }
-        });
-    }
+
+
+                } else {
+                    res.status(400).send({msg: 'Wrong content', data: {message: "Le mot de passe est faux."}});
+                }
+            });
+        }
+    });
 
 }
