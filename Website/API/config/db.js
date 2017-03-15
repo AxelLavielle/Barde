@@ -12,5 +12,3 @@ module.exports = {
 /*
     'database': 'mongodb://' + 'barde:' + 'BbPrEnNnpxhPLB2a' + '@' + process.env.MONGO_HOST + '/barde'
 */
-};
-*/
