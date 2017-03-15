@@ -8,6 +8,9 @@ module.exports = {
 /*
 module.exports = {
     'secret': 'barde',
+    'database': 'mongodb://localhost/barde'
+/*
     'database': 'mongodb://' + 'barde:' + 'BbPrEnNnpxhPLB2a' + '@' + process.env.MONGO_HOST + '/barde'
+*/
 };
 */
