@@ -4,11 +4,6 @@
  * barde-api - Created on 14/03/2017
  */
 
-/**
- * @apiDefine Auth Authentification
- *
- * All routes for authentification
- */
 var jwt    = require('jwt-simple');
 var User   = require('../models/user');
 var config = require('../../config/var');
@@ -17,50 +12,11 @@ var bcrypt = require('bcrypt');
 module.exports = function (apiRoutes, passport) {
 
     apiRoutes
-        .post('/auth/register', register)
-        .post('/auth/login', login)
+        .post('/register', register)
+        .post('/login', login)
+
 };
 
-/**
- * @api {post} /auth/register Register user
- * @apiName Register
- * @apiGroup Auth
- *
- * @apiParam {String} email Users unique email.
- * @apiParam {String} password Users password.
- *
- * @apiErrorExample 200 - Success
- *     {
- *       "msg": "Content created"
- *       "data": {
- *          "message": "Votre inscription a bien été pris en compte."
- *       }
- *     }
- *
- *  @apiErrorExample 400 - No email
- *     {
- *       "msg": "No content"
- *       "data": {
- *          "message": "Vous devez inscrire votre email."
- *       }
- *     }
- *
- *  @apiErrorExample 400 - No password
- *     {
- *       "msg": "No content"
- *       "data": {
- *          "message": "Vous devez inscrire votre mot de passe."
- *       }
- *     }
- *
- *  @apiErrorExample 409 - Already Exists
- *     {
- *       "msg": "Content already exists"
- *       "data": {
- *          "message": "L'utilisateur existe déjà."
- *       }
- *     }
- */
 function register(req, res, next) {
 
     if (!req.body.email) {
