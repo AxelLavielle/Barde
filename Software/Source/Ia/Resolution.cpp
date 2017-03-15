@@ -1,7 +1,6 @@
 #include		"Resolution.hh"
 
-Resolution::Resolution(// const Style &style, Disposition &disposition
-	   )
+Resolution::Resolution()
 {
 
 }
@@ -11,38 +10,32 @@ Resolution::~Resolution()
 
 }
 
-void		Resolution::setStyleSettings(const StyleSettings &style)
-{
-  _style = style;
-}
-
-std::vector<std::pair<char, char> >	Resolution::parsingMarkov(std::vector<std::pair<char, char> > sequence)
+std::vector<std::pair<char, char> >	Resolution::parsingMarkov(const StyleSettings &style, std::vector<std::pair<char, char> > &sequence)
 {
   char	i;
   char	save;
   int	percentage;
 
-  srand(time(NULL));
   i = -1;
   save = -1;
   while (++i != sequence.size())
     {
       if (save == sequence[i].first)
 	{
-	  percentage = percentage * _style.getProbaFromNote(save, save) / 100;
+	  percentage = percentage * style.getProbaFromNote(save, save) / 100;
 	  if (percentage < NOT_ENOUGH_CHANCE)
-	    sequence[i].first = fixingMarkov(save, i + 1 == sequence.size() ? -1 : sequence[i + 1].first);
+	    sequence[i].first = fixingMarkov(style, save, i + 1 == sequence.size() ? -1 : sequence[i + 1].first);
 	}
       if (save != sequence[i].first)
 	{
 	  save = sequence[i].first;
-	  percentage = _style.getProbaFromNote(save, save);
+	  percentage = style.getProbaFromNote(save, save);
 	}
     }
   return (sequence);
 }
 
-char		Resolution::fixingMarkov(const char prev, const char next)
+char		Resolution::fixingMarkov(const StyleSettings &style, const char prev, const char next)
 {
   char		tmp;
   std::vector<char> 	save;
@@ -54,9 +47,9 @@ char		Resolution::fixingMarkov(const char prev, const char next)
   probSave = 0;
   while (tmp != END)
     {
-      prob = _style.getProbaFromNote(prev, tmp);
+      prob = style.getProbaFromNote(prev, tmp);
       if (next != -1)
-	prob *= _style.getProbaFromNote(tmp, next);
+	prob *= style.getProbaFromNote(tmp, next);
       if (prob > probSave)
 	{
 	  probSave = prob;

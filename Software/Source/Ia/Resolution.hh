@@ -1,8 +1,6 @@
 #ifndef		__RESOLUTION__
 # define	__RESOLUTION__
 
-#include	<time.h>
-#include	<stdlib.h>
 #include	"StyleSettings.hh"
 #include	"Chords.hh"
 
@@ -13,15 +11,9 @@ class		Resolution
 public:
   Resolution();
   ~Resolution();
-  void			setStyleSettings(const StyleSettings &style);
-  std::vector<std::pair<char, char> >	parsingMarkov(std::vector<std::pair<char, char> > sequence);
-  char			fixingMarkov(const char prev, const char next);
-  void			addBridge();
-  void			parsingDisposition();
-  void			fixingDisposition();
-
+  static std::vector<std::pair<char, char> >	Resolution::parsingMarkov(const StyleSettings &style, std::vector<std::pair<char, char> > &sequence);
 private:
-  StyleSettings		_style;
+  char			fixingMarkov(const char prev, const char next);
 };
 
 #endif //	__RESOLUTION__
