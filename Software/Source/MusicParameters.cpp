@@ -28,12 +28,12 @@ void MusicParameters::setBpm(const int bpm)
 	_bpm = bpm;
 }
 
-int MusicParameters::getSeed() const
+unsigned int MusicParameters::getSeed() const
 {
 	return (_seed);
 }
 
-void MusicParameters::setSeed(const int seed)
+void MusicParameters::setSeed(const unsigned int seed)
 {
 	_seed = seed;
 }

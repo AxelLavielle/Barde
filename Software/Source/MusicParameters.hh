@@ -23,8 +23,8 @@ public:
 	~MusicParameters();
 	int getBpm() const;
 	void setBpm(const int bpm);
-	int getSeed() const;
-	void setSeed(const int seed);
+	unsigned int getSeed() const;
+	void setSeed(const unsigned int seed);
 	void addInstrument(const Instrument &instrument);
 	std::vector<Instrument>	getInstruments() const;
 	void setInstruments(const std::vector<Instrument> &instruments);
@@ -34,7 +34,7 @@ public:
 	Midi getMidi() const;
 
 private:
-	int									_seed;
+	unsigned int							_seed;
 	int									_bpm;
 	std::vector<Instrument>				_instruments;
 	std::string							_styleName;
