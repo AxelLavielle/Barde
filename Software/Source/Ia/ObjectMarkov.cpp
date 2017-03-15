@@ -1,19 +1,33 @@
 #include "ObjectMarkov.hh"
 
-ObjectMarkov::ObjectMarkov(std::string styleJson)
+ObjectMarkov::ObjectMarkov(std::string styleJson, unsigned int nbNote)
 {
   _L = luaL_newstate();
   luaL_openlibs(_L);
   _styleJson = styleJson;
   _luaMarkovFunction = "markov.lua";
+  _nbNote = nbNote;
+  _seed = std::time(nullptr);
 }
 
-ObjectMarkov::ObjectMarkov(std::string styleJson, std::string luaMarkovFunction)
+ObjectMarkov::ObjectMarkov(std::string styleJson, unsigned int nbNote, unsigned int seed)
+{
+  _L = luaL_newstate();
+  luaL_openlibs(_L);
+  _styleJson = styleJson;
+  _luaMarkovFunction = "markov.lua";
+  _nbNote = nbNote;
+  _seed = seed;
+}
+
+ObjectMarkov::ObjectMarkov(std::string styleJson, std::string luaMarkovFunction, unsigned int nbNote, unsigned int seed)
 {
   _L = luaL_newstate();
   luaL_openlibs(_L);
   _styleJson = styleJson;
   _luaMarkovFunction = luaMarkovFunction;
+  _nbNote = nbNote;
+  _seed = seed;
 }
 
 void ObjectMarkov::callLuaMarkov()
@@ -38,9 +52,11 @@ void ObjectMarkov::callLuaMarkov()
   lua_pushstring(_L, output.c_str());
 
   output = writer.write(_rootJson["note"]);
+  std::cout << _rootJson["note"] << std::endl;
   lua_pushstring(_L, output.c_str());
-  lua_pushnumber(_L, 10);
-  lua_call(_L,3,1);
+  lua_pushnumber(_L, 15);
+  lua_pushnumber(_L, _seed);
+  lua_call(_L,4,1);
   if (!lua_isnil(_L, -1))
   {
     if (reader.parse(lua_tostring(_L,-1), _response, false))

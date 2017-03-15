@@ -71,7 +71,9 @@ OBJECTS := \
   $(JUCE_OBJDIR)/SSLManager_f25fe680.o \
   $(JUCE_OBJDIR)/AGraphManager_4508c7ea.o \
   $(JUCE_OBJDIR)/JuceManager_8121b3aa.o \
+  $(JUCE_OBJDIR)/MainComponent_fb729fae.o \
   $(JUCE_OBJDIR)/MainWindow_1a69e1a9.o \
+  $(JUCE_OBJDIR)/MusicStyleButton_39681cbe.o \
   $(JUCE_OBJDIR)/MusicGenerator_d4962355.o \
   $(JUCE_OBJDIR)/ObjectMarkov_ab3530ba.o \
   $(JUCE_OBJDIR)/StyleSettings_4f453df7.o \
@@ -95,6 +97,7 @@ OBJECTS := \
   $(JUCE_OBJDIR)/Playlist_307de2c.o \
   $(JUCE_OBJDIR)/Subscription_38a53d77.o \
   $(JUCE_OBJDIR)/User_dcb1be25.o \
+  $(JUCE_OBJDIR)/BinaryData_371e9b63.o \
   $(JUCE_OBJDIR)/juce_audio_basics_14202532.o \
   $(JUCE_OBJDIR)/juce_audio_devices_13712d1a.o \
   $(JUCE_OBJDIR)/juce_audio_formats_c6583019.o \
@@ -166,9 +169,19 @@ $(JUCE_OBJDIR)/JuceManager_8121b3aa.o: ../Source/GraphManager/JuceManager.cpp
 	@echo "Compiling JuceManager.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/MainComponent_fb729fae.o: ../Source/GraphManager/MainComponent.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling MainComponent.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/MainWindow_1a69e1a9.o: ../Source/GraphManager/MainWindow.cpp
 	-@mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling MainWindow.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/MusicStyleButton_39681cbe.o: ../Source/GraphManager/MusicStyleButton.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling MusicStyleButton.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/MusicGenerator_d4962355.o: ../Source/Ia/MusicGenerator.cpp
@@ -284,6 +297,11 @@ $(JUCE_OBJDIR)/Subscription_38a53d77.o: ../Source/Subscription.cpp
 $(JUCE_OBJDIR)/User_dcb1be25.o: ../Source/User.cpp
 	-@mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling User.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/BinaryData_371e9b63.o: ../JuceLibraryCode/BinaryData.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling BinaryData.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/juce_audio_basics_14202532.o: ../JuceLibraryCode/juce_audio_basics.cpp
