@@ -5,6 +5,29 @@
               jucerVersion="4.3.1" companyName="Barde" companyWebsite="www.barde.io">
   <MAINGROUP id="r1VLiG" name="BardeClient">
     <GROUP id="{6687DB59-98D3-42FE-E900-5BC523D33DDC}" name="Source">
+      <GROUP id="{5444B8A4-FB7A-02ED-7754-175A3C60D033}" name="AI">
+        <FILE id="cwQjWK" name="blues.json" compile="0" resource="1" file="Source/AI/blues.json"/>
+        <FILE id="jqA6BZ" name="Chords.cpp" compile="1" resource="0" file="Source/AI/Chords.cpp"/>
+        <FILE id="gRmS1K" name="Chords.hh" compile="0" resource="0" file="Source/AI/Chords.hh"/>
+        <FILE id="zdlHC7" name="Disposition.cpp" compile="1" resource="0" file="Source/AI/Disposition.cpp"/>
+        <FILE id="vjC5PG" name="Disposition.hh" compile="0" resource="0" file="Source/AI/Disposition.hh"/>
+        <FILE id="oHmnEH" name="dkjson.lua" compile="0" resource="1" file="Source/AI/dkjson.lua"/>
+        <FILE id="U0Sf0X" name="markov.lua" compile="0" resource="1" file="Source/AI/markov.lua"/>
+        <FILE id="MYG2RZ" name="MusicGenerator.cpp" compile="1" resource="0"
+              file="Source/AI/MusicGenerator.cpp"/>
+        <FILE id="Qf9ceN" name="MusicGenerator.hh" compile="0" resource="0"
+              file="Source/AI/MusicGenerator.hh"/>
+        <FILE id="Zt0RrK" name="ObjectMarkov.cpp" compile="1" resource="0"
+              file="Source/AI/ObjectMarkov.cpp"/>
+        <FILE id="yJIk35" name="ObjectMarkov.hh" compile="0" resource="0" file="Source/AI/ObjectMarkov.hh"/>
+        <FILE id="hxJDgE" name="people.json" compile="0" resource="1" file="Source/AI/people.json"/>
+        <FILE id="HX0kAE" name="Resolution.cpp" compile="1" resource="0" file="Source/AI/Resolution.cpp"/>
+        <FILE id="fdfoWr" name="Resolution.hh" compile="0" resource="0" file="Source/AI/Resolution.hh"/>
+        <FILE id="WnFVT9" name="StyleSettings.cpp" compile="1" resource="0"
+              file="Source/AI/StyleSettings.cpp"/>
+        <FILE id="XG4fIR" name="StyleSettings.hh" compile="0" resource="0"
+              file="Source/AI/StyleSettings.hh"/>
+      </GROUP>
       <FILE id="KYXR5E" name="Instrument.cpp" compile="1" resource="0" file="Source/Instrument.cpp"/>
       <FILE id="GCW7x9" name="Instrument.hh" compile="0" resource="0" file="Source/Instrument.hh"/>
       <GROUP id="{3F475B53-E92F-8970-B926-250ECB4D78A3}" name="Ressources">
@@ -58,22 +81,6 @@
               file="Source/GraphManager/MusicStyleButton.cpp"/>
         <FILE id="COOJPI" name="MusicStyleButton.h" compile="0" resource="0"
               file="Source/GraphManager/MusicStyleButton.h"/>
-      </GROUP>
-      <GROUP id="{6C1AFA1C-8F32-8804-68F5-0AF88653EE59}" name="Ia">
-        <FILE id="IwgaNB" name="Disposition.cpp" compile="1" resource="0" file="Source/Ia/Disposition.cpp"/>
-        <FILE id="JfD50t" name="Disposition.hh" compile="0" resource="0" file="Source/Ia/Disposition.hh"/>
-        <FILE id="BMe9c7" name="Resolution.cpp" compile="1" resource="0" file="Source/Ia/Resolution.cpp"/>
-        <FILE id="gIL7Zp" name="MusicGenerator.cpp" compile="1" resource="0"
-              file="Source/Ia/MusicGenerator.cpp"/>
-        <FILE id="LaGC8m" name="MusicGenerator.hh" compile="0" resource="0"
-              file="Source/Ia/MusicGenerator.hh"/>
-        <FILE id="a8D1Dr" name="ObjectMarkov.cpp" compile="1" resource="0"
-              file="Source/Ia/ObjectMarkov.cpp"/>
-        <FILE id="voVwFW" name="ObjectMarkov.hh" compile="0" resource="0" file="Source/Ia/ObjectMarkov.hh"/>
-        <FILE id="KNcIEp" name="StyleSettings.cpp" compile="1" resource="0"
-              file="Source/Ia/StyleSettings.cpp"/>
-        <FILE id="uO4iO6" name="StyleSettings.hh" compile="0" resource="0"
-              file="Source/Ia/StyleSettings.hh"/>
       </GROUP>
       <GROUP id="{52D574CE-B6FD-4ACB-AA76-BC22CA3CBE72}" name="MidiManager">
         <FILE id="aUJmsJ" name="AMidiManager.cpp" compile="1" resource="0"

@@ -8,6 +8,9 @@
     <Filter Include="BardeClient\Source">
       <UniqueIdentifier>{8D691A85-208E-5132-ACCD-377494A40EE0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="BardeClient\Source\AI">
+      <UniqueIdentifier>{46E72A6A-8274-C5FE-EF81-46B658EE3782}</UniqueIdentifier>
+    </Filter>
     <Filter Include="BardeClient\Source\Ressources">
       <UniqueIdentifier>{A8AA69FF-5C1A-55CB-BA65-5EA3968FF232}</UniqueIdentifier>
     </Filter>
@@ -25,9 +28,6 @@
     </Filter>
     <Filter Include="BardeClient\Source\GraphManager">
       <UniqueIdentifier>{1185FAD9-B8B6-DC77-B26B-6DB6205D3BCE}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="BardeClient\Source\Ia">
-      <UniqueIdentifier>{8DAF54F4-141D-4B3B-298B-BEF59908E683}</UniqueIdentifier>
     </Filter>
     <Filter Include="BardeClient\Source\MidiManager">
       <UniqueIdentifier>{D4F82834-0A3C-8F9A-7CC0-A964A46867DA}</UniqueIdentifier>
@@ -397,6 +397,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Source\AI\Chords.cpp">
+      <Filter>BardeClient\Source\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\AI\Disposition.cpp">
+      <Filter>BardeClient\Source\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\AI\MusicGenerator.cpp">
+      <Filter>BardeClient\Source\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\AI\ObjectMarkov.cpp">
+      <Filter>BardeClient\Source\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\AI\Resolution.cpp">
+      <Filter>BardeClient\Source\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\AI\StyleSettings.cpp">
+      <Filter>BardeClient\Source\AI</Filter>
+    </ClCompile>
     <ClCompile Include="..\Source\Instrument.cpp">
       <Filter>BardeClient\Source</Filter>
     </ClCompile>
@@ -429,21 +447,6 @@
     </ClCompile>
     <ClCompile Include="..\Source\GraphManager\MusicStyleButton.cpp">
       <Filter>BardeClient\Source\GraphManager</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\Ia\Disposition.cpp">
-      <Filter>BardeClient\Source\Ia</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\Ia\Resolution.cpp">
-      <Filter>BardeClient\Source\Ia</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\Ia\MusicGenerator.cpp">
-      <Filter>BardeClient\Source\Ia</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\Ia\ObjectMarkov.cpp">
-      <Filter>BardeClient\Source\Ia</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\Ia\StyleSettings.cpp">
-      <Filter>BardeClient\Source\Ia</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\MidiManager\AMidiManager.cpp">
       <Filter>BardeClient\Source\MidiManager</Filter>
@@ -2241,6 +2244,24 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\AI\Chords.hh">
+      <Filter>BardeClient\Source\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\AI\Disposition.hh">
+      <Filter>BardeClient\Source\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\AI\MusicGenerator.hh">
+      <Filter>BardeClient\Source\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\AI\ObjectMarkov.hh">
+      <Filter>BardeClient\Source\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\AI\Resolution.hh">
+      <Filter>BardeClient\Source\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\AI\StyleSettings.hh">
+      <Filter>BardeClient\Source\AI</Filter>
+    </ClInclude>
     <ClInclude Include="..\Source\Instrument.hh">
       <Filter>BardeClient\Source</Filter>
     </ClInclude>
@@ -2285,18 +2306,6 @@
     </ClInclude>
     <ClInclude Include="..\Source\GraphManager\MusicStyleButton.h">
       <Filter>BardeClient\Source\GraphManager</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\Ia\Disposition.hh">
-      <Filter>BardeClient\Source\Ia</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\Ia\MusicGenerator.hh">
-      <Filter>BardeClient\Source\Ia</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\Ia\ObjectMarkov.hh">
-      <Filter>BardeClient\Source\Ia</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\Ia\StyleSettings.hh">
-      <Filter>BardeClient\Source\Ia</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\MidiManager\AMidiManager.hh">
       <Filter>BardeClient\Source\MidiManager</Filter>
@@ -4211,6 +4220,18 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Source\AI\blues.json">
+      <Filter>BardeClient\Source\AI</Filter>
+    </None>
+    <None Include="..\Source\AI\dkjson.lua">
+      <Filter>BardeClient\Source\AI</Filter>
+    </None>
+    <None Include="..\Source\AI\markov.lua">
+      <Filter>BardeClient\Source\AI</Filter>
+    </None>
+    <None Include="..\Source\AI\people.json">
+      <Filter>BardeClient\Source\AI</Filter>
+    </None>
     <None Include="..\Source\Ressources\back.png">
       <Filter>BardeClient\Source\Ressources</Filter>
     </None>

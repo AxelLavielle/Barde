@@ -135,6 +135,12 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Source\AI\Chords.cpp"/>
+    <ClCompile Include="..\Source\AI\Disposition.cpp"/>
+    <ClCompile Include="..\Source\AI\MusicGenerator.cpp"/>
+    <ClCompile Include="..\Source\AI\ObjectMarkov.cpp"/>
+    <ClCompile Include="..\Source\AI\Resolution.cpp"/>
+    <ClCompile Include="..\Source\AI\StyleSettings.cpp"/>
     <ClCompile Include="..\Source\Instrument.cpp"/>
     <ClCompile Include="..\JsoncppLibrary\jsoncpp.cpp"/>
     <ClCompile Include="..\Source\DatabaseManager\ADatabasManager.cpp"/>
@@ -146,11 +152,6 @@
     <ClCompile Include="..\Source\GraphManager\MainComponent.cpp"/>
     <ClCompile Include="..\Source\GraphManager\MainWindow.cpp"/>
     <ClCompile Include="..\Source\GraphManager\MusicStyleButton.cpp"/>
-    <ClCompile Include="..\Source\Ia\Disposition.cpp"/>
-    <ClCompile Include="..\Source\Ia\Resolution.cpp"/>
-    <ClCompile Include="..\Source\Ia\MusicGenerator.cpp"/>
-    <ClCompile Include="..\Source\Ia\ObjectMarkov.cpp"/>
-    <ClCompile Include="..\Source\Ia\StyleSettings.cpp"/>
     <ClCompile Include="..\Source\MidiManager\AMidiManager.cpp"/>
     <ClCompile Include="..\Source\MidiManager\Midi.cpp"/>
     <ClCompile Include="..\Source\MidiManager\MidiManager.cpp"/>
@@ -1754,6 +1755,12 @@
     <ClCompile Include="..\JuceLibraryCode\juce_video.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\AI\Chords.hh"/>
+    <ClInclude Include="..\Source\AI\Disposition.hh"/>
+    <ClInclude Include="..\Source\AI\MusicGenerator.hh"/>
+    <ClInclude Include="..\Source\AI\ObjectMarkov.hh"/>
+    <ClInclude Include="..\Source\AI\Resolution.hh"/>
+    <ClInclude Include="..\Source\AI\StyleSettings.hh"/>
     <ClInclude Include="..\Source\Instrument.hh"/>
     <ClInclude Include="..\JsoncppLibrary\json\json-forwards.h"/>
     <ClInclude Include="..\JsoncppLibrary\json\json.h"/>
@@ -1769,10 +1776,6 @@
     <ClInclude Include="..\Source\GraphManager\MainComponent.h"/>
     <ClInclude Include="..\Source\GraphManager\MainWindow.hh"/>
     <ClInclude Include="..\Source\GraphManager\MusicStyleButton.h"/>
-    <ClInclude Include="..\Source\Ia\Disposition.hh"/>
-    <ClInclude Include="..\Source\Ia\MusicGenerator.hh"/>
-    <ClInclude Include="..\Source\Ia\ObjectMarkov.hh"/>
-    <ClInclude Include="..\Source\Ia\StyleSettings.hh"/>
     <ClInclude Include="..\Source\MidiManager\AMidiManager.hh"/>
     <ClInclude Include="..\Source\MidiManager\IMidiManager.hpp"/>
     <ClInclude Include="..\Source\MidiManager\Instruments.hh"/>
@@ -2412,6 +2415,10 @@
     <ClInclude Include="..\JuceLibraryCode\JuceHeader.h"/>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Source\AI\blues.json"/>
+    <None Include="..\Source\AI\dkjson.lua"/>
+    <None Include="..\Source\AI\markov.lua"/>
+    <None Include="..\Source\AI\people.json"/>
     <None Include="..\Source\Ressources\back.png"/>
     <None Include="..\Source\Ressources\logo.png"/>
     <None Include="..\JuceLibraryCode\modules\juce_audio_formats\codecs\flac\Flac Licence.txt"/>

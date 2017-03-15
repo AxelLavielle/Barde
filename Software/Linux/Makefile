@@ -64,6 +64,12 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS := \
+  $(JUCE_OBJDIR)/Chords_8c89bd4e.o \
+  $(JUCE_OBJDIR)/Disposition_da31b1aa.o \
+  $(JUCE_OBJDIR)/MusicGenerator_b8a25e65.o \
+  $(JUCE_OBJDIR)/ObjectMarkov_d034efca.o \
+  $(JUCE_OBJDIR)/Resolution_ca4e12e3.o \
+  $(JUCE_OBJDIR)/StyleSettings_ca3d60e7.o \
   $(JUCE_OBJDIR)/Instrument_44b59881.o \
   $(JUCE_OBJDIR)/jsoncpp_7b1ce7b0.o \
   $(JUCE_OBJDIR)/ADatabasManager_7f537f57.o \
@@ -75,11 +81,6 @@ OBJECTS := \
   $(JUCE_OBJDIR)/MainComponent_fb729fae.o \
   $(JUCE_OBJDIR)/MainWindow_1a69e1a9.o \
   $(JUCE_OBJDIR)/MusicStyleButton_39681cbe.o \
-  $(JUCE_OBJDIR)/Disposition_8ead92ba.o \
-  $(JUCE_OBJDIR)/Resolution_7549cfd3.o \
-  $(JUCE_OBJDIR)/MusicGenerator_d4962355.o \
-  $(JUCE_OBJDIR)/ObjectMarkov_ab3530ba.o \
-  $(JUCE_OBJDIR)/StyleSettings_4f453df7.o \
   $(JUCE_OBJDIR)/AMidiManager_545b688.o \
   $(JUCE_OBJDIR)/Midi_8be1d87e.o \
   $(JUCE_OBJDIR)/MidiManager_7f6bb1d9.o \
@@ -137,6 +138,36 @@ strip:
 	@echo Stripping BardeClient
 	-@$(STRIP) --strip-unneeded $(JUCE_OUTDIR)/$(TARGET)
 
+$(JUCE_OBJDIR)/Chords_8c89bd4e.o: ../Source/AI/Chords.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Chords.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/Disposition_da31b1aa.o: ../Source/AI/Disposition.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Disposition.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/MusicGenerator_b8a25e65.o: ../Source/AI/MusicGenerator.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling MusicGenerator.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ObjectMarkov_d034efca.o: ../Source/AI/ObjectMarkov.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ObjectMarkov.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/Resolution_ca4e12e3.o: ../Source/AI/Resolution.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Resolution.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/StyleSettings_ca3d60e7.o: ../Source/AI/StyleSettings.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling StyleSettings.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/Instrument_44b59881.o: ../Source/Instrument.cpp
 	-@mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling Instrument.cpp"
@@ -190,31 +221,6 @@ $(JUCE_OBJDIR)/MainWindow_1a69e1a9.o: ../Source/GraphManager/MainWindow.cpp
 $(JUCE_OBJDIR)/MusicStyleButton_39681cbe.o: ../Source/GraphManager/MusicStyleButton.cpp
 	-@mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling MusicStyleButton.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/Disposition_8ead92ba.o: ../Source/Ia/Disposition.cpp
-	-@mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling Disposition.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/Resolution_7549cfd3.o: ../Source/Ia/Resolution.cpp
-	-@mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling Resolution.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/MusicGenerator_d4962355.o: ../Source/Ia/MusicGenerator.cpp
-	-@mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling MusicGenerator.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/ObjectMarkov_ab3530ba.o: ../Source/Ia/ObjectMarkov.cpp
-	-@mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling ObjectMarkov.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/StyleSettings_4f453df7.o: ../Source/Ia/StyleSettings.cpp
-	-@mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling StyleSettings.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/AMidiManager_545b688.o: ../Source/MidiManager/AMidiManager.cpp
