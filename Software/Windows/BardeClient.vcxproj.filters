@@ -8,6 +8,9 @@
     <Filter Include="BardeClient\Source">
       <UniqueIdentifier>{8D691A85-208E-5132-ACCD-377494A40EE0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="BardeClient\Source\Ressources">
+      <UniqueIdentifier>{A8AA69FF-5C1A-55CB-BA65-5EA3968FF232}</UniqueIdentifier>
+    </Filter>
     <Filter Include="BardeClient\Source\JsoncppLibrary">
       <UniqueIdentifier>{A1E2145C-C212-ED9B-C1E7-0BE20EAB46DF}</UniqueIdentifier>
     </Filter>
@@ -415,7 +418,13 @@
     <ClCompile Include="..\Source\GraphManager\JuceManager.cpp">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\GraphManager\MainComponent.cpp">
+      <Filter>BardeClient\Source\GraphManager</Filter>
+    </ClCompile>
     <ClCompile Include="..\Source\GraphManager\MainWindow.cpp">
+      <Filter>BardeClient\Source\GraphManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\GraphManager\MusicStyleButton.cpp">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\Ia\MusicGenerator.cpp">
@@ -2176,6 +2185,9 @@
     <ClCompile Include="..\JuceLibraryCode\modules\juce_video\juce_video.mm">
       <Filter>Juce Modules\juce_video</Filter>
     </ClCompile>
+    <ClCompile Include="..\JuceLibraryCode\BinaryData.cpp">
+      <Filter>Juce Library Code</Filter>
+    </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\juce_audio_basics.cpp">
       <Filter>Juce Library Code</Filter>
     </ClCompile>
@@ -2253,7 +2265,13 @@
     <ClInclude Include="..\Source\GraphManager\JuceManager.hh">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
+    <ClInclude Include="..\Source\GraphManager\MainComponent.h">
+      <Filter>BardeClient\Source\GraphManager</Filter>
+    </ClInclude>
     <ClInclude Include="..\Source\GraphManager\MainWindow.hh">
+      <Filter>BardeClient\Source\GraphManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\GraphManager\MusicStyleButton.h">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\Ia\MusicGenerator.hh">
@@ -4170,11 +4188,20 @@
     <ClInclude Include="..\JuceLibraryCode\AppConfig.h">
       <Filter>Juce Library Code</Filter>
     </ClInclude>
+    <ClInclude Include="..\JuceLibraryCode\BinaryData.h">
+      <Filter>Juce Library Code</Filter>
+    </ClInclude>
     <ClInclude Include="..\JuceLibraryCode\JuceHeader.h">
       <Filter>Juce Library Code</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Source\Ressources\back.png">
+      <Filter>BardeClient\Source\Ressources</Filter>
+    </None>
+    <None Include="..\Source\Ressources\logo.png">
+      <Filter>BardeClient\Source\Ressources</Filter>
+    </None>
     <None Include="..\JuceLibraryCode\modules\juce_audio_formats\codecs\flac\Flac Licence.txt">
       <Filter>Juce Modules\juce_audio_formats\codecs\flac</Filter>
     </None>

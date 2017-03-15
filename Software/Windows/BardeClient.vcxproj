@@ -142,7 +142,9 @@
     <ClCompile Include="..\Source\EncryptionManager\SSLManager.cpp"/>
     <ClCompile Include="..\Source\GraphManager\AGraphManager.cpp"/>
     <ClCompile Include="..\Source\GraphManager\JuceManager.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\MainComponent.cpp"/>
     <ClCompile Include="..\Source\GraphManager\MainWindow.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\MusicStyleButton.cpp"/>
     <ClCompile Include="..\Source\Ia\MusicGenerator.cpp"/>
     <ClCompile Include="..\Source\Ia\ObjectMarkov.cpp"/>
     <ClCompile Include="..\Source\Ia\StyleSettings.cpp"/>
@@ -1732,6 +1734,7 @@
     <ClCompile Include="..\JuceLibraryCode\modules\juce_video\juce_video.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\JuceLibraryCode\BinaryData.cpp"/>
     <ClCompile Include="..\JuceLibraryCode\juce_audio_basics.cpp"/>
     <ClCompile Include="..\JuceLibraryCode\juce_audio_devices.cpp"/>
     <ClCompile Include="..\JuceLibraryCode\juce_audio_formats.cpp"/>
@@ -1759,7 +1762,9 @@
     <ClInclude Include="..\Source\GraphManager\AGraphManager.hh"/>
     <ClInclude Include="..\Source\GraphManager\IGraphManager.hpp"/>
     <ClInclude Include="..\Source\GraphManager\JuceManager.hh"/>
+    <ClInclude Include="..\Source\GraphManager\MainComponent.h"/>
     <ClInclude Include="..\Source\GraphManager\MainWindow.hh"/>
+    <ClInclude Include="..\Source\GraphManager\MusicStyleButton.h"/>
     <ClInclude Include="..\Source\Ia\MusicGenerator.hh"/>
     <ClInclude Include="..\Source\Ia\ObjectMarkov.hh"/>
     <ClInclude Include="..\Source\Ia\StyleSettings.hh"/>
@@ -2398,9 +2403,12 @@
     <ClInclude Include="..\JuceLibraryCode\modules\juce_video\juce_video.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_video\juce_video.h"/>
     <ClInclude Include="..\JuceLibraryCode\AppConfig.h"/>
+    <ClInclude Include="..\JuceLibraryCode\BinaryData.h"/>
     <ClInclude Include="..\JuceLibraryCode\JuceHeader.h"/>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Source\Ressources\back.png"/>
+    <None Include="..\Source\Ressources\logo.png"/>
     <None Include="..\JuceLibraryCode\modules\juce_audio_formats\codecs\flac\Flac Licence.txt"/>
     <None Include="..\JuceLibraryCode\modules\juce_audio_formats\codecs\oggvorbis\Ogg Vorbis Licence.txt"/>
     <None Include="..\JuceLibraryCode\modules\juce_graphics\image_formats\jpglib\changes to libjpeg for JUCE.txt"/>
