@@ -15,34 +15,34 @@ StyleSettings::~StyleSettings()
 
 }
 
-void		StyleSettings::addNote(std::pair<char, int> note)
+void		StyleSettings::addNote(const std::pair<char, int> &note)
 {
   std::map<char, int>			tmp;
   _param.insert(std::pair<int, std::pair<int, std::map<char, int> > >(note.first, std::pair<int, std::map<char, int> >(note.second, tmp)));
 }
 
-void		StyleSettings::addNote(char noteName, int noteProba)
+void		StyleSettings::addNote(const char noteName, const int noteProba)
 {
   std::map<char, int>	tmp;
   _param.insert(std::pair<char, std::pair<int, std::map<char, int> > >(noteName, std::pair<int, std::map<char, int> >(noteProba, tmp)));
 }
 
-void		StyleSettings::addNoteFromNote(char baseNote, std::pair<char, int> note)
+void		StyleSettings::addNoteFromNote(const char baseNote, const std::pair<char, int> &note)
 {
   _param[baseNote].second.insert(note);
 }
 
-void		StyleSettings::addNoteFromNote(char baseNote, char noteName, int noteProba)
+void		StyleSettings::addNoteFromNote(const char baseNote, const char noteName, const int noteProba)
 {
   _param[baseNote].second.insert(std::pair<char, int>(noteName, noteProba));
 }
 
-int		StyleSettings::getProba(char note)
+int		StyleSettings::getProba(const char note)
 {
   return (_param.find(note) == _param.end() ? 0 : _param[note].first);
 }
 
-int		StyleSettings::getProbaFromNote(char baseNote, char note)
+int		StyleSettings::getProbaFromNote(const char baseNote, const char note)
 {
   return ((_param.find(baseNote) == _param.end() ||
 	   _param[baseNote].second.find(note) == _param[baseNote].second.end()) ?

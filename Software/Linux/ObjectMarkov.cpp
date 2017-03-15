@@ -1,13 +1,14 @@
-#include "ObjectMarkov.hh"
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include "ObjectMarkov.hh"
 
 extern "C" {
     #include "lua.h"
     #include "lualib.h"
-    #include "lauxlib.h"
+    #include "luaxlib.h"
 }
+
 lua_State* L;
 
 ObjectMarkov::ObjectMarkov()
@@ -60,16 +61,13 @@ ObjectMarkov::~ObjectMarkov()
 std::vector<std::pair<char, char> >  ObjectMarkov::getVectorFromJson(Json::Value root)
 {
   std::vector<std::pair<char, char> >  vector;
-  bool  good = true;
 
-  while (good)
-  {
-    vector.push_back(std::pair<char, char>(root["note"].asString().c_str()[0], root["scale"].asString().c_str()[0]));
-    if (root.isMember("next"))
-      root = root["next"];
-    else
-      good = false;
-  }
+  vector.push_back(std::pair<char, char>(root["note"].asString().c_str()[0], root["scale"].asString().c_str()[0]));
+ while (root.isMember("next"))
+   {
+  root = root["next"];
+  vector.push_back(std::pair<char, char>(root["note"].asString().c_str()[0], root["scale"].asString().c_str()[0]));
+}
   return vector;
 }
 
