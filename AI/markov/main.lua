@@ -36,5 +36,5 @@ local scale = {["begin"] = {["3"] = 100},
   ["3"] = {["3"] = 100}
 }
 
-local node = markov.generateNote(scale, note, 1)
+local node = markov.generateNote(scale, note, 1, os.time())
 markov.printNode(node)
