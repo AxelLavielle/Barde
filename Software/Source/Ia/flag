@@ -1,0 +1,1 @@
+reset && g++ main.cpp ObjectMarkov.cpp StyleSettings.cpp -Llibjsoncpp -ljsoncpp -llua -ldl && ./a.out
