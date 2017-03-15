@@ -9,6 +9,7 @@
  *
  * All routes for email
  */
+
 var jwt     = require("jwt-simple");
 var request = require("request");
 var md5     = require("md5");
@@ -32,11 +33,11 @@ module.exports = function (apiRoutes, passport) {
  * @apiName GetAllEmail
  * @apiGroup Email
  *
- * @apiErrorExample 200 - Success
+ * @apiSuccessExample 200 - Success
  *     {
  *       "msg": "Success"
  *       "data": {
- *          "emails": allEmails
+ *          "emails": []
  *       }
  *     }
  */
@@ -57,7 +58,10 @@ function get(req, res, next) {
  * @api {put} /email/ Add email
  * @apiGroup Email
  *
- * @apiSuccess {String} email Email to add.
+ * @apiParamExample {json} Request-Example:
+ *     {
+ *       "email": ""
+ *     }
  *
  * @apiErrorExample 400 - No email
  *     {
@@ -67,7 +71,7 @@ function get(req, res, next) {
  *       }
  *     }
  *
- *  @apiErrorExample 200 - No email
+ *  @apiSuccessExample 200 - Email added
  *     {
  *       "msg": "Content added"
  *       "data": {
@@ -140,7 +144,12 @@ function addToMailChimp(email) {
  * @apiName UpdateEmail
  * @apiGroup Email
  *
- *  @apiErrorExample 200 - Success
+ * @apiParamExample {json} Request-Example:
+ *     {
+ *       "email": ""
+ *     }
+ *
+ *  @apiSuccessExample 200 - Success
  *     {
  *       "msg": "Content updated"
  *     }
@@ -160,7 +169,12 @@ function update(req, res, next) {
  * @apiName DeleteEmail
  * @apiGroup Email
  *
- *  @apiErrorExample 200 - Success
+ * @apiParamExample {json} Request-Example:
+ *     {
+ *       "email": ""
+ *     }
+ *
+ * @apiSuccessExample 200 - Success
  *     {
  *       "msg": "Content deleted"
  *     }
@@ -179,9 +193,12 @@ function del(req, res, next) {
  * @apiName SendEmail
  * @apiGroup Email
  *
- * @apiSuccess {String} email Email to delete.
+ * @apiParamExample {json} Request-Example:
+ *     {
+ *       "email": ""
+ *     }
  *
- * @apiErrorExample 200 - Success
+ *  @apiSuccessExample 200 - Success
  *     {
  *       "msg": "Content send"
  *     }

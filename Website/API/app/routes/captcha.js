@@ -24,9 +24,12 @@ module.exports = function (apiRoutes, passport) {
  * @apiName Verify
  * @apiGroup Captcha
  *
- * @apiParam {String} response Response for verification.
+ * @apiParamExample {json} Request-Example:
+ *     {
+ *       "response": ""
+ *     }
  *
- * @apiErrorExample 200 - Success
+ * @apiSuccessExample 200 - Success
  *     {
  *       "msg": "Success"
  *       "data": {

@@ -23,8 +23,13 @@ module.exports = function (apiRoutes, passport) {
  * @apiName Login
  * @apiGroup Auth
  *
+ * @apiParamExample {json} Request-Example:
+ *     {
+ *       "email": "",
+ *       "password": ""
+ *     }
  *
- * @apiErrorExample 200 - Success
+ * @apiSuccessExample 200 - Success
  *     {
  *       "msg": "Content created"
  *       "data": {
@@ -88,8 +93,13 @@ function register(req, res, next) {
  * @apiName Login
  * @apiGroup Auth
  *
+ * @apiParamExample {json} Request-Example:
+ *     {
+ *       "email": "",
+ *       "password": ""
+ *     }
  *
- * @apiErrorExample 200 - Success
+ * @apiSuccessExample 200 - Success
  *     {
  *       "msg": "Content created"
  *       "data": {
