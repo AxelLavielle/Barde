@@ -16,47 +16,58 @@ module.exports = function (apiRoutes, passport) {
       .post('/lang/translation', getTranslation)
       .put('/lang/translation', addTranslation)
 
-
 };
 
-function getLanguages (req, res, next)
-{
-  Lang.find(null, function (err, response){
-    if (err)
-      return (next(err));
-    res.json({data: response});
-  });
-}
-
-function addLanguage (req, res, next)
-{
-  if (req.body.language && req.body.code)
-  {
-    var language = new Lang(
-      {lang_name: req.body.language, lang_code : req.body.code}
-    );
-
-    language.save(function (err) {
-        if (err) {
-            return res.json({success: false, msg: 'Language already exists.'});
-        }
-        res.json({success: true, msg: 'Successful created new language.'});
-    });
-  }
-}
-
+/**
+ * @api {get} /getContent Get all traduction content
+ * @apiName GetAllEmail
+ * @apiGroup Lang
+ *
+ * @apiSuccessExample 200 - Success
+ *     {
+ *       "msg": "Success"
+ *       "data": {
+ *          "Traduction": [
+ *              "content_id": "NAV_HOME_TITLE",
+ *            "content_value": [
+ *            {
+ *              "content": "Home",
+ *              "lang_code": "us",
+ *              },
+ *            ]
+ *       }
+ *     }
+ */
 
 function getContent (req, res, next)
 {
   Content.find(null, function (err, response){
 
     if (response)
-      return res.json({success: true, data: response});
+      res.status(200).send({
+          msg: "Success",data: {traduction : response}
+        });
     else
-    return res.json({success: false, data: []});
-
+      res.status(400).send({
+      msg: "Error",
+    });
   });
 }
+
+/**
+ * @api {put} /getContent Get all traduction content
+ * @apiName GetAllEmail
+ * @apiGroup Lang
+ *
+ * @apiSuccessExample 200 - Success
+ *{
+ * "msg": "Content added",
+ * "data": {
+ *    "message": "Le contenu à bien été ajouté"
+ *   }
+ * }
+ **/
+
 
 function addContent (req, res, next)
 {
@@ -69,17 +80,24 @@ function addContent (req, res, next)
         newContent = new Content({content_id : req.body.content});
         newContent.save(function (ko, ok){
             if (ok)
-              return res.json({success: true, msg: req.body.content + " created"});
-            else
-              return res.json({success: false, msg: req.body.content + " can't be created"});
+            res.status(200).send({
+                msg: "Content added",
+                data: {message: "Le contenu à bien été ajouté"}
+            });
           });
       }
       else
-        return res.json({success: false, msg: req.body.content + " already exists"});
+       res.status(304).send({
+          msg: "Content already exists",
+          data: {message: "Le contenu est déjà présent"}
+      });
     });
   }
   else
-    return res.json({success: true, msg: req.body.content + " created"});
+   res.status(400).send({
+      msg: "Bad parameters",
+      data: {message: "Le contenu n'est pas valide"}
+  });
 }
 
 function addTranslation (req, res, next)
@@ -92,7 +110,7 @@ function addTranslation (req, res, next)
     Content.findOne(
       {content_id : req.body.content}, function(err, data) {
       if (!err && !data)
-          return res.json({success: false, msg: "no content"});
+           res.status(400).send(json({success: false, msg: "no content"}));
       else
       {
 
@@ -107,7 +125,10 @@ function addTranslation (req, res, next)
                 {content_id : req.body.content},
                 {$push: {content_value: newTranslation}},
                 function (error, success){
-                  return res.json({success: false, msg: "translation added"});
+                  res.status(200).send({
+                      msg: "Content added",
+                      data: {message: "Le contenu à bien été ajouté"}
+                  });
                 });
 
               }
@@ -117,21 +138,22 @@ function addTranslation (req, res, next)
                    {content_id : req.body.content, "content_value.lang_code" : req.body.lang_code},
                    {$set: {"content_value.$.content": req.body.value}},
                    function (error, success){
-                  return res.json({success: true, msg: "Value updated"});
-                 });
-
+                     res.status(200).send({
+                         msg: "Content updated",
+                         data: {message: "Le contenu à bien été modifié"}
+                     });
+                  });
               }
           });
-      }
+        }
     });
   }
-  else
-    return res.json({success: false, msg: "invalid params"});
-
+else
+  res.status(400).send({
+     msg: "Bad parameters",
+     data: {message: "Le contenu n'est pas valide"}
+ });
 }
-
-
-
 
 
 function getTranslation (req, res, next)
@@ -139,20 +161,25 @@ function getTranslation (req, res, next)
 
     if (req.body.lang_code && req.body.content)
     {
-      Content.findOne(
-        {content_id : req.body.content},
-        {content_value : {$elemMatch: {lang_code: req.body.lang_code}}},
-      function(error, success){
-        console.log(success, error)
+      Content.findOne({content_id : req.body.content},{content_value :
+          {$elemMatch:{lang_code: req.body.lang_code}}
+        }, function(error, success){
         if (error)
-          return res.json({success: false, data: "value doesn't exists"});
-        else if (success && success.content_value.length !== 0)
-          return res.json({success: true, data: success.content_value[0].content});
+        res.status(200).send({
+           msg: "No content",
+           data: {message: "Le contenu n'existe pas"}
+         });
+         else if (success && success.content_value.length !== 0)
+         res.status(200).send({
+            data : success.content_value[0].content
+          });
         else
-        return res.json({success: false, data: "value doesn't exists"});
+          res.status(400).send(json({success: false, msg: "no content"}));
       });
     }
     else
-      return res.json({success: false, msg: "invalid params"});
-
+     res.status(400).send({
+        msg: "Bad parameters",
+        data: {message: "Le contenu n'est pas valide"}
+    });
 }
