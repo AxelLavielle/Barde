@@ -16,8 +16,8 @@ void		Disposition::placeChords(MusicParameters &parameters, std::vector<std::pai
   MidiManager midi;
   std::vector<Instrument> instruments;
   int scaleAdjust;
-  char previousNote;
-  char note;
+  int previousNote;
+  int note;
   double beats;
   std::vector<char> notesFromChord;
 
@@ -29,10 +29,12 @@ void		Disposition::placeChords(MusicParameters &parameters, std::vector<std::pai
       midi.changeInstrument(instruments[i], beats);
       for (int x = 0; x < chordsGrid.size(); x++){
         notesFromChord = chords.getChordFromName(chordsGrid[x].first);
+        scaleAdjust = 1;
         for (int y = 0; y < notesFromChord.size(); y++){
           if (y != 0)
             scaleAdjust = (notesFromChord[y] < previousNote ? 0 : 1);
-          note = (notesFromChord[y] / 8) + ((chordsGrid[x].second - scaleAdjust) * 12);
+          std::cout << "{" << chordsGrid[x].second << "}" << std::endl;
+          note = (notesFromChord[y] / 8) + (((int)chordsGrid[x].second - scaleAdjust) * 12);
           midi.noteOn(instruments[i].channel, note, instruments[i].velocity, beats);
           std::cout << "TICK " << beats << " : " << note << " [ON]" << std::endl;
           midi.noteOff(instruments[i].channel, note, instruments[i].velocity, beats + TIME_PER_TS);
