@@ -136,7 +136,7 @@ StyleSettings ObjectMarkov::getStyleFromJson()
 void ObjectMarkov::setRootJsonFromFile(std::string styleJson)
 {
   Json::Reader reader;
-  std::ifstream style(_styleJson.c_str(), std::ifstream::binary);
+  std::ifstream style(styleJson.c_str(), std::ifstream::binary);
   bool parsingSuccessful = reader.parse(style, _rootJson, false);
   if (!parsingSuccessful)
   {
