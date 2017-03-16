@@ -12,7 +12,6 @@ angular.module('app.directives').directive('bardeTranslation', function($compile
     },
     link : function(scope, element, attrs, model){
 
-
                   var data      = {'lang_code' : navigator.language || navigator.userLanguage, content : attrs.data};
                   var headers =   {'content-type':"application/json"};
 
@@ -27,8 +26,6 @@ angular.module('app.directives').directive('bardeTranslation', function($compile
                   }).catch(function (err){
                     element.parent().append(attrs.data);
                   });
-
-
                 }
 
  }
