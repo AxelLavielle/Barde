@@ -13,49 +13,61 @@ module.exports = function (apiRoutes, passport) {
       .get('/lang/content', getContent)
       .put('/lang/content', addContent)
 
-      .get('/lang/translation', getTranslations)
+      .post('/lang/translation', getTranslation)
       .put('/lang/translation', addTranslation)
-
 
 };
 
-function getLanguages (req, res, next)
-{
-  Lang.find(null, function (err, response){
-    if (err)
-      return (next(err));
-    res.json({data: response});
-  });
-}
-
-function addLanguage (req, res, next)
-{
-  if (req.body.language && req.body.code)
-  {
-    var language = new Lang(
-      {lang_name: req.body.language, lang_code : req.body.code}
-    );
-
-    language.save(function (err) {
-        if (err) {
-            return res.json({success: false, msg: 'Language already exists.'});
-        }
-        res.json({success: true, msg: 'Successful created new language.'});
-    });
-  }
-}
-
+/**
+ * @api {get} /getContent Get all traduction content
+ * @apiName GetAllEmail
+ * @apiGroup Lang
+ *
+ * @apiSuccessExample 200 - Success
+ *     {
+ *       "msg": "Success"
+ *       "data": {
+ *          "Traduction": [
+ *              "content_id": "NAV_HOME_TITLE",
+ *            "content_value": [
+ *            {
+ *              "content": "Home",
+ *              "lang_code": "us",
+ *              },
+ *            ]
+ *       }
+ *     }
+ */
 
 function getContent (req, res, next)
 {
   Content.find(null, function (err, response){
-    console.log(response);
 
-    if (err)
-      return (next(err));
-    res.json({data: response});
+    if (response)
+      res.status(200).send({
+          msg: "Success",data: {traduction : response}
+        });
+    else
+      res.status(400).send({
+      msg: "Error",
+    });
   });
 }
+
+/**
+ * @api {put} /getContent Get all traduction content
+ * @apiName GetAllEmail
+ * @apiGroup Lang
+ *
+ * @apiSuccessExample 200 - Success
+ *{
+ * "msg": "Content added",
+ * "data": {
+ *    "message": "Le contenu à bien été ajouté"
+ *   }
+ * }
+ **/
+
 
 function addContent (req, res, next)
 {
@@ -66,57 +78,108 @@ function addContent (req, res, next)
       if (!success && !error)
       {
         newContent = new Content({content_id : req.body.content});
-        newContent.save(function (ok, ko){
-
-        if (ko)
-          return res.json({success: true, msg: req.body.content + " created"});
-        return res.json({success: false, msg: req.body.content + " can't be created"});
+        newContent.save(function (ko, ok){
+            if (ok)
+            res.status(200).send({
+                msg: "Content added",
+                data: {message: "Le contenu à bien été ajouté"}
+            });
+          });
+      }
+      else
+       res.status(304).send({
+          msg: "Content already exists",
+          data: {message: "Le contenu est déjà présent"}
       });
-
-      }
-      else {
-        return res.json({success: true, msg: req.body.content + " already exists"});
-      }
     });
   }
+  else
+   res.status(400).send({
+      msg: "Bad parameters",
+      data: {message: "Le contenu n'est pas valide"}
+  });
 }
 
 function addTranslation (req, res, next)
 {
   if (req.body.lang_code && req.body.content && req.body.value)
   {
-      if (req.body.lang_code)
-      {
-        newTranslation = new Translation({
-          lang_code: req.body.lang_code, content : req.body.value
-        });
 
+    newTranslation = {lang_code: req.body.lang_code, content : req.body.value};
 
-        Content.findOneAndUpdate(
-            { "content_id": req.body.content},
-            { $set: { lang_code: req.body.lang_code }},
-            {$push: {lang_code :  req.body.lang_code, content : req.body.value}},
-            function(err,doc) {
-
-                if (err) // handle error;
-                  return res.json({success: false, msg: err});
-                if (!doc) {
-                  return res.json({success: false, msg: req.body.content + " doesn't exists"});
-                }
-                else {
-                  console.log(doc);
-                  return res.json({success: true, msg: "translation added"});
-                }
-            }
-          );
-      }
+    Content.findOne(
+      {content_id : req.body.content}, function(err, data) {
+      if (!err && !data)
+           res.status(400).send(json({success: false, msg: "no content"}));
       else
-        return res.json({success: false, msg: "add new language first"});
-    }
+      {
+
+      Content.findOne(
+        {content_id : req.body.content, "content_value.lang_code" : req.body.lang_code},
+        function (error, success){
+
+            if (!error && !success)
+            {
+
+              Content.findOneAndUpdate(
+                {content_id : req.body.content},
+                {$push: {content_value: newTranslation}},
+                function (error, success){
+                  res.status(200).send({
+                      msg: "Content added",
+                      data: {message: "Le contenu à bien été ajouté"}
+                  });
+                });
+
+              }
+              else
+              {
+                 Content.update(
+                   {content_id : req.body.content, "content_value.lang_code" : req.body.lang_code},
+                   {$set: {"content_value.$.content": req.body.value}},
+                   function (error, success){
+                     res.status(200).send({
+                         msg: "Content updated",
+                         data: {message: "Le contenu à bien été modifié"}
+                     });
+                  });
+              }
+          });
+        }
+    });
+  }
+else
+  res.status(400).send({
+     msg: "Bad parameters",
+     data: {message: "Le contenu n'est pas valide"}
+ });
 }
 
 
-function getTranslations (req, res, next)
+function getTranslation (req, res, next)
 {
 
+    if (req.body.lang_code && req.body.content)
+    {
+      Content.findOne({content_id : req.body.content},{content_value :
+          {$elemMatch:{lang_code: req.body.lang_code}}
+        }, function(error, success){
+        if (error)
+        res.status(200).send({
+           msg: "No content",
+           data: {message: "Le contenu n'existe pas"}
+         });
+         else if (success && success.content_value.length !== 0)
+         res.status(200).send({
+            data : success.content_value[0].content
+          });
+        else
+          res.status(400).send(json({success: false, msg: "no content"}));
+      });
+    }
+    else
+     res.status(400).send({
+        msg: "Bad parameters",
+        data: {message: "Le contenu n'est pas valide"}
+    });
 }
