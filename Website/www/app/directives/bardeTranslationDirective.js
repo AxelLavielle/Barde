@@ -13,7 +13,7 @@ angular.module('app.directives').directive('bardeTranslation', function($compile
     link : function(scope, element, attrs, model){
 
 
-                  var data      = {'lang_code' : 'en-GB', content : attrs.data};
+                  var data      = {'lang_code' : navigator.language || navigator.userLanguage, content : attrs.data};
                   var headers =   {'content-type':"application/json"};
 
 
@@ -21,17 +21,14 @@ angular.module('app.directives').directive('bardeTranslation', function($compile
                   .then(function(res)
                   {
                     if (res)
-                    {
                       element.parent().append(res.data.data);
-
-
-                    }
-                    else {
+                    else
                       element.parent().append(attrs.data);
-
-                    }
-
+                  }).catch(function (err){
+                    element.parent().append(attrs.data);
                   });
+
+
                 }
 
  }

@@ -9,6 +9,14 @@ angular.module('app.controllers', ['angular-md5', 'vcRecaptcha'])
 
           $scope.validated = false;
 
+          $scope.placeholderEmail = "Email Adress";
+          $scope.placeholderSend = "Send";
+          $scope.placeholderMessage = "Your message";
+
+          $scope.placeholderFirstname = "Firstname";
+          $scope.placeholderLastname = "Lastname";
+
+
           $scope.setResponse = function (response) {
 
 
