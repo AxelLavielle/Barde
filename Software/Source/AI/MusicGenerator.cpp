@@ -109,9 +109,33 @@ void			MusicGenerator::classifyNotes(std::vector<char> chord, std::vector<char> 
     }
 }
 
+char			MusicGenerator::searchNoteFromDist(char note, char dist)
+{
+  while (dist != 0)
+    {
+      if (note != B && note != E)
+	note += 16;
+      else
+	note += 8;
+      if (note == END)
+	note = C;
+      dist--;
+    }
+  return (note);
+}
+
 Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 {
   parameters.setSeed(std::time(NULL));
+  parameters.setBpm(80); 
+  Instrument instru;
+  instru.name = "Piano";
+  instru.nb = ACOUSTICGRANDPIANO;
+  instru.channel = 1;
+  instru.velocity = 1;
+  parameters.addInstrument(instru);
+  parameters.setStyleName("Blues");
+
   srand(parameters.getSeed());
   ObjectMarkov						markovObj("../../Source/markovSource/blues.json", 1, parameters.getSeed());
   int							i;
@@ -121,23 +145,31 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   std::vector<char>					chord;
   Chords						allChords;
 
-  parameters.setBpm(80); 
-  Instrument instru;
-  instru.name = "Piano";
-  instru.nb = ACOUSTICGRANDPIANO;
-  instru.channel = 1;
-  instru.velocity = 1;
-  parameters.addInstrument(instru);
-  parameters.setStyleName("Blues");
   std::cout << "-----------------------------------------------" << std::endl;
 
   markovObj.callLuaFromFile();
   markovChords = markovObj.getVectorFromJson();
   style = markovObj.getStyleFromJson();
+
+  markovChords.push_back(markovChords[0]);
+  markovChords.push_back(markovChords[0]);
+  markovChords.push_back(markovChords[0]);
+
+  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 3), 3));
+  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 3), 3));
+  markovChords.push_back(markovChords[0]);
+  markovChords.push_back(markovChords[0]);
+
+  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 4), 3));
+  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 3), 3));
+  markovChords.push_back(markovChords[0]);
+  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 4), 3));
+
   Resolution::parsingMarkov(style, &markovChords);
 
   std::cout << markovChords[0].first << std::endl;
-  // Disposition::placeChords(parameters, markovChords);
+  std::cout << markovChords.size() << std::endl;
+  Disposition::placeChords(parameters, markovChords);
 
   i = 0;
   std::cout << "-----------------------------------------------" << std::endl;
