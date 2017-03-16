@@ -18,7 +18,7 @@ MidiManager::~MidiManager()
 {
 }
 
-void MidiManager::noteOn(int channel, int noteNumber, float velocity, double time) noexcept
+void MidiManager::noteOn(const int channel, const int noteNumber, const float velocity, const double time) noexcept
 {
 	MidiMessage message = MidiMessage::noteOn(channel, noteNumber, (uint8)velocity);
 	message.setTimeStamp(time);
@@ -27,7 +27,7 @@ void MidiManager::noteOn(int channel, int noteNumber, float velocity, double tim
 	_midiSequence.updateMatchedPairs();
 }
 
-void MidiManager::noteOn(const Instrument & instrument, int noteNumber, float velocity, double time) noexcept
+void MidiManager::noteOn(const Instrument & instrument, const int noteNumber, const float velocity, const double time) noexcept
 {
 	MidiMessage message = MidiMessage::noteOn(instrument.channel, noteNumber, (uint8)velocity);
 
@@ -38,7 +38,7 @@ void MidiManager::noteOn(const Instrument & instrument, int noteNumber, float ve
 	_midiSequence.updateMatchedPairs();
 }
 
-void MidiManager::noteOff(int channel, int noteNumber, float velocity, double time) noexcept
+void MidiManager::noteOff(const int channel, const int noteNumber, const float velocity, const double time) noexcept
 {
 	MidiMessage message = MidiMessage::noteOff(channel, noteNumber, (uint8)velocity);
 	
@@ -48,7 +48,7 @@ void MidiManager::noteOff(int channel, int noteNumber, float velocity, double ti
 	//_midiSequence.updateMatchedPairs();
 }
 
-void MidiManager::noteOff(const Instrument & instrument, int noteNumber, float velocity, double time) noexcept
+void MidiManager::noteOff(const Instrument & instrument, const int noteNumber, const float velocity, const double time) noexcept
 {
 	MidiMessage message = MidiMessage::noteOff(instrument.channel, noteNumber, (uint8)velocity);
 
@@ -63,8 +63,13 @@ void MidiManager::noteOff(const Instrument & instrument, int noteNumber, float v
 Midi MidiManager::createMidi()
 {
 	MemoryOutputStream	midiStream;
+	MidiMessage			message;
 	Midi				midi;
 
+	message = MidiMessage::endOfTrack();
+	//message.setTimeStamp();//MANQUE LE TEMPS
+	addMessageToList(message);
+	_midiSequence.addEvent(message);
 	_midiBuff.addTrack(_midiSequence);
 	_midiBuff.writeTo(midiStream, 1);
 	midi.setMidiSize(midiStream.getDataSize());
@@ -73,7 +78,7 @@ Midi MidiManager::createMidi()
 	return (midi);
 }
 
-void		MidiManager::writeToFile(const std::string filePath)
+void		MidiManager::writeToFile(const std::string &filePath)
 {
 	File				testFile(File::getCurrentWorkingDirectory().getChildFile(String(filePath)));
 
@@ -85,7 +90,7 @@ void		MidiManager::writeToFile(const std::string filePath)
 	//file.write(_midi.getMidiArray(), _midi.getMidiSize());
 }
 
-void MidiManager::setTempo(const int bpm, double time)
+void MidiManager::setTempo(const unsigned int bpm, const double time)
 {
 	MidiMessage message = MidiMessage::tempoMetaEvent(bpm);
 
@@ -93,7 +98,7 @@ void MidiManager::setTempo(const int bpm, double time)
 	_midiSequence.addEvent(message);
 }
 
-void MidiManager::changeInstrument(const int channel, const int instrumentNb, double time)
+void MidiManager::changeInstrument(const int channel, const int instrumentNb, const double time)
 {
 	MidiMessage message = MidiMessage::programChange(channel, instrumentNb);
 
@@ -101,7 +106,7 @@ void MidiManager::changeInstrument(const int channel, const int instrumentNb, do
 	_midiSequence.addEvent(message);
 }
 
-void MidiManager::changeInstrument(const Instrument & instrument, double time)
+void MidiManager::changeInstrument(const Instrument & instrument, const double time)
 {
 	MidiMessage message = MidiMessage::programChange(instrument.channel, instrument.nb);
 

@@ -25,7 +25,7 @@ public:
 
 	byteArray	getMidiArray(void) const;
 	void		setMidiArray(const byteArray midi);
-        size_t	        getMidiSize(void) const;
+    size_t	    getMidiSize(void) const;
 	void		setMidiSize(const size_t size);
 
 private:
