@@ -18,12 +18,14 @@ void		Disposition::placeChords(MusicParameters &parameters, std::vector<std::pai
   int scaleAdjust;
   char previousNote;
   char note;
+  double beats;
   std::vector<char> notesFromChord;
 
   instruments = parameters.getInstruments();
   midi.setTempo(parameters.getBpm());
   std::cout << "MUSIC SHEET OVERVIEW :" << std::endl;
   for (int i = 0; i < instruments.size(); i++){
+      beats = 0;
       midi.changeInstrument(instruments[i], beats);
       for (int x = 0; x < chordsGrid.size(); x++){
         notesFromChord = chords.getChordFromName(chordsGrid[x].first);
@@ -41,7 +43,6 @@ void		Disposition::placeChords(MusicParameters &parameters, std::vector<std::pai
       }
     }
   }
-}
 
 void		Disposition::placeArpeggios(MusicParameters &parameters)
 {
