@@ -38,5 +38,5 @@ void MainWindow::closeButtonPressed()
 
 MainWindow::~MainWindow()
 {
-	deleteAllChildren();
+	//deleteAllChildren();
 }
