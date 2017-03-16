@@ -62,6 +62,11 @@ ObjectMarkov::ObjectMarkov(std::string styleJson, std::string luaMarkovFunction,
 
 void ObjectMarkov::callLua()
 {
+  if (!_rootJson)
+  {
+    std::cout << "rootJson is null !!" << std::endl;
+    return;
+  }
   Json::Reader reader;
   luaL_dofile(_L, _luaMarkovFunction.c_str());
   //ObjectMarkov::getStyleFromJson(_rootJson["note"]);
@@ -154,10 +159,9 @@ void ObjectMarkov::setRootJsonFromStyle(const StyleSettings &settings)
   _rootJson["scale"]["3"]["3"] = 100;
   for (std::map<char, std::pair<int, std::map<char, int> > >::iterator itMap1 = style.begin(); itMap1 != style.end(); ++itMap1)
   {
-    _rootJson["note"].append(std::string(1, itMap1->first));
+    //_rootJson["note"].append(std::string(1, itMap1->first));
     _rootJson["note"]["begin"][std::string(1, itMap1->first)] = (itMap1->second).first;
     for (std::map<char, int>::iterator itMap2 = ((itMap1->second).second).begin(); itMap2 != ((itMap1->second).second).end(); ++itMap2)
       _rootJson["note"][std::string(1, itMap1->first)][std::string(1, itMap2->first)] = itMap2->second;
   }
-  std::cout << _rootJson.toStyledString() << std::endl;
 }
