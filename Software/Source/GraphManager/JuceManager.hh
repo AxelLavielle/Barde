@@ -23,7 +23,7 @@ public:
 	virtual int init(void);
 
 private:
-	MainWindow *_mainWindow;
+	ScopedPointer<MainWindow> _mainWindow;
 };
 
 
