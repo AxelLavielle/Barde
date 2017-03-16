@@ -15,10 +15,47 @@ module.exports = function (apiRoutes, passport) {
         .post('/register', register)
         .post('/login', login)
 
-        .get ('/info', mAuth.authenticate("Admin"), info)
-
 };
 
+
+/**
+ * @api {post} /auth/register Register user
+ * @apiName Login
+ * @apiGroup Auth
+ *
+ *
+ * @apiErrorExample 200 - Success
+ *     {
+ *       "msg": "Content created"
+ *       "data": {
+ *          "message": "Votre inscription a bien été pris en compte."
+ *       }
+ *     }
+ *
+ * @apiErrorExample 400 - No email
+ *     {
+ *       "msg": "No content"
+ *       "data": {
+ *          "message": "Vous devez inscrire votre email."
+ *       }
+ *     }
+ *
+ * @apiErrorExample 400 - No password
+ *     {
+ *       "msg": "Wrong content"
+ *       "data": {
+ *          "message": "Vous devez inscrire votre mot de passe."
+ *       }
+ *     }
+ *
+ *  @apiErrorExample 409 - User already exists
+ *     {
+ *       "msg": "Content already exists"
+ *       "data": {
+ *          "message": "L'utilisateur existe déjà."
+ *       }
+ *     }
+ */
 function register(req, res, next) {
 
     if (!req.body.email) {
