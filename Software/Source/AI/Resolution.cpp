@@ -10,7 +10,7 @@ Resolution::~Resolution()
 
 }
 
-std::vector<std::pair<char, char> >	Resolution::parsingMarkov(StyleSettings &style, std::vector<std::pair<char, char> > &sequence)
+void	Resolution::parsingMarkov(StyleSettings &style, std::vector<std::pair<char, char> > *sequence)
 {
   char	i;
   char	save;
@@ -18,21 +18,20 @@ std::vector<std::pair<char, char> >	Resolution::parsingMarkov(StyleSettings &sty
 
   i = -1;
   save = -1;
-  while (++i != sequence.size())
+  while (++i != sequence->size())
     {
-      if (save == sequence[i].first)
+      if (save == (*sequence)[i].first)
 	{
 	  percentage = percentage * style.getProbaFromNote(save, save) / 100;
 	  if (percentage < NOT_ENOUGH_CHANCE)
-	    sequence[i].first = fixingMarkov(style, save, i + 1 == sequence.size() ? -1 : sequence[i + 1].first);
+	    (*sequence)[i].first = fixingMarkov(style, save, i + 1 == sequence->size() ? -1 : (*sequence)[i + 1].first);
 	}
-      if (save != sequence[i].first)
+      if (save != (*sequence)[i].first)
 	{
-	  save = sequence[i].first;
+	  save = (*sequence)[i].first;
 	  percentage = style.getProbaFromNote(save, save);
 	}
     }
-  return (sequence);
 }
 
 char		Resolution::fixingMarkov(StyleSettings &style, const char prev, const char next)

@@ -71,7 +71,7 @@ void			MusicGenerator::calculateProbaToScaleFromNote(StyleSettings *proba, std::
   int			i;
 
   i = C;
-  while (i + 1 != END)
+  while (i != END)
     {
       //Gérer les strong / medium / weak en fonction de la note courrante
       calculateProbaToNoteFromNote(proba, strong, PROBASTRONG);
@@ -96,7 +96,7 @@ void			MusicGenerator::classifyNotes(std::vector<char> chord, std::vector<char> 
   char			save;
 
   i = C;
-  while (i + 1 != END)
+  while (i != END)
     {
       save = calculateDistChords(chord, i);
       if (!save)
@@ -121,14 +121,23 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   std::vector<char>					chord;
   Chords						allChords;
 
+  parameters.setBpm(80); 
+  Instrument instru;
+  instru.name = "Piano";
+  instru.nb = ACOUSTICGRANDPIANO;
+  instru.channel = 1;
+  instru.velocity = 1;
+  parameters.addInstrument(instru);
+  parameters.setStyleName("Blues");
   std::cout << "-----------------------------------------------" << std::endl;
 
   markovObj.callLuaFromFile();
   markovChords = markovObj.getVectorFromJson();
   style = markovObj.getStyleFromJson();
-  Resolution::parsingMarkov(style, markovChords);
+  Resolution::parsingMarkov(style, &markovChords);
 
-  //Disposition::placeChords(parameters);
+  std::cout << markovChords[0].first << std::endl;
+  // Disposition::placeChords(parameters, markovChords);
 
   i = 0;
   std::cout << "-----------------------------------------------" << std::endl;
@@ -140,11 +149,11 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
       std::vector<char>					weak;
 
       chord = allChords.getChordFromName(markovChords[i].first);
-      // classifyNotes(chord, &strong, &medium, &weak);
-      // calculateProbaToNote(&proba, strong, PROBASTRONG);
-      // calculateProbaToNote(&proba, medium, PROBAMEDIUM);
-      // calculateProbaToNote(&proba, weak, PROBAWEAK);
-      // calculateProbaToScaleFromNote(&proba, chord, strong, medium, weak);
+      classifyNotes(chord, &strong, &medium, &weak);
+      calculateProbaToNote(&proba, strong, PROBASTRONG);
+      calculateProbaToNote(&proba, medium, PROBAMEDIUM);
+      calculateProbaToNote(&proba, weak, PROBAWEAK);
+      calculateProbaToScaleFromNote(&proba, chord, strong, medium, weak);
       
       //lua
       //cat les vectors
