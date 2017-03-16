@@ -37,6 +37,7 @@ private:
   void			calculateProbaToNote(StyleSettings *proba, std::vector<char> listNote, char probaNote);
   void			classifyNotes(std::vector<char> chord, std::vector<char> *strong, std::vector<char> *medium, std::vector<char> *weak);
 
+  char			searchNoteFromDist(char note, char dist);
   char			calculateDist(char currNote, char testNote);
   char			calculateSumDist(char currNote, std::vector<char> listNote);
   char			calculateDistChords(std::vector<char> chord, char note);

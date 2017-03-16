@@ -71,7 +71,7 @@ void			MusicGenerator::calculateProbaToScaleFromNote(StyleSettings *proba, std::
   int			i;
 
   i = C;
-  while (i + 1 != END)
+  while (i != END)
     {
       //Gérer les strong / medium / weak en fonction de la note courrante
       calculateProbaToNoteFromNote(proba, strong, PROBASTRONG);
@@ -96,7 +96,7 @@ void			MusicGenerator::classifyNotes(std::vector<char> chord, std::vector<char> 
   char			save;
 
   i = C;
-  while (i + 1 != END)
+  while (i != END)
     {
       save = calculateDistChords(chord, i);
       if (!save)
@@ -109,9 +109,33 @@ void			MusicGenerator::classifyNotes(std::vector<char> chord, std::vector<char> 
     }
 }
 
+char			MusicGenerator::searchNoteFromDist(char note, char dist)
+{
+  while (dist != 0)
+    {
+      if (note != B && note != E)
+	note += 16;
+      else
+	note += 8;
+      if (note == END)
+	note = C;
+      dist--;
+    }
+  return (note);
+}
+
 Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 {
   parameters.setSeed(std::time(NULL));
+  parameters.setBpm(80); 
+  Instrument instru;
+  instru.name = "Piano";
+  instru.nb = ACOUSTICGRANDPIANO;
+  instru.channel = 1;
+  instru.velocity = 1;
+  parameters.addInstrument(instru);
+  parameters.setStyleName("Blues");
+
   srand(parameters.getSeed());
   ObjectMarkov						markovObj("../../Source/markovSource/blues.json", 1, parameters.getSeed());
   int							i;
@@ -126,11 +150,29 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   markovObj.callLua();
   markovChords = markovObj.getVectorFromJson();
   style = markovObj.getStyleFromJson();
-  Resolution::parsingMarkov(style, markovChords);
 
-  //Disposition::placeChords(parameters);
+  markovChords.push_back(markovChords[0]);
+  markovChords.push_back(markovChords[0]);
+  markovChords.push_back(markovChords[0]);
+
+  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 3), 3));
+  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 3), 3));
+  markovChords.push_back(markovChords[0]);
+  markovChords.push_back(markovChords[0]);
+
+  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 4), 3));
+  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 3), 3));
+  markovChords.push_back(markovChords[0]);
+  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 4), 3));
+
+  Resolution::parsingMarkov(style, &markovChords);
+
+  std::cout << markovChords[0].first << std::endl;
+  std::cout << markovChords.size() << std::endl;
+  Disposition::placeChords(parameters, markovChords);
 
   i = 0;
+  std::cout << "-----------------------------------------------" << std::endl;
   while (i != markovChords.size())
     {
       StyleSettings					proba;
@@ -144,7 +186,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
       calculateProbaToNote(&proba, medium, PROBAMEDIUM);
       calculateProbaToNote(&proba, weak, PROBAWEAK);
       calculateProbaToScaleFromNote(&proba, chord, strong, medium, weak);
-
+      
       //lua
       //cat les vectors
       i++;
