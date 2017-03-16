@@ -5,7 +5,7 @@ ObjectMarkov::ObjectMarkov(std::string styleJson, unsigned int nbNote)
   _L = luaL_newstate();
   luaL_openlibs(_L);
   _styleJson = styleJson;
-  _luaMarkovFunction = "markov.lua";
+  _luaMarkovFunction = "../../Source/markovSource/markov.lua";
   _nbNote = nbNote;
   _seed = std::time(nullptr);
 }
@@ -15,7 +15,7 @@ ObjectMarkov::ObjectMarkov(std::string styleJson, unsigned int nbNote, unsigned 
   _L = luaL_newstate();
   luaL_openlibs(_L);
   _styleJson = styleJson;
-  _luaMarkovFunction = "markov.lua";
+  _luaMarkovFunction = "../../Source/markovSource/markov.lua";
   _nbNote = nbNote;
   _seed = seed;
 }
@@ -36,7 +36,6 @@ void ObjectMarkov::callLuaFromFile()
   Json::Reader reader;
   std::ifstream style(_styleJson.c_str(), std::ifstream::binary);
   bool parsingSuccessful = reader.parse(style, _rootJson, false);
-
   if (!parsingSuccessful)
   {
     // report to the user the failure and their locations in the document.
@@ -52,9 +51,8 @@ void ObjectMarkov::callLuaFromFile()
   lua_pushstring(_L, output.c_str());
 
   output = writer.write(_rootJson["note"]);
-  std::cout << _rootJson["note"] << std::endl;
   lua_pushstring(_L, output.c_str());
-  lua_pushnumber(_L, 15);
+  lua_pushnumber(_L, _nbNote);
   lua_pushnumber(_L, _seed);
   lua_call(_L,4,1);
   if (!lua_isnil(_L, -1))

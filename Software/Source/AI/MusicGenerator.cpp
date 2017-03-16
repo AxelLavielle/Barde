@@ -12,7 +12,7 @@
 
 MusicGenerator::MusicGenerator()
 {
-  
+
 }
 
 MusicGenerator::~MusicGenerator()
@@ -113,7 +113,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 {
   parameters.setSeed(std::time(NULL));
   srand(parameters.getSeed());
-  ObjectMarkov						markovObj("blues.json", 1, parameters.getSeed());
+  ObjectMarkov						markovObj("../../Source/markovSource/blues.json", 1, parameters.getSeed());
   int							i;
   std::vector<std::pair<char, char> >			markovChords;
   std::vector<std::pair<char, char> >			markovArpeggio;
@@ -122,7 +122,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   Chords						allChords;
 
   std::cout << "-----------------------------------------------" << std::endl;
-  
+
   markovObj.callLuaFromFile();
   markovChords = markovObj.getVectorFromJson();
   style = markovObj.getStyleFromJson();
@@ -151,7 +151,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
     }
 
   //Disposition::placeArpeggios(parameters);
-  
+
   std::cout << "-----------------------------------------------" << std::endl;
 
   return (Midi());

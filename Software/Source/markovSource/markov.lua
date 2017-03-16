@@ -1,4 +1,5 @@
-local json = require ("dkjson")
+
+local json = dofile("../../Source/markovSource/dkjson.lua")
 
 local markov = {}
 
