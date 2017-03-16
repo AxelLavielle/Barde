@@ -131,6 +131,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   //Disposition::placeChords(parameters);
 
   i = 0;
+  std::cout << "-----------------------------------------------" << std::endl;
   while (i != markovChords.size())
     {
       StyleSettings					proba;
@@ -139,12 +140,12 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
       std::vector<char>					weak;
 
       chord = allChords.getChordFromName(markovChords[i].first);
-      classifyNotes(chord, &strong, &medium, &weak);
-      calculateProbaToNote(&proba, strong, PROBASTRONG);
-      calculateProbaToNote(&proba, medium, PROBAMEDIUM);
-      calculateProbaToNote(&proba, weak, PROBAWEAK);
-      calculateProbaToScaleFromNote(&proba, chord, strong, medium, weak);
-
+      // classifyNotes(chord, &strong, &medium, &weak);
+      // calculateProbaToNote(&proba, strong, PROBASTRONG);
+      // calculateProbaToNote(&proba, medium, PROBAMEDIUM);
+      // calculateProbaToNote(&proba, weak, PROBAWEAK);
+      // calculateProbaToScaleFromNote(&proba, chord, strong, medium, weak);
+      
       //lua
       //cat les vectors
       i++;
