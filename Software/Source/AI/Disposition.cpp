@@ -24,7 +24,6 @@ void		Disposition::placeChords(MusicParameters &parameters, std::vector<std::pai
   midi.setTempo(parameters.getBpm());
   std::cout << "MUSIC SHEET OVERVIEW :" << std::endl;
   for (int i = 0; i < instruments.size(); i++){
-    for (double beats = 0; beats < parameters.getBpm(); beats++){
       midi.changeInstrument(instruments[i], beats);
       for (int x = 0; x < chordsGrid.size(); x++){
         notesFromChord = chords.getChordFromName(chordsGrid[x].first);
