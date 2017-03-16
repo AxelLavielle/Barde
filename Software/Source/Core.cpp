@@ -17,6 +17,7 @@ Core::Core()
 
 Core::~Core()
 {
+	delete _graph;
 }
 
 int Core::launch(void)

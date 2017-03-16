@@ -12,10 +12,12 @@
 
 JuceManager::JuceManager() : AGraphManager()
 {
+	//_mainWindow = nullptr;
 }
 
 JuceManager::~JuceManager()
 {
+	_mainWindow = nullptr;
 }
 
 int JuceManager::init(void)
