@@ -123,7 +123,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 
   std::cout << "-----------------------------------------------" << std::endl;
 
-  markovObj.callLuaFromFile();
+  markovObj.callLua();
   markovChords = markovObj.getVectorFromJson();
   style = markovObj.getStyleFromJson();
   Resolution::parsingMarkov(style, markovChords);
