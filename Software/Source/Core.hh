@@ -12,8 +12,9 @@
 #define CORE_HH_INCLUDED
 
 #include "JuceHeader.h"
-#include "JuceManager.hh"
-#include "MidiManager.hh"
+#include "GraphManager/JuceManager.hh"
+#include "MidiManager/MidiManager.hh"
+#include "AI/MusicGenerator.hh"
 
 class Core : public JUCEApplication
 {

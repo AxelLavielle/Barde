@@ -11,8 +11,14 @@
 #ifndef PLAYER_HH_INCLUDED
 #define PLAYER_HH_INCLUDED
 
+#include "AI/MusicGenerator.hh"
 
+class Player
+{
+public:
 
+private:
 
+};
 
 #endif  // PLAYER_HH_INCLUDED

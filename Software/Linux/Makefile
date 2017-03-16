@@ -33,10 +33,10 @@ ifeq ($(CONFIG),Debug)
     TARGET_ARCH := -march=native
   endif
 
-  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DDEBUG=1 -D_DEBUG=1 -DJUCER_LINUX_MAKE_46060D4=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags alsa freetype2 libcurl x11 xext xinerama) -pthread -I../JuceLibraryCode -I../JuceLibraryCode/modules -I../Source/GraphManager -I../Source/MidiManager $(CPPFLAGS)
-  JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -g -ggdb -O0 $(CFLAGS)
+  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DDEBUG=1 -D_DEBUG=1 -DJUCER_LINUX_MAKE_46060D4=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags alsa freetype2 libcurl x11 xext xinerama) -pthread -I../JuceLibraryCode -I../JuceLibraryCode/modules $(CPPFLAGS)
+  JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -g -ggdb -O0 -I../JsoncppLibrary/ -I../LuaLibrary/include $(CFLAGS)
   JUCE_CXXFLAGS += $(JUCE_CFLAGS) -std=c++11 $(CXXFLAGS)
-  JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) $(shell pkg-config --libs alsa freetype2 libcurl x11 xext xinerama) -lGL -ldl -lpthread -lrt  $(LDFLAGS)
+  JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) $(shell pkg-config --libs alsa freetype2 libcurl x11 xext xinerama) -lGL -ldl -lpthread -lrt -llua -L../LuaLibrary $(LDFLAGS)
 
   TARGET := BardeClient
   BLDCMD = $(CXX) -o $(JUCE_OUTDIR)/$(TARGET) $(OBJECTS) $(JUCE_LDFLAGS) $(RESOURCES) $(TARGET_ARCH)
@@ -54,9 +54,9 @@ ifeq ($(CONFIG),Release)
   endif
 
   JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DNDEBUG=1 -DJUCER_LINUX_MAKE_46060D4=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags alsa freetype2 libcurl x11 xext xinerama) -pthread -I../JuceLibraryCode -I../JuceLibraryCode/modules $(CPPFLAGS)
-  JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -O3 $(CFLAGS)
+  JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -O3 -I../JsoncppLibrary/ -I../LuaLibrary/include $(CFLAGS)
   JUCE_CXXFLAGS += $(JUCE_CFLAGS) -std=c++11 $(CXXFLAGS)
-  JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) -fvisibility=hidden $(shell pkg-config --libs alsa freetype2 libcurl x11 xext xinerama) -lGL -ldl -lpthread -lrt  $(LDFLAGS)
+  JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) -fvisibility=hidden $(shell pkg-config --libs alsa freetype2 libcurl x11 xext xinerama) -lGL -ldl -lpthread -lrt -llua -L../LuaLibrary $(LDFLAGS)
 
   TARGET := BardeClient
   BLDCMD = $(CXX) -o $(JUCE_OUTDIR)/$(TARGET) $(OBJECTS) $(JUCE_LDFLAGS) $(RESOURCES) $(TARGET_ARCH)
@@ -64,6 +64,13 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS := \
+  $(JUCE_OBJDIR)/Chords_8c89bd4e.o \
+  $(JUCE_OBJDIR)/Disposition_da31b1aa.o \
+  $(JUCE_OBJDIR)/MusicGenerator_b8a25e65.o \
+  $(JUCE_OBJDIR)/ObjectMarkov_d034efca.o \
+  $(JUCE_OBJDIR)/Resolution_ca4e12e3.o \
+  $(JUCE_OBJDIR)/StyleSettings_ca3d60e7.o \
+  $(JUCE_OBJDIR)/Instrument_44b59881.o \
   $(JUCE_OBJDIR)/jsoncpp_7b1ce7b0.o \
   $(JUCE_OBJDIR)/ADatabasManager_7f537f57.o \
   $(JUCE_OBJDIR)/SQLiteManager_99d2bf74.o \
@@ -71,10 +78,9 @@ OBJECTS := \
   $(JUCE_OBJDIR)/SSLManager_f25fe680.o \
   $(JUCE_OBJDIR)/AGraphManager_4508c7ea.o \
   $(JUCE_OBJDIR)/JuceManager_8121b3aa.o \
+  $(JUCE_OBJDIR)/MainComponent_fb729fae.o \
   $(JUCE_OBJDIR)/MainWindow_1a69e1a9.o \
-  $(JUCE_OBJDIR)/MusicGenerator_d4962355.o \
-  $(JUCE_OBJDIR)/ObjectMarkov_ab3530ba.o \
-  $(JUCE_OBJDIR)/StyleSettings_4f453df7.o \
+  $(JUCE_OBJDIR)/MusicStyleButton_39681cbe.o \
   $(JUCE_OBJDIR)/AMidiManager_545b688.o \
   $(JUCE_OBJDIR)/Midi_8be1d87e.o \
   $(JUCE_OBJDIR)/MidiManager_7f6bb1d9.o \
@@ -95,6 +101,7 @@ OBJECTS := \
   $(JUCE_OBJDIR)/Playlist_307de2c.o \
   $(JUCE_OBJDIR)/Subscription_38a53d77.o \
   $(JUCE_OBJDIR)/User_dcb1be25.o \
+  $(JUCE_OBJDIR)/BinaryData_371e9b63.o \
   $(JUCE_OBJDIR)/juce_audio_basics_14202532.o \
   $(JUCE_OBJDIR)/juce_audio_devices_13712d1a.o \
   $(JUCE_OBJDIR)/juce_audio_formats_c6583019.o \
@@ -131,6 +138,41 @@ strip:
 	@echo Stripping BardeClient
 	-@$(STRIP) --strip-unneeded $(JUCE_OUTDIR)/$(TARGET)
 
+$(JUCE_OBJDIR)/Chords_8c89bd4e.o: ../Source/AI/Chords.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Chords.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/Disposition_da31b1aa.o: ../Source/AI/Disposition.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Disposition.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/MusicGenerator_b8a25e65.o: ../Source/AI/MusicGenerator.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling MusicGenerator.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ObjectMarkov_d034efca.o: ../Source/AI/ObjectMarkov.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ObjectMarkov.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/Resolution_ca4e12e3.o: ../Source/AI/Resolution.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Resolution.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/StyleSettings_ca3d60e7.o: ../Source/AI/StyleSettings.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling StyleSettings.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/Instrument_44b59881.o: ../Source/Instrument.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Instrument.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/jsoncpp_7b1ce7b0.o: ../JsoncppLibrary/jsoncpp.cpp
 	-@mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling jsoncpp.cpp"
@@ -166,24 +208,19 @@ $(JUCE_OBJDIR)/JuceManager_8121b3aa.o: ../Source/GraphManager/JuceManager.cpp
 	@echo "Compiling JuceManager.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/MainComponent_fb729fae.o: ../Source/GraphManager/MainComponent.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling MainComponent.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/MainWindow_1a69e1a9.o: ../Source/GraphManager/MainWindow.cpp
 	-@mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling MainWindow.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/MusicGenerator_d4962355.o: ../Source/Ia/MusicGenerator.cpp
+$(JUCE_OBJDIR)/MusicStyleButton_39681cbe.o: ../Source/GraphManager/MusicStyleButton.cpp
 	-@mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling MusicGenerator.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/ObjectMarkov_ab3530ba.o: ../Source/Ia/ObjectMarkov.cpp
-	-@mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling ObjectMarkov.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/StyleSettings_4f453df7.o: ../Source/Ia/StyleSettings.cpp
-	-@mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling StyleSettings.cpp"
+	@echo "Compiling MusicStyleButton.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/AMidiManager_545b688.o: ../Source/MidiManager/AMidiManager.cpp
@@ -284,6 +321,11 @@ $(JUCE_OBJDIR)/Subscription_38a53d77.o: ../Source/Subscription.cpp
 $(JUCE_OBJDIR)/User_dcb1be25.o: ../Source/User.cpp
 	-@mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling User.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/BinaryData_371e9b63.o: ../JuceLibraryCode/BinaryData.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling BinaryData.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/juce_audio_basics_14202532.o: ../JuceLibraryCode/juce_audio_basics.cpp

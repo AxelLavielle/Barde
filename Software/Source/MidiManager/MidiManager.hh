@@ -20,11 +20,14 @@ public:
 	MidiManager();
 	virtual ~MidiManager();
 	virtual void noteOn(int channel, int noteNumber, float velocity, double time) noexcept;
+	virtual void noteOn(const Instrument &instument, int noteNumber, float velocity, double time) noexcept;
 	virtual void noteOff(int channel, int noteNumber, float velocity, double time) noexcept;
+	virtual void noteOff(const Instrument &instrument, int noteNumber, float velocity, double time) noexcept;
 	virtual Midi createMidi();
 	virtual void writeToFile(const std::string filePath);
 	virtual void setTempo(const int bpm, double time);
 	virtual void changeInstrument(const int channel, const int instrumentNb, double time);
+	virtual void changeInstrument(const Instrument &instrument, double time);
 
 private:
 	void addMessageToList(const MidiMessage& message);

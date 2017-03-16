@@ -9,21 +9,22 @@
 */
 
 #include "MainWindow.hh"
+#include "MainComponent.h"
 
 MainWindow::MainWindow(const std::string name) : DocumentWindow(name,
 																Colours::lightgrey,
 																DocumentWindow::allButtons)
 {
 	setUsingNativeTitleBar(true);
-	//setContentOwned(new MainContentComponent(), true);
-
 	setResizable(true, false);
 
 #if JUCE_IOS || JUCE_ANDROID
 	setFullScreen(true);
 #endif
-
-	centreWithSize(getWidth(), getHeight());
+	setFullScreen(true);
+	setSize(getWidth(), getHeight());
+	setContentOwned(new MainContentComponent(), true);
+	//centreWithSize(getWidth(), getHeight());
 	setVisible(true);
 }
 
@@ -37,4 +38,5 @@ void MainWindow::closeButtonPressed()
 
 MainWindow::~MainWindow()
 {
+	deleteAllChildren();
 }

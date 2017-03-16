@@ -27,6 +27,8 @@ int Core::launch(void)
 void Core::initialise(const String& commandLine)
 {
 	MidiManager test;
+	MusicGenerator gen;
+	MusicParameters param;
 	
 	test.changeInstrument(1, 5, 0);
 	test.noteOn(1, 38, 100, 0);
@@ -41,8 +43,10 @@ void Core::initialise(const String& commandLine)
 	//test.changeInstrument(16, 128, 1300);	
 	//test.noteOn(16, 38, 100, 1400);
 	//test.noteOff(16, 38, 100, 1800);
+
 	test.createMidi();
 	test.writeToFile("./test.mid");
+	gen.createMusic(param);
 
 	_graph->init();
 	// This method is where you should put your application's initialisation code..
