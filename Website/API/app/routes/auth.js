@@ -23,8 +23,18 @@ module.exports = function (apiRoutes, passport) {
  * @apiName Login
  * @apiGroup Auth
  *
+<<<<<<< HEAD
  *
  * @apiErrorExample 200 - Success
+=======
+ * @apiParamExample {json} Request-Example:
+ *     {
+ *       "email": "",
+ *       "password": ""
+ *     }
+ *
+ * @apiSuccessExample 200 - Success
+>>>>>>> 8decf7db36143b67de99eaa9d97006f88d870cd8
  *     {
  *       "msg": "Content created"
  *       "data": {
@@ -59,10 +69,10 @@ module.exports = function (apiRoutes, passport) {
 function register(req, res, next) {
 
     if (!req.body.email) {
-        res.status(400).send({msg: 'No content', data: {message: "Vous devez inscrire votre email."}});
+        res.status(400).send({msg: "No content", data: {message: "Vous devez inscrire votre email."}});
     } else if (!req.body.email) {
-        res.status(400).send({msg: 'No content', data: {message: "Vous devez inscrire votre mot de passe."}});
-    } else{
+        res.status(400).send({msg: "No content", data: {message: "Vous devez inscrire votre mot de passe."}});
+    } else {
         var newUser = new User({
             email: req.body.email,
             password: req.body.password
@@ -71,14 +81,54 @@ function register(req, res, next) {
         newUser.save(function (err) {
             console.log(err);
             if (err) {
-                res.status(409).send({msg: 'Content already exists', data: {message: "L'utilisateur existe déjà."}});
+                res.status(409).send({msg: "Content already exists", data: {message: "L'utilisateur existe déjà."}});
             }
-            res.status(200).send({msg: 'Content created', data: {message: "Votre inscription a bien été pris en compte."}});
+            res.status(200).send({
+                msg: "Content created",
+                data: {message: "Votre inscription a bien été pris en compte."}
+            });
         });
     }
 
 }
 
+
+/**
+ * @api {post} /auth/login Login user
+ * @apiName Login
+ * @apiGroup Auth
+ *
+ * @apiParamExample {json} Request-Example:
+ *     {
+ *       "email": "",
+ *       "password": ""
+ *     }
+ *
+ * @apiSuccessExample 200 - Success
+ *     {
+ *       "msg": "Content created"
+ *       "data": {
+ *          "token": "JWT " + token
+ *          "message": "Vous êtes connecté."
+ *       }
+ *     }
+ *
+ * @apiErrorExample 400 - User not exist
+ *     {
+ *       "msg": "No content"
+ *       "data": {
+ *          "message": "L'utilisateur n'existe pas."
+ *       }
+ *     }
+ *
+ * @apiErrorExample 400 - Wrong content
+ *     {
+ *       "msg": "Wrong content"
+ *       "data": {
+ *          "message": "Le mot de passe est faux."
+ *       }
+ *     }
+ */
 function login(req, res, next) {
 
     User.findOne({
@@ -87,7 +137,7 @@ function login(req, res, next) {
         if (err) throw err;
 
         if (!user) {
-            res.status(400).send({msg: 'No content', data: {message: "L'utilisateur n'existe pas."}});
+            res.status(400).send({msg: "No content", data: {message: "L'utilisateur n'existe pas."}});
         } else {
             // check if password matches
             user.comparePassword(req.body.password, function (err, isMatch) {
@@ -95,14 +145,16 @@ function login(req, res, next) {
                     // if user is found and password is right create a token
                     var token = jwt.encode(user, config.jwt.secret);
                     // return the information including token as JSON
-                    res.json({success: true, token: 'JWT ' + token});
+                    res.json({success: true, token: "JWT " + token});
 
-                    res.status(200).send({msg: 'Content created', data: {token: 'JWT ' + token, message: "Vous êtes connecté."}});
-
+                    res.status(200).send({
+                        msg: "Content created",
+                        data: {token: "JWT " + token, message: "Vous êtes connecté."}
+                    });
 
 
                 } else {
-                    res.status(400).send({msg: 'Wrong content', data: {message: "Le mot de passe est faux."}});
+                    res.status(400).send({msg: "Wrong content", data: {message: "Le mot de passe est faux."}});
                 }
             });
         }
