@@ -41,7 +41,7 @@ void MidiManager::noteOn(const Instrument & instrument, const int noteNumber, co
 void MidiManager::noteOff(const int channel, const int noteNumber, const float velocity, const double time) noexcept
 {
 	MidiMessage message = MidiMessage::noteOff(channel, noteNumber, (uint8)velocity);
-	
+
 	message.setTimeStamp(time);
 	addMessageToList(message);
 	_midiSequence.addEvent(message);
@@ -151,9 +151,9 @@ void	MidiManager::addMessageToList(const MidiMessage& message)
                                               minutes,
                                               seconds,
                                               millis));
-	File file(File::getCurrentWorkingDirectory().getChildFile(String("./test.log")));
+	//File file(File::getCurrentWorkingDirectory().getChildFile(String("./test.log")));
 
-	FileLogger test(file, "COUCOU", 4096);
+	//FileLogger test(file, "COUCOU", 4096);
 
-	test.writeToLog(timecode + "  -  " + getMidiMessageDescription(message));
+	//test.writeToLog(timecode + "  -  " + getMidiMessageDescription(message));
 }
