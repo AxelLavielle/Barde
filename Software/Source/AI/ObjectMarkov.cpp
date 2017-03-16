@@ -124,14 +124,14 @@ StyleSettings ObjectMarkov::getStyleFromJson()
   Json::Value json = _rootJson["note"];
 
   for (Json::Value::iterator it = json["begin"].begin(); it != json["begin"].end(); ++it)
-    style.addNote(it.key().asString().c_str()[0], (*it).asInt());
+    style.addNote(atoi(it.key().asString().c_str()), (*it).asInt());
   for (Json::Value::iterator it = json.begin(); it != json.end(); ++it)
   {
     if (it.key().asString() != "begin")
     {
       for (Json::Value::iterator it2 = json[it.key().asString()].begin(); it2 != json[it.key().asString()].end(); ++it2)
       {
-        style.addNoteFromNote(it.key().asString().c_str()[0], it2.key().asString().c_str()[0], (*it2).asInt());
+        style.addNoteFromNote(atoi(it.key().asString().c_str()), atoi(it2.key().asString().c_str()), (*it2).asInt());
       }
     }
   }
