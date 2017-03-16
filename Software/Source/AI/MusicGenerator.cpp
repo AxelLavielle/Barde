@@ -177,45 +177,45 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
       std::vector<char>					medium;
       std::vector<char>					weak;
 
-      chord = allChords.getChordFromName(markovChords[i].first);
-      classifyNotes(chord, &strong, &medium, &weak);
+      // chord = allChords.getChordFromName(markovChords[i].first);
+      // classifyNotes(chord, &strong, &medium, &weak);
 
-      int	k;
-      std::cout << "---------- TEST CLASSIFY" << std::endl;
+      // int	k;
+      // std::cout << "---------- TEST CLASSIFY" << std::endl;
 
-      k = -1;
-      while (++k != strong.size())
-	std::cout << (int)strong[k] << " ";
-      std::cout << std::endl;
-      k = -1;
-      while (++k != medium.size())
-	std::cout << (int)medium[k] << " ";
-      std::cout << std::endl;
-      k = -1;
-      while (++k != weak.size())
-	std::cout << (int)weak[k] << " ";
-      std::cout << std::endl;
+      // k = -1;
+      // while (++k != strong.size())
+      // 	std::cout << (int)strong[k] << " ";
+      // std::cout << std::endl;
+      // k = -1;
+      // while (++k != medium.size())
+      // 	std::cout << (int)medium[k] << " ";
+      // std::cout << std::endl;
+      // k = -1;
+      // while (++k != weak.size())
+      // 	std::cout << (int)weak[k] << " ";
+      // std::cout << std::endl;
 
-      std::cout << "---------- TEST PROBA TRONC" << std::endl;
-      calculateProbaToNote(&proba, strong, PROBASTRONG);
-      k = -1;
-      while (++k != strong.size())
-	std::cout << (int)proba.getProba(strong[k]) << " ";
-      std::cout << std::endl;
-      calculateProbaToNote(&proba, medium, PROBAMEDIUM);
-      k = -1;
-      while (++k != medium.size())
-	std::cout << (int)proba.getProba(medium[k]) << " ";
-      std::cout << std::endl;
-      calculateProbaToNote(&proba, weak, PROBAWEAK);
-      k = -1;
-      while (++k != weak.size())
-	std::cout << (int)proba.getProba(weak[k]) << " ";
-      std::cout << std::endl;
+      // std::cout << "---------- TEST PROBA TRONC" << std::endl;
+      // calculateProbaToNote(&proba, strong, PROBASTRONG);
+      // k = -1;
+      // while (++k != strong.size())
+      // 	std::cout << (int)proba.getProba(strong[k]) << " ";
+      // std::cout << std::endl;
+      // calculateProbaToNote(&proba, medium, PROBAMEDIUM);
+      // k = -1;
+      // while (++k != medium.size())
+      // 	std::cout << (int)proba.getProba(medium[k]) << " ";
+      // std::cout << std::endl;
+      // calculateProbaToNote(&proba, weak, PROBAWEAK);
+      // k = -1;
+      // while (++k != weak.size())
+      // 	std::cout << (int)proba.getProba(weak[k]) << " ";
+      // std::cout << std::endl;
 
-      int	l;
-      std::cout << "---------- TEST PROBA FEUILLE" << std::endl;
-      calculateProbaToScaleFromNote(&proba, chord, strong, medium, weak);
+      // int	l;
+      // std::cout << "---------- TEST PROBA FEUILLE" << std::endl;
+      // calculateProbaToScaleFromNote(&proba, chord, strong, medium, weak);
       // k = -1;
       // while (++k != strong.size())
       // 	{
