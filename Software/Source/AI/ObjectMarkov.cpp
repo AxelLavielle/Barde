@@ -30,7 +30,7 @@ ObjectMarkov::ObjectMarkov(std::string styleJson, std::string luaMarkovFunction,
   _seed = seed;
 }
 
-void ObjectMarkov::callLuaMarkov()
+void ObjectMarkov::callLuaFromFile()
 {
   luaL_dofile(_L, _luaMarkovFunction.c_str());
   Json::Reader reader;

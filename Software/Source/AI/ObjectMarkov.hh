@@ -19,11 +19,14 @@ extern "C" {
 class ObjectMarkov
 {
 public:
+  ObjectMarkov(const StyleSettings &settings, unsigned int nbNote);
+  ObjectMarkov(const StyleSettings &settings, unsigned int nbNote, unsigned int seed);
+  ObjectMarkov(const StyleSettings &settings, std::string luaMarkovFunction, unsigned int nbNote, unsigned int seed);
   ObjectMarkov(std::string styleJson, unsigned int nbNote);
   ObjectMarkov(std::string styleJson, unsigned int nbNote, unsigned int seed);
   ObjectMarkov(std::string styleJson, std::string luaMarkovFunction, unsigned int nbNote, unsigned int seed);
   ~ObjectMarkov();
-  void                                  callLuaMarkov();
+  void                                  callLuaFromFile();
   std::vector<std::pair<char, char> >   getVectorFromJson();
   StyleSettings                         getStyleFromJson();
 private:
