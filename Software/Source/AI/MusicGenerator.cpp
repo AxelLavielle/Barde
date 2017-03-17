@@ -148,7 +148,7 @@ char			MusicGenerator::searchNoteFromDist(char note, char dist)
 Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 {
   parameters.setSeed(std::time(NULL));
-  parameters.setBpm(80); 
+  parameters.setBpm(80);
   Instrument instru;
   instru.name = "Piano";
   instru.nb = ACOUSTICGRANDPIANO;
@@ -158,7 +158,12 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   parameters.setStyleName("Blues");
 
   srand(parameters.getSeed());
+  #ifdef _WIN64
+  ObjectMarkov						markovObj("../Source/markovSource/blues.json", 1, parameters.getSeed());
+  #else
   ObjectMarkov						markovObj("../../Source/markovSource/blues.json", 1, parameters.getSeed());
+  #endif
+
   int							i;
   std::vector<std::pair<char, char> >			markovChords;
   std::vector<std::pair<char, char> >			markovArpeggio;
@@ -202,9 +207,9 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
       calculateProbaToNote(&proba, medium, PROBAMEDIUM);
       calculateProbaToNote(&proba, weak, PROBAWEAK);
       calculateProbaToScaleFromNote(&proba, chord, strong, medium, weak);
-      
+
       ObjectMarkov				       	markovObj(proba, 1, parameters.getSeed());
-      
+
       markovChords = markovObj.getVectorFromJson();
       if (!markovArpeggio.size())
 	markovArpeggio = markovChords;
