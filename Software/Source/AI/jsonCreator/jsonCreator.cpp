@@ -37,7 +37,7 @@ void		setupJson(StyleSettings createJson)
   file << "\t},\n";
   file << "\t\"scale\": {\n\t\t\"begin\": {\n\t\t\t\"3\": 100\n\t\t},\n";
   file << "\t\t\"3\": {\n\t\t\t\"3\": 100\n\t\t}\n";
-  file << "\t}\n}";
+  file << "\t}\n}\n";
   file.close();
 }
 
