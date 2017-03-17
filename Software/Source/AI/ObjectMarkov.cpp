@@ -5,8 +5,12 @@ ObjectMarkov::ObjectMarkov(const StyleSettings &settings, unsigned int nbNote)
   _L = luaL_newstate();
   luaL_openlibs(_L);
   setRootJsonFromStyle(settings);
-  _luaMarkovFunction = "../../Source/markovSource/markov.lua";
-  _nbNote = nbNote;
+  #ifdef _WIN64
+  _luaMarkovFunction = "../Source/markovSource/markov.lua";
+  #else
+  _luaMarkovFunction = "../../Source/markovSource/markov.lua";  _nbNote = nbNote;
+  #endif
+
   _seed = std::time(nullptr);
 }
 
@@ -15,8 +19,12 @@ ObjectMarkov::ObjectMarkov(const StyleSettings &settings, unsigned int nbNote, u
   _L = luaL_newstate();
   luaL_openlibs(_L);
   setRootJsonFromStyle(settings);
-  _luaMarkovFunction = "../../Source/markovSource/markov.lua";
-  _nbNote = nbNote;
+  #ifdef _WIN64
+  _luaMarkovFunction = "../Source/markovSource/markov.lua";
+  #else
+  _luaMarkovFunction = "../../Source/markovSource/markov.lua";  _nbNote = nbNote;
+  #endif
+
   _seed = seed;
 }
 
@@ -35,7 +43,12 @@ ObjectMarkov::ObjectMarkov(std::string styleJson, unsigned int nbNote)
   _L = luaL_newstate();
   luaL_openlibs(_L);
   setRootJsonFromFile(styleJson);
+  #ifdef _WIN64
+  _luaMarkovFunction = "../Source/markovSource/markov.lua";
+  #else
   _luaMarkovFunction = "../../Source/markovSource/markov.lua";
+  #endif
+
   _nbNote = nbNote;
   _seed = std::time(nullptr);
 }
@@ -45,7 +58,12 @@ ObjectMarkov::ObjectMarkov(std::string styleJson, unsigned int nbNote, unsigned 
   _L = luaL_newstate();
   luaL_openlibs(_L);
   setRootJsonFromFile(styleJson);
+  #ifdef _WIN64
+  _luaMarkovFunction = "../Source/markovSource/markov.lua";
+  #else
   _luaMarkovFunction = "../../Source/markovSource/markov.lua";
+  #endif
+
   _nbNote = nbNote;
   _seed = seed;
 }
