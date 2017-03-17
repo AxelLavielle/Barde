@@ -18,6 +18,16 @@ AGraphManager::~AGraphManager()
 {
 }
 
+void AGraphManager::setWinName(const std::string & name)
+{
+	_winName = name;
+}
+
+std::string AGraphManager::getWinName() const
+{
+	return (_winName);
+}
+
 void AGraphManager::setWinHeight(const int height)
 {
 	_winHeight = height;

@@ -11,6 +11,7 @@
 #ifndef AGRAPHMANAGER_HH_INCLUDED
 #define AGRAPHMANAGER_HH_INCLUDED
 
+#include <string>
 #include "IGraphManager.hpp"
 
 class AGraphManager : public IGraphManager
@@ -20,12 +21,16 @@ public:
 	virtual ~AGraphManager();
 
 	virtual int init(void) = 0;
-	void setWinHeight(const int height);
-	void setWinWidth(const int width);
+	virtual void setWinName(const std::string &name);
+	virtual std::string getWinName() const;
+	virtual void setWinHeight(const int height);
+	virtual void setWinWidth(const int width);
+
 
 private:
-	int _winHeight;
-	int _winWidth;
+	int				_winHeight;
+	int				_winWidth;
+	std::string		_winName;
 };
 
 
