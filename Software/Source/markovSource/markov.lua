@@ -1,4 +1,5 @@
-local json = dofile("../../Source/markovSource/dkjson.lua")
+
+local json = nil;
 
 local markov = {}
 
@@ -8,11 +9,15 @@ local probNote = {}
 local node = nil
 
 local function initLib()
-  print("lolulop")
-  if (os.getenv('OS')) then
-    json = dofile("../Source/markovSource/dkjson.lua")
-  end
+  local popen_status, popen_result = pcall(io.popen, "")
+  if popen_status then
+      json = dofile("../../Source/markovSource/dkjson.lua")
+    else
+      json = dofile("../Source/markovSource/dkjson.lua")
+    end
 end
+
+initLib()
 
 local function addNode(actualNode)
   if node == nil then
