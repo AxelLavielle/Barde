@@ -11,7 +11,14 @@ local node = nil
 local function initLib()
   local popen_status, popen_result = pcall(io.popen, "")
   if popen_status then
-      json = dofile("../../Source/markovSource/dkjson.lua")
+      popen_result:close()
+      local raw_os_name = io.popen('uname -s','r'):read('*l')
+
+      if (raw_os_name) then
+        json = dofile("../../Source/markovSource/dkjson.lua")
+      else
+        json = dofile("../Source/markovSource/dkjson.lua")
+      end
     else
       json = dofile("../Source/markovSource/dkjson.lua")
     end
