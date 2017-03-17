@@ -44,6 +44,8 @@ void		Disposition::placeChords(MusicParameters &parameters, std::vector<std::pai
         beats += TIME_PER_TS;
       }
     }
+    midi.createMidi();
+    midi.writeToFile("./accords.mid");
   }
 
 void		Disposition::placeArpeggios(MusicParameters &parameters)
