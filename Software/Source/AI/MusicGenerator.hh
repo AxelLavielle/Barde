@@ -15,7 +15,7 @@
 # define PROBASTRONG	50
 # define PROBAMEDIUM	33
 # define PROBAWEAK	17
-# define DISTIMPACT	2
+# define DISTIMPACT	1
 
 # include "Resolution.hh"
 # include "../MidiManager/Midi.hh"
@@ -33,7 +33,7 @@ public:
 
 private:
   void			calculateProbaToScaleFromNote(StyleSettings *proba, std::vector<char> chord, std::vector<char> strong, std::vector<char> medium, std::vector<char> weak);
-  void			calculateProbaToNoteFromNote(StyleSettings *proba, std::vector<char> listNote, char probaNote);
+  void			calculateProbaToNoteFromNote(char note, StyleSettings *proba, std::vector<char> listNote, char probaNote);
   void			calculateProbaToNote(StyleSettings *proba, std::vector<char> listNote, char probaNote);
   void			classifyNotes(std::vector<char> chord, std::vector<char> *strong, std::vector<char> *medium, std::vector<char> *weak);
 
