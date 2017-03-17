@@ -34,4 +34,5 @@ int JuceManager::init(const std::string &winName,
 	_winWidth = width;
 	_winHeight = height;
 	_mainWindow = new MainWindow(_winName);
+	return (0);
 }
