@@ -6,13 +6,10 @@
   <MAINGROUP id="r1VLiG" name="BardeClient">
     <GROUP id="{6687DB59-98D3-42FE-E900-5BC523D33DDC}" name="Source">
       <GROUP id="{5444B8A4-FB7A-02ED-7754-175A3C60D033}" name="AI">
-        <FILE id="cwQjWK" name="blues.json" compile="0" resource="1" file="Source/AI/blues.json"/>
         <FILE id="jqA6BZ" name="Chords.cpp" compile="1" resource="0" file="Source/AI/Chords.cpp"/>
         <FILE id="gRmS1K" name="Chords.hh" compile="0" resource="0" file="Source/AI/Chords.hh"/>
         <FILE id="zdlHC7" name="Disposition.cpp" compile="1" resource="0" file="Source/AI/Disposition.cpp"/>
         <FILE id="vjC5PG" name="Disposition.hh" compile="0" resource="0" file="Source/AI/Disposition.hh"/>
-        <FILE id="oHmnEH" name="dkjson.lua" compile="0" resource="1" file="Source/AI/dkjson.lua"/>
-        <FILE id="U0Sf0X" name="markov.lua" compile="0" resource="1" file="Source/AI/markov.lua"/>
         <FILE id="MYG2RZ" name="MusicGenerator.cpp" compile="1" resource="0"
               file="Source/AI/MusicGenerator.cpp"/>
         <FILE id="Qf9ceN" name="MusicGenerator.hh" compile="0" resource="0"

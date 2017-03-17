@@ -158,7 +158,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   parameters.setStyleName("Blues");
 
   srand(parameters.getSeed());
-  #ifdef _WIN64
+  #ifdef _WIN32
   ObjectMarkov						markovObj("../Source/markovSource/blues.json", 1, parameters.getSeed());
   #else
   ObjectMarkov						markovObj("../../Source/markovSource/blues.json", 1, parameters.getSeed());
