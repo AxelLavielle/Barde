@@ -66,9 +66,9 @@ Midi MidiManager::createMidi()
 	MidiMessage			message;
 	Midi				midi;
 
-	message = MidiMessage::endOfTrack();
+	//message = MidiMessage::endOfTrack();
 	//message.setTimeStamp();//MANQUE LE TEMPS
-	addMessageToList(message);
+	//addMessageToList(message);
 	_midiSequence.addEvent(message);
 	_midiBuff.addTrack(_midiSequence);
 	_midiBuff.writeTo(midiStream, 1);

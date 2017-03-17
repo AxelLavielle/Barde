@@ -153,7 +153,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   instru.name = "Piano";
   instru.nb = ACOUSTICGRANDPIANO;
   instru.channel = 1;
-  instru.velocity = 1;
+  instru.velocity = 100; //Need change
   parameters.addInstrument(instru);
   parameters.setStyleName("Blues");
 
