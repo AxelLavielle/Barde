@@ -21,6 +21,7 @@ public:
 	virtual ~JuceManager();
 
 	virtual int init(void);
+	virtual int init(const std::string &winName, const unsigned int width, const unsigned int height);
 
 private:
 	ScopedPointer<MainWindow> _mainWindow;

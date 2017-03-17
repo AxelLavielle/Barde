@@ -21,16 +21,15 @@ public:
 	virtual ~AGraphManager();
 
 	virtual int init(void) = 0;
+	virtual int init(const std::string &winName, const unsigned int width, const unsigned int height) = 0;
+	virtual void setWinHeight(const unsigned int height);
+	virtual void setWinWidth(const unsigned int width);
 	virtual void setWinName(const std::string &name);
-	virtual std::string getWinName() const;
-	virtual void setWinHeight(const int height);
-	virtual void setWinWidth(const int width);
 
-
-private:
-	int				_winHeight;
-	int				_winWidth;
-	std::string		_winName;
+protected:
+	int 						_winHeight;
+	int 						_winWidth;
+	std::string					_winName;
 };
 
 
