@@ -79,8 +79,11 @@ void			MusicGenerator::calculateProbaToNoteFromNote(char note, StyleSettings *pr
   while (sumProba != probaNote)
     {
       i = -1;
-      while (sumProba-- != probaNote && ++i != strong.size())
-	strong[i] += 1;
+      while (sumProba != probaNote && ++i != listNote.size())
+	{
+	  listNote[i] += 1;
+	  sumProba++;
+	}
     }
 }
 
@@ -200,12 +203,17 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
       calculateProbaToNote(&proba, weak, PROBAWEAK);
       calculateProbaToScaleFromNote(&proba, chord, strong, medium, weak);
       
-      //lua
-      //cat les vectors
+      ObjectMarkov				       	markovObj(proba, 1, parameters.getSeed());
+      
+      markovChords = markovObj.getVectorFromJson();
+      if (!markovArpeggio.size())
+	markovArpeggio = markovChords;
+      else
+	markovArpeggio.insert(markovArpeggio.end(), markovChords.begin(), markovChords.end());
       i++;
     }
 
-  //Disposition::placeArpeggios(parameters);
+  // Disposition::placeArpeggios(parameters, markovArpeggio);
 
   return (Midi());
 }
