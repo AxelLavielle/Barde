@@ -1,3 +1,4 @@
+#include <math.h>
 #include "Disposition.hh"
 
 Disposition::Disposition()
@@ -23,7 +24,6 @@ void		Disposition::placeChords(MusicParameters &parameters, std::vector<std::pai
 
   instruments = parameters.getInstruments();
   midi.setTempo(parameters.getBpm());
-  std::cout << "MUSIC SHEET OVERVIEW :" << std::endl;
   for (int i = 0; i < instruments.size(); i++){
       beats = 0;
       midi.changeInstrument(instruments[i], beats);
@@ -33,22 +33,37 @@ void		Disposition::placeChords(MusicParameters &parameters, std::vector<std::pai
         for (int y = 0; y < notesFromChord.size(); y++){
           if (y != 0)
             scaleAdjust = (notesFromChord[y] < previousNote ? 0 : 1);
-          std::cout << "{" << chordsGrid[x].second << "}" << std::endl;
           note = (notesFromChord[y] / 8) + (((int)chordsGrid[x].second - scaleAdjust) * 12);
           midi.noteOn(instruments[i].channel, note, instruments[i].velocity, beats);
-          std::cout << "TICK " << beats << " : " << note << " [ON]" << std::endl;
           midi.noteOff(instruments[i].channel, note, instruments[i].velocity, beats + TIME_PER_TS);
-          std::cout << "TICK " << beats + TIME_PER_TS << " : " << note << " [OFF]" << std::endl;
           previousNote = note;
         }
         beats += TIME_PER_TS;
       }
     }
     midi.createMidi();
-    midi.writeToFile("./accords.mid");
+    midi.writeToFile("./chords.mid");
   }
 
-void		Disposition::placeArpeggios(MusicParameters &parameters)
+void		Disposition::placeArpeggios(MusicParameters &parameters, std::vector<std::pair<char, char> > notesList)
 {
-  (void)parameters;
+  MidiManager midi;
+  std::vector<Instrument> instruments;
+  int note;
+  double beats;
+
+  instruments = parameters.getInstruments();
+  midi.setTempo(parameters.getBpm());
+  for (int i = 0; i < instruments.size(); i++){
+      beats = 1;
+      midi.changeInstrument(instruments[i], beats);
+      for (int x = 0; x < notesList.size(); x++){
+        note = (notesList[x].first / 8) + (((int)notesList[x].second - 1) * 12);
+        midi.noteOn(instruments[i].channel, note, instruments[i].velocity, beats);
+        midi.noteOff(instruments[i].channel, note, instruments[i].velocity, beats + 1);
+        beats = (fmod(beats, 3) == 0 ? beats + 2 : beats + 1);
+        }
+      }
+  midi.createMidi();
+  midi.writeToFile("./arpeggios.mid");
 }

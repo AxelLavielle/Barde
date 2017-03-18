@@ -14,7 +14,7 @@ class Disposition {
     ~Disposition();
 
   static void	placeChords(MusicParameters &parameters, std::vector<std::pair<char, char> > chordsGrid);
-  static void	placeArpeggios(MusicParameters &parameters);
+  static void	placeArpeggios(MusicParameters &parameters, std::vector<std::pair<char, char> > notesList);
 };
 
 #endif // DISPOSITION_HH_
