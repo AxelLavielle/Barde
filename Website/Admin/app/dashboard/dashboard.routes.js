@@ -1,7 +1,7 @@
 /**
  * APLT
  * < arnaud perrault />
- * Admin - Created on 13/03/2017
+ * barde-backoffice - Created on 13/03/2017
  */
 
 var DasboardRoutes = angular.module('dashboard.routes', ['ngRoute']);
@@ -15,7 +15,9 @@ DasboardRoutes.config([
             .when('/', {
                 controller: 'Ctrl',
                 templateUrl: 'app/dashboard/views/dashboard.home.html',
-
+                resolve: {
+                    isadmin: isAdmin,
+                },
             });
 
         //$routeProvider.otherwise('/', {});
