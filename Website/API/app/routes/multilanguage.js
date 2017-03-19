@@ -1,3 +1,15 @@
+/**
+ * Polyeezy
+ * < valerian polizzi />
+ * barde-api - Created on 14/03/2017
+ */
+
+/**
+ * @apiDefine Translation Translation
+ *
+ * All routes for translation
+ */
+
 var jwt = require('jwt-simple');
 var request = require("request");
 
@@ -12,16 +24,63 @@ module.exports = function (apiRoutes, passport) {
 
       .get('/lang/content', getContent)
       .put('/lang/content', addContent)
+      .delete('/lang/content', delContent)
 
-      .post('/lang/translation', getTranslation)
       .put('/lang/translation', addTranslation)
+      .post('/lang/getTranslation', getTranslation)
+  //    .delete('/lang/translation', delTranslation)
 
 };
 
+
 /**
- * @api {get} /getContent Get all traduction content
- * @apiName GetAllEmail
- * @apiGroup Lang
+ * @api {put} lang/content Get all traduction content
+ * @apiName addContent
+ * @apiGroup Translation
+ *
+ * @apiSuccessExample 200 - Success
+ *{
+ * "msg": "Content added",
+ * "data": {
+ *    "message": "Le contenu à bien été ajouté"
+ *   }
+ * }
+ **/
+function addContent (req, res, next)
+{
+  if (req.body.content && req.body.default)
+  {
+    multilanguage.addContent(req.body.content, req.body.default, function (code, data){
+      res.status(code).send(data);
+    });
+  }
+  else
+   res.status(400).send({
+      msg: "Bad parameters",
+      data: {message: "Le contenu n'est pas valide"}
+  });
+}
+
+function delContent (req, res, next)
+{
+  if (req.body.content)
+  {
+    multilanguage.delContent(req.body.content, function (code, data){
+      res.status(code).send(data);
+    });
+  }
+  else
+   res.status(400).send({
+      msg: "Bad parameters",
+      data: {message: "Le contenu n'est pas valide"}
+  });
+}
+
+
+/**
+ * @api {get} lang/content Get all traduction content
+ * @apiName getContent
+ * @apiGroup Translation
  *
  * @apiSuccessExample 200 - Success
  *     {
@@ -38,7 +97,6 @@ module.exports = function (apiRoutes, passport) {
  *       }
  *     }
  */
-
 function getContent (req, res, next)
 {
   Content.find(null, function (err, response){
@@ -54,98 +112,34 @@ function getContent (req, res, next)
   });
 }
 
+
+
 /**
- * @api {put} /getContent Get all traduction content
- * @apiName GetAllEmail
- * @apiGroup Lang
+ * @api {put} /lang/translation add translation to a content
+ * @apiName addTranslation
+ * @apiGroup Translation
  *
  * @apiSuccessExample 200 - Success
- *{
- * "msg": "Content added",
- * "data": {
- *    "message": "Le contenu à bien été ajouté"
- *   }
- * }
- **/
-
-
-function addContent (req, res, next)
-{
-  if (req.body.content)
-  {
-    Content.findOne({content_id : req.body.content}, function (success, error){
-
-      if (!success && !error)
-      {
-        newContent = new Content({content_id : req.body.content});
-        newContent.save(function (ko, ok){
-            if (ok)
-            res.status(200).send({
-                msg: "Content added",
-                data: {message: "Le contenu à bien été ajouté"}
-            });
-          });
-      }
-      else
-       res.status(304).send({
-          msg: "Content already exists",
-          data: {message: "Le contenu est déjà présent"}
-      });
-    });
-  }
-  else
-   res.status(400).send({
-      msg: "Bad parameters",
-      data: {message: "Le contenu n'est pas valide"}
-  });
-}
-
+ *     {
+ *       "msg": "Success"
+ *       "data": {
+ *          "Traduction": [
+ *              "content_id": "NAV_HOME_TITLE",
+ *            "content_value": [
+ *            {
+ *              "content": "Home",
+ *              "lang_code": "us",
+ *              },
+ *            ]
+ *       }
+ *     }
+ */
 function addTranslation (req, res, next)
 {
   if (req.body.lang_code && req.body.content && req.body.value)
   {
-
-    newTranslation = {lang_code: req.body.lang_code, content : req.body.value};
-
-    Content.findOne(
-      {content_id : req.body.content}, function(err, data) {
-      if (!err && !data)
-           res.status(400).send(json({success: false, msg: "no content"}));
-      else
-      {
-
-      Content.findOne(
-        {content_id : req.body.content, "content_value.lang_code" : req.body.lang_code},
-        function (error, success){
-
-            if (!error && !success)
-            {
-
-              Content.findOneAndUpdate(
-                {content_id : req.body.content},
-                {$push: {content_value: newTranslation}},
-                function (error, success){
-                  res.status(200).send({
-                      msg: "Content added",
-                      data: {message: "Le contenu à bien été ajouté"}
-                  });
-                });
-
-              }
-              else
-              {
-                 Content.update(
-                   {content_id : req.body.content, "content_value.lang_code" : req.body.lang_code},
-                   {$set: {"content_value.$.content": req.body.value}},
-                   function (error, success){
-                     res.status(200).send({
-                         msg: "Content updated",
-                         data: {message: "Le contenu à bien été modifié"}
-                     });
-                  });
-              }
-          });
-        }
+    multilanguage.addTraduction(req.body.lang_code, req.body.content, req.body.value, function (code, data){
+      res.status(code).send(data);
     });
   }
 else
@@ -155,27 +149,23 @@ else
  });
 }
 
-
+/**
+ * @api {post} /lang/getTranslation get Translated data
+ * @apiName getTranslation
+ * @apiGroup Translation
+ *
+ * @apiSuccessExample 200 - Success
+ *     {
+ *          "data": "EQUIPE"
+ *     }
+ */
 function getTranslation (req, res, next)
 {
-
     if (req.body.lang_code && req.body.content)
     {
-      Content.findOne({content_id : req.body.content},{content_value :
-          {$elemMatch:{lang_code: req.body.lang_code}}
-        }, function(error, success){
-        if (error)
-        res.status(200).send({
-           msg: "No content",
-           data: {message: "Le contenu n'existe pas"}
-         });
-         else if (success && success.content_value.length !== 0)
-         res.status(200).send({
-            data : success.content_value[0].content
-          });
-        else
-          res.status(400).send(json({success: false, msg: "no content"}));
-      });
+        multilanguage.getTraduction(req.body.lang_code, req.body.content, function (code, data){
+          res.status(code).send(data);
+        });
     }
     else
      res.status(400).send({
@@ -183,3 +173,18 @@ function getTranslation (req, res, next)
         data: {message: "Le contenu n'est pas valide"}
     });
 }
+
+// function delTranslation (req, res, next)
+// {
+//   if (req.body.lang_code && req.body.content)
+//   {
+//     multilanguage.delTraduction(req.body.lang_code, req.body.content, function (code, data){
+//       res.status(code).send(data);
+//     });
+//   }
+//   else
+//   res.status(400).send({
+//      msg: "Bad parameters",
+//      data: {message: "Le contenu n'est pas valide"}
+//  });
+// }

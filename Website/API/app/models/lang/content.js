@@ -11,10 +11,11 @@ var translation = translationSchema.model('LangTranslation').schema;
 
 var LangContent = new Schema({
     content_id    : { type: String, required: true},
+    default       : {type : String},
     content_value : [{
               lang_code : {type: String},
-              content : {type : String}
-            }]
+              content : {type : String},
+    }]
   }
 );
 
