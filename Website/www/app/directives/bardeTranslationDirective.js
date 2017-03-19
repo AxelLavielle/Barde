@@ -16,7 +16,7 @@ angular.module('app.directives').directive('bardeTranslation', function($compile
                   var headers =   {'content-type':"application/json"};
 
 
-                  $http.post("http://localhost:3000/lang/translation", data, headers)
+                  $http.post("http://localhost:3000/lang/getTranslation", data, headers)
                   .then(function(res)
                   {
                     if (res)
