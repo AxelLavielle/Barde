@@ -12,11 +12,11 @@ angular.module('app.directives').directive('bardeTranslation', function($compile
     },
     link : function(scope, element, attrs, model){
 
-                  var data      = {'lang_code' : navigator.language || navigator.userLanguage, content : attrs.data};
+                  var data      = {'lang_code' : 'en-GB', content : attrs.data};
                   var headers =   {'content-type':"application/json"};
 
 
-                  $http.post("http://localhost:3000/lang/getTranslation", data, headers)
+                  $http.post("http://api.barde.io/lang/getTranslation", data, headers)
                   .then(function(res)
                   {
                     if (res)
