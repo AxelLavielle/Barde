@@ -8,9 +8,9 @@ ObjectMarkov::ObjectMarkov(const StyleSettings &settings, unsigned int nbNote)
   #ifdef _WIN32
   _luaMarkovFunction = "../Source/markovSource/markov.lua";
   #else
-  _luaMarkovFunction = "../../Source/markovSource/markov.lua";  _nbNote = nbNote;
+  _luaMarkovFunction = "../../Source/markovSource/markov.lua"; 
   #endif
-
+  _nbNote = nbNote;
   _seed = std::time(nullptr);
 }
 
@@ -22,9 +22,9 @@ ObjectMarkov::ObjectMarkov(const StyleSettings &settings, unsigned int nbNote, u
   #ifdef _WIN32
   _luaMarkovFunction = "../Source/markovSource/markov.lua";
   #else
-  _luaMarkovFunction = "../../Source/markovSource/markov.lua";  _nbNote = nbNote;
+  _luaMarkovFunction = "../../Source/markovSource/markov.lua";
   #endif
-
+  _nbNote = nbNote;
   _seed = seed;
 }
 

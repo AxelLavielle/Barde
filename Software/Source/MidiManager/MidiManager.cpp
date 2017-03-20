@@ -72,13 +72,13 @@ Midi MidiManager::createMidi(const double time)
 	addMessageToList(message);
 	_midiSequence.addEvent(message);
 	_midiBuff.addTrack(_midiSequence);
-	_midiBuff.setTicksPerQuarterNote(4); // 80 tick dans une minute
+	_midiBuff.setTicksPerQuarterNote(96); // 80 tick dans une minute
 	//_midiBuff.convertTimestampTicksToSeconds();
 	_midiBuff.writeTo(midiStream, 1);
 	midi.setMidiSize(midiStream.getDataSize());
 	midi.setMidiArray((char*)midiStream.getData());
 	_midiSequence.clear();
-	std::cout << "LALALALA = " << Time::getHighResolutionTicksPerSecond() << std::endl;
+	//std::cout << "LALALALA = " << Time::getHighResolutionTicksPerSecond() << std::endl;
 	return (midi);
 }
 
