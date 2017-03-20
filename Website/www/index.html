@@ -1,47 +1,54 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <title>Barde</title>
+    <title>Barde</title>
 
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <meta name="author" content="Valérian Polizzi">
-  <meta name="Description" content="Barde est un service qui vous permettra de générer une musique d’ambiance dans le style de votre choix. Barde vous permettre d’avoir un fond sonore pour votre restaurant, salles d’attentes ou encore pour vos soirées entre amis"/>
-  <link rel="icon" href="/img/barde.ico" />
-  <base href="/index.html">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <meta name="author" content="Valérian Polizzi">
+    <meta name="Description"
+          content="Barde est un service qui vous permettra de générer une musique d’ambiance dans le style de votre choix. Barde vous permettre d’avoir un fond sonore pour votre restaurant, salles d’attentes ou encore pour vos soirées entre amis"/>
+    <link rel="icon" href="/img/barde.ico"/>
+    <base href="/index.html">
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:site" content="@barde_io" />
-  <meta name="twitter:title" content="Barde est une application multiplateforme de génération de musiques d'ambiance procédurales" />
-  <meta name="twitter:description" content="Accéder au site" />
-  <meta name="twitter:image" content="http://barde.io/img/barde-social.png" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="@barde_io"/>
+    <meta name="twitter:title"
+          content="Barde est une application multiplateforme de génération de musiques d'ambiance procédurales"/>
+    <meta name="twitter:description" content="Accéder au site"/>
+    <meta name="twitter:image" content="http://barde.io/img/barde-social.png"/>
 
-  <!-- Facebook -->
-  <meta property="og:url"                content="http://www.barde.io" />
-  <meta property="og:type"               content="website" />
-  <meta property="og:title"              content="Barde" />
-  <meta property="og:description"        content="Barde est une application multiplateforme de génération de musiques d'ambiance procédurales" />
-  <meta property="og:image"              content="http://barde.io/img/barde-social.png" />
+    <!-- Facebook -->
+    <meta property="og:url" content="http://www.barde.io"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Barde"/>
+    <meta property="og:description"
+          content="Barde est une application multiplateforme de génération de musiques d'ambiance procédurales"/>
+    <meta property="og:image" content="http://barde.io/img/barde-social.png"/>
 
-  <script src="js/javascript-concat.js"></script>
-  <script src="app/app.concat.js" type="text/javascript"></script>
-  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link   href="css/style.concat.css" type="text/css" rel="stylesheet" />
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/style.concat.css" type="text/css" rel="stylesheet"/>
 
 </head>
 
 <body class="site" ng-app="app">
-        <header>
-                <div class=" s12 l12 m12">
-                <div ng-include="'templates/static/navbar.tpl.htm'">
-                </div>
-        </header>
-  <main class="site-content">
-<div ng-view class="s12 l12 m12"></div>
+<header>
+    <div class=" s12 l12 m12">
+        <div ng-include="'templates/static/navbar.tpl.htm'">
+        </div>
+    </div>
+</header>
+<main class="site-content">
+    <div ng-view class="s12 l12 m12"></div>
 </main>
-  <footer>
-      <div ng-include="'templates/static/footer.tpl.htm'"></div>
+<footer>
+    <div ng-include="'templates/static/footer.tpl.htm'"></div>
 </footer>
+
+
+<script src="js/javascript-concat.js"></script>
+<script src="app/app.concat.js" type="text/javascript"></script>
+
 </body>
 </html>

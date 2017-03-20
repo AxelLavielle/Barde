@@ -1,4 +1,4 @@
-angular.module('app', ['app.factories', 'app.directives', 'app.controllers', 'ngRoute']).config(function($routeProvider) {
+angular.module('app', ['app.factories', 'app.directives', 'app.controllers', 'ngRoute', 'angular-google-analytics']).config(function($routeProvider) {
 
     $routeProvider
     .when("/",
@@ -28,9 +28,13 @@ angular.module('app', ['app.factories', 'app.directives', 'app.controllers', 'ng
     })
     .otherwise({templateUrl: 'templates/static/404.tpl.htm'});
 
-}).config(function ($httpProvider) {
+}).config(function ($httpProvider, AnalyticsProvider) {
   $httpProvider.defaults.withCredentials = false;
   $httpProvider.defaults.headers.put = {};
   $httpProvider.defaults.headers.patch = {};
   $httpProvider.defaults.useXDomain = true;
-});
+  AnalyticsProvider.setAccount('UA-91271933-1');  //UU-XXXXXXX-X should be your tracking code
+
+}).run(['Analytics', function (Analytics) {
+
+}]);
