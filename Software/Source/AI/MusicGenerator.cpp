@@ -213,7 +213,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
       calculateProbaToScaleFromNote(&proba, chord, strong, medium, weak);
 
       ObjectMarkov				       	markovObj(proba, 3, parameters.getSeed());
-
+      markovObj.callLua();
       markovTmp = markovObj.getVectorFromJson();
       Resolution::parsingMarkov(proba, &markovTmp);
       if (!markovArpeggio.size())

@@ -126,7 +126,6 @@ std::vector<std::pair<char, char> >  ObjectMarkov::getVectorFromJson()
   std::vector<std::pair<char, char> >  vector;
 
   vector.push_back(std::pair<char, char>(atoi(tmp["note"].asString().c_str()), atoi(tmp["scale"].asString().c_str())));
-
  while (tmp.isMember("next"))
    {
      tmp = tmp["next"];
