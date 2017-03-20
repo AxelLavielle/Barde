@@ -175,21 +175,21 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   markovChords = markovObj.getVectorFromJson();
   style = markovObj.getStyleFromJson();
 
-  markovChords.push_back(markovChords[0]);
-  markovChords.push_back(markovChords[0]);
-  markovChords.push_back(markovChords[0]);
-
-  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 3), 4));
-  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 3), 4));
-  markovChords.push_back(markovChords[0]);
-  markovChords.push_back(markovChords[0]);
-
-  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 4), 4));
-  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 3), 4));
-  markovChords.push_back(markovChords[0]);
-  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 4), 4));
-
   Resolution::parsingMarkov(style, &markovChords);
+
+  markovChords.push_back(markovChords[0]);
+  markovChords.push_back(markovChords[0]);
+  markovChords.push_back(markovChords[0]);
+
+  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 3), 4));
+  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 3), 4));
+  markovChords.push_back(markovChords[0]);
+  markovChords.push_back(markovChords[0]);
+
+  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 4), 4));
+  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 3), 4));
+  markovChords.push_back(markovChords[0]);
+  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 4), 4));
 
   Disposition::placeChords(parameters, markovChords);
 
