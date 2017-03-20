@@ -72,7 +72,17 @@ Midi MidiManager::createMidi(const double time)
 	addMessageToList(message);
 	_midiSequence.addEvent(message);
 	_midiBuff.addTrack(_midiSequence);
-	_midiBuff.setTicksPerQuarterNote(96); // 80 tick dans une minute
+	_midiBuff.setTicksPerQuarterNote(4); // 80 tick dans une minute
+
+	//MidiOutput *midiOutput;
+	//midiOutput = MidiOutput::openDevice(0);
+	//std::cout << "nombre of event " << _midiSequence.getNumEvents() << std::endl;
+	//for (int i = 0; i<_midiSequence.getNumEvents(); i++)
+	//{
+	//	/*std::cout << "coucuo " << (_midiSequence.getEventPointer(i)->message) << std::endl;*/
+	//	midiOutput->sendMessageNow((_midiSequence.getEventPointer(i)->message));
+	//}
+
 	//_midiBuff.convertTimestampTicksToSeconds();
 	_midiBuff.writeTo(midiStream, 1);
 	midi.setMidiSize(midiStream.getDataSize());

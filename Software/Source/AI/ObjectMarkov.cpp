@@ -172,8 +172,8 @@ void ObjectMarkov::setRootJsonFromStyle(const StyleSettings &settings)
 {
   std::map<char, std::pair<int, std::map<char, int> > > style = settings.getParam();
 
-  _rootJson["scale"]["begin"]["3"] = 100;
-  _rootJson["scale"]["3"]["3"] = 100;
+  _rootJson["scale"]["begin"]["5"] = 100;
+  _rootJson["scale"]["5"]["5"] = 100;
   for (std::map<char, std::pair<int, std::map<char, int> > >::iterator itMap1 = style.begin(); itMap1 != style.end(); ++itMap1)
   {
     //_rootJson["note"].append(std::string(1, itMap1->first));
