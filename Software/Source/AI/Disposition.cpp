@@ -14,7 +14,6 @@ Disposition::~Disposition()
 void		Disposition::placeChords(MusicParameters &parameters, std::vector<std::pair<char, char> > chordsGrid)
 {
   Chords chords;
-  MidiManager midi;
   std::vector<Instrument> instruments;
   int scaleAdjust;
   int previousNote;
@@ -24,10 +23,10 @@ void		Disposition::placeChords(MusicParameters &parameters, std::vector<std::pai
 
   beats = 0;
   instruments = parameters.getInstruments();
-  midi.setTempo(parameters.getBpm());
+  parameters._midiManager.setTempo(parameters.getBpm());
   for (int i = 0; i < instruments.size(); i++){
       beats = 0;
-      midi.changeInstrument(instruments[i], beats);
+      parameters._midiManager.changeInstrument(instruments[i], beats);
       for (int x = 0; x < chordsGrid.size(); x++){
         notesFromChord = chords.getChordFromName(chordsGrid[x].first);
         scaleAdjust = 1;
@@ -35,36 +34,31 @@ void		Disposition::placeChords(MusicParameters &parameters, std::vector<std::pai
           if (y != 0)
             scaleAdjust = (notesFromChord[y] < previousNote ? 0 : 1);
           note = (notesFromChord[y] / 8) + (((int)chordsGrid[x].second - scaleAdjust) * 12);
-          midi.noteOn(instruments[i].channel, note, instruments[i].velocity, beats);
-          midi.noteOff(instruments[i].channel, note, instruments[i].velocity, beats + TIME_PER_TS);
+          parameters._midiManager.noteOn(instruments[i].channel, note, instruments[i].velocity, beats);
+          parameters._midiManager.noteOff(instruments[i].channel, note, instruments[i].velocity, beats + TIME_PER_TS);
           previousNote = note;
         }
         beats += TIME_PER_TS;
       }
     }
-    midi.createMidi(beats);
-    midi.writeToFile("./chords.mid");
   }
 
 void		Disposition::placeArpeggios(MusicParameters &parameters, std::vector<std::pair<char, char> > notesList)
 {
-  MidiManager midi;
   std::vector<Instrument> instruments;
   int note;
   double beats;
 
   instruments = parameters.getInstruments();
-  midi.setTempo(parameters.getBpm());
+  parameters._midiManager.setTempo(parameters.getBpm());
   for (int i = 0; i < instruments.size(); i++){
       beats = 1;
-      midi.changeInstrument(instruments[i], beats);
+      parameters._midiManager.changeInstrument(instruments[i], beats);
       for (int x = 0; x < notesList.size(); x++){
         note = (notesList[x].first / 8) + (((int)notesList[x].second - 1) * 12);
-        midi.noteOn(instruments[i].channel, note, instruments[i].velocity, beats);
-        midi.noteOff(instruments[i].channel, note, instruments[i].velocity, beats + 1);
+        parameters._midiManager.noteOn(instruments[i].channel, note, instruments[i].velocity, beats);
+        parameters._midiManager.noteOff(instruments[i].channel, note, instruments[i].velocity, beats + 1);
         beats = (fmod(beats, 3) == 0 ? beats + 2 : beats + 1);
         }
       }
-  midi.createMidi(beats);
-  midi.writeToFile("./arpeggios.mid");
 }
