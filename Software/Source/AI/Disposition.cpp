@@ -33,7 +33,7 @@ void		Disposition::placeChords(MusicParameters &parameters, std::vector<std::pai
         for (int y = 0; y < notesFromChord.size(); y++){
           if (y != 0)
             scaleAdjust = (notesFromChord[y] < previousNote ? 0 : 1);
-          note = (notesFromChord[y] / 8) + (((int)chordsGrid[x].second - scaleAdjust) * 12);
+          note = (notesFromChord[y] / 8) + ((chordsGrid[x].second - scaleAdjust) * 12);
           parameters._midiManager.noteOn(instruments[i].channel, note, instruments[i].velocity, beats);
           parameters._midiManager.noteOff(instruments[i].channel, note, instruments[i].velocity, beats + TIME_PER_TS);
           previousNote = note;
@@ -55,10 +55,12 @@ void		Disposition::placeArpeggios(MusicParameters &parameters, std::vector<std::
       beats = 1;
       parameters._midiManager.changeInstrument(instruments[i], beats);
       for (int x = 0; x < notesList.size(); x++){
-        note = (notesList[x].first / 8) + (((int)notesList[x].second - 1) * 12);
+        note = (notesList[x].first / 8) + ((notesList[x].second - 1) * 12);
+        std::cout << beats << std::endl;
         parameters._midiManager.noteOn(instruments[i].channel, note, instruments[i].velocity, beats);
-        parameters._midiManager.noteOff(instruments[i].channel, note, instruments[i].velocity, beats + 1);
-        beats = (fmod(beats, 3) == 0 ? beats + 2 : beats + 1);
+        parameters._midiManager.noteOff(instruments[i].channel, note, instruments[i].velocity, beats + 1.2);
+        beats += 1;
+        beats = (fmod(beats, 4) == 0.0 ? beats + 1 : beats);
         }
       }
 }
