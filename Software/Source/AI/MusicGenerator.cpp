@@ -156,6 +156,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   instru.velocity = 100; //Need change
   parameters.addInstrument(instru);
   parameters.setStyleName("Blues");
+  parameters._midiManager.createMidi(48);
 
   srand(parameters.getSeed());
   #ifdef _WIN32
@@ -173,6 +174,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 
   markovObj.callLua();
   markovChords = markovObj.getVectorFromJson();
+  
   style = markovObj.getStyleFromJson();
 
   Resolution::parsingMarkov(style, &markovChords);
@@ -220,6 +222,8 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
     }
 
   // Disposition::placeArpeggios(parameters, markovArpeggio);
+
+  parameters._midiManager.writeToFile("./test.mid");
 
   return (Midi());
 }

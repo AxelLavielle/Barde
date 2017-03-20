@@ -15,6 +15,7 @@
 #include "Instrument.hh"
 #include "AI/StyleSettings.hh"
 #include "MidiManager/Midi.hh"
+#include "MidiManager/MidiManager.hh"
 
 class MusicParameters
 {
@@ -32,6 +33,7 @@ public:
 	std::string	getStyleName() const;
 	void setMidi(const Midi &midi);
 	Midi getMidi() const;
+	MidiManager					_midiManager;
 
 private:
 	unsigned int							_seed;
