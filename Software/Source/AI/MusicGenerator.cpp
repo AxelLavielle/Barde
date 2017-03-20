@@ -167,6 +167,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 
   int							i;
   std::vector<std::pair<char, char> >			markovChords;
+  std::vector<std::pair<char, char> >			markovTmp;
   std::vector<std::pair<char, char> >			markovArpeggio;
   StyleSettings						style;
   std::vector<char>					chord;
@@ -183,15 +184,15 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   markovChords.push_back(markovChords[0]);
   markovChords.push_back(markovChords[0]);
 
-  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 3), 4));
-  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 3), 4));
+  markovChords.push_back(std::make_pair(searchNoteFromDist((markovChords[0].first / 8 * 8), 3) + markovChords[0].first % 8, 4));
+  markovChords.push_back(std::make_pair(searchNoteFromDist((markovChords[0].first / 8 * 8), 3) + markovChords[0].first % 8, 4));
   markovChords.push_back(markovChords[0]);
   markovChords.push_back(markovChords[0]);
 
-  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 4), 4));
-  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 3), 4));
+  markovChords.push_back(std::make_pair(searchNoteFromDist((markovChords[0].first / 8 * 8), 4) + markovChords[0].first % 8, 4));
+  markovChords.push_back(std::make_pair(searchNoteFromDist((markovChords[0].first / 8 * 8), 3) + markovChords[0].first % 8, 4));
   markovChords.push_back(markovChords[0]);
-  markovChords.push_back(std::make_pair(searchNoteFromDist(markovChords[0].first, 4), 4));
+  markovChords.push_back(std::make_pair(searchNoteFromDist((markovChords[0].first / 8 * 8), 4) + markovChords[0].first % 8, 4));
 
   Disposition::placeChords(parameters, markovChords);
 
@@ -208,20 +209,21 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
       calculateProbaToNote(&proba, strong, PROBASTRONG);
       calculateProbaToNote(&proba, medium, PROBAMEDIUM);
       calculateProbaToNote(&proba, weak, PROBAWEAK);
+      
       calculateProbaToScaleFromNote(&proba, chord, strong, medium, weak);
 
       ObjectMarkov				       	markovObj(proba, 3, parameters.getSeed());
 
-      markovChords = markovObj.getVectorFromJson();
-      Resolution::parsingMarkov(proba, &markovChords);
+      markovTmp = markovObj.getVectorFromJson();
+      Resolution::parsingMarkov(proba, &markovTmp);
       if (!markovArpeggio.size())
-	markovArpeggio = markovChords;
+	markovArpeggio = markovTmp;
       else
-	markovArpeggio.insert(markovArpeggio.end(), markovChords.begin(), markovChords.end());
+	markovArpeggio.insert(markovArpeggio.end(), markovTmp.begin(), markovTmp.end());
       i++;
     }
 
-  // Disposition::placeArpeggios(parameters, markovArpeggio);
+  Disposition::placeArpeggios(parameters, markovArpeggio);
 
   parameters._midiManager.writeToFile("./test.mid");
 
