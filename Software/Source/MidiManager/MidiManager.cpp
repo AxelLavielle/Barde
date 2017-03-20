@@ -104,7 +104,7 @@ void MidiManager::setSignature(const unsigned int numerator, const unsigned int 
 
 void MidiManager::setTempo(const unsigned int bpm, const double time)
 {
-	MidiMessage message = MidiMessage::tempoMetaEvent(6000000);// On dit que 1 quarterNote dure 1 min
+	MidiMessage message = MidiMessage::tempoMetaEvent(1000000);// On dit que 1 quarterNote dure 1 min
 
 	message.setTimeStamp(time);
 	//setSignature(4, 4, 0);
