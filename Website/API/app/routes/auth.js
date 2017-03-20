@@ -20,7 +20,6 @@ module.exports = function (apiRoutes, passport) {
 
 };
 
-
 /**
  * @api {post} /auth/register Register user
  * @apiName Login
@@ -89,7 +88,6 @@ function register(req, res, next) {
     }
 
 }
-
 
 /**
  * @api {post} /auth/login Login user
@@ -161,22 +159,73 @@ function login(req, res, next) {
 
 }
 
+/**
+ * @api {get} /auth/isAdmin Check if user is Admin
+ * @apiName isAdmin
+ * @apiGroup Auth
+ *
+ * @apiSuccessExample 200 - Success
+ *     {
+ *       "msg": "Success"
+ *       "data": {
+ *          "isAdmin": true
+ *       }
+ *     }
+ *
+ * @apiErrorExample 403 - Forbidden
+ *     {
+ *       "msg": "Forbidden"
+ *       "data": {
+ *          "isAdmin": false
+ *       }
+ *     }
+ *
+ */
+function isAdmin(req, res, next) {
+    if (req.user.role === "Admin")
+        res.status(200).send({msg: "Success", data: {"isAdmin": true}});
+    else
+        res.status(403).send({msg: "Error", data: {"isAdmin": false}})
+}
+
+/**
+ * @api {get} /auth/isAuthenticate Check if user is authenticate
+ * @apiName isAuthenticate
+ * @apiGroup Auth
+ *
+ * @apiSuccessExample 200 - Success
+ *     {
+ *       "msg": "Success"
+ *       "data": {
+ *          "isAuthenticate": true
+ *       }
+ *     }
+ *
+ * @apiErrorExample 403 - Forbidden
+ *     {
+ *       "msg": "Forbidden"
+ *       "data": {
+ *          "isAuthenticate": false
+ *       }
+ *     }
+ *
+ */
+function isAuthenticate(req, res, next) {
+    if (req.user.role === "Admin" || req.user.role === "Client")
+        res.status(200).send({msg: "Success", data: {"isAuthenticate": true}});
+    else
+        res.status(403).send({msg: "Error", data: {"isAuthenticate": false}})
+}
+
+/**
+ * @api {get} /info Example route
+ * @apiName Example
+ * @apiGroup Auth
+ *
+ */
 function info(req, res, next) {
     /*
      res.send(req.isAuthenticated() ? req.user : '0');
      */
     res.status(200).send({"msg": "ok"})
-}
-
-function isAdmin(req, res, next) {
-
-    if (req.user.role === "Admin")
-        res.status(200).send({msg: "Success", data: {"isAdmin": true}});
-    else
-        res.status(403).send({msg: "Error", data: {"isAdmin": false}})
-
-}
-
-function isAuthenticate(req, res, next) {
-    res.send(!!methodAuth.getToken(req.headers));
 }
