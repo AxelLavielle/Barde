@@ -21,6 +21,7 @@ MidiManager::~MidiManager()
 void MidiManager::noteOn(const int channel, const int noteNumber, const float velocity, const double time) noexcept
 {
 	MidiMessage message = MidiMessage::noteOn(channel, noteNumber, (uint8)velocity);
+
 	message.setTimeStamp(time);
 	addMessageToList(message);
 	_midiSequence.addEvent(message);
@@ -60,21 +61,24 @@ void MidiManager::noteOff(const Instrument & instrument, const int noteNumber, c
 }
 
 
-Midi MidiManager::createMidi()
+Midi MidiManager::createMidi(const double time)
 {
 	MemoryOutputStream	midiStream;
 	MidiMessage			message;
 	Midi				midi;
 
-	//message = MidiMessage::endOfTrack();
-	//message.setTimeStamp();//MANQUE LE TEMPS
-	//addMessageToList(message);
+	message = MidiMessage::endOfTrack();
+	message.setTimeStamp(time);
+	addMessageToList(message);
 	_midiSequence.addEvent(message);
 	_midiBuff.addTrack(_midiSequence);
+	_midiBuff.setTicksPerQuarterNote(4); // 80 tick dans une minute
+	//_midiBuff.convertTimestampTicksToSeconds();
 	_midiBuff.writeTo(midiStream, 1);
 	midi.setMidiSize(midiStream.getDataSize());
 	midi.setMidiArray((char*)midiStream.getData());
 	_midiSequence.clear();
+	std::cout << "LALALALA = " << Time::getHighResolutionTicksPerSecond() << std::endl;
 	return (midi);
 }
 
@@ -90,11 +94,21 @@ void		MidiManager::writeToFile(const std::string &filePath)
 	//file.write(_midi.getMidiArray(), _midi.getMidiSize());
 }
 
-void MidiManager::setTempo(const unsigned int bpm, const double time)
+void MidiManager::setSignature(const unsigned int numerator, const unsigned int denominator, const double time)
 {
-	MidiMessage message = MidiMessage::tempoMetaEvent(bpm);
+	MidiMessage message = MidiMessage::timeSignatureMetaEvent(4, 4);
 
 	message.setTimeStamp(time);
+	_midiSequence.addEvent(message);
+}
+
+void MidiManager::setTempo(const unsigned int bpm, const double time)
+{
+	MidiMessage message = MidiMessage::tempoMetaEvent(6000000);// On dit que 1 quarterNote dure 1 min
+
+	message.setTimeStamp(time);
+	//setSignature(4, 4, 0);
+	//std::cout << "Tick Lenght ===" << message.getTempoMetaEventTickLength(message.getTimeStamp()) << std::endl;
 	_midiSequence.addEvent(message);
 }
 

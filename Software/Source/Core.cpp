@@ -33,7 +33,7 @@ void Core::initialise(const String& commandLine)
 
 	test.changeInstrument(1, 5, 0);
 	test.noteOn(1, 38, 100, 0);
-	test.noteOff(1, 38, 100, 500);
+	test.noteOff(1, 38, 100, 4);
 	//test.changeInstrument(4, 25, 200);
 	//test.noteOn(4, 38, 100, 400);
 	//test.noteOff(4, 38, 100, 700);
@@ -45,7 +45,7 @@ void Core::initialise(const String& commandLine)
 	//test.noteOn(16, 38, 100, 1400);
 	//test.noteOff(16, 38, 100, 1800);
 
-	test.createMidi();
+	test.createMidi(600);
 	test.writeToFile("./test.mid");
 	gen.createMusic(param);
 

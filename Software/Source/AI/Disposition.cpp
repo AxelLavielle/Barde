@@ -22,6 +22,7 @@ void		Disposition::placeChords(MusicParameters &parameters, std::vector<std::pai
   double beats;
   std::vector<char> notesFromChord;
 
+  beats = 0;
   instruments = parameters.getInstruments();
   midi.setTempo(parameters.getBpm());
   for (int i = 0; i < instruments.size(); i++){
@@ -41,7 +42,7 @@ void		Disposition::placeChords(MusicParameters &parameters, std::vector<std::pai
         beats += TIME_PER_TS;
       }
     }
-    midi.createMidi();
+    midi.createMidi(beats);
     midi.writeToFile("./chords.mid");
   }
 
@@ -64,6 +65,6 @@ void		Disposition::placeArpeggios(MusicParameters &parameters, std::vector<std::
         beats = (fmod(beats, 3) == 0 ? beats + 2 : beats + 1);
         }
       }
-  midi.createMidi();
+  midi.createMidi(beats);
   midi.writeToFile("./arpeggios.mid");
 }

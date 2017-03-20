@@ -23,8 +23,9 @@ public:
 	virtual void noteOn(const Instrument &instument, const int noteNumber, const float velocity, const double time) noexcept;
 	virtual void noteOff(const int channel, const int noteNumber, const float velocity, const double time) noexcept;
 	virtual void noteOff(const Instrument &instrument, const int noteNumber, const float velocity, const double time) noexcept;
-	virtual Midi createMidi();
+	virtual Midi createMidi(const double time);
 	virtual void writeToFile(const std::string &filePath);
+	virtual void setSignature(const unsigned int numerator, const unsigned int denominator, const double time);
 	virtual void setTempo(const unsigned int bpm, const double time = 0);
 	virtual void changeInstrument(const int channel, const int instrumentNb, const double time);
 	virtual void changeInstrument(const Instrument &instrument, const double time);
