@@ -4,6 +4,12 @@
  * barde-api - Created on 14/03/2017
  */
 
+/**
+ * @apiDefine Auth Authentification
+ *
+ * All routes for authentification
+ */
+
 var jwt        = require('jwt-simple');
 var config     = require('../../config/var');
 var User       = require('../models/user');
