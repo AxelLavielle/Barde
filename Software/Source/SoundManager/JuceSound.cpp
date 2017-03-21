@@ -21,7 +21,7 @@ SoundManager::~SoundManager()
 
 }
 
-bool					SoundManager::play(std::string)
+bool					SoundManager::play(const Midi &midi)
 {
 	MidiMessage			tmp;
 
@@ -44,17 +44,17 @@ bool					SoundManager::play(std::string)
 
 }
 
-bool					SoundManager::stop(std::string)
+bool					SoundManager::stop(const Midi &midi)
 {
 	return true;
 }
 
-bool					SoundManager::pause(std::string)
+bool					SoundManager::pause(const Midi &midi)
 {
 	return true;
 }
 
-bool					SoundManager::setVolume(const int volume)
+bool					SoundManager::setVolume(const Midi &midi)
 {
 	return true;
 }

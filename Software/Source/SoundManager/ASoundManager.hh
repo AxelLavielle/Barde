@@ -17,9 +17,9 @@ class ASoundManager : public ISoundManager
 public:
 	ASoundManager();
 	virtual ~ASoundManager();
-	virtual bool play(std::string midi) = 0;
-	virtual bool stop(std::string midi) = 0;
-	virtual bool pause(std::string midi) = 0;
+	virtual bool play(const Midi &midi) = 0;
+	virtual bool stop(const Midi &midi) = 0;
+	virtual bool pause(const Midi &midi) = 0;
 	virtual bool setVolume(const int volume) = 0;
 	virtual bool stopAll() = 0;
 };

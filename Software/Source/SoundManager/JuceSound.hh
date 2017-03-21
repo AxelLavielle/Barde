@@ -20,10 +20,10 @@ class SoundManager : public ASoundManager
 public:
 	SoundManager();
 	virtual ~SoundManager();
-	virtual bool play(std::string midi);
-	virtual bool stop(std::string midi);
-	virtual bool pause(std::string midi);
-	virtual bool setVolume(const int volume);
+	virtual bool play(const Midi &midi);
+	virtual bool stop(const Midi &midi);
+	virtual bool pause(const Midi &midi);
+	virtual bool setVolume(const Midi &midi);
 	virtual bool stopAll();
 private:
 	int			volume = 0;
