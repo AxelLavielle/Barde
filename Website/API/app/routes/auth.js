@@ -66,9 +66,9 @@ module.exports = function (apiRoutes, passport) {
 function register(req, res, next) {
 
     if (!req.body.email) {
-        res.status(400).send({msg: "No content", data: {message: "Vous devez inscrire votre email."}});
+        res.status(400).send({msg: "No content", data: {message: "Email cannot be empty."}});
     } else if (!req.body.email) {
-        res.status(400).send({msg: "No content", data: {message: "Vous devez inscrire votre mot de passe."}});
+        res.status(400).send({msg: "No content", data: {message: "Password cannot be empty."}});
     } else {
         var newUser = new User({
             email: req.body.email,
@@ -78,11 +78,14 @@ function register(req, res, next) {
         newUser.save(function (err) {
             console.log(err);
             if (err) {
-                res.status(409).send({msg: "Content already exists", data: {message: "L'utilisateur existe déjà."}});
+                res.status(409).send({
+                    msg: "Content already exists",
+                    data: {message: "The email address you have used is already registered."}
+                });
             }
             res.status(200).send({
                 msg: "Content created",
-                data: {message: "Votre inscription a bien été pris en compte."}
+                data: {message: "You are now registered."}
             });
         });
     }
