@@ -36,7 +36,6 @@ bool					SoundManager::play(std::string)
 		{
 			_midiOutput->sendMessageNow((const MidiMessage &)tmp);
 			
-			std::cout << "temps = " << temps << std::endl;
 			Sleep(temps);
 		}
 	}
