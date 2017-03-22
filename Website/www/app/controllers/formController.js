@@ -1,7 +1,7 @@
 angular.module('app.controllers')
-        .controller('formController', ['$scope', '$route', function($scope, $route)
-        {
+.controller('mainController', ['$scope', '$http', 'vcRecaptchaService', function($scope, $http, vcRecaptchaService, confFactory)
+{
 
-          console.log("form");
 
-        }]);
+
+}]);

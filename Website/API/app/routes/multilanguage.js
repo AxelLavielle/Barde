@@ -174,7 +174,7 @@ function getTranslation (req, res, next)
             data : success.content_value[0].content
           });
         else
-          res.status(400).send(json({success: false, msg: "no content"}));
+          res.status(400).send({success: false, msg: "no content"});
       });
     }
     else

@@ -1,8 +1,7 @@
 <div class="carousel carousel-slider center m12 l12 s12 margin-bottom" data-indicators="true">
    <div class="carousel-item slider white-text valign-wrapper blue" id="slider1" href="#one!">
      <div class="center-carousel-content ">
-       <span class="flow-text"><i>Mettez-vous dans l'ambiance</i></span>
-     </div>
+       <span class="flow-text"><i barde-translation data="CAROUSEL_VALUE_1"></i></span></div>
    </div>
    <div class="carousel-item slider pink-text accent-4" id="slider3" href="#three!">
      <div class="center-carousel-content">
@@ -16,20 +15,16 @@
 <div class="container margin-bottom">
  <div class="row center-align">
    <div class="col s12 l4 m4">
-     <h4 class="barde-purple-font">Simple</h4>
-     <p class="light justify">
-       <span barde-translation data="test"></span>
-
-       Barde est une application simple d’utilisation ! En un seul clic, choisissez le style musical que vous voulez, adaptez les réglages à votre souhait et vous êtes parti pour la soirée !</p>
-
+     <h4 class="barde-purple-font"><span barde-translation data="HOME_VALUE_TITLE1"></span></h4>
+     <p class="light justify"> <span barde-translation data="HOME_VALUE_CONTENT1"></span></p>
   </div>
   <div class="col s12 l4 m4">
-     <h4 class="barde-purple-font">Convivial</h4>
-     <p class="light justify">Barde permet de se concentrer sur un cadre, un lieu, une discussion sans être envahissant ! Profitez d’un fond sonore adapté tout en profitant avant tout de ceux qui vous entourent !</p>
+    <h4 class="barde-purple-font"><span barde-translation data="HOME_VALUE_TITLE2"></span></h4>
+     <p class="light justify"><span barde-translation data="HOME_VALUE_CONTENT2"></span></p>
    </div>
    <div class="col s12 l4 m4">
-     <h4 class="barde-purple-font">Modulable</h4>
-     <p class="light justify">Barde se plie au moindre de vos choix, vous pouvez sélectionner à la fois le style, mais aussi les instruments et le rythme qui composeront votre musique !</p>
+     <h4 class="barde-purple-font"><span barde-translation data="HOME_VALUE_TITLE3"></span></h4>
+     <p class="light justify"><span barde-translation data="HOME_VALUE_CONTENT3"></span></p>
    </div>
  </div>
 </div>
@@ -37,13 +32,13 @@
 
  <div class="row z-depth-2 margin-bottom">
   <div class="col s12 l12 m12 barde-purple-darken white-text center-align">
-      <p>Inscrivez-vous à notre newsletter pour être tenue au courant de l'avancé de notre projet</p>
+      <p><span barde-translation data="HOME_NEWSLETTER_INTRO"></span></p>
       <div class="row">
         <div class="col s12 s4 m4 offset-l4">
           <div class="input-field">
             <form ng-submit="newsletterForm(email)">
-              <input ng-model="email" placeholder="Adresse email" id="email" type="email" class="normal-input">
-              <input type="submit" class="waves-effect waves-light pink btn" value="S'enregister"/>
+              <input ng-model="email" placeholder="{{placeholderEmail}}" id="email" type="email" class="normal-input">
+              <input type="submit" class="waves-effect waves-light pink btn" value="{{placeholderSend}}"/>
               <p class="{{resClass}} center">{{resValue}}</p>
             </form>
           </div>
@@ -59,7 +54,7 @@
       <h2 class="header light">The Crew</h2>
       <div class="card">
         <div class="card-image hoverable">
-          <img src="img/team.jpg" alt="L'équipe de barde">
+          <image-preloader src="team" alt="Team Barde"/>
         </div>
       </div>
     </div>
