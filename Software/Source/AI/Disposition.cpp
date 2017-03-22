@@ -56,7 +56,7 @@ void		Disposition::placeArpeggios(MusicParameters &parameters, std::vector<std::
       parameters._midiManager.changeInstrument(instruments[i], beats);
       for (int x = 0; x < notesList.size(); x++){
         note = (notesList[x].first / 8) + ((notesList[x].second - 1) * 12);
-        std::cout << beats << std::endl;
+        //std::cout << beats << std::endl;
         parameters._midiManager.noteOn(instruments[i].channel, note, instruments[i].velocity, beats);
         parameters._midiManager.noteOff(instruments[i].channel, note, instruments[i].velocity, beats + 1.2);
         beats += 1;

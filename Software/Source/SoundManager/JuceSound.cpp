@@ -25,7 +25,7 @@ const MidiMessageSequence		*SoundManager::MidiToMessageSequence(const Midi &midi
 {
 	MemoryInputStream	stream(midi.getMidiArray(), midi.getMidiSize(), true);
 
-	std::cout << "midi == " << midi.getMidiSize() << std::endl;
+	//std::cout << "midi == " << midi.getMidiSize() << std::endl;
 	_midiBuff.readFrom(stream);
 	if (_midiBuff.getNumTracks() > 0)
 		return (_midiBuff.getTrack(0));
@@ -43,11 +43,11 @@ bool					SoundManager::play(const Midi &midi)
 		std::cerr << "ERROR: Can not convert Midi Buffer" << std::endl;
 		return false;
 	}
-	std::cout << "nb of event : " << midiSequence->getNumEvents() << std::endl;
+	//std::cout << "nb of event : " << midiSequence->getNumEvents() << std::endl;
 	for (int i = 0; i < midiSequence->getNumEvents(); i++)
 	{
 		tmp = midiSequence->getEventPointer(i)->message;
-		std::cout << "tmp = " << tmp.getDescription() << std::endl;
+		//std::cout << "tmp = " << tmp.getDescription() << std::endl;
 
 		if (tmp.isNoteOn())
 		{

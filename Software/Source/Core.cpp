@@ -25,9 +25,9 @@ int Core::launch(void)
 
 void Core::initialise(const String& commandLine)
 {
-	Player player;
+	//Player player;
 
-	player.Play();
+	//player.Play();
 	_viewManager.init();
 	// This method is where you should put your application's initialisation code..
 	ignoreUnused(commandLine);

@@ -23,7 +23,7 @@ void MidiManager::noteOn(const int channel, const int noteNumber, const float ve
 	MidiMessage message = MidiMessage::noteOn(channel, noteNumber, (uint8)velocity);
 
 	message.setTimeStamp(time);
-	addMessageToList(message);
+	//addMessageToList(message);
 	_midiSequence.addEvent(message);
 	_midiSequence.updateMatchedPairs();
 }
@@ -34,7 +34,7 @@ void MidiManager::noteOn(const Instrument & instrument, const int noteNumber, co
 
 	changeInstrument(instrument, time);
 	message.setTimeStamp(time);
-	addMessageToList(message);
+	//addMessageToList(message);
 	_midiSequence.addEvent(message);
 	_midiSequence.updateMatchedPairs();
 }
@@ -44,7 +44,7 @@ void MidiManager::noteOff(const int channel, const int noteNumber, const float v
 	MidiMessage message = MidiMessage::noteOff(channel, noteNumber, (uint8)velocity);
 
 	message.setTimeStamp(time);
-	addMessageToList(message);
+	//addMessageToList(message);
 	_midiSequence.addEvent(message);
 	//_midiSequence.updateMatchedPairs();
 }
@@ -55,7 +55,7 @@ void MidiManager::noteOff(const Instrument & instrument, const int noteNumber, c
 
 	changeInstrument(instrument, time);
 	message.setTimeStamp(time);
-	addMessageToList(message);
+	//addMessageToList(message);
 	_midiSequence.addEvent(message);
 	//_midiSequence.updateMatchedPairs();
 }
@@ -68,7 +68,7 @@ Midi MidiManager::createMidi(const double time)
 
 	message = MidiMessage::endOfTrack();
 	message.setTimeStamp(time);
-	addMessageToList(message);
+	//addMessageToList(message);
 	_midiSequence.addEvent(message);
 	_midiBuff.addTrack(_midiSequence);
 	//_midiBuff.setTicksPerQuarterNote(4); // 80 tick dans une minute

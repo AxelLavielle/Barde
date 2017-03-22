@@ -12,6 +12,7 @@
 #define MUSICSTYLEBUTTON_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "../Player.hh"
 
 class MusicStyleButton : public Button
 {

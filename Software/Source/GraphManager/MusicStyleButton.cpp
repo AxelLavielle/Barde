@@ -28,6 +28,9 @@ void MusicStyleButton::paintButton(Graphics& g, bool isMouseOverButton, bool isB
 	if (isButtonDown)
 	{
 		g.setColour(Colour(0xff4169E1));
+		Player player;
+
+		player.Play();
 	}
 	else if (isMouseOverButton)
 	{
