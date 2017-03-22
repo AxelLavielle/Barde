@@ -64,13 +64,13 @@ void			MusicGenerator::calculateProbaToNoteFromNote(char note, StyleSettings *pr
   sumDist = calculateSumDist(i, listNote);
   nbNote = listNote.size();
   while (++i != listNote.size())
-    if (i == listNote[i])
+    if (note == listNote[i])
       nbNote--;
   i = -1;
   sumProba = 0;
   while (++i != listNote.size())
     {
-      if (i == listNote[i])
+      if (note == listNote[i])
 	proba->addNoteFromNote(note, listNote[i], (static_cast<float>(probaNote) / listNote.size()));
       else
 	proba->addNoteFromNote(note, listNote[i], (static_cast<float>(probaNote) / listNote.size()) * (((static_cast<float>(calculateDist(i, listNote[i])) / (static_cast<float>(sumDist) / nbNote)) + DISTIMPACT) / (DISTIMPACT + 1)));
@@ -85,6 +85,7 @@ void			MusicGenerator::calculateProbaToNoteFromNote(char note, StyleSettings *pr
 	  sumProba++;
 	}
     }
+    std::cout << (int)sumProba << std::endl;
 }
 
 void			MusicGenerator::calculateProbaToScaleFromNote(StyleSettings *proba, std::vector<char> chord, std::vector<char> strong, std::vector<char> medium, std::vector<char> weak)
@@ -174,7 +175,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 
   markovObj.callLua();
   markovChords = markovObj.getVectorFromJson();
-  
+
   style = markovObj.getStyleFromJson();
 
   Resolution::parsingMarkov(style, &markovChords);
@@ -208,7 +209,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
       calculateProbaToNote(&proba, strong, PROBASTRONG);
       calculateProbaToNote(&proba, medium, PROBAMEDIUM);
       calculateProbaToNote(&proba, weak, PROBAWEAK);
-      
+
       calculateProbaToScaleFromNote(&proba, chord, strong, medium, weak);
 
       ObjectMarkov				       	markovObj(proba, 3, parameters.getSeed());
