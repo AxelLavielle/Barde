@@ -64,12 +64,11 @@ local function nextNode(actualScale, actualNote)
   return tmpNode
 end
 
-function generateNote(scale, note, nbNote, randomValue)
+function generateNote(scale, note, nbNote)
   scale = json.decode(scale)
   note = json.decode(note)
-  math.randomseed(randomValue)
-  probScale = scale;
-  probNote = note;
+  probScale = scale
+  probNote = note
   actualScale = "begin"
   actualNote = "begin"
   local i = 0

@@ -82,7 +82,7 @@ void ObjectMarkov::callLua()
 {
   if (!_rootJson)
   {
-    std::cerr << "rootJson is null !!" << std::endl;
+    //std::cerr << "rootJson is null !!" << std::endl;
     return;
   }
   Json::Reader reader;
@@ -97,8 +97,8 @@ void ObjectMarkov::callLua()
   output = writer.write(_rootJson["note"]);
   lua_pushstring(_L, output.c_str());
   lua_pushnumber(_L, _nbNote);
-  lua_pushnumber(_L, _seed);
-  lua_call(_L,4,1);
+  //lua_pushnumber(_L, _seed);
+  lua_call(_L,3,1);
   if (!lua_isnil(_L, -1))
   {
     if (reader.parse(lua_tostring(_L,-1), _response, false))
@@ -110,7 +110,7 @@ void ObjectMarkov::callLua()
   }
   else
   {
-    std::cerr << "nothing" << std::endl;
+    //std::cerr << "nothing" << std::endl;
   }
 
 }
@@ -163,8 +163,8 @@ void ObjectMarkov::setRootJsonFromFile(std::string styleJson)
   if (!parsingSuccessful)
   {
     // report to the user the failure and their locations in the document.
-    std::cerr  << "Failed to parse configuration\n"
-               << reader.getFormattedErrorMessages();
+    //std::cerr  << "Failed to parse configuration\n"
+      //         << reader.getFormattedErrorMessages();
   }
 }
 
