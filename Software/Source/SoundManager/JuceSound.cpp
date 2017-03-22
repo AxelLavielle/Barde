@@ -36,7 +36,7 @@ bool					SoundManager::play(const Midi &midi)
 {
 	MidiMessage			tmp;
 	const MidiMessageSequence	*midiSequence;
-	double				temps = (1.0 / (80.0 / 60.0)) * 1000;
+	unsigned int		       	temps = (1.0 / (80.0 / 60.0)) * 1000;
 
 	if ((midiSequence = MidiToMessageSequence(midi)) == NULL)
 	{

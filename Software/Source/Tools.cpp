@@ -13,7 +13,7 @@
 void Tools::sleep(unsigned int time)
 {
 #ifdef __linux__
-	sleep(time);
+	usleep(time);
 #else
 	Sleep(time);
 #endif
