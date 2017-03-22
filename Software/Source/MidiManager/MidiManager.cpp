@@ -63,7 +63,6 @@ void MidiManager::noteOff(const Instrument & instrument, const int noteNumber, c
 
 Midi MidiManager::createMidi(const double time)
 {
-	MemoryOutputStream	midiStream;
 	MidiMessage			message;
 	Midi				midi;
 
@@ -72,7 +71,7 @@ Midi MidiManager::createMidi(const double time)
 	addMessageToList(message);
 	_midiSequence.addEvent(message);
 	_midiBuff.addTrack(_midiSequence);
-	_midiBuff.setTicksPerQuarterNote(4); // 80 tick dans une minute
+	//_midiBuff.setTicksPerQuarterNote(4); // 80 tick dans une minute
 
 	//MidiOutput *midiOutput;
 	//midiOutput = MidiOutput::openDevice(0);
@@ -84,10 +83,21 @@ Midi MidiManager::createMidi(const double time)
 	//}
 
 	//_midiBuff.convertTimestampTicksToSeconds();
-	_midiBuff.writeTo(midiStream, 1);
-	midi.setMidiSize(midiStream.getDataSize());
-	midi.setMidiArray((char*)midiStream.getData());
+	_midiBuff.writeTo(_midiStream, 1);
+	midi.setMidiSize(_midiStream.getDataSize());
+	midi.setMidiArray((char *)_midiStream.getData());
+	//midi.setMidiArray((char *)std::memcpy(midi.getMidiArray(), midiStream.getData(), midiStream.getDataSize()));
 	_midiSequence.clear();
+
+
+	//MidiFile			midiBuff;
+	//MemoryInputStream	stream(midi.getMidiArray(), midi.getMidiSize(), false);
+
+	//midiBuff.readFrom(stream);
+	//if (midiBuff.getNumTracks() > 0)
+	//	exit(1);
+
+
 	//std::cout << "LALALALA = " << Time::getHighResolutionTicksPerSecond() << std::endl;
 	return (midi);
 }
@@ -114,12 +124,12 @@ void MidiManager::setSignature(const unsigned int numerator, const unsigned int 
 
 void MidiManager::setTempo(const unsigned int bpm, const double time)
 {
-	MidiMessage message = MidiMessage::tempoMetaEvent(1000000);// On dit que 1 quarterNote dure 1 min
+	//MidiMessage message = MidiMessage::tempoMetaEvent(1000000);// On dit que 1 quarterNote dure 1 min
 
-	message.setTimeStamp(time);
+	//message.setTimeStamp(time);
 	//setSignature(4, 4, 0);
 	//std::cout << "Tick Lenght ===" << message.getTempoMetaEventTickLength(message.getTimeStamp()) << std::endl;
-	_midiSequence.addEvent(message);
+	//_midiSequence.addEvent(message);
 }
 
 void MidiManager::changeInstrument(const int channel, const int instrumentNb, const double time)

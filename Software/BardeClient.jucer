@@ -5,6 +5,21 @@
               jucerVersion="4.3.1" companyName="Barde" companyWebsite="www.barde.io">
   <MAINGROUP id="r1VLiG" name="BardeClient">
     <GROUP id="{6687DB59-98D3-42FE-E900-5BC523D33DDC}" name="Source">
+      <FILE id="xeM74q" name="Tools.cpp" compile="1" resource="0" file="Source/Tools.cpp"/>
+      <FILE id="vs2D6f" name="Tools.hh" compile="0" resource="0" file="Source/Tools.hh"/>
+      <FILE id="ro2yD2" name="SynchronizeManager.cpp" compile="1" resource="0"
+            file="Source/SynchronizeManager.cpp"/>
+      <FILE id="A50ma2" name="SynchronizeManager.hh" compile="0" resource="0"
+            file="Source/SynchronizeManager.hh"/>
+      <GROUP id="{232E6AD8-A50D-53BC-2432-D6E48554A0F2}" name="ViewManager">
+        <FILE id="GoWy4d" name="AView.cpp" compile="1" resource="0" file="Source/ViewManager/AView.cpp"/>
+        <FILE id="KSYQp0" name="AView.hh" compile="0" resource="0" file="Source/ViewManager/AView.hh"/>
+        <FILE id="XmgIJi" name="HomePage.cpp" compile="1" resource="0" file="Source/ViewManager/HomePage.cpp"/>
+        <FILE id="G3DUGg" name="HomePage.hh" compile="0" resource="0" file="Source/ViewManager/HomePage.hh"/>
+        <FILE id="zq5a2B" name="IView.hpp" compile="0" resource="0" file="Source/ViewManager/IView.hpp"/>
+        <FILE id="tSDjkr" name="ViewManager.cpp" compile="1" resource="0" file="Source/ViewManager/ViewManager.cpp"/>
+        <FILE id="f11e5w" name="ViewManager.hh" compile="0" resource="0" file="Source/ViewManager/ViewManager.hh"/>
+      </GROUP>
       <GROUP id="{5444B8A4-FB7A-02ED-7754-175A3C60D033}" name="AI">
         <FILE id="jqA6BZ" name="Chords.cpp" compile="1" resource="0" file="Source/AI/Chords.cpp"/>
         <FILE id="gRmS1K" name="Chords.hh" compile="0" resource="0" file="Source/AI/Chords.hh"/>
@@ -196,7 +211,7 @@
       </MODULEPATHS>
     </VS2015>
     <LINUX_MAKE targetFolder="Linux" externalLibraries="lua" extraLinkerFlags="-L../LuaLibrary"
-                extraCompilerFlags="-I../JsoncppLibrary/&#10;-I../LuaLibrary/include">
+                extraCompilerFlags="-I../JsoncppLibrary/&#10;-I../LuaLibrary/include&#10;-W&#10;-Wall&#10;-Wextra">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="BardeClient"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="BardeClient"/>

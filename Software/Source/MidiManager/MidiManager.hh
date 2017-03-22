@@ -11,6 +11,7 @@
 #ifndef MIDIMANAGER_HH_INCLUDED
 #define MIDIMANAGER_HH_INCLUDED
 
+#include <cstring>
 #include "JuceHeader.h"
 #include "AMidiManager.hh"
 
@@ -36,6 +37,7 @@ private:
 
 	MidiMessageSequence		_midiSequence;
 	MidiFile				_midiBuff;
+	MemoryOutputStream		_midiStream;
 };
 
 #endif  // MIDIMANAGER_HH_INCLUDED

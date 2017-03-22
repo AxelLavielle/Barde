@@ -13,7 +13,7 @@
 
 #include "JuceHeader.h"
 #include "ASoundManager.hh"
-#include <Windows.h>
+#include "../Tools.hh"
 
 class SoundManager : public ASoundManager
 {
@@ -25,9 +25,14 @@ public:
 	virtual bool pause(const Midi &midi);
 	virtual bool setVolume(const Midi &midi);
 	virtual bool stopAll();
+	virtual bool setVolume(const int volume);
+
 private:
-	int			volume = 0;
-	MidiOutput	*_midiOutput;
+	int						volume = 0;
+	MidiOutput				*_midiOutput;
+	MidiFile				_midiBuff;
+
+	const MidiMessageSequence		*MidiToMessageSequence(const Midi &midi);
 };
 
 

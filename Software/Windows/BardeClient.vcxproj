@@ -135,6 +135,11 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Source\Tools.cpp"/>
+    <ClCompile Include="..\Source\SynchronizeManager.cpp"/>
+    <ClCompile Include="..\Source\ViewManager\AView.cpp"/>
+    <ClCompile Include="..\Source\ViewManager\HomePage.cpp"/>
+    <ClCompile Include="..\Source\ViewManager\ViewManager.cpp"/>
     <ClCompile Include="..\Source\AI\Chords.cpp"/>
     <ClCompile Include="..\Source\AI\Disposition.cpp"/>
     <ClCompile Include="..\Source\AI\MusicGenerator.cpp"/>
@@ -1755,6 +1760,12 @@
     <ClCompile Include="..\JuceLibraryCode\juce_video.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\Tools.hh"/>
+    <ClInclude Include="..\Source\SynchronizeManager.hh"/>
+    <ClInclude Include="..\Source\ViewManager\AView.hh"/>
+    <ClInclude Include="..\Source\ViewManager\HomePage.hh"/>
+    <ClInclude Include="..\Source\ViewManager\IView.hpp"/>
+    <ClInclude Include="..\Source\ViewManager\ViewManager.hh"/>
     <ClInclude Include="..\Source\AI\Chords.hh"/>
     <ClInclude Include="..\Source\AI\Disposition.hh"/>
     <ClInclude Include="..\Source\AI\MusicGenerator.hh"/>

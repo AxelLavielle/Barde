@@ -224,7 +224,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 
   Disposition::placeArpeggios(parameters, markovArpeggio);
 
-  parameters._midiManager.createMidi(48);
+   parameters.setMidi(parameters._midiManager.createMidi(48));
   parameters._midiManager.writeToFile("./test.mid");
 
   return (Midi());

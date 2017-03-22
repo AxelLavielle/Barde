@@ -82,7 +82,7 @@ void ObjectMarkov::callLua()
 {
   if (!_rootJson)
   {
-    std::cout << "rootJson is null !!" << std::endl;
+    std::cerr << "rootJson is null !!" << std::endl;
     return;
   }
   Json::Reader reader;
@@ -110,7 +110,7 @@ void ObjectMarkov::callLua()
   }
   else
   {
-    std::cout << "nothing" << std::endl;
+    std::cerr << "nothing" << std::endl;
   }
 
 }
@@ -163,7 +163,7 @@ void ObjectMarkov::setRootJsonFromFile(std::string styleJson)
   if (!parsingSuccessful)
   {
     // report to the user the failure and their locations in the document.
-    std::cout  << "Failed to parse configuration\n"
+    std::cerr  << "Failed to parse configuration\n"
                << reader.getFormattedErrorMessages();
   }
 }

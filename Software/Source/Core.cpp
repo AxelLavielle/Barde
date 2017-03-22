@@ -12,12 +12,10 @@
 
 Core::Core()
 {
-	_graph = new JuceManager();
 }
 
 Core::~Core()
 {
-	delete _graph;
 }
 
 int Core::launch(void)
@@ -27,24 +25,10 @@ int Core::launch(void)
 
 void Core::initialise(const String& commandLine)
 {
-	MusicGenerator gen;
-	MusicParameters param;
+	Player player;
 
-	//test.changeInstrument(4, 25, 200);
-	//test.noteOn(4, 38, 100, 400);
-	//test.noteOff(4, 38, 100, 700);
-	//test.changeInstrument(4, 27, 700);
-	//test.noteOn(4, 38, 100, 800);
-	//test.noteOff(4, 38, 100, 1200);
-
-	//test.changeInstrument(16, 128, 1300);
-	//test.noteOn(16, 38, 100, 1400);
-	//test.noteOff(16, 38, 100, 1800);
-
-	gen.createMusic(param);
-
-	_graph->setWinName("Barde");
-	_graph->init();
+	player.Play();
+	_viewManager.init();
 	// This method is where you should put your application's initialisation code..
 	ignoreUnused(commandLine);
 	//mainWindow = new MainWindow(getApplicationName());

@@ -8,6 +8,9 @@
     <Filter Include="BardeClient\Source">
       <UniqueIdentifier>{8D691A85-208E-5132-ACCD-377494A40EE0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="BardeClient\Source\ViewManager">
+      <UniqueIdentifier>{CE62C358-4A16-5859-3B63-14FA08A30273}</UniqueIdentifier>
+    </Filter>
     <Filter Include="BardeClient\Source\AI">
       <UniqueIdentifier>{46E72A6A-8274-C5FE-EF81-46B658EE3782}</UniqueIdentifier>
     </Filter>
@@ -397,6 +400,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Source\Tools.cpp">
+      <Filter>BardeClient\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\SynchronizeManager.cpp">
+      <Filter>BardeClient\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\ViewManager\AView.cpp">
+      <Filter>BardeClient\Source\ViewManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\ViewManager\HomePage.cpp">
+      <Filter>BardeClient\Source\ViewManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\ViewManager\ViewManager.cpp">
+      <Filter>BardeClient\Source\ViewManager</Filter>
+    </ClCompile>
     <ClCompile Include="..\Source\AI\Chords.cpp">
       <Filter>BardeClient\Source\AI</Filter>
     </ClCompile>
@@ -2244,6 +2262,24 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\Tools.hh">
+      <Filter>BardeClient\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\SynchronizeManager.hh">
+      <Filter>BardeClient\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\ViewManager\AView.hh">
+      <Filter>BardeClient\Source\ViewManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\ViewManager\HomePage.hh">
+      <Filter>BardeClient\Source\ViewManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\ViewManager\IView.hpp">
+      <Filter>BardeClient\Source\ViewManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\ViewManager\ViewManager.hh">
+      <Filter>BardeClient\Source\ViewManager</Filter>
+    </ClInclude>
     <ClInclude Include="..\Source\AI\Chords.hh">
       <Filter>BardeClient\Source\AI</Filter>
     </ClInclude>
