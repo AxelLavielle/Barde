@@ -12,13 +12,12 @@
 
 SoundManager::SoundManager()
 {
-	
-	_midiOutput = MidiOutput::openDevice(0);
+
+	_midiOutput = MidiOutput::openDevice(MidiOutput::getDefaultDeviceIndex());
 }
 
 SoundManager::~SoundManager()
 {
-
 }
 
 const MidiMessageSequence		*SoundManager::MidiToMessageSequence(const Midi &midi)
@@ -52,10 +51,11 @@ bool					SoundManager::play(const Midi &midi)
 		if (tmp.isNoteOn())
 		{
 			_midiOutput->sendMessageNow((const MidiMessage &)tmp);
-			
+
 			Tools::sleep(temps);
 		}
 	}
+	//_midiOutput->clearAllPendingMessages();
 	return true;
 }
 

@@ -210,7 +210,6 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   Disposition::placeChords(parameters, markovChords);
 
   i = 0;
-  std::cout << "----------------------------------------------------------" << std::endl;
   while (i != markovChords.size())
     {
       StyleSettings					proba;
