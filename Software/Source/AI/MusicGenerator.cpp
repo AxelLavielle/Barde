@@ -43,7 +43,7 @@ char			MusicGenerator::calculateDistChords(std::vector<char> chord, char note)
 
 char			MusicGenerator::calculateSumDist(char currNote, std::vector<char> listNote)
 {
-  int			i;
+  char			i;
   char			save;
 
   save = 0;
@@ -81,11 +81,10 @@ void			MusicGenerator::calculateProbaToNoteFromNote(char note, StyleSettings *pr
       i = -1;
       while (sumProba != probaNote && ++i != listNote.size())
 	{
-	  listNote[i] += 1;
+	  proba->addNoteFromNote(note, listNote[i], proba->getProbaFromNote(note, listNote[i]) + 1);
 	  sumProba++;
 	}
     }
-    std::cout << (int)sumProba << std::endl;
 }
 
 void			MusicGenerator::calculateProbaToScaleFromNote(StyleSettings *proba, std::vector<char> chord, std::vector<char> strong, std::vector<char> medium, std::vector<char> weak)
@@ -105,11 +104,25 @@ void			MusicGenerator::calculateProbaToScaleFromNote(StyleSettings *proba, std::
 
 void			MusicGenerator::calculateProbaToNote(StyleSettings *proba, std::vector<char> listNote, char probaNote)
 {
-  int			i;
+  char			i;
+  char			sumProba;
 
   i = -1;
+  sumProba = 0;
   while (++i != listNote.size())
-    proba->addNote(listNote[i], probaNote / listNote.size());
+    {
+      proba->addNote(listNote[i], probaNote / listNote.size());
+      sumProba += probaNote / listNote.size();
+    }
+  while (sumProba != probaNote)
+    {
+      i = -1;
+      while (sumProba != probaNote && ++i != listNote.size())
+  	{
+  	  proba->addNote(listNote[i], proba->getProba(listNote[i]) + 1);
+  	  sumProba++;
+  	}
+    }
 }
 
 void			MusicGenerator::classifyNotes(std::vector<char> chord, std::vector<char> *strong, std::vector<char> *medium, std::vector<char> *weak)
@@ -197,6 +210,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   Disposition::placeChords(parameters, markovChords);
 
   i = 0;
+  std::cout << "----------------------------------------------------------" << std::endl;
   while (i != markovChords.size())
     {
       StyleSettings					proba;
@@ -209,11 +223,11 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
       calculateProbaToNote(&proba, strong, PROBASTRONG);
       calculateProbaToNote(&proba, medium, PROBAMEDIUM);
       calculateProbaToNote(&proba, weak, PROBAWEAK);
-
       calculateProbaToScaleFromNote(&proba, chord, strong, medium, weak);
 
       ObjectMarkov				       	markovObj(proba, 3, parameters.getSeed());
       markovObj.callLua();
+
       markovTmp = markovObj.getVectorFromJson();
       Resolution::parsingMarkov(proba, &markovTmp);
       if (!markovArpeggio.size())
@@ -225,7 +239,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 
   Disposition::placeArpeggios(parameters, markovArpeggio);
 
-   parameters.setMidi(parameters._midiManager.createMidi(48));
+  parameters.setMidi(parameters._midiManager.createMidi(48));
   parameters._midiManager.writeToFile("./test.mid");
 
   return (Midi());
