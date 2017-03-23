@@ -64,6 +64,7 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS := \
+  $(JUCE_OBJDIR)/ThreadPool_dd677260.o \
   $(JUCE_OBJDIR)/Tools_90322e8b.o \
   $(JUCE_OBJDIR)/SynchronizeManager_e9a9ccd7.o \
   $(JUCE_OBJDIR)/AView_4c0b412f.o \
@@ -142,6 +143,11 @@ clean:
 strip:
 	@echo Stripping BardeClient
 	-@$(STRIP) --strip-unneeded $(JUCE_OUTDIR)/$(TARGET)
+
+$(JUCE_OBJDIR)/ThreadPool_dd677260.o: ../Source/ThreadPool.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ThreadPool.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/Tools_90322e8b.o: ../Source/Tools.cpp
 	-@mkdir -p $(JUCE_OBJDIR)

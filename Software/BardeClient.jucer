@@ -5,6 +5,8 @@
               jucerVersion="4.3.1" companyName="Barde" companyWebsite="www.barde.io">
   <MAINGROUP id="r1VLiG" name="BardeClient">
     <GROUP id="{6687DB59-98D3-42FE-E900-5BC523D33DDC}" name="Source">
+      <FILE id="y0Wt8b" name="ThreadPool.cpp" compile="1" resource="0" file="Source/ThreadPool.cpp"/>
+      <FILE id="DLuudu" name="ThreadPool.hh" compile="0" resource="0" file="Source/ThreadPool.hh"/>
       <FILE id="xeM74q" name="Tools.cpp" compile="1" resource="0" file="Source/Tools.cpp"/>
       <FILE id="vs2D6f" name="Tools.hh" compile="0" resource="0" file="Source/Tools.hh"/>
       <FILE id="ro2yD2" name="SynchronizeManager.cpp" compile="1" resource="0"

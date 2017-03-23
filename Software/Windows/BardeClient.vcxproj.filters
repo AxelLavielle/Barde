@@ -400,6 +400,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Source\ThreadPool.cpp">
+      <Filter>BardeClient\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\Source\Tools.cpp">
       <Filter>BardeClient\Source</Filter>
     </ClCompile>
@@ -2262,6 +2265,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\ThreadPool.hh">
+      <Filter>BardeClient\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\Source\Tools.hh">
       <Filter>BardeClient\Source</Filter>
     </ClInclude>
