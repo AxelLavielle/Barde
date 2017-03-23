@@ -12,7 +12,6 @@
 
 SoundManager::SoundManager()
 {
-
 	_midiOutput = MidiOutput::openDevice(MidiOutput::getDefaultDeviceIndex());
 }
 
