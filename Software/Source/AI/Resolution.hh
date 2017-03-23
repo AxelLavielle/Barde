@@ -18,8 +18,8 @@ public:
   static void	parsingMarkov(std::vector<std::pair<char, char> > *sequence, const std::vector<char> &strong, const std::vector<char> &medium, const std::vector<char> &weak);
 private:
   static char	fixingMarkov(StyleSettings &style, const char prev, const char next);
-  static char	which_state(const char note, const std::vector<char> &strong, const std::vector<char> &medium);
   static char	fixingMarkov(const char state, const std::vector<char> &strong, const std::vector<char> &medium, const std::vector<char> &weak);
+  static char	which_state(const char note, const std::vector<char> &strong, const std::vector<char> &medium);
 };
 
 #endif //	__RESOLUTION__

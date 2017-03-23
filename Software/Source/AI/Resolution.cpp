@@ -40,7 +40,9 @@ void	Resolution::parsingMarkov(std::vector<std::pair<char, char> > *sequence, co
 	  percentage = percentage * state / 100;
 	  if (percentage < NOT_ENOUGH_CHANCE)
 	    {
-	      state = 100 - (*sequence)[i].first - ((*sequence)[i + 1].first != (*sequence)[i].first ? (*sequence)[i + 1].first : ((*sequence)[i + 1].first == (*sequence)[i].first ? 2 : (*sequence)[i + 1].first - 1));
+	      state = (*sequence)[i].first == PROBASTRONG ? PROBAMEDIUM : PROBASTRONG;
+	      if (i + 1 != sequence.size() && (*sequence)[i + 1].first != (*sequence)[i].first)
+		state = 100 - (*sequence)[i].first - (*sequence)[i + 1].first;
 	      (*sequence)[i].first = fixingMarkov(state, strong, medium, weak);
 	    }
 	}
