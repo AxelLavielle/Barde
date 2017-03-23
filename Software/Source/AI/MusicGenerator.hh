@@ -12,9 +12,6 @@
 # define MUSICGENERATOR_HH_INCLUDED
 
 # define ABS(x) ((x) > 0 ? (x) : (-(x)))
-# define PROBASTRONG	50
-# define PROBAMEDIUM	33
-# define PROBAWEAK	17
 # define DISTIMPACT	1
 
 # include "Resolution.hh"

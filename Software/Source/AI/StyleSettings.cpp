@@ -25,7 +25,6 @@ void		StyleSettings::addNote(const std::pair<char, int> &note)
     _param[note.first].first = note.second;
 }
 
-#include <iostream>
 void		StyleSettings::addNote(const char noteName, const int noteProba)
 {
   std::map<char, int>	tmp;

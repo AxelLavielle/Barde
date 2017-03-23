@@ -227,7 +227,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
       markovObj.callLua();
 
       markovTmp = markovObj.getVectorFromJson();
-      Resolution::parsingMarkov(proba, &markovTmp);
+      Resolution::parsingMarkov(&markovTmp, strong, medium, weak);
       if (!markovArpeggio.size())
 	markovArpeggio = markovTmp;
       else
