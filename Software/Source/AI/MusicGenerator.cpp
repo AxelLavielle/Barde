@@ -30,7 +30,7 @@ char			MusicGenerator::calculateDist(char currNote, char testNote)
 
 char			MusicGenerator::calculateDistChords(std::vector<char> chord, char note)
 {
-  char			i;
+  unsigned char		i;
   char			save;
 
   i = -1;
@@ -43,7 +43,7 @@ char			MusicGenerator::calculateDistChords(std::vector<char> chord, char note)
 
 char			MusicGenerator::calculateSumDist(char currNote, std::vector<char> listNote)
 {
-  char			i;
+  unsigned char		i;
   char			save;
 
   save = 0;
@@ -55,7 +55,7 @@ char			MusicGenerator::calculateSumDist(char currNote, std::vector<char> listNot
 
 void			MusicGenerator::calculateProbaToNoteFromNote(char note, StyleSettings *proba, std::vector<char> listNote, char probaNote)
 {
-  char			i;
+  unsigned char		i;
   char			sumDist;
   char			nbNote;
   char			sumProba;
@@ -87,10 +87,9 @@ void			MusicGenerator::calculateProbaToNoteFromNote(char note, StyleSettings *pr
     }
 }
 
-void			MusicGenerator::calculateProbaToScaleFromNote(StyleSettings *proba, std::vector<char> chord, std::vector<char> strong, std::vector<char> medium, std::vector<char> weak)
+void			MusicGenerator::calculateProbaToScaleFromNote(StyleSettings *proba, std::vector<char> strong, std::vector<char> medium, std::vector<char> weak)
 {
-  char			i;
-  char			j;
+  unsigned char		i;
 
   i = C;
   while (i != END)
@@ -104,7 +103,7 @@ void			MusicGenerator::calculateProbaToScaleFromNote(StyleSettings *proba, std::
 
 void			MusicGenerator::calculateProbaToNote(StyleSettings *proba, std::vector<char> listNote, char probaNote)
 {
-  char			i;
+  unsigned char		i;
   char			sumProba;
 
   i = -1;
@@ -127,7 +126,7 @@ void			MusicGenerator::calculateProbaToNote(StyleSettings *proba, std::vector<ch
 
 void			MusicGenerator::classifyNotes(std::vector<char> chord, std::vector<char> *strong, std::vector<char> *medium, std::vector<char> *weak)
 {
-  char			i;
+  unsigned char		i;
   char			save;
 
   i = C;
@@ -178,7 +177,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   ObjectMarkov						markovObj("../../Source/markovSource/blues.json", 1, parameters.getSeed());
   #endif
 
-  int							i;
+  unsigned char						i;
   std::vector<std::pair<char, char> >			markovChords;
   std::vector<std::pair<char, char> >			markovTmp;
   std::vector<std::pair<char, char> >			markovArpeggio;
@@ -222,7 +221,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
       calculateProbaToNote(&proba, strong, PROBASTRONG);
       calculateProbaToNote(&proba, medium, PROBAMEDIUM);
       calculateProbaToNote(&proba, weak, PROBAWEAK);
-      calculateProbaToScaleFromNote(&proba, chord, strong, medium, weak);
+      calculateProbaToScaleFromNote(&proba, strong, medium, weak);
 
       ObjectMarkov				       	markovObj(proba, 3, parameters.getSeed());
       markovObj.callLua();

@@ -32,7 +32,7 @@ public:
   Midi			createMusic(MusicParameters &parameters);
 
 private:
-  void			calculateProbaToScaleFromNote(StyleSettings *proba, std::vector<char> chord, std::vector<char> strong, std::vector<char> medium, std::vector<char> weak);
+  void			calculateProbaToScaleFromNote(StyleSettings *proba, std::vector<char> strong, std::vector<char> medium, std::vector<char> weak);
   void			calculateProbaToNoteFromNote(char note, StyleSettings *proba, std::vector<char> listNote, char probaNote);
   void			calculateProbaToNote(StyleSettings *proba, std::vector<char> listNote, char probaNote);
   void			classifyNotes(std::vector<char> chord, std::vector<char> *strong, std::vector<char> *medium, std::vector<char> *weak);

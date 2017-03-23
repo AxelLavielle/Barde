@@ -12,9 +12,9 @@ Resolution::~Resolution()
 
 void	Resolution::parsingMarkov(StyleSettings &style, std::vector<std::pair<char, char> > *sequence)
 {
-  char	i;
-  char	save;
-  int	percentage;
+  unsigned char	i;
+  unsigned char	save;
+  unsigned char	percentage;
 
   i = -1;
   save = -1;
