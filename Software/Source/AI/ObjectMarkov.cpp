@@ -87,6 +87,7 @@ void ObjectMarkov::callLua()
   }
   Json::Reader reader;
   luaL_dofile(_L, _luaMarkovFunction.c_str());
+  lua_pcall(_L, 0, 0, 0);
   //ObjectMarkov::getStyleFromJson(_rootJson["note"]);
 
   lua_getglobal(_L, "generateNote");
@@ -99,7 +100,7 @@ void ObjectMarkov::callLua()
   lua_pushstring(_L, output.c_str());
   lua_pushnumber(_L, _nbNote);
   //lua_pushnumber(_L, _seed);
-  lua_call(_L,3,1);
+  lua_pcall(_L, 3, 1, 0);
   if (!lua_isnil(_L, -1))
   {
     if (reader.parse(lua_tostring(_L,-1), _response, false))
