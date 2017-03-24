@@ -35,23 +35,28 @@ bool					SoundManager::play(const Midi &midi)
 	MidiMessage			tmp;
 	const MidiMessageSequence	*midiSequence;
 	unsigned int		       	temps = (1.0 / (80.0 / 60.0)) * 1000;
-
+	int							k;
 	if ((midiSequence = MidiToMessageSequence(midi)) == NULL)
 	{
 		std::cerr << "ERROR: Can not convert Midi Buffer" << std::endl;
 		return false;
 	}
 	//std::cout << "nb of event : " << midiSequence->getNumEvents() << std::endl;
+	tmp = midiSequence->getEventPointer(0)->message;
+	k = tmp.getTimeStamp();
 	for (int i = 0; i < midiSequence->getNumEvents(); i++)
 	{
+
 		tmp = midiSequence->getEventPointer(i)->message;
-		//std::cout << "tmp = " << tmp.getDescription() << std::endl;
 
 		if (tmp.isNoteOn())
 		{
 			_midiOutput->sendMessageNow((const MidiMessage &)tmp);
-
-			Tools::sleep(temps);
+			if (tmp.getTimeStamp() != k)
+			{
+				Tools::sleep(temps);
+			}
+			k = tmp.getTimeStamp();
 		}
 	}
 	//_midiOutput->clearAllPendingMessages();

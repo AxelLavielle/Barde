@@ -22,7 +22,7 @@ void MidiManager::noteOn(const int channel, const int noteNumber, const float ve
 {
 	MidiMessage message = MidiMessage::noteOn(channel, noteNumber, (uint8)velocity);
 
-	message.setTimeStamp(time * 1000);
+	message.setTimeStamp(time);
 	//addMessageToList(message);
 	_midiSequence.addEvent(message);
 	_midiSequence.updateMatchedPairs();
@@ -43,7 +43,7 @@ void MidiManager::noteOff(const int channel, const int noteNumber, const float v
 {
 	MidiMessage message = MidiMessage::noteOff(channel, noteNumber, (uint8)velocity);
 
-	message.setTimeStamp(time * 1000);
+	message.setTimeStamp(time);
 	//addMessageToList(message);
 	_midiSequence.addEvent(message);
 	//_midiSequence.updateMatchedPairs();
@@ -67,7 +67,7 @@ Midi MidiManager::createMidi(const double time)
 	Midi				midi;
 
 	message = MidiMessage::endOfTrack();
-	message.setTimeStamp(time * 1000);
+	message.setTimeStamp(time);
 	//addMessageToList(message);
 	_midiSequence.addEvent(message);
 	_midiBuff.addTrack(_midiSequence);
