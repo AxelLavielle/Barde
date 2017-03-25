@@ -82,12 +82,13 @@ function register(req, res, next) {
         });
 
         newUser.save(function (err) {
-            console.log(err);
+
             if (err) {
                 res.status(409).send({
                     msg: "Content already exists",
                     data: {message: "The email address you have used is already registered."}
                 });
+                return next(err);
             }
             res.status(200).send({
                 msg: "Content created",
