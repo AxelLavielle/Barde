@@ -13,13 +13,11 @@ angular.module('app', ['app.factories', 'app.directives', 'app.controllers', 'ng
     })
     .when("/team",
     {
-      templateUrl   : "templates/equipe.tpl.htm",
-      controller    : 'teamController'
+      templateUrl   : "templates/equipe.tpl.htm"
     })
     .when("/blog",
     {
-      templateUrl   : "templates/blog.tpl.htm",
-      controller    : 'mainController'
+      templateUrl   : "templates/blog.tpl.htm"
     })
     .when("/contact",
     {

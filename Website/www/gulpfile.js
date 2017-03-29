@@ -13,6 +13,7 @@ gulp.task('concat-app', function() {
         'node_modules/angular-materialize/src/angular-materialize.js',
         'node_modules/angular-google-analytics/dist/angular-google-analytics.min.js',
         'node_modules/angular-recaptcha/release/angular-recaptcha.js',
+        'app/init.js',
         'app/factories/*.js',
         'app/controllers/*.js',
         'app/directives/*.js',
