@@ -11,7 +11,7 @@
 #ifndef TOOLS_HH_INCLUDED
 #define TOOLS_HH_INCLUDED
 
-#ifdef __linux__
+#ifdef __linux__ || __APPLE__
 #include <unistd.h>
 #else
 #include <Windows.h>
