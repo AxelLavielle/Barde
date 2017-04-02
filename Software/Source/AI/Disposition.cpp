@@ -15,8 +15,8 @@ void		Disposition::placeChords(MusicParameters &parameters, std::vector<std::pai
 {
   Chords chords;
   std::vector<Instrument> instruments;
-  int scaleAdjust;
-  int previousNote;
+  char scaleAdjust;
+  char previousNote;
   int note;
   double beats;
   std::vector<char> notesFromChord;
