@@ -22,43 +22,43 @@
 */
 
 /*! \class MainContentComponent
-* \brief classe representant le composant principal du client graphique
+* \brief class representing the main component of the client
 *
-*  La classe gere tous les sous composants représentant la fenêtre graphique du client
+* The class is containing all the component needed for the client
 */
 
 class MainContentComponent   : public Component
 {
 public:
     //==============================================================================
-	MusicStyleButton *blues;  /*!< bouton pour générer le blues*/
+	MusicStyleButton *blues;  /*!< button for generating blues*/
 
 	/*!
-	*  \brief Constructeur
+	*  \brief Constructor
 	*
-	*  Constructeur de la classe MainContentComponent
+	*  MainContentComponent class constructor
 	*
 	*/
 	MainContentComponent();
 
 	/*!
-	*  \brief Destructeur
+	*  \brief Destructor
 	*
-	*  Destructeur de la classe MusicStyleButton
+	*  MusicContentComponent class destructor
 	*/
     ~MainContentComponent();
 
 	/*!
-	*  \brief Affichage
+	*  \brief Display
 	*
-	* Fonction appelée pour l'affichage de la fenêtre
+	* Fonction called for the displey of the MainContentComponent
 	*/
     void paint (Graphics&) override;
 
 	/*!
 	*  \brief Resized
 	*
-	* Fonction appelée lors du changement de taille de la fenêtre
+	* Fonction called when the window is resized
 	*/
     void resized() override;
 

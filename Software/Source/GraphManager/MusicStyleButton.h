@@ -16,41 +16,41 @@
 
 
 /*! \class MusicStyleButton
-* \brief classe representant un bouton de style musical
+* \brief classe representing a button for a specific music style
 *
-*  La classe gere la création de bouton pour un style musical
+*  This class generates a music style button
 */
 class MusicStyleButton : public Button
 {
 public:
-	int width; /*!< largeur du bouton*/
-	int height; /*!< hauteur du bouton*/
+	int width; /*!< Button width*/
+	int height; /*!< Button height*/
 
 	/*!
-	*  \brief Constructeur
+	*  \brief Constructor
 	*
-	*  Constructeur de la classe MusicStyleButton
+	*  MusicStyleButton class constructor
 	*
-	*  \param buttonName : nom du bouton / texte à afficher
-	*  \param w : largeur du bouton
-	*  \param h : heuteur du bouton
+	*  \param buttonName : name of the button / Text to display
+	*  \param w : Button width
+	*  \param h : Button height
 	*/
 	MusicStyleButton(const String &buttonName, const int w, const int h);
 	/*!
-	*  \brief Destructeur
+	*  \brief Destructor
 	*
-	*  Destructeur de la classe MusicStyleButton
+	*  MusicStyleButton class destructor
 	*/
 	~MusicStyleButton();
 	
 	/*!
-	*  \brief Affichage du bouton
+	*  \brief Diplay of the button
 	*
-	*  Fonction qui s'occupe de l'affichage du bouton en fonctions de différents évènements
+	*  Function that diplays the button and change with some events
 	*
-	*  \param g : graphique où le bouton sera affiché
-	*  \param isMouseOverButton : booléen correspondant à l'évènement de la souris sur le bouton
-	*  \param isButtonDown : booléen correspondant à l'enfoncement du bouton
+	*  \param g : graphic where the button is diplayed
+	*  \param isMouseOverButton : boolean corresponding to the mouse over button event
+	*  \param isButtonDown :boolean corresponding to the button down event
 	*/
 	void paintButton(Graphics& g, const bool isMouseOverButton, const bool isButtonDown);
 };
