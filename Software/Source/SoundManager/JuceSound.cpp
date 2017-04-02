@@ -30,18 +30,18 @@ const MidiMessageSequence		*SoundManager::MidiToMessageSequence(const Midi &midi
 	return (NULL);
 }
 
-bool					SoundManager::play(const Midi &midi)
+bool							SoundManager::play(const Midi &midi)
 {
-	MidiMessage			tmp;
+	MidiMessage					tmp;
 	const MidiMessageSequence	*midiSequence;
 	unsigned int		       	temps = (1.0 / (80.0 / 60.0)) * 1000;
 	int							k;
+
 	if ((midiSequence = MidiToMessageSequence(midi)) == NULL)
 	{
 		std::cerr << "ERROR: Can not convert Midi Buffer" << std::endl;
 		return false;
 	}
-	//std::cout << "nb of event : " << midiSequence->getNumEvents() << std::endl;
 	tmp = midiSequence->getEventPointer(0)->message;
 	k = tmp.getTimeStamp();
 	for (int i = 0; i < midiSequence->getNumEvents(); i++)
@@ -63,27 +63,32 @@ bool					SoundManager::play(const Midi &midi)
 	return true;
 }
 
-bool					SoundManager::stop(const Midi &midi)
+bool					SoundManager::stop(const Midi &) const
 {
+	//Not implemented
 	return true;
 }
 
-bool					SoundManager::pause(const Midi &midi)
+bool					SoundManager::pause(const Midi &) const
 {
+	//Not implemented
 	return true;
 }
 
-bool					SoundManager::setVolume(const Midi &midi)
+bool					SoundManager::setVolume(const Midi &) const
 {
+	//Not implemented
 	return true;
 }
 
-bool					SoundManager::stopAll()
+bool					SoundManager::stopAll() const
 {
+	//Not implemented
 	return true;
 }
 
-bool SoundManager::setVolume(const int volume)
+bool SoundManager::setVolume(const int)
 {
+	//Not implemented
 	return true;
 }

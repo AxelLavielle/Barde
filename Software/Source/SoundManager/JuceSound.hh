@@ -21,10 +21,10 @@ public:
 	SoundManager();
 	virtual ~SoundManager();
 	virtual bool play(const Midi &midi);
-	virtual bool stop(const Midi &midi);
-	virtual bool pause(const Midi &midi);
-	virtual bool setVolume(const Midi &midi);
-	virtual bool stopAll();
+	virtual bool stop(const Midi &midi) const;
+	virtual bool pause(const Midi &midi) const;
+	virtual bool setVolume(const Midi &midi) const;
+	virtual bool stopAll() const;
 	virtual bool setVolume(const int volume);
 
 private:

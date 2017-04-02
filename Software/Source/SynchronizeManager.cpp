@@ -9,3 +9,11 @@
 */
 
 #include "SynchronizeManager.hh"
+
+SynchronizeManager::SynchronizeManager()
+{
+}
+
+SynchronizeManager::~SynchronizeManager()
+{
+}

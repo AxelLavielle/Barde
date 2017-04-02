@@ -1,6 +1,6 @@
 #include "ObjectMarkov.hh"
 
-ObjectMarkov::ObjectMarkov(const StyleSettings &settings, unsigned int nbNote)
+ObjectMarkov::ObjectMarkov(const StyleSettings &settings, const unsigned int nbNote)
 {
   _L = luaL_newstate();
   luaL_openlibs(_L);
@@ -14,7 +14,7 @@ ObjectMarkov::ObjectMarkov(const StyleSettings &settings, unsigned int nbNote)
   _seed = std::time(nullptr);
 }
 
-ObjectMarkov::ObjectMarkov(const StyleSettings &settings, unsigned int nbNote, unsigned int seed)
+ObjectMarkov::ObjectMarkov(const StyleSettings &settings, const unsigned int nbNote, const unsigned int seed)
 {
   _L = luaL_newstate();
   luaL_openlibs(_L);
@@ -28,7 +28,7 @@ ObjectMarkov::ObjectMarkov(const StyleSettings &settings, unsigned int nbNote, u
   _seed = seed;
 }
 
-ObjectMarkov::ObjectMarkov(const StyleSettings &settings, std::string luaMarkovFunction, unsigned int nbNote, unsigned int seed)
+ObjectMarkov::ObjectMarkov(const StyleSettings &settings, const std::string &luaMarkovFunction, unsigned int nbNote, const unsigned int seed)
 {
   _L = luaL_newstate();
   luaL_openlibs(_L);
@@ -38,7 +38,7 @@ ObjectMarkov::ObjectMarkov(const StyleSettings &settings, std::string luaMarkovF
   _seed = seed;
 }
 
-ObjectMarkov::ObjectMarkov(std::string styleJson, unsigned int nbNote)
+ObjectMarkov::ObjectMarkov(const std::string &styleJson, const unsigned int nbNote)
 {
   _L = luaL_newstate();
   luaL_openlibs(_L);
@@ -53,7 +53,7 @@ ObjectMarkov::ObjectMarkov(std::string styleJson, unsigned int nbNote)
   _seed = std::time(nullptr);
 }
 
-ObjectMarkov::ObjectMarkov(std::string styleJson, unsigned int nbNote, unsigned int seed)
+ObjectMarkov::ObjectMarkov(const std::string &styleJson, const unsigned int nbNote, const unsigned int seed)
 {
   _L = luaL_newstate();
   luaL_openlibs(_L);
@@ -68,7 +68,7 @@ ObjectMarkov::ObjectMarkov(std::string styleJson, unsigned int nbNote, unsigned 
   _seed = seed;
 }
 
-ObjectMarkov::ObjectMarkov(std::string styleJson, std::string luaMarkovFunction, unsigned int nbNote, unsigned int seed)
+ObjectMarkov::ObjectMarkov(const std::string &styleJson, const std::string &luaMarkovFunction, const unsigned int nbNote, const unsigned int seed)
 {
   _L = luaL_newstate();
   luaL_openlibs(_L);
@@ -157,7 +157,7 @@ StyleSettings ObjectMarkov::getStyleFromJson()
   return style;
 }
 
-void ObjectMarkov::setRootJsonFromFile(std::string styleJson)
+void ObjectMarkov::setRootJsonFromFile(const std::string &styleJson)
 {
   Json::Reader reader;
   std::ifstream style(styleJson.c_str(), std::ifstream::binary);

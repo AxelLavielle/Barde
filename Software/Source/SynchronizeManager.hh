@@ -14,7 +14,8 @@
 class SynchronizeManager
 {
     public:
-        
+		SynchronizeManager();
+		~SynchronizeManager();
 };
 
 

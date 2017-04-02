@@ -116,13 +116,13 @@ void		MidiManager::writeToFile(const std::string &filePath)
 
 void MidiManager::setSignature(const unsigned int numerator, const unsigned int denominator, const double time)
 {
-	MidiMessage message = MidiMessage::timeSignatureMetaEvent(4, 4);
+	MidiMessage message = MidiMessage::timeSignatureMetaEvent(numerator, denominator);
 
 	message.setTimeStamp(time);
 	_midiSequence.addEvent(message);
 }
 
-void MidiManager::setTempo(const unsigned int bpm, const double time)
+void MidiManager::setTempo(const unsigned int, const double)
 {
 	//MidiMessage message = MidiMessage::tempoMetaEvent(1000000);// On dit que 1 quarterNote dure 1 min
 

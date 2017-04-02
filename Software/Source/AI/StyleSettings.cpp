@@ -5,7 +5,7 @@ StyleSettings::StyleSettings()
 
 }
 
-StyleSettings::StyleSettings(StyleSettings &old)
+StyleSettings::StyleSettings(const StyleSettings &old)
 {
   _param = old.getParam();
 }

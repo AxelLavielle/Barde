@@ -19,10 +19,10 @@ class MusicStyleButton : public Button
 public:
 	int width;
 	int height;
-	MusicStyleButton(const String &buttonName, int w, int h);
+	MusicStyleButton(const String &buttonName, const int w, const int h);
 	~MusicStyleButton();
 	
-	void paintButton(Graphics& g, bool isMouseOverButton, bool isButtonDown);
+	void paintButton(Graphics& g, const bool isMouseOverButton, const bool isButtonDown);
 };
 
 #endif  // MUSICSTYLEBUTTON_H_INCLUDED

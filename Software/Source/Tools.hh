@@ -11,7 +11,7 @@
 #ifndef TOOLS_HH_INCLUDED
 #define TOOLS_HH_INCLUDED
 
-#ifdef __linux__ || __APPLE__
+#ifdef __linux__
 #include <unistd.h>
 #else
 #include <Windows.h>
@@ -21,7 +21,7 @@
 class Tools
 {
 public:
-	static void sleep(unsigned int time);
+	static void sleep(const unsigned int time);
 };
 
 #endif  // TOOLS_HH_INCLUDED

@@ -10,7 +10,7 @@
 
 #include "Tools.hh"
 
-void Tools::sleep(unsigned int time)
+void Tools::sleep(const unsigned int time)
 {
 #ifdef __linux__
 	usleep(time);

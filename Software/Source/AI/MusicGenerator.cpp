@@ -20,7 +20,7 @@ MusicGenerator::~MusicGenerator()
 
 }
 
-char			MusicGenerator::calculateDist(char currNote, char testNote)
+char			MusicGenerator::calculateDist(const char currNote, const char testNote)
 {
   char			a;
 
@@ -28,7 +28,7 @@ char			MusicGenerator::calculateDist(char currNote, char testNote)
   return (a < 6 ? a : (12 - a));
 }
 
-char			MusicGenerator::calculateDistChords(std::vector<char> chord, char note)
+char			MusicGenerator::calculateDistChords(const std::vector<char> chord, const char note)
 {
   unsigned char		i;
   char			save;
@@ -41,7 +41,7 @@ char			MusicGenerator::calculateDistChords(std::vector<char> chord, char note)
   return (save);
 }
 
-char			MusicGenerator::calculateSumDist(char currNote, std::vector<char> listNote)
+char			MusicGenerator::calculateSumDist(const char currNote, const std::vector<char> &listNote)
 {
   unsigned char		i;
   char			save;
@@ -53,7 +53,7 @@ char			MusicGenerator::calculateSumDist(char currNote, std::vector<char> listNot
   return (save);
 }
 
-void			MusicGenerator::calculateProbaToNoteFromNote(char note, StyleSettings *proba, std::vector<char> listNote, char probaNote)
+void			MusicGenerator::calculateProbaToNoteFromNote(const char note, StyleSettings *proba, const std::vector<char> &listNote, const char probaNote)
 {
   unsigned char		i;
   char			sumDist;
@@ -87,7 +87,7 @@ void			MusicGenerator::calculateProbaToNoteFromNote(char note, StyleSettings *pr
     }
 }
 
-void			MusicGenerator::calculateProbaToScaleFromNote(StyleSettings *proba, std::vector<char> strong, std::vector<char> medium, std::vector<char> weak)
+void			MusicGenerator::calculateProbaToScaleFromNote(StyleSettings *proba, const std::vector<char> &strong, const std::vector<char> &medium, const std::vector<char> &weak)
 {
   unsigned char		i;
 
@@ -101,7 +101,7 @@ void			MusicGenerator::calculateProbaToScaleFromNote(StyleSettings *proba, std::
     }
 }
 
-void			MusicGenerator::calculateProbaToNote(StyleSettings *proba, std::vector<char> listNote, char probaNote)
+void			MusicGenerator::calculateProbaToNote(StyleSettings *proba, const std::vector<char> &listNote, const char probaNote)
 {
   unsigned char		i;
   char			sumProba;
@@ -124,7 +124,7 @@ void			MusicGenerator::calculateProbaToNote(StyleSettings *proba, std::vector<ch
     }
 }
 
-void			MusicGenerator::classifyNotes(std::vector<char> chord, std::vector<char> *strong, std::vector<char> *medium, std::vector<char> *weak)
+void			MusicGenerator::classifyNotes(const std::vector<char> &chord, std::vector<char> *strong, std::vector<char> *medium, std::vector<char> *weak)
 {
   unsigned char		i;
   char			save;

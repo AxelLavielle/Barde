@@ -11,7 +11,7 @@
 #include "MainWindow.hh"
 #include "MainComponent.h"
 
-MainWindow::MainWindow(const std::string name) : DocumentWindow(name,
+MainWindow::MainWindow(const std::string &name) : DocumentWindow(name,
 																Colours::lightgrey,
 																DocumentWindow::allButtons)
 {
