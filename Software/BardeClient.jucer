@@ -188,7 +188,8 @@
       </MODULEPATHS>
     </XCODE_MAC>
     <VS2015 targetFolder="Windows" externalLibraries="..\LuaLibrary\lua53.lib"
-            extraCompilerFlags="-I..\JsoncppLibrary\&#10;-I..\LuaLibrary\include">
+            extraCompilerFlags="-I..\JsoncppLibrary\&#10;-I..\LuaLibrary\include"
+            extraDefs="SOURCEMARKOV=&quot;$(ProjectDir.Replace('\'\,'/'))../Source/markovSource/&quot;">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
                        isDebug="1" optimisation="1" targetName="BardeClient" postbuildCommand="xcopy /d /y &quot;$(ProjectDir)..\LuaLibrary\lua53.dll&quot; &quot;$(OutDir)&quot;"/>
@@ -213,7 +214,8 @@
       </MODULEPATHS>
     </VS2015>
     <LINUX_MAKE targetFolder="Linux" externalLibraries="lua" extraLinkerFlags="-L../LuaLibrary"
-                extraCompilerFlags="-I../JsoncppLibrary/&#10;-I../LuaLibrary/include&#10;-W&#10;-Wall&#10;-Wextra">
+                extraCompilerFlags="-I../JsoncppLibrary/&#10;-I../LuaLibrary/include&#10;-W&#10;-Wall&#10;-Wextra"
+                extraDefs="SOURCEMARKOV=\&quot;${CURDIR}/../Source/markovSource/\&quot;">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="BardeClient"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="BardeClient"/>

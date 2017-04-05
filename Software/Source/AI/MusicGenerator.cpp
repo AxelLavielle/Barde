@@ -171,11 +171,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   parameters.setStyleName("Blues");
 
   srand(parameters.getSeed());
-  #ifdef _WIN32
-  ObjectMarkov						markovObj("../Source/markovSource/blues.json", 1, parameters.getSeed());
-  #else
-  ObjectMarkov						markovObj("../../Source/markovSource/blues.json", 1, parameters.getSeed());
-  #endif
+  ObjectMarkov						markovObj(SOURCEMARKOV + std::string("blues.json"), 1, parameters.getSeed());
 
   unsigned char						i;
   std::vector<std::pair<char, char> >			markovChords;

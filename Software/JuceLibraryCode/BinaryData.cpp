@@ -9,17 +9,17 @@ namespace BinaryData
 
 //================== people.json ==================
 static const unsigned char temp_binary_data_0[] =
-"{\n"
-"    \"encoding\" : \"UTF-8\",\n"
-"    \"toto\" : \"titi\",\n"
-"    \"encodi\" : \"UTF-7\",\n"
-"    \"plug-ins\" : [\n"
-"        \"python\",\n"
-"        \"c++\",\n"
-"        \"ruby\"\n"
-"        ],\n"
-"    \"indent\" : { \"length\" : 3, \"use_space\": true }\n"
-"}\n";
+"{\r\n"
+"    \"encoding\" : \"UTF-8\",\r\n"
+"    \"toto\" : \"titi\",\r\n"
+"    \"encodi\" : \"UTF-7\",\r\n"
+"    \"plug-ins\" : [\r\n"
+"        \"python\",\r\n"
+"        \"c++\",\r\n"
+"        \"ruby\"\r\n"
+"        ],\r\n"
+"    \"indent\" : { \"length\" : 3, \"use_space\": true }\r\n"
+"}\r\n";
 
 const char* people_json = (const char*) temp_binary_data_0;
 
@@ -5805,7 +5805,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes) throw
 
     switch (hash)
     {
-        case 0x441eb498:  numBytes = 204; return people_json;
+        case 0x441eb498:  numBytes = 215; return people_json;
         case 0x7e701ad1:  numBytes = 140671; return back_png;
         case 0x78ded995:  numBytes = 271238; return logo_png;
         default: break;

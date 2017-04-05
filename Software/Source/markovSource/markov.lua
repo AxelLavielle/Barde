@@ -8,7 +8,7 @@ local probNote = {}
 
 local node = nil
 
-local function initLib()
+local function initLib(source)
   local popen_status, popen_result = pcall(io.popen, "")
   if popen_status then
       popen_result:close()
@@ -23,8 +23,6 @@ local function initLib()
       json = dofile("../Source/markovSource/dkjson.lua")
     end
 end
-
-initLib()
 
 local function addNode(actualNode)
   if node == nil then
@@ -64,7 +62,8 @@ local function nextNode(actualScale, actualNote)
   return tmpNode
 end
 
-function generateNote(scale, note, nbNote)
+function generateNote(scale, note, nbNote, sourceMarkov)
+  json = dofile(sourceMarkov .. "dkjson.lua")
   scale = json.decode(scale)
   note = json.decode(note)
   probScale = scale

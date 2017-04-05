@@ -5,11 +5,8 @@ ObjectMarkov::ObjectMarkov(const StyleSettings &settings, const unsigned int nbN
   _L = luaL_newstate();
   luaL_openlibs(_L);
   setRootJsonFromStyle(settings);
-  #ifdef _WIN32
-  _luaMarkovFunction = "../Source/markovSource/markov.lua";
-  #else
-  _luaMarkovFunction = "../../Source/markovSource/markov.lua";
-  #endif
+  _luaMarkovFunction = SOURCEMARKOV;
+  _luaMarkovFunction += "markov.lua";
   _nbNote = nbNote;
   _seed = std::time(nullptr);
 }
@@ -19,11 +16,8 @@ ObjectMarkov::ObjectMarkov(const StyleSettings &settings, const unsigned int nbN
   _L = luaL_newstate();
   luaL_openlibs(_L);
   setRootJsonFromStyle(settings);
-  #ifdef _WIN32
-  _luaMarkovFunction = "../Source/markovSource/markov.lua";
-  #else
-  _luaMarkovFunction = "../../Source/markovSource/markov.lua";
-  #endif
+  _luaMarkovFunction = SOURCEMARKOV;
+  _luaMarkovFunction += "markov.lua";
   _nbNote = nbNote;
   _seed = seed;
 }
@@ -43,12 +37,8 @@ ObjectMarkov::ObjectMarkov(const std::string &styleJson, const unsigned int nbNo
   _L = luaL_newstate();
   luaL_openlibs(_L);
   setRootJsonFromFile(styleJson);
-  #ifdef _WIN32
-  _luaMarkovFunction = "../Source/markovSource/markov.lua";
-  #else
-  _luaMarkovFunction = "../../Source/markovSource/markov.lua";
-  #endif
-
+  _luaMarkovFunction = SOURCEMARKOV;
+  _luaMarkovFunction += "markov.lua";
   _nbNote = nbNote;
   _seed = std::time(nullptr);
 }
@@ -58,12 +48,8 @@ ObjectMarkov::ObjectMarkov(const std::string &styleJson, const unsigned int nbNo
   _L = luaL_newstate();
   luaL_openlibs(_L);
   setRootJsonFromFile(styleJson);
-  #ifdef _WIN32
-  _luaMarkovFunction = "../Source/markovSource/markov.lua";
-  #else
-  _luaMarkovFunction = "../../Source/markovSource/markov.lua";
-  #endif
-
+  _luaMarkovFunction = SOURCEMARKOV;
+  _luaMarkovFunction += "markov.lua";
   _nbNote = nbNote;
   _seed = seed;
 }
@@ -85,6 +71,8 @@ void ObjectMarkov::callLua()
     //std::cerr << "rootJson is null !!" << std::endl;
     return;
   }
+
+
   Json::Reader reader;
   luaL_dofile(_L, _luaMarkovFunction.c_str());
   lua_pcall(_L, 0, 0, 0);
@@ -99,8 +87,9 @@ void ObjectMarkov::callLua()
   //std::cout << "note = " << output << std::endl;
   lua_pushstring(_L, output.c_str());
   lua_pushnumber(_L, _nbNote);
+  lua_pushstring(_L, SOURCEMARKOV);
   //lua_pushnumber(_L, _seed);
-  lua_pcall(_L, 3, 1, 0);
+  lua_pcall(_L, 4, 1, 0);
   if (!lua_isnil(_L, -1))
   {
     if (reader.parse(lua_tostring(_L,-1), _response, false))
