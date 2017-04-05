@@ -191,9 +191,9 @@
             extraCompilerFlags="-I..\JsoncppLibrary\&#10;-I..\LuaLibrary\include">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="1" optimisation="1" targetName="BardeClient"/>
+                       isDebug="1" optimisation="1" targetName="BardeClient" postbuildCommand="xcopy /d /y &quot;$(ProjectDir)..\LuaLibrary\lua53.dll&quot; &quot;$(OutDir)&quot;"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="0" optimisation="3" targetName="BardeClient"/>
+                       isDebug="0" optimisation="3" targetName="BardeClient" postbuildCommand="xcopy /d /y &quot;$(ProjectDir)..\LuaLibrary\lua53.dll&quot; &quot;$(OutDir)&quot;"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="JuceLibraryCode\modules"/>
