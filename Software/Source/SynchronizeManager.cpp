@@ -1,21 +1,19 @@
 /*
   ==============================================================================
 
-    ASoundManager.cpp
-    Created: 13 Mar 2017 1:42:09pm
+    SynchronizeManager.cpp
+    Created: 21 Mar 2017 3:23:00pm
     Author:  Anthony
 
   ==============================================================================
 */
 
-#include "ASoundManager.hh"
+#include "SynchronizeManager.hh"
 
-ASoundManager::ASoundManager()
+SynchronizeManager::SynchronizeManager()
 {
-
 }
 
-ASoundManager::~ASoundManager()
+SynchronizeManager::~SynchronizeManager()
 {
-
 }

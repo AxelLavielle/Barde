@@ -111,7 +111,7 @@ class		Chords
 public:
   Chords();
   ~Chords();
-  std::vector<char>	getChordFromName(const char name);
+  std::vector<char>	getChordFromName(const char name) const;
 
 private:
   std::map<char, std::vector<char> >	_chords;

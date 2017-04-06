@@ -1,21 +1,20 @@
 /*
   ==============================================================================
 
-    ASoundManager.cpp
-    Created: 13 Mar 2017 1:42:09pm
+    HomePage.cpp
+    Created: 21 Mar 2017 2:07:34pm
     Author:  Anthony
 
   ==============================================================================
 */
 
-#include "ASoundManager.hh"
+#include "HomePage.hh"
 
-ASoundManager::ASoundManager()
+HomePage::~HomePage()
 {
-
 }
 
-ASoundManager::~ASoundManager()
+bool HomePage::init()
 {
-
+	return (true);
 }

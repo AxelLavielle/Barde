@@ -12,7 +12,6 @@
 
 Core::Core()
 {
-	_graph = new JuceManager();
 }
 
 Core::~Core()
@@ -26,29 +25,10 @@ int Core::launch(void)
 
 void Core::initialise(const String& commandLine)
 {
-	MidiManager test;
-	MusicGenerator gen;
-	MusicParameters param;
-	
-	test.changeInstrument(1, 5, 0);
-	test.noteOn(1, 38, 100, 0);
-	test.noteOff(1, 38, 100, 500);
-	//test.changeInstrument(4, 25, 200);
-	//test.noteOn(4, 38, 100, 400);
-	//test.noteOff(4, 38, 100, 700);
-	//test.changeInstrument(4, 27, 700);
-	//test.noteOn(4, 38, 100, 800);
-	//test.noteOff(4, 38, 100, 1200);
+	//Player player;
 
-	//test.changeInstrument(16, 128, 1300);	
-	//test.noteOn(16, 38, 100, 1400);
-	//test.noteOff(16, 38, 100, 1800);
-
-	test.createMidi();
-	test.writeToFile("./test.mid");
-	gen.createMusic(param);
-
-	_graph->init();
+	//player.Play();
+	_viewManager.init();
 	// This method is where you should put your application's initialisation code..
 	ignoreUnused(commandLine);
 	//mainWindow = new MainWindow(getApplicationName());

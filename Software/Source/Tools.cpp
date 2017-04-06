@@ -1,21 +1,20 @@
 /*
   ==============================================================================
 
-    ASoundManager.cpp
-    Created: 13 Mar 2017 1:42:09pm
+    Tools.cpp
+    Created: 22 Mar 2017 12:08:06pm
     Author:  Anthony
 
   ==============================================================================
 */
 
-#include "ASoundManager.hh"
+#include "Tools.hh"
 
-ASoundManager::ASoundManager()
+void Tools::sleep(const unsigned int time)
 {
-
-}
-
-ASoundManager::~ASoundManager()
-{
-
+#ifdef __linux__
+	usleep(time);
+#else
+	Sleep(time);
+#endif
 }

@@ -1,60 +1,95 @@
 #include "ObjectMarkov.hh"
 
-ObjectMarkov::ObjectMarkov(std::string styleJson, unsigned int nbNote)
+ObjectMarkov::ObjectMarkov(const StyleSettings &settings, const unsigned int nbNote)
 {
   _L = luaL_newstate();
   luaL_openlibs(_L);
-  _styleJson = styleJson;
-  _luaMarkovFunction = "../../Source/markovSource/markov.lua";
+  setRootJsonFromStyle(settings);
+  _luaMarkovFunction = SOURCEMARKOV;
+  _luaMarkovFunction += "markov.lua";
   _nbNote = nbNote;
   _seed = std::time(nullptr);
 }
 
-ObjectMarkov::ObjectMarkov(std::string styleJson, unsigned int nbNote, unsigned int seed)
+ObjectMarkov::ObjectMarkov(const StyleSettings &settings, const unsigned int nbNote, const unsigned int seed)
 {
   _L = luaL_newstate();
   luaL_openlibs(_L);
-  _styleJson = styleJson;
-  _luaMarkovFunction = "../../Source/markovSource/markov.lua";
+  setRootJsonFromStyle(settings);
+  _luaMarkovFunction = SOURCEMARKOV;
+  _luaMarkovFunction += "markov.lua";
   _nbNote = nbNote;
   _seed = seed;
 }
 
-ObjectMarkov::ObjectMarkov(std::string styleJson, std::string luaMarkovFunction, unsigned int nbNote, unsigned int seed)
+ObjectMarkov::ObjectMarkov(const StyleSettings &settings, const std::string &luaMarkovFunction, unsigned int nbNote, const unsigned int seed)
 {
   _L = luaL_newstate();
   luaL_openlibs(_L);
-  _styleJson = styleJson;
+  setRootJsonFromStyle(settings);
   _luaMarkovFunction = luaMarkovFunction;
   _nbNote = nbNote;
   _seed = seed;
 }
 
-void ObjectMarkov::callLuaFromFile()
+ObjectMarkov::ObjectMarkov(const std::string &styleJson, const unsigned int nbNote)
 {
-  luaL_dofile(_L, _luaMarkovFunction.c_str());
-  Json::Reader reader;
-  std::ifstream style(_styleJson.c_str(), std::ifstream::binary);
-  bool parsingSuccessful = reader.parse(style, _rootJson, false);
-  if (!parsingSuccessful)
+  _L = luaL_newstate();
+  luaL_openlibs(_L);
+  setRootJsonFromFile(styleJson);
+  _luaMarkovFunction = SOURCEMARKOV;
+  _luaMarkovFunction += "markov.lua";
+  _nbNote = nbNote;
+  _seed = std::time(nullptr);
+}
+
+ObjectMarkov::ObjectMarkov(const std::string &styleJson, const unsigned int nbNote, const unsigned int seed)
+{
+  _L = luaL_newstate();
+  luaL_openlibs(_L);
+  setRootJsonFromFile(styleJson);
+  _luaMarkovFunction = SOURCEMARKOV;
+  _luaMarkovFunction += "markov.lua";
+  _nbNote = nbNote;
+  _seed = seed;
+}
+
+ObjectMarkov::ObjectMarkov(const std::string &styleJson, const std::string &luaMarkovFunction, const unsigned int nbNote, const unsigned int seed)
+{
+  _L = luaL_newstate();
+  luaL_openlibs(_L);
+  setRootJsonFromFile(styleJson);
+  _luaMarkovFunction = luaMarkovFunction;
+  _nbNote = nbNote;
+  _seed = seed;
+}
+
+void ObjectMarkov::callLua()
+{
+  if (!_rootJson)
   {
-    // report to the user the failure and their locations in the document.
-    std::cout  << "Failed to parse configuration\n"
-               << reader.getFormattedErrorMessages();
+    //std::cerr << "rootJson is null !!" << std::endl;
     return;
   }
+
+
+  Json::Reader reader;
+  luaL_dofile(_L, _luaMarkovFunction.c_str());
+  lua_pcall(_L, 0, 0, 0);
   //ObjectMarkov::getStyleFromJson(_rootJson["note"]);
 
   lua_getglobal(_L, "generateNote");
   Json::StyledWriter writer;
   std::string output = writer.write(_rootJson["scale"]);
   lua_pushstring(_L, output.c_str());
-
+  //std::cout << "scale = " << output << std::endl;
   output = writer.write(_rootJson["note"]);
+  //std::cout << "note = " << output << std::endl;
   lua_pushstring(_L, output.c_str());
   lua_pushnumber(_L, _nbNote);
-  lua_pushnumber(_L, _seed);
-  lua_call(_L,4,1);
+  lua_pushstring(_L, SOURCEMARKOV);
+  //lua_pushnumber(_L, _seed);
+  lua_pcall(_L, 4, 1, 0);
   if (!lua_isnil(_L, -1))
   {
     if (reader.parse(lua_tostring(_L,-1), _response, false))
@@ -66,7 +101,7 @@ void ObjectMarkov::callLuaFromFile()
   }
   else
   {
-    std::cout << "nothing" << std::endl;
+    //std::cerr << "nothing" << std::endl;
   }
 
 }
@@ -81,12 +116,11 @@ std::vector<std::pair<char, char> >  ObjectMarkov::getVectorFromJson()
   Json::Value tmp = _response;
   std::vector<std::pair<char, char> >  vector;
 
-  vector.push_back(std::pair<char, char>(tmp["note"].asString().c_str()[0], tmp["scale"].asString().c_str()[0]));
-
+  vector.push_back(std::pair<char, char>(atoi(tmp["note"].asString().c_str()), atoi(tmp["scale"].asString().c_str())));
  while (tmp.isMember("next"))
    {
      tmp = tmp["next"];
-     vector.push_back(std::pair<char, char>(tmp["note"].asString().c_str()[0], tmp["scale"].asString().c_str()[0]));
+     vector.push_back(std::pair<char, char>(atoi(tmp["note"].asString().c_str()), atoi(tmp["scale"].asString().c_str())));
 }
   return vector;
 }
@@ -98,16 +132,44 @@ StyleSettings ObjectMarkov::getStyleFromJson()
   Json::Value json = _rootJson["note"];
 
   for (Json::Value::iterator it = json["begin"].begin(); it != json["begin"].end(); ++it)
-    style.addNote(it.key().asString().c_str()[0], (*it).asInt());
+    style.addNote(std::stoi(it.key().asString()), (*it).asInt());
   for (Json::Value::iterator it = json.begin(); it != json.end(); ++it)
   {
     if (it.key().asString() != "begin")
     {
       for (Json::Value::iterator it2 = json[it.key().asString()].begin(); it2 != json[it.key().asString()].end(); ++it2)
       {
-        style.addNoteFromNote(it.key().asString().c_str()[0], it2.key().asString().c_str()[0], (*it2).asInt());
+        style.addNoteFromNote(std::stoi(it.key().asString()), std::stoi(it2.key().asString()), (*it2).asInt());
       }
     }
   }
   return style;
+}
+
+void ObjectMarkov::setRootJsonFromFile(const std::string &styleJson)
+{
+  Json::Reader reader;
+  std::ifstream style(styleJson.c_str(), std::ifstream::binary);
+  bool parsingSuccessful = reader.parse(style, _rootJson, false);
+  if (!parsingSuccessful)
+  {
+    // report to the user the failure and their locations in the document.
+    //std::cerr  << "Failed to parse configuration\n"
+      //         << reader.getFormattedErrorMessages();
+  }
+}
+
+void ObjectMarkov::setRootJsonFromStyle(const StyleSettings &settings)
+{
+  std::map<char, std::pair<int, std::map<char, int> > > style = settings.getParam();
+
+  _rootJson["scale"]["begin"]["5"] = 100;
+  _rootJson["scale"]["5"]["5"] = 100;
+  for (std::map<char, std::pair<int, std::map<char, int> > >::iterator itMap1 = style.begin(); itMap1 != style.end(); ++itMap1)
+  {
+    //_rootJson["note"].append(std::string(1, itMap1->first));
+    _rootJson["note"]["begin"][std::to_string(itMap1->first)] = (itMap1->second).first;
+    for (std::map<char, int>::iterator itMap2 = ((itMap1->second).second).begin(); itMap2 != ((itMap1->second).second).end(); ++itMap2)
+      _rootJson["note"][std::to_string(itMap1->first)][std::to_string(itMap2->first)] = itMap2->second;
+  }
 }
