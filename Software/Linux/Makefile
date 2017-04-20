@@ -72,6 +72,7 @@ OBJECTS := \
   $(JUCE_OBJDIR)/ViewManager_527c33d1.o \
   $(JUCE_OBJDIR)/Chords_8c89bd4e.o \
   $(JUCE_OBJDIR)/Disposition_da31b1aa.o \
+  $(JUCE_OBJDIR)/AI_b8a25e65.o \
   $(JUCE_OBJDIR)/MusicGenerator_b8a25e65.o \
   $(JUCE_OBJDIR)/ObjectMarkov_d034efca.o \
   $(JUCE_OBJDIR)/Resolution_ca4e12e3.o \
@@ -187,6 +188,11 @@ $(JUCE_OBJDIR)/Disposition_da31b1aa.o: ../Source/AI/Disposition.cpp
 $(JUCE_OBJDIR)/MusicGenerator_b8a25e65.o: ../Source/AI/MusicGenerator.cpp
 	-@mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling MusicGenerator.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/AI_b8a25e65.o: ../Source/AI/AI.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling AI.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/ObjectMarkov_d034efca.o: ../Source/AI/ObjectMarkov.cpp
