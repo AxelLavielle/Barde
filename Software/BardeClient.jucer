@@ -23,6 +23,8 @@
         <FILE id="f11e5w" name="ViewManager.hh" compile="0" resource="0" file="Source/ViewManager/ViewManager.hh"/>
       </GROUP>
       <GROUP id="{5444B8A4-FB7A-02ED-7754-175A3C60D033}" name="AI">
+        <FILE id="Y6cQpe" name="AI.hh" compile="0" resource="0" file="Source/AI/AI.hh"/>
+        <FILE id="h00NQQ" name="AI.cpp" compile="1" resource="0" file="Source/AI/AI.cpp"/>
         <FILE id="jqA6BZ" name="Chords.cpp" compile="1" resource="0" file="Source/AI/Chords.cpp"/>
         <FILE id="gRmS1K" name="Chords.hh" compile="0" resource="0" file="Source/AI/Chords.hh"/>
         <FILE id="zdlHC7" name="Disposition.cpp" compile="1" resource="0" file="Source/AI/Disposition.cpp"/>

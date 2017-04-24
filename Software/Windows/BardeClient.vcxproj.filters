@@ -418,6 +418,9 @@
     <ClCompile Include="..\Source\ViewManager\ViewManager.cpp">
       <Filter>BardeClient\Source\ViewManager</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\AI\AI.cpp">
+      <Filter>BardeClient\Source\AI</Filter>
+    </ClCompile>
     <ClCompile Include="..\Source\AI\Chords.cpp">
       <Filter>BardeClient\Source\AI</Filter>
     </ClCompile>
@@ -2285,6 +2288,9 @@
     </ClInclude>
     <ClInclude Include="..\Source\ViewManager\ViewManager.hh">
       <Filter>BardeClient\Source\ViewManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\AI\AI.hh">
+      <Filter>BardeClient\Source\AI</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\AI\Chords.hh">
       <Filter>BardeClient\Source\AI</Filter>
