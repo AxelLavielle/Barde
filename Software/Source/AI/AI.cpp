@@ -123,17 +123,22 @@ void			AI::classifyNotes(const std::vector<char> &chord, std::vector<char> *stro
     }
 }
 
-char			AI::searchNoteFromDist(char note, char dist)
+char			AI::searchNoteFromDistWhite(char note, char dist)
 {
   while (dist != 0)
     {
-      if (note != B && note != E)
-	note += 16;
-      else
-	note += 8;
+      note += (note != B && note != E) ? 16 : 8;
       if (note == END)
 	note = C;
       dist--;
     }
+  return (note);
+}
+
+char			AI::searchNoteFromDist(char note, char dist)
+{
+  note += dist * 8;
+  if (note >= END)
+    note -= END;
   return (note);
 }

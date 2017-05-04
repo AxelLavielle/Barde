@@ -1,15 +1,5 @@
 #include		"Resolution.hh"
 
-Resolution::Resolution()
-{
-
-}
-
-Resolution::~Resolution()
-{
-
-}
-
 char	Resolution::which_state(const char note, const std::vector<char> &strong, const std::vector<char> &medium)
 {
   unsigned char	i;
