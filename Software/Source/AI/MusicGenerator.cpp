@@ -54,15 +54,15 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   markovChords.push_back(markovChords[0]);
   markovChords.push_back(markovChords[0]);
 
-  markovChords.push_back(std::make_pair(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 3) + markovChords[0].first % 8, 4));
-  markovChords.push_back(std::make_pair(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 3) + markovChords[0].first % 8, 4));
+  markovChords.push_back(std::make_pair(AI::searchNoteFromDistWhite((markovChords[0].first / 8 * 8), 3) + markovChords[0].first % 8, 4));
+  markovChords.push_back(std::make_pair(AI::searchNoteFromDistWhite((markovChords[0].first / 8 * 8), 3) + markovChords[0].first % 8, 4));
   markovChords.push_back(markovChords[0]);
   markovChords.push_back(markovChords[0]);
 
-  markovChords.push_back(std::make_pair(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 4) + markovChords[0].first % 8, 4));
-  markovChords.push_back(std::make_pair(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 3) + markovChords[0].first % 8, 4));
+  markovChords.push_back(std::make_pair(AI::searchNoteFromDistWhite((markovChords[0].first / 8 * 8), 4) + markovChords[0].first % 8, 4));
+  markovChords.push_back(std::make_pair(AI::searchNoteFromDistWhite((markovChords[0].first / 8 * 8), 3) + markovChords[0].first % 8, 4));
   markovChords.push_back(markovChords[0]);
-  markovChords.push_back(std::make_pair(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 4) + markovChords[0].first % 8, 4));
+  markovChords.push_back(std::make_pair(AI::searchNoteFromDistWhite((markovChords[0].first / 8 * 8), 4) + markovChords[0].first % 8, 4));
 
   Disposition::placeChords(parameters, markovChords);
 

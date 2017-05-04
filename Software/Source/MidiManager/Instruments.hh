@@ -11,7 +11,12 @@
 #ifndef INSTRUMENTS_HH_INCLUDED
 #define INSTRUMENTS_HH_INCLUDED
 
+/*!
+ * \file Instrument.hh
+ * \brief File containing the enums for the instruments and their ID
+ */
 
+/*! Numero d'identification de l'instrument */
 enum	NbInstrument
   {
     ACOUSTICGRANDPIANO		=	1,
@@ -144,6 +149,7 @@ enum	NbInstrument
     GUNSHOT			=	128
   };
 
+/*! Numero d'identification de l'instrument de batterie */
 enum	Drums
   {
     BASSDRUM2			=	35,
@@ -194,7 +200,5 @@ enum	Drums
     MUTETRIANGLE		=	80,
     OPENTRIANGLE		=	81
   };
-
-
 
 #endif  // INSTRUMENTS_HH_INCLUDED
