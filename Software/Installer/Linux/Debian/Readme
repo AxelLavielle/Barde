@@ -1,0 +1,43 @@
+.deb Control file :
+
+Package : name of package
+Version : verison number
+Section : base
+Priority : optional
+Depends : dependance de lib
+Architecture : all
+Maintainer : creator of the .deb package
+Description : Description of the package
+Homepage : website of the package
+
+--------------------------------------
+
+- Barde/
+--- DEBIAN/
+----- control // config file
+----- preinst // preinstallation script if needed must have chmod 755
+----- postinst // postinstallation script if needed must have chmod 755
+----- prerm // preremove script if needed must have chmod 755
+----- postrm // postremove script if needed must have chmod 755
+--- usr/
+----- bin/
+------- votre_programme
+----- share/
+------- app-instal/
+--------- icons/
+------------barde.png
+
+-----------------------------------------------------
+Compilation
+
+sudo dpkg-deb --build nom_du_paquet
+
+Installation
+
+sudo dpkg -i nom_du_paquet.deb
+
+Remove
+
+sudo apt-get remove nom_du_paquet
+
+
