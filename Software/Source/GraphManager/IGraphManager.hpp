@@ -16,6 +16,10 @@ class IGraphManager
 public:
 	virtual ~IGraphManager() {};
 	virtual int init(void) = 0;
+	virtual int init(const std::string &winName, const unsigned int width, const unsigned int height) = 0;
+	virtual void setWinHeight(const unsigned int height) = 0;
+	virtual void setWinWidth(const unsigned int width) = 0;
+	virtual void setWinName(const std::string &name) = 0;
 };
 
 

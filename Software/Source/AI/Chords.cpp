@@ -537,7 +537,7 @@ Chords::~Chords()
 
 }
 
-std::vector<char>	Chords::getChordFromName(const char name)
+std::vector<char>	Chords::getChordFromName(const char name) const
 {
-  return (_chords[name]);
+  return (_chords.at(name));
 }
