@@ -1,28 +1,34 @@
 #include "ObjectMarkov.hh"
 
-ObjectMarkov::ObjectMarkov(const StyleSettings &settings, const unsigned int nbNote)
+ObjectMarkov::ObjectMarkov(const StyleSettings &settings, unsigned int nbNote)
 {
   _L = luaL_newstate();
   luaL_openlibs(_L);
   setRootJsonFromStyle(settings);
-  _luaMarkovFunction = SOURCEMARKOV;
-  _luaMarkovFunction += "markov.lua";
+  #ifdef _WIN32
+  _luaMarkovFunction = "../Source/markovSource/markov.lua";
+  #else
+  _luaMarkovFunction = "../../Source/markovSource/markov.lua";
+  #endif
   _nbNote = nbNote;
   _seed = std::time(nullptr);
 }
 
-ObjectMarkov::ObjectMarkov(const StyleSettings &settings, const unsigned int nbNote, const unsigned int seed)
+ObjectMarkov::ObjectMarkov(const StyleSettings &settings, unsigned int nbNote, unsigned int seed)
 {
   _L = luaL_newstate();
   luaL_openlibs(_L);
   setRootJsonFromStyle(settings);
-  _luaMarkovFunction = SOURCEMARKOV;
-  _luaMarkovFunction += "markov.lua";
+  #ifdef _WIN32
+  _luaMarkovFunction = "../Source/markovSource/markov.lua";
+  #else
+  _luaMarkovFunction = "../../Source/markovSource/markov.lua";
+  #endif
   _nbNote = nbNote;
   _seed = seed;
 }
 
-ObjectMarkov::ObjectMarkov(const StyleSettings &settings, const std::string &luaMarkovFunction, unsigned int nbNote, const unsigned int seed)
+ObjectMarkov::ObjectMarkov(const StyleSettings &settings, std::string luaMarkovFunction, unsigned int nbNote, unsigned int seed)
 {
   _L = luaL_newstate();
   luaL_openlibs(_L);
@@ -32,29 +38,37 @@ ObjectMarkov::ObjectMarkov(const StyleSettings &settings, const std::string &lua
   _seed = seed;
 }
 
-ObjectMarkov::ObjectMarkov(const std::string &styleJson, const unsigned int nbNote)
+ObjectMarkov::ObjectMarkov(std::string styleJson, unsigned int nbNote)
 {
   _L = luaL_newstate();
   luaL_openlibs(_L);
   setRootJsonFromFile(styleJson);
-  _luaMarkovFunction = SOURCEMARKOV;
-  _luaMarkovFunction += "markov.lua";
+  #ifdef _WIN32
+  _luaMarkovFunction = "../Source/markovSource/markov.lua";
+  #else
+  _luaMarkovFunction = "../../Source/markovSource/markov.lua";
+  #endif
+
   _nbNote = nbNote;
   _seed = std::time(nullptr);
 }
 
-ObjectMarkov::ObjectMarkov(const std::string &styleJson, const unsigned int nbNote, const unsigned int seed)
+ObjectMarkov::ObjectMarkov(std::string styleJson, unsigned int nbNote, unsigned int seed)
 {
   _L = luaL_newstate();
   luaL_openlibs(_L);
   setRootJsonFromFile(styleJson);
-  _luaMarkovFunction = SOURCEMARKOV;
-  _luaMarkovFunction += "markov.lua";
+  #ifdef _WIN32
+  _luaMarkovFunction = "../Source/markovSource/markov.lua";
+  #else
+  _luaMarkovFunction = "../../Source/markovSource/markov.lua";
+  #endif
+
   _nbNote = nbNote;
   _seed = seed;
 }
 
-ObjectMarkov::ObjectMarkov(const std::string &styleJson, const std::string &luaMarkovFunction, const unsigned int nbNote, const unsigned int seed)
+ObjectMarkov::ObjectMarkov(std::string styleJson, std::string luaMarkovFunction, unsigned int nbNote, unsigned int seed)
 {
   _L = luaL_newstate();
   luaL_openlibs(_L);
@@ -64,15 +78,13 @@ ObjectMarkov::ObjectMarkov(const std::string &styleJson, const std::string &luaM
   _seed = seed;
 }
 
-void ObjectMarkov::callLua()
+/*void ObjectMarkov::callLua()
 {
   if (!_rootJson)
   {
     //std::cerr << "rootJson is null !!" << std::endl;
     return;
   }
-
-
   Json::Reader reader;
   luaL_dofile(_L, _luaMarkovFunction.c_str());
   lua_pcall(_L, 0, 0, 0);
@@ -87,9 +99,8 @@ void ObjectMarkov::callLua()
   //std::cout << "note = " << output << std::endl;
   lua_pushstring(_L, output.c_str());
   lua_pushnumber(_L, _nbNote);
-  lua_pushstring(_L, SOURCEMARKOV);
   //lua_pushnumber(_L, _seed);
-  lua_pcall(_L, 4, 1, 0);
+  lua_pcall(_L, 3, 1, 0);
   if (!lua_isnil(_L, -1))
   {
     if (reader.parse(lua_tostring(_L,-1), _response, false))
@@ -103,6 +114,64 @@ void ObjectMarkov::callLua()
   {
     //std::cerr << "nothing" << std::endl;
   }
+
+}*/
+
+void ObjectMarkov::callLua()
+{
+	if (!_rootJson)
+	{
+		//std::cerr << "rootJson is null !!" << std::endl;
+		return;
+	}
+	Json::Reader reader;
+	luaL_dofile(_L, _luaMarkovFunction.c_str());
+	lua_pcall(_L, 0, 0, 0);
+	Json::Value jsonNote = _rootJson["note"];
+	lua_newtable(_L);
+	for (Json::Value::iterator it = jsonNote.begin(); it != jsonNote.end(); ++it)
+	{
+		lua_newtable(_L);
+		for (Json::Value::iterator it2 = jsonNote[it.key().asString()].begin(); it2 != jsonNote[it.key().asString()].end(); ++it2)
+		{
+			lua_pushinteger(_L, (*it2).asInt());
+			lua_setfield(_L, -2, it2.key().asString().c_str());
+		}
+		lua_setfield(_L, -2, it.key().asString().c_str());
+	}
+	lua_setglobal(_L, "note");
+
+	Json::Value jsonScale = _rootJson["scale"];
+	lua_newtable(_L);
+	for (Json::Value::iterator it = jsonScale.begin(); it != jsonScale.end(); ++it)
+	{
+		lua_newtable(_L);
+		for (Json::Value::iterator it2 = jsonScale[it.key().asString()].begin(); it2 != jsonScale[it.key().asString()].end(); ++it2)
+		{
+			lua_pushinteger(_L, (*it2).asInt());
+			lua_setfield(_L, -2, it2.key().asString().c_str());
+		}
+		lua_setfield(_L, -2, it.key().asString().c_str());
+	}
+	lua_setglobal(_L, "scale");
+
+	lua_getglobal(_L, "generateNoteWithGlobal");
+	lua_pushnumber(_L, _nbNote);
+
+	lua_pcall(_L, 1, 1, 0);
+	if (!lua_isnil(_L, -1))
+	{
+		if (reader.parse(lua_tostring(_L, -1), _response, false))
+		{
+			//std::vector<std::pair<char, char> > v = ObjectMarkov::getVectorFromJson(test);
+			//StyleSettings style =  ObjectMarkov::getStyleFromJson(_rootJson["note"]);
+		}
+		lua_pop(_L, 1);
+	}
+	else
+	{
+		//std::cerr << "nothing" << std::endl;
+	}
 
 }
 
@@ -146,7 +215,7 @@ StyleSettings ObjectMarkov::getStyleFromJson()
   return style;
 }
 
-void ObjectMarkov::setRootJsonFromFile(const std::string &styleJson)
+void ObjectMarkov::setRootJsonFromFile(std::string styleJson)
 {
   Json::Reader reader;
   std::ifstream style(styleJson.c_str(), std::ifstream::binary);
