@@ -188,3 +188,6 @@ ipch/
 *.cachefile
 *.VC.db
 *.VC.V
+
+####################
+DocBarde/
