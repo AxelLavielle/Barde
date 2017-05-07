@@ -12,13 +12,17 @@
 #define PLAYER_HH_INCLUDED
 
 #include "AI/MusicGenerator.hh"
+#include "SoundManager/JuceSound.hh"
 
 class Player
 {
 public:
+	Player();
+	~Player();
+	void Play();
 
 private:
-
+	ISoundManager		*_soundManager;
 };
 
 #endif  // PLAYER_HH_INCLUDED

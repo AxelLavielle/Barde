@@ -1,21 +1,15 @@
 /*
   ==============================================================================
 
-    ASoundManager.cpp
-    Created: 13 Mar 2017 1:42:09pm
+    AView.cpp
+    Created: 21 Mar 2017 2:07:07pm
     Author:  Anthony
 
   ==============================================================================
 */
 
-#include "ASoundManager.hh"
+#include "AView.hh"
 
-ASoundManager::ASoundManager()
+AView::~AView()
 {
-
-}
-
-ASoundManager::~ASoundManager()
-{
-
 }

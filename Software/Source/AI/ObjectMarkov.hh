@@ -19,16 +19,18 @@ extern "C" {
 class ObjectMarkov
 {
 public:
-  ObjectMarkov(const StyleSettings &settings, unsigned int nbNote);
-  ObjectMarkov(const StyleSettings &settings, unsigned int nbNote, unsigned int seed);
-  ObjectMarkov(const StyleSettings &settings, std::string luaMarkovFunction, unsigned int nbNote, unsigned int seed);
-  ObjectMarkov(std::string styleJson, unsigned int nbNote);
-  ObjectMarkov(std::string styleJson, unsigned int nbNote, unsigned int seed);
-  ObjectMarkov(std::string styleJson, std::string luaMarkovFunction, unsigned int nbNote, unsigned int seed);
+  ObjectMarkov(const StyleSettings &settings, const unsigned int nbNote);
+  ObjectMarkov(const StyleSettings &settings, const unsigned int nbNote, const unsigned int seed);
+  ObjectMarkov(const StyleSettings &settings, const std::string &luaMarkovFunction, const unsigned int nbNote, unsigned int seed);
+  ObjectMarkov(const std::string &styleJson, const unsigned int nbNote);
+  ObjectMarkov(const std::string &styleJson, const unsigned int nbNote, const unsigned int seed);
+  ObjectMarkov(const std::string &styleJson, const std::string &luaMarkovFunction, const unsigned int nbNote, const unsigned int seed);
   ~ObjectMarkov();
-  void                                  callLuaFromFile();
+  void                                  callLua();
   std::vector<std::pair<char, char> >   getVectorFromJson();
   StyleSettings                         getStyleFromJson();
+  void                                  setRootJsonFromFile(const std::string &styleJson);
+  void                                  setRootJsonFromStyle(const StyleSettings &settings);
 private:
   std::string                           _styleJson;
   lua_State*                            _L;

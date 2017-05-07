@@ -16,7 +16,7 @@
 class MainWindow : public  DocumentWindow
 {
 public:
-	MainWindow(const std::string name);
+	MainWindow(const std::string &name);
 	void closeButtonPressed() override;
 	~MainWindow();
 

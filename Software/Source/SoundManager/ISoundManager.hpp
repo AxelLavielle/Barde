@@ -10,8 +10,19 @@
 
 #ifndef ISOUNDMANAGER_HPP_INCLUDED
 #define ISOUNDMANAGER_HPP_INCLUDED
+#include <iostream>
+#include "../MidiManager/Midi.hh"
 
-
+class ISoundManager
+{
+public:
+	virtual ~ISoundManager() {};
+	virtual bool play(const Midi &midi) = 0;
+	virtual bool stop(const Midi &midi) const = 0;
+	virtual bool pause(const Midi &midi) const = 0;
+	virtual bool setVolume(const int volume) = 0;
+	virtual bool stopAll() const = 0;
+};
 
 
 

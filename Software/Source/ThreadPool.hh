@@ -1,21 +1,18 @@
 /*
   ==============================================================================
 
-    ASoundManager.cpp
-    Created: 13 Mar 2017 1:42:09pm
+    ThreadPool.h
+    Created: 23 Mar 2017 11:34:30am
     Author:  Anthony
 
   ==============================================================================
 */
 
-#include "ASoundManager.hh"
+#ifndef THREADPOOL_HH_INCLUDED
+#define THREADPOOL_HH_INCLUDED
 
-ASoundManager::ASoundManager()
-{
 
-}
 
-ASoundManager::~ASoundManager()
-{
 
-}
+
+#endif  // THREADPOOL_HH_INCLUDED

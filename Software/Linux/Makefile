@@ -33,8 +33,8 @@ ifeq ($(CONFIG),Debug)
     TARGET_ARCH := -march=native
   endif
 
-  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DDEBUG=1 -D_DEBUG=1 -DJUCER_LINUX_MAKE_46060D4=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags alsa freetype2 libcurl x11 xext xinerama) -pthread -I../JuceLibraryCode -I../JuceLibraryCode/modules $(CPPFLAGS)
-  JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -g -ggdb -O0 -I../JsoncppLibrary/ -I../LuaLibrary/include $(CFLAGS)
+  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DDEBUG=1 -D_DEBUG=1 -DSOURCEMARKOV=\"${CURDIR}/../Source/markovSource/\" -DJUCER_LINUX_MAKE_46060D4=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags alsa freetype2 libcurl x11 xext xinerama) -pthread -I../JuceLibraryCode -I../JuceLibraryCode/modules $(CPPFLAGS)
+  JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -g -ggdb -O0 -I../JsoncppLibrary/ -I../LuaLibrary/include -W -Wall -Wextra $(CFLAGS)
   JUCE_CXXFLAGS += $(JUCE_CFLAGS) -std=c++11 $(CXXFLAGS)
   JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) $(shell pkg-config --libs alsa freetype2 libcurl x11 xext xinerama) -lGL -ldl -lpthread -lrt -llua -L../LuaLibrary $(LDFLAGS)
 
@@ -53,8 +53,8 @@ ifeq ($(CONFIG),Release)
     TARGET_ARCH := -march=native
   endif
 
-  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DNDEBUG=1 -DJUCER_LINUX_MAKE_46060D4=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags alsa freetype2 libcurl x11 xext xinerama) -pthread -I../JuceLibraryCode -I../JuceLibraryCode/modules $(CPPFLAGS)
-  JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -O3 -I../JsoncppLibrary/ -I../LuaLibrary/include $(CFLAGS)
+  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DNDEBUG=1 -DSOURCEMARKOV=\"${CURDIR}/../Source/markovSource/\" -DJUCER_LINUX_MAKE_46060D4=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags alsa freetype2 libcurl x11 xext xinerama) -pthread -I../JuceLibraryCode -I../JuceLibraryCode/modules $(CPPFLAGS)
+  JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -O3 -I../JsoncppLibrary/ -I../LuaLibrary/include -W -Wall -Wextra $(CFLAGS)
   JUCE_CXXFLAGS += $(JUCE_CFLAGS) -std=c++11 $(CXXFLAGS)
   JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) -fvisibility=hidden $(shell pkg-config --libs alsa freetype2 libcurl x11 xext xinerama) -lGL -ldl -lpthread -lrt -llua -L../LuaLibrary $(LDFLAGS)
 
@@ -64,6 +64,12 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS := \
+  $(JUCE_OBJDIR)/ThreadPool_dd677260.o \
+  $(JUCE_OBJDIR)/Tools_90322e8b.o \
+  $(JUCE_OBJDIR)/SynchronizeManager_e9a9ccd7.o \
+  $(JUCE_OBJDIR)/AView_4c0b412f.o \
+  $(JUCE_OBJDIR)/HomePage_9fb9146f.o \
+  $(JUCE_OBJDIR)/ViewManager_527c33d1.o \
   $(JUCE_OBJDIR)/Chords_8c89bd4e.o \
   $(JUCE_OBJDIR)/Disposition_da31b1aa.o \
   $(JUCE_OBJDIR)/MusicGenerator_b8a25e65.o \
@@ -137,6 +143,36 @@ clean:
 strip:
 	@echo Stripping BardeClient
 	-@$(STRIP) --strip-unneeded $(JUCE_OUTDIR)/$(TARGET)
+
+$(JUCE_OBJDIR)/ThreadPool_dd677260.o: ../Source/ThreadPool.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ThreadPool.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/Tools_90322e8b.o: ../Source/Tools.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Tools.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/SynchronizeManager_e9a9ccd7.o: ../Source/SynchronizeManager.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling SynchronizeManager.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/AView_4c0b412f.o: ../Source/ViewManager/AView.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling AView.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/HomePage_9fb9146f.o: ../Source/ViewManager/HomePage.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling HomePage.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ViewManager_527c33d1.o: ../Source/ViewManager/ViewManager.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ViewManager.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/Chords_8c89bd4e.o: ../Source/AI/Chords.cpp
 	-@mkdir -p $(JUCE_OBJDIR)
