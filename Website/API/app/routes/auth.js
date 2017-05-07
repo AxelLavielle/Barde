@@ -4,12 +4,6 @@
  * barde-api - Created on 14/03/2017
  */
 
-/**
- * @apiDefine Auth Authentification
- *
- * All routes for authentification
- */
-
 var jwt        = require('jwt-simple');
 var config     = require('../../config/var');
 var User       = require('../models/user');
@@ -71,10 +65,12 @@ module.exports = function (apiRoutes, passport) {
  */
 function register(req, res, next) {
 
+    console.log(req.body);
+
     if (!req.body.email) {
-        res.status(400).send({msg: "No content", data: {message: "Email cannot be empty."}});
+        res.status(400).send({msg: "No content", data: {message: "Vous devez inscrire votre email."}});
     } else if (!req.body.email) {
-        res.status(400).send({msg: "No content", data: {message: "Password cannot be empty."}});
+        res.status(400).send({msg: "No content", data: {message: "Vous devez inscrire votre mot de passe."}});
     } else {
         var newUser = new User({
             email: req.body.email,
@@ -82,17 +78,13 @@ function register(req, res, next) {
         });
 
         newUser.save(function (err) {
-
+            console.log(err);
             if (err) {
-                res.status(409).send({
-                    msg: "Content already exists",
-                    data: {message: "The email address you have used is already registered."}
-                });
-                return next(err);
+                res.status(409).send({msg: "Content already exists", data: {message: "L'utilisateur existe déjà."}});
             }
             res.status(200).send({
                 msg: "Content created",
-                data: {message: "You are now registered."}
+                data: {message: "Votre inscription a bien été pris en compte."}
             });
         });
     }
@@ -136,6 +128,8 @@ function register(req, res, next) {
  *     }
  */
 function login(req, res, next) {
+
+    console.log(req.body);
 
     User.findOne({
         email: req.body.email
