@@ -1,7 +1,7 @@
 /**
  * APLT
  * < arnaud perrault />
- * Admin - Created on 13/03/2017
+ * barde-dash - Created on 13/03/2017
  */
 
 var DashboardServices = angular.module('dashboard.services', []);
