@@ -1,5 +1,5 @@
 
-local json = dofile("../../Source/markovSource/dkjson.lua")
+local json = nil;
 
 local markov = {}
 
@@ -7,6 +7,22 @@ local probScale = {}
 local probNote = {}
 
 local node = nil
+
+local function initLib(source)
+  local popen_status, popen_result = pcall(io.popen, "")
+  if popen_status then
+      popen_result:close()
+      local raw_os_name = io.popen('uname -s','r'):read('*l')
+
+      if (raw_os_name) then
+        json = dofile("../../Source/markovSource/dkjson.lua")
+      else
+        json = dofile("../Source/markovSource/dkjson.lua")
+      end
+    else
+      json = dofile("../Source/markovSource/dkjson.lua")
+    end
+end
 
 local function addNode(actualNode)
   if node == nil then
@@ -46,12 +62,12 @@ local function nextNode(actualScale, actualNote)
   return tmpNode
 end
 
-function generateNote(scale, note, nbNote, randomValue)
+function generateNote(scale, note, nbNote, sourceMarkov)
+  json = dofile(sourceMarkov .. "dkjson.lua")
   scale = json.decode(scale)
   note = json.decode(note)
-  math.randomseed(randomValue)
-  probScale = scale;
-  probNote = note;
+  probScale = scale
+  probNote = note
   actualScale = "begin"
   actualNote = "begin"
   local i = 0

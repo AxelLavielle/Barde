@@ -10,9 +10,19 @@
 
 #ifndef ASOUNDMANAGER_HH_INCLUDED
 #define ASOUNDMANAGER_HH_INCLUDED
+#include "ISoundManager.hpp"
 
-
-
+class ASoundManager : public ISoundManager
+{
+public:
+	ASoundManager();
+	virtual ~ASoundManager();
+	virtual bool play(const Midi &midi) = 0;
+	virtual bool stop(const Midi &midi) const = 0;
+	virtual bool pause(const Midi &midi) const = 0;
+	virtual bool setVolume(const int volume) = 0;
+	virtual bool stopAll() const = 0;
+};
 
 
 #endif  // ASOUNDMANAGER_HH_INCLUDED

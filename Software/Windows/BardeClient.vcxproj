@@ -58,7 +58,7 @@
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <AdditionalIncludeDirectories>..\JuceLibraryCode;..\JuceLibraryCode\modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;JUCER_VS2015_B3A83A63=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;SOURCEMARKOV=&quot;$(ProjectDir.Replace('\','/'))../Source/markovSource/&quot;;JUCER_VS2015_B3A83A63=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader/>
@@ -89,6 +89,9 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <OutputFile>$(IntDir)\BardeClient.bsc</OutputFile>
     </Bscmake>
+    <PostBuildEvent>
+      <Command>xcopy /d /y &quot;$(ProjectDir)..\LuaLibrary\lua53.dll&quot; &quot;$(OutDir)&quot;</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
@@ -101,7 +104,7 @@
     <ClCompile>
       <Optimization>Full</Optimization>
       <AdditionalIncludeDirectories>..\JuceLibraryCode;..\JuceLibraryCode\modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;JUCER_VS2015_B3A83A63=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;SOURCEMARKOV=&quot;$(ProjectDir.Replace('\','/'))../Source/markovSource/&quot;;JUCER_VS2015_B3A83A63=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader/>
@@ -133,8 +136,17 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <OutputFile>$(IntDir)\BardeClient.bsc</OutputFile>
     </Bscmake>
+    <PostBuildEvent>
+      <Command>xcopy /d /y &quot;$(ProjectDir)..\LuaLibrary\lua53.dll&quot; &quot;$(OutDir)&quot;</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Source\ThreadPool.cpp"/>
+    <ClCompile Include="..\Source\Tools.cpp"/>
+    <ClCompile Include="..\Source\SynchronizeManager.cpp"/>
+    <ClCompile Include="..\Source\ViewManager\AView.cpp"/>
+    <ClCompile Include="..\Source\ViewManager\HomePage.cpp"/>
+    <ClCompile Include="..\Source\ViewManager\ViewManager.cpp"/>
     <ClCompile Include="..\Source\AI\Chords.cpp"/>
     <ClCompile Include="..\Source\AI\Disposition.cpp"/>
     <ClCompile Include="..\Source\AI\MusicGenerator.cpp"/>
@@ -1755,6 +1767,13 @@
     <ClCompile Include="..\JuceLibraryCode\juce_video.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\ThreadPool.hh"/>
+    <ClInclude Include="..\Source\Tools.hh"/>
+    <ClInclude Include="..\Source\SynchronizeManager.hh"/>
+    <ClInclude Include="..\Source\ViewManager\AView.hh"/>
+    <ClInclude Include="..\Source\ViewManager\HomePage.hh"/>
+    <ClInclude Include="..\Source\ViewManager\IView.hpp"/>
+    <ClInclude Include="..\Source\ViewManager\ViewManager.hh"/>
     <ClInclude Include="..\Source\AI\Chords.hh"/>
     <ClInclude Include="..\Source\AI\Disposition.hh"/>
     <ClInclude Include="..\Source\AI\MusicGenerator.hh"/>
@@ -2415,9 +2434,6 @@
     <ClInclude Include="..\JuceLibraryCode\JuceHeader.h"/>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Source\AI\blues.json"/>
-    <None Include="..\Source\AI\dkjson.lua"/>
-    <None Include="..\Source\AI\markov.lua"/>
     <None Include="..\Source\AI\people.json"/>
     <None Include="..\Source\Ressources\back.png"/>
     <None Include="..\Source\Ressources\logo.png"/>

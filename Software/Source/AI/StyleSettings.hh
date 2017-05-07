@@ -8,7 +8,7 @@ class		StyleSettings
 {
 public:
   StyleSettings();
-  StyleSettings(StyleSettings &old);
+  StyleSettings(const StyleSettings &old);
   ~StyleSettings();
   void		addNote(const char noteName, const int noteProba);
   void		addNoteFromNote(const char baseNote, const char noteName, const int noteProba);

@@ -8,11 +8,11 @@
   ==============================================================================
 */
 
-#ifndef CONFIGURATION_H_INCLUDED
-#define CONFIGURATION_H_INCLUDED
+#ifndef CONFIGURATION_HH_INCLUDED
+#define CONFIGURATION_HH_INCLUDED
 
 
 
 
 
-#endif  // CONFIGURATION_H_INCLUDED
+#endif  // CONFIGURATION_HH_INCLUDED

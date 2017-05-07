@@ -21,8 +21,9 @@ MidiManager::~MidiManager()
 void MidiManager::noteOn(const int channel, const int noteNumber, const float velocity, const double time) noexcept
 {
 	MidiMessage message = MidiMessage::noteOn(channel, noteNumber, (uint8)velocity);
+
 	message.setTimeStamp(time);
-	addMessageToList(message);
+	//addMessageToList(message);
 	_midiSequence.addEvent(message);
 	_midiSequence.updateMatchedPairs();
 }
@@ -33,7 +34,7 @@ void MidiManager::noteOn(const Instrument & instrument, const int noteNumber, co
 
 	changeInstrument(instrument, time);
 	message.setTimeStamp(time);
-	addMessageToList(message);
+	//addMessageToList(message);
 	_midiSequence.addEvent(message);
 	_midiSequence.updateMatchedPairs();
 }
@@ -41,9 +42,9 @@ void MidiManager::noteOn(const Instrument & instrument, const int noteNumber, co
 void MidiManager::noteOff(const int channel, const int noteNumber, const float velocity, const double time) noexcept
 {
 	MidiMessage message = MidiMessage::noteOff(channel, noteNumber, (uint8)velocity);
-	
+
 	message.setTimeStamp(time);
-	addMessageToList(message);
+	//addMessageToList(message);
 	_midiSequence.addEvent(message);
 	//_midiSequence.updateMatchedPairs();
 }
@@ -54,27 +55,50 @@ void MidiManager::noteOff(const Instrument & instrument, const int noteNumber, c
 
 	changeInstrument(instrument, time);
 	message.setTimeStamp(time);
-	addMessageToList(message);
+	//addMessageToList(message);
 	_midiSequence.addEvent(message);
 	//_midiSequence.updateMatchedPairs();
 }
 
 
-Midi MidiManager::createMidi()
+Midi MidiManager::createMidi(const double time)
 {
-	MemoryOutputStream	midiStream;
 	MidiMessage			message;
 	Midi				midi;
 
 	message = MidiMessage::endOfTrack();
-	//message.setTimeStamp();//MANQUE LE TEMPS
-	addMessageToList(message);
+	message.setTimeStamp(time);
+	//addMessageToList(message);
 	_midiSequence.addEvent(message);
 	_midiBuff.addTrack(_midiSequence);
-	_midiBuff.writeTo(midiStream, 1);
-	midi.setMidiSize(midiStream.getDataSize());
-	midi.setMidiArray((char*)midiStream.getData());
+	//_midiBuff.setTicksPerQuarterNote(4); // 80 tick dans une minute
+
+	//MidiOutput *midiOutput;
+	//midiOutput = MidiOutput::openDevice(0);
+	//std::cout << "nombre of event " << _midiSequence.getNumEvents() << std::endl;
+	//for (int i = 0; i<_midiSequence.getNumEvents(); i++)
+	//{
+	//	/*std::cout << "coucuo " << (_midiSequence.getEventPointer(i)->message) << std::endl;*/
+	//	midiOutput->sendMessageNow((_midiSequence.getEventPointer(i)->message));
+	//}
+
+	//_midiBuff.convertTimestampTicksToSeconds();
+	_midiBuff.writeTo(_midiStream, 1);
+	midi.setMidiSize(_midiStream.getDataSize());
+	midi.setMidiArray((char *)_midiStream.getData());
+	//midi.setMidiArray((char *)std::memcpy(midi.getMidiArray(), midiStream.getData(), midiStream.getDataSize()));
 	_midiSequence.clear();
+
+
+	//MidiFile			midiBuff;
+	//MemoryInputStream	stream(midi.getMidiArray(), midi.getMidiSize(), false);
+
+	//midiBuff.readFrom(stream);
+	//if (midiBuff.getNumTracks() > 0)
+	//	exit(1);
+
+
+	//std::cout << "LALALALA = " << Time::getHighResolutionTicksPerSecond() << std::endl;
 	return (midi);
 }
 
@@ -90,12 +114,22 @@ void		MidiManager::writeToFile(const std::string &filePath)
 	//file.write(_midi.getMidiArray(), _midi.getMidiSize());
 }
 
-void MidiManager::setTempo(const unsigned int bpm, const double time)
+void MidiManager::setSignature(const unsigned int numerator, const unsigned int denominator, const double time)
 {
-	MidiMessage message = MidiMessage::tempoMetaEvent(bpm);
+	MidiMessage message = MidiMessage::timeSignatureMetaEvent(numerator, denominator);
 
 	message.setTimeStamp(time);
 	_midiSequence.addEvent(message);
+}
+
+void MidiManager::setTempo(const unsigned int, const double)
+{
+	//MidiMessage message = MidiMessage::tempoMetaEvent(1000000);// On dit que 1 quarterNote dure 1 min
+
+	//message.setTimeStamp(time);
+	//setSignature(4, 4, 0);
+	//std::cout << "Tick Lenght ===" << message.getTempoMetaEventTickLength(message.getTimeStamp()) << std::endl;
+	//_midiSequence.addEvent(message);
 }
 
 void MidiManager::changeInstrument(const int channel, const int instrumentNb, const double time)
@@ -151,9 +185,9 @@ void	MidiManager::addMessageToList(const MidiMessage& message)
                                               minutes,
                                               seconds,
                                               millis));
-	File file(File::getCurrentWorkingDirectory().getChildFile(String("./test.log")));
+	//File file(File::getCurrentWorkingDirectory().getChildFile(String("./test.log")));
 
-	FileLogger test(file, "COUCOU", 4096);
+	//FileLogger test(file, "COUCOU", 4096);
 
-	test.writeToLog(timecode + "  -  " + getMidiMessageDescription(message));
+	//test.writeToLog(timecode + "  -  " + getMidiMessageDescription(message));
 }

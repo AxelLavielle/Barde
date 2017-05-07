@@ -15,6 +15,7 @@
 #include "Instrument.hh"
 #include "AI/StyleSettings.hh"
 #include "MidiManager/Midi.hh"
+#include "MidiManager/MidiManager.hh"
 
 class MusicParameters
 {
@@ -32,9 +33,10 @@ public:
 	std::string	getStyleName() const;
 	void setMidi(const Midi &midi);
 	Midi getMidi() const;
+	MidiManager							_midiManager; //THis is bad !! Need modififcation
 
 private:
-	unsigned int							_seed;
+	unsigned int						_seed;
 	int									_bpm;
 	std::vector<Instrument>				_instruments;
 	std::string							_styleName;
