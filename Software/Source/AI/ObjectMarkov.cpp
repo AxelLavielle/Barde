@@ -88,7 +88,8 @@ ObjectMarkov::ObjectMarkov(const std::string &styleJson, const std::string &luaM
   lua_pushstring(_L, output.c_str());
   lua_pushnumber(_L, _nbNote);
   //lua_pushnumber(_L, _seed);
-  lua_pcall(_L, 3, 1, 0);
+  lua_pushstring(_L, SOURCEMARKOV);
+  lua_pcall(_L, 4, 1, 0);
   if (!lua_isnil(_L, -1))
   {
     if (reader.parse(lua_tostring(_L,-1), _response, false))
@@ -145,8 +146,9 @@ void ObjectMarkov::callLua()
 
 	lua_getglobal(_L, "generateNoteWithGlobal");
 	lua_pushnumber(_L, _nbNote);
+	lua_pushstring(_L, SOURCEMARKOV);
 
-	lua_pcall(_L, 1, 1, 0);
+	lua_pcall(_L, 2, 1, 0);
 	if (!lua_isnil(_L, -1))
 	{
 		if (reader.parse(lua_tostring(_L, -1), _response, false))
