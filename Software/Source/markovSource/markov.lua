@@ -24,8 +24,6 @@ local function initLib(source)
     end
 end
 
-initLib()
-
 local function addNode(actualNode)
   if node == nil then
     node = actualNode
