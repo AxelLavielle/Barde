@@ -19,6 +19,18 @@ var UserSchema = new Schema({
         type: String,
         required: true
     },
+    name: {
+        firstName: {
+            type: String
+        },
+        lastName: {
+            type: String
+        },
+        userName: {
+            type: String,
+            unique: true,
+        }
+    },
     role: {
         type: String,
         enum: ['Client', 'Admin'],
@@ -56,6 +68,5 @@ UserSchema.methods.comparePassword = function (pw, cb) {
         cb(null, isMatch);
     });
 };
-
 
 module.exports = mongoose.model('User', UserSchema);

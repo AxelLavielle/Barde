@@ -11,7 +11,6 @@ var cfg         = require("../../config/var.js");
 var ExtractJwt  = passportJWT.ExtractJwt;
 var Strategy    = passportJWT.Strategy;
 
-
 var params = {
     secretOrKey: cfg.jwt.secret,
     jwtFromRequest: ExtractJwt.fromAuthHeader()
@@ -20,6 +19,9 @@ var params = {
 module.exports = function () {
 
     var strategy = new Strategy(params, function (payload, done) {
+
+        console.log(payload);
+
         User.findOne({
             email: payload.email
         }, function (err, user) {
@@ -29,22 +31,16 @@ module.exports = function () {
                 return done(new Error("Authentication failed. User not found."), null);
             } else {
                 return done(null, {
-                    email: user.email
+                    role: user.role
                 });
             }
         });
+
     });
 
     passport.use(strategy);
 
-    return {
-        initialize: function () {
-            return passport.initialize();
-        },
-        authenticate: function () {
-            return passport.authenticate("jwt", cfg.jwt.session);
-        },
-        getToken: function (headers) {
+    var getToken = function (headers) {
             if (headers && headers.authorization) {
                 var parted = headers.authorization.split(' ');
                 if (parted.length === 2) {
@@ -55,6 +51,23 @@ module.exports = function () {
             } else {
                 return null;
             }
-        }
+        };
+
+    return {
+        initialize: function () {
+            return passport.initialize();
+        },
+        getToken: getToken,
+        admin: function() {
+            return function(req, res, next) {
+                if (req.user && req.user.role === "Admin")
+                    next();
+                else
+                    res.status(401).send('Unauthorized');
+            };
+        },
+        authenticate: function () {
+            return passport.authenticate("jwt", cfg.jwt.session);
+        },
     };
 };
