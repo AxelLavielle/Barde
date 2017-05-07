@@ -12,18 +12,25 @@
 
 AGraphManager::AGraphManager()
 {
+	_winHeight = 10;
+	_winHeight = 10;
 }
 
 AGraphManager::~AGraphManager()
 {
 }
 
-void AGraphManager::setWinHeight(const int height)
+void AGraphManager::setWinName(const std::string & name)
+{
+	_winName = name;
+}
+
+void AGraphManager::setWinHeight(const unsigned int height)
 {
 	_winHeight = height;
 }
 
-void AGraphManager::setWinWidth(const int width)
+void AGraphManager::setWinWidth(const unsigned int width)
 {
 	_winWidth = width;
 }

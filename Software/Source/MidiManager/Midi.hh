@@ -12,6 +12,7 @@
 #define MIDI_HH_INCLUDED
 
 #include <cstddef>
+#include <cstring>
 
 typedef char* byteArray;
 

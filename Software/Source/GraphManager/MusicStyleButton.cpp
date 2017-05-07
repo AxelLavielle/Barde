@@ -11,7 +11,7 @@
 #include "MusicStyleButton.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
-MusicStyleButton::MusicStyleButton(const String & buttonName, int width, int height) : Button(buttonName)
+MusicStyleButton::MusicStyleButton(const String & buttonName, const int width, const int height) : Button(buttonName)
 {
 	this->width = width;
 	this->height = height;
@@ -22,12 +22,15 @@ MusicStyleButton::~MusicStyleButton()
 
 }
 
-void MusicStyleButton::paintButton(Graphics& g, bool isMouseOverButton, bool isButtonDown)
+void MusicStyleButton::paintButton(Graphics& g, const bool isMouseOverButton, const bool isButtonDown)
 {
 	//Background Color
 	if (isButtonDown)
 	{
 		g.setColour(Colour(0xff4169E1));
+		Player player;
+
+		player.Play();
 	}
 	else if (isMouseOverButton)
 	{

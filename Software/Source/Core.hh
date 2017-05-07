@@ -12,9 +12,10 @@
 #define CORE_HH_INCLUDED
 
 #include "JuceHeader.h"
-#include "GraphManager/JuceManager.hh"
 #include "MidiManager/MidiManager.hh"
 #include "AI/MusicGenerator.hh"
+#include "ViewManager/ViewManager.hh"
+#include "Player.hh"
 
 class Core : public JUCEApplication
 {
@@ -35,7 +36,7 @@ public:
 
 	
 private:
-	IGraphManager	*_graph;
+	ViewManager		_viewManager;
 };
 
 

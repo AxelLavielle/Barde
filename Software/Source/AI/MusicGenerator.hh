@@ -12,10 +12,7 @@
 # define MUSICGENERATOR_HH_INCLUDED
 
 # define ABS(x) ((x) > 0 ? (x) : (-(x)))
-# define PROBASTRONG	50
-# define PROBAMEDIUM	33
-# define PROBAWEAK	17
-# define DISTIMPACT	2
+# define DISTIMPACT	1
 
 # include "Resolution.hh"
 # include "../MidiManager/Midi.hh"
@@ -32,14 +29,15 @@ public:
   Midi			createMusic(MusicParameters &parameters);
 
 private:
-  void			calculateProbaToScaleFromNote(StyleSettings *proba, std::vector<char> chord, std::vector<char> strong, std::vector<char> medium, std::vector<char> weak);
-  void			calculateProbaToNoteFromNote(StyleSettings *proba, std::vector<char> listNote, char probaNote);
-  void			calculateProbaToNote(StyleSettings *proba, std::vector<char> listNote, char probaNote);
-  void			classifyNotes(std::vector<char> chord, std::vector<char> *strong, std::vector<char> *medium, std::vector<char> *weak);
+  void			calculateProbaToScaleFromNote(StyleSettings *proba, const std::vector<char> &strong, const std::vector<char> &medium, const std::vector<char> &weak);
+  void			calculateProbaToNoteFromNote(const char note, StyleSettings *proba, const std::vector<char> &listNote, const char probaNote);
+  void			calculateProbaToNote(StyleSettings *proba, const std::vector<char> &listNote, const char probaNote);
+  void			classifyNotes(const std::vector<char> &chord, std::vector<char> *strong, std::vector<char> *medium, std::vector<char> *weak);
 
-  char			calculateDist(char currNote, char testNote);
-  char			calculateSumDist(char currNote, std::vector<char> listNote);
-  char			calculateDistChords(std::vector<char> chord, char note);
+  char			searchNoteFromDist(char note, char dist);
+  char			calculateDist(const char currNote, const char testNote);
+  char			calculateSumDist(const char currNote, const std::vector<char> &listNote);
+  char			calculateDistChords(const std::vector<char> chord, const char note);
 };
 
 #endif  // MUSICGENERATOR_HH_INCLUDED
