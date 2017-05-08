@@ -9,7 +9,7 @@ angular.module('app.directives').directive('profileImage', ['$rootScope', functi
      },
   link: function (scope, elem, attr) {
     scope.profil = attr.profil;
-
+    scope.profileName = scope.profil.charAt(0).toUpperCase() + scope.profil.slice(1);
     scope.load = true;
     scope.img = false;
 

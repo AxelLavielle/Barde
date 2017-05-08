@@ -10,6 +10,7 @@ angular.module('app.directives').directive('imagePreloader', ['$rootScope', func
   link: function (scope, elem, attr) {
     scope.load = true;
     scope.src = attr.src;
+    scope.title = attr.title;
      var img = elem.find('img');
       img.bind('load', function () {
          scope.load = false;

@@ -5,7 +5,8 @@ angular.module('app', ['app.factories', 'app.directives', 'app.controllers', 'ng
     {
       templateUrl   : "templates/home.tpl.htm",
       controller    : 'mainController',
-      meta          : {
+      type          : 'page',
+        meta          : {
         title         : "Barde",
         description   : "Barde is a software/application that generate piped music for your evenings, waiting rooms, dinners, sport sessions or work."
       }
@@ -14,7 +15,8 @@ angular.module('app', ['app.factories', 'app.directives', 'app.controllers', 'ng
     {
       templateUrl   : "templates/home.tpl.htm",
       controller    : 'mainController',
-      meta          : {
+        type          : 'page',
+        meta          : {
         title         : "Barde",
         description   : "Barde is a software/application that generate piped music for your evenings, waiting rooms, dinners, sport sessions or work."
       }
@@ -22,7 +24,8 @@ angular.module('app', ['app.factories', 'app.directives', 'app.controllers', 'ng
     .when("/team",
     {
       templateUrl   : "templates/equipe.tpl.htm",
-      meta          : {
+        type          : 'page',
+        meta          : {
         title         : "Barde - Team",
         description   : "Who are we ?"
       }
@@ -30,7 +33,8 @@ angular.module('app', ['app.factories', 'app.directives', 'app.controllers', 'ng
     .when("/blog",
     {
       templateUrl   : "templates/blog.tpl.htm",
-      meta          : {
+        type          : 'article',
+        meta          : {
         title         : "Barde - Blog",
         description   : "First steps ..."
       }
@@ -38,7 +42,9 @@ angular.module('app', ['app.factories', 'app.directives', 'app.controllers', 'ng
     .when("/contact",
     {
       templateUrl   : "templates/contact.tpl.htm",
-      controller    : 'contactController',
+        type          : 'page',
+
+        controller    : 'contactController',
       meta          : {
         title         : "Barde - Contact",
         description   : "How to reach us"
@@ -59,5 +65,7 @@ angular.module('app', ['app.factories', 'app.directives', 'app.controllers', 'ng
     $rootScope.$on('$routeChangeSuccess', function() {
         document.title = $route.current.meta.title;
         document.description = $route.current.meta.desc;
+
+
     });
 }]);
