@@ -1,9 +1,10 @@
-Package : Barde
-Version : 1.0
-Section : base
-Priority : optional
-Architecture : all
-Depends : alsa-base
-Maintainer : Barde <contact@barde.io>
-Description : Barde is a service that allows you to generate piped music in the style of your choice. Barde allows you to have a background sound for your restaurant, waiting rooms or your evenings with friends.
+Package: barde
+Version: 1.0.0
+Depends: alse-base
+Section: base
+Priority: optional
+Architecture: amd64
+Maintainer: Barde <contact@barde.io>
+Description: Barde is a service that allows you to generate piped music in the style of your choice. Barde allows you to have a background sound for your restaurant, waiting rooms or your evenings with friends.
 Homepage : barde.io
+
