@@ -1,19 +1,19 @@
 /**
  * APLT
  * < arnaud perrault />
- * Admin - Created on 13/03/2017
+ * barde-backoffice - Created on 17/03/2017
  */
 
-var DashboardServices = angular.module('dashboard.services', []);
+var MainServices = angular.module('main.services', []);
 
-DashboardServices.service('DashboardService',
+MainServices.service('MainService',
     ['$q', '$http',
         function ($q, $http) {
 
             var varExample = false;
 
             var functionExample = function () {
-                console.log(Dashboard + "functionExample");
+                console.log(Main + "functionExample");
             };
 
 

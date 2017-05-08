@@ -1,7 +1,7 @@
 {
-  "name": "barde-bo",
+  "name": "barde-dash",
   "version": "1.0.0",
-  "description": "",
+  "description": "Dashboard for Barde Administrator",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,11 +14,13 @@
     "angular": "^1.5.8",
     "angular-animate": "^1.6.3",
     "angular-bootstrap": "^0.12.2",
+    "angular-md5": "^0.1.10",
     "angular-route": "^1.5.8",
     "angular-touch": "^1.6.3",
     "bootstrap": "^3.3.7",
     "font-awesome": "^4.7.0",
     "jquery": "^3.1.1",
-    "metismenu": "^2.7.0"
+    "metismenu": "^2.7.0",
+    "ngstorage": "^0.3.11"
   }
 }

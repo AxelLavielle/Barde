@@ -1,11 +1,11 @@
 /**
  * APLT
  * < arnaud perrault />
- * barde-dash - Created on 13/03/2017
+ * barde-backoffice - Created on 17/03/2017
  */
 
 var currModule = {
-    Name: "dashboard"
+    Name: "main"
 };
 
 angular.module(currModule.Name, [
@@ -15,12 +15,12 @@ angular.module(currModule.Name, [
     //currModule.Name + '.directives'
 ]);
 
-angular.module(currModule.Name).constant("CstDashboard", {
+angular.module(currModule.Name).constant("CstMain", {
     name: currModule.Name
 });
 
 angular.module(currModule.Name + '').run(
-    ['CstDashboard',
+    ['CstMain',
         function (Cst) {
 
             console.info(">>> " + Cst.name)

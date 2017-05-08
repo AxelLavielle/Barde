@@ -1,20 +1,20 @@
 /**
  * APLT
  * < arnaud perrault />
- * Admin - Created on 13/03/2017
+ * barde-dash - Created on 17/03/2017
  */
 
-var DasboardRoutes = angular.module('dashboard.routes', ['ngRoute']);
+var MainRoutes = angular.module('main.routes', ['ngRoute']);
 
-DasboardRoutes.config([
+MainRoutes.config([
     '$routeProvider',
 
     function ($routeProvider) {
 
         $routeProvider
-            .when('/', {
+            .when('/Main/', {
                 controller: 'Ctrl',
-                templateUrl: 'app/dashboard/views/dashboard.home.html',
+                templateUrl: 'app/Main/views/ex.Main.html',
 
             });
 

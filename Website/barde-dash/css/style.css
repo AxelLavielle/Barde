@@ -429,3 +429,33 @@ table.dataTable thead .sorting:after {
         border-left-width: 0;
     }
 }
+
+.navbar-right {
+    margin: 0 !important;
+}
+
+.hidden {
+    visibility: hidden
+}
+
+.center{
+    text-align:center
+}
+
+.right{
+    text-align:right;
+}
+
+.centered {
+    position: fixed; /* or absolute */
+    top: 50%;
+    left: 50%;
+}
+
+.vertical-center {
+    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+    min-height: 100vh; /* These two lines are counted as one :-)       */
+
+    display: flex;
+    align-items: center;
+}
