@@ -31,6 +31,7 @@ private:
 	int						volume = 0;
 	MidiOutput				*_midiOutput;
 	MidiFile				_midiBuff;
+	 AudioDeviceManager		_audioManager;
 
 	const MidiMessageSequence		*MidiToMessageSequence(const Midi &midi);
 };
