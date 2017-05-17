@@ -14,7 +14,7 @@ SoundManager::SoundManager()
 {
 //  MidiOutput::getDefaultDeviceIndex()
   //_midiOutput = MidiOutput::createNewDevice("TEST");
-	_midiOutput = MidiOutput::openDevice(1);
+	_midiOutput = MidiOutput::openDevice(0);
   // _audioManager.initialise(128, 128, NULL, true);
 	// _audioManager.setMidiOutput(_midiOutput);
   // std::cout << _midiOutput->getName() << std::endl;
