@@ -20,7 +20,8 @@ module.exports = function (apiRoutes, passport) {
     apiRoutes
         .get('/user', get)
         .get('/user/:email', getOne)
-
+        .delete("/user", del)
+        .patch("/user", methodAuth.authenticate(), methodAuth.admin(), update)
 };
 
 
@@ -86,6 +87,58 @@ function getOne(req, res, next) {
         }
 
         res.status(200).json({msg: "Success", data: {user: response}});
+    });
+
+}
+
+
+/**
+ * @api {patch} /user/ Update user
+ * @apiGroup User
+ *
+ * @apiParamExample {json} Request-Example:
+ *     {
+ *       "email": ""
+ *     }
+ *
+ *  @apiSuccessExample 200 - Success
+ *     {
+ *       "msg": "Content updated"
+ *     }
+ */
+function update(req, res, next) {
+
+    console.log(req.user);
+
+    Email.update({"email": req.body.email}, function (err, response) {
+        if (err)
+            return next(err);
+        res.status(200).send({msg: "Content updated"});
+    });
+
+}
+
+
+/**
+ * @api {delete} /email/ Delete email
+ * @apiName DeleteEmail
+ * @apiGroup Email
+ *
+ * @apiParamExample {json} Request-Example:
+ *     {
+ *       "email": ""
+ *     }
+ *
+ * @apiSuccessExample 200 - Success
+ *     {
+ *       "msg": "Content deleted"
+ *     }
+ */
+function del(req, res, next) {
+    Email.delete({"email": req.body.email}, function (err, response) {
+        if (err)
+            return next(err);
+        res.status(200).send({msg: "Content deleted"});
     });
 
 }
