@@ -11,11 +11,28 @@ UserControllers.controller('Ctrl', [
         '$location',
         '$rootScope',
         '$http',
+        'UserService',
         function ($scope,
                   $location,
                   $rootScope,
-                  $http) {
+                  $http,
+                  UserService) {
 
+            $scope.users = {
+                count: 0,
+                data: {}
+            }
+
+            var getNumber = function() {
+                UserService.getNumber(function(resp) {
+                    console.log(resp);
+                    $scope.users.count = resp.data;
+                }, function() {
+                    $scope.users.count = 0;
+                })
+            }
+
+            getNumber();
 
         }
     ]
