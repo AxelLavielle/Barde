@@ -20,11 +20,16 @@
 *
 *  This class generates a music style button
 */
+
+#include <thread>
+#include <mutex>
 class MusicStyleButton : public Button
 {
 public:
 	int width; /*!< Button width*/
 	int height; /*!< Button height*/
+	std::thread _threadPlayer; /*!< thread player*/
+	Player _player; /*!< player*/
 
 	/*!
 	*  \brief Constructor
