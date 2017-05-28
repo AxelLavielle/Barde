@@ -164,6 +164,9 @@
       <FILE id="d2qVYx" name="Subscription.hh" compile="0" resource="0" file="Source/Subscription.hh"/>
       <FILE id="nU6q57" name="User.cpp" compile="1" resource="0" file="Source/User.cpp"/>
       <FILE id="d0nW4g" name="User.hh" compile="0" resource="0" file="Source/User.hh"/>
+      <FILE id="L9OKZH" name="UserSettings.cpp" compile="1" resource="0"
+            file="Source/UserSettings.cpp"/>
+      <FILE id="xB0dXM" name="UserSettings.h" compile="0" resource="0" file="Source/UserSettings.h"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
