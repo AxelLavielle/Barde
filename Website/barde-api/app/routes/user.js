@@ -19,7 +19,9 @@ module.exports = function (apiRoutes, passport) {
 
     apiRoutes
         .get('/user', get)
+        .get('/user/count', getNumber)
         .get('/user/:email', getOne)
+        .get('/user/:perPage/:page', getByPage)
         .delete("/user", del)
         .patch("/user", methodAuth.authenticate(), methodAuth.admin(), update)
 };
@@ -48,6 +50,62 @@ function get(req, res, next) {
 
         res.status(200).json({msg: "Success", data: {users: response}});
     });
+}
+
+/**
+ * @api {get} /user/count Get number of users
+ * @apiGroup User
+ *
+ * @apiSuccessExample 200 - Success
+ *     {
+ *       "msg": "Success"
+ *       "data": {
+ *          "count": Number
+ *       }
+ *     }
+ *
+ */
+function getNumber(req, res, next) {
+
+    User.count(null, function (err, response) {
+
+        if (err) {
+            return next(err);
+        }
+
+        res.status(200).json({msg: "Success", data: {count: response}});
+    });
+}
+
+/**
+ * @api {get} /user/:perPage/:page Get users by page
+ * @apiGroup User
+ *
+ * @apiSuccessExample 200 - Success
+ *     {
+ *       "msg": "Success"
+ *       "data": {
+ *          "users": [],
+ *          "page": Number,
+ *          "count": Number
+ *       }
+ *     }
+ *
+ */
+function getByPage(req, res, next) {
+
+    var perPage = Math.max(0, req.param('perPage'));
+    var page    = Math.max(0, req.param('page'));
+
+    console.log(typeof(perPage), typeof(page))
+
+    User.find().select('email')
+        .limit(perPage).skip(perPage * page).sort({email: "asc"}).exec(function (err, users) {
+        console.log(users);
+        User.count().exec(function (err, count) {
+            res.status(200).json({msg: "Success", data: {users: users, page: page, count: count / perPage}});
+        })
+    })
 }
 
 /**
