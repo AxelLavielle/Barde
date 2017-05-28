@@ -7,8 +7,8 @@
 var UserServices = angular.module('user.services', []);
 
 UserServices.service('UserServices',
-    ['$q', '$http',
-        function ($q, $http) {
+    ['$q', '$http', 'AppConfig',
+        function ($q, $http, AppConfig) {
 
             var varExample = false;
 
@@ -16,7 +16,7 @@ UserServices.service('UserServices',
                 console.log(user + "functionExample");
             };
 
-            var getNumber = function (data, success, error) {
+            var getNumber = function (success, error) {
                 return $q(function (resolve, reject) {
                     $http.get(AppConfig.API_URL + '/user/count').then(success, error)
                 });

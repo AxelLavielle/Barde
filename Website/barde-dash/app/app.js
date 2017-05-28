@@ -5,7 +5,7 @@
  */
 
 
-angular.module('barde-backoffice', [
+angular.module('barde-dash', [
     'ngRoute',
     'ngAnimate',
     'ngTouch',
@@ -15,14 +15,15 @@ angular.module('barde-backoffice', [
 
     'main',
     'dashboard',
-    'auth'
+    'auth',
+    'user'
 ])
 
     .constant('VERSION', '1.0')
 
     .run(['VERSION', '$rootScope', '$location', function (VERSION, $rootScope, $location) {
 
-        console.log("BARDE-BACKOFFICE Site loaded : ", $rootScope);
+        console.log("BARDE-DASH Site loaded : ", $rootScope);
         console.log(VERSION);
 
     }])
