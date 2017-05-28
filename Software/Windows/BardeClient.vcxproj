@@ -185,6 +185,7 @@
     <ClCompile Include="..\Source\Playlist.cpp"/>
     <ClCompile Include="..\Source\Subscription.cpp"/>
     <ClCompile Include="..\Source\User.cpp"/>
+    <ClCompile Include="..\Source\UserSettings.cpp"/>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -1821,6 +1822,7 @@
     <ClInclude Include="..\Source\Playlist.hh"/>
     <ClInclude Include="..\Source\Subscription.hh"/>
     <ClInclude Include="..\Source\User.hh"/>
+    <ClInclude Include="..\Source\UserSettings.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioChannelSet.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioSampleBuffer.h"/>

@@ -532,6 +532,9 @@
     <ClCompile Include="..\Source\User.cpp">
       <Filter>BardeClient\Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\UserSettings.cpp">
+      <Filter>BardeClient\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <Filter>Juce Modules\juce_audio_basics\buffers</Filter>
     </ClCompile>
@@ -2425,6 +2428,9 @@
       <Filter>BardeClient\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\User.hh">
+      <Filter>BardeClient\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\UserSettings.h">
       <Filter>BardeClient\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioChannelSet.h">

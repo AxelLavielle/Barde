@@ -108,6 +108,7 @@ OBJECTS := \
   $(JUCE_OBJDIR)/Playlist_307de2c.o \
   $(JUCE_OBJDIR)/Subscription_38a53d77.o \
   $(JUCE_OBJDIR)/User_dcb1be25.o \
+  $(JUCE_OBJDIR)/UserSettings_491c94e8.o \
   $(JUCE_OBJDIR)/BinaryData_371e9b63.o \
   $(JUCE_OBJDIR)/juce_audio_basics_14202532.o \
   $(JUCE_OBJDIR)/juce_audio_devices_13712d1a.o \
@@ -363,6 +364,11 @@ $(JUCE_OBJDIR)/Subscription_38a53d77.o: ../Source/Subscription.cpp
 $(JUCE_OBJDIR)/User_dcb1be25.o: ../Source/User.cpp
 	-@mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling User.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/UserSettings_491c94e8.o: ../Source/UserSettings.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling UserSettings.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/BinaryData_371e9b63.o: ../JuceLibraryCode/BinaryData.cpp
