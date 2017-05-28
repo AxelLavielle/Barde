@@ -32,7 +32,7 @@ public:
 	/*!
  *  \brief Constructor
  *
- *  Set the Midi deive who play sound
+ *  Set the Midi device who play sound
  *
  */
 	SoundManager();
@@ -80,7 +80,7 @@ public:
 	*/
 	virtual bool stopAll() const;
 	/*!
-	*  \brief Set the volume of the sonud
+	*  \brief Set the volume of the sound
 	*
 	*  This method allow to set the volume of the midi device
 	*
@@ -88,12 +88,20 @@ public:
 	*  \return true in case of success playing and false in the others case
 	*/
 	virtual bool setVolume(const int volume);
+	/*!
+	*  \brief Set the volume of a specific Midi
+	*
+	*  This method allow to set the volume of the midi device
+	*
+	*  \param volume : the value of the volume
+	*  \return true in case of success playing and false in the others case
+	*/
 	virtual bool setVolume(const Midi &midi) const;
 
 private:
-	int									volume = 0;
-	MidiOutput					*_midiOutput;
-	MidiFile						_midiBuff;
+	int									volume = 0; /*!< current volume of the midi device*/
+	MidiOutput					*_midiOutput; /*!< pointer to the midi devce*/
+	MidiFile						_midiBuff; /*!< Buffer containing all the midi data*/
 	AudioDeviceManager	_audioManager;
 
 	const MidiMessageSequence		*MidiToMessageSequence(const Midi &midi);
