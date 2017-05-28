@@ -99,11 +99,11 @@ function getByPage(req, res, next) {
 
     console.log(typeof(perPage), typeof(page))
 
-    User.find().select('email')
+    User.find()
         .limit(perPage).skip(perPage * page).sort({email: "asc"}).exec(function (err, users) {
         console.log(users);
         User.count().exec(function (err, count) {
-            res.status(200).json({msg: "Success", data: {users: users, page: page, count: count / perPage}});
+            res.status(200).json({msg: "Success", data: {users: users, page: page + 1, count: count / perPage}});
         })
     })
 }
