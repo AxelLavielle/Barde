@@ -18,7 +18,11 @@ gulp.task('concat-app', function() {
         'app/controllers/*.js',
         'app/directives/*.js',
         'app/app.js',
-        'app/services/*.js'])
+        'app/services/*.js'
+        ]
+
+
+    )
           .pipe(concat('app.concat.js'))
           .pipe(gulp.dest('app/'));
 });
@@ -35,7 +39,9 @@ gulp.task('concat-js', function() {
 gulp.task('concat-css', function() {
   return gulp .src([
     'css/style.css',
-    'node_modules/materialize-design-icons/iconfont/material-icons.css',
+      'css/player.css',
+
+      'node_modules/materialize-design-icons/iconfont/material-icons.css',
     'node_modules/materialize-css/bin/materialize.css'
   ])
   .pipe(concat('style.concat.css'))

@@ -40,15 +40,24 @@ angular.module('app', ['app.factories', 'app.directives', 'app.controllers', 'ng
       }
     })
     .when("/contact",
-    {
-      templateUrl   : "templates/contact.tpl.htm",
-        type          : 'page',
+          {
+              templateUrl   : "templates/contact.tpl.htm",
+              type          : 'page',
 
-        controller    : 'contactController',
-      meta          : {
-        title         : "Barde - Contact",
-        description   : "How to reach us"
-      }
+              controller    : 'contactController',
+              meta          : {
+                  title         : "Barde - Contact",
+                  description   : "How to reach us"
+              }
+
+    }).when("/demo", {
+        templateUrl: "templates/demo.tpl.htm",
+        type: 'page',
+        controller: 'demoController',
+        meta: {
+            title: "Barde - Demo",
+            description: "How to reach us"
+        }
     })
     .otherwise({templateUrl: 'templates/static/404.tpl.htm'});
 
