@@ -73,18 +73,36 @@ public:
   * \ brief Destructor
   */
   ~ObjectMarkov();
+  /*!
+  * \ brief call generateNote in lua file
+  */
   void                                  callLua();
+  /*!
+  *  \brief Transform the JSON returned by the LUA in vector format
+  *  \return json in vector format
+  */
   std::vector<std::pair<char, char> >   getVectorFromJson();
+  /*!
+  *  \brief Transform the JSON returned by the LUA in StyleSettings format
+  *  \return json in StyleSettings format
+  */
   StyleSettings                         getStyleFromJson();
+  /*!
+  * \brief init _styleJson from file
+  * \param styleJson : styleJson file as a String
+  */
   void                                  setRootJsonFromFile(const std::string &styleJson);
+  /*!
+  * \brief init _styleJson from StyleSettings
+  * \param settings : styleSettings Class
+  */
   void                                  setRootJsonFromStyle(const StyleSettings &settings);
 private:
   std::string                           _styleJson; /*!< style file as a String*/
   lua_State*                            _L; /*!< lua state*/
   std::string                           _luaMarkovFunction; /*!> the name of the lua function to call from the lua file*/
-  Json::Value                           _jsonNote;
-  Json::Value                           _response;
-  Json::Value                           _rootJson;
+  Json::Value                           _response; /*!> json returned by lua*/
+  Json::Value                           _rootJson; /*!> json with probabilities*/
   unsigned int                          _seed; /*!> the starting value*/
   unsigned int                          _nbNote; /*!> number of note*/
 };
