@@ -11,6 +11,11 @@
 #ifndef MIDIMANAGER_HH_INCLUDED
 #define MIDIMANAGER_HH_INCLUDED
 
+/*!
+ * \file MidiManager.hh
+ * \brief File containing the class MidiManager
+ */
+
 #include <cstring>
 #include "JuceHeader.h"
 #include "AMidiManager.hh"
