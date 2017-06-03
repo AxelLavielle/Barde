@@ -66,46 +66,6 @@ ObjectMarkov::ObjectMarkov(const std::string &styleJson, const std::string &luaM
   _seed = seed;
 }
 
-/*void ObjectMarkov::callLua()
-{
-  if (!_rootJson)
-  {
-    //std::cerr << "rootJson is null !!" << std::endl;
-    return;
-  }
-  Json::Reader reader;
-  luaL_dofile(_L, _luaMarkovFunction.c_str());
-  lua_pcall(_L, 0, 0, 0);
-  //ObjectMarkov::getStyleFromJson(_rootJson["note"]);
-
-  lua_getglobal(_L, "generateNote");
-  Json::StyledWriter writer;
-  std::string output = writer.write(_rootJson["scale"]);
-  lua_pushstring(_L, output.c_str());
-  //std::cout << "scale = " << output << std::endl;
-  output = writer.write(_rootJson["note"]);
-  //std::cout << "note = " << output << std::endl;
-  lua_pushstring(_L, output.c_str());
-  lua_pushnumber(_L, _nbNote);
-  //lua_pushnumber(_L, _seed);
-  lua_pushstring(_L, SOURCEMARKOV);
-  lua_pcall(_L, 4, 1, 0);
-  if (!lua_isnil(_L, -1))
-  {
-    if (reader.parse(lua_tostring(_L,-1), _response, false))
-    {
-      //std::vector<std::pair<char, char> > v = ObjectMarkov::getVectorFromJson(test);
-      //StyleSettings style =  ObjectMarkov::getStyleFromJson(_rootJson["note"]);
-    }
-    lua_pop(_L,1);
-  }
-  else
-  {
-    //std::cerr << "nothing" << std::endl;
-  }
-
-}*/
-
 void ObjectMarkov::callLua()
 {
 	if (!_rootJson)
