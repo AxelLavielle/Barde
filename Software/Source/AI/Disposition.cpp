@@ -1,16 +1,6 @@
 #include <math.h>
 #include "Disposition.hh"
 
-Disposition::Disposition()
-{
-
-}
-
-Disposition::~Disposition()
-{
-
-}
-
 void		Disposition::placeChords(MusicParameters &parameters, std::vector<std::pair<char, char> > chordsGrid)
 {
   Chords chords;
@@ -38,7 +28,7 @@ void		Disposition::placeChords(MusicParameters &parameters, std::vector<std::pai
 	parameters._midiManager.noteOff(instruments[i].channel, note, instruments[i].velocity, beats + TIME_PER_TS);
 	previousNote = note;
       }
-      beats += TIME_PER_TS;
+      beats += TIMES_PER_BAR;
     }
   }
 }
