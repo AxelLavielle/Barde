@@ -101,7 +101,17 @@ public:
    *  \param Note : Name of the note
    *  \return The probability of the note
    */
-  int		getProba(const char note);
+  char		getProba(const char note);
+
+  /*!
+   *  \brief Returns the sum probability of the root notes
+   *
+   *  This method returns the sum of all the probability of the root notes
+   *
+   *  \param Note : Name of the note
+   *  \return The probability of the note
+   */
+  char		getSumProba();
 
   /*!
    *  \brief Returns the probability of a note from another
@@ -112,7 +122,17 @@ public:
    *  \param Note : Name of the note
    *  \return The probability of the note
    */
-  int		getProbaFromNote(const char baseNote, const char note);
+  char		getProbaFromNote(const char baseNote, const char note);
+
+  /*!
+   *  \brief Returns the sum probability of notes from another
+   *
+   *  This method returns the sum of all the probability from a note
+   *
+   *  \param Note : Name of the note
+   *  \return The probability of the note
+   */
+  char		getSumProbaFromNote(const char baseNote);
 
   /*!
    *  \brief Copies the object with overload
@@ -125,6 +145,15 @@ public:
   StyleSettings	&operator=(const StyleSettings &old);
 
   /*!
+   *  \brief Normalize the probabilites
+   *
+   *  This method normalize all the probabilites of the tree
+   *
+   *  \return None
+   */
+  void		normalize();
+
+  /*!
    *  \brief Returns the probability tree as raw data
    *
    *  This method returns the probability tree as raw data
@@ -134,7 +163,6 @@ public:
   std::map<char, std::pair<int, std::map<char, int> > >	getParam() const;
 
 private:
-
   std::map<char, std::pair<int, std::map<char, int> > >	_param; /*!< Probability tree */
 };
 
