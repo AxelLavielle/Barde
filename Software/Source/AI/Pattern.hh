@@ -17,6 +17,7 @@
  */
 
 # include		<vector>
+# include		<AI.hh>
 
 typedef struct		s_note
 {
