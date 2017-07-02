@@ -17,7 +17,6 @@
  */
 
 # include		<vector>
-# include		"Chord.hh"
 
 typedef struct		s_note
 {
@@ -41,7 +40,7 @@ public:
    *  Empty
    *
    */
-  Pattern(const Chord &chord);
+  Pattern(const std::vector<char> &chord);
 
   /*!
    *  \brief Destructor
@@ -53,11 +52,11 @@ public:
   void			addNote(const std::pair<char, char> &note, const float position, const float duration, const char time);
   void			addNote(const t_note &newNote, const char time);
   std::vector<t_note>	getPatternTime(const char time) const;
-  Chord			getChord() const;
+  std::vector<char>	getChord() const;
   
 private:
   std::vector<std::vector<t_note> >	_pattern(4);
-  Chord					_chord;
+  std::vector<char>			_chord;
 };
 
 #endif  // PATTERN_HH_INCLUDED

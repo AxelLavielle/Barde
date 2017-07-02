@@ -10,7 +10,7 @@
 
 #include "Pattern.hh"
 
-Pattern::Pattern(const Chord &chord)
+Pattern::Pattern(const std::vector<char> &chord)
 {
   _chord = chord;
 }
@@ -41,7 +41,7 @@ std::vector<t_note>	Pattern::getPatternTime(const char time) const
   return (NULL);
 }
 
-Chord	Pattern::getChord() const
+std::vector<char>	Pattern::getChord() const
 {
   return (_chord);
 }
