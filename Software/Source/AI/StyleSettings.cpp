@@ -12,7 +12,6 @@ StyleSettings::StyleSettings(const StyleSettings &old)
 
 StyleSettings::~StyleSettings()
 {
-
 }
 
 void		StyleSettings::addNote(const std::pair<char, int> &note)
@@ -56,11 +55,65 @@ int		StyleSettings::getProba(const char note)
   return (_param.find(note) == _param.end() ? 0 : _param[note].first);
 }
 
+char		StyleSettings::getSumProba()
+{
+  char		total;
+  
+  total = 0;
+  for (auto const &data : _param)
+    total += data.second.first;
+  return (total)
+}
+
 int		StyleSettings::getProbaFromNote(const char baseNote, const char note)
 {
   return ((_param.find(baseNote) == _param.end() ||
 	   _param[baseNote].second.find(note) == _param[baseNote].second.end()) ?
 	  0 : _param[baseNote].second[note]);
+}
+
+char		StyleSettings::getSumProbaFromNote(const char baseNote)
+{
+  char		total;
+
+  if (_param.find(baseNote) == _param.end())
+    return (0);
+  total = 0;
+  for (auto const &data : _param[baseNote].second.second)
+    total += data.second.first;
+  return (total)
+}
+
+void		StyleSettings::normalize()
+{
+  char		sum;
+  char		sumPartial;
+
+  sum = self.getSumProba();
+  for (auto const &data : _param)
+    {
+      _param[data.first] = (100 * static_cast<int>(data.second.first)) / sum;
+      sumPartial = self.getSumProbaFromNote(data.first);
+      for (auto const &dataPartial : _param[data.first])
+	_param[data.first].second[dataPartial.first] = (100 * static_cast<int>(dataPartial.second)) / sumPartial;
+    }
+
+  sum = self.getSumProba();
+  for (auto const &data : _param)
+    {
+      if (sum < 100)
+	{
+	  _param[data.first]++;
+	  sum++;
+	}
+      sumPartial = self.getSumProbaFromNote(data.first);
+      for (auto const &dataPartial : _param[data.first])
+	if (sumPartial < 100)
+	  {
+	    _param[data.first].second[dataPartial.first]++;
+	    sumPartial++;
+	  }
+    }
 }
 
 std::map<char, std::pair<int, std::map<char, int> > >	StyleSettings::getParam() const
