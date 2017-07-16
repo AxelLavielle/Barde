@@ -11,6 +11,9 @@
 #ifndef USERSETTINGS_H_INCLUDED
 #define USERSETTINGS_H_INCLUDED
 
+#include "./GraphManager/Theme.h"
+#include <vector>
+
 /*! Language of the software */
 enum Language {
 	EN, /*!< English */
@@ -141,11 +144,25 @@ public:
 	*/
 	void setLanguage(Language language);
 
+	/*!
+	*  \brief set Theme
+	*
+	*  set the theme of the the software
+	*
+	*  \param theme : theme to set.
+	*/
+	void setTheme(Theme theme);
+
+
+
+
 private:
 	Language _language; /*!< language of the user */
 	int _volume; /*!< volume in percentage */
 	int _BPM; /*!< current BPM value */
 	bool _mute; /*!< if the sound is muted or not */
+	Theme _theme; /*!< theme used by the software */
+	std::vector<Theme> _themelist; /*!< all existing theme to choose from */
 };
 
 

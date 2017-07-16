@@ -12,10 +12,10 @@
 
 UserSettings::UserSettings()
 {
-	this->_mute = false;
-	this->_language = EN;
-	this->_volume = 50;
-	this->_BPM = 120; 
+	_mute = false;
+	_language = EN;
+	_volume = 50;
+	_BPM = 120; 
 }
 
 UserSettings::UserSettings(bool mute, Language language, int volume, int BPM)
