@@ -472,6 +472,9 @@
     <ClCompile Include="..\Source\GraphManager\MusicStyleButton.cpp">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\GraphManager\Theme.cpp">
+      <Filter>BardeClient\Source\GraphManager</Filter>
+    </ClCompile>
     <ClCompile Include="..\Source\MidiManager\AMidiManager.cpp">
       <Filter>BardeClient\Source\MidiManager</Filter>
     </ClCompile>
@@ -2356,6 +2359,9 @@
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\GraphManager\MusicStyleButton.h">
+      <Filter>BardeClient\Source\GraphManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\GraphManager\Theme.h">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\MidiManager\AMidiManager.hh">
