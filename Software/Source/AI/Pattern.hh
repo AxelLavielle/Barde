@@ -56,7 +56,7 @@ public:
   std::vector<char>	getChord() const;
   
 private:
-  std::vector<std::vector<t_note> >	_pattern(4);
+  std::vector<std::vector<t_note> >	_pattern;
   std::vector<char>			_chord;
 };
 

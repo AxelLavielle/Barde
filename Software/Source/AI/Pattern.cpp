@@ -36,9 +36,11 @@ void	Pattern::addNote(const t_note &newNote, const char time)
 
 std::vector<t_note>	Pattern::getPatternTime(const char time) const
 {
-  if (time < _pattern.size())
+  std::vector<t_note>	empty;
+
+  if (static_cast<unsigned int>(time) < _pattern.size())
     return (_pattern[time]);
-  return (NULL);
+  return (empty);
 }
 
 std::vector<char>	Pattern::getChord() const

@@ -33,8 +33,8 @@ t_note	PatternGenerator::correlateNote(const t_note &note, const std::vector<cha
   std::vector<char>	weak2;
   char			i;
 
-  ret.position = note->position;
-  ret.duration = note->duration;
+  ret.position = note.position;
+  ret.duration = note.duration;
   AI::classifyNotes(prev, &strong, &medium, &weak);
   AI::classifyNotes(next, &strong2, &medium2, &weak2);
   
@@ -48,18 +48,18 @@ t_note	PatternGenerator::correlateNote(const t_note &note, const std::vector<cha
 
   // Search
   i = -1;
-  while (++i < strong.size())
-    if (strong[i] == note->note.first)
-      ret.note = make_pair(strong2[i], 3);
+  while (static_cast<unsigned int>(++i) < strong.size())
+    if (strong[i] == note.note.first)
+      ret.note = std::make_pair(strong2[i], 3);
   i = -1;
-  while (++i < medium.size())
-    if (medium[i] == note->note.first)
-      ret.note = make_pair(medium2[i], 3);
+  while (static_cast<unsigned int>(++i) < medium.size())
+    if (medium[i] == note.note.first)
+      ret.note = std::make_pair(medium2[i], 3);
   i = -1;
-  while (++i < weak.size())
-    if (weak[i] == note->note.first)
-      ret.note = make_pair(weak2[i], 3);
-  return (ret)
+  while (static_cast<unsigned int>(++i) < weak.size())
+    if (weak[i] == note.note.first)
+      ret.note = std::make_pair(weak2[i], 3);
+  return (ret);
 }
 
 void	PatternGenerator::addPattern(const Pattern &newPattern)
@@ -74,26 +74,26 @@ void	PatternGenerator::addPattern(const Pattern &newPattern)
   _patternNumber++;
   i = -1;
   count = 0;
-  while ((time = newPattern.getPatternTime(++i)) != NULL)
+  while ((time = newPattern.getPatternTime(++i)).size() > 0)
     {
       n = -1;
-      while (++n < time.size())
+      while (static_cast<unsigned int>(++n) < time.size())
 	{
-	  note = correlateNote(time[n], newPattern.getChord(), _chord)
+	  note = correlateNote(time[n], newPattern.getChord(), _chord);
 	  if (n == 0)
-	    _tree.addNote(note.note.first, _tree.getProba(note.first) + 1);
+	    _tree.addNote(note.note.first, _tree.getProba(note.note.first) + 1);
 	  else
 	    _tree.addNoteFromNote(oldNote.note.first, note.note.first, _tree.getProbaFromNote(oldNote.note.first, note.note.first) + 1);
 	  oldNote = note;
 
-	  if (n < _duration.size())
+	  if (static_cast<unsigned int>(n) < _duration.size())
 	    _duration[n] = (_duration[n] * ((_noteNumber + count) / 4) + note.duration) / ((_noteNumber + count) / 4 + 1);
 	  else
 	    _duration.push_back(note.duration);
-	  if (n < _position.size())
+	  if (static_cast<unsigned int>(n) < _position.size())
 	    _position[n] = (_position[n] * ((_noteNumber + count) / 4) + note.position) / ((_noteNumber + count) / 4 + 1);
 	  else
-	    position.push_back(note.position);
+	    _position.push_back(note.position);
 	  count++;
 	}
     }
@@ -105,15 +105,15 @@ Pattern		PatternGenerator::getPattern() const
   StyleSettings		toMarkov(_tree);
   std::vector<std::pair<char, char> > vec;
   int			n;
-  Pattern		ret;
+  Pattern		ret(_chord);
 
   toMarkov.normalize();
-  ObjectMarkov markov(toMarkovn, static_cast<int>(_noteNumber)); /* NOTE NUMBER A AMELIORER */
+  ObjectMarkov markov(toMarkov, static_cast<int>(_noteNumber)); /* NOTE NUMBER A AMELIORER */
   markov.callLua();
   vec = markov.getVectorFromJson();
 
   n = -1;
-  while (++n != vec.size())
-    ret.addNote(vec[n], _position[(4 * n) / vec.size], _duration[(4 * n) / vec.size], (4 * n) / vec.size); /* DURATION ET POSITION A AMELIORER */
-  return (ret)
+  while (static_cast<unsigned int>(++n) != vec.size())
+    ret.addNote(vec[n], _position[(4 * n) / vec.size()], _duration[(4 * n) / vec.size()], (4 * n) / vec.size()); /* DURATION ET POSITION A AMELIORER */
+  return (ret);
 }
