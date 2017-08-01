@@ -101,7 +101,7 @@ public:
    *  \param Note : Name of the note
    *  \return The probability of the note
    */
-  char		getProba(const char note);
+  int		getProba(const char note);
 
   /*!
    *  \brief Returns the sum probability of the root notes
@@ -111,7 +111,7 @@ public:
    *  \param Note : Name of the note
    *  \return The probability of the note
    */
-  char		getSumProba();
+  int		getSumProba();
 
   /*!
    *  \brief Returns the probability of a note from another
@@ -122,7 +122,7 @@ public:
    *  \param Note : Name of the note
    *  \return The probability of the note
    */
-  char		getProbaFromNote(const char baseNote, const char note);
+  int		getProbaFromNote(const char baseNote, const char note);
 
   /*!
    *  \brief Returns the sum probability of notes from another
@@ -132,7 +132,7 @@ public:
    *  \param Note : Name of the note
    *  \return The probability of the note
    */
-  char		getSumProbaFromNote(const char baseNote);
+  int		getSumProbaFromNote(const char baseNote);
 
   /*!
    *  \brief Copies the object with overload

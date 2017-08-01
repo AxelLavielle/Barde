@@ -55,14 +55,14 @@ int		StyleSettings::getProba(const char note)
   return (_param.find(note) == _param.end() ? 0 : _param[note].first);
 }
 
-char		StyleSettings::getSumProba()
+int		StyleSettings::getSumProba()
 {
   char		total;
   
   total = 0;
   for (auto const &data : _param)
     total += data.second.first;
-  return (total)
+  return (total);
 }
 
 int		StyleSettings::getProbaFromNote(const char baseNote, const char note)
@@ -72,16 +72,16 @@ int		StyleSettings::getProbaFromNote(const char baseNote, const char note)
 	  0 : _param[baseNote].second[note]);
 }
 
-char		StyleSettings::getSumProbaFromNote(const char baseNote)
+int		StyleSettings::getSumProbaFromNote(const char baseNote)
 {
   char		total;
 
   if (_param.find(baseNote) == _param.end())
     return (0);
   total = 0;
-  for (auto const &data : _param[baseNote].second.second)
-    total += data.second.first;
-  return (total)
+  for (auto const &data : _param[baseNote].second)
+    total += data.first;
+  return (total);
 }
 
 void		StyleSettings::normalize()
@@ -89,25 +89,25 @@ void		StyleSettings::normalize()
   char		sum;
   char		sumPartial;
 
-  sum = self.getSumProba();
+  sum = this->getSumProba();
   for (auto const &data : _param)
     {
-      _param[data.first] = (100 * static_cast<int>(data.second.first)) / sum;
-      sumPartial = self.getSumProbaFromNote(data.first);
-      for (auto const &dataPartial : _param[data.first])
+      _param[data.first].first = (100 * static_cast<int>(data.second.first)) / sum;
+      sumPartial = this->getSumProbaFromNote(data.first);
+      for (auto const &dataPartial : _param[data.first].second)
 	_param[data.first].second[dataPartial.first] = (100 * static_cast<int>(dataPartial.second)) / sumPartial;
     }
 
-  sum = self.getSumProba();
+  sum = this->getSumProba();
   for (auto const &data : _param)
     {
       if (sum < 100)
 	{
-	  _param[data.first]++;
+	  _param[data.first].first++;
 	  sum++;
 	}
-      sumPartial = self.getSumProbaFromNote(data.first);
-      for (auto const &dataPartial : _param[data.first])
+      sumPartial = this->getSumProbaFromNote(data.first);
+      for (auto const &dataPartial : _param[data.first].second)
 	if (sumPartial < 100)
 	  {
 	    _param[data.first].second[dataPartial.first]++;

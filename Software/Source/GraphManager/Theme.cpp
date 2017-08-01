@@ -17,7 +17,7 @@ Theme::Theme()
 	_buttonColor = 0;
 	_backgroundColor = 0;
 	_fontColor = 0;
-	_name = NULL;
+	_name = "";
 }
 
 Theme::Theme(int buttonColor, int backgroundColor, int fontColor, std::string name)
