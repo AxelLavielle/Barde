@@ -418,6 +418,12 @@
     <ClCompile Include="..\Source\ViewManager\ViewManager.cpp">
       <Filter>BardeClient\Source\ViewManager</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\AI\Pattern.cpp">
+      <Filter>BardeClient\Source\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\AI\PatternGenerator.cpp">
+      <Filter>BardeClient\Source\AI</Filter>
+    </ClCompile>
     <ClCompile Include="..\Source\AI\AI.cpp">
       <Filter>BardeClient\Source\AI</Filter>
     </ClCompile>
@@ -2294,6 +2300,12 @@
     </ClInclude>
     <ClInclude Include="..\Source\ViewManager\ViewManager.hh">
       <Filter>BardeClient\Source\ViewManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\AI\Pattern.hh">
+      <Filter>BardeClient\Source\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\AI\PatternGenerator.hh">
+      <Filter>BardeClient\Source\AI</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\AI\AI.hh">
       <Filter>BardeClient\Source\AI</Filter>
