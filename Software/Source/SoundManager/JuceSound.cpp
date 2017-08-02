@@ -14,19 +14,19 @@ SoundManager::SoundManager()
 {
 //  MidiOutput::getDefaultDeviceIndex()
   //_midiOutput = MidiOutput::createNewDevice("TEST");
-	_midiOutput = MidiOutput::openDevice(0);
+	_midiOutput = MidiOutput::openDevice(2);
   // _audioManager.initialise(128, 128, NULL, true);
 	// _audioManager.setMidiOutput(_midiOutput);
   // std::cout << _midiOutput->getName() << std::endl;
-  // std::cout << "------" << "MidiOutput List" << "-------" << std::endl;
-  // int i = 0;
-  // StringArray test = _midiOutput->getDevices();
-  // while (i < test.size())
-  // {
-  //   std::cout << test[i] << std::endl;
-  //   i++;
-  // }
-  // std::cout << "------" << "END MidiOutput List" << "-------" << std::endl;
+  std::cout << "------" << "MidiOutput List" << "-------" << std::endl;
+  int i = 0;
+  StringArray test = _midiOutput->getDevices();
+  while (i < test.size())
+  {
+    std::cout << test[i] << std::endl;
+    i++;
+  }
+  std::cout << "------" << "END MidiOutput List" << "-------" << std::endl;
   // _audioManager.playTestSound();
   // std::cout << _audioManager.getDefaultMidiOutputName() << std::endl;
 }
