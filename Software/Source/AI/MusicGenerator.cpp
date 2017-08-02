@@ -69,23 +69,26 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   i = 0;
   while (i != markovChords.size())
     {
-      StyleSettings					proba;
-      std::vector<char>					strong;
-      std::vector<char>					medium;
-      std::vector<char>					weak;
+      if (i == 0 || markovChords[i].first != markovChords[i - 1].first)
+	{
+	  StyleSettings					proba;
+	  std::vector<char>					strong;
+	  std::vector<char>					medium;
+	  std::vector<char>					weak;
 
-      chord = allChords.getChordFromName(markovChords[i].first);
-      AI::classifyNotes(chord, &strong, &medium, &weak);
-      AI::calculateProbaToNote(&proba, strong, PROBASTRONG);
-      AI::calculateProbaToNote(&proba, medium, PROBAMEDIUM);
-      AI::calculateProbaToNote(&proba, weak, PROBAWEAK);
-      AI::calculateProbaToScaleFromNote(&proba, strong, medium, weak);
+	  chord = allChords.getChordFromName(markovChords[i].first);
+	  AI::classifyNotes(chord, &strong, &medium, &weak);
+	  AI::calculateProbaToNote(&proba, strong, PROBASTRONG);
+	  AI::calculateProbaToNote(&proba, medium, PROBAMEDIUM);
+	  AI::calculateProbaToNote(&proba, weak, PROBAWEAK);
+	  AI::calculateProbaToScaleFromNote(&proba, strong, medium, weak);
 
-      ObjectMarkov				       	markovObj(proba, 3, parameters.getSeed());
-      markovObj.callLua();
+	  ObjectMarkov				       	markovObj(proba, 3, parameters.getSeed());
+	  markovObj.callLua();
 
-      markovTmp = markovObj.getVectorFromJson();
-      Resolution::parsingMarkov(&markovTmp, strong, medium, weak);
+	  markovTmp = markovObj.getVectorFromJson();
+	  Resolution::parsingMarkov(&markovTmp, strong, medium, weak);
+	}
       if (!markovArpeggio.size())
 	markovArpeggio = markovTmp;
       else
