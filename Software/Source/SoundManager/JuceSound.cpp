@@ -14,18 +14,23 @@ SoundManager::SoundManager()
 {
 //  MidiOutput::getDefaultDeviceIndex()
   //_midiOutput = MidiOutput::createNewDevice("TEST");
-	_midiOutput = MidiOutput::openDevice(2);
   // _audioManager.initialise(128, 128, NULL, true);
 	// _audioManager.setMidiOutput(_midiOutput);
   // std::cout << _midiOutput->getName() << std::endl;
   std::cout << "------" << "MidiOutput List" << "-------" << std::endl;
   int i = 0;
+	int j = 0;
   StringArray test = _midiOutput->getDevices();
   while (i < test.size())
   {
+		if (test[i][0] == 'F' && test[i][1] == 'L') {
+			j = i;
+			break;
+		}
     std::cout << test[i] << std::endl;
     i++;
   }
+	_midiOutput = MidiOutput::openDevice(j);
   std::cout << "------" << "END MidiOutput List" << "-------" << std::endl;
   // _audioManager.playTestSound();
   // std::cout << _audioManager.getDefaultMidiOutputName() << std::endl;
