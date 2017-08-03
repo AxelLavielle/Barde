@@ -10,7 +10,7 @@
 
 #include "PatternGenerator.hh"
 
-PatternGenerator::PatternGenerator(const std::vector<char> &chord)
+PatternGenerator::PatternGenerator(const std::vector<std::pair<char, char> > &chord)
 {
   _patternNumber = 0;
   _noteNumber = 0;
@@ -22,7 +22,7 @@ PatternGenerator::~PatternGenerator()
   
 }
 
-t_note	PatternGenerator::correlateNote(const t_note &note, const std::vector<char> &prev, const std::vector<char> &next)
+t_note	PatternGenerator::correlateNote(const t_note &note, const std::vector<std::pair<char, char> > &prev, const std::vector<std::pair<char, char> > &next)
 {
   t_note		ret;
   std::vector<char>	strong;

@@ -22,6 +22,7 @@
 # include "ObjectMarkov.hh"
 # include "Disposition.hh"
 # include "Chords.hh"
+# include "Pattern.hh"
 # include "AI.hh"
 
 /*! \class MusicGenerator

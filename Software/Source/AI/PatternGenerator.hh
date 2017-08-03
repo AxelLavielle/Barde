@@ -35,7 +35,7 @@ public:
    *
    */
   PatternGenerator();
-  PatternGenerator(const std::vector<char> &chord);
+  PatternGenerator(const std::vector<std::pair<char, char> > &chord);
 
   /*!
    *  \brief Destructor
@@ -47,10 +47,10 @@ public:
   void	addPattern(const Pattern &newPattern);
   Pattern	getPattern() const;
 private:
-  t_note	correlateNote(const t_note &note, const std::vector<char> &prev, const std::vector<char> &next);
+  t_note	correlateNote(const t_note &note, const std::vector<std::pair<char, char> > &prev, const std::vector<std::pair<char, char> > &next);
   char		_patternNumber;
   StyleSettings	_tree;
-  std::vector<char>	_chord;
+  std::vector<std::pair<char, char> >	_chord;
   std::vector<float> _position;
   std::vector<float> _duration;
   float		_noteNumber;

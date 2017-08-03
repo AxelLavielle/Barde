@@ -75,7 +75,7 @@ public:
    *  \param Weak : Vector of weak notes
    *  \return Insert the notes directly in the correct vector that you must provide as parameters
    */
-  static void		classifyNotes(const std::vector<char> &chord, std::vector<char> *strong, std::vector<char> *medium, std::vector<char> *weak);
+  static void		classifyNotes(const std::vector<std::pair<char, char> > &chord, std::vector<char> *strong, std::vector<char> *medium, std::vector<char> *weak);
 
   /*!
    *  \brief Searches the note name from a distance and a note, not caring of sharps notes
@@ -131,7 +131,7 @@ public:
    *  \param Chord : Vector of note
    *  \return The minimum of distance between the note and every note of the list
    */
-  static char		calculateDistChords(const std::vector<char> chord, const char note);
+  static char		calculateDistChords(const std::vector<std::pair<char, char> > chord, const char note);
 private:
 };
 

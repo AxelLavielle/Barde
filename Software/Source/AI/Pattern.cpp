@@ -10,7 +10,7 @@
 
 #include "Pattern.hh"
 
-Pattern::Pattern(const std::vector<char> &chord)
+Pattern::Pattern(const std::vector<std::pair<char, char> > &chord)
 {
   _chord = chord;
 }
@@ -22,10 +22,13 @@ Pattern::~Pattern()
 void	Pattern::addNote(const std::pair<char, char> &note, const float position, const float duration, const char time)
 {
   t_note newNote;
-
+  std::vector<t_note>	tmp;
+  
   newNote.note = note;
   newNote.position = position;
   newNote.duration = duration;
+  while (time >= static_cast<char>(_pattern.size()))
+    _pattern.push_back(tmp);
   _pattern[time].push_back(newNote);
 }
 
@@ -43,7 +46,7 @@ std::vector<t_note>	Pattern::getPatternTime(const char time) const
   return (empty);
 }
 
-std::vector<char>	Pattern::getChord() const
+std::vector<std::pair<char, char> >	Pattern::getChord() const
 {
   return (_chord);
 }
