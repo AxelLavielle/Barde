@@ -147,6 +147,16 @@ public:
    */
   std::vector<char>	getChordFromName(const char name) const;
 
+  /*!
+   *  \brief Returns the good chord from name
+   *
+   *  This method returns the chord according to the name
+   *
+   *  \param Name : Name of the chord
+   *  \return The vector of notes composing the chord
+   */
+  std::vector<std::pair<char, char> >	getChordPairFromName(const char name) const;
+
 private:
   std::map<char, std::vector<char> >	_chords; /*!< List of all chords */
 };

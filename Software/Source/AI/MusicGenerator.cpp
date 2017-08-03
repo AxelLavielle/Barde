@@ -38,9 +38,10 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   unsigned char						i;
   std::vector<std::pair<char, char> >			markovChords;
   std::vector<std::pair<char, char> >			markovTmp;
-  std::vector<std::pair<char, char> >			markovArpeggio;
+  std::vector<std::pair<char, char> >			markovArpeggio2; // will be removed
+  std::vector<Pattern *>				markovArpeggio;
   StyleSettings						style;
-  std::vector<char>					chord;
+  std::vector<std::pair<char, char> >			chord;
   Chords						allChords;
 
   markovObj.callLua();
@@ -76,7 +77,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 	  std::vector<char>					medium;
 	  std::vector<char>					weak;
 
-	  chord = allChords.getChordFromName(markovChords[i].first);
+	  chord = allChords.getChordPairFromName(markovChords[i].first);
 	  AI::classifyNotes(chord, &strong, &medium, &weak);
 	  AI::calculateProbaToNote(&proba, strong, PROBASTRONG);
 	  AI::calculateProbaToNote(&proba, medium, PROBAMEDIUM);
@@ -88,15 +89,22 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 
 	  markovTmp = markovObj.getVectorFromJson();
 	  Resolution::parsingMarkov(&markovTmp, strong, medium, weak);
+	  char						n;
+	  Pattern					*tmpPattern= new Pattern(chord);
+
+	  n = -1;
+	  while (++n != static_cast<char>(markovTmp.size()))
+	    tmpPattern->addNote(markovTmp[n], n, 1, i);
+	  markovArpeggio.push_back(tmpPattern);
 	}
-      if (!markovArpeggio.size())
-	markovArpeggio = markovTmp;
+      if (!markovArpeggio2.size())
+	markovArpeggio2 = markovTmp;
       else
-	markovArpeggio.insert(markovArpeggio.end(), markovTmp.begin(), markovTmp.end());
+	markovArpeggio2.insert(markovArpeggio2.end(), markovTmp.begin(), markovTmp.end());
       i++;
     }
 
-  Disposition::placeArpeggios(parameters, markovArpeggio);
+  Disposition::placeArpeggios(parameters, markovArpeggio2);
 
   parameters.setMidi(parameters._midiManager.createMidi(48));
   parameters._midiManager.writeToFile("./test.mid");

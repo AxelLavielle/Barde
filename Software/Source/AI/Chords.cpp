@@ -541,3 +541,18 @@ std::vector<char>	Chords::getChordFromName(const char name) const
 {
   return (_chords.at(name));
 }
+
+std::vector<std::pair<char, char> >	Chords::getChordPairFromName(const char name) const
+{
+  std::vector<std::pair<char, char> >	ret;
+  char				n;
+  char					last_note;
+  char					base;
+
+  n = -1;
+  last_note = _chords.at(name).size();
+  base = 3;
+  while (++n < static_cast<char>(_chords.at(name).size()))
+    ret.push_back(std::make_pair(_chords.at(name)[n], (_chords.at(name)[n] >= last_note) ? base : ++base));
+  return (ret);
+}

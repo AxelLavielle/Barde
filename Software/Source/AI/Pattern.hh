@@ -41,7 +41,7 @@ public:
    *  Empty
    *
    */
-  Pattern(const std::vector<char> &chord);
+  Pattern(const std::vector<std::pair<char, char> > &chord);
 
   /*!
    *  \brief Destructor
@@ -53,11 +53,11 @@ public:
   void			addNote(const std::pair<char, char> &note, const float position, const float duration, const char time);
   void			addNote(const t_note &newNote, const char time);
   std::vector<t_note>	getPatternTime(const char time) const;
-  std::vector<char>	getChord() const;
+  std::vector<std::pair<char, char> >	getChord() const;
   
 private:
   std::vector<std::vector<t_note> >	_pattern;
-  std::vector<char>			_chord;
+  std::vector<std::pair<char, char> >			_chord;
 };
 
 #endif  // PATTERN_HH_INCLUDED

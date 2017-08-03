@@ -8,7 +8,7 @@ char			AI::calculateDist(const char currNote, const char testNote)
   return (a < 6 ? a : (12 - a));
 }
 
-char			AI::calculateDistChords(const std::vector<char> chord, const char note)
+char			AI::calculateDistChords(const std::vector<std::pair<char, char> > chord, const char note)
 {
   unsigned char		i;
   char			save;
@@ -16,8 +16,8 @@ char			AI::calculateDistChords(const std::vector<char> chord, const char note)
   i = -1;
   save = 6;
   while (++i != chord.size())
-    if (calculateDist(note, chord[i]) < save)
-      save = calculateDist(note, chord[i]);
+    if (calculateDist(note, chord[i].first) < save)
+      save = calculateDist(note, chord[i].first);
   return (save);
 }
 
@@ -104,7 +104,7 @@ void			AI::calculateProbaToNote(StyleSettings *proba, const std::vector<char> &l
     }
 }
 
-void			AI::classifyNotes(const std::vector<char> &chord, std::vector<char> *strong, std::vector<char> *medium, std::vector<char> *weak)
+void			AI::classifyNotes(const std::vector<std::pair<char, char> > &chord, std::vector<char> *strong, std::vector<char> *medium, std::vector<char> *weak)
 {
   unsigned char		i;
   char			save;
