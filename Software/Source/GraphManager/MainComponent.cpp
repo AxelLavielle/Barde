@@ -7,14 +7,17 @@
 */
 
 #include "MainComponent.h"
+#include "Theme.h"
 
 //==============================================================================
 MainContentComponent::MainContentComponent()
 {
 	int rectX;
 	int rectY;
-	
+	Theme currentTheme;
+
 	setSize(getParentWidth(), getParentHeight() - 10);
+	currentTheme = parseTheme("../Themes/Dark");
 	addAndMakeVisible(blues = new MusicStyleButton("Generate some blues", 400, 50));
 	rectX = (600 / 2) - (400 / 2);
 	rectY = (400 / 15) + (LOGO_WIDTH) + 100;

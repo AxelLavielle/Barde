@@ -73,3 +73,24 @@ void Theme::setName(std::string name)
 {
 	_name = name;
 }
+
+Theme parseTheme(std::string fileName)
+{
+	Theme tmp = Theme();
+	std::string line;
+	std::string name;
+	std::string button;
+	std::string background;
+	std::string font;
+	std::ifstream myfile(fileName);
+	if (myfile.is_open())
+	{
+		while (getline(myfile, line))
+		{
+			name = line;
+		}
+		myfile.close();
+	}
+	std::cout << fileName << std::endl;
+	return tmp;
+}

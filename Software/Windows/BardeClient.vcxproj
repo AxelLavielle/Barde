@@ -2447,6 +2447,7 @@
     <None Include="..\Source\AI\people.json"/>
     <None Include="..\Source\Ressources\back.png"/>
     <None Include="..\Source\Ressources\logo.png"/>
+    <None Include="..\Source\Themes\Dark"/>
     <None Include="..\JuceLibraryCode\modules\juce_audio_formats\codecs\flac\Flac Licence.txt"/>
     <None Include="..\JuceLibraryCode\modules\juce_audio_formats\codecs\oggvorbis\Ogg Vorbis Licence.txt"/>
     <None Include="..\JuceLibraryCode\modules\juce_graphics\image_formats\jpglib\changes to libjpeg for JUCE.txt"/>

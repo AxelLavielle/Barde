@@ -177,6 +177,9 @@
             file="Source/UserSettings.cpp"/>
       <FILE id="xB0dXM" name="UserSettings.h" compile="0" resource="0" file="Source/UserSettings.h"/>
     </GROUP>
+    <GROUP id="{A4238DDD-1308-CF42-59A1-407DADF2E536}" name="Themes">
+      <FILE id="SzlgVd" name="Dark" compile="0" resource="1" file="Source/Themes/Dark"/>
+    </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="MacOS" extraDefs="SOURCEMARKOV=\&quot;$(SRCROOT)/../Source/markovSource/\&quot;">
