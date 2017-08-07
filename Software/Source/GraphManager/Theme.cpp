@@ -76,21 +76,26 @@ void Theme::setName(std::string name)
 
 Theme parseTheme(std::string fileName)
 {
-	Theme tmp = Theme();
+  Theme tmp;
 	std::string line;
 	std::string name;
 	std::string button;
 	std::string background;
 	std::string font;
 	std::ifstream myfile(fileName);
+	std::cout << "Reqding Theme File :" << fileName << std::endl;
 	if (myfile.is_open())
 	{
-		while (getline(myfile, line))
-		{
-			name = line;
-		}
-		myfile.close();
+	  getline(myfile, name);
+	  getline(myfile, button);
+	  getline(myfile, background);
+	  getline(myfile, font);
+	  std::cout << name << " " << button << " " << background << " " << font << std::endl;
+	  myfile.close();
 	}
-	std::cout << fileName << std::endl;
+	// Convert all strings to uint32
+	//	tmp = Theme(button, background, font, name);
+	tmp = Theme();
 	return tmp;
 }
+
