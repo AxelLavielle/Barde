@@ -41,6 +41,9 @@
     <Filter Include="BardeClient\Source\SoundManager">
       <UniqueIdentifier>{50585E43-7096-3C71-28EA-6D3EB8719B73}</UniqueIdentifier>
     </Filter>
+    <Filter Include="BardeClient\Themes">
+      <UniqueIdentifier>{3D405F78-377C-F23B-C137-FCE43BFD445A}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Juce Modules">
       <UniqueIdentifier>{422C46B7-0467-2DB0-BF3C-16DFCAFD69AC}</UniqueIdentifier>
     </Filter>
@@ -4300,6 +4303,9 @@
     </None>
     <None Include="..\Source\Ressources\logo.png">
       <Filter>BardeClient\Source\Ressources</Filter>
+    </None>
+    <None Include="..\Source\Themes\Dark">
+      <Filter>BardeClient\Themes</Filter>
     </None>
     <None Include="..\JuceLibraryCode\modules\juce_audio_formats\codecs\flac\Flac Licence.txt">
       <Filter>Juce Modules\juce_audio_formats\codecs\flac</Filter>

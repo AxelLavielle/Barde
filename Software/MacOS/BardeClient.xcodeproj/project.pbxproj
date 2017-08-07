@@ -566,6 +566,7 @@
 		5FE5B39747FE4E01058134F5 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jdpostct.c; path = "../JuceLibraryCode/modules/juce_graphics/image_formats/jpglib/jdpostct.c"; sourceTree = "SOURCE_ROOT"; };
 		6033C3050957E9F0AB17DC98 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = "window_flac.c"; path = "../JuceLibraryCode/modules/juce_audio_formats/codecs/flac/libFLAC/window_flac.c"; sourceTree = "SOURCE_ROOT"; };
 		606B73074DCE4BB112D9EABC = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "stream_encoder.h"; path = "../JuceLibraryCode/modules/juce_audio_formats/codecs/flac/libFLAC/include/private/stream_encoder.h"; sourceTree = "SOURCE_ROOT"; };
+		6090158729255A8CD17C4420 = {isa = PBXFileReference; lastKnownFileType = file; name = Dark; path = ../Source/Themes/Dark; sourceTree = "SOURCE_ROOT"; };
 		60972E14D05DD27744B9CE1D = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "juce_ToggleButton.h"; path = "../JuceLibraryCode/modules/juce_gui_basics/buttons/juce_ToggleButton.h"; sourceTree = "SOURCE_ROOT"; };
 		60E97062605390D2AEA8AFF7 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "juce_ConnectedChildProcess.h"; path = "../JuceLibraryCode/modules/juce_events/interprocess/juce_ConnectedChildProcess.h"; sourceTree = "SOURCE_ROOT"; };
 		616841FEE5934E899D1F236E = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "juce_XmlElement.cpp"; path = "../JuceLibraryCode/modules/juce_core/xml/juce_XmlElement.cpp"; sourceTree = "SOURCE_ROOT"; };
@@ -1520,8 +1521,11 @@
 					BB94EA54FA385429DAD02AD7,
 					6ABC9BB8DC942DB3BC0AC6F6,
 					FA43747D72FCCCC3273B67B4, ); name = Source; sourceTree = "<group>"; };
+		FD0E83BFCADC134A0F16C824 = {isa = PBXGroup; children = (
+					6090158729255A8CD17C4420, ); name = Themes; sourceTree = "<group>"; };
 		4FFC944992568D9B1BFAD76C = {isa = PBXGroup; children = (
-					3343A02E8017FE8DC338AAF3, ); name = BardeClient; sourceTree = "<group>"; };
+					3343A02E8017FE8DC338AAF3,
+					FD0E83BFCADC134A0F16C824, ); name = BardeClient; sourceTree = "<group>"; };
 		97B7C7C371B5A7B029BCDE37 = {isa = PBXGroup; children = (
 					F73422E6B397AEF4D5C7C2F0,
 					0848294C04A41960CDBF7191,
