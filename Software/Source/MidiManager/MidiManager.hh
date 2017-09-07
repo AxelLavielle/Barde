@@ -174,6 +174,7 @@ private:
 	MidiMessageSequence		_midiSequence; /*!< object containing all the sequences of the midi data*/
 	MidiFile				_midiBuff; /*!< Buffer caontaining all the Midi data*/
 	MemoryOutputStream		_midiStream; /*!< Memory stream containing the midi data in raw format*/
+	// Synthesiser 					_synth;
 };
 
 #endif  // MIDIMANAGER_HH_INCLUDED
