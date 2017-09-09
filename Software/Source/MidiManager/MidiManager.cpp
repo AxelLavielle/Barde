@@ -12,6 +12,9 @@
 
 MidiManager::MidiManager() : AMidiManager()
 {
+	// for (int i = 0; i++ < 16;) {
+	// 	_synth.addVoice(new SamplerVoice());
+	// }
 }
 
 MidiManager::~MidiManager()
@@ -22,9 +25,16 @@ void MidiManager::noteOn(const int channel, const int noteNumber, const float ve
 {
 	MidiMessage message = MidiMessage::noteOn(channel, noteNumber, (uint8)velocity);
 
+
+	// changeInstrument(channel, channel, time);
 	message.setTimeStamp(time);
 	//addMessageToList(message);
+	std::cout << "COUCOU 1" << std::endl;
+	std::cout << "Channel == " << channel << std::endl;
 	_midiSequence.addEvent(message);
+	// _synth.noteOn(channel, noteNumber, (uint8)velocity);
+	std::cout << getMidiMessageDescription(message) << std::endl;
+	std::cout << "COUCOU 2" << std::endl;
 	_midiSequence.updateMatchedPairs();
 }
 
@@ -32,7 +42,7 @@ void MidiManager::noteOn(const Instrument & instrument, const int noteNumber, co
 {
 	MidiMessage message = MidiMessage::noteOn(instrument.channel, noteNumber, (uint8)velocity);
 
-	changeInstrument(instrument, time);
+	// changeInstrument(instrument, time);
 	message.setTimeStamp(time);
 	//addMessageToList(message);
 	_midiSequence.addEvent(message);
@@ -53,7 +63,7 @@ void MidiManager::noteOff(const Instrument & instrument, const int noteNumber, c
 {
 	MidiMessage message = MidiMessage::noteOff(instrument.channel, noteNumber, (uint8)velocity);
 
-	changeInstrument(instrument, time);
+	// changeInstrument(instrument, time);
 	message.setTimeStamp(time);
 	//addMessageToList(message);
 	_midiSequence.addEvent(message);

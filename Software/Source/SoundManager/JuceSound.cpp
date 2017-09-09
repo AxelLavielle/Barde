@@ -12,6 +12,16 @@
 
 SoundManager::SoundManager()
 {
+
+  _deviceManager = new AudioDeviceManager();
+
+  _deviceManager->initialise (2, 2, nullptr, true, String(), nullptr);
+
+
+  _audioSourcePlayer.setSource (&_synthAudioSource);
+
+  _deviceManager->addAudioCallback (&_audioSourcePlayer);
+
 //  MidiOutput::getDefaultDeviceIndex()
   //_midiOutput = MidiOutput::createNewDevice("TEST");
   // _audioManager.initialise(128, 128, NULL, true);
@@ -73,7 +83,9 @@ bool							SoundManager::play(const Midi &midi)
 		if (tmp.isNoteOn())
 		{
       std::cout << "NOTE ON" << std::endl;
+      _synthAudioSource.midiCollector.addMessageToQueue(tmp);
 			_midiOutput->sendMessageNow((const MidiMessage &)tmp);
+
 			if (tmp.getTimeStamp() != k)
 			{
 				Tools::sleep(temps);
