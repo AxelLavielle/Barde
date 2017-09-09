@@ -93,9 +93,13 @@ Theme parseTheme(std::string fileName)
 	  std::cout << name << " " << button << " " << background << " " << font << std::endl;
 	  myfile.close();
 	}
-	// Convert all strings to uint32
-	//	tmp = Theme(button, background, font, name);
-	tmp = Theme();
+	else
+	  return Theme();
+	
+	uint iButton = std::stol (button,0,16);
+	uint iBackground = std::stol (background,0,16);
+	uint iFont = std::stol (font,0,16);
+	tmp = Theme(iButton, iBackground, iFont, name);
 	return tmp;
 }
 

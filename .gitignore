@@ -193,3 +193,7 @@ ipch/
 DocBarde/
 
 Software/Windows/test\.mid
+
+Software/Linux/build/BardeClient
+
+Software/Linux/test\.mid

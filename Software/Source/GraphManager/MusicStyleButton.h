@@ -13,6 +13,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "../Player.hh"
+#include "Theme.h"
 
 
 /*! \class MusicStyleButton
@@ -28,6 +29,7 @@ class MusicStyleButton : public Button
 public:
 	int width; /*!< Button width*/
 	int height; /*!< Button height*/
+	Theme theme; /*!< Theme of the app*/
 	std::thread _threadPlayer; /*!< thread player*/
 	Player _player; /*!< player*/
 
@@ -39,8 +41,9 @@ public:
 	*  \param buttonName : name of the button / Text to display
 	*  \param w : Button width
 	*  \param h : Button height
+	*  \param theme : Theme
 	*/
-	MusicStyleButton(const String &buttonName, const int w, const int h);
+	MusicStyleButton(const String &buttonName, const int w, const int h, Theme theme);
 	/*!
 	*  \brief Destructor
 	*
