@@ -32,6 +32,7 @@ class MainContentComponent   : public Component
 public:
     //==============================================================================
 	MusicStyleButton *blues;  /*!< button for generating blues*/
+	Theme currentTheme; /*!< Theme defining the colors of the elements*/
 
 	/*!
 	*  \brief Constructor

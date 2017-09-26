@@ -14,10 +14,10 @@
 
 Theme::Theme()
 {
-	_buttonColor = 0;
-	_backgroundColor = 0;
-	_fontColor = 0;
-	_name = "";
+	_buttonColor = 0xFFD2005F;
+	_backgroundColor = 0xFFFFFFFF;
+	_fontColor = 0xFFFFFFFF;
+	_name = "Default";
 }
 
 Theme::Theme(int buttonColor, int backgroundColor, int fontColor, std::string name)
@@ -82,8 +82,10 @@ Theme parseTheme(std::string fileName)
 	std::string button;
 	std::string background;
 	std::string font;
-	std::ifstream myfile(fileName);
-	std::cout << "Reqding Theme File :" << fileName << std::endl;
+	std::ifstream myfile;
+	myfile.open(fileName, std::ifstream::in);
+
+	std::cout << "Reading Theme File :" << fileName << std::endl;
 	if (myfile.is_open())
 	{
 	  getline(myfile, name);
@@ -96,9 +98,9 @@ Theme parseTheme(std::string fileName)
 	else
 	  return Theme();
 	
-	uint iButton = std::stol (button,0,16);
-	uint iBackground = std::stol (background,0,16);
-	uint iFont = std::stol (font,0,16);
+	unsigned int iButton = std::stol (button,0,16);
+	unsigned int iBackground = std::stol (background,0,16);
+	unsigned int iFont = std::stol (font,0,16);
 	tmp = Theme(iButton, iBackground, iFont, name);
 	return tmp;
 }
