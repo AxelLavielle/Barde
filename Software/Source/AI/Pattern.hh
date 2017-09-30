@@ -53,7 +53,10 @@ public:
   void			addNote(const std::pair<char, char> &note, const float position, const float duration, const char time);
   void			addNote(const t_note &newNote, const char time);
   std::vector<t_note>	getPatternTime(const char time) const;
+  std::vector<std::vector<t_note> >	getPattern() const;
   std::vector<std::pair<char, char> >	getChord() const;
+  static std::vector<std::vector<t_note> >	correlatePattern(const Pattern pattern, const std::vector<std::pair<char, char> > &prev, const std::vector<std::pair<char, char> > &next);
+  static t_note	correlateNote(const t_note &note, const std::vector<std::pair<char, char> > &prev, const std::vector<std::pair<char, char> > &next);
   
 private:
   std::vector<std::vector<t_note> >	_pattern;

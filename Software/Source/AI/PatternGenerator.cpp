@@ -22,46 +22,6 @@ PatternGenerator::~PatternGenerator()
   
 }
 
-t_note	PatternGenerator::correlateNote(const t_note &note, const std::vector<std::pair<char, char> > &prev, const std::vector<std::pair<char, char> > &next)
-{
-  t_note		ret;
-  std::vector<char>	strong;
-  std::vector<char>	medium;
-  std::vector<char>	weak;
-  std::vector<char>	strong2;
-  std::vector<char>	medium2;
-  std::vector<char>	weak2;
-  char			i;
-
-  ret.position = note.position;
-  ret.duration = note.duration;
-  AI::classifyNotes(prev, &strong, &medium, &weak);
-  AI::classifyNotes(next, &strong2, &medium2, &weak2);
-  
-  // Normalize
-  while (strong2.size() < strong.size())
-    strong2.push_back(medium2.back());
-  while (medium2.size() < medium.size())
-    medium2.push_back(weak2.back());
-  while (weak2.size() < weak.size())
-    weak2.push_back(medium2[0]);
-
-  // Search
-  i = -1;
-  while (static_cast<unsigned int>(++i) < strong.size())
-    if (strong[i] == note.note.first)
-      ret.note = std::make_pair(strong2[i], 3);
-  i = -1;
-  while (static_cast<unsigned int>(++i) < medium.size())
-    if (medium[i] == note.note.first)
-      ret.note = std::make_pair(medium2[i], 3);
-  i = -1;
-  while (static_cast<unsigned int>(++i) < weak.size())
-    if (weak[i] == note.note.first)
-      ret.note = std::make_pair(weak2[i], 3);
-  return (ret);
-}
-
 void	PatternGenerator::addPattern(const Pattern &newPattern)
 {
   char			n;
@@ -79,7 +39,7 @@ void	PatternGenerator::addPattern(const Pattern &newPattern)
       n = -1;
       while (static_cast<unsigned int>(++n) < time.size())
 	{
-	  note = correlateNote(time[n], newPattern.getChord(), _chord);
+	  note = Pattern::correlateNote(time[n], newPattern.getChord(), _chord);
 	  if (n == 0)
 	    _tree.addNote(note.note.first, _tree.getProba(note.note.first) + 1);
 	  else

@@ -47,7 +47,6 @@ public:
   void	addPattern(const Pattern &newPattern);
   Pattern	getPattern() const;
 private:
-  t_note	correlateNote(const t_note &note, const std::vector<std::pair<char, char> > &prev, const std::vector<std::pair<char, char> > &next);
   char		_patternNumber;
   StyleSettings	_tree;
   std::vector<std::pair<char, char> >	_chord;
