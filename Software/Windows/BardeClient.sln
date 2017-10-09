@@ -1,6 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2015
-Project("{DB67F843-A22B-6C40-1E9D-600A1261702B}") = "BardeClient", "BardeClient.vcxproj", "{FB7201A8-24FD-4ABF-307D-988395A1B205}"
+
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BardeClient - App", "BardeClient_App.vcxproj", "{D65039C7-FEC2-478D-B242-6D8148618858}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,10 +9,10 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FB7201A8-24FD-4ABF-307D-988395A1B205}.Debug|Win32.ActiveCfg = Debug|Win32
-		{FB7201A8-24FD-4ABF-307D-988395A1B205}.Debug|Win32.Build.0 = Debug|Win32
-		{FB7201A8-24FD-4ABF-307D-988395A1B205}.Release|Win32.ActiveCfg = Release|Win32
-		{FB7201A8-24FD-4ABF-307D-988395A1B205}.Release|Win32.Build.0 = Release|Win32
+		{D65039C7-FEC2-478D-B242-6D8148618858}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D65039C7-FEC2-478D-B242-6D8148618858}.Debug|Win32.Build.0 = Debug|Win32
+		{D65039C7-FEC2-478D-B242-6D8148618858}.Release|Win32.ActiveCfg = Release|Win32
+		{D65039C7-FEC2-478D-B242-6D8148618858}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

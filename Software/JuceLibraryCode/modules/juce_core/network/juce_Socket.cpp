@@ -2,31 +2,26 @@
   ==============================================================================
 
    This file is part of the JUCE library.
-   Copyright (c) 2016 - ROLI Ltd.
+   Copyright (c) 2017 - ROLI Ltd.
 
-   Permission is granted to use this software under the terms of the ISC license
-   http://www.isc.org/downloads/software-support-policy/isc-license/
+   JUCE is an open source library subject to commercial or open-source
+   licensing.
 
-   Permission to use, copy, modify, and/or distribute this software for any
-   purpose with or without fee is hereby granted, provided that the above
-   copyright notice and this permission notice appear in all copies.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   THE SOFTWARE IS PROVIDED "AS IS" AND ISC DISCLAIMS ALL WARRANTIES WITH REGARD
-   TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
-   FITNESS. IN NO EVENT SHALL ISC BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT,
-   OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
-   USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
-   TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
-   OF THIS SOFTWARE.
-
-   -----------------------------------------------------------------------------
-
-   To release a closed-source product which uses other parts of JUCE not
-   licensed under the ISC terms, commercial licenses are available: visit
-   www.juce.com for more information.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
+
+namespace juce
+{
 
 #if JUCE_MSVC
  #pragma warning (push)
@@ -39,10 +34,17 @@
 
 #if JUCE_WINDOWS
  typedef int       juce_socklen_t;
+ typedef int       juce_recvsend_size_t;
  typedef SOCKET    SocketHandle;
  static const SocketHandle invalidSocket = INVALID_SOCKET;
+#elif JUCE_ANDROID
+ typedef socklen_t juce_socklen_t;
+ typedef size_t    juce_recvsend_size_t;
+ typedef int       SocketHandle;
+ static const SocketHandle invalidSocket = -1;
 #else
  typedef socklen_t juce_socklen_t;
+ typedef socklen_t juce_recvsend_size_t;
  typedef int       SocketHandle;
  static const SocketHandle invalidSocket = -1;
 #endif
@@ -101,7 +103,7 @@ namespace SocketHelpers
        #if JUCE_WINDOWS
         ignoreUnused (portNumber, isListener, readLock);
 
-        if (h != SOCKET_ERROR || connected)
+        if (h != (unsigned) SOCKET_ERROR || connected)
             closesocket (h);
 
         // make sure any read process finishes before we delete the socket
@@ -131,7 +133,7 @@ namespace SocketHelpers
                 // a chance to process before close is called. On Mac OS X shutdown
                 // does not unblock a select call, so using a lock here will dead-lock
                 // both threads.
-               #if JUCE_LINUX
+               #if JUCE_LINUX || JUCE_ANDROID
                 CriticalSection::ScopedLockType lock (readLock);
                 ::close (h);
                #else
@@ -198,7 +200,7 @@ namespace SocketHelpers
         {
             long bytesThisTime = -1;
             char* const buffer = static_cast<char*> (destBuffer) + bytesRead;
-            const juce_socklen_t numToRead = (juce_socklen_t) (maxBytesToRead - bytesRead);
+            const juce_recvsend_size_t numToRead = (juce_recvsend_size_t) (maxBytesToRead - bytesRead);
 
             {
                 // avoid race-condition
@@ -467,7 +469,7 @@ int StreamingSocket::write (const void* sourceBuffer, const int numBytesToWrite)
     if (isListener || ! connected)
         return -1;
 
-    return (int) ::send (handle, (const char*) sourceBuffer, (juce_socklen_t) numBytesToWrite, 0);
+    return (int) ::send (handle, (const char*) sourceBuffer, (juce_recvsend_size_t) numBytesToWrite, 0);
 }
 
 //==============================================================================
@@ -730,7 +732,7 @@ int DatagramSocket::write (const String& remoteHostname, int remotePortNumber,
     }
 
     return (int) ::sendto (handle, (const char*) sourceBuffer,
-                           (juce_socklen_t) numBytesToWrite, 0,
+                           (juce_recvsend_size_t) numBytesToWrite, 0,
                            info->ai_addr, (socklen_t) info->ai_addrlen);
 }
 
@@ -752,7 +754,9 @@ bool DatagramSocket::leaveMulticast (const String& multicastIPAddress)
 
 bool DatagramSocket::setEnablePortReuse (bool enabled)
 {
-   #if ! JUCE_ANDROID
+   #if JUCE_ANDROID
+    ignoreUnused (enabled);
+   #else
     if (handle >= 0)
         return SocketHelpers::setOption (handle,
                                         #if JUCE_WINDOWS || JUCE_LINUX
@@ -769,3 +773,5 @@ bool DatagramSocket::setEnablePortReuse (bool enabled)
 #if JUCE_MSVC
  #pragma warning (pop)
 #endif
+
+} // namespace juce

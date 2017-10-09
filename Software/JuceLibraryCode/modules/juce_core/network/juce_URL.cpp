@@ -2,33 +2,27 @@
   ==============================================================================
 
    This file is part of the JUCE library.
-   Copyright (c) 2016 - ROLI Ltd.
+   Copyright (c) 2017 - ROLI Ltd.
 
-   Permission is granted to use this software under the terms of the ISC license
-   http://www.isc.org/downloads/software-support-policy/isc-license/
+   JUCE is an open source library subject to commercial or open-source
+   licensing.
 
-   Permission to use, copy, modify, and/or distribute this software for any
-   purpose with or without fee is hereby granted, provided that the above
-   copyright notice and this permission notice appear in all copies.
+   The code included in this file is provided under the terms of the ISC license
+   http://www.isc.org/downloads/software-support-policy/isc-license. Permission
+   To use, copy, modify, and/or distribute this software for any purpose with or
+   without fee is hereby granted provided that the above copyright notice and
+   this permission notice appear in all copies.
 
-   THE SOFTWARE IS PROVIDED "AS IS" AND ISC DISCLAIMS ALL WARRANTIES WITH REGARD
-   TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
-   FITNESS. IN NO EVENT SHALL ISC BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT,
-   OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
-   USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
-   TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
-   OF THIS SOFTWARE.
-
-   -----------------------------------------------------------------------------
-
-   To release a closed-source product which uses other parts of JUCE not
-   licensed under the ISC terms, commercial licenses are available: visit
-   www.juce.com for more information.
+   JUCE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY, AND ALL WARRANTIES, WHETHER
+   EXPRESSED OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR PURPOSE, ARE
+   DISCLAIMED.
 
   ==============================================================================
 */
 
-//==============================================================================
+namespace juce
+{
+
 struct FallbackDownloadTask  : public URL::DownloadTask,
                                public Thread
 {
@@ -38,15 +32,18 @@ struct FallbackDownloadTask  : public URL::DownloadTask,
                           URL::DownloadTask::Listener* listenerToUse)
         : Thread ("DownloadTask thread"),
           fileStream (outputStreamToUse),
+          stream (streamToUse),
           bufferSize (bufferSizeToUse),
           buffer (bufferSize),
-          stream (streamToUse),
           listener (listenerToUse)
     {
+        jassert (fileStream != nullptr);
+        jassert (stream != nullptr);
+
         contentLength = stream->getTotalLength();
         httpCode      = stream->getStatusCode();
 
-        startThread ();
+        startThread();
     }
 
     ~FallbackDownloadTask()
@@ -59,7 +56,7 @@ struct FallbackDownloadTask  : public URL::DownloadTask,
     //==============================================================================
     void run() override
     {
-        while (! stream->isExhausted() && ! stream->isError() && ! threadShouldExit())
+        while (! (stream->isExhausted() || stream->isError() || threadShouldExit()))
         {
             if (listener != nullptr)
                 listener->progress (this, downloaded, contentLength);
@@ -67,23 +64,26 @@ struct FallbackDownloadTask  : public URL::DownloadTask,
             const int max = jmin ((int) bufferSize, contentLength < 0 ? std::numeric_limits<int>::max()
                                                                       : static_cast<int> (contentLength - downloaded));
 
-            const int actual = stream->read (buffer.getData(), max);
+            const int actual = stream->read (buffer.get(), max);
 
-            if (threadShouldExit() || stream->isError())
+            if (actual < 0 || threadShouldExit() || stream->isError())
                 break;
 
-            if (! fileStream->write (buffer.getData(), static_cast<size_t> (actual)))
+            if (! fileStream->write (buffer.get(), static_cast<size_t> (actual)))
             {
                 error = true;
                 break;
             }
 
             downloaded += actual;
+
+            if (downloaded == contentLength)
+                break;
         }
 
         fileStream->flush();
 
-        if (threadShouldExit() || (stream != nullptr && stream->isError()))
+        if (threadShouldExit() || stream->isError())
             error = true;
 
         if (contentLength > 0 && downloaded < contentLength)
@@ -96,11 +96,13 @@ struct FallbackDownloadTask  : public URL::DownloadTask,
     }
 
     //==============================================================================
-    ScopedPointer<FileOutputStream> fileStream;
-    size_t bufferSize;
+    const ScopedPointer<FileOutputStream> fileStream;
+    const ScopedPointer<WebInputStream> stream;
+    const size_t bufferSize;
     HeapBlock<char> buffer;
-    ScopedPointer<WebInputStream> stream;
-    URL::DownloadTask::Listener* listener;
+    URL::DownloadTask::Listener* const listener;
+
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FallbackDownloadTask)
 };
 
 void URL::DownloadTask::Listener::progress (DownloadTask*, int64, int64) {}
@@ -110,14 +112,15 @@ URL::DownloadTask::Listener::~Listener() {}
 URL::DownloadTask* URL::DownloadTask::createFallbackDownloader (const URL& urlToUse,
                                                                 const File& targetFileToUse,
                                                                 const String& extraHeadersToUse,
-                                                                Listener* listenerToUse)
+                                                                Listener* listenerToUse,
+                                                                bool usePostRequest)
 {
     const size_t bufferSize = 0x8000;
     targetFileToUse.deleteFile();
 
     if (ScopedPointer<FileOutputStream> outputStream = targetFileToUse.createOutputStream (bufferSize))
     {
-        ScopedPointer<WebInputStream> stream = new WebInputStream (urlToUse, false);
+        ScopedPointer<WebInputStream> stream = new WebInputStream (urlToUse, usePostRequest);
         stream->withExtraHeaders (extraHeadersToUse);
 
         if (stream->connect (nullptr))
@@ -146,18 +149,15 @@ URL::URL (const String& u)  : url (u)
             const int nextAmp   = url.indexOfChar (i + 1, '&');
             const int equalsPos = url.indexOfChar (i + 1, '=');
 
-            if (equalsPos > i + 1)
+            if (nextAmp < 0)
             {
-                if (nextAmp < 0)
-                {
-                    addParameter (removeEscapeChars (url.substring (i + 1, equalsPos)),
-                                  removeEscapeChars (url.substring (equalsPos + 1)));
-                }
-                else if (nextAmp > 0 && equalsPos < nextAmp)
-                {
-                    addParameter (removeEscapeChars (url.substring (i + 1, equalsPos)),
-                                  removeEscapeChars (url.substring (equalsPos + 1, nextAmp)));
-                }
+                addParameter (removeEscapeChars (equalsPos < 0 ? url.substring (i + 1) : url.substring (i + 1, equalsPos)),
+                              equalsPos < 0 ? String() : removeEscapeChars (url.substring (equalsPos + 1)));
+            }
+            else if (nextAmp > 0 && equalsPos < nextAmp)
+            {
+                addParameter (removeEscapeChars (equalsPos < 0 ? url.substring (i + 1, nextAmp) : url.substring (i + 1, equalsPos)),
+                              equalsPos < 0 ? String() : removeEscapeChars (url.substring (equalsPos + 1, nextAmp)));
             }
 
             i = nextAmp;
@@ -225,9 +225,12 @@ namespace URLHelpers
             if (i > 0)
                 p << '&';
 
-            p << URL::addEscapeChars (url.getParameterNames()[i], true)
-              << '='
-              << URL::addEscapeChars (url.getParameterValues()[i], true);
+            auto val = url.getParameterValues()[i];
+
+            p << URL::addEscapeChars (url.getParameterNames()[i], true);
+
+            if (val.isNotEmpty())
+                p << '=' << URL::addEscapeChars (val, true);
         }
 
         return p;
@@ -522,7 +525,7 @@ String URL::readEntireTextStream (const bool usePostCommand) const
     if (in != nullptr)
         return in->readEntireStreamAsString();
 
-    return String();
+    return {};
 }
 
 XmlElement* URL::readEntireXmlStream (const bool usePostCommand) const
@@ -661,3 +664,5 @@ bool URL::launchInDefaultBrowser() const
 
     return Process::openDocument (u, String());
 }
+
+} // namespace juce

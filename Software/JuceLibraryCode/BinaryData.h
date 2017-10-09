@@ -4,13 +4,12 @@
 
 */
 
-#ifndef BINARYDATA_H_109919698_INCLUDED
-#define BINARYDATA_H_109919698_INCLUDED
+#pragma once
 
 namespace BinaryData
 {
     extern const char*   people_json;
-    const int            people_jsonSize = 215;
+    const int            people_jsonSize = 204;
 
     extern const char*   back_png;
     const int            back_pngSize = 140671;
@@ -19,7 +18,7 @@ namespace BinaryData
     const int            logo_pngSize = 271238;
 
     extern const char*   Dark;
-    const int            DarkSize = 0;
+    const int            DarkSize = 34;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];
@@ -31,5 +30,3 @@ namespace BinaryData
     // return the corresponding data and its size (or a null pointer if the name isn't found).
     const char* getNamedResource (const char* resourceNameUTF8, int& dataSizeInBytes) throw();
 }
-
-#endif
