@@ -85,7 +85,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   char						n;
   n = -1;
   while (++n != static_cast<char>(markovTmp.size()))
-    markovPattern->addNote(markovTmp[n], n, 1, 0);
+    markovPattern->addNote(std::make_pair(markovTmp[n].first, static_cast<char>(5)), n, 1, 0);
   std::vector<std::vector<t_note> >		arpeggios;
   std::vector<std::vector<t_note> >		tmparpeggios;
   n = -1;
