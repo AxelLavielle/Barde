@@ -13,6 +13,8 @@
 SoundManager::SoundManager()
 {
 
+#ifdef __linux__
+
   _deviceManager = new AudioDeviceManager();
 
   _deviceManager->initialise (2, 2, nullptr, true, String(), nullptr);
@@ -21,6 +23,8 @@ SoundManager::SoundManager()
   _audioSourcePlayer.setSource (&_synthAudioSource);
 
   _deviceManager->addAudioCallback (&_audioSourcePlayer);
+
+#endif
 
 //  MidiOutput::getDefaultDeviceIndex()
   //_midiOutput = MidiOutput::createNewDevice("TEST");
@@ -79,6 +83,11 @@ bool							SoundManager::play(const Midi &midi)
 	{
 
 		tmp = midiSequence->getEventPointer(i)->message;
+
+		//if (tmp.getTimeStamp() == 0)
+		//{
+		//	tmp.setTimeStamp(1);
+		//}
 
 		if (tmp.isNoteOn())
 		{

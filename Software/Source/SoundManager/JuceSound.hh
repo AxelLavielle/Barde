@@ -98,65 +98,21 @@ struct SineWaveVoice  : public SynthesiserVoice
 
     void renderNextBlock (AudioSampleBuffer& outputBuffer, int startSample, int numSamples) override
     {
-      int sample;
-      int channel;
-      float value;
+		float *monoBuffer = new float[numSamples];
 
-      sample = 0;
-      channel = 0;
-      while (channel < outputBuffer.getNumChannels())
-      {
+		for (int sample = 0; sample < numSamples; ++sample) {
+			float value = _amplitude * sin(2 * double_Pi * _frequency * _time + _phase);
 
-        while (sample < numSamples)
-        {
-          value = _amplitude * sin(2 * double_Pi * _frequency * _time + _phase);
-          outputBuffer.addSample(value, startSample, sample);
-          sample += 1;
-        }
-        channel += 1;
-      }
+			monoBuffer[sample] = value;
+			_time += _deltaTime;
+		}
 
-        // if (angleDelta != 0.0)
-        // {
-        //     if (tailOff > 0)
-        //     {
-        //         while (--numSamples >= 0)
-        //         {
-        //             const float currentSample = (float) (std::sin (currentAngle) * level * tailOff);
-        //
-        //             std::cout << "currentSample = " << currentSample << std::endl;
-        //
-        //             for (int i = outputBuffer.getNumChannels(); --i >= 0;)
-        //                 outputBuffer.addSample (i, startSample, currentSample);
-        //
-        //             currentAngle += angleDelta;
-        //             ++startSample;
-        //
-        //             tailOff *= 0.99;
-        //
-        //             if (tailOff <= 0.005)
-        //             {
-        //                 clearCurrentNote();
-        //
-        //                 angleDelta = 0.0;
-        //                 break;
-        //             }
-        //         }
-        //     }
-        //     else
-        //     {
-        //         while (--numSamples >= 0)
-        //         {
-        //             const float currentSample = (float) (std::sin (currentAngle) * level);
-        //
-        //             for (int i = outputBuffer.getNumChannels(); --i >= 0;)
-        //                 outputBuffer.addSample (i, startSample, currentSample);
-        //
-        //             currentAngle += angleDelta;
-        //             ++startSample;
-        //         }
-        //     }
-        // }
+		for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel)
+		{
+			for (int sample = 0; sample < numSamples; ++sample) {
+				outputBuffer.addSample(channel, sample, monoBuffer[sample]);
+			}
+		}
     }
 
 private:
