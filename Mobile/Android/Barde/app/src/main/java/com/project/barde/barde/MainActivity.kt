@@ -9,13 +9,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        connexion.setOnClickListener {
+        /*connexion.setOnClickListener {
             /*
                 call api authentification auth/login
                 password : password
                 email: email
              */
-        }
+        }*/
     }
 
 }
