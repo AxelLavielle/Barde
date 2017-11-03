@@ -7,8 +7,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.project.barde.barde.ui.activities.MainActivity"
     android:gravity="center">
-    <TextClock
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        android:text="barde"
+        android:gravity="center"/>
 </LinearLayout>

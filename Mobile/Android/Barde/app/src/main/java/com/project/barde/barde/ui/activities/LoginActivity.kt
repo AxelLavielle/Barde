@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
+import android.view.Window
 import android.widget.Toast
 import com.github.kittinunf.fuel.httpPost
 import com.github.kittinunf.result.Result
@@ -24,22 +25,19 @@ class LoginActivity : AppCompatActivity() {
         val user: User
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        email.setText("toto@toto.com")
+        email.setText("toto@toto.comd")
         password.setText("toto")
         connexion.setOnClickListener {
             doAsync {
                 "http://10.0.2.2:3000/auth/login".httpPost(listOf("email" to email.text, "password" to password.text)).responseString{ request, response, result ->
+                    val login: Login = Gson().fromJson(String(response.data), Login::class.java)
+                    Toast.makeText(this@LoginActivity, login.data.message, Toast.LENGTH_SHORT).show()
+                    println(login)
                     when (result) {
-                        is Result.Failure -> {
-                            Toast.makeText(this@LoginActivity, "error", Toast.LENGTH_SHORT).show()
-
-                        }
                         is Result.Success -> {
-                            val json: Login = Gson().fromJson(result.get(), Login::class.java)
-                            Toast.makeText(this@LoginActivity, json.data.message, Toast.LENGTH_SHORT).show()
                             finish()
                         }
-                        }
+                    }
 
                 }
             }

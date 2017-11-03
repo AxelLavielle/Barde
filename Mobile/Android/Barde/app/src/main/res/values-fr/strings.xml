@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="str_register">S\'inscrire</string>
+    <string name="str_login">Se connecter</string>
+    <string name="str_email">Email</string>
+    <string name="str_password">Mot de passe</string>
+</resources>
