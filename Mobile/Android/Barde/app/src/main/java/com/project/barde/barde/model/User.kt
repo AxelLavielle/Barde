@@ -1,4 +1,4 @@
-package com.project.barde.barde
+package com.project.barde.barde.model
 
 /**
  * Created by michael on 27/10/2017.

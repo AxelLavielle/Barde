@@ -3,21 +3,16 @@ package com.project.barde.barde.ui.activities
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.util.Log
-import android.view.Window
 import android.widget.Toast
 import com.github.kittinunf.fuel.httpPost
 import com.github.kittinunf.result.Result
 import com.google.gson.Gson
 
 import com.project.barde.barde.R
-import com.project.barde.barde.User
+import com.project.barde.barde.model.User
+import com.project.barde.barde.model.Login
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.doAsync
-
-data class Data(val token:String?, val message : String)
-data class Login(val msg: String, val data: Data)
 
 class LoginActivity : AppCompatActivity() {
 
@@ -41,6 +36,10 @@ class LoginActivity : AppCompatActivity() {
 
                 }
             }
+        }
+        register.setOnClickListener{
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
     }
 }

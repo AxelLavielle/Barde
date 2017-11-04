@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">Barde</string>
+    <string name="str_to_register">to Register</string>
     <string name="str_register">Register</string>
     <string name="str_login">Log in</string>
     <string name="str_email">Email</string>
     <string name="str_password">Password</string>
+    <string name="str_firstname">FirstName</string>
+    <string name="str_lastname">LastName</string>
+    <string name="str_username">UserName</string>
+    <string name="str_setting">Setting</string>
 </resources>
