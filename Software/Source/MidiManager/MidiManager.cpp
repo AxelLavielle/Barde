@@ -26,15 +26,9 @@ void MidiManager::noteOn(const int channel, const int noteNumber, const float ve
 	MidiMessage message = MidiMessage::noteOn(channel, noteNumber, (uint8)velocity);
 
 
-	// changeInstrument(channel, channel, time);
 	message.setTimeStamp(time);
-	//addMessageToList(message);
-	std::cout << "COUCOU 1" << std::endl;
-	std::cout << "Channel == " << channel << std::endl;
 	_midiSequence.addEvent(message);
-	// _synth.noteOn(channel, noteNumber, (uint8)velocity);
 	std::cout << getMidiMessageDescription(message) << std::endl;
-	std::cout << "COUCOU 2" << std::endl;
 	_midiSequence.updateMatchedPairs();
 }
 

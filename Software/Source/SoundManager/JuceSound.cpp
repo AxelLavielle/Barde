@@ -91,18 +91,20 @@ bool							SoundManager::play(const Midi &midi)
 
 		if (tmp.isNoteOn())
 		{
-      std::cout << "NOTE ON" << std::endl;
 #ifdef __linux__
 			_synthAudioSource.midiCollector.addMessageToQueue(tmp);
 #else
 			_midiOutput->sendMessageNow((const MidiMessage &)tmp);
 #endif
-			std::cout << "Timestamp = " << tmp.getTimeStamp() << std::endl;
 			if (tmp.getTimeStamp() != k)
 			{
 				Tools::sleep(temps);
 			}
 			k = tmp.getTimeStamp();
+		}
+		else
+		{
+			_midiOutput->sendMessageNow((const MidiMessage &)tmp);
 		}
 	}
 	//_midiOutput->clearAllPendingMessages();
