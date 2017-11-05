@@ -36,7 +36,6 @@ void MidiManager::noteOn(const Instrument & instrument, const int noteNumber, co
 {
 	MidiMessage message = MidiMessage::noteOn(instrument.channel, noteNumber, (uint8)velocity);
 
-	// changeInstrument(instrument, time);
 	message.setTimeStamp(time);
 	//addMessageToList(message);
 	_midiSequence.addEvent(message);
@@ -57,7 +56,6 @@ void MidiManager::noteOff(const Instrument & instrument, const int noteNumber, c
 {
 	MidiMessage message = MidiMessage::noteOff(instrument.channel, noteNumber, (uint8)velocity);
 
-	// changeInstrument(instrument, time);
 	message.setTimeStamp(time);
 	//addMessageToList(message);
 	_midiSequence.addEvent(message);
