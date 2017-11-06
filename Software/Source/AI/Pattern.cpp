@@ -51,11 +51,11 @@ t_note	Pattern::correlateNote(const t_note &note, const std::vector<std::pair<ch
   i = -1;
   while (static_cast<unsigned int>(++i) < medium.size())
     if (medium[i] == note.note.first)
-      ret.note = std::make_pair(medium2[i], (next[0].first <= strong2[i]) ? (note.note.second) : (note.note.second + 1));
+      ret.note = std::make_pair(medium2[i], (next[0].first <= medium2[i]) ? (note.note.second) : (note.note.second + 1));
   i = -1;
   while (static_cast<unsigned int>(++i) < weak.size())
     if (weak[i] == note.note.first)
-      ret.note = std::make_pair(weak2[i], (next[0].first <= strong2[i]) ? (note.note.second) : (note.note.second + 1));
+      ret.note = std::make_pair(weak2[i], (next[0].first <= weak2[i]) ? (note.note.second) : (note.note.second + 1));
   return (ret);
 }
 
