@@ -56,10 +56,10 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   markovChords.push_back(std::make_pair(AI::searchNoteFromDistWhite((markovChords[0].first / 8 * 8), 4) + markovChords[0].first % 8, 4));
   markovChords.push_back(markovChords[0]);
   markovChords.push_back(markovChords[0]);
-  markovChords.push_back(std::make_pair(AI::searchNoteFromDistWhite((markovChords[0].first / 8 * 8), 5) + markovChords[0].first % 8, 4));
+  markovChords.push_back(std::make_pair(AI::searchNoteFromDistWhite((markovChords[0].first / 8 * 8), 5) + markovChords[0].first % 8, 5));
   markovChords.push_back(std::make_pair(AI::searchNoteFromDistWhite((markovChords[0].first / 8 * 8), 4) + markovChords[0].first % 8, 4));
   markovChords.push_back(markovChords[0]);
-  markovChords.push_back(std::make_pair(AI::searchNoteFromDistWhite((markovChords[0].first / 8 * 8), 5) + markovChords[0].first % 8, 4));
+  markovChords.push_back(std::make_pair(AI::searchNoteFromDistWhite((markovChords[0].first / 8 * 8), 5) + markovChords[0].first % 8, 5));
   Disposition::placeChords(parameters, markovChords);
   /* CHORDS */
   
@@ -78,14 +78,14 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 
   /* ARPEGGIOS */
   Pattern					*markovPattern = new Pattern(chord);
-  ObjectMarkov				       	markovObj2(proba, 3, parameters.getSeed());
+  ObjectMarkov				       	markovObj2(proba, 5, parameters.getSeed());
   markovObj2.callLua();
   markovTmp = markovObj2.getVectorFromJson();
   Resolution::parsingMarkov(&markovTmp, strong, medium, weak);
   char						n;
   n = -1;
   while (++n != static_cast<char>(markovTmp.size()))
-    markovPattern->addNote(std::make_pair(markovTmp[n].first, static_cast<char>(6)), n + 1, 1, 0);
+    markovPattern->addNote(std::make_pair(markovTmp[n].first, static_cast<char>(5)), n*3.0/5.0 + 1, 3.0/5.0, 0);
   std::vector<std::vector<t_note> >		arpeggios;
   std::vector<std::vector<t_note> >		tmparpeggios;
   n = -1;

@@ -47,15 +47,15 @@ t_note	Pattern::correlateNote(const t_note &note, const std::vector<std::pair<ch
   i = -1;
   while (static_cast<unsigned int>(++i) < strong.size())
     if (strong[i] == note.note.first)
-      ret.note = std::make_pair(strong2[i], 3);
+      ret.note = std::make_pair(strong2[i], (next[0].first <= strong2[i]) ? (note.note.second) : (note.note.second + 1));
   i = -1;
   while (static_cast<unsigned int>(++i) < medium.size())
     if (medium[i] == note.note.first)
-      ret.note = std::make_pair(medium2[i], 3);
+      ret.note = std::make_pair(medium2[i], (next[0].first <= strong2[i]) ? (note.note.second) : (note.note.second + 1));
   i = -1;
   while (static_cast<unsigned int>(++i) < weak.size())
     if (weak[i] == note.note.first)
-      ret.note = std::make_pair(weak2[i], 3);
+      ret.note = std::make_pair(weak2[i], (next[0].first <= strong2[i]) ? (note.note.second) : (note.note.second + 1));
   return (ret);
 }
 
@@ -70,10 +70,7 @@ std::vector<std::vector<t_note> >	Pattern::correlatePattern(const Pattern patter
     {
       j = -1;
       while (++j != _pattern[i].size())
-	{
-	  _pattern[i][j] = correlateNote(_pattern[i][j], prev, next);
-	  std::cout << "BONJOUR" << std::endl;
-	}
+    	  _pattern[i][j] = correlateNote(_pattern[i][j], prev, next);
     }
   return (_pattern);
 }
