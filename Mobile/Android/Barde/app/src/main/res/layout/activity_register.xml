@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.project.barde.barde.ui.activities.RegisterActivity"
-    android:gravity="center">
+    tools:context="com.project.barde.barde.ui.activities.RegisterActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="10dp">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,6 +31,18 @@
         android:layout_height="wrap_content"
         android:hint="@string/str_lastname"
         android:id="@+id/register_lastname"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/str_dateofbirthday"
+        android:gravity="center"/>
+    <DatePicker
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"
+        android:id="@+id/register_dateofbirthday">
+    </DatePicker>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -65,4 +81,5 @@
         android:background="@drawable/button_rounded_corners"
         android:id="@+id/toRegister"
         android:padding="10dp"/>
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

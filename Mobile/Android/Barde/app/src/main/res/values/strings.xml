@@ -9,4 +9,5 @@
     <string name="str_lastname">LastName</string>
     <string name="str_username">UserName</string>
     <string name="str_setting">Setting</string>
+    <string name="str_dateofbirthday">Date of birthday</string>
 </resources>
