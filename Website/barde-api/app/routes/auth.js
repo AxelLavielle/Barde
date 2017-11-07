@@ -15,7 +15,7 @@ module.exports = function (apiRoutes, passport) {
         .post('/auth/register', register)
         .post('/auth/login', login)
         .get('/info', methodAuth.authenticate(), methodAuth.admin(), info)
-        .get('/auth/isAuthenticate', isAuthenticate)
+        .get('/auth/isAuthenticate', methodAuth.isAuthenticate(), isAuthenticate)
         .get('/auth/isAdmin', methodAuth.authenticate(), isAdmin)
 
 };
@@ -28,7 +28,13 @@ module.exports = function (apiRoutes, passport) {
  * @apiParamExample {json} Request-Example:
  *     {
  *       "email": "",
- *       "password": ""
+ *       "password": "",
+ *       "firstName": "",
+ *       "lastName": "",
+ *       "userName": "",
+ *       "yearOfBirth": "",
+ *       "monthOfBirth": "",
+ *       "dayOfBirth": "",
  *     }
  *
  * @apiSuccessExample 200 - Success
@@ -59,33 +65,42 @@ module.exports = function (apiRoutes, passport) {
  *     {
  *       "msg": "Content already exists"
  *       "data": {
- *          "message": "The email address you have used is already registered."
+ *          "message": "The email address or the username you have used is already registered."
  *       }
  *     }
  */
 function register(req, res, next) {
-
-    console.log(req.body);
-
     if (!req.body.email) {
-        res.status(400).send({msg: "No content", data: {message: "Vous devez inscrire votre email."}});
-    } else if (!req.body.email) {
-        res.status(400).send({msg: "No content", data: {message: "Vous devez inscrire votre mot de passe."}});
+        res.status(400).send({msg: "No content", data: {message: "Email cannot be empty."}});
+    } else if (!req.body.password) {
+        res.status(400).send({msg: "No content", data: {message: "Password cannot be empty."}});
+    } else if (!req.body.userName) {
+        res.status(400).send({msg: "No content", data: {message: "UserName cannot be empty."}});
+    } else if (!req.body.firstName || !req.body.lastName) {
+        res.status(400).send({msg: "No content", data: {message: "FirstName and/or lastName cannot be empty."}});
+    } else if (!req.body.yearOfBirth || !req.body.monthOfBirth || !req.body.dayOfBirth) {
+        res.status(400).send({msg: "No content", data: {message: "DateOfBirth cannot be empty."}});
     } else {
         var newUser = new User({
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            name: {
+              firstName: req.body.firstName,
+              lastName: req.body.lastName,
+              userName: req.body.userName,
+            },
+            dateOfBirth: new Date(req.body.yearOfBirth, req.body.monthOfBirth, req.body.dayOfBirth),
         });
 
         newUser.save(function (err) {
-            console.log(err);
             if (err) {
-                res.status(409).send({msg: "Content already exists", data: {message: "L'utilisateur existe déjà."}});
+                res.status(409).send({msg: "Content already exists", data: {message: "The email address or the username you have used is already registered."}});
+            } else {
+              res.status(200).send({
+                  msg: "Content created",
+                  data: {message: "You are now registered."}
+              });
             }
-            res.status(200).send({
-                msg: "Content created",
-                data: {message: "Votre inscription a bien été pris en compte."}
-            });
         });
     }
 
@@ -128,9 +143,6 @@ function register(req, res, next) {
  *     }
  */
 function login(req, res, next) {
-
-    console.log(req.body);
-
     User.findOne({
         email: req.body.email
     }, function (err, user) {
@@ -215,7 +227,7 @@ function isAdmin(req, res, next) {
  *
  */
 function isAuthenticate(req, res, next) {
-    if (req.user.role === "Admin" || req.user.role === "Client")
+    if (req.user && (req.user.role === "Admin" || req.user.role === "Client"))
         res.status(200).send({msg: "Success", data: {"isAuthenticate": true}});
     else
         res.status(403).send({msg: "Error", data: {"isAuthenticate": false}})

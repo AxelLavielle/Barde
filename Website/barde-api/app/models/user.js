@@ -21,15 +21,22 @@ var UserSchema = new Schema({
     },
     name: {
         firstName: {
-            type: String
+            type: String,
+            required: true
         },
         lastName: {
-            type: String
+            type: String,
+            required: true
         },
         userName: {
             type: String,
-            unique: true,
+            required: true,
+            unique: true
         }
+    },
+    dateOfBirth: {
+      type: Date,
+      required: true
     },
     role: {
         type: String,
@@ -51,6 +58,26 @@ UserSchema.pre('save', function (next) {
                     return next(err);
                 }
                 user.password = hash;
+                next();
+            });
+        });
+    } else {
+        return next();
+    }
+});
+
+UserSchema.pre('update', function (next) {
+    var user = this;
+    if (user.getUpdate().$set.password) {
+        bcrypt.genSalt(10, function (err, salt) {
+            if (err) {
+                return next(err);
+            }
+            bcrypt.hash(user.getUpdate().$set.password, salt, function (err, hash) {
+                if (err) {
+                    return next(err);
+                }
+                user.getUpdate().$set.password = hash;
                 next();
             });
         });

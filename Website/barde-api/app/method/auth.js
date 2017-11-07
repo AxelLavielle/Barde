@@ -69,5 +69,16 @@ module.exports = function () {
         authenticate: function () {
             return passport.authenticate("jwt", cfg.jwt.session);
         },
+        isAuthenticate: function () {
+          return function(req, res, next) {
+            return passport.authenticate('jwt', cfg.jwt.session, function(err, user, info) {
+              if (err) {
+                return next(err);
+              }
+              req.user = user;
+              return next()
+            })(req, res, next)
+          }
+        }
     };
 };

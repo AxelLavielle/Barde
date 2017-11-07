@@ -22,8 +22,9 @@ module.exports = function (apiRoutes, passport) {
         .get('/user/count', getNumber)
         .get('/user/:email', getOne)
         .get('/user/:perPage/:page', getByPage)
-        .delete("/user", del)
-        .patch("/user", methodAuth.authenticate(), methodAuth.admin(), update)
+        .delete("/user", methodAuth.authenticate(), methodAuth.admin(), del)
+        .patch("/user", methodAuth.authenticate(), updatePatch)
+        .put("/user", methodAuth.authenticate(), updatePut)
 };
 
 
@@ -164,23 +165,95 @@ function getOne(req, res, next) {
  *       "msg": "Content updated"
  *     }
  */
-function update(req, res, next) {
+function updatePatch(req, res, next) {
 
-    console.log(req.user);
-
-    Email.update({"email": req.body.email}, function (err, response) {
-        if (err)
-            return next(err);
-        res.status(200).send({msg: "Content updated"});
-    });
-
+    if (!req.body.email) {
+      res.status(400).send({msg: "No content", data: {message: "Email cannot be empty."}});
+    } else if (req.body.email === req.user.email || req.user.role === "Admin") {
+      var updateVal = {}
+      if (req.body.role && req.user.role === "Admin") {
+        updateVal["role"] = req.body.role
+      }
+      if (req.body.password) {
+        updateVal["password"] = req.body.password
+      }
+      if (req.body.firstName) {
+        if (!updateVal["name"]) {
+          updateVal["name"] = {}
+        }
+        updateVal["name"]["firstName"] = req.body.firstName
+      }
+      if (req.body.lastName) {
+        if (!updateVal["name"]) {
+          updateVal["name"] = {}
+        }
+        updateVal["name"]["lastName"] = req.body.lastName
+      }
+      if (req.body.yearOfBirth && req.body.monthOfBirth && req.body.dayOfBirth) {
+        updateVal["dateOfBirth"] = new Date(req.body.yearOfBirth, req.body.monthOfBirth, req.body.dayOfBirth)
+      }
+      User.update({email: req.body.email}, {$set: updateVal}, function (err, response) {
+          if (err)
+              return next(err);
+          res.status(200).send({msg: "Content updated"});
+      });
+    } else {
+      res.status(401).send('Unauthorized');
+    }
 }
 
 
 /**
- * @api {delete} /email/ Delete email
- * @apiName DeleteEmail
- * @apiGroup Email
+ * @api {put} /user/ Update user
+ * @apiGroup User
+ *
+ * @apiParamExample {json} Request-Example:
+ *     {
+ *       "email": ""
+ *     }
+ *
+ *  @apiSuccessExample 200 - Success
+ *     {
+ *       "msg": "Content updated"
+ *     }
+ */
+function updatePut(req, res, next) {
+
+    if (!req.body.email) {
+      res.status(400).send({msg: "No content", data: {message: "Email cannot be empty."}});
+    } else if (!req.body.firstName || !req.body.lastName) {
+      res.status(400).send({msg: "No content", data: {message: "FirstName and/or lastName cannot be empty."}});
+    } else if (!req.body.yearOfBirth || !req.body.monthOfBirth || !req.body.dayOfBirth) {
+      res.status(400).send({msg: "No content", data: {message: "DateOfBirth cannot be empty."}});
+    } else if (req.body.email === req.user.email || req.user.role === "Admin") {
+      var updateVal = {
+          name: {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+          },
+          dateOfBirth: new Date(req.body.yearOfBirth, req.body.monthOfBirth, req.body.dayOfBirth),
+      }
+      if (req.body.password) {
+        updateVal["password"] = req.body.password
+      }
+      if (req.body.role && req.user.role === "Admin") {
+        updateVal["role"] = req.body.role
+      }
+      User.update({email: req.body.email}, {$set: updateVal}, function (err, response) {
+          if (err)
+              return next(err);
+          res.status(200).send({msg: "Content updated"});
+      });
+    } else {
+      res.status(401).send('Unauthorized');
+    }
+}
+
+
+/**
+ * @api {delete} /user/ Delete user
+ * @apiName DeleteUser
+ * @apiGroup User
  *
  * @apiParamExample {json} Request-Example:
  *     {
@@ -189,14 +262,32 @@ function update(req, res, next) {
  *
  * @apiSuccessExample 200 - Success
  *     {
- *       "msg": "Content deleted"
+ *       "msg": "Success"
+ *       "data": {
+ *          "message": "User deleted."
+*        }
  *     }
+ *
+ * @apiErrorExample 404 - Not found
+ *     {
+ *       "msg": "Can't find item"
+ *       "data": {
+ *          "message": "User not exists."
+ *       }
+ *     }
+ *
  */
 function del(req, res, next) {
-    Email.delete({"email": req.body.email}, function (err, response) {
-        if (err)
-            return next(err);
-        res.status(200).send({msg: "Content deleted"});
+    User.findOneAndRemove({
+      "email": req.body.email
+    }, function (err, response) {
+      if (err)
+        return next(err);
+      if (!response) {
+        res.status(404).json({msg: "Can't find item", data: {message: "User not exists."}});
+        return next(err);
+      }
+      res.status(200).send({msg: "Success", data: {message: "User deleted."}});
     });
 
 }
