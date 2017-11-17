@@ -77,15 +77,16 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   /* MARKOVIAN TREE GENERATION */		
 
   /* ARPEGGIOS */
+  int arpN = rand() % 3 + 4;
   Pattern					*markovPattern = new Pattern(chord);
-  ObjectMarkov				       	markovObj2(proba, 5, parameters.getSeed());
+  ObjectMarkov				       	markovObj2(proba, arpN, parameters.getSeed());
   markovObj2.callLua();
   markovTmp = markovObj2.getVectorFromJson();
   Resolution::parsingMarkov(&markovTmp, strong, medium, weak);
   char						n;
   n = -1;
   while (++n != static_cast<char>(markovTmp.size()))
-    markovPattern->addNote(std::make_pair(markovTmp[n].first, static_cast<char>(5)), n*3.0/5.0 + 1, 3.0/5.0, 0);
+    markovPattern->addNote(std::make_pair(markovTmp[n].first, static_cast<char>(5)), n*3.0/arpN + 1, 3.0/arpN, 0);
   std::vector<std::vector<t_note> >		arpeggios;
   std::vector<std::vector<t_note> >		tmparpeggios;
   n = -1;
