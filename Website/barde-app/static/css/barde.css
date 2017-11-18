@@ -1,0 +1,104 @@
+@media only screen and (min-width: 768px) {
+  /* tablets and desktop */
+}
+
+@media only screen and (max-width: 767px) {
+  /* phones */
+}
+
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+  /* portrait phones */
+}
+
+
+
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+.barde{
+  height: 100vh;
+  overflow: hidden;
+}
+
+.barde .left-panel{
+  height: 100vh;
+  overflow: hidden;
+}
+
+.barde-main-dashboard{
+  height: 90vh;
+  padding: 30px;
+}
+
+.barde-main{
+  padding: 0 !important;
+}
+
+.col.left-panel-container{
+}
+
+.left-panel .navigation{
+  position: absolute;
+  bottom: 0;
+}
+
+.left-panel .navigation .btn{
+  width: 100%;
+}
+.barde-title{
+  font-family: Barde-Title;
+}
+
+.barde-bg{
+  background-color: #D2005F;
+}
+
+.barde-text{
+  color: #D2005F;
+}
+
+#barde-landing-page{
+  margin-top: 15%;
+}
+
+.section{
+  height: 350px;
+}
+
+.section.section-right{
+  padding-left: 30px;
+  text-align: left;
+  padding-top: 90px;
+
+}
+
+.auth-btn{
+  width: 100%;
+}
+
+.barde-secondary-text{
+  color: #304B69;
+}
+
+.barde-secondary{
+   background-color: #304B69;
+}
+
+.barde-complementary{
+  background-color : #92DF67;
+}
+
+.barde-complementary-text{
+  background-color : #92DF67;
+}
+
+
+@font-face {
+  font-family: Barde-Title;
+  src: url('./../fonts/ethnocentric_rg.ttf');
+}
