@@ -12,7 +12,6 @@
 
 SoundManager::SoundManager()
 {
-
 #ifdef __linux__
 
   _deviceManager = new AudioDeviceManager();
@@ -84,10 +83,10 @@ bool							SoundManager::play(const Midi &midi)
 
 		tmp = midiSequence->getEventPointer(i)->message;
 
-		//if (tmp.getTimeStamp() == 0)
-		//{
-		//	tmp.setTimeStamp(1);
-		//}
+		if (tmp.getTimeStamp() == 0)
+		{
+			tmp.setTimeStamp(1);
+		}
 
 		if (tmp.isNoteOn())
 		{

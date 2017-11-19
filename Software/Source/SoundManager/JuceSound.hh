@@ -133,17 +133,33 @@ private:
          // Add some voices to our synth, to play the sounds..
          for (int i = 4; --i >= 0;)
          {
-             synth.addVoice (new SineWaveVoice());   // These voices will play our custom sine-wave sounds..
-            //  synth.addVoice (new SamplerVoice());    // and these ones play the sampled sounds
+             //synth.addVoice (new SineWaveVoice());   // These voices will play our custom sine-wave sounds..
+            synth.addVoice (new SamplerVoice());    // and these ones play the sampled sounds
          }
 
-         synth.noteOn(10, 10, (uint8)100);
+         //synth.noteOn(10, 10, (uint8)100);
          std::cout << "NOTE ON !!!" << std::endl;
 
 
          // ..and add a sound for them to play...
-         setUsingSineWaveSound();
+		 setUsingSampledSound();
      }
+
+	 void setUsingSampledSound()
+	 {
+		 WavAudioFormat wavFormat;
+
+		 audioFormatManager.registerBasicFormats();
+
+		 File* file = new File("./file.wav");
+		 ScopedPointer<AudioFormatReader> reader = audioFormatManager.createReaderFor(*file);
+
+		 BigInteger allNotes;
+		 allNotes.setRange(0, 128, true);
+
+		 synth.clearSounds();
+		 synth.addSound(new SamplerSound("default", *reader, allNotes, 60, 0, 10, 10.0));
+	 }
 
      void setUsingSineWaveSound()
      {
@@ -201,6 +217,8 @@ private:
 
      // the synth itself!
      Synthesiser synth;
+	 AudioFormatManager audioFormatManager;
+
  };
 
 class SoundManager : public ASoundManager
