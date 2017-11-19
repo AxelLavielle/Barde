@@ -23,7 +23,8 @@ class LoginActivity : AppCompatActivity() {
         email.setText("toto@toto.comd")
         password.setText("toto")
         connexion.setOnClickListener {
-            doAsync {
+            finish()
+            /*doAsync {
                 "http://10.0.2.2:3000/auth/login".httpPost(listOf("email" to email.text, "password" to password.text)).responseString{ request, response, result ->
                     val login: Login = Gson().fromJson(String(response.data), Login::class.java)
                     Toast.makeText(this@LoginActivity, login.data.message, Toast.LENGTH_SHORT).show()
@@ -35,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
                     }
 
                 }
-            }
+            }*/
         }
         register.setOnClickListener{
             val intent = Intent(this, RegisterActivity::class.java)

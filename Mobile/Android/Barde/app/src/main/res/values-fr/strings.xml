@@ -10,4 +10,7 @@
     <string name="str_username">Nom utilisateur</string>
     <string name="str_setting">Outil</string>
     <string name="str_dateofbirthday">Date de naissance</string>
+    <string name="str_update">Metre à jour</string>
+    <string name="str_successuful_update">Mis à jour réussie</string>
+
 </resources>

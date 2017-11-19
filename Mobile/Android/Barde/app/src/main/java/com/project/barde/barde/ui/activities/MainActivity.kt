@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.project.barde.barde.R
+import kotlinx.android.synthetic.main.activity_main.*
 
 //import java.net.URL
 
@@ -13,8 +14,10 @@ class MainActivity : AppCompatActivity() {
         //val user: User
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
+        startActivity(Intent(this, LoginActivity::class.java))
+        setting.setOnClickListener {
+            startActivity(Intent (this, UserProfileActivity::class.java))
+        }
         //val test = intent.get
         /**/
     }
