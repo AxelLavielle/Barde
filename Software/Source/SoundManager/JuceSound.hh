@@ -147,6 +147,7 @@ private:
 
 	 void setUsingSampledSound()
 	 {
+#ifdef __linux__
 		 WavAudioFormat wavFormat;
 
 		 audioFormatManager.registerBasicFormats();
@@ -159,6 +160,7 @@ private:
 
 		 synth.clearSounds();
 		 synth.addSound(new SamplerSound("default", *reader, allNotes, 60, 0, 10, 10.0));
+#endif
 	 }
 
      void setUsingSineWaveSound()

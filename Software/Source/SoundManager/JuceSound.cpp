@@ -95,7 +95,7 @@ bool							SoundManager::play(const Midi &midi)
 #else
 			_midiOutput->sendMessageNow((const MidiMessage &)tmp);
 #endif
-			if (tmp.getTimeStamp() != k)
+			if ((int)(tmp.getTimeStamp() * 1000) != (int)(k * 1000))
 			{
 				Tools::sleep(temps);
 			}
