@@ -35,10 +35,14 @@
     methods : {
       checkToken(){
           if (!this.$auth.token('default')){
-            !this.$auth.logout();
+            this.$auth.logout();
           }
       },
+      logout(){
+        this.$auth.logout();
+      },
       getUser(){
+        this.checkToken();
           var jwtDecode = require('jwt-decode');
           this.user = jwtDecode(this.$auth.token('default'));
           console.log(this.user)

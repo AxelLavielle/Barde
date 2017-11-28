@@ -95,10 +95,13 @@
         this.$auth.register({
           body: this.user, // Vue-resoruce
           success: function (res) {
+
             Materialize.toast(res.data.message, 4000, 'green');
           },
           error: function (res) {
-            Materialize.toast(res.data.message, 4000, 'red');
+            console.log();
+
+            Materialize.toast(jQuery.parseJSON(res.bodyText).data.message, 4000, 'red');
             this.error = res.data;
           }
         });

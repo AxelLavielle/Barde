@@ -27,6 +27,9 @@
 
 <script>
 
+  import '../assets/js/BardeRegister'
+
+
   export default {
     name: 'BardeProfileSidePanel',
     data () {
@@ -40,6 +43,8 @@
         this.user = jwtDecode(this.$auth.token('default'));
       },
       logout(){
+        this.$auth.token('default', '');
+
         this.$auth.logout();
       }
     },
