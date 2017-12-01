@@ -9,71 +9,117 @@
 import UIKit
 import CoreData
 
-class SettingsEditAccountView: UITableViewController {
+class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet weak var emailInput: UITextField!
     @IBOutlet weak var firstNameInput: UITextField!
-    @IBOutlet weak var lastNameInput: UITextField!
+    @IBOutlet weak var tfFirstName: UITextField!
+    @IBOutlet weak var tfLastName: UITextField!
+    @IBOutlet weak var tfEmail: UITextField!
     
     var profilFromLocal: Profil? // optional
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.title = "Compte"
+        
+        tfFirstName.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
+        tfLastName.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
+        tfEmail.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
+
         loadUserData()
     }
   
     @IBAction func saveButton(_ sender: Any) {
+        
+        saveUserData()
+        ad.saveContext()
+        
+        _ = self.navigationController?.popViewController(animated: true)
+
+    }
+    
+    func saveUserData() {
         var profil: Profil!
         
         profil = profilFromLocal
-
-        if let email = emailInput.text{
-            profil.email = email
-        }
-        if let firstname = firstNameInput.text{
-            profil.firstname = firstname
-        }
-        if let lastname = lastNameInput.text{
-            profil.lastname = lastname
-        }
         
-        ad.saveContext()
-        _ = navigationController?.popViewController(animated: true)
-
+        if let email = tfEmail.text{
+            if (Utils().isValid(email))
+            {
+                profil.email = email
+            } else {
+                let refreshAlert = UIAlertController(title: "Adresse e-mail invalide.", message: "Veuillez saisir une adresse e-mail valide.", preferredStyle: UIAlertControllerStyle.alert)
+                
+                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                }))
+                
+                present(refreshAlert, animated: true, completion: nil)
+            }
+        }
+        if let firstname = tfFirstName.text{
+            
+            if (!firstname.isEmpty)
+            {
+                profil.firstname = firstname
+            } else {
+                let refreshAlert = UIAlertController(title: "Champs \"Prénom\" invalide.", message: "Le champs \"Prénom\" ne peut pas être vide.", preferredStyle: UIAlertControllerStyle.alert)
+                
+                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                }))
+                
+                present(refreshAlert, animated: true, completion: nil)
+            }
+        }
+        if let lastname = tfLastName.text{
+            if (!lastname.isEmpty)
+            {
+                profil.lastname = lastname
+            } else {
+                let refreshAlert = UIAlertController(title: "Champs \"Nom\" invalide.", message: "Le champs \"Nom\" ne peut pas être vide.", preferredStyle: UIAlertControllerStyle.alert)
+                
+                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                }))
+                
+                present(refreshAlert, animated: true, completion: nil)
+            }
+        }
     }
     
     func loadUserData(){
         if let profil = profilFromLocal{
-            emailInput.text = profil.email
-            firstNameInput.text = profil.firstname
-            lastNameInput.text = profil.lastname
+            tfEmail.text = profil.email
+            tfFirstName.text = profil.firstname
+            tfLastName.text = profil.lastname
         }
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "OK", style: .plain, target: self, action: #selector(validChange(_:)))
+        
+         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Annuler", style: .plain, target: self, action: #selector(dismissChange(_:)))
+    }
     
-//    func getUserData(appDelegate: AppDelegate)->AnyObject?{
-//        var users: [NSManagedObject] = []
-//
-//        let  managedContext =
-//            appDelegate.persistentContainer.viewContext
-//
-//        let fetchRequest =
-//            NSFetchRequest<NSManagedObject>(entityName: "User")
-//
-//        do {
-//            users = try managedContext.fetch(fetchRequest)
-//
-//            for user: AnyObject in users {
-//                return user
-//            }
-//
-//        } catch let error as NSError {
-//            print("Could not fetch. \(error), \(error.userInfo)")
-//        }
-//        return nil
-//    }
+    @objc func validChange(_ sender: Any) {
+        self.navigationItem.setHidesBackButton(false, animated: true)
+        self.navigationItem.rightBarButtonItem = nil;
+        self.navigationItem.leftBarButtonItem = nil;
+        tfFirstName.resignFirstResponder()
+        tfLastName.resignFirstResponder()
+        tfEmail.resignFirstResponder()
+        saveUserData()
+    }
     
-   
+    @objc func dismissChange(_ sender: Any) {
+        self.navigationItem.setHidesBackButton(false, animated: true)
+        self.navigationItem.rightBarButtonItem = nil;
+        self.navigationItem.leftBarButtonItem = nil;
+        loadUserData()
+        tfFirstName.resignFirstResponder()
+        tfLastName.resignFirstResponder()
+        tfEmail.resignFirstResponder()
+    }
 }
 

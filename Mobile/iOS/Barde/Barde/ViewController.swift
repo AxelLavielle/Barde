@@ -21,8 +21,6 @@ import CoreData
     var viewControllers: [UIViewController]!
     var selectedIndex: Int = 0
     
-
-    
     @IBAction func didPressTab(_ sender: UIButton) {
         let previousIndex = selectedIndex
 
@@ -48,8 +46,7 @@ import CoreData
         
         //contentView!.addSubview(vc.view)
         vc.didMove(toParentViewController: self)
-        
-    
+
     }
     
     override func viewDidLoad() {
@@ -61,10 +58,14 @@ import CoreData
         mainViewController = storyboard.instantiateViewController(withIdentifier: "MainViewController")
         settingsViewController = storyboard.instantiateViewController(withIdentifier: "SettingsViewController") as! UINavigationController
         
-        viewControllers = [profilViewController, mainViewController, settingsViewController]
+        viewControllers = [profilViewController, settingsViewController]
 
         menuButtons[selectedIndex].isSelected = true
         didPressTab(menuButtons[selectedIndex])
+        
+        print(menuButtons)
+        print("------")
+        print(selectedIndex)
         
         //// TODO: Remove, only for test
         //test()
