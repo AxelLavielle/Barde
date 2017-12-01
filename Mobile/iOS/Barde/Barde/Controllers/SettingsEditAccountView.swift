@@ -15,17 +15,40 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var tfFirstName: UITextField!
     @IBOutlet weak var tfLastName: UITextField!
     @IBOutlet weak var tfEmail: UITextField!
+    @IBOutlet weak var tfUserName: UITextField!
+    @IBOutlet weak var tfBirthDate: UITextField!
     
     var profilFromLocal: Profil? // optional
+    
+    let datePicker = UIDatePicker()
+    
+    func createDatePicker() {
+        datePicker.datePickerMode = .date
+        
+        tfBirthDate.inputView = datePicker
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
+    }
+    
+    @objc func datePickerValueChanged(_ sender: Any) {
+       let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        
+        tfBirthDate.text = dateFormatter.string(from: datePicker.date)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        createDatePicker()
         
         self.navigationItem.title = "Compte"
         
         tfFirstName.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
         tfLastName.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
         tfEmail.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
+        tfUserName.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
+        tfBirthDate.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
 
         loadUserData()
     }
@@ -84,6 +107,25 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
                 present(refreshAlert, animated: true, completion: nil)
             }
         }
+        if let userName = tfUserName.text{
+            if (!userName.isEmpty)
+            {
+                profil.username = userName
+            } else {
+                let refreshAlert = UIAlertController(title: "Champs \"Pseudo\" invalide.", message: "Le champs \"Pseudo\" ne peut pas être vide.", preferredStyle: UIAlertControllerStyle.alert)
+                
+                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                }))
+                
+                present(refreshAlert, animated: true, completion: nil)
+            }
+        }
+        if let birthdate = tfBirthDate.text{
+            if (!birthdate.isEmpty)
+            {
+                profil.birthdate = birthdate
+            }
+        }
     }
     
     func loadUserData(){
@@ -91,6 +133,8 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
             tfEmail.text = profil.email
             tfFirstName.text = profil.firstname
             tfLastName.text = profil.lastname
+            tfUserName.text = profil.username
+            tfBirthDate.text = profil.birthdate
         }
     }
     
@@ -98,8 +142,7 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
         self.navigationItem.setHidesBackButton(true, animated: false)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "OK", style: .plain, target: self, action: #selector(validChange(_:)))
-        
-         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Annuler", style: .plain, target: self, action: #selector(dismissChange(_:)))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Annuler", style: .plain, target: self, action: #selector(dismissChange(_:)))
     }
     
     @objc func validChange(_ sender: Any) {
@@ -109,6 +152,9 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
         tfFirstName.resignFirstResponder()
         tfLastName.resignFirstResponder()
         tfEmail.resignFirstResponder()
+        tfUserName.resignFirstResponder()
+        tfBirthDate.resignFirstResponder()
+        self.view.endEditing(true)
         saveUserData()
     }
     
@@ -120,6 +166,8 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
         tfFirstName.resignFirstResponder()
         tfLastName.resignFirstResponder()
         tfEmail.resignFirstResponder()
+        tfUserName.resignFirstResponder()
+        tfBirthDate.resignFirstResponder()
     }
 }
 
