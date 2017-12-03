@@ -45,19 +45,11 @@ module.exports = function (apiRoutes, passport) {
  *       }
  *     }
  *
- * @apiErrorExample 400 - No email
+ * @apiErrorExample 400 - One param is empty
  *     {
  *       "msg": "No content"
  *       "data": {
- *          "message": "Email cannot be empty."
- *       }
- *     }
- *
- * @apiErrorExample 400 - No password
- *     {
- *       "msg": "Wrong content"
- *       "data": {
- *          "message": "Password cannot be empty."
+ *          "message": param + " cannot be empty."
  *       }
  *     }
  *
