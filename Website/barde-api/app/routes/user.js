@@ -18,10 +18,10 @@ var User = require('../models/user');
 module.exports = function (apiRoutes, passport) {
 
     apiRoutes
-        .get('/user', get)
-        .get('/user/count', getNumber)
-        .get('/user/:email', getOne)
-        .get('/user/:perPage/:page', getByPage)
+        .get('/user', methodAuth.authenticate(), methodAuth.admin(), get)
+        .get('/user/count', methodAuth.authenticate(), methodAuth.admin(), getNumber)
+        .get('/user/:email', methodAuth.authenticate(), methodAuth.admin(), getOne)
+        .get('/user/:perPage/:page', methodAuth.authenticate(), methodAuth.admin(), getByPage)
         .delete("/user", methodAuth.authenticate(), methodAuth.admin(), del)
         .patch("/user", methodAuth.authenticate(), updatePatch)
         .put("/user", methodAuth.authenticate(), updatePut)
@@ -38,6 +38,11 @@ module.exports = function (apiRoutes, passport) {
  *       "data": {
  *          "users": []
  *       }
+ *     }
+ *
+ * @apiErrorExample 401 - Unauthorized
+ *     {
+ *       "Unauthorized"
  *     }
  *
  */
@@ -65,6 +70,11 @@ function get(req, res, next) {
  *       }
  *     }
  *
+ * @apiErrorExample 401 - Unauthorized
+ *     {
+ *       "Unauthorized"
+ *     }
+ *
  */
 function getNumber(req, res, next) {
 
@@ -90,6 +100,11 @@ function getNumber(req, res, next) {
  *          "page": Number,
  *          "count": Number
  *       }
+ *     }
+ *
+ * @apiErrorExample 401 - Unauthorized
+ *     {
+ *       "Unauthorized"
  *     }
  *
  */
@@ -129,6 +144,11 @@ function getByPage(req, res, next) {
  *       }
  *     }
  *
+ * @apiErrorExample 401 - Unauthorized
+ *     {
+ *       "Unauthorized"
+ *     }
+ *
  */
 function getOne(req, res, next) {
 
@@ -152,101 +172,157 @@ function getOne(req, res, next) {
 
 
 /**
- * @api {patch} /user/ Update user
+ * @api {patch} /user/ Update user (Partially)
  * @apiGroup User
  *
  * @apiParamExample {json} Request-Example:
  *     {
- *       "email": ""
+ *       "email": "",
+ *       "password": "",
+ *       "firstName": "",
+ *       "lastName": "",
+ *       "yearOfBirth": "",
+ *       "monthOfBirth": "",
+ *       "dayOfBirth": "",
+ *       "role": ""
  *     }
  *
  *  @apiSuccessExample 200 - Success
  *     {
  *       "msg": "Content updated"
  *     }
+ *
+ * @apiErrorExample 400 - Email is empty
+ *     {
+ *       "msg": "No content"
+ *       "data": {
+ *          "message": "Email cannot be empty."
+ *       }
+ *     }
+ *
+ * @apiErrorExample 404 - Not found
+ *     {
+ *       "msg": "Can't find item."
+ *       "data": {
+ *          "message": "User not exists."
+ *       }
+ *     }
+ *
+ * @apiErrorExample 401 - Unauthorized
+ *     {
+ *       "Unauthorized"
+ *     }
+ *
  */
 function updatePatch(req, res, next) {
-
-    if (!req.body.email) {
-      res.status(400).send({msg: "No content", data: {message: "Email cannot be empty."}});
-    } else if (req.body.email === req.user.email || req.user.role === "Admin") {
-      var updateVal = {}
-      if (req.body.role && req.user.role === "Admin") {
-        updateVal["role"] = req.body.role
-      }
-      if (req.body.password) {
-        updateVal["password"] = req.body.password
-      }
-      if (req.body.firstName) {
-        if (!updateVal["name"]) {
-          updateVal["name"] = {}
-        }
-        updateVal["name"]["firstName"] = req.body.firstName
-      }
-      if (req.body.lastName) {
-        if (!updateVal["name"]) {
-          updateVal["name"] = {}
-        }
-        updateVal["name"]["lastName"] = req.body.lastName
-      }
-      if (req.body.yearOfBirth && req.body.monthOfBirth && req.body.dayOfBirth) {
-        updateVal["dateOfBirth"] = new Date(req.body.yearOfBirth, req.body.monthOfBirth, req.body.dayOfBirth)
-      }
-      User.update({email: req.body.email}, {$set: updateVal}, function (err, response) {
-          if (err)
-              return next(err);
-          res.status(200).send({msg: "Content updated"});
-      });
-    } else {
-      res.status(401).send('Unauthorized');
+  if (!req.body.email) {
+    res.status(400).send({msg: "No content", data: {message: "Email cannot be empty."}});
+  } else if (req.body.email === req.user.email || req.user.role === "Admin") {
+    var updateVal = {}
+    if (req.body.role && req.user.role === "Admin") {
+      updateVal["role"] = req.body.role
     }
+    if (req.body.password) {
+      updateVal["password"] = req.body.password
+    }
+    if (req.body.firstName) {
+      updateVal["name.firstName"] = req.body.firstName
+    }
+    if (req.body.lastName) {
+      updateVal["name.lastName"] = req.body.lastName
+    }
+    if (req.body.yearOfBirth && req.body.monthOfBirth && req.body.dayOfBirth) {
+      updateVal["dateOfBirth"] = new Date(req.body.yearOfBirth, req.body.monthOfBirth, req.body.dayOfBirth)
+    }
+    User.update({email: req.body.email}, {$set: updateVal}, function (err, response) {
+      if (err)
+        return next(err);
+      if (response.n == 0) {
+        res.status(404).json({msg: "Can't find item.", message: {users: "User not exists."}});
+      } else {
+        res.status(200).send({msg: "Content updated"});
+      }
+    });
+  } else {
+    res.status(401).send('Unauthorized');
+  }
 }
 
 
 /**
- * @api {put} /user/ Update user
+ * @api {put} /user/ Update user (Fully)
  * @apiGroup User
  *
  * @apiParamExample {json} Request-Example:
  *     {
- *       "email": ""
+ *       "email": "",
+ *       "password": "",
+ *       "firstName": "",
+ *       "lastName": "",
+ *       "yearOfBirth": "",
+ *       "monthOfBirth": "",
+ *       "dayOfBirth": "",
+ *       "role": ""
  *     }
  *
  *  @apiSuccessExample 200 - Success
  *     {
  *       "msg": "Content updated"
  *     }
+ *
+ * @apiErrorExample 400 - One param is empty
+ *     {
+ *       "msg": "No content"
+ *       "data": {
+ *          "message": param + " cannot be empty."
+ *       }
+ *     }
+ *
+ * @apiErrorExample 404 - Not found
+ *     {
+ *       "msg": "Can't find item."
+ *       "data": {
+ *          "message": "User not exists."
+ *       }
+ *     }
+ *
+ * @apiErrorExample 401 - Unauthorized
+ *     {
+ *       "Unauthorized"
+ *     }
+ *
  */
 function updatePut(req, res, next) {
-
-    if (!req.body.email) {
-      res.status(400).send({msg: "No content", data: {message: "Email cannot be empty."}});
-    } else if (!req.body.firstName || !req.body.lastName) {
-      res.status(400).send({msg: "No content", data: {message: "FirstName and/or lastName cannot be empty."}});
-    } else if (!req.body.yearOfBirth || !req.body.monthOfBirth || !req.body.dayOfBirth) {
-      res.status(400).send({msg: "No content", data: {message: "DateOfBirth cannot be empty."}});
-    } else if (req.body.email === req.user.email || req.user.role === "Admin") {
-      var updateVal = {
-          name: {
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-          },
-          dateOfBirth: new Date(req.body.yearOfBirth, req.body.monthOfBirth, req.body.dayOfBirth),
-      }
-      if (req.body.password) {
-        updateVal["password"] = req.body.password
-      }
-      if (req.body.role && req.user.role === "Admin") {
-        updateVal["role"] = req.body.role
-      }
-      User.update({email: req.body.email}, {$set: updateVal}, function (err, response) {
-          if (err)
-              return next(err);
-          res.status(200).send({msg: "Content updated"});
-      });
-    } else {
-      res.status(401).send('Unauthorized');
+  if (!req.body.email) {
+    res.status(400).send({msg: "No content", data: {message: "Email cannot be empty."}});
+  } else if (!req.body.firstName || !req.body.lastName) {
+    res.status(400).send({msg: "No content", data: {message: "FirstName and/or lastName cannot be empty."}});
+  } else if (!req.body.yearOfBirth || !req.body.monthOfBirth || !req.body.dayOfBirth) {
+    res.status(400).send({msg: "No content", data: {message: "DateOfBirth cannot be empty."}});
+  } else if (req.body.email === req.user.email || req.user.role === "Admin") {
+    var updateVal = {
+        dateOfBirth: new Date(req.body.yearOfBirth, req.body.monthOfBirth, req.body.dayOfBirth),
     }
+    updateVal["name.firstName"] = req.body.firstName
+    updateVal["name.lastName"] = req.body.lastName
+    if (req.body.password) {
+      updateVal["password"] = req.body.password
+    }
+    if (req.body.role && req.user.role === "Admin") {
+      updateVal["role"] = req.body.role
+    }
+    User.update({email: req.body.email}, {$set: updateVal}, function (err, response) {
+      if (err)
+        return next(err);
+      if (response.n == 0) {
+        res.status(404).json({msg: "Can't find item.", message: {users: "User not exists."}});
+      } else {
+        res.status(200).send({msg: "Content updated"});
+      }
+    });
+  } else {
+    res.status(401).send('Unauthorized');
+  }
 }
 
 
@@ -274,6 +350,11 @@ function updatePut(req, res, next) {
  *       "data": {
  *          "message": "User not exists."
  *       }
+ *     }
+ *
+ * @apiErrorExample 401 - Unauthorized
+ *     {
+ *       "Unauthorized"
  *     }
  *
  */

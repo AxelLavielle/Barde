@@ -31,7 +31,9 @@ module.exports = function () {
                 return done(new Error("Authentication failed. User not found."), null);
             } else {
                 return done(null, {
-                    role: user.role
+                    role: user.role,
+                    name: user.name,
+                    email: user.email
                 });
             }
         });
