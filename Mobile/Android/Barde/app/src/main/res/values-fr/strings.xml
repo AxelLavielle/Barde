@@ -12,5 +12,9 @@
     <string name="str_dateofbirthday">Date de naissance</string>
     <string name="str_update">Metre à jour</string>
     <string name="str_successuful_update">Mis à jour réussie</string>
-
+    <string name="str_missing_firstname">manque votre prenom</string>
+    <string name="str_missing_lastname">manque votre nom</string>
+    <string name="str_missing_username">manque votre pseaudo</string>
+    <string name="str_missing_email">manque votre email</string>
+    <string name="str_missing_passowrd">manque votre mot de passe</string>
 </resources>

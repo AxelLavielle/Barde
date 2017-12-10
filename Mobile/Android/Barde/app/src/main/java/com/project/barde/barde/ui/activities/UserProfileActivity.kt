@@ -20,6 +20,7 @@ class UserProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_user)
+        update_dateofbirthday.maxDate = Date().time
         database.use {
            /* insert("user",
                     UserTable.EMAIL to "toto",
@@ -27,7 +28,7 @@ class UserProfileActivity : AppCompatActivity() {
                     UserTable.FIRSTNAME to "toto",
                     UserTable.LASTNAME to "toto",
                     UserTable.USERNAME to "toto")*/
-s            val c = rawQuery("SELECT * FROM user LIMIT 1", null)
+            val c = rawQuery("SELECT * FROM user LIMIT 1", null)
             if(c.count >= 1){
                 c.moveToFirst()
                 update_email.setText(c.getString(c.getColumnIndex(UserTable.EMAIL)))
@@ -39,13 +40,24 @@ s            val c = rawQuery("SELECT * FROM user LIMIT 1", null)
             }
         }
         updateInfo.setOnClickListener {
-            database.use {
+            if (update_email.text.toString().isEmpty()){
+                Toast.makeText(this@UserProfileActivity, getString(R.string.str_missing_email), Toast.LENGTH_SHORT).show()
+            }else if (update_firstname.text.toString().isEmpty()){
+                Toast.makeText(this@UserProfileActivity, getString(R.string.str_missing_firstname), Toast.LENGTH_SHORT).show()
+            }else if (update_lastname.text.toString().isEmpty()){
+                Toast.makeText(this@UserProfileActivity, getString(R.string.str_missing_lastname), Toast.LENGTH_SHORT).show()
+            }else if (update_username.text.toString().isEmpty()){
+                Toast.makeText(this@UserProfileActivity, getString(R.string.str_missing_username), Toast.LENGTH_SHORT).show()
+            }else if (update_password.text.toString().isEmpty()){
+                Toast.makeText(this@UserProfileActivity, getString(R.string.str_missing_passowrd), Toast.LENGTH_SHORT).show()
+            }else
+                database.use {
                 update("user", UserTable.EMAIL to update_email.text.toString(), UserTable.PASSWORD to update_password.text.toString(), UserTable.FIRSTNAME to update_firstname.text.toString(),
                         UserTable.LASTNAME to update_lastname.text.toString(), UserTable.USERNAME to update_username.text.toString(), UserTable.DAYOFBIRTHDAY to update_dateofbirthday.dayOfMonth,
                         UserTable.MONTHOFBIRTHDAY to update_dateofbirthday.month, UserTable.YEAROFBIRTHDAY to update_dateofbirthday.year)
                         .whereSimple("_id = 1 OR 1")
                         .exec()
-                Toast.makeText(this@UserProfileActivity, "str_successuful_update", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@UserProfileActivity, getString(R.string.str_successuful_update), Toast.LENGTH_SHORT).show()
                 finish()
 
             }

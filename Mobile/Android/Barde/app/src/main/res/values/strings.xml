@@ -12,4 +12,9 @@
     <string name="str_dateofbirthday">Date of birthday</string>
     <string name="str_update">Update</string>
     <string name="str_successuful_update">update successful</string>
+    <string name="str_missing_firstname">missing firstname</string>
+    <string name="str_missing_lastname">missing lastname</string>
+    <string name="str_missing_username">missing username</string>
+    <string name="str_missing_email">missing email</string>
+    <string name="str_missing_passowrd">missing passowrd</string>
 </resources>
