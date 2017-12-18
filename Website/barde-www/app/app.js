@@ -1,80 +1,55 @@
-angular.module('app', ['app.factories', 'app.directives', 'app.controllers', 'ngRoute', 'angular-google-analytics']).config(function($routeProvider) {
+/**
+ * APLT
+ * < arnaud perrault />
+ * barde-www - Created on 27/05/2017
+ */
 
-    $routeProvider
-    .when("/",
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
+
+Vue.use(VueRouter)
+Vue.use(VueResource)
+
+const routes = [
     {
-      templateUrl   : "templates/home.tpl.htm",
-      controller    : 'mainController',
-      type          : 'page',
-        meta          : {
-        title         : "Barde",
-        description   : "Barde is a software/application that generate piped music for your evenings, waiting rooms, dinners, sport sessions or work."
-      }
-    })
-    .when("/home",
+        path: '/',
+        component: require('./components/Home/home.vue'),
+        name: 'home'
+    },
     {
-      templateUrl   : "templates/home.tpl.htm",
-      controller    : 'mainController',
-        type          : 'page',
-        meta          : {
-        title         : "Barde",
-        description   : "Barde is a software/application that generate piped music for your evenings, waiting rooms, dinners, sport sessions or work."
-      }
-    })
-    .when("/team",
+        path: '/blog',
+        component: require('./components/Blog/blog.vue'),
+        name: 'blog'
+    },
     {
-      templateUrl   : "templates/equipe.tpl.htm",
-        type          : 'page',
-        meta          : {
-        title         : "Barde - Team",
-        description   : "Who are we ?"
-      }
-    })
-    .when("/blog",
+        path: '/blog/:id',
+        component: require('./components/BlogDetail/blog-detail.vue'),
+        name: 'blogDetail'
+    },
     {
-      templateUrl   : "templates/blog.tpl.htm",
-        type          : 'article',
-        meta          : {
-        title         : "Barde - Blog",
-        description   : "First steps ..."
-      }
-    })
-    .when("/contact",
-          {
-              templateUrl   : "templates/contact.tpl.htm",
-              type          : 'page',
+        path: '/team',
+        component: require('./components/Team/team.vue'),
+        name: 'team'
+    },
+    {
+        path: '/contact',
+        component: require('./components/Contact/contact.vue'),
+        name: 'contact'
+    },
+    {
+        path: '*',
+        redirect: '/'
+    }
+];
 
-              controller    : 'contactController',
-              meta          : {
-                  title         : "Barde - Contact",
-                  description   : "How to reach us"
-              }
+var router = new VueRouter({
+    mode: 'history',
+    routes
+});
 
-    }).when("/demo", {
-        templateUrl: "templates/demo.tpl.htm",
-        type: 'page',
-        controller: 'demoController',
-        meta: {
-            title: "Barde - Demo",
-            description: "How to reach us"
-        }
-    })
-    .otherwise({templateUrl: 'templates/static/404.tpl.htm'});
-
-}).config(function ($httpProvider, AnalyticsProvider) {
-  $httpProvider.defaults.withCredentials = false;
-  $httpProvider.defaults.headers.put = {};
-  $httpProvider.defaults.headers.patch = {};
-  $httpProvider.defaults.useXDomain = true;
-  AnalyticsProvider.setAccount('UA-91271933-1');  //UU-XXXXXXX-X should be your tracking code
-
-}).run(['Analytics', function (Analytics) {}])
-
-.run(['$rootScope', '$route', function($rootScope, $route) {
-    $rootScope.$on('$routeChangeSuccess', function() {
-        document.title = $route.current.meta.title;
-        document.description = $route.current.meta.desc;
-
-
-    });
-}]);
+var app = new Vue({
+    el: '#app',
+    router,
+    render: h => h(require('./components/Wrapper/wrapper.vue'))
+});

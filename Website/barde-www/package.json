@@ -1,39 +1,26 @@
 {
-  "name": "www.barde.io",
-  "version": "1.0.0",
-  "description": "Barde est une application multiplateforme de génération de musiques d'ambiance procédurales. Notre service s'adresse aux professionnels du secteur tertiaire mais l'application sera également disponible au grand public. L'utilisateur de Barde pourra en quelques clics créer son ambiance musicale dans le style de son choix et Barde se chargera de la générer indéfiniment.",
-  "main": "gulpfile.js",
-  "dependencies": {
-    "angular-google-analytics": "^1.1.8",
-    "angular-materialize": "^0.2.2",
-    "angular-md5": "^0.1.10",
-    "angular-recaptcha": "^4.0.3",
-    "gulp": "^3.9.1",
-    "gulp-clean": "^0.3.2",
-    "gulp-concat": "^2.6.1",
-    "gulp-connect": "^5.0.0",
-    "gulp-uglify": "^2.0.1",
-    "howler": "^2.0.3",
-    "jquery": "^3.1.1",
-    "material-design-icons": "^3.0.1",
-    "materialize-css": "^0.98.0",
-    "midi-player-js": "^1.1.1"
-  },
-  "devDependencies": {},
+  "name": "barde-www",
+  "description": "Barde website",
+  "author": "Barde",
   "scripts": {
-    "test": "dev"
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --watch",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AxelLavielle/Barde.git"
+  "dependencies": {
+    "json-loader": "^0.5.4",
+    "vue": "^2.0.1",
+    "vue-resource": "^1.2.1",
+    "vue-router": "^2.0.1"
   },
-  "keywords": [
-    "Barde"
-  ],
-  "author": "Valérian Polizzi",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/AxelLavielle/Barde/"
-  },
-  "homepage": "https://github.com/AxelLavielle/Barde#readme"
+  "devDependencies": {
+    "babel-core": "^6.0.0",
+    "babel-loader": "^6.0.0",
+    "babel-preset-es2015": "^6.0.0",
+    "cross-env": "^3.0.0",
+    "css-loader": "^0.25.0",
+    "file-loader": "^0.9.0",
+    "vue-loader": "^9.7.0",
+    "webpack": "^2.1.0-beta.25",
+    "webpack-dev-server": "^2.1.0-beta.0"
+  }
 }

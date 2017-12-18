@@ -1,0 +1,33 @@
+<!--
+ * APLT 
+ * < arnaud perrault />
+ * barde-www - Created on 05/06/2017
+ -->
+
+<section>
+
+    <div class="main">
+
+        <section class="section-top box-contacts box-parent section-full-height" style="    min-height: 94vh;">
+            <div class="box col box-white box-large box-center">
+                <div class="box-cell-size6 text-left">
+                    <h2 style="margin:0">
+                        {{cNews.title}}
+                    </h2>
+                    <p style="font-size:14px;padding-bottom:10px">
+                        {{cNews.date}} - <span class="blue">{{cNews.author}}</span>
+                    </p>
+                    <h3>
+                        {{cNews.resume}}
+                    </h3>
+                    <p class="text-justify" v-html="cNews.content">
+
+                    </p>
+                </div>
+            </div><!-- /.box -->
+
+        </section><!-- /.section -->
+    </div>
+
+</section>
+

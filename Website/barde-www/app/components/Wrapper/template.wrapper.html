@@ -1,0 +1,168 @@
+<!--
+ * APLT 
+ * < arnaud perrault />
+ * barde-www - Created on 27/05/2017
+ -->
+
+<section>
+    <div class="wrapper">
+
+        <div class="wrapper-inner">
+
+            <header class="header">
+
+                <div v-if="!showMenu">
+                    <nav class="nav-scroll">
+                        <ul>
+                            <li>
+                                <img width="64" src="../../assets/images/logo/logo-4k.png" alt="" class="src"
+                                     style="padding: 10px;"/>
+                            </li>
+                            <li>
+                                <a href="/">HOME</a>
+                            </li>
+
+                            <li>
+                                <a href="/blog">BLOG</a>
+                            </li>
+
+                            <li>
+                                <a href="/team">TEAM</a>
+                            </li>
+
+                            <li>
+                                <a href="/contact">CONTACT</a>
+                            </li>
+
+                            <!--<li style="float:right">
+                                <button type="text" class="nav-btn home-btn btn-blue">
+                                    &lt;!&ndash;				<i class="fa fa-angle-down" aria-hidden="true"></i>&ndash;&gt;
+                                    Register to our newsletter
+                                </button>
+                            </li>
+                            <li style="float:right">
+                                <button type="text" class="nav-btn home-btn btn-pink">
+                                    &lt;!&ndash;				<i class="fa fa-angle-down" aria-hidden="true"></i>&ndash;&gt;
+                                    DOWNLOAD
+                                </button>
+                            </li>-->
+                        </ul>
+                    </nav><!-- /.nav -->
+
+                    <nav class="nav-scroll-mobile">
+                        <button class="hamburger"><i class="ico-burger"></i></button>
+                        <button class="cross"><i class="ico-close"></i></button>
+                        <img width="64" src="../../assets/images/logo/logo-4k.png" alt="" class="src"
+                             style="padding: 10px;"/>
+
+                    </nav><!-- /.nav -->
+                </div>
+
+                <div v-if="showMenu">
+                    <nav class="nav-scroll" style="opacity: 1 !important;">
+                        <ul>
+                            <li>
+                                <img width="64" src="../../assets/images/logo/logo-4k.png" alt="" class="src"
+                                     style="padding: 10px;"/>
+                            </li>
+                            <li>
+                                <a href="/">HOME</a>
+                            </li>
+
+                            <li>
+                                <a href="/blog">BLOG</a>
+                            </li>
+
+                            <li>
+                                <a href="/team">TEAM</a>
+                            </li>
+
+                            <li>
+                                <a href="/contact">CONTACT</a>
+                            </li>
+
+                           <!-- <li style="float:right">
+                                <button type="text" class="nav-btn home-btn btn-blue">
+                                    &lt;!&ndash;				<i class="fa fa-angle-down" aria-hidden="true"></i>&ndash;&gt;
+                                    Register to our newsletter
+                                </button>
+                            </li>
+                            <li style="float:right">
+                                <button type="text" class="nav-btn home-btn btn-pink">
+                                    &lt;!&ndash;				<i class="fa fa-angle-down" aria-hidden="true"></i>&ndash;&gt;
+                                    DOWNLOAD
+                                </button>
+                            </li>-->
+                        </ul>
+                    </nav><!-- /.nav -->
+
+                    <nav class="nav-scroll-mobile" style="opacity: 1 !important;">
+                        <button class="hamburger"><i class="ico-burger"></i></button>
+                        <button class="cross"><i class="ico-close"></i></button>
+                        <img width="65" src="../../assets/images/logo/logo-4k.png" alt="" class="src"
+                             style="padding: 10px;"/>
+
+                    </nav><!-- /.nav -->
+                </div>
+
+
+                <div class="menu-mobile">
+                    <ul>
+                        <a href="/">
+                            <li>HOME</li>
+                        </a>
+                        <a href="/blog">
+                            <li>BLOG</li>
+                        </a>
+                        <a href="/team">
+                            <li>TEAM</li>
+                        </a>
+                        <a href="/contact">
+                            <li>CONTACT</li>
+                        </a>
+                    </ul>
+                </div>
+
+            </header><!-- /.header -->
+
+            <div class="main">
+
+                <router-view></router-view>
+
+            </div><!-- /.main -->
+
+            <!-- FOOTER-->
+            <footer class="footer">
+                <div class="socials">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div><!-- /.socials -->
+
+                <div class="contacts">
+                    <h5 class="fw-600"><a href="">An Epitech Innovative Project</a></h5>
+                </div><!-- /.contacts -->
+
+
+            </footer><!-- /.footer -->
+
+        </div>
+
+    </div>
+</section>
