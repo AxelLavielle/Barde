@@ -34,7 +34,6 @@ void		Disposition::placeChords(MusicParameters &parameters, std::vector<std::pai
       	if (y != 0)
       	  scaleAdjust = (notesFromChord[y] < previousNote ? 0 : 1);
       	note = (notesFromChord[y] / 8) + ((chordsGrid[x].second + scaleAdjust) * 12);
-        std::cout << "[CHORDS/GRID] note numéro " << note << "(" << (int)(chordsGrid[x].second + scaleAdjust) << ") : position=" << beats << " duration=" << TIMES_PER_BAR << std::endl;
       	parameters._midiManager.noteOn(instruments[i].channel, note, instruments[i].velocity, beats);
       	parameters._midiManager.noteOff(instruments[i].channel, note, instruments[i].velocity, beats + TIMES_PER_BAR);
       	previousNote = note;
@@ -65,7 +64,6 @@ void    Disposition::placeChords(MusicParameters &parameters, std::vector<std::v
           if (y != 0)
             scaleAdjust = (notesFromChord[y] < previousNote ? 1 : 0);
           note = (notesFromChord[y] / 8) + ((pattern[x][k].note.second + scaleAdjust) * 12);
-          std::cout << "[CHORDS/PATTERN] note = " << note << "(" << (int)(pattern[x][k].note.second + scaleAdjust) << ") : position=" << pattern[y][k].position + (y * TIMES_PER_BAR) << " duration=" << pattern[y][k].duration << std::endl;
           parameters._midiManager.noteOn(instruments[i].channel, note, instruments[i].velocity, pattern[x][k].position);
           parameters._midiManager.noteOff(instruments[i].channel, note, instruments[i].velocity, pattern[x][k].position + pattern[x][k].duration);
           previousNote = note;
@@ -108,11 +106,9 @@ void    Disposition::placeArpeggios(MusicParameters &parameters, std::vector<std
     for (unsigned char y = 0; y < pattern.size(); y++){
       for (unsigned char k = 0; k < pattern[y].size(); k++){
         note = (pattern[y][k].note.first / 8) + ((pattern[y][k].note.second) * 12);
-        std::cout << "[ARPEGGIOS/PATTERN] note = " << note << "(" << (int)pattern[y][k].note.second << ") : position=" << pattern[y][k].position + (y * TIMES_PER_BAR) << " duration=" << pattern[y][k].duration << std::endl;
         parameters._midiManager.noteOn(instruments[i].channel, note, instruments[i].velocity, pattern[y][k].position + (y * TIMES_PER_BAR));
         parameters._midiManager.noteOff(instruments[i].channel, note, instruments[i].velocity, pattern[y][k].position + (y * TIMES_PER_BAR) + pattern[y][k].duration);
       }
-      std::cout << "--------------------------" << std::endl;
     }
   }
 }
