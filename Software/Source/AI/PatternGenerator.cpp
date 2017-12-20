@@ -39,7 +39,7 @@ void	PatternGenerator::addPattern(const Pattern &newPattern)
       n = -1;
       while (static_cast<unsigned int>(++n) < time.size())
 	{
-	  note = Pattern::correlateNote(time[n], newPattern.getChord(), _chord);
+/*	  note = Pattern::correlateNote(time[n], newPattern.getChord(), _chord);
 	  if (n == 0)
 	    _tree.addNote(note.note.first, _tree.getProba(note.note.first) + 1);
 	  else
@@ -54,7 +54,7 @@ void	PatternGenerator::addPattern(const Pattern &newPattern)
 	    _position[n] = (_position[n] * ((_noteNumber + count) / 4) + note.position) / ((_noteNumber + count) / 4 + 1);
 	  else
 	    _position.push_back(note.position);
-	  count++;
+	  count++;*/
 	}
     }
   _noteNumber = (_noteNumber * (_patternNumber - 1) + count) / _patternNumber;
