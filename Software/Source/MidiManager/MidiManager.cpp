@@ -23,7 +23,7 @@ void MidiManager::noteOn(const int channel, const int noteNumber, const float ve
 	MidiMessage message = MidiMessage::noteOn(channel, noteNumber, (uint8)velocity);
 
 
-	message.setTimeStamp(time);
+	message.setTimeStamp(time * 1000);
 	_midiSequence.addEvent(message);
 	std::cout << getMidiMessageDescription(message) << std::endl;
 	_midiSequence.updateMatchedPairs();
@@ -33,7 +33,7 @@ void MidiManager::noteOn(const Instrument & instrument, const int noteNumber, co
 {
 	MidiMessage message = MidiMessage::noteOn(instrument.channel, noteNumber, (uint8)velocity);
 
-	message.setTimeStamp(time);
+	message.setTimeStamp(time * 1000);
 	_midiSequence.addEvent(message);
 	_midiSequence.updateMatchedPairs();
 }
@@ -42,7 +42,7 @@ void MidiManager::noteOff(const int channel, const int noteNumber, const float v
 {
 	MidiMessage message = MidiMessage::noteOff(channel, noteNumber, (uint8)velocity);
 
-	message.setTimeStamp(time);
+	message.setTimeStamp(time * 1000);
 	_midiSequence.addEvent(message);
 	//_midiSequence.updateMatchedPairs();
 }
@@ -51,7 +51,7 @@ void MidiManager::noteOff(const Instrument & instrument, const int noteNumber, c
 {
 	MidiMessage message = MidiMessage::noteOff(instrument.channel, noteNumber, (uint8)velocity);
 
-	message.setTimeStamp(time);
+	message.setTimeStamp(time * 1000);
 	_midiSequence.addEvent(message);
 	//_midiSequence.updateMatchedPairs();
 }

@@ -42,8 +42,8 @@ bool							SoundManager::play(const Midi &midi)
 {
 	MidiMessage					tmp;
 	const MidiMessageSequence	*midiSequence;
-	unsigned int		       	temps = (1.0 / (80.0 / 60.0)) * 1000;
-	int							k;
+	const unsigned int	    	temps = (1.0 / (80.0 / 60.0)) * 1000;
+	double						k;
 
 	if ((midiSequence = MidiToMessageSequence(midi)) == NULL)
 	{
@@ -56,9 +56,9 @@ bool							SoundManager::play(const Midi &midi)
 	{
 		tmp = midiSequence->getEventPointer(i)->message;
 
-		if (tmp.getTimeStamp() == 0)
+		if (tmp.getTimeStamp() == 0.00)
 		{
-			tmp.setTimeStamp(1);
+			tmp.setTimeStamp(1000);
 		}
 
 		if (tmp.isNoteOn())
@@ -68,7 +68,8 @@ bool							SoundManager::play(const Midi &midi)
 #else
 			_midiOutput->sendMessageNow((const MidiMessage &)tmp);
 #endif
-			if ((int)(tmp.getTimeStamp() * 1000) != (int)(k * 1000))
+			//std::cout << (int)(tmp.getTimeStamp())  << std::endl;
+			if (tmp.getTimeStamp() != k)
 			{
 				Tools::sleep(temps);
 			}
