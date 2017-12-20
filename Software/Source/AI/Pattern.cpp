@@ -107,7 +107,7 @@ std::vector<std::vector<t_note> >	Pattern::correlatePattern(const Pattern patter
       while (++j != _pattern[i].size())
     	  _pattern[i][j] = correlateNote(_pattern[i][j], prev, next, strong, medium, weak, strong2, medium2, weak2);
     }
-  exit(1);
+//  exit(1);
   return (_pattern);
 }
 
