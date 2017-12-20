@@ -123,18 +123,6 @@ void			AI::classifyNotes(const std::vector<std::pair<char, char> > &chord, std::
     }
 }
 
-char			AI::searchNoteFromDistWhite(char note, char dist)
-{
-  while (dist != 0)
-    {
-      note += (note != B && note != E) ? 16 : 8;
-      if (note == END)
-	note = C;
-      dist--;
-    }
-  return (note);
-}
-
 char			AI::searchNoteFromDist(char note, char dist)
 {
   note += dist * 8;

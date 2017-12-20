@@ -78,18 +78,6 @@ public:
   static void		classifyNotes(const std::vector<std::pair<char, char> > &chord, std::vector<char> *strong, std::vector<char> *medium, std::vector<char> *weak);
 
   /*!
-   *  \brief Searches the note name from a distance and a note, not caring of sharps notes
-   *
-   *  This method searches and returns the note from a distance and a note, not caring of sharps notes
-   *
-   *  \param Note : Note you start from
-   *  \param Distance : Distance you want to access the note
-   *  \return The found note
-   */
-
-  static char		searchNoteFromDistWhite(char note, char dist);
-
-  /*!
    *  \brief Searches the note name from a distance and a note
    *
    *  This method searches and returns the note from a distance and a note

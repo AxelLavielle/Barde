@@ -49,18 +49,30 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   markovChords = markovObj.getVectorFromJson();
   style = markovObj.getStyleFromJson();
   Resolution::parsingMarkov(style, &markovChords);
-  markovChords.push_back(markovChords[0]);
-  markovChords.push_back(markovChords[0]);
-  markovChords.push_back(markovChords[0]);
-  markovChords.push_back(std::make_pair(AI::searchNoteFromDistWhite((markovChords[0].first / 8 * 8), 4) + markovChords[0].first % 8, 4));
-  markovChords.push_back(std::make_pair(AI::searchNoteFromDistWhite((markovChords[0].first / 8 * 8), 4) + markovChords[0].first % 8, 4));
-  markovChords.push_back(markovChords[0]);
-  markovChords.push_back(markovChords[0]);
-  markovChords.push_back(std::make_pair(AI::searchNoteFromDistWhite((markovChords[0].first / 8 * 8), 5) + markovChords[0].first % 8, 5));
-  markovChords.push_back(std::make_pair(AI::searchNoteFromDistWhite((markovChords[0].first / 8 * 8), 4) + markovChords[0].first % 8, 4));
-  markovChords.push_back(markovChords[0]);
-  markovChords.push_back(std::make_pair(AI::searchNoteFromDistWhite((markovChords[0].first / 8 * 8), 5) + markovChords[0].first % 8, 5));
+
+  std::pair<char, char> noteA = markovChords[0];
+  std::pair<char, char> noteB = std::make_pair(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 5) + markovChords[0].first % 8, 4);
+  std::pair<char, char> noteC = std::make_pair(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 7) + markovChords[0].first % 8, 4);
+  if (noteA.first > noteB.first)
+	  noteB.second++;
+  if (noteA.first > noteC.first)
+	  noteC.second++;
+
+  // A modifier
+  markovChords.push_back(noteA);
+  markovChords.push_back(noteA);
+  markovChords.push_back(noteA);
+  markovChords.push_back(noteB);
+  markovChords.push_back(noteB);
+  markovChords.push_back(noteA);
+  markovChords.push_back(noteA);
+  markovChords.push_back(noteC);
+  markovChords.push_back(noteB);
+  markovChords.push_back(noteA);
+  markovChords.push_back(noteC);
+
   Disposition::placeChords(parameters, markovChords);
+
   /* CHORDS */
   
   /* MARKOVIAN TREE GENERATION */		
