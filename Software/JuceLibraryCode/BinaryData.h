@@ -18,7 +18,7 @@ namespace BinaryData
     const int            logo_pngSize = 271238;
 
     extern const char*   Dark;
-    const int            DarkSize = 34;
+    const int            DarkSize = 38;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];

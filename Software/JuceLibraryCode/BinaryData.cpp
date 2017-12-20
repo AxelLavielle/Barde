@@ -5796,10 +5796,10 @@ const char* logo_png = (const char*) temp_binary_data_2;
 
 //================== Dark ==================
 static const unsigned char temp_binary_data_3[] =
-"DarkTheme\n"
-"#D2005F\n"
-"#2c3e50\n"
-"#FFFFFF\n";
+"DarkTheme\r\n"
+"#D2005F\r\n"
+"#2c3e50\r\n"
+"#FFFFFF\r\n";
 
 const char* Dark = (const char*) temp_binary_data_3;
 
@@ -5817,7 +5817,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes) throw
         case 0x441eb498:  numBytes = 204; return people_json;
         case 0x7e701ad1:  numBytes = 140671; return back_png;
         case 0x78ded995:  numBytes = 271238; return logo_png;
-        case 0x00206396:  numBytes = 34; return Dark;
+        case 0x00206396:  numBytes = 38; return Dark;
         default: break;
     }
 

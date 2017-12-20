@@ -12,9 +12,6 @@
 
 MidiManager::MidiManager() : AMidiManager()
 {
-	// for (int i = 0; i++ < 16;) {
-	// 	_synth.addVoice(new SamplerVoice());
-	// }
 }
 
 MidiManager::~MidiManager()
@@ -37,7 +34,6 @@ void MidiManager::noteOn(const Instrument & instrument, const int noteNumber, co
 	MidiMessage message = MidiMessage::noteOn(instrument.channel, noteNumber, (uint8)velocity);
 
 	message.setTimeStamp(time);
-	//addMessageToList(message);
 	_midiSequence.addEvent(message);
 	_midiSequence.updateMatchedPairs();
 }
@@ -47,7 +43,6 @@ void MidiManager::noteOff(const int channel, const int noteNumber, const float v
 	MidiMessage message = MidiMessage::noteOff(channel, noteNumber, (uint8)velocity);
 
 	message.setTimeStamp(time);
-	//addMessageToList(message);
 	_midiSequence.addEvent(message);
 	//_midiSequence.updateMatchedPairs();
 }
@@ -57,7 +52,6 @@ void MidiManager::noteOff(const Instrument & instrument, const int noteNumber, c
 	MidiMessage message = MidiMessage::noteOff(instrument.channel, noteNumber, (uint8)velocity);
 
 	message.setTimeStamp(time);
-	//addMessageToList(message);
 	_midiSequence.addEvent(message);
 	//_midiSequence.updateMatchedPairs();
 }
@@ -70,7 +64,6 @@ Midi MidiManager::createMidi(const double time)
 
 	message = MidiMessage::endOfTrack();
 	message.setTimeStamp(time);
-	//addMessageToList(message);
 	_midiSequence.addEvent(message);
 	_midiBuff.addTrack(_midiSequence);
 	//_midiBuff.setTicksPerQuarterNote(4); // 80 tick dans une minute
@@ -97,10 +90,6 @@ Midi MidiManager::createMidi(const double time)
 
 	//midiBuff.readFrom(stream);
 	//if (midiBuff.getNumTracks() > 0)
-	//	exit(1);
-
-
-	//std::cout << "LALALALA = " << Time::getHighResolutionTicksPerSecond() << std::endl;
 	return (midi);
 }
 

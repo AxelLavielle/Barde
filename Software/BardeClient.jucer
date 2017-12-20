@@ -139,6 +139,8 @@
               file="Source/SoundManager/ISoundManager.hpp"/>
         <FILE id="BZshgg" name="JuceSound.cpp" compile="1" resource="0" file="Source/SoundManager/JuceSound.cpp"/>
         <FILE id="gL6Cwn" name="JuceSound.hh" compile="0" resource="0" file="Source/SoundManager/JuceSound.hh"/>
+        <FILE id="a3zTxC" name="Synthesizer.cpp" compile="1" resource="0" file="Source/SoundManager/Synthesizer.cpp"/>
+        <FILE id="DYmEBQ" name="Synthesizer.hh" compile="0" resource="0" file="Source/SoundManager/Synthesizer.hh"/>
       </GROUP>
       <FILE id="tIUj1n" name="Authentification.cpp" compile="1" resource="0"
             file="Source/Authentification.cpp"/>
