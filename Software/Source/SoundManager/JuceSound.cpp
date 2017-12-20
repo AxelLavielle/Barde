@@ -68,7 +68,7 @@ bool							SoundManager::play(const Midi &midi)
 #else
 			_midiOutput->sendMessageNow((const MidiMessage &)tmp);
 #endif
-			//std::cout << (int)(tmp.getTimeStamp())  << std::endl;
+			//std::cout << (int)(tmp.getTimeStamp()) << std::endl;
 			if (tmp.getTimeStamp() != k)
 			{
 				Tools::sleep(temps);
