@@ -125,8 +125,8 @@ void			AI::classifyNotes(const std::vector<std::pair<char, char> > &chord, std::
 
 char			AI::searchNoteFromDist(char note, char dist)
 {
-  note += dist * 8;
-  if (note >= END)
-    note -= END;
-  return (note);
+  int noteret = note + dist * 8;
+  if (noteret >= END)
+    noteret -= END;
+  return ((char)note);
 }
