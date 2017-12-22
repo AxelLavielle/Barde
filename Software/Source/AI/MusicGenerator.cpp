@@ -90,7 +90,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   /* ARPEGGIOS */
   int arpN = rand() % 3 + 4;
   Pattern					*markovPattern = new Pattern(chord);
-  ObjectMarkov				       	markovObj2(proba, arpN, parameters.getSeed());
+  ObjectMarkov				       	markovObj2(proba, arpN++, parameters.getSeed());
   markovObj2.callLua();
   markovTmp = markovObj2.getVectorFromJson();
   Resolution::parsingMarkov(&markovTmp, strong, medium, weak);
