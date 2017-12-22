@@ -45,7 +45,7 @@ bool							SoundManager::play(const Midi &midi)
 	const unsigned int	    	temps = (1.0 / (80.0 / 60.0)) * 1000;
 	double						k;
 	unsigned int				resTime;
-	unsigned int				currentTemp;
+	double						currentTemp;
 
 	if ((midiSequence = MidiToMessageSequence(midi)) == NULL)
 	{
@@ -78,26 +78,37 @@ bool							SoundManager::play(const Midi &midi)
 			if (resTime && tmp.getTimeStamp() != k)
 			{
 				unsigned int tmpTime = static_cast<unsigned int>(tmp.getTimeStamp() / 1000);
-				unsigned int timeToSleep = temps * ((tmp.getTimeStamp() / 1000) - tmpTime);
+				unsigned int timeToSleep = temps - temps * ((tmp.getTimeStamp() / 1000) - tmpTime);
 
 				std::cout << "------------------------------------------" << std::endl;
 				std::cout << "Temps actuel : " << currentTemp / temps << std::endl;
-				if (tmpTime <= static_cast<unsigned int>(currentTemp / temps) && resTime >= timeToSleep)
+				if (tmpTime <= currentTemp / temps && resTime >= timeToSleep)
 				{
 					std::cout << "Je Sleep pour (resTime1) " << resTime - timeToSleep << std::endl;
+					std::cout << "resTime " << resTime << std::endl;
+					std::cout << "timeToSleep " << timeToSleep << std::endl;
 					Tools::sleep(resTime - timeToSleep);
 					currentTemp += resTime - timeToSleep;
+					resTime = temps - (resTime + timeToSleep);
 				}
 				else
 				{
 					std::cout << "Je Sleep pour (resTime2) " << resTime << std::endl;
 					Tools::sleep(resTime);
 					currentTemp += resTime;
+					resTime = 0;
 				}
 				std::cout << "------------------------------------------" << std::endl;
 			}
 
-			if (tmp.getTimeStamp() != k)
+			if (resTime)
+			{
+				std::cout << "Je Sleep pour (resTime3) " << resTime << std::endl;
+				Tools::sleep(resTime);
+				currentTemp += resTime;
+				resTime = 0;
+			}
+			else if (tmp.getTimeStamp() != k)
 			{
 				unsigned int tmpTime = static_cast<unsigned int>(tmp.getTimeStamp() / 1000);
 				unsigned int timeToSleep = temps * ((tmp.getTimeStamp() / 1000) - tmpTime);
@@ -106,7 +117,7 @@ bool							SoundManager::play(const Midi &midi)
 				std::cout << "Temps de la prochaine note " << tmp.getTimeStamp() / 1000 << std::endl;
 				resTime = temps - ((timeToSleep) ? (timeToSleep) : (temps));
 
-				if (tmp.getTimeStamp() / 1000 != currentTemp / temps)
+				if (tmp.getTimeStamp() / 1000 - currentTemp / temps > 0.01)
 				{
 					std::cout << "Temps actuel : " << currentTemp / temps << std::endl;
 					std::cout << "Je Sleep pour : " << ((timeToSleep) ? (timeToSleep) : (temps)) << std::endl;
