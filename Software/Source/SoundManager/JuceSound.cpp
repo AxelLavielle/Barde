@@ -44,7 +44,7 @@ bool							SoundManager::play(const Midi &midi)
 	const MidiMessageSequence	*midiSequence;
 	const unsigned int	    	temps = (1.0 / (80.0 / 60.0)) * 1000;
 	double						k;
-	unsigned int				resTime;
+	double						resTime;
 	double						currentTemp;
 
 	if ((midiSequence = MidiToMessageSequence(midi)) == NULL)
@@ -66,7 +66,7 @@ bool							SoundManager::play(const Midi &midi)
 			if (resTime && tmp.getTimeStamp() != k)
 			{
 				unsigned int tmpTime = static_cast<unsigned int>(tmp.getTimeStamp() / 1000);
-				unsigned int timeToSleep = temps - temps * ((tmp.getTimeStamp() / 1000) - tmpTime);
+				double timeToSleep = temps - temps * ((tmp.getTimeStamp() / 1000) - tmpTime);
 
 				std::cout << "------------------------------------------" << std::endl;
 				std::cout << "Temps actuel : " << currentTemp / temps << std::endl;
@@ -99,7 +99,7 @@ bool							SoundManager::play(const Midi &midi)
 			else if (tmp.getTimeStamp() != k)
 			{
 				unsigned int tmpTime = static_cast<unsigned int>(tmp.getTimeStamp() / 1000);
-				unsigned int timeToSleep = temps * ((tmp.getTimeStamp() / 1000) - tmpTime);
+				double timeToSleep = temps * ((tmp.getTimeStamp() / 1000) - tmpTime);
 
 				std::cout << "------------------------------------------" << std::endl;
 				std::cout << "Temps de la prochaine note " << tmp.getTimeStamp() / 1000 << std::endl;
