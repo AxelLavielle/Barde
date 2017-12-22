@@ -44,6 +44,8 @@ bool							SoundManager::play(const Midi &midi)
 	const MidiMessageSequence	*midiSequence;
 	const unsigned int	    	temps = (1.0 / (80.0 / 60.0)) * 1000;
 	double						k;
+	unsigned int				resTime;
+	unsigned int				currentTemp;
 
 	if ((midiSequence = MidiToMessageSequence(midi)) == NULL)
 	{
@@ -52,6 +54,8 @@ bool							SoundManager::play(const Midi &midi)
 	}
 	tmp = midiSequence->getEventPointer(0)->message;
 	k = tmp.getTimeStamp();
+	currentTemp = temps;
+	resTime = 0;
 	for (int i = 0; i < midiSequence->getNumEvents(); i++)
 	{
 		tmp = midiSequence->getEventPointer(i)->message;
@@ -63,15 +67,53 @@ bool							SoundManager::play(const Midi &midi)
 
 		if (tmp.isNoteOn())
 		{
+
 #ifdef __linux__
 			_synthAudioSource.addMessage(tmp);
 #else
+			std::cout << "Je joue la note" << std::endl;
 			_midiOutput->sendMessageNow((const MidiMessage &)tmp);
 #endif
-			//std::cout << (int)(tmp.getTimeStamp()) << std::endl;
+
+			if (resTime && tmp.getTimeStamp() != k)
+			{
+				unsigned int tmpTime = static_cast<unsigned int>(tmp.getTimeStamp() / 1000);
+				unsigned int timeToSleep = temps * ((tmp.getTimeStamp() / 1000) - tmpTime);
+
+				std::cout << "------------------------------------------" << std::endl;
+				std::cout << "Temps actuel : " << currentTemp / temps << std::endl;
+				if (tmpTime <= currentTemp / 1000 && resTime >= timeToSleep)
+				{
+					std::cout << "Je Sleep pour (resTime) " << resTime - timeToSleep << std::endl;
+					Tools::sleep(resTime - timeToSleep);
+					currentTemp += resTime - timeToSleep;
+				}
+				else
+				{
+					std::cout << "Je Sleep pour (resTime) " << resTime << std::endl;
+					Tools::sleep(resTime);
+					currentTemp += resTime;
+				}
+				std::cout << "------------------------------------------" << std::endl;
+			}
+
 			if (tmp.getTimeStamp() != k)
 			{
-				Tools::sleep(temps);
+				unsigned int tmpTime = static_cast<unsigned int>(tmp.getTimeStamp() / 1000);
+				unsigned int timeToSleep = temps * ((tmp.getTimeStamp() / 1000) - tmpTime);
+
+				std::cout << "------------------------------------------" << std::endl;
+				std::cout << "Temps de la prochaine note " << tmp.getTimeStamp() / 1000 << std::endl;
+				resTime = temps - ((timeToSleep) ? (timeToSleep) : (temps));
+
+				if (tmp.getTimeStamp() / 1000 != currentTemp / temps)
+				{
+					std::cout << "Temps actuel : " << currentTemp / temps << std::endl;
+					std::cout << "Je Sleep pour : " << ((timeToSleep) ? (timeToSleep) : (temps)) << std::endl;
+					std::cout << "------------------------------------------" << std::endl;
+					currentTemp += ((timeToSleep) ? (timeToSleep) : (temps));
+					Tools::sleep((timeToSleep) ? (timeToSleep) : (temps));
+				}
 			}
 			k = tmp.getTimeStamp();
 		}
