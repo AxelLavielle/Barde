@@ -58,7 +58,6 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   if (noteA.first > noteC.first)
 	  noteC.second++;
 
-  // A modifier
   markovChords.push_back(noteA);
   markovChords.push_back(noteA);
   markovChords.push_back(noteA);
@@ -98,7 +97,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   char						n;
   n = -1;
   while (++n != static_cast<char>(markovTmp.size()))
-    markovPattern->addNote(std::make_pair(markovTmp[n].first, static_cast<char>(5)), n*3.0/arpN + 1, 3.0/arpN, 0);
+    markovPattern->addNote(std::make_pair(markovTmp[n].first, static_cast<char>(5)), n*3.0/arpN + 1, n*3.0/arpN, 0);
   std::vector<std::vector<t_note> >		arpeggios;
   std::vector<std::vector<t_note> >		tmparpeggios;
   n = -1;
