@@ -54,26 +54,14 @@ bool							SoundManager::play(const Midi &midi)
 	}
 	tmp = midiSequence->getEventPointer(0)->message;
 	k = tmp.getTimeStamp();
-	currentTemp = temps;
+	currentTemp = 0;
 	resTime = 0;
 	for (int i = 0; i < midiSequence->getNumEvents(); i++)
 	{
 		tmp = midiSequence->getEventPointer(i)->message;
 
-		//if (tmp.getTimeStamp() == 0.00)
-		//{
-		//	tmp.setTimeStamp(1000);
-		//}
-
 		if (tmp.isNoteOn())
 		{
-
-#ifdef __linux__
-			_synthAudioSource.addMessage(tmp);
-#else
-			std::cout << "Je joue la note" << std::endl;
-			_midiOutput->sendMessageNow((const MidiMessage &)tmp);
-#endif
 
 			if (resTime && tmp.getTimeStamp() != k)
 			{
@@ -126,6 +114,15 @@ bool							SoundManager::play(const Midi &midi)
 					Tools::sleep((timeToSleep) ? (timeToSleep) : (temps));
 				}
 			}
+
+#ifdef __linux__
+			_synthAudioSource.addMessage(tmp);
+#else
+			std::cout << "Je joue la note qui a le temps : " << tmp.getTimeStamp() / 1000 << std::endl;
+			_midiOutput->sendMessageNow((const MidiMessage &)tmp);
+#endif
+
+
 			k = tmp.getTimeStamp();
 		}
 		else
