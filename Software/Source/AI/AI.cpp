@@ -128,5 +128,5 @@ char			AI::searchNoteFromDist(char note, char dist)
   int noteret = note + dist * 8;
   if (noteret >= END)
     noteret -= END;
-  return ((char)note);
+  return ((char)noteret);
 }
