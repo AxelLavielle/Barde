@@ -60,10 +60,10 @@ bool							SoundManager::play(const Midi &midi)
 	{
 		tmp = midiSequence->getEventPointer(i)->message;
 
-		if (tmp.getTimeStamp() == 0.00)
-		{
-			tmp.setTimeStamp(1000);
-		}
+		//if (tmp.getTimeStamp() == 0.00)
+		//{
+		//	tmp.setTimeStamp(1000);
+		//}
 
 		if (tmp.isNoteOn())
 		{
