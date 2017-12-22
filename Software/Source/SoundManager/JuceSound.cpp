@@ -82,15 +82,15 @@ bool							SoundManager::play(const Midi &midi)
 
 				std::cout << "------------------------------------------" << std::endl;
 				std::cout << "Temps actuel : " << currentTemp / temps << std::endl;
-				if (tmpTime <= currentTemp / 1000 && resTime >= timeToSleep)
+				if (tmpTime <= static_cast<unsigned int>(currentTemp / temps) && resTime >= timeToSleep)
 				{
-					std::cout << "Je Sleep pour (resTime) " << resTime - timeToSleep << std::endl;
+					std::cout << "Je Sleep pour (resTime1) " << resTime - timeToSleep << std::endl;
 					Tools::sleep(resTime - timeToSleep);
 					currentTemp += resTime - timeToSleep;
 				}
 				else
 				{
-					std::cout << "Je Sleep pour (resTime) " << resTime << std::endl;
+					std::cout << "Je Sleep pour (resTime2) " << resTime << std::endl;
 					Tools::sleep(resTime);
 					currentTemp += resTime;
 				}
