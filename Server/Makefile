@@ -4,7 +4,9 @@ OBJ = $(SRC:.cpp=.o)
 CXXFLAGS += -Wall -Wextra -Werror
 LDFLAGS = -lboost_system
 
-SRC = $(SRC_FOLDER)/main.cpp
+SRC = $(SRC_FOLDER)/main.cpp \
+	$(SRC_FOLDER)/Server.cpp \
+	$(SRC_FOLDER)/Connection.cpp
 
 all: $(NAME)
 
