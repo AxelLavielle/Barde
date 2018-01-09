@@ -60,7 +60,7 @@ bool							SoundManager::play(const Midi &midi)
 	{
 		tmp = midiSequence->getEventPointer(i)->message;
 
-		if (tmp.isNoteOn())
+		if (tmp.isNoteOn() || tmp.isNoteOff())
 		{
 
 			if (resTime && tmp.getTimeStamp() != k)
@@ -78,6 +78,8 @@ bool							SoundManager::play(const Midi &midi)
 					Tools::sleep(resTime - timeToSleep);
 					currentTemp += resTime - timeToSleep;
 					resTime = temps - (resTime + timeToSleep);
+					if (resTime < 0)
+						resTime = 0;
 				}
 				else
 				{
@@ -119,7 +121,8 @@ bool							SoundManager::play(const Midi &midi)
 			_synthAudioSource.addMessage(tmp);
 #else
 			std::cout << "Je joue la note qui a le temps : " << tmp.getTimeStamp() / 1000 << std::endl;
-			_midiOutput->sendMessageNow((const MidiMessage &)tmp);
+			tmp.setTimeStamp(Time::getMillisecondCounterHiRes());
+			_midiOutput->sendMessageNow(tmp);
 #endif
 
 
