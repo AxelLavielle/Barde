@@ -21,7 +21,6 @@ Synthesizer::Synthesizer()
 
 void Synthesizer::setUsingSampledSound()
 {
-#ifdef __linux__
 	WavAudioFormat wavFormat;
 	File* file = new File("./file.wav");
 	BigInteger allNotes;
@@ -30,8 +29,7 @@ void Synthesizer::setUsingSampledSound()
 	ScopedPointer<AudioFormatReader> reader = _audioFormatManager.createReaderFor(*file);
 	allNotes.setRange(0, 128, true);
 	_synth.clearSounds();
-	_synth.addSound(new SamplerSound("default", *reader, allNotes, 60, 0, 10, 10.0));
-#endif
+	_synth.addSound(new SamplerSound("default", *reader, allNotes, 60, 0, 1, 1.0));
 }
 
 void Synthesizer::prepareToPlay(int /*samplesPerBlockExpected*/, double sampleRate)

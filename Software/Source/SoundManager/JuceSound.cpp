@@ -12,14 +12,14 @@
 
 SoundManager::SoundManager()
 {
-#ifdef __linux__
+//#ifdef __linux__
 
   _deviceManager = new AudioDeviceManager();
   _deviceManager->initialise (2, 2, nullptr, true, String(), nullptr);
   _audioSourcePlayer.setSource (&_synthAudioSource);
   _deviceManager->addAudioCallback (&_audioSourcePlayer);
 
-#endif
+//#endif
 
   GetMidiOutputDevice();
 }
@@ -60,7 +60,7 @@ bool							SoundManager::play(const Midi &midi)
 	{
 		tmp = midiSequence->getEventPointer(i)->message;
 
-		if (tmp.isNoteOn() || tmp.isNoteOff())
+		if (tmp.isNoteOn())
 		{
 
 			if (resTime && tmp.getTimeStamp() != k)
@@ -117,13 +117,14 @@ bool							SoundManager::play(const Midi &midi)
 				}
 			}
 
-#ifdef __linux__
+//#ifdef __linux__
 			_synthAudioSource.addMessage(tmp);
-#else
 			std::cout << "Je joue la note qui a le temps : " << tmp.getTimeStamp() / 1000 << std::endl;
-			tmp.setTimeStamp(Time::getMillisecondCounterHiRes());
-			_midiOutput->sendMessageNow(tmp);
-#endif
+//#else
+//			std::cout << "Je joue la note qui a le temps : " << tmp.getTimeStamp() / 1000 << std::endl;
+//			tmp.setTimeStamp(Time::getMillisecondCounterHiRes());
+//			_midiOutput->sendMessageNow(tmp);
+//#endif
 
 
 			k = tmp.getTimeStamp();
