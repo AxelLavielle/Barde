@@ -118,8 +118,9 @@ bool							SoundManager::play(const Midi &midi)
 			}
 
 //#ifdef __linux__
-			_synthAudioSource.addMessage(tmp);
 			std::cout << "Je joue la note qui a le temps : " << tmp.getTimeStamp() / 1000 << std::endl;
+			tmp.setTimeStamp(Time::getMillisecondCounterHiRes());
+			_synthAudioSource.addMessage(tmp);
 //#else
 //			std::cout << "Je joue la note qui a le temps : " << tmp.getTimeStamp() / 1000 << std::endl;
 //			tmp.setTimeStamp(Time::getMillisecondCounterHiRes());
@@ -131,7 +132,9 @@ bool							SoundManager::play(const Midi &midi)
 		}
 		else
 		{
-			_midiOutput->sendMessageNow((const MidiMessage &)tmp);
+			tmp.setTimeStamp(Time::getMillisecondCounterHiRes());
+			_synthAudioSource.addMessage(tmp);
+//			_midiOutput->sendMessageNow((const MidiMessage &)tmp);
 		}
 	}
 	//_midiOutput->clearAllPendingMessages();

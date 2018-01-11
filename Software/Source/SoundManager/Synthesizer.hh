@@ -13,6 +13,9 @@
 #include "JuceHeader.h"
 #include "ASoundManager.hh"
 #include "../Tools.hh"
+#include "../Instrument.hh"
+
+#define stringify( name ) # name
 
 struct Synthesizer : public AudioSource
 {
@@ -25,6 +28,7 @@ public:
 	void releaseResources() override;
 	void getNextAudioBlock(const AudioSourceChannelInfo& bufferToFill) override;
 	void addMessage(MidiMessage const &msg);
+	void loadSamples();
 
 private:
 	MidiMessageCollector _midiCollector;

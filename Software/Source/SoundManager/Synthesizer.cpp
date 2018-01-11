@@ -21,15 +21,26 @@ Synthesizer::Synthesizer()
 
 void Synthesizer::setUsingSampledSound()
 {
-	WavAudioFormat wavFormat;
-	File* file = new File("./file.wav");
+	WavAudioFormat	wavFormat;
+	//Need to get the good file with the channel's number
+	File* file = new File("./" + String(stringify(ACOUSTICGRANDPIANO)) + ".wav");
+	std::cout << "./" + String(stringify(ACOUSTICGRANDPIANO)) + ".wav" << std::endl;
 	BigInteger allNotes;
 
 	_audioFormatManager.registerBasicFormats();
 	ScopedPointer<AudioFormatReader> reader = _audioFormatManager.createReaderFor(*file);
 	allNotes.setRange(0, 128, true);
+
+	SamplerSound::Ptr piano(new SamplerSound("default", *reader, allNotes, 60, 0, 1, 1.0));
+	piano->appliesToChannel(NbInstrument::ACOUSTICGRANDPIANO);
+
 	_synth.clearSounds();
-	_synth.addSound(new SamplerSound("default", *reader, allNotes, 60, 0, 1, 1.0));
+	_synth.addSound(piano);
+}
+
+void Synthesizer::loadSamples()
+{
+
 }
 
 void Synthesizer::prepareToPlay(int /*samplesPerBlockExpected*/, double sampleRate)
