@@ -10,6 +10,17 @@
 
 #include "FileManager.hh"
 
+std::string FileManager::getCurrentDirectory()
+{
+	char buff[FILENAME_MAX];
+#ifdef __linux__
+	getcwd(buff, FILENAME_MAX);
+#else
+	_getcwd(buff, FILENAME_MAX);
+#endif // __linux__
+	return std::string(buff);
+}
+
 void FileManager::getFilesList(std::string filePath, std::string extension, std::vector<std::string> & returnFileName)
 {
 	WIN32_FIND_DATA fileInfo;

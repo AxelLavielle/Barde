@@ -14,11 +14,22 @@
 #include <Windows.h>
 #include <vector>
 
+#include <stdio.h>  /* defines FILENAME_MAX */
+// #define WINDOWS  /* uncomment this line to use it for windows.*/ 
+#ifdef __linux__
+	#include <unistd.h>
+	#define GetCurrentDir getcwd
+#else
+	#include <direct.h>
+	#define GetCurrentDir _getcwd
+#endif
+
 class FileManager
 {
 public:
 	static void getFilesList(std::string filePath, std::string extension, std::vector<std::string> & returnFileName);
 	static std::string getFileName(const std::string & filePath);
+	static std::string getCurrentDirectory();
 
 private:
 
