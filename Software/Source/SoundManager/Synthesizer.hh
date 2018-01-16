@@ -14,8 +14,8 @@
 #include "ASoundManager.hh"
 #include "../Tools.hh"
 #include "../Instrument.hh"
-
-#define stringify( name ) # name
+#include "../FileManager.hh"
+#include "SynthesizerInstrument.hh"
 
 struct Synthesizer : public AudioSource
 {
@@ -27,7 +27,7 @@ public:
 	void prepareToPlay(int /*samplesPerBlockExpected*/, double sampleRate) override;
 	void releaseResources() override;
 	void getNextAudioBlock(const AudioSourceChannelInfo& bufferToFill) override;
-	void addMessage(MidiMessage const &msg);
+	void addMessage(const MidiMessage &msg);
 	void loadSamples();
 
 private:

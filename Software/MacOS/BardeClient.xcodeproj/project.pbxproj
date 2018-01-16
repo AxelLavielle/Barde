@@ -56,6 +56,7 @@
 		37690EE670F38470758DB27A = {isa = PBXBuildFile; fileRef = 0C200F390DE28FAB9A154BBE; };
 		65B99EC941193A459D81F661 = {isa = PBXBuildFile; fileRef = 65C41F3FFE95782FAFD2672C; };
 		3683EE406AD4F7C87305F316 = {isa = PBXBuildFile; fileRef = D48C144FA64F3C594CFD7E42; };
+		7C3057AAE3D02D6C7B0DD1B1 = {isa = PBXBuildFile; fileRef = ABA1E7CDE69008542A1DBADA; };
 		71AE952031B27FCB68EAF6B0 = {isa = PBXBuildFile; fileRef = BD2F71DA4F43933066FCD052; };
 		0455DDF58D2391A90942F5AA = {isa = PBXBuildFile; fileRef = 0FFBE436BD356CD9D9DC72C5; };
 		0CF2400CDF06C73EC40F5A94 = {isa = PBXBuildFile; fileRef = FD9BD38A2B54D0D1A8A8BA43; };
@@ -197,6 +198,7 @@
 		9C3FDA54BC9BBC3A6A6DE749 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_events.mm"; path = "../JuceLibraryCode/include_juce_events.mm"; sourceTree = "SOURCE_ROOT"; };
 		A666E3BC043D89D2DF91CE84 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MusicStyleButton.h; path = ../Source/GraphManager/MusicStyleButton.h; sourceTree = "SOURCE_ROOT"; };
 		A7E738BE3D9C941B7FF19B90 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Authentification.hh; path = ../Source/Authentification.hh; sourceTree = "SOURCE_ROOT"; };
+		ABA1E7CDE69008542A1DBADA = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SynthesizerInstrument.cpp; path = ../Source/SoundManager/SynthesizerInstrument.cpp; sourceTree = "SOURCE_ROOT"; };
 		ABAF18C87066B4877466E3AE = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_osc"; path = "../JuceLibraryCode/modules/juce_osc"; sourceTree = "SOURCE_ROOT"; };
 		AC29B7D03AAC65CD92AA1CD6 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Synthesizer.hh; path = ../Source/SoundManager/Synthesizer.hh; sourceTree = "SOURCE_ROOT"; };
 		AD2028D07F50B93463CF3C09 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Theme.h; path = ../Source/GraphManager/Theme.h; sourceTree = "SOURCE_ROOT"; };
@@ -210,6 +212,7 @@
 		C0F018E8E683AA367764472C = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_audio_basics.mm"; path = "../JuceLibraryCode/include_juce_audio_basics.mm"; sourceTree = "SOURCE_ROOT"; };
 		C66885EE35A405DF19A1B307 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AView.cpp; path = ../Source/ViewManager/AView.cpp; sourceTree = "SOURCE_ROOT"; };
 		C88844019D05AD92C166810B = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = json.h; path = ../JsoncppLibrary/json/json.h; sourceTree = "SOURCE_ROOT"; };
+		CA5987DF8DBF4AA7ED49C7C0 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SynthesizerInstrument.hh; path = ../Source/SoundManager/SynthesizerInstrument.hh; sourceTree = "SOURCE_ROOT"; };
 		CB33A4F87AF0BABE78B61BCA = {isa = PBXFileReference; lastKnownFileType = file.json; name = people.json; path = ../Source/AI/people.json; sourceTree = "SOURCE_ROOT"; };
 		CBE998D59D7C8DB61FD8667C = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MusicGenerator.hh; path = ../Source/AI/MusicGenerator.hh; sourceTree = "SOURCE_ROOT"; };
 		CD276ADAA918EB92D66A5C82 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ASocketManager.hh; path = ../Source/SocketManager/ASocketManager.hh; sourceTree = "SOURCE_ROOT"; };
@@ -329,7 +332,9 @@
 					65C41F3FFE95782FAFD2672C,
 					723788CCC2D96A5E318F94C4,
 					D48C144FA64F3C594CFD7E42,
-					AC29B7D03AAC65CD92AA1CD6, ); name = SoundManager; sourceTree = "<group>"; };
+					AC29B7D03AAC65CD92AA1CD6,
+					ABA1E7CDE69008542A1DBADA,
+					CA5987DF8DBF4AA7ED49C7C0, ); name = SoundManager; sourceTree = "<group>"; };
 		3343A02E8017FE8DC338AAF3 = {isa = PBXGroup; children = (
 					19E61BA5AE7962DF5C583C45,
 					3EDF5AB5988E45858DE0A08E,
@@ -626,6 +631,7 @@
 					37690EE670F38470758DB27A,
 					65B99EC941193A459D81F661,
 					3683EE406AD4F7C87305F316,
+					7C3057AAE3D02D6C7B0DD1B1,
 					71AE952031B27FCB68EAF6B0,
 					0455DDF58D2391A90942F5AA,
 					0CF2400CDF06C73EC40F5A94,

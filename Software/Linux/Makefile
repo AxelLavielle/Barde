@@ -101,6 +101,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/ASoundManager_564990e8.o \
   $(JUCE_OBJDIR)/JuceSound_212948eb.o \
   $(JUCE_OBJDIR)/Synthesizer_4580f451.o \
+  $(JUCE_OBJDIR)/SynthesizerInstrument_60c885d8.o \
   $(JUCE_OBJDIR)/Authentification_99239255.o \
   $(JUCE_OBJDIR)/CmdManager_1dc6efad.o \
   $(JUCE_OBJDIR)/Configuration_a9102926.o \
@@ -315,6 +316,11 @@ $(JUCE_OBJDIR)/JuceSound_212948eb.o: ../Source/SoundManager/JuceSound.cpp
 $(JUCE_OBJDIR)/Synthesizer_4580f451.o: ../Source/SoundManager/Synthesizer.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling Synthesizer.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/SynthesizerInstrument_60c885d8.o: ../Source/SoundManager/SynthesizerInstrument.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling SynthesizerInstrument.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/Authentification_99239255.o: ../Source/Authentification.cpp

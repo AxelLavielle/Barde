@@ -22,20 +22,30 @@ Synthesizer::Synthesizer()
 void Synthesizer::setUsingSampledSound()
 {
 	WavAudioFormat	wavFormat;
-	//Need to get the good file with the channel's number
-	File* file = new File("./" + String(stringify(ACOUSTICGRANDPIANO)) + ".wav");
-	std::cout << "./" + String(stringify(ACOUSTICGRANDPIANO)) + ".wav" << std::endl;
+	std::vector<std::string> files;
+	std::vector<std::string>::iterator it;
+	FileManager::getFilesList("../../../../Samples/", "*.wav", files);
 	BigInteger allNotes;
-
-	_audioFormatManager.registerBasicFormats();
-	ScopedPointer<AudioFormatReader> reader = _audioFormatManager.createReaderFor(*file);
 	allNotes.setRange(0, 128, true);
-
-	SamplerSound::Ptr piano(new SamplerSound("default", *reader, allNotes, 60, 0, 1, 1.0));
-	piano->appliesToChannel(NbInstrument::ACOUSTICGRANDPIANO);
-
+	_audioFormatManager.registerBasicFormats();
 	_synth.clearSounds();
-	_synth.addSound(piano);
+
+	it = files.begin();
+	while (it != files.end())
+	{
+		File* file = new File(*it);
+		ScopedPointer<AudioFormatReader> reader = _audioFormatManager.createReaderFor(*file);
+		try
+		{
+			SynthesizerInstrument::Ptr instrument(new SynthesizerInstrument(FileManager::getFileName(*it), *reader, allNotes, 60, 0, 1, 1.0, instrumentList.at(FileManager::getFileName(*it))));
+			_synth.addSound(instrument);
+		}
+		catch (const std::exception & e)
+		{ 
+			std::cerr << "WARNING : Can not find instrument from the samples : " << FileManager::getFileName(*it) << std::endl;
+		}
+		++it;
+	}
 }
 
 void Synthesizer::loadSamples()

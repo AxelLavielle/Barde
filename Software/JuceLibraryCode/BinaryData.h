@@ -9,7 +9,7 @@
 namespace BinaryData
 {
     extern const char*   people_json;
-    const int            people_jsonSize = 204;
+    const int            people_jsonSize = 215;
 
     extern const char*   back_png;
     const int            back_pngSize = 140671;

@@ -119,6 +119,7 @@ bool							SoundManager::play(const Midi &midi)
 
 //#ifdef __linux__
 			std::cout << "Je joue la note qui a le temps : " << tmp.getTimeStamp() / 1000 << std::endl;
+			std::cout << "Channel =  : " << tmp.getChannel() << std::endl;
 			tmp.setTimeStamp(Time::getMillisecondCounterHiRes());
 			_synthAudioSource.addMessage(tmp);
 //#else
