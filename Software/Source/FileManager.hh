@@ -18,10 +18,8 @@
 // #define WINDOWS  /* uncomment this line to use it for windows.*/ 
 #ifdef __linux__
 	#include <unistd.h>
-	#define GetCurrentDir getcwd
 #else
 	#include <direct.h>
-	#define GetCurrentDir _getcwd
 #endif
 
 class FileManager
