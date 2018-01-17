@@ -1,4 +1,4 @@
-/*
+	/*
   ==============================================================================
 
     FileManager.cpp
@@ -21,11 +21,25 @@ std::string FileManager::getCurrentDirectory()
 	return std::string(buff);
 }
 
-void FileManager::getFilesList(std::string filePath, std::string extension, std::vector<std::string> & returnFileName)
+void FileManager::getFilesList(const std::string &filePath, const std::string &extension, std::vector<std::string> & returnFileName)
 {
+#ifdef __linux__
+	DIR *directory;
+	struct dirent *dirp;
+	if ((directory = opendir(filePath.c_str())) == NULL)
+	{
+		std::cerr << "ERROR : Can not open given directory : " << filePath << std::endl;
+	}
+	while ((dirp = readdir(directory)) != NULL)
+	{
+		if (std::string(dirp->d_name).find(extension) != std::string::npos)
+			returnFileName.push_back(filePath + std::string(dirp->d_name));
+	}
+	closedir(directory);
+#else
 	WIN32_FIND_DATA fileInfo;
 	HANDLE hFind;
-	std::string  fullPath = filePath + extension;
+	std::string  fullPath = filePath + "*" + extension;
 	hFind = FindFirstFile(fullPath.c_str(), &fileInfo);
 	if (hFind != INVALID_HANDLE_VALUE) {
 		returnFileName.push_back(filePath + fileInfo.cFileName);
@@ -33,6 +47,7 @@ void FileManager::getFilesList(std::string filePath, std::string extension, std:
 			returnFileName.push_back(filePath + fileInfo.cFileName);
 		}
 	}
+#endif // __linux__
 }
 
 std::string FileManager::getFileName(const std::string & filePath)

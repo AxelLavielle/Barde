@@ -24,8 +24,8 @@ void Synthesizer::setUsingSampledSound()
 	WavAudioFormat	wavFormat;
 	std::vector<std::string> files;
 	std::vector<std::string>::iterator it;
-	std::cout << "Directory = " << FileManager::getCurrentDirectory() + "/../../../../Samples/" << std::endl;
-	FileManager::getFilesList(FileManager::getCurrentDirectory() +  "/../../../../Samples/", "*.wav", files);
+	std::cout << "Directory = " << FileManager::getCurrentDirectory() + "/../../Samples/" << std::endl;
+	FileManager::getFilesList(FileManager::getCurrentDirectory() +  "/../../Samples/", ".wav", files);
 	BigInteger allNotes;
 	allNotes.setRange(0, 128, true);
 	_audioFormatManager.registerBasicFormats();
@@ -34,6 +34,8 @@ void Synthesizer::setUsingSampledSound()
 	it = files.begin();
 	while (it != files.end())
 	{
+		std::cout << "File = " << *it << std::endl;
+		std::cout << "FileName = " << FileManager::getFileName(*it) << std::endl;
 		File* file = new File(*it);
 		ScopedPointer<AudioFormatReader> reader = _audioFormatManager.createReaderFor(*file);
 		try
@@ -42,7 +44,7 @@ void Synthesizer::setUsingSampledSound()
 			_synth.addSound(instrument);
 		}
 		catch (const std::exception & e)
-		{ 
+		{
 			std::cerr << "WARNING : Can not find instrument from the samples : " << FileManager::getFileName(*it) << std::endl;
 		}
 		++it;
