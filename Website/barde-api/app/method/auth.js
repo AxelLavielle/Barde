@@ -1,4 +1,14 @@
 /**
+ * @Author: Alexis Miele
+ * @Date:   2018-01-16T17:38:06+01:00
+ * @Email:  alexis.miele@epitech.eu
+ * @Last modified by:   Alexis Miele
+ * @Last modified time: 2018-01-17T14:49:29+01:00
+ */
+
+
+
+/**
  * APLT
  * < arnaud perrault />
  * barde-api - Created on 19/02/2017
@@ -33,7 +43,8 @@ module.exports = function () {
                 return done(null, {
                     role: user.role,
                     name: user.name,
-                    email: user.email
+                    email: user.email,
+                    dateOfBirth: user.dateOfBirth
                 });
             }
         });

@@ -1,4 +1,14 @@
 /**
+ * @Author: Alexis Miele
+ * @Date:   2018-01-16T19:01:20+01:00
+ * @Email:  alexis.miele@epitech.eu
+ * @Last modified by:   Alexis Miele
+ * @Last modified time: 2018-01-17T14:49:45+01:00
+ */
+
+
+
+/**
  * APLT
  * < arnaud perrault />
  * API - Created on 21/03/2017
@@ -19,6 +29,7 @@ module.exports = function (apiRoutes, passport) {
 
     apiRoutes
         .get('/user', methodAuth.authenticate(), methodAuth.admin(), get)
+        .get('/user/me', methodAuth.authenticate(), getMe)
         .get('/user/count', methodAuth.authenticate(), methodAuth.admin(), getNumber)
         .get('/user/:email', methodAuth.authenticate(), methodAuth.admin(), getOne)
         .get('/user/:perPage/:page', methodAuth.authenticate(), methodAuth.admin(), getByPage)
@@ -56,6 +67,36 @@ function get(req, res, next) {
 
         res.status(200).json({msg: "Success", data: {users: response}});
     });
+}
+
+/**
+ * @api {get} /user/me Get user authenticated
+ * @apiGroup User
+ *
+ * @apiSuccessExample 200 - Success
+ *     {
+ *       "msg": "Success"
+ *       "data": {
+ *          "user": []
+ *       }
+ *     }
+ *
+ * @apiErrorExample 401 - Unauthorized
+ *     {
+ *       "Unauthorized"
+ *     }
+ *
+ */
+function getMe(req, res, next) {
+
+    // User.find(null, function (err, response) {
+    //
+    //     if (err) {
+    //         return next(err);
+    //     }
+    //
+    // });
+    res.status(200).json({msg: "Success", data: {user: req.user}});
 }
 
 /**
