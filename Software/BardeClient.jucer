@@ -2,9 +2,9 @@
 
 <JUCERPROJECT id="n1PVK4" name="BardeClient" projectType="guiapp" version="1.0.0"
               bundleIdentifier="com.yourcompany.BardeClient" includeBinaryInAppConfig="1"
-              jucerVersion="5.1.2" companyName="Barde" companyWebsite="www.barde.io"
-              displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
-              cppLanguageStandard="11">
+              jucerVersion="5.2.0" companyName="Barde" companyWebsite="www.barde.io"
+              displaySplashScreen="1" reportAppUsage="1" splashScreenColour="Dark"
+              cppLanguageStandard="11" companyCopyright="Barde">
   <MAINGROUP id="r1VLiG" name="BardeClient">
     <GROUP id="{6687DB59-98D3-42FE-E900-5BC523D33DDC}" name="Source">
       <FILE id="y0Wt8b" name="ThreadPool.cpp" compile="1" resource="0" file="Source/ThreadPool.cpp"/>
@@ -191,8 +191,10 @@
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="MacOS" extraDefs="SOURCEMARKOV=\&quot;$(SRCROOT)/../Source/markovSource/\&quot;">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="BardeClient"/>
-        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="BardeClient"/>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="BardeClient"
+                       enablePluginBinaryCopyStep="1"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="BardeClient"
+                       enablePluginBinaryCopyStep="1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_audio_basics" path="JuceLibraryCode\modules"/>
@@ -216,9 +218,12 @@
             extraDefs="SOURCEMARKOV=&quot;$(ProjectDir.Replace('\'\,'/'))../Source/markovSource/&quot;">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="1" optimisation="1" targetName="BardeClient" postbuildCommand="xcopy /d /y &quot;$(ProjectDir)..\LuaLibrary\lua53.dll&quot; &quot;$(OutDir)&quot;"/>
+                       isDebug="1" optimisation="1" targetName="BardeClient" postbuildCommand="xcopy /d /y &quot;$(ProjectDir)..\LuaLibrary\lua53.dll&quot; &quot;$(OutDir)&quot;"
+                       debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="0" optimisation="3" targetName="BardeClient" postbuildCommand="xcopy /d /y &quot;$(ProjectDir)..\LuaLibrary\lua53.dll&quot; &quot;$(OutDir)&quot;"/>
+                       isDebug="0" optimisation="3" targetName="BardeClient" postbuildCommand="xcopy /d /y &quot;$(ProjectDir)..\LuaLibrary\lua53.dll&quot; &quot;$(OutDir)&quot;"
+                       debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
+                       linkTimeOptimisation="1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_audio_basics" path="JuceLibraryCode\modules"/>
@@ -245,20 +250,20 @@
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="BardeClient"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_audio_basics" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_core" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_graphics" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_events" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_audio_devices" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_audio_formats" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_gui_basics" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_data_structures" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_audio_processors" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_gui_extra" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_audio_utils" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_cryptography" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_video" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_osc" path="JuceLibraryCode\modules"/>
+        <MODULEPATH id="juce_audio_basics" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_core" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_graphics" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_events" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_data_structures" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_cryptography" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_video" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_osc" path="JuceLibraryCode/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
   </EXPORTFORMATS>
