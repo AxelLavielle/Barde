@@ -13,14 +13,12 @@
 
 #include <Windows.h>
 #include <vector>
-
-#include <stdio.h>  /* defines FILENAME_MAX */
-// #define WINDOWS  /* uncomment this line to use it for windows.*/ 
+#include <stdio.h>
 #ifdef __linux__
 	#include <unistd.h>
 #else
 	#include <direct.h>
-#endif
+#endif // __linux__
 
 class FileManager
 {
