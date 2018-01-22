@@ -9,6 +9,7 @@ import com.github.kittinunf.result.Result
 import com.google.gson.Gson
 
 import com.project.barde.barde.R
+import com.project.barde.barde.db.Synchro
 import com.project.barde.barde.model.User
 import com.project.barde.barde.model.Login
 import kotlinx.android.synthetic.main.activity_login.*
@@ -27,7 +28,10 @@ class LoginActivity : AppCompatActivity() {
                 "http://10.0.2.2:3000/auth/login".httpPost(listOf("email" to email.text, "password" to password.text)).responseString{ request, response, result ->
                     val login: Login = Gson().fromJson(String(response.data), Login::class.java)
                     Toast.makeText(this@LoginActivity, login.data.message, Toast.LENGTH_SHORT).show()
+                    println("test login : ")
+                    println(String(response.data))
                     println(login)
+                    Synchro().user(login.data.token!!)
                     when (result) {
                         is Result.Success -> {
                             finish()
