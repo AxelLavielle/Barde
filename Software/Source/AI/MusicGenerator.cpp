@@ -53,11 +53,10 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   std::pair<char, char> noteA = markovChords[0];
   std::pair<char, char> noteB = std::make_pair(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 5) + markovChords[0].first % 8, 4);
   std::pair<char, char> noteC = std::make_pair(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 7) + markovChords[0].first % 8, 4);
-  if (noteA.first > noteB.first)
-	  noteB.second++;
-  if (noteA.first > noteC.first)
-	  noteC.second++;
-
+  if (noteB.first < noteA.first)
+    noteB.second++;
+  if (noteC.first < noteA.first)
+    noteC.second++;
   markovChords.push_back(noteA);
   markovChords.push_back(noteA);
   markovChords.push_back(noteA);
@@ -97,7 +96,12 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   char						n;
   n = -1;
   while (++n != static_cast<char>(markovTmp.size()))
-    markovPattern->addNote(std::make_pair(markovTmp[n].first, static_cast<char>(5)), n*3.0/arpN + 1, n*3.0/arpN, 0);
+    {
+      int scale = 5;
+      if (n - 1 != -1 && ABS(markovTmp[n].first - markovTmp[n - 1].first) / 8 > 6)
+	scale = (markovTmp[n].first > markovTmp[n - 1].first) ? (4) : (6);
+      markovPattern->addNote(std::make_pair(markovTmp[n].first, scale), n*3.0/arpN + 1, n*3.0/arpN, 0);
+    }
   std::vector<std::vector<t_note> >		arpeggios;
   std::vector<std::vector<t_note> >		tmparpeggios;
   n = -1;

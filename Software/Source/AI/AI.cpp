@@ -109,8 +109,9 @@ void			AI::classifyNotes(const std::vector<std::pair<char, char> > &chord, std::
   unsigned char		i;
   char			save;
 
-  i = C;
-  while (i != END)
+  save = -1;
+  i = chord[0].first;
+  while (save == -1 || i != chord[0].first)
     {
       save = calculateDistChords(chord, i);
       if (!save)
@@ -120,6 +121,8 @@ void			AI::classifyNotes(const std::vector<std::pair<char, char> > &chord, std::
       else
 	weak->push_back(i);
       i += 8;
+      if (i == END)
+	i = C;
     }
 }
 
