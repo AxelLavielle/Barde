@@ -96,6 +96,10 @@
               file="Source/GraphManager/IGraphManager.hpp"/>
         <FILE id="rCMkmr" name="JuceManager.cpp" compile="1" resource="0" file="Source/GraphManager/JuceManager.cpp"/>
         <FILE id="dnE53f" name="JuceManager.hh" compile="0" resource="0" file="Source/GraphManager/JuceManager.hh"/>
+        <FILE id="Y4LQnG" name="LoginComponent.cpp" compile="1" resource="0"
+              file="Source/GraphManager/LoginComponent.cpp"/>
+        <FILE id="LTTvBN" name="LoginComponent.h" compile="0" resource="0"
+              file="Source/GraphManager/LoginComponent.h"/>
         <FILE id="IO6KsY" name="MainComponent.cpp" compile="1" resource="0"
               file="Source/GraphManager/MainComponent.cpp"/>
         <FILE id="o7iJhw" name="MainComponent.h" compile="0" resource="0" file="Source/GraphManager/MainComponent.h"/>

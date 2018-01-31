@@ -10,6 +10,8 @@
 
 #include "MainWindow.hh"
 #include "MainComponent.h"
+#include "LoginComponent.h"
+#include <sstream> 
 
 MainWindow::MainWindow(const std::string &name) : DocumentWindow(name,
 																Colours::lightgrey,
@@ -23,6 +25,7 @@ MainWindow::MainWindow(const std::string &name) : DocumentWindow(name,
 #endif
 	setFullScreen(true);
 	setSize(getWidth(), getHeight());
+	//setContentOwned(new LoginComponent(), true);
 	setContentOwned(new MainContentComponent(), true);
 	//centreWithSize(getWidth(), getHeight());
 	setVisible(true);
