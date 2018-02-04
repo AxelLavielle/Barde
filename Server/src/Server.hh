@@ -7,6 +7,8 @@
 #include <boost/asio.hpp>
 #include "Connection.hh"
 
+#define PORT 2468
+
 class Server
 {
 public:

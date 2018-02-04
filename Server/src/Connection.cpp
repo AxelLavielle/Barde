@@ -18,14 +18,33 @@ void Connection::start()
 {
   _message = this->make_daytime_string();
 
-  boost::asio::async_write(_socket, boost::asio::buffer(_message),
-      boost::bind(&Connection::handle_write, shared_from_this(),
-        boost::asio::placeholders::error,
-        boost::asio::placeholders::bytes_transferred));
+  std::cout << _socket.remote_endpoint().address().to_string() << ":" << _socket.remote_endpoint().port() << " connected!" << std::endl;
+  boost::asio::async_write(_socket, _buffer,
+    boost::bind(&Connection::handle_write, shared_from_this(),
+        boost::asio::placeholders::error));
+  boost::asio::async_read_until(_socket, _buffer, '\n',
+    boost::bind(&Connection::handle_receive, shared_from_this(),
+      boost::asio::placeholders::error));
 }
 
-void Connection::handle_write(const boost::system::error_code&, size_t)
+void Connection::handle_write(const boost::system::error_code& error)
 {
+  if (error){
+    std::cout << "Connection::handle_write : " << error.message() << std::endl;
+  }
+}
+
+void Connection::handle_receive(const boost::system::error_code& error)
+{
+  if (error) {
+    std::cout << "Couldn't read client's message : " << error.message() << std::endl;
+    return;
+  }
+  std::cout << "[" << _socket.remote_endpoint().address().to_string() << ":" << _socket.remote_endpoint().port() << "]" << std::endl;
+  std::string line;
+  std::istream is(&_buffer);
+  std::getline(is, line);
+  std::cout << line;
 }
 
 std::string Connection::make_daytime_string() const

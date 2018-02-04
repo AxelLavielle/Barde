@@ -1,6 +1,6 @@
 #include "Server.hh"
 
-Server::Server(boost::asio::io_service& io_service) : _acceptor(io_service, tcp::endpoint(tcp::v4(), 13))
+Server::Server(boost::asio::io_service& io_service) : _acceptor(io_service, tcp::endpoint(tcp::v4(), PORT))
 {
   this->start_accept();
 }
@@ -19,6 +19,6 @@ void Server::handle_accept(Connection::pointer new_connection, const boost::syst
   if (!error)
   {
     new_connection->start();
+    this->start_accept();
   }
-  this->start_accept();
 }
