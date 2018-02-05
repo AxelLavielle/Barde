@@ -11,7 +11,16 @@
 #ifndef CMDMANAGER_HH_INCLUDED
 #define CMDMANAGER_HH_INCLUDED
 
+#include "./SocketManager/TCPSocket.hh"
 
+class CmdManager
+{
+public:
+	bool connectToServer();
+
+private:
+	TCPSocket	_socket;
+};
 
 
 

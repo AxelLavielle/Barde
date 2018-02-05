@@ -197,6 +197,7 @@
 		9B5B35D676680BA37A004753 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Midi.hh; path = ../Source/MidiManager/Midi.hh; sourceTree = "SOURCE_ROOT"; };
 		9C3FDA54BC9BBC3A6A6DE749 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_events.mm"; path = "../JuceLibraryCode/include_juce_events.mm"; sourceTree = "SOURCE_ROOT"; };
 		A666E3BC043D89D2DF91CE84 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MusicStyleButton.h; path = ../Source/GraphManager/MusicStyleButton.h; sourceTree = "SOURCE_ROOT"; };
+		A7823929D7F72C58CEAFDCE9 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ISocketManager.hpp; path = ../Source/SocketManager/ISocketManager.hpp; sourceTree = "SOURCE_ROOT"; };
 		A7E738BE3D9C941B7FF19B90 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Authentification.hh; path = ../Source/Authentification.hh; sourceTree = "SOURCE_ROOT"; };
 		ABA1E7CDE69008542A1DBADA = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SynthesizerInstrument.cpp; path = ../Source/SoundManager/SynthesizerInstrument.cpp; sourceTree = "SOURCE_ROOT"; };
 		ABAF18C87066B4877466E3AE = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_osc"; path = "../JuceLibraryCode/modules/juce_osc"; sourceTree = "SOURCE_ROOT"; };
@@ -222,7 +223,6 @@
 		D48C144FA64F3C594CFD7E42 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Synthesizer.cpp; path = ../Source/SoundManager/Synthesizer.cpp; sourceTree = "SOURCE_ROOT"; };
 		DC94FF68FE89397FA007E25A = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AMidiManager.cpp; path = ../Source/MidiManager/AMidiManager.cpp; sourceTree = "SOURCE_ROOT"; };
 		DD26456C5DA18A532905FD9F = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ViewManager.cpp; path = ../Source/ViewManager/ViewManager.cpp; sourceTree = "SOURCE_ROOT"; };
-		DD80378EB6404C71F8024046 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ISockerManager.hpp; path = ../Source/SocketManager/ISockerManager.hpp; sourceTree = "SOURCE_ROOT"; };
 		DDBF2F225B86BCADD38ED20A = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MainComponent.h; path = ../Source/GraphManager/MainComponent.h; sourceTree = "SOURCE_ROOT"; };
 		DE51185F9B39CBA3092ED5C8 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BinaryData.cpp; path = ../JuceLibraryCode/BinaryData.cpp; sourceTree = "SOURCE_ROOT"; };
 		DF23927347DC25EF65823A74 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -322,7 +322,7 @@
 		B14F4AF7D1E4EFD740B0B6AB = {isa = PBXGroup; children = (
 					012337543798400AA195ABA8,
 					CD276ADAA918EB92D66A5C82,
-					DD80378EB6404C71F8024046,
+					A7823929D7F72C58CEAFDCE9,
 					1023A261DE7D5AF84837D68F,
 					81D6DCD74AF7A9EBD96B7519, ); name = SocketManager; sourceTree = "<group>"; };
 		C6A9CCCF98EEA2D820A003AF = {isa = PBXGroup; children = (

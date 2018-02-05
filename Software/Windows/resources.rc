@@ -14,7 +14,6 @@ BEGIN
     BLOCK "040904E4"
     BEGIN
       VALUE "CompanyName",  "Barde\0"
-      VALUE "LegalCopyright",  "Barde\0"
       VALUE "FileDescription",  "BardeClient\0"
       VALUE "FileVersion",  "1.0.0\0"
       VALUE "ProductName",  "BardeClient\0"

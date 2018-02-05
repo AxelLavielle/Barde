@@ -32,6 +32,8 @@ void Core::initialise(const String& commandLine)
 	// This method is where you should put your application's initialisation code..
 	ignoreUnused(commandLine);
 	//mainWindow = new MainWindow(getApplicationName());
+
+	std::cout << "Connection = " << _cmdManager.connectToServer() << std::endl;
 }
 
 void Core::shutdown()

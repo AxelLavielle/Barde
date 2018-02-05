@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="n1PVK4" name="BardeClient" projectType="guiapp" version="1.0.0"
               bundleIdentifier="com.yourcompany.BardeClient" includeBinaryInAppConfig="1"
-              jucerVersion="5.2.0" companyName="Barde" companyWebsite="www.barde.io"
+              jucerVersion="5.1.2" companyName="Barde" companyWebsite="www.barde.io"
               displaySplashScreen="1" reportAppUsage="1" splashScreenColour="Dark"
               cppLanguageStandard="11" companyCopyright="Barde">
   <MAINGROUP id="r1VLiG" name="BardeClient">
@@ -125,8 +125,8 @@
               file="Source/SocketManager/ASocketManager.cpp"/>
         <FILE id="mfdzio" name="ASocketManager.hh" compile="0" resource="0"
               file="Source/SocketManager/ASocketManager.hh"/>
-        <FILE id="Z5AEs6" name="ISockerManager.hpp" compile="0" resource="0"
-              file="Source/SocketManager/ISockerManager.hpp"/>
+        <FILE id="Z5AEs6" name="ISocketManager.hpp" compile="0" resource="0"
+              file="Source/SocketManager/ISocketManager.hpp"/>
         <FILE id="qoeOFI" name="TCPSocket.cpp" compile="1" resource="0" file="Source/SocketManager/TCPSocket.cpp"/>
         <FILE id="JHOoHI" name="TCPSocket.hh" compile="0" resource="0" file="Source/SocketManager/TCPSocket.hh"/>
       </GROUP>
@@ -214,7 +214,7 @@
       </MODULEPATHS>
     </XCODE_MAC>
     <VS2015 targetFolder="Windows" externalLibraries="..\LuaLibrary\lua53.lib"
-            extraCompilerFlags="-I..\JsoncppLibrary\&#10;-I..\LuaLibrary\include"
+            extraCompilerFlags="-I..\JsoncppLibrary\&#10;-I..\LuaLibrary\include&#10;"
             extraDefs="SOURCEMARKOV=&quot;$(ProjectDir.Replace('\'\,'/'))../Source/markovSource/&quot;">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"

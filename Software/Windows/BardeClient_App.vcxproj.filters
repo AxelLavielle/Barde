@@ -2418,7 +2418,7 @@
     <ClInclude Include="..\Source\SocketManager\ASocketManager.hh">
       <Filter>BardeClient\Source\SocketManager</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\SocketManager\ISockerManager.hpp">
+    <ClInclude Include="..\Source\SocketManager\ISocketManager.hpp">
       <Filter>BardeClient\Source\SocketManager</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\SocketManager\TCPSocket.hh">
