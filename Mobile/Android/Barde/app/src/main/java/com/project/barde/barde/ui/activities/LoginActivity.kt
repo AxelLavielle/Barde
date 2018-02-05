@@ -5,6 +5,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.github.kittinunf.fuel.core.FuelManager
 import com.github.kittinunf.fuel.httpPost
 import com.github.kittinunf.result.Result
 import com.google.gson.Gson
@@ -34,9 +35,10 @@ class LoginActivity : AppCompatActivity() {
                     println(String(response.data))
                     println(login)
                     //Synchro().user(login.data.token!!, this)
-                    database.updateUser(login.data.token!!)
                     when (result) {
                         is Result.Success -> {
+                            FuelManager.instance.baseHeaders = mapOf("Authorization" to login.data.token!!)
+                            database.updateUser()
                             finish()
                         }
                     }

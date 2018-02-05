@@ -5,10 +5,17 @@ import android.support.annotation.StringRes
 import android.support.v7.app.AppCompatActivity
 import android.widget.DatePicker
 import android.widget.Toast
+import com.github.kittinunf.fuel.httpPost
+import com.github.kittinunf.fuel.httpPut
+import com.github.kittinunf.result.Result
+import com.google.gson.Gson
 import com.project.barde.barde.R
 import com.project.barde.barde.db.UserTable
 import com.project.barde.barde.db.database
+import com.project.barde.barde.model.Login
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_profile_user.*
+import kotlinx.android.synthetic.main.activity_register.*
 import org.jetbrains.anko.db.*
 import java.util.*
 
@@ -40,7 +47,20 @@ class UserProfileActivity : AppCompatActivity() {
             }
         }
         updateInfo.setOnClickListener {
-            if (update_email.text.toString().isEmpty()){
+            "http://10.0.2.2:3000/user".httpPut(listOf("email" to update_email.text, "password" to update_password.text, "firstName" to update_firstname.text, "lastName" to update_lastname.text, "userName" to update_username.text, "yearOfBirth" to update_dateofbirthday.year, "monthOfBirth" to update_dateofbirthday.month, "dayOfBirth" to update_dateofbirthday.dayOfMonth)).responseString { request, response, result ->
+                println(response.data)
+                val register: Login = Gson().fromJson(String(response.data), Login::class.java)
+                Toast.makeText(this, register.msg, Toast.LENGTH_SHORT).show()
+                println(register)
+                when (result) {
+                    is Result.Success -> {
+                        database.updateUser()
+                        finish()
+                    }
+                }
+            }
+
+            /*if (update_email.text.toString().isEmpty()){
                 Toast.makeText(this@UserProfileActivity, getString(R.string.str_missing_email), Toast.LENGTH_SHORT).show()
             }else if (update_firstname.text.toString().isEmpty()){
                 Toast.makeText(this@UserProfileActivity, getString(R.string.str_missing_firstname), Toast.LENGTH_SHORT).show()
@@ -60,7 +80,7 @@ class UserProfileActivity : AppCompatActivity() {
                 Toast.makeText(this@UserProfileActivity, getString(R.string.str_successuful_update), Toast.LENGTH_SHORT).show()
                 finish()
 
-            }
+            }*/
         }
     }
 }

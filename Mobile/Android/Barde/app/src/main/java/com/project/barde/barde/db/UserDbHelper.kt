@@ -5,6 +5,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import com.github.kittinunf.fuel.core.FuelManager
 import com.github.kittinunf.fuel.httpGet
+import com.github.kittinunf.fuel.httpPut
 import com.google.gson.Gson
 import com.project.barde.barde.model.RequestMe
 import org.jetbrains.anko.db.*
@@ -44,8 +45,7 @@ class UserDbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "user.db", null,
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     }
-    fun updateUser (token: String) {
-        FuelManager.instance.baseHeaders = mapOf("Authorization" to token)
+    fun updateUser () {
         "http://10.0.2.2:3000/user/me".httpGet().responseString { request, response, result ->
             val requestMe: RequestMe
             requestMe = Gson().fromJson(String(response.data), RequestMe::class.java)
