@@ -21,11 +21,13 @@ public:
 
 private:
   Connection(boost::asio::io_service& io_service);
-  void handle_write(const boost::system::error_code&, size_t);
+  void handle_write(const boost::system::error_code& error);
+  void handle_receive(const boost::system::error_code& error);
   std::string make_daytime_string() const;
 
   tcp::socket _socket;
   std::string _message;
+  boost::asio::streambuf _buffer;
 };
 
 #endif //_CONNECTION_HH_

@@ -47,9 +47,10 @@ public:
 	*  \param buttonColor : color of the buttons.
 	*  \param backgroundColor : color of the background.
 	*  \param fontColor : color of the font.
+	*  \param buttonFontColor : color of the button font.
 	*  \param name : name of the theme.
 	*/
-	Theme(int buttonColor, int backgroundColor, int fontColor, std::string name);
+	Theme(int buttonColor, int backgroundColor, int fontColor, int buttonFontColor, std::string name);
 
 	/*!
 	*  \brief Destructor
@@ -87,6 +88,15 @@ public:
 	int getFontColor();
 
 	/*!
+	*  \brief button font color getter
+	*
+	*  gets the button font color of the theme
+	*
+	*  \return the button font color
+	*/
+	int getButtonFontColor();
+
+	/*!
 	*  \brief name getter
 	*
 	*  gets the name of the theme
@@ -122,6 +132,16 @@ public:
 	*/
 	void setFontColor(int color);
 
+
+	/*!
+	*  \brief button font color setter
+	*
+	*  sets the button font color
+	*
+	*  \param color : color of the button font
+	*/
+	void setButtonFontColor(int color);
+
 	/*!
 	*  \brief name setter
 	*
@@ -135,6 +155,7 @@ private:
 	int _buttonColor; /*!< color of all buttons in the software */
 	int _backgroundColor; /*!< background color of the software */
 	int _fontColor; /*!< fontcolor of the software */
+	int _buttonFontColor; /*!< color of the font of the buttons*/
 	std::string _name; /*!< name of the theme */
 
 };

@@ -44,7 +44,7 @@ void MusicStyleButton::paintButton(Graphics& g, const bool isMouseOverButton, co
 	//Background
 	g.fillRoundedRectangle(0, 0, this->width, this->height, 30);
 	//Text
-	g.setColour(Colour(this->theme.getFontColor()));
+	g.setColour(Colour(this->theme.getButtonFontColor()));
 	g.setFont(14.0f);
 	g.drawText(this->getName(), 0, 0, this->width, this->height, Justification::centred, true);
 }

@@ -179,6 +179,7 @@
     <ClCompile Include="..\Source\EncryptionManager\SSLManager.cpp"/>
     <ClCompile Include="..\Source\GraphManager\AGraphManager.cpp"/>
     <ClCompile Include="..\Source\GraphManager\JuceManager.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\LoginComponent.cpp"/>
     <ClCompile Include="..\Source\GraphManager\MainComponent.cpp"/>
     <ClCompile Include="..\Source\GraphManager\MainWindow.cpp"/>
     <ClCompile Include="..\Source\GraphManager\MusicStyleButton.cpp"/>
@@ -1844,6 +1845,7 @@
     <ClInclude Include="..\Source\GraphManager\AGraphManager.hh"/>
     <ClInclude Include="..\Source\GraphManager\IGraphManager.hpp"/>
     <ClInclude Include="..\Source\GraphManager\JuceManager.hh"/>
+    <ClInclude Include="..\Source\GraphManager\LoginComponent.h"/>
     <ClInclude Include="..\Source\GraphManager\MainComponent.h"/>
     <ClInclude Include="..\Source\GraphManager\MainWindow.hh"/>
     <ClInclude Include="..\Source\GraphManager\MusicStyleButton.h"/>

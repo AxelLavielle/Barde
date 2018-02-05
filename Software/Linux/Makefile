@@ -89,6 +89,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/SSLManager_f25fe680.o \
   $(JUCE_OBJDIR)/AGraphManager_4508c7ea.o \
   $(JUCE_OBJDIR)/JuceManager_8121b3aa.o \
+  $(JUCE_OBJDIR)/LoginComponent_22832b34.o \
   $(JUCE_OBJDIR)/MainComponent_fb729fae.o \
   $(JUCE_OBJDIR)/MainWindow_1a69e1a9.o \
   $(JUCE_OBJDIR)/MusicStyleButton_39681cbe.o \
@@ -256,6 +257,11 @@ $(JUCE_OBJDIR)/AGraphManager_4508c7ea.o: ../Source/GraphManager/AGraphManager.cp
 $(JUCE_OBJDIR)/JuceManager_8121b3aa.o: ../Source/GraphManager/JuceManager.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling JuceManager.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/LoginComponent_22832b34.o: ../Source/GraphManager/LoginComponent.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling LoginComponent.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/MainComponent_fb729fae.o: ../Source/GraphManager/MainComponent.cpp
