@@ -20,21 +20,16 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.doAsync
 
 class LoginActivity : AppCompatActivity() {
+    val back = false
     override fun onCreate(savedInstanceState: Bundle?) {
         val user: User
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        //email.setText("toto@toto.com")
-        //password.setText("toto")
         connexion.setOnClickListener {
             doAsync {
                 "http://10.0.2.2:3000/auth/login".httpPost(listOf("email" to email.text, "password" to password.text)).responseString{ request, response, result ->
                     val login: Login = Gson().fromJson(String(response.data), Login::class.java)
                     Toast.makeText(this@LoginActivity, login.data.message, Toast.LENGTH_SHORT).show()
-                    println("test login : ")
-                    println(String(response.data))
-                    println(login)
-                    //Synchro().user(login.data.token!!, this)
                     when (result) {
                         is Result.Success -> {
                             FuelManager.instance.baseHeaders = mapOf("Authorization" to login.data.token!!)
@@ -49,6 +44,12 @@ class LoginActivity : AppCompatActivity() {
         register.setOnClickListener{
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    override fun onBackPressed() {
+        if (back){
+            super.onBackPressed()
         }
     }
 }

@@ -27,7 +27,6 @@ class RegisterActivity : AppCompatActivity() {
                 "http://10.0.2.2:3000/auth/register".httpPost(listOf("email" to register_email.text, "password" to register_password.text, "firstName" to register_firstname.text, "lastName" to register_lastname.text, "userName" to register_username.text, "yearOfBirth" to register_dateofbirthday.year, "monthOfBirth" to register_dateofbirthday.month, "dayOfBirth" to register_dateofbirthday.dayOfMonth)).responseString{ request, response, result ->
                     val register: Login = Gson().fromJson(String(response.data), Login::class.java)
                      Toast.makeText(this@RegisterActivity, register.data.message, Toast.LENGTH_SHORT).show()
-                     println(register)
                      when (result) {
                          is Result.Success -> {
                              finish()

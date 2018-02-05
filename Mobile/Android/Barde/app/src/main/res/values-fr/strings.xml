@@ -17,4 +17,5 @@
     <string name="str_missing_username">manque votre pseaudo</string>
     <string name="str_missing_email">manque votre email</string>
     <string name="str_missing_passowrd">manque votre mot de passe</string>
+    <string name="str_logout">déconnexion</string>
 </resources>

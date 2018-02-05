@@ -29,12 +29,6 @@ class UserProfileActivity : AppCompatActivity() {
         setContentView(R.layout.activity_profile_user)
         update_dateofbirthday.maxDate = Date().time
         database.use {
-           /* insert("user",
-                    UserTable.EMAIL to "toto",
-                    UserTable.PASSWORD to "toto",
-                    UserTable.FIRSTNAME to "toto",
-                    UserTable.LASTNAME to "toto",
-                    UserTable.USERNAME to "toto")*/
             val c = rawQuery("SELECT * FROM user LIMIT 1", null)
             if(c.count >= 1){
                 c.moveToFirst()
@@ -48,10 +42,8 @@ class UserProfileActivity : AppCompatActivity() {
         }
         updateInfo.setOnClickListener {
             "http://10.0.2.2:3000/user".httpPut(listOf("email" to update_email.text, "password" to update_password.text, "firstName" to update_firstname.text, "lastName" to update_lastname.text, "userName" to update_username.text, "yearOfBirth" to update_dateofbirthday.year, "monthOfBirth" to update_dateofbirthday.month, "dayOfBirth" to update_dateofbirthday.dayOfMonth)).responseString { request, response, result ->
-                println(response.data)
-                val register: Login = Gson().fromJson(String(response.data), Login::class.java)
-                Toast.makeText(this, register.msg, Toast.LENGTH_SHORT).show()
-                println(register)
+                val update: Login = Gson().fromJson(String(response.data), Login::class.java)
+                Toast.makeText(this, update.msg, Toast.LENGTH_SHORT).show()
                 when (result) {
                     is Result.Success -> {
                         database.updateUser()
@@ -59,28 +51,6 @@ class UserProfileActivity : AppCompatActivity() {
                     }
                 }
             }
-
-            /*if (update_email.text.toString().isEmpty()){
-                Toast.makeText(this@UserProfileActivity, getString(R.string.str_missing_email), Toast.LENGTH_SHORT).show()
-            }else if (update_firstname.text.toString().isEmpty()){
-                Toast.makeText(this@UserProfileActivity, getString(R.string.str_missing_firstname), Toast.LENGTH_SHORT).show()
-            }else if (update_lastname.text.toString().isEmpty()){
-                Toast.makeText(this@UserProfileActivity, getString(R.string.str_missing_lastname), Toast.LENGTH_SHORT).show()
-            }else if (update_username.text.toString().isEmpty()){
-                Toast.makeText(this@UserProfileActivity, getString(R.string.str_missing_username), Toast.LENGTH_SHORT).show()
-            }else if (update_password.text.toString().isEmpty()){
-                Toast.makeText(this@UserProfileActivity, getString(R.string.str_missing_passowrd), Toast.LENGTH_SHORT).show()
-            }else
-                database.use {
-                update("user", UserTable.EMAIL to update_email.text.toString(), UserTable.PASSWORD to update_password.text.toString(), UserTable.FIRSTNAME to update_firstname.text.toString(),
-                        UserTable.LASTNAME to update_lastname.text.toString(), UserTable.USERNAME to update_username.text.toString(), UserTable.DAYOFBIRTHDAY to update_dateofbirthday.dayOfMonth,
-                        UserTable.MONTHOFBIRTHDAY to update_dateofbirthday.month, UserTable.YEAROFBIRTHDAY to update_dateofbirthday.year)
-                        .whereSimple("_id = 1 OR 1")
-                        .exec()
-                Toast.makeText(this@UserProfileActivity, getString(R.string.str_successuful_update), Toast.LENGTH_SHORT).show()
-                finish()
-
-            }*/
         }
     }
 }
