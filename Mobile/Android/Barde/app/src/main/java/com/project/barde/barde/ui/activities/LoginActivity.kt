@@ -20,7 +20,6 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.doAsync
 
 class LoginActivity : AppCompatActivity() {
-    val back = false
     override fun onCreate(savedInstanceState: Bundle?) {
         val user: User
         super.onCreate(savedInstanceState)
@@ -41,15 +40,10 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
-        register.setOnClickListener{
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     override fun onBackPressed() {
-        if (back){
-            super.onBackPressed()
-        }
+        startActivity(Intent(this, FirstPage::class.java))
+        finish()
     }
 }

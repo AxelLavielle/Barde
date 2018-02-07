@@ -18,4 +18,6 @@
     <string name="str_missing_email">missing email</string>
     <string name="str_missing_passowrd">missing passowrd</string>
     <string name="str_logout">log out</string>
+    <string name="str_welcome_text">Welcome on Barde</string>
+    <string name="str_first_page_main_text">Create an account to enjoy all Barde\'s features</string>
 </resources>

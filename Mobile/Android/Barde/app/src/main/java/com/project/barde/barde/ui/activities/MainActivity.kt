@@ -15,13 +15,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        startActivity(Intent(this, LoginActivity::class.java))
+        startActivity(Intent(this, FirstPage::class.java))
+        //startActivity(Intent(this, LoginActivity::class.java))
         setting.setOnClickListener {
             startActivity(Intent (this, UserProfileActivity::class.java))
         }
         logout.setOnClickListener {
             FuelManager.instance.baseHeaders = mapOf("Authorization" to "")
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, FirstPage::class.java))
         }
     }
 
