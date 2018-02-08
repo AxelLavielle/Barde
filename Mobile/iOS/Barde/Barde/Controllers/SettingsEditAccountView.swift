@@ -17,6 +17,7 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfUserName: UITextField!
     @IBOutlet weak var tfBirthDate: UITextField!
+    @IBOutlet weak var buttonBack: UIBarButtonItem!
     
     var profilFromLocal: Profil? // optional
     
@@ -34,15 +35,17 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
         
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .none
+        dateFormatter.dateFormat = "MM/dd/YYYY"
         
         tfBirthDate.text = dateFormatter.string(from: datePicker.date)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         createDatePicker()
         
-        self.navigationItem.title = "Compte"
+        self.navigationItem.title = "Mon compte"
         
         tfFirstName.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
         tfLastName.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
@@ -58,8 +61,6 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
         saveUserData()
         ad.saveContext()
         
-        _ = self.navigationController?.popViewController(animated: true)
-
     }
     
     func saveUserData() {
@@ -124,6 +125,13 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
             if (!birthdate.isEmpty)
             {
                 profil.birthdate = birthdate
+            } else {
+                let refreshAlert = UIAlertController(title: "Champs \"Date de naissance\" invalide.", message: "Le champs \"Date de naissance\" ne peut pas être vide.", preferredStyle: UIAlertControllerStyle.alert)
+                
+                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                }))
+                
+                present(refreshAlert, animated: true, completion: nil)
             }
         }
     }
@@ -148,7 +156,7 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
     @objc func validChange(_ sender: Any) {
         self.navigationItem.setHidesBackButton(false, animated: true)
         self.navigationItem.rightBarButtonItem = nil;
-        self.navigationItem.leftBarButtonItem = nil;
+        self.navigationItem.leftBarButtonItem = buttonBack;
         tfFirstName.resignFirstResponder()
         tfLastName.resignFirstResponder()
         tfEmail.resignFirstResponder()
@@ -161,13 +169,18 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
     @objc func dismissChange(_ sender: Any) {
         self.navigationItem.setHidesBackButton(false, animated: true)
         self.navigationItem.rightBarButtonItem = nil;
-        self.navigationItem.leftBarButtonItem = nil;
+        self.navigationItem.leftBarButtonItem = buttonBack;
         loadUserData()
         tfFirstName.resignFirstResponder()
         tfLastName.resignFirstResponder()
         tfEmail.resignFirstResponder()
         tfUserName.resignFirstResponder()
         tfBirthDate.resignFirstResponder()
+    }
+    @IBAction func backButtonAction(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+        
+        dismiss(animated: true, completion: nil)
     }
 }
 

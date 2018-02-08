@@ -68,7 +68,7 @@ import CoreData
         print(selectedIndex)
         
         //// TODO: Remove, only for test
-        //test()
+        test()
         /////
         
        
