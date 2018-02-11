@@ -29,7 +29,8 @@ public:
 	virtual std::string receive();
 
 private:
-	virtual std::string getResponse(const std::string &req);
+	std::string getResponse(const std::string &req);
+	std::string parseResponse(const std::string &req);
 
 	StreamingSocket	_socket;
 };

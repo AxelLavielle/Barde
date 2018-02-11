@@ -12,7 +12,7 @@
 
 bool CmdManager::connectToServer()
 {
-	if (_socket.connect("127.0.0.1", 8080))
+	if (_socket.connect("163.172.128.43", 80))
 	{
 		std::cout << "LALAL" << std::endl;
 		std::cout << "Receive = " << _socket.get("/") << std::endl;;

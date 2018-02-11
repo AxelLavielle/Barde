@@ -28,10 +28,10 @@ void TCPSocket::close()
 
 std::string TCPSocket::read()
 {
-	char msg[1000];
+	//char msg[1000];
 
-	_socket.read(msg, 1024, false);
-	return std::string(msg);
+	//_socket.read(msg, 1024, false);
+	return std::string();
 }
 
 bool TCPSocket::write(const std::string & message)
@@ -47,9 +47,37 @@ std::string TCPSocket::get(const std::string & uri)
 	ss << "User-Agent: BardeClient/1.0\n";
 	ss << "Accept: */*\n";
 	ss << "Host: localhost:8080\n";
-	ss << "Connection: keep-alive\n";
+	ss << "Connection: keep-alive\n"; //I will change that
 	ss << "\n";
 	return getResponse(ss.str());
+}
+
+std::string TCPSocket::parseResponse(const std::string &req)
+{
+	size_t	lenPos;
+	size_t	lenNbPos;
+	size_t	bodyLen;
+	size_t	bodyStartPos;
+
+	if (req.find("Transfer-Encoding: chunked") != std::string::npos) //This type of response is not implented
+	{
+		//Raise an exception !!!!!
+	}
+	if ((lenPos = req.find("Content-Length: ")) == std::string::npos)
+	{
+		//raise an exception !!!!!!!
+	}
+	if ((lenNbPos = req.find("\r\n", lenPos)) == std::string::npos)
+	{
+		//Rais an exception !!!!!!!
+	}
+	bodyLen = std::stoi(req.substr(lenPos + 16, lenNbPos)); //16 is the length of the string "Content-Length: "
+	if ((bodyStartPos = req.find("\r\n\r\n")) == std::string::npos)
+	{
+		//Raise an exception !!!!!
+	}
+	bodyStartPos += 4; //4 is the length of the string "\r\n\r\n"
+	return (req.substr(bodyStartPos));
 }
 
 std::string TCPSocket::receive()
@@ -57,35 +85,26 @@ std::string TCPSocket::receive()
 	int						socketStatus;
 	int						nbByte;
 	std::stringstream		msg;
+	std::string				responseBody;
 	char					buff[1024];
 
 
 	std::cout << "Waiting server..." << std::endl;
-	socketStatus = _socket.waitUntilReady(true, TIME_OUT);
-	if (socketStatus == 1)
+	while ((socketStatus = _socket.waitUntilReady(true, TIME_OUT) > 0))
 	{
-		while ((nbByte = _socket.read(buff, 1023, false)) <= 1023)
-		{
-			std::cout << "Reading request..." << std::endl;
-			buff[nbByte] = '\0';
-			std::cout << buff << std::endl;
-			msg << buff;
-		}
-		if (nbByte < 0)
-		{
-			std::cerr << "Error: can not receive message from server" << std::endl;
-		}
-		std::cout << "Message received" << std::endl;
+		std::cout << "Reading request..." << std::endl;
+		nbByte = _socket.read(buff, 1023, false);
+		buff[nbByte] = '\0';
+		msg << buff;
 	}
-	else if (socketStatus == 0)
-	{
-		std::cerr << "Error: socket timeout" << std::endl;
-	}
-	else
+	if (socketStatus < 0)
 	{
 		std::cerr << "Error: server doesn't respond" << std::endl;
+
+		//Raise an exception !!!!!!
 	}
-	return (msg.str());
+	responseBody = parseResponse(msg.str()); //If this function raise an exception, the response format is bad
+	return (responseBody);
 }
 
 std::string TCPSocket::getResponse(const std::string &req)
