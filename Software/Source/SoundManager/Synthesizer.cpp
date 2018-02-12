@@ -24,8 +24,13 @@ void Synthesizer::setUsingSampledSound()
 	WavAudioFormat	wavFormat;
 	std::vector<std::string> files;
 	std::vector<std::string>::iterator it;
-	std::cout << "Directory = " << FileManager::getCurrentDirectory() + "/../../Samples/" << std::endl;
-	FileManager::getFilesList(FileManager::getCurrentDirectory() +  "/../../Samples/", ".wav", files);
+	#ifdef __linux__
+		std::cout << "Directory = " << FileManager::getCurrentDirectory() + "/../../Samples/" << std::endl;
+		FileManager::getFilesList(FileManager::getCurrentDirectory() +  "/../../Samples/", ".wav", files);
+	#else
+		std::cout << "Directory = " << FileManager::getCurrentDirectory() + "/../../../../Samples/" << std::endl;
+		FileManager::getFilesList(FileManager::getCurrentDirectory() +  "/../../../../Samples/", ".wav", files);
+	#endif // __linux__
 	BigInteger allNotes;
 	allNotes.setRange(0, 128, true);
 	_audioFormatManager.registerBasicFormats();

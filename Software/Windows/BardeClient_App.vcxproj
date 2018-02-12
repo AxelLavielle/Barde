@@ -192,8 +192,9 @@
     <ClCompile Include="..\Source\MidiManager\AMidiManager.cpp"/>
     <ClCompile Include="..\Source\MidiManager\Midi.cpp"/>
     <ClCompile Include="..\Source\MidiManager\MidiManager.cpp"/>
-    <ClCompile Include="..\Source\SocketManager\ASocketManager.cpp"/>
-    <ClCompile Include="..\Source\SocketManager\TCPSocket.cpp"/>
+    <ClCompile Include="..\Source\SocketManager\ARestClient.cpp"/>
+    <ClCompile Include="..\Source\SocketManager\RestClient.cpp"/>
+    <ClCompile Include="..\Source\SocketManager\RestClientException.cpp"/>
     <ClCompile Include="..\Source\SoundManager\ASoundManager.cpp"/>
     <ClCompile Include="..\Source\SoundManager\JuceSound.cpp"/>
     <ClCompile Include="..\Source\SoundManager\Synthesizer.cpp"/>
@@ -1860,9 +1861,10 @@
     <ClInclude Include="..\Source\MidiManager\Instruments.hh"/>
     <ClInclude Include="..\Source\MidiManager\Midi.hh"/>
     <ClInclude Include="..\Source\MidiManager\MidiManager.hh"/>
-    <ClInclude Include="..\Source\SocketManager\ASocketManager.hh"/>
-    <ClInclude Include="..\Source\SocketManager\ISockerManager.hpp"/>
-    <ClInclude Include="..\Source\SocketManager\TCPSocket.hh"/>
+    <ClInclude Include="..\Source\SocketManager\ARestClient.hh"/>
+    <ClInclude Include="..\Source\SocketManager\IRestClient.hpp"/>
+    <ClInclude Include="..\Source\SocketManager\RestClient.hh"/>
+    <ClInclude Include="..\Source\SocketManager\RestClientException.hh"/>
     <ClInclude Include="..\Source\SoundManager\ASoundManager.hh"/>
     <ClInclude Include="..\Source\SoundManager\ISoundManager.hpp"/>
     <ClInclude Include="..\Source\SoundManager\JuceSound.hh"/>

@@ -29,8 +29,8 @@
     <Filter Include="BardeClient\Source\MidiManager">
       <UniqueIdentifier>{D4F82834-0A3C-8F9A-7CC0-A964A46867DA}</UniqueIdentifier>
     </Filter>
-    <Filter Include="BardeClient\Source\SocketManager">
-      <UniqueIdentifier>{DEA391AC-A4A4-0B25-4488-6B4B14ED7232}</UniqueIdentifier>
+    <Filter Include="BardeClient\Source\RestClient">
+      <UniqueIdentifier>{13813E5B-E28F-0AA3-047B-C8979872130F}</UniqueIdentifier>
     </Filter>
     <Filter Include="BardeClient\Source\SoundManager">
       <UniqueIdentifier>{50585E43-7096-3C71-28EA-6D3EB8719B73}</UniqueIdentifier>
@@ -493,11 +493,14 @@
     <ClCompile Include="..\Source\MidiManager\MidiManager.cpp">
       <Filter>BardeClient\Source\MidiManager</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\SocketManager\ASocketManager.cpp">
-      <Filter>BardeClient\Source\SocketManager</Filter>
+    <ClCompile Include="..\Source\SocketManager\ARestClient.cpp">
+      <Filter>BardeClient\Source\RestClient</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\SocketManager\TCPSocket.cpp">
-      <Filter>BardeClient\Source\SocketManager</Filter>
+    <ClCompile Include="..\Source\SocketManager\RestClient.cpp">
+      <Filter>BardeClient\Source\RestClient</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\SocketManager\RestClientException.cpp">
+      <Filter>BardeClient\Source\RestClient</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\SoundManager\ASoundManager.cpp">
       <Filter>BardeClient\Source\SoundManager</Filter>
@@ -2421,14 +2424,17 @@
     <ClInclude Include="..\Source\MidiManager\MidiManager.hh">
       <Filter>BardeClient\Source\MidiManager</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\SocketManager\ASocketManager.hh">
-      <Filter>BardeClient\Source\SocketManager</Filter>
+    <ClInclude Include="..\Source\SocketManager\ARestClient.hh">
+      <Filter>BardeClient\Source\RestClient</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\SocketManager\ISockerManager.hpp">
-      <Filter>BardeClient\Source\SocketManager</Filter>
+    <ClInclude Include="..\Source\SocketManager\IRestClient.hpp">
+      <Filter>BardeClient\Source\RestClient</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\SocketManager\TCPSocket.hh">
-      <Filter>BardeClient\Source\SocketManager</Filter>
+    <ClInclude Include="..\Source\SocketManager\RestClient.hh">
+      <Filter>BardeClient\Source\RestClient</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\SocketManager\RestClientException.hh">
+      <Filter>BardeClient\Source\RestClient</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\SoundManager\ASoundManager.hh">
       <Filter>BardeClient\Source\SoundManager</Filter>
