@@ -20,4 +20,7 @@
     <string name="str_logout">log out</string>
     <string name="str_welcome_text">Welcome on Barde</string>
     <string name="str_first_page_main_text">Create an account to enjoy all Barde\'s features</string>
+    <string name="str_profile">profile</string>
+    <string name="str_my_lists">my lists</string>
+    <string name="str_update_profile">update profile</string>
 </resources>

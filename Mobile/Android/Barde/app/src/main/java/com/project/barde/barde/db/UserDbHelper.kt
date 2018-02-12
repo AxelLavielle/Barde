@@ -17,9 +17,10 @@ import java.util.*
  * Created by michael on 11/11/2017.
  */
 class UserDbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "user.db", null, 1) {
+    var listener = arrayListOf<dataListener>()
     companion object {
         private var instance: UserDbHelper? = null
-
+        /*private val listener = arrayListOf<Any>()*/
         @Synchronized
         fun getInstance(ctx: Context): UserDbHelper {
             if (instance == null) {
@@ -27,6 +28,10 @@ class UserDbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "user.db", null,
             }
             return instance!!
         }
+    }
+
+    interface dataListener {
+        fun updateUser()
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -45,6 +50,11 @@ class UserDbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "user.db", null,
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     }
+
+    /*fun addListener(func : Any){
+        listener.add(func)
+    }*/
+
     fun updateUser () {
         "http://10.0.2.2:3000/user/me".httpGet().responseString { request, response, result ->
             val requestMe: RequestMe
@@ -75,7 +85,13 @@ class UserDbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "user.db", null,
                         UserTable.YEAROFBIRTHDAY to cal.get(Calendar.YEAR),
                         UserTable.USERNAME to user.name.userName)
             }
+            for (l in listener){
+                l?.updateUser()
+            }
         }
+        /*for (l in listener){
+            l
+        }*/
     }
 }
 

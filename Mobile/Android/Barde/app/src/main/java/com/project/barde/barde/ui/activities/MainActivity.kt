@@ -1,29 +1,49 @@
 package com.project.barde.barde.ui.activities
 
 import android.content.Intent
-import android.net.ConnectivityManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.github.kittinunf.fuel.core.FuelManager
+import android.support.v4.app.Fragment
 import com.project.barde.barde.R
+import com.project.barde.barde.ui.fragments.MyListsFragment
+import com.project.barde.barde.ui.fragments.UserPageFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 //import java.net.URL
 
 class MainActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val myLists = MyListsFragment()
+        val profile = UserPageFragment()
         startActivity(Intent(this, FirstPage::class.java))
-        //startActivity(Intent(this, LoginActivity::class.java))
-        setting.setOnClickListener {
-            startActivity(Intent (this, UserProfileActivity::class.java))
+        supportFragmentManager.beginTransaction()
+                .add(R.id.container, myLists as Fragment)
+                .commit()
+        buttonNavigationMenu.setOnNavigationItemSelectedListener{item ->
+            when (item.itemId){
+                R.id.menu_my_list -> {
+                    supportFragmentManager.beginTransaction()
+                            .replace(R.id.container, myLists as Fragment)
+                            .commit()
+                }
+                R.id.menu_profile -> {
+                    supportFragmentManager.beginTransaction()
+                            .replace(R.id.container, profile as Fragment)
+                            .commit()
+                }
+            }
+            return@setOnNavigationItemSelectedListener true
         }
-        logout.setOnClickListener {
+        //startActivity(Intent(this, LoginActivity::class.java))
+        /*setting.setOnClickListener {
+            startActivity(Intent (this, UserProfileActivity::class.java))
+        }*/
+        /*logout.setOnClickListener {
             FuelManager.instance.baseHeaders = mapOf("Authorization" to "")
             startActivity(Intent(this, FirstPage::class.java))
-        }
+        }*/
     }
 
 }
