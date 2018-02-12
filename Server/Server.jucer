@@ -38,52 +38,52 @@
         <FILE id="WuAZ8R" name="StyleSettings.hh" compile="0" resource="0"
               file="../Software/Source/AI/StyleSettings.hh"/>
       </GROUP>
-      <GROUP id="{DECBBC1F-4AE7-F4ED-3635-6FD27A40C444}" name="DatabaseManager">
-        <FILE id="ulvFiW" name="ADatabasManager.cpp" compile="1" resource="0"
+      <GROUP id="{B1A96248-5919-8451-23E7-B563D9128E98}" name="DatabaseManager">
+        <FILE id="xHLoTa" name="ADatabasManager.cpp" compile="1" resource="0"
               file="../Software/Source/DatabaseManager/ADatabasManager.cpp"/>
-        <FILE id="yC238j" name="ADatabasManager.hh" compile="0" resource="0"
+        <FILE id="EsFldh" name="ADatabasManager.hh" compile="0" resource="0"
               file="../Software/Source/DatabaseManager/ADatabasManager.hh"/>
-        <FILE id="Ugj9eq" name="IDatabaseManager.hh" compile="0" resource="0"
+        <FILE id="ndY9iD" name="IDatabaseManager.hh" compile="0" resource="0"
               file="../Software/Source/DatabaseManager/IDatabaseManager.hh"/>
-        <FILE id="Fu9XjV" name="SQLiteManager.cpp" compile="1" resource="0"
+        <FILE id="kbJaJ5" name="SQLiteManager.cpp" compile="1" resource="0"
               file="../Software/Source/DatabaseManager/SQLiteManager.cpp"/>
-        <FILE id="uwtUWW" name="SQLiteManager.hh" compile="0" resource="0"
+        <FILE id="BmgNoZ" name="SQLiteManager.hh" compile="0" resource="0"
               file="../Software/Source/DatabaseManager/SQLiteManager.hh"/>
       </GROUP>
-      <GROUP id="{A8046B2D-05FF-42A7-A131-08EC90669C26}" name="EncryptionManager">
-        <FILE id="ekOI1y" name="AEncryptionManager.cpp" compile="1" resource="0"
+      <GROUP id="{E8D97828-A046-C94A-ACCC-39A70CB87FB4}" name="EncryptionManager">
+        <FILE id="s4Y750" name="AEncryptionManager.cpp" compile="1" resource="0"
               file="../Software/Source/EncryptionManager/AEncryptionManager.cpp"/>
-        <FILE id="Vu3tta" name="AEncryptionManager.hh" compile="0" resource="0"
+        <FILE id="CUFFvD" name="AEncryptionManager.hh" compile="0" resource="0"
               file="../Software/Source/EncryptionManager/AEncryptionManager.hh"/>
-        <FILE id="VorOc9" name="IEncryptionManager.hpp" compile="0" resource="0"
+        <FILE id="vz1yC1" name="IEncryptionManager.hpp" compile="0" resource="0"
               file="../Software/Source/EncryptionManager/IEncryptionManager.hpp"/>
-        <FILE id="sIkhbn" name="SSLManager.cpp" compile="1" resource="0" file="../Software/Source/EncryptionManager/SSLManager.cpp"/>
-        <FILE id="XdThSv" name="SSLManager.hh" compile="0" resource="0" file="../Software/Source/EncryptionManager/SSLManager.hh"/>
+        <FILE id="aF2GAi" name="SSLManager.cpp" compile="1" resource="0" file="../Software/Source/EncryptionManager/SSLManager.cpp"/>
+        <FILE id="yhbOqG" name="SSLManager.hh" compile="0" resource="0" file="../Software/Source/EncryptionManager/SSLManager.hh"/>
       </GROUP>
-      <GROUP id="{AC3833A5-4BC0-1C41-A83E-C2293FC9C9EC}" name="GraphManager">
-        <FILE id="ltHExc" name="AGraphManager.cpp" compile="1" resource="0"
+      <GROUP id="{60DB8C08-DB9E-4E40-1BCF-1AD7743B496A}" name="GraphManager">
+        <FILE id="X1mokl" name="AGraphManager.cpp" compile="1" resource="0"
               file="../Software/Source/GraphManager/AGraphManager.cpp"/>
-        <FILE id="szJ95H" name="AGraphManager.hh" compile="0" resource="0"
+        <FILE id="JQMdJu" name="AGraphManager.hh" compile="0" resource="0"
               file="../Software/Source/GraphManager/AGraphManager.hh"/>
-        <FILE id="XEezom" name="IGraphManager.hpp" compile="0" resource="0"
+        <FILE id="x323AI" name="IGraphManager.hpp" compile="0" resource="0"
               file="../Software/Source/GraphManager/IGraphManager.hpp"/>
-        <FILE id="YsgpHO" name="JuceManager.cpp" compile="1" resource="0" file="../Software/Source/GraphManager/JuceManager.cpp"/>
-        <FILE id="gm7ou6" name="JuceManager.hh" compile="0" resource="0" file="../Software/Source/GraphManager/JuceManager.hh"/>
-        <FILE id="WRrplm" name="LoginComponent.cpp" compile="1" resource="0"
+        <FILE id="xNySZf" name="JuceManager.cpp" compile="1" resource="0" file="../Software/Source/GraphManager/JuceManager.cpp"/>
+        <FILE id="Kq2suS" name="JuceManager.hh" compile="0" resource="0" file="../Software/Source/GraphManager/JuceManager.hh"/>
+        <FILE id="da8DKU" name="LoginComponent.cpp" compile="1" resource="0"
               file="../Software/Source/GraphManager/LoginComponent.cpp"/>
-        <FILE id="jiRRd4" name="LoginComponent.h" compile="0" resource="0"
+        <FILE id="sPLIe0" name="LoginComponent.h" compile="0" resource="0"
               file="../Software/Source/GraphManager/LoginComponent.h"/>
-        <FILE id="PJSs0q" name="MainComponent.cpp" compile="1" resource="0"
+        <FILE id="n1ASVB" name="MainComponent.cpp" compile="1" resource="0"
               file="../Software/Source/GraphManager/MainComponent.cpp"/>
-        <FILE id="GWY5IW" name="MainComponent.h" compile="0" resource="0" file="../Software/Source/GraphManager/MainComponent.h"/>
-        <FILE id="zCcB13" name="MainWindow.cpp" compile="1" resource="0" file="../Software/Source/GraphManager/MainWindow.cpp"/>
-        <FILE id="LziwLI" name="MainWindow.hh" compile="0" resource="0" file="../Software/Source/GraphManager/MainWindow.hh"/>
-        <FILE id="rvwEiB" name="MusicStyleButton.cpp" compile="1" resource="0"
+        <FILE id="fgMLLZ" name="MainComponent.h" compile="0" resource="0" file="../Software/Source/GraphManager/MainComponent.h"/>
+        <FILE id="bGccPQ" name="MainWindow.cpp" compile="1" resource="0" file="../Software/Source/GraphManager/MainWindow.cpp"/>
+        <FILE id="R67EEj" name="MainWindow.hh" compile="0" resource="0" file="../Software/Source/GraphManager/MainWindow.hh"/>
+        <FILE id="JChj5u" name="MusicStyleButton.cpp" compile="1" resource="0"
               file="../Software/Source/GraphManager/MusicStyleButton.cpp"/>
-        <FILE id="sFvJEg" name="MusicStyleButton.h" compile="0" resource="0"
+        <FILE id="NOKsl5" name="MusicStyleButton.h" compile="0" resource="0"
               file="../Software/Source/GraphManager/MusicStyleButton.h"/>
-        <FILE id="MxmDG2" name="Theme.cpp" compile="1" resource="0" file="../Software/Source/GraphManager/Theme.cpp"/>
-        <FILE id="NtDdo9" name="Theme.h" compile="0" resource="0" file="../Software/Source/GraphManager/Theme.h"/>
+        <FILE id="FIxGLW" name="Theme.cpp" compile="1" resource="0" file="../Software/Source/GraphManager/Theme.cpp"/>
+        <FILE id="ipJlCW" name="Theme.h" compile="0" resource="0" file="../Software/Source/GraphManager/Theme.h"/>
       </GROUP>
       <GROUP id="{CA6943C5-8D70-5D4D-F291-786126110CAF}" name="markovSource">
         <FILE id="T6u9tz" name="blues.json" compile="0" resource="1" file="../Software/Source/markovSource/blues.json"/>
@@ -106,15 +106,16 @@
         <FILE id="L9NBc3" name="back.png" compile="0" resource="1" file="../Software/Source/Ressources/back.png"/>
         <FILE id="hBxASx" name="logo.png" compile="0" resource="1" file="../Software/Source/Ressources/logo.png"/>
       </GROUP>
-      <GROUP id="{6D47A781-EB44-7E64-15C2-D4369CE16D28}" name="SocketManager">
-        <FILE id="Qv5yH1" name="ASocketManager.cpp" compile="1" resource="0"
-              file="../Software/Source/SocketManager/ASocketManager.cpp"/>
-        <FILE id="G62mLD" name="ASocketManager.hh" compile="0" resource="0"
-              file="../Software/Source/SocketManager/ASocketManager.hh"/>
-        <FILE id="mJpnuu" name="ISockerManager.hpp" compile="0" resource="0"
-              file="../Software/Source/SocketManager/ISockerManager.hpp"/>
-        <FILE id="s1tPU6" name="TCPSocket.cpp" compile="1" resource="0" file="../Software/Source/SocketManager/TCPSocket.cpp"/>
-        <FILE id="ZAB6di" name="TCPSocket.hh" compile="0" resource="0" file="../Software/Source/SocketManager/TCPSocket.hh"/>
+      <GROUP id="{898DC593-4900-297B-0134-D187617B5BBB}" name="SocketManager">
+        <FILE id="aGf5Oh" name="ARestClient.cpp" compile="1" resource="0" file="../Software/Source/SocketManager/ARestClient.cpp"/>
+        <FILE id="OLR5ZR" name="ARestClient.hh" compile="0" resource="0" file="../Software/Source/SocketManager/ARestClient.hh"/>
+        <FILE id="bawmBT" name="IRestClient.hpp" compile="0" resource="0" file="../Software/Source/SocketManager/IRestClient.hpp"/>
+        <FILE id="t0bInA" name="RestClient.cpp" compile="1" resource="0" file="../Software/Source/SocketManager/RestClient.cpp"/>
+        <FILE id="mr2BNz" name="RestClient.hh" compile="0" resource="0" file="../Software/Source/SocketManager/RestClient.hh"/>
+        <FILE id="PicZjc" name="RestClientException.cpp" compile="1" resource="0"
+              file="../Software/Source/SocketManager/RestClientException.cpp"/>
+        <FILE id="wlLb34" name="RestClientException.hh" compile="0" resource="0"
+              file="../Software/Source/SocketManager/RestClientException.hh"/>
       </GROUP>
       <GROUP id="{0B71AA29-B374-2EF3-00A3-6C4A46FEED99}" name="SoundManager">
         <FILE id="lpJfO8" name="ASoundManager.cpp" compile="1" resource="0"
@@ -135,14 +136,14 @@
       <GROUP id="{B0EAB643-4B27-B78A-8904-995F52D9D7E8}" name="Themes">
         <FILE id="J0SkFq" name="Dark" compile="0" resource="1" file="../Software/Source/Themes/Dark"/>
       </GROUP>
-      <GROUP id="{1425CE45-DFEF-C88F-85B5-9CF1CE7E4AF0}" name="ViewManager">
-        <FILE id="u7a8oq" name="AView.cpp" compile="1" resource="0" file="../Software/Source/ViewManager/AView.cpp"/>
-        <FILE id="yXKrNP" name="AView.hh" compile="0" resource="0" file="../Software/Source/ViewManager/AView.hh"/>
-        <FILE id="MGepKb" name="HomePage.cpp" compile="1" resource="0" file="../Software/Source/ViewManager/HomePage.cpp"/>
-        <FILE id="Ypnhej" name="HomePage.hh" compile="0" resource="0" file="../Software/Source/ViewManager/HomePage.hh"/>
-        <FILE id="JKz0wB" name="IView.hpp" compile="0" resource="0" file="../Software/Source/ViewManager/IView.hpp"/>
-        <FILE id="EQKUa5" name="ViewManager.cpp" compile="1" resource="0" file="../Software/Source/ViewManager/ViewManager.cpp"/>
-        <FILE id="iFeFU7" name="ViewManager.hh" compile="0" resource="0" file="../Software/Source/ViewManager/ViewManager.hh"/>
+      <GROUP id="{C7D2A4D9-6465-CF43-79EA-B233EAF433A6}" name="ViewManager">
+        <FILE id="qLIaS9" name="AView.cpp" compile="1" resource="0" file="../Software/Source/ViewManager/AView.cpp"/>
+        <FILE id="u1YlJR" name="AView.hh" compile="0" resource="0" file="../Software/Source/ViewManager/AView.hh"/>
+        <FILE id="yldlRD" name="HomePage.cpp" compile="1" resource="0" file="../Software/Source/ViewManager/HomePage.cpp"/>
+        <FILE id="wful1b" name="HomePage.hh" compile="0" resource="0" file="../Software/Source/ViewManager/HomePage.hh"/>
+        <FILE id="q27wOe" name="IView.hpp" compile="0" resource="0" file="../Software/Source/ViewManager/IView.hpp"/>
+        <FILE id="ldgj5H" name="ViewManager.cpp" compile="1" resource="0" file="../Software/Source/ViewManager/ViewManager.cpp"/>
+        <FILE id="rbUdpa" name="ViewManager.hh" compile="0" resource="0" file="../Software/Source/ViewManager/ViewManager.hh"/>
       </GROUP>
       <FILE id="yrXFrh" name="Authentification.cpp" compile="1" resource="0"
             file="../Software/Source/Authentification.cpp"/>

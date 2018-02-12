@@ -92,8 +92,9 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/AMidiManager_cbd584af.o \
   $(JUCE_OBJDIR)/Midi_4bb9bda5.o \
   $(JUCE_OBJDIR)/MidiManager_d02602d2.o \
-  $(JUCE_OBJDIR)/ASocketManager_bae5a46f.o \
-  $(JUCE_OBJDIR)/TCPSocket_f9aa68.o \
+  $(JUCE_OBJDIR)/ARestClient_a87f69f4.o \
+  $(JUCE_OBJDIR)/RestClient_aa36c0d5.o \
+  $(JUCE_OBJDIR)/RestClientException_2f053944.o \
   $(JUCE_OBJDIR)/ASoundManager_b81e714f.o \
   $(JUCE_OBJDIR)/JuceSound_65d474d2.o \
   $(JUCE_OBJDIR)/Synthesizer_c10c278.o \
@@ -265,14 +266,19 @@ $(JUCE_OBJDIR)/MidiManager_d02602d2.o: ../../Software/Source/MidiManager/MidiMan
 	@echo "Compiling MidiManager.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/ASocketManager_bae5a46f.o: ../../Software/Source/SocketManager/ASocketManager.cpp
+$(JUCE_OBJDIR)/ARestClient_a87f69f4.o: ../../Software/Source/SocketManager/ARestClient.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling ASocketManager.cpp"
+	@echo "Compiling ARestClient.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/TCPSocket_f9aa68.o: ../../Software/Source/SocketManager/TCPSocket.cpp
+$(JUCE_OBJDIR)/RestClient_aa36c0d5.o: ../../Software/Source/SocketManager/RestClient.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling TCPSocket.cpp"
+	@echo "Compiling RestClient.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/RestClientException_2f053944.o: ../../Software/Source/SocketManager/RestClientException.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling RestClientException.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/ASoundManager_b81e714f.o: ../../Software/Source/SoundManager/ASoundManager.cpp
