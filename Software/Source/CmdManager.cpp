@@ -12,11 +12,34 @@
 
 bool CmdManager::connectToServer()
 {
-	if (_socket.connect("163.172.128.43", 80))
+	_socket.setAddr("163.172.128.43", 2010, 1000);
+	getUserInfo();
+	return true;
+}
+
+bool CmdManager::getUserInfo()
+{
+	Json::Value	root;
+	Json::Value	user;
+	Json::CharReaderBuilder rbuilder;
+	std::string errs;
+	std::stringstream ss;
+
+	try
 	{
-		std::cout << "LALAL" << std::endl;
-		std::cout << "Receive = " << _socket.get("/") << std::endl;;
-		return true;
+		ss << _socket.get("/user/xavier.pe@outlook.fr");
 	}
-	return false;
+	catch (RestClientException &e)
+	{
+		std::cerr << "Error on request getUserInfo : " << e.what() << std::endl;
+	}
+
+	rbuilder["collectComments"] = false;
+	Json::parseFromStream(rbuilder, ss, &root, &errs);
+	user = root["data"]["user"];
+	std::cout << "User email : " << user["email"] << std::endl;
+	std::cout << "User firstname : " << user["name"]["firstName"] << std::endl;
+	std::cout << "User lastname : " << user["name"]["lastName"] << std::endl;
+	std::cout << "User username : " << user["name"]["userName"] << std::endl;
+	return true;
 }

@@ -124,15 +124,16 @@
         <FILE id="ENA4vp" name="MidiManager.cpp" compile="1" resource="0" file="Source/MidiManager/MidiManager.cpp"/>
         <FILE id="PYjyqB" name="MidiManager.hh" compile="0" resource="0" file="Source/MidiManager/MidiManager.hh"/>
       </GROUP>
-      <GROUP id="{7355C593-7CFA-F1F9-4B6F-55F47B09F159}" name="SocketManager">
-        <FILE id="R4jjJQ" name="ASocketManager.cpp" compile="1" resource="0"
-              file="Source/SocketManager/ASocketManager.cpp"/>
-        <FILE id="mfdzio" name="ASocketManager.hh" compile="0" resource="0"
-              file="Source/SocketManager/ASocketManager.hh"/>
-        <FILE id="Z5AEs6" name="ISocketManager.hpp" compile="0" resource="0"
-              file="Source/SocketManager/ISocketManager.hpp"/>
-        <FILE id="qoeOFI" name="TCPSocket.cpp" compile="1" resource="0" file="Source/SocketManager/TCPSocket.cpp"/>
-        <FILE id="JHOoHI" name="TCPSocket.hh" compile="0" resource="0" file="Source/SocketManager/TCPSocket.hh"/>
+      <GROUP id="{7355C593-7CFA-F1F9-4B6F-55F47B09F159}" name="RestClient">
+        <FILE id="R4jjJQ" name="ARestClient.cpp" compile="1" resource="0" file="Source/SocketManager/ARestClient.cpp"/>
+        <FILE id="mfdzio" name="ARestClient.hh" compile="0" resource="0" file="Source/SocketManager/ARestClient.hh"/>
+        <FILE id="Z5AEs6" name="IRestClient.hpp" compile="0" resource="0" file="Source/SocketManager/IRestClient.hpp"/>
+        <FILE id="qoeOFI" name="RestClient.cpp" compile="1" resource="0" file="Source/SocketManager/RestClient.cpp"/>
+        <FILE id="JHOoHI" name="RestClient.hh" compile="0" resource="0" file="Source/SocketManager/RestClient.hh"/>
+        <FILE id="o5QM2Y" name="RestClientException.cpp" compile="1" resource="0"
+              file="Source/SocketManager/RestClientException.cpp"/>
+        <FILE id="Hp2Qc2" name="RestClientException.hh" compile="0" resource="0"
+              file="Source/SocketManager/RestClientException.hh"/>
       </GROUP>
       <GROUP id="{5F7C370B-C39E-F6F2-55F2-8706CAF30B73}" name="SoundManager">
         <FILE id="og9519" name="ASoundManager.cpp" compile="1" resource="0"

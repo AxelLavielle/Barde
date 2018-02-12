@@ -11,15 +11,19 @@
 #ifndef CMDMANAGER_HH_INCLUDED
 #define CMDMANAGER_HH_INCLUDED
 
-#include "./SocketManager/TCPSocket.hh"
+#include <sstream>
+#include "json/json.h"
+#include "./SocketManager/RestClient.hh"
+#include "./SocketManager/RestClientException.hh"
 
 class CmdManager
 {
 public:
 	bool connectToServer();
+	bool getUserInfo();
 
 private:
-	TCPSocket	_socket;
+	RestClient	_socket;
 };
 
 
