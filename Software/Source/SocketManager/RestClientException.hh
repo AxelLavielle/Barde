@@ -16,10 +16,11 @@
 class RestClientException : public std::exception
 {
 	public:
-		RestClientException(const char *msg, const int code = 500, const char* info = "");
+		RestClientException(const char *msg, const int code = 500, const char* info = "") ;
 		const char *getMessage() const;
 		const int getCode() const;
-		const char*getInfo() const;
+		const char *getInfo() const;
+		virtual const char *what() const noexcept;
 
 	private:
 		const char	*_msg;

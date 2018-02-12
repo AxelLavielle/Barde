@@ -10,7 +10,7 @@
 
 #include "RestClientException.hh"
 
-RestClientException::RestClientException(const char * msg, const int code, const char * info) : std::exception(msg), _msg(msg), _code(code), _info(info)
+RestClientException::RestClientException(const char * msg, const int code, const char * info) : _msg(msg), _code(code), _info(info)
 {
 }
 
@@ -27,4 +27,9 @@ const int RestClientException::getCode() const
 const char * RestClientException::getInfo() const
 {
 	return _info;
+}
+
+const char *RestClientException::what() const noexcept
+{
+    return _msg;
 }

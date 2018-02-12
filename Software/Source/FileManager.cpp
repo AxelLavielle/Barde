@@ -29,6 +29,7 @@ void FileManager::getFilesList(const std::string &filePath, const std::string &e
 	if ((directory = opendir(filePath.c_str())) == NULL)
 	{
 		std::cerr << "ERROR : Can not open given directory : " << filePath << std::endl;
+		return;
 	}
 	while ((dirp = readdir(directory)) != NULL)
 	{
