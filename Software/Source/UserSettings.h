@@ -13,6 +13,7 @@
 
 #include "./GraphManager/Theme.h"
 #include <vector>
+#include "MusicParameters.hh"
 
 /*! Language of the software */
 enum Language {
@@ -49,7 +50,7 @@ public:
 	*  \param volume : volume of the software (pourcentage between 0 and 100)
 	*  \param BPM : BRM of the sound.
 	*/
-	UserSettings(int volume, int BPM);
+	UserSettings(int volume);
 
 	/*!
 	*  \brief Constructor
@@ -61,7 +62,11 @@ public:
 	*  \param volume : volume of the software (pourcentage between 0 and 100)
 	*  \param BPM : BRM of the sound.
 	*/
-	UserSettings(bool mute, Language language, int volume, int BPM);
+	UserSettings(bool mute, Language language, int volume);
+
+
+	UserSettings(MusicParameters *musicParameters);
+
 
 	/*!
 	*  \brief Destructor
@@ -159,10 +164,10 @@ public:
 private:
 	Language _language; /*!< language of the user */
 	int _volume; /*!< volume in percentage */
-	int _BPM; /*!< current BPM value */
 	bool _mute; /*!< if the sound is muted or not */
 	Theme _theme; /*!< theme used by the software */
 	std::vector<Theme> _themelist; /*!< all existing theme to choose from */
+	MusicParameters *_musicParameters;
 };
 
 

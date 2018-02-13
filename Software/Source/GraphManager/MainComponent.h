@@ -11,6 +11,8 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "MusicStyleButton.h"
+#include "../UserSettings.h"
+#include "../MusicParameters.hh"
 
 
 #define LOGO_WIDTH 1024 / 2
@@ -27,12 +29,15 @@
 * The class is containing all the component needed for the client
 */
 
-class MainContentComponent   : public Component
+class MainContentComponent   : public Component, public SliderListener
 {
 public:
     //==============================================================================
 	MusicStyleButton *blues;  /*!< button for generating blues*/
 	Theme currentTheme; /*!< Theme defining the colors of the elements*/
+	UserSettings us;
+	Slider frequencySlider;
+	Label frequencyLabel;
 
 	/*!
 	*  \brief Constructor
@@ -62,6 +67,7 @@ public:
 	* Fonction called when the window is resized
 	*/
     void resized() override;
+	void sliderValueChanged(Slider *slider) override;
 
 private:
     //==============================================================================

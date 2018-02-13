@@ -27,11 +27,7 @@ LoginComponent::LoginComponent()
 	textEditor1.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT, BOX_WIDTH, BOX_HEIGHT);
 
 	textEditor1.setText("");
-	textEditor1.setColour(TextEditor::backgroundColourId, Colour(this->currentTheme.getBackgroundColor()));
-	textEditor1.setColour(TextEditor::focusedOutlineColourId, Colour(this->currentTheme.getButtonColor()));
-	textEditor1.setColour(TextEditor::highlightColourId, Colour(this->currentTheme.getButtonColor()));
-	textEditor1.setColour(TextEditor::textColourId, Colour(this->currentTheme.getFontColor()));
-	textEditor1.setColour(TextEditor::outlineColourId, Colour(this->currentTheme.getFontColor()));
+	
 
 
 	addAndMakeVisible(textEditor2);
@@ -43,23 +39,16 @@ LoginComponent::LoginComponent()
 														 comboBox.setBounds(100, 85, 200, 24);
 														 comboBox.setEditableText(true);
 														 comboBox.setJustificationType(Justification::centred);*/
-	textEditor2.setColour(TextEditor::backgroundColourId, Colour(this->currentTheme.getBackgroundColor()));
-	textEditor2.setColour(TextEditor::focusedOutlineColourId, Colour(this->currentTheme.getButtonColor()));
-	textEditor2.setColour(TextEditor::highlightColourId, Colour(this->currentTheme.getButtonColor()));
-	textEditor2.setColour(TextEditor::textColourId, Colour(this->currentTheme.getFontColor()));
-	textEditor2.setColour(TextEditor::outlineColourId, Colour(this->currentTheme.getFontColor()));
-
+	
 
 	addAndMakeVisible(inputLabel1);
 	inputLabel1.setText("Login:", dontSendNotification);
 	inputLabel1.attachToComponent(&textEditor1, true);
-	inputLabel1.setColour(Label::textColourId, Colour(this->currentTheme.getButtonColor()));
 	inputLabel1.setJustificationType(Justification::right);
 
 	addAndMakeVisible(inputLabel2);
 	inputLabel2.setText("Password:", dontSendNotification);
 	inputLabel2.attachToComponent(&textEditor2, true);
-	inputLabel2.setColour(Label::textColourId, Colour(this->currentTheme.getButtonColor()));
 	inputLabel2.setJustificationType(Justification::right);
 
 	textEditor1.addListener(this);
@@ -73,21 +62,37 @@ LoginComponent::LoginComponent()
 	addAndMakeVisible(loginButton);
 	loginButton.setButtonText("Login");
 	loginButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN + SPACE_BETWEEN, BOX_WIDTH, BOX_HEIGHT);
-	loginButton.setColour(TextButton::buttonColourId, Colour(this->currentTheme.getButtonColor()));
-	loginButton.setColour(TextButton::textColourOnId, Colour(this->currentTheme.getButtonFontColor()));
 	loginButton.addListener(this);
 
 
-	/*for (int i = 1; i < 100; ++i)
-	comboBox.addItem("combo box item " + String(i), i);
+	//TODO Add a file and read theme list
+	addAndMakeVisible(themeChoice);
+	themeChoice.setBounds(10, 85, 200, 24);
+	themeChoice.setEditableText(true);
+	themeChoice.setJustificationType(Justification::centred);
 
-	comboBox.setSelectedId(1);*/
+	themeChoice.addItem("Dark", 1);
+	themeChoice.addItem("Light", 2);
+
+
+	themeChoice.setSelectedId(1);
+	themeChoice.addListener(this);
+	ThemeChanged();
+
 
 }
 
+void LoginComponent::comboBoxChanged(ComboBox * comboBox)
+{
+	String value = comboBox->getText();
+	//String pathOfTheme = "../Themes/" + value;
+	this->currentTheme = parseTheme("../Themes/" + value.toStdString());
+	ThemeChanged();
+}
 
 void LoginComponent::buttonClicked(Button* button)
 {
+	//TODO Add API Connection to check login instead of the code below
 	String toto;
 	String login;
 	String password;
@@ -96,11 +101,7 @@ void LoginComponent::buttonClicked(Button* button)
 	password = textEditor2.getText();
 
 	if (login == "abc" && password == "abc")
-	{
 		toto = "correct";
-		this->~LoginComponent();
-		//setContentOwned(new MainContentComponent(), true);
-	}
 	else
 		toto = "wrong";
 
@@ -129,12 +130,39 @@ void LoginComponent::paint(Graphics& g)
 	rectX = (getWidth() / 2) - (400 / 2);
 	rectY = (getHeight() / 15) + (LOGO_HEIGHT)+50;
 
-	g.setColour(Colours::white);
-		g.fillAll(Colour(this->currentTheme.getBackgroundColor()));
+	//g.setColour(Colours::white);
+	g.fillAll(Colour(this->currentTheme.getBackgroundColor()));
 	Image logo = ImageCache::getFromMemory(BinaryData::logo_png,
 		BinaryData::logo_pngSize);
 	g.drawImage(logo, imgX, imgY, (int)imgW, (int)imgH, 0, 0, 1024, 927, false);
+}
 
+void LoginComponent::ThemeChanged()
+{
+	String tmp = textEditor1.getText();
+	textEditor1.setColour(TextEditor::backgroundColourId, Colour(this->currentTheme.getBackgroundColor()));
+	textEditor1.setColour(TextEditor::focusedOutlineColourId, Colour(this->currentTheme.getButtonColor()));
+	textEditor1.setColour(TextEditor::highlightColourId, Colour(this->currentTheme.getButtonColor()));
+	textEditor1.setColour(TextEditor::textColourId, Colour(this->currentTheme.getFontColor()));
+	textEditor1.setColour(TextEditor::outlineColourId, Colour(this->currentTheme.getFontColor()));
+	textEditor1.clear();
+	textEditor1.setText(tmp);
+
+	tmp = textEditor2.getText();
+	textEditor2.setColour(TextEditor::backgroundColourId, Colour(this->currentTheme.getBackgroundColor()));
+	textEditor2.setColour(TextEditor::focusedOutlineColourId, Colour(this->currentTheme.getButtonColor()));
+	textEditor2.setColour(TextEditor::highlightColourId, Colour(this->currentTheme.getButtonColor()));
+	textEditor2.setColour(TextEditor::textColourId, Colour(this->currentTheme.getFontColor()));
+	textEditor2.setColour(TextEditor::outlineColourId, Colour(this->currentTheme.getFontColor()));
+	textEditor2.clear();
+	textEditor2.setText(tmp);
+
+	inputLabel1.setColour(Label::textColourId, Colour(this->currentTheme.getButtonColor()));
+	inputLabel2.setColour(Label::textColourId, Colour(this->currentTheme.getButtonColor()));
+
+	loginButton.setColour(TextButton::buttonColourId, Colour(this->currentTheme.getButtonColor()));
+	loginButton.setColour(TextButton::textColourOnId, Colour(this->currentTheme.getButtonFontColor()));
+	this->repaint();
 }
 
 void LoginComponent::resized()

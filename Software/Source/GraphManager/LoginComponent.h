@@ -25,7 +25,7 @@
 This component lives inside our window, and this is where you should put all
 your controls and content.
 */
-class LoginComponent : public Component, private TextEditor::Listener, public Button::Listener
+class LoginComponent : public Component, private TextEditor::Listener, public Button::Listener, public ComboBox::Listener
 {
 public:
 	//==============================================================================
@@ -35,6 +35,8 @@ public:
 	void paint(Graphics&) override;
 	void resized() override;
 	void buttonClicked(Button* button) override;
+	void comboBoxChanged(ComboBox * comboBoxThatHasChanged) override;
+	void ThemeChanged();
 
 private:
 	TextEditor textEditor1, textEditor2;
@@ -43,6 +45,7 @@ private:
 	Label errorText;
 	TextButton loginButton;
 	Theme currentTheme;
+	ComboBox themeChoice;
 	//==============================================================================
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(LoginComponent)
 };
