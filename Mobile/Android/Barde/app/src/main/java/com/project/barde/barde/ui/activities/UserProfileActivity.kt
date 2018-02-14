@@ -1,9 +1,15 @@
 package com.project.barde.barde.ui.activities
 
+import android.graphics.Color
 import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.v7.app.AppCompatActivity
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.View
 import android.widget.DatePicker
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.github.kittinunf.fuel.httpPost
 import com.github.kittinunf.fuel.httpPut
@@ -43,6 +49,20 @@ class UserProfileActivity : AppCompatActivity(), UserDbHelper.dataListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_user)
+        val backButton = TextView(this)
+        backButton.setText(getString(R.string.str_back))
+        backButton.setTextColor(Color.WHITE)
+        backButton.setOnClickListener{
+            finish()
+        }
+        val i = inpute_register.childCount
+        for (l in 0 until i){
+            println("i = ${l}")
+            inpute_register.getChildAt(l).setOnClickListener {
+                println("je ne suis pas la")
+            }
+        }
+        profile_user_header_button_start.addView(backButton)
         update_dateofbirthday.maxDate = Date().time
         database.listener.add(this)
         updateUser()

@@ -22,6 +22,9 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         register_dateofbirthday.maxDate = Date().time
+        register_back_button.setOnClickListener {
+            finish()
+        }
         toRegister.setOnClickListener{
             doAsync {
                 "http://10.0.2.2:3000/auth/register".httpPost(listOf("email" to register_email.text, "password" to register_password.text, "firstName" to register_firstname.text, "lastName" to register_lastname.text, "userName" to register_username.text, "yearOfBirth" to register_dateofbirthday.year, "monthOfBirth" to register_dateofbirthday.month, "dayOfBirth" to register_dateofbirthday.dayOfMonth)).responseString{ request, response, result ->

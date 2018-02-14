@@ -23,4 +23,8 @@
     <string name="str_profile">profile</string>
     <string name="str_my_lists">mes listes</string>
     <string name="str_update_profile">changer le profile</string>
+    <string name="str_my_account">Mon compte</string>
+    <string name="str_back">Retour</string>
+    <string name="str_cancel">Annuler</string>
+    <string name="str_ok">Ok</string>
 </resources>

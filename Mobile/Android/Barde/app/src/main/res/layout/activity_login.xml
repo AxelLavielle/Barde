@@ -7,7 +7,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.project.barde.barde.ui.activities.LoginActivity"
     android:gravity="center"
-    android:padding="10dp"
     android:background="@color/colorPrimary">
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,27 +33,42 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="#ffffff"
+            android:layout_marginBottom="2dp">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:hint="@string/str_email"
-            android:background="@drawable/input_rounded_corners_white"
-            android:id="@+id/email"/>
+            android:id="@+id/email"
+            android:background="@android:color/transparent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="#ffffff"
+            android:layout_marginBottom="2dp">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:hint="@string/str_password"
-            android:background="@drawable/input_rounded_corners_white"
-            android:layout_marginTop="10dp"
-            android:id="@+id/password"/>
+            android:id="@+id/password"
+            android:background="@android:color/transparent" />
+        </LinearLayout>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="70dp"
+            android:layout_marginLeft="70dp"
             android:text="@string/str_login"
-            android:textColor="@color/colorPrimary"
-            android:background="@drawable/button_rounded_corners_white"
+            android:textColor="#ffffff"
+            android:background="@drawable/button_rounded_corners"
             android:id="@+id/connexion"
             android:padding="10dp"
             android:layout_marginTop="10dp"/>

@@ -23,4 +23,8 @@
     <string name="str_profile">profile</string>
     <string name="str_my_lists">my lists</string>
     <string name="str_update_profile">update profile</string>
+    <string name="str_my_account">My acccount</string>
+    <string name="str_back">back</string>
+    <string name="str_cancel">Cancel</string>
+    <string name="str_ok">Ok</string>
 </resources>
