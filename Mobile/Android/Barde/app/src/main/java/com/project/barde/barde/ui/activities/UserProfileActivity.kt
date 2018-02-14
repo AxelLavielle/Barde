@@ -1,11 +1,13 @@
 package com.project.barde.barde.ui.activities
 
+import android.app.DatePickerDialog
 import android.graphics.Color
 import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.Gravity
 import android.view.View
 import android.widget.DatePicker
 import android.widget.EditText
@@ -31,6 +33,9 @@ import java.util.*
  */
 
 class UserProfileActivity : AppCompatActivity(), UserDbHelper.dataListener {
+    private var year = 0
+    private var month = 0
+    private var dayOfMonth = 0
     override fun updateUser() {
         database.use {
             val c = rawQuery("SELECT * FROM user LIMIT 1", null)
@@ -41,7 +46,11 @@ class UserProfileActivity : AppCompatActivity(), UserDbHelper.dataListener {
                 update_firstname.setText(c.getString(c.getColumnIndex(UserTable.FIRSTNAME)))
                 update_lastname.setText(c.getString(c.getColumnIndex(UserTable.LASTNAME)))
                 update_username.setText(c.getString(c.getColumnIndex(UserTable.USERNAME)))
-                update_dateofbirthday.init(c.getInt(c.getColumnIndex(UserTable.YEAROFBIRTHDAY)), c.getInt(c.getColumnIndex(UserTable.MONTHOFBIRTHDAY)), c.getInt(c.getColumnIndex(UserTable.DAYOFBIRTHDAY)), null)
+                year = c.getInt(c.getColumnIndex(UserTable.YEAROFBIRTHDAY))
+                month = c.getInt(c.getColumnIndex(UserTable.MONTHOFBIRTHDAY))
+                dayOfMonth = c.getInt(c.getColumnIndex(UserTable.DAYOFBIRTHDAY))
+                update_dateofbirthday.setText(StringBuilder().append(dayOfMonth).append("/")
+                        .append(month).append("/").append(year))
             }
         }
     }
@@ -55,19 +64,15 @@ class UserProfileActivity : AppCompatActivity(), UserDbHelper.dataListener {
         backButton.setOnClickListener{
             finish()
         }
-        val i = inpute_register.childCount
-        for (l in 0 until i){
-            println("i = ${l}")
-            inpute_register.getChildAt(l).setOnClickListener {
-                println("je ne suis pas la")
-            }
-        }
-        profile_user_header_button_start.addView(backButton)
-        update_dateofbirthday.maxDate = Date().time
-        database.listener.add(this)
-        updateUser()
-        updateInfo.setOnClickListener {
-            "http://10.0.2.2:3000/user".httpPut(listOf("email" to update_email.text, "password" to update_password.text, "firstName" to update_firstname.text, "lastName" to update_lastname.text, "userName" to update_username.text, "yearOfBirth" to update_dateofbirthday.year, "monthOfBirth" to update_dateofbirthday.month, "dayOfBirth" to update_dateofbirthday.dayOfMonth)).responseString { request, response, result ->
+
+        val okButton = TextView(this)
+        okButton.setText(getString(R.string.str_ok))
+        okButton.setTextColor(Color.WHITE)
+        okButton.setGravity(Gravity.END)
+        okButton.setOnClickListener {
+            "http://10.0.2.2:3000/user".httpPut(listOf("email" to update_email.text, "password" to update_password.text, "firstName" to update_firstname.text,
+                    "lastName" to update_lastname.text, "userName" to update_username.text, "yearOfBirth" to year,
+                    "monthOfBirth" to month, "dayOfBirth" to dayOfMonth)).responseString { request, response, result ->
                 println("le response data")
                 println(String(response.data))
                 if (response.statusCode == 200){
@@ -85,5 +90,23 @@ class UserProfileActivity : AppCompatActivity(), UserDbHelper.dataListener {
 
             }
         }
+
+        val i = inpute_register.childCount
+       /* for (l in 0 until i){
+            println("i = ${l}")
+            inpute_register.getChildAt(l).setOnClickListener {
+                println("je ne suis pas la")
+            }
+        }
+        */
+        update_dateofbirthday.setOnClickListener {
+            DatePickerDialog(this, android.R.style.Theme_DeviceDefault_Dialog, DatePickerDialog.OnDateSetListener { datePicker, yearOfBirth, monthOfBirth, dayOfBirth ->
+                update_dateofbirthday.setText("${dayOfBirth}/${monthOfBirth}/${yearOfBirth}")
+            }, year, month, dayOfMonth).show()
+        }
+        profile_user_header_button_start.addView(backButton)
+        profile_user_header_button_end.addView(okButton)
+        database.listener.add(this)
+        updateUser()
     }
 }

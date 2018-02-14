@@ -85,8 +85,10 @@ class UserDbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "user.db", null,
                         UserTable.YEAROFBIRTHDAY to cal.get(Calendar.YEAR),
                         UserTable.USERNAME to user.name.userName)
             }
-            for (l in listener){
-                l?.updateUser()
+            if (!listener.isEmpty()){
+                for (l in listener){
+                    l?.updateUser()
+                }
             }
         }
         /*for (l in listener){
