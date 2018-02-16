@@ -3,7 +3,9 @@ package com.project.barde.barde.ui.activities
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import android.widget.DatePicker
+import android.widget.EditText
 import android.widget.Toast
 import com.github.kittinunf.fuel.httpPost
 import com.github.kittinunf.result.Result
@@ -19,7 +21,8 @@ import java.util.*
 /**
  * Created by michael on 03/11/2017.
  */
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity(){
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
