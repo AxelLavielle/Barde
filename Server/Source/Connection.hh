@@ -8,6 +8,8 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/enable_shared_from_this.hpp>
 #include <boost/asio.hpp>
+#include "MusicParameters.hh"
+#include "AI/MusicGenerator.hh"
 
 using boost::asio::ip::tcp;
 
@@ -28,6 +30,8 @@ private:
   tcp::socket _socket;
   std::string _message;
   boost::asio::streambuf _buffer;
+  MusicParameters _mp;
+  MusicGenerator _mg;
 };
 
 #endif //_CONNECTION_HH_

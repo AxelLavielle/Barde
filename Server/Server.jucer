@@ -13,8 +13,8 @@
       <GROUP id="{433F16B7-2696-AA6E-3022-31D7E9D575E2}" name="AI">
         <FILE id="vS5mAF" name="AI.cpp" compile="1" resource="0" file="../Software/Source/AI/AI.cpp"/>
         <FILE id="hb7uJV" name="AI.hh" compile="0" resource="0" file="../Software/Source/AI/AI.hh"/>
-        <FILE id="KALlps" name="Chords.cpp" compile="1" resource="0" file="../Software/Source/AI/Chords.cpp"/>
-        <FILE id="gE5IvE" name="Chords.hh" compile="0" resource="0" file="../Software/Source/AI/Chords.hh"/>
+        <FILE id="fnBbfL" name="Chords.cpp" compile="1" resource="0" file="../Software/Source/AI/Chords.cpp"/>
+        <FILE id="Od3hPO" name="Chords.hh" compile="0" resource="0" file="../Software/Source/AI/Chords.hh"/>
         <FILE id="gqz9yH" name="Disposition.cpp" compile="1" resource="0" file="../Software/Source/AI/Disposition.cpp"/>
         <FILE id="RC5hXf" name="Disposition.hh" compile="0" resource="0" file="../Software/Source/AI/Disposition.hh"/>
         <FILE id="Bu9f8k" name="MusicGenerator.cpp" compile="1" resource="0"
@@ -202,7 +202,7 @@
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <LINUX_MAKE targetFolder="Builds" extraCompilerFlags="-I../../Software/JsoncppLibrary/&#10;-I../../Software/LuaLibrary/include&#10;-W&#10;-Wall&#10;-Wextra"
+    <LINUX_MAKE targetFolder="Builds" extraCompilerFlags="-I../../Software/JsoncppLibrary/&#10;-I../../Software/LuaLibrary/include&#10;-I../../Software/Source&#10;-W&#10;-Wall&#10;-Wextra"
                 externalLibraries="boost_system&#10;lua" extraDefs="SOURCEMARKOV=\&quot;${CURDIR}/../Software/Source/markovSource/\&quot;">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug"/>
