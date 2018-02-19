@@ -55,10 +55,10 @@ class UserProfileActivity : AppCompatActivity(), UserDbHelper.dataListener, Text
                 edit = true
                 c.moveToFirst()
                 update_email.setText(c.getString(c.getColumnIndex(UserTable.EMAIL)))
-                update_password.setText(c.getString(c.getColumnIndex(UserTable.PASSWORD)))
+                /*update_password.setText(c.getString(c.getColumnIndex(UserTable.PASSWORD)))*/
                 update_firstname.setText(c.getString(c.getColumnIndex(UserTable.FIRSTNAME)))
                 update_lastname.setText(c.getString(c.getColumnIndex(UserTable.LASTNAME)))
-                update_username.setText(c.getString(c.getColumnIndex(UserTable.USERNAME)))
+                /* update_username.setText(c.getString(c.getColumnIndex(UserTable.USERNAME)))*/
                 year = c.getInt(c.getColumnIndex(UserTable.YEAROFBIRTHDAY))
                 month = c.getInt(c.getColumnIndex(UserTable.MONTHOFBIRTHDAY))
                 dayOfMonth = c.getInt(c.getColumnIndex(UserTable.DAYOFBIRTHDAY))
@@ -70,9 +70,10 @@ class UserProfileActivity : AppCompatActivity(), UserDbHelper.dataListener, Text
     }
 
     private fun updateData(){
-        "http://10.0.2.2:3000/user".httpPut(listOf("email" to update_email.text, "password" to update_password.text, "firstName" to update_firstname.text,
-                "lastName" to update_lastname.text, "userName" to update_username.text, "yearOfBirth" to year,
-                "monthOfBirth" to month, "dayOfBirth" to dayOfMonth)).responseString { request, response, result ->
+        StringBuilder(getString(R.string.api)).append("/user").toString()
+                .httpPut(listOf("email" to update_email.text, /*"password" to update_password.text,*/ "firstName" to update_firstname.text,
+                        "lastName" to update_lastname.text, "yearOfBirth" to year,
+                        "monthOfBirth" to month, "dayOfBirth" to dayOfMonth)).responseString { request, response, result ->
             println(String(response.data))
             if (response.statusCode == 200){
                 val update: Login = Gson().fromJson(String(response.data), Login::class.java)
@@ -122,8 +123,8 @@ class UserProfileActivity : AppCompatActivity(), UserDbHelper.dataListener, Text
 
         update_firstname.addTextChangedListener(this)
         update_lastname.addTextChangedListener(this)
-        update_username.addTextChangedListener(this)
-        update_email.addTextChangedListener(this)
+        /*update_username.addTextChangedListener(this)*/
+        /*update_email.addTextChangedListener(this)*/
         update_dateofbirthday.addTextChangedListener(this)
 
         update_dateofbirthday.setOnClickListener {

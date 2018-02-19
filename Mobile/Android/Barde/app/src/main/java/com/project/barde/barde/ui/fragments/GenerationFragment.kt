@@ -7,13 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.project.barde.barde.R
 
-
 /**
- * Created by michael on 10/02/2018.
+ * Created by michael on 17/02/2018.
  */
-class MyListsFragment : Fragment() {
+class GenerationFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater!!.inflate(R.layout.fragment_my_lists, container, false)
-        return v
+        return inflater!!.inflate(R.layout.fragment_generation, container, false)
     }
 }

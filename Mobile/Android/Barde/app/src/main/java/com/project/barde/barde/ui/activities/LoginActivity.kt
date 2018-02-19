@@ -24,16 +24,24 @@ class LoginActivity : AppCompatActivity() {
         val user: User
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        /*email.setText("micha@barde.io")
+        password.setText("titiletutu")*/
+        email.setText("toto")
+        password.setText("toto")
+
         connexion.setOnClickListener {
             doAsync {
-                "http://10.0.2.2:3000/auth/login".httpPost(listOf("email" to email.text, "password" to password.text)).responseString{ request, response, result ->
-                    val login: Login = Gson().fromJson(String(response.data), Login::class.java)
-                    Toast.makeText(this@LoginActivity, login.data.message, Toast.LENGTH_SHORT).show()
-                    when (result) {
-                        is Result.Success -> {
-                            FuelManager.instance.baseHeaders = mapOf("Authorization" to login.data.token!!)
-                            database.updateUser()
-                            finish()
+                StringBuilder(getString(R.string.api)).append("/auth/login").toString()
+                        .httpPost(listOf("email" to email.text, "password" to password.text)).responseString{ request, response, result ->
+                    if (!response.data.isEmpty()){
+                        val login: Login = Gson().fromJson(String(response.data), Login::class.java)
+                        Toast.makeText(this@LoginActivity, login.data.message, Toast.LENGTH_SHORT).show()
+                        when (result) {
+                            is Result.Success -> {
+                                FuelManager.instance.baseHeaders = mapOf("Authorization" to login.data.token!!)
+                                database.updateUser()
+                                finish()
+                            }
                         }
                     }
 

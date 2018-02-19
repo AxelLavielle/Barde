@@ -1,16 +1,12 @@
 package com.project.barde.barde.db
 
 import android.content.Context
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import com.github.kittinunf.fuel.core.FuelManager
 import com.github.kittinunf.fuel.httpGet
-import com.github.kittinunf.fuel.httpPut
 import com.google.gson.Gson
+import com.project.barde.barde.R
 import com.project.barde.barde.model.RequestMe
 import org.jetbrains.anko.db.*
-import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.*
 
 /**
@@ -18,9 +14,9 @@ import java.util.*
  */
 class UserDbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "user.db", null, 1) {
     var listener = arrayListOf<dataListener>()
+    lateinit var api : String
     companion object {
         private var instance: UserDbHelper? = null
-        /*private val listener = arrayListOf<Any>()*/
         @Synchronized
         fun getInstance(ctx: Context): UserDbHelper {
             if (instance == null) {
@@ -51,12 +47,11 @@ class UserDbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "user.db", null,
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     }
 
-    /*fun addListener(func : Any){
-        listener.add(func)
-    }*/
-
     fun updateUser () {
-        "http://10.0.2.2:3000/user/me".httpGet().responseString { request, response, result ->
+        StringBuilder(api).append("/user/me").toString()
+                .httpGet().responseString { request, response, result ->
+            println(response.statusCode)
+            println(String(response.data))
             val requestMe: RequestMe
             requestMe = Gson().fromJson(String(response.data), RequestMe::class.java)
             val user = requestMe.data.user
@@ -67,7 +62,7 @@ class UserDbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "user.db", null,
             if (c.count >= 1){
                 this.writableDatabase.update("user",
                         UserTable.EMAIL to user.email,
-                        UserTable.PASSWORD to "toto",
+                        /*UserTable.PASSWORD to "toto",*/
                         UserTable.FIRSTNAME to user.name.firstName,
                         UserTable.LASTNAME to user.name.lastName,
                         UserTable.DAYOFBIRTHDAY to cal.get(Calendar.DAY_OF_MONTH),
@@ -77,7 +72,7 @@ class UserDbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "user.db", null,
             }else {
                 this.writableDatabase.insert("user",
                         UserTable.EMAIL to user.email,
-                        UserTable.PASSWORD to "toto",
+                        /*UserTable.PASSWORD to "toto",*/
                         UserTable.FIRSTNAME to user.name.firstName,
                         UserTable.LASTNAME to user.name.lastName,
                         UserTable.DAYOFBIRTHDAY to cal.get(Calendar.DAY_OF_MONTH),
@@ -91,9 +86,6 @@ class UserDbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "user.db", null,
                 }
             }
         }
-        /*for (l in listener){
-            l
-        }*/
     }
 }
 

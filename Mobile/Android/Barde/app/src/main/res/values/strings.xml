@@ -27,4 +27,6 @@
     <string name="str_back">back</string>
     <string name="str_cancel">Cancel</string>
     <string name="str_ok">Ok</string>
+    <string name="str_playlist">Playlist</string>
+    <string name="str_generation">Generation</string>
 </resources>
