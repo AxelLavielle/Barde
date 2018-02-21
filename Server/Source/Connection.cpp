@@ -45,6 +45,7 @@ void Connection::handle_receive(const boost::system::error_code& error)
   std::istream is(&_buffer);
   std::getline(is, line);
   std::cout << line;
+  _player.Play();
 }
 
 std::string Connection::make_daytime_string() const

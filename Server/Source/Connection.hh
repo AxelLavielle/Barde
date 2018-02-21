@@ -7,9 +7,10 @@
 #include <boost/bind.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/enable_shared_from_this.hpp>
+#include "AI/MusicGenerator.hh"
+#include "Player.hh"
 #include <boost/asio.hpp>
 #include "MusicParameters.hh"
-#include "AI/MusicGenerator.hh"
 
 using boost::asio::ip::tcp;
 
@@ -32,6 +33,7 @@ private:
   boost::asio::streambuf _buffer;
   MusicParameters _mp;
   MusicGenerator _mg;
+  Player _player;
 };
 
 #endif //_CONNECTION_HH_
