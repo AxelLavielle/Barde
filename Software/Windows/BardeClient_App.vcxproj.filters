@@ -484,6 +484,9 @@
     <ClCompile Include="..\Source\GraphManager\Theme.cpp">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\GraphManager\UserParamsComponent.cpp">
+      <Filter>BardeClient\Source\GraphManager</Filter>
+    </ClCompile>
     <ClCompile Include="..\Source\MidiManager\AMidiManager.cpp">
       <Filter>BardeClient\Source\MidiManager</Filter>
     </ClCompile>
@@ -2407,6 +2410,9 @@
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\GraphManager\Theme.h">
+      <Filter>BardeClient\Source\GraphManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\GraphManager\UserParamsComponent.h">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\MidiManager\AMidiManager.hh">

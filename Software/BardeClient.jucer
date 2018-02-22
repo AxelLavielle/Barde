@@ -111,6 +111,10 @@
               file="Source/GraphManager/MusicStyleButton.h"/>
         <FILE id="anX9Wi" name="Theme.cpp" compile="1" resource="0" file="Source/GraphManager/Theme.cpp"/>
         <FILE id="UcsbfQ" name="Theme.h" compile="0" resource="0" file="Source/GraphManager/Theme.h"/>
+        <FILE id="XanxvO" name="UserParamsComponent.cpp" compile="1" resource="0"
+              file="Source/GraphManager/UserParamsComponent.cpp"/>
+        <FILE id="rg8N4I" name="UserParamsComponent.h" compile="0" resource="0"
+              file="Source/GraphManager/UserParamsComponent.h"/>
       </GROUP>
       <GROUP id="{52D574CE-B6FD-4ACB-AA76-BC22CA3CBE72}" name="MidiManager">
         <FILE id="aUJmsJ" name="AMidiManager.cpp" compile="1" resource="0"

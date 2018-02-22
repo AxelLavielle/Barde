@@ -189,6 +189,7 @@
     <ClCompile Include="..\Source\GraphManager\MainWindow.cpp"/>
     <ClCompile Include="..\Source\GraphManager\MusicStyleButton.cpp"/>
     <ClCompile Include="..\Source\GraphManager\Theme.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\UserParamsComponent.cpp"/>
     <ClCompile Include="..\Source\MidiManager\AMidiManager.cpp"/>
     <ClCompile Include="..\Source\MidiManager\Midi.cpp"/>
     <ClCompile Include="..\Source\MidiManager\MidiManager.cpp"/>
@@ -1856,6 +1857,7 @@
     <ClInclude Include="..\Source\GraphManager\MainWindow.hh"/>
     <ClInclude Include="..\Source\GraphManager\MusicStyleButton.h"/>
     <ClInclude Include="..\Source\GraphManager\Theme.h"/>
+    <ClInclude Include="..\Source\GraphManager\UserParamsComponent.h"/>
     <ClInclude Include="..\Source\MidiManager\AMidiManager.hh"/>
     <ClInclude Include="..\Source\MidiManager\IMidiManager.hpp"/>
     <ClInclude Include="..\Source\MidiManager\Instruments.hh"/>
