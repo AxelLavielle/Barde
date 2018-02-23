@@ -29,4 +29,5 @@
     <string name="str_ok">Ok</string>
     <string name="str_playlist">Playlist</string>
     <string name="str_generation">Generation</string>
+    <string name="str_subscription">Subscribe</string>
 </resources>

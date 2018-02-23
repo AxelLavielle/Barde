@@ -50,39 +50,41 @@ class UserDbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "user.db", null,
     fun updateUser () {
         StringBuilder(api).append("/user/me").toString()
                 .httpGet().responseString { request, response, result ->
-            println(response.statusCode)
-            println(String(response.data))
-            val requestMe: RequestMe
-            requestMe = Gson().fromJson(String(response.data), RequestMe::class.java)
-            val user = requestMe.data.user
-            val c = this.readableDatabase.rawQuery("SELECT * FROM user LIMIT 1", null)
+            if (response.statusCode == 200){
+                println(response.statusCode)
+                println(String(response.data))
+                val requestMe: RequestMe
+                requestMe = Gson().fromJson(String(response.data), RequestMe::class.java)
+                val user = requestMe.data.user
+                val c = this.readableDatabase.rawQuery("SELECT * FROM user LIMIT 1", null)
 
-            val cal = Calendar.getInstance()
-            cal.setTime(user.dateOfBirth)
-            if (c.count >= 1){
-                this.writableDatabase.update("user",
-                        UserTable.EMAIL to user.email,
-                        /*UserTable.PASSWORD to "toto",*/
-                        UserTable.FIRSTNAME to user.name.firstName,
-                        UserTable.LASTNAME to user.name.lastName,
-                        UserTable.DAYOFBIRTHDAY to cal.get(Calendar.DAY_OF_MONTH),
-                        UserTable.MONTHOFBIRTHDAY to cal.get(Calendar.MONTH),
-                        UserTable.YEAROFBIRTHDAY to cal.get(Calendar.YEAR),
-                        UserTable.USERNAME to user.name.userName).whereSimple("_id = 1 OR 1").exec()
-            }else {
-                this.writableDatabase.insert("user",
-                        UserTable.EMAIL to user.email,
-                        /*UserTable.PASSWORD to "toto",*/
-                        UserTable.FIRSTNAME to user.name.firstName,
-                        UserTable.LASTNAME to user.name.lastName,
-                        UserTable.DAYOFBIRTHDAY to cal.get(Calendar.DAY_OF_MONTH),
-                        UserTable.MONTHOFBIRTHDAY to cal.get(Calendar.MONTH),
-                        UserTable.YEAROFBIRTHDAY to cal.get(Calendar.YEAR),
-                        UserTable.USERNAME to user.name.userName)
-            }
-            if (!listener.isEmpty()){
-                for (l in listener){
-                    l?.updateUser()
+                val cal = Calendar.getInstance()
+                cal.setTime(user.dateOfBirth)
+                if (c.count >= 1){
+                    this.writableDatabase.update("user",
+                            UserTable.EMAIL to user.email,
+                            /*UserTable.PASSWORD to "toto",*/
+                            UserTable.FIRSTNAME to user.name.firstName,
+                            UserTable.LASTNAME to user.name.lastName,
+                            UserTable.DAYOFBIRTHDAY to cal.get(Calendar.DAY_OF_MONTH),
+                            UserTable.MONTHOFBIRTHDAY to cal.get(Calendar.MONTH),
+                            UserTable.YEAROFBIRTHDAY to cal.get(Calendar.YEAR),
+                            UserTable.USERNAME to user.name.userName).whereSimple("_id = 1 OR 1").exec()
+                }else {
+                    this.writableDatabase.insert("user",
+                            UserTable.EMAIL to user.email,
+                            /*UserTable.PASSWORD to "toto",*/
+                            UserTable.FIRSTNAME to user.name.firstName,
+                            UserTable.LASTNAME to user.name.lastName,
+                            UserTable.DAYOFBIRTHDAY to cal.get(Calendar.DAY_OF_MONTH),
+                            UserTable.MONTHOFBIRTHDAY to cal.get(Calendar.MONTH),
+                            UserTable.YEAROFBIRTHDAY to cal.get(Calendar.YEAR),
+                            UserTable.USERNAME to user.name.userName)
+                }
+                if (!listener.isEmpty()){
+                    for (l in listener){
+                        l?.updateUser()
+                    }
                 }
             }
         }

@@ -27,17 +27,20 @@ class PlaylistFragment : Fragment() , View.OnClickListener{
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        var playlists = arrayOf<String>("detente", "travail", "etude", "vacance", "relaxation")
+        var playlists = arrayOf<String>("detente", "travail", "etude", "vacance", "relaxation", "travail", "etude", "vacance", "relaxation", "travail", "etude", "vacance", "relaxation")
         val adapter = PlaylistAdpter(playlists, this)
 
-        playlist_discover_reycler_view.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        /*playlist_discover_reycler_view.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         playlist_discover_reycler_view.adapter = adapter
 
         playlist_style_reycler_view.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         playlist_style_reycler_view.adapter = adapter
 
         playlist_best_reycler_view.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        playlist_best_reycler_view.adapter = adapter
+        playlist_best_reycler_view.adapter = adapter*/
+
+        playlist_reycler_view.layoutManager = GridLayoutManager(activity, 2)
+        playlist_reycler_view.adapter = adapter
         super.onViewCreated(view, savedInstanceState)
     }
 }

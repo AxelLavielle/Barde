@@ -14,30 +14,25 @@
         android:orientation="horizontal"
         android:gravity="center">
         <LinearLayout
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:background="#000000">
-        </LinearLayout>
-        <LinearLayout
             android:paddingLeft="10dp"
-            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center">
             <TextView
                 android:textColor="#ffffff"
                 android:text="Créer par TheBatman"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
                 android:textColor="#ffffff"
                 android:text="beaucoup de musiqu"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
                 android:textColor="#ffffff"
                 android:text="1h40 min"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
     </LinearLayout>
@@ -56,10 +51,10 @@
     </LinearLayout>
 
     <LinearLayout
+        android:paddingTop="10dp"
         android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffffff">
+        android:layout_height="wrap_content"    >
         <android.support.v7.widget.RecyclerView
             android:id="@+id/list_music_playlist"
             android:layout_width="match_parent"

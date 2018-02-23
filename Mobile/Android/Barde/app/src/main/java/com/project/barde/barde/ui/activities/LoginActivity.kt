@@ -18,16 +18,17 @@ import com.project.barde.barde.model.User
 import com.project.barde.barde.model.Login
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.startActivity
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val user: User
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        /*email.setText("micha@barde.io")
-        password.setText("titiletutu")*/
-        email.setText("toto")
-        password.setText("toto")
+        email.setText("micha@barde.io")
+        password.setText("titiletutu")
+        /*email.setText("toto")
+        password.setText("toto")*/
 
         connexion.setOnClickListener {
             doAsync {

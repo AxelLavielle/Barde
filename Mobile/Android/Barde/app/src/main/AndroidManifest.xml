@@ -22,7 +22,9 @@
         <activity android:name=".ui.activities.RegisterActivity" />
         <activity android:name=".ui.activities.UserProfileActivity" />
         <activity android:name=".ui.activities.FirstPage" />
-        <activity android:name=".ui.activities.PlaylistActivity"></activity>
+        <activity android:name=".ui.activities.PlaylistActivity" />
+        <activity android:name=".ui.activities.SettingsActivity" />
+        <activity android:name=".ui.activities.SubscriptionActivity"></activity>
     </application>
 
 </manifest>

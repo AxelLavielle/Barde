@@ -45,13 +45,6 @@
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-        <TextView
-            android:textColor="#000000"
-            android:id="@+id/item_follow"
-            android:text="Followed by 30 000 fans"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </LinearLayout>

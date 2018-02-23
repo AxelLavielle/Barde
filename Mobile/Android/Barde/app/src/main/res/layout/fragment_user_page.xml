@@ -43,10 +43,43 @@
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/str_setting"
+            android:textColor="#000000"
+            android:background="@drawable/button_rounded_corners_white"
+            android:id="@+id/update_setting" />
+        <Button
+            android:gravity="start"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/str_update_profile"
             android:textColor="#000000"
             android:background="@drawable/button_rounded_corners_white"
             android:id="@+id/update_profile" />
+        <TextView
+            android:paddingLeft="10dp"
+            android:text="My subscription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:gravity="start"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/str_subscription"
+            android:textColor="#000000"
+            android:background="@drawable/button_rounded_corners_white"
+            android:id="@+id/update_subscribe" />
+
+        <Button
+            android:gravity="start"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="promot code"
+            android:textColor="#000000"
+            android:background="@drawable/button_rounded_corners_white"
+            android:id="@+id/update_promot_code" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
