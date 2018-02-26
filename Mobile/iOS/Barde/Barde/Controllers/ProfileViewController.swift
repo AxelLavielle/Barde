@@ -23,18 +23,36 @@ class ProfileViewController: UIViewController, SettingMenuButtonDelegate, NSFetc
         
         switch button.tag {
         case 1:
-            let indexPath = NSIndexPath(row: 0, section: 0)
-            let profil = controller.object(at: indexPath as IndexPath)
-            performSegue(withIdentifier: "SettingsEditAccountView", sender: profil)
+//            let indexPath = NSIndexPath(row: 0, section: 0)
+//            let profil = controller.object(at: indexPath as IndexPath)
+//
+            
+            let profil: NSManagedObject
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Profil")
+            //request.predicate = NSPredicate(format: "age = %@", "12")
+            request.returnsObjectsAsFaults = false
+            request.fetchLimit = 1
+            
+            do {
+                let result = try context.fetch(request)
+                
+                for data in result as! [NSManagedObject] {
+                    
+                    profil = data
+                    print("AAAAA", profil)
+                    performSegue(withIdentifier: "SettingsEditAccountView", sender: profil)
+                    return
+                }
+            } catch {
+                print("Failed")
+            }
         default:
             print("lol")
         }
         
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    override func viewDidAppear(_ animated: Bool) {        
         accountButton.delegate = self
         attemptFetch()
         
@@ -51,6 +69,8 @@ class ProfileViewController: UIViewController, SettingMenuButtonDelegate, NSFetc
         
         do {
             let result = try context.fetch(request)
+            
+            print("okkkkkk")
             
             for data in result as! [NSManagedObject] {
                 
@@ -100,12 +120,11 @@ class ProfileViewController: UIViewController, SettingMenuButtonDelegate, NSFetc
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "SettingsEditAccountView" {
             if let navController = segue.destination as? UINavigationController {
                 if let chidVC = navController.topViewController as? SettingsEditAccountView{
-                    if let profil = sender as? Profil{
-                        chidVC.profilFromLocal = profil
-                    }
+                    chidVC.profilFromLocal = sender as? Profil
                 }
             }
         }

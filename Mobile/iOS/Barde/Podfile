@@ -8,5 +8,6 @@ target 'Barde' do
   # Pods for Barde
   pod 'Alamofire', '~> 4.5'
   pod 'SwiftyJSON'
+  pod 'ReachabilitySwift'
 
 end

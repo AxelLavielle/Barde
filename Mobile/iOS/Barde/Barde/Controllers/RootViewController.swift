@@ -22,10 +22,10 @@ class RootViewController: UITabBarController, NSFetchedResultsControllerDelegate
             "Authorization": UserDefaults.standard.string(forKey: "Token")!,
             ]
         
-
-        let email = UserDefaults.standard.string(forKey: "Email")!
-        
-        Alamofire.request(Utils().getApiUrl() + "/user/" + email, headers: headers).responseJSON { response in
+        Alamofire.request(Utils().getApiUrl() + "/user/me", method:.get, headers: headers).responseJSON { response in
+            print("Request: \(String(describing: response.request))")   // original url request
+            print("Response: \(String(describing: response.response))") // http url response
+            print("Result: \(String(describing: response.result.value))")
             
             if let httpStatusCode = response.response?.statusCode {
                 switch(httpStatusCode) {
@@ -47,7 +47,7 @@ class RootViewController: UITabBarController, NSFetchedResultsControllerDelegate
                         let date = dateFormatter.date(from: data["user"]["dateOfBirth"].stringValue)!
                         dateFormatter.dateFormat = "MM/dd/YYYY"
                         let dateString = dateFormatter.string(from: date)
-                        
+
                         
                         profil.setValue(dateString, forKey: "birthdate")
                         
@@ -55,7 +55,8 @@ class RootViewController: UITabBarController, NSFetchedResultsControllerDelegate
                             try context.save()
                         } catch {
                             
-                            print("Failed saving")
+                            print("Error info: \(error)")
+                            
                         }
                         
                     }

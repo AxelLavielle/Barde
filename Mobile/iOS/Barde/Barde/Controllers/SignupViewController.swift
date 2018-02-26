@@ -92,7 +92,7 @@ class SignupViewController: UIViewController {
                                         let data = JSON(response.result.value!)
                                         
                                         UserDefaults.standard.set(data["data"]["token"].stringValue, forKey: "Token")
-                                        UserDefaults.standard.set(data["data"]["email"].stringValue, forKey: "Email")
+                                        UserDefaults.standard.set(self.emailTextField.text, forKey: "Email")
                                         self.performSegue(withIdentifier: "ToMainView", sender: self)
                                     }
                                     break

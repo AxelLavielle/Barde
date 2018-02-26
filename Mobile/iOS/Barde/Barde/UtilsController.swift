@@ -13,7 +13,7 @@ import CoreData
 class Utils {
     
     func getApiUrl() -> String {
-        return "http://api.barde.io"
+        return "http://api-dev.barde.io"
     }
     
     func isValid(_ email: String) -> Bool {

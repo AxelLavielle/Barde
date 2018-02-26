@@ -49,7 +49,7 @@ class LoginViewController: UIViewController {
         Alamofire.request(Utils().getApiUrl() + "/auth/login", method:.post, parameters: parameters).responseJSON { response in
             print("Request: \(String(describing: response.request))")   // original url request
             print("Response: \(String(describing: response.response))") // http url response
-            print("Result: \(response.result.value)")
+            print("Result: \(String(describing: response.result.value))")
             // response serialization result
             
             if let httpStatusCode = response.response?.statusCode {

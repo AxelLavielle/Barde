@@ -22,10 +22,13 @@
 		1D6E405D1F8D4E8D006522C8 /* Barde.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E405B1F8D4E8D006522C8 /* Barde.xcdatamodeld */; };
 		1D6E405F1F8D4E8D006522C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D6E405E1F8D4E8D006522C8 /* Assets.xcassets */; };
 		1D6E40621F8D4E8D006522C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D6E40601F8D4E8D006522C8 /* LaunchScreen.storyboard */; };
-		1D9795031F9E620700D299EF /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9795021F9E620700D299EF /* UserModel.swift */; };
 		1DC8525A1FCD0DAD009E9886 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC852591FCD0DAD009E9886 /* ProfileViewController.swift */; };
 		1DCD58471F913D29005F85C5 /* SettingMenuButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DCD58461F913D29005F85C5 /* SettingMenuButton.xib */; };
 		1DCD58491F913D36005F85C5 /* SettingMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCD58481F913D36005F85C5 /* SettingMenuButton.swift */; };
+		1DD7B1DA203CD5AB0038E838 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7B1D9203CD5AB0038E838 /* NetworkManager.swift */; };
+		1DD7B1E1203F63CE0038E838 /* Profil+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7B1DF203F63CE0038E838 /* Profil+CoreDataClass.swift */; };
+		1DD7B1E2203F63CE0038E838 /* Profil+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7B1E0203F63CE0038E838 /* Profil+CoreDataProperties.swift */; };
+		1DD7B1E5204277450038E838 /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7B1E4204277450038E838 /* UserServices.swift */; };
 		1DFBF2632017EFEF002A48BC /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBF2622017EFEF002A48BC /* UIViewExtension.swift */; };
 		5153432B12B35C53A3111D17 /* Pods_Barde.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C60B6F2CE394949EDAB0D46 /* Pods_Barde.framework */; };
 /* End PBXBuildFile section */
@@ -48,10 +51,13 @@
 		1D6E405E1F8D4E8D006522C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D6E40611F8D4E8D006522C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D6E40631F8D4E8D006522C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1D9795021F9E620700D299EF /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		1DC852591FCD0DAD009E9886 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1DCD58461F913D29005F85C5 /* SettingMenuButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingMenuButton.xib; sourceTree = "<group>"; };
 		1DCD58481F913D36005F85C5 /* SettingMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMenuButton.swift; sourceTree = "<group>"; };
+		1DD7B1D9203CD5AB0038E838 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		1DD7B1DF203F63CE0038E838 /* Profil+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profil+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1DD7B1E0203F63CE0038E838 /* Profil+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profil+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1DD7B1E4204277450038E838 /* UserServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServices.swift; sourceTree = "<group>"; };
 		1DFBF2622017EFEF002A48BC /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		548C4468B491C65C570A70ED /* Pods-Barde.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Barde.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Barde/Pods-Barde.debug.xcconfig"; sourceTree = "<group>"; };
 		8C60B6F2CE394949EDAB0D46 /* Pods_Barde.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Barde.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +97,7 @@
 		1D6E40531F8D4E8D006522C8 /* Barde */ = {
 			isa = PBXGroup;
 			children = (
+				1DD7B1E3204277330038E838 /* Services */,
 				1D37175A1FC74042000C682B /* UtilsController.swift */,
 				1DDCA6991F8D52E8009F1E1C /* Models */,
 				1DDCA6981F8D52E4009F1E1C /* Views */,
@@ -105,6 +112,7 @@
 				1D4D266A1F8D65C800383255 /* SettingsViewController.swift */,
 				1D4D266C1F8D65EF00383255 /* MainViewController.swift */,
 				1DFBF2622017EFEF002A48BC /* UIViewExtension.swift */,
+				1DD7B1D9203CD5AB0038E838 /* NetworkManager.swift */,
 			);
 			path = Barde;
 			sourceTree = "<group>";
@@ -116,6 +124,15 @@
 				1DCD58481F913D36005F85C5 /* SettingMenuButton.swift */,
 			);
 			path = SettingMenuButton;
+			sourceTree = "<group>";
+		};
+		1DD7B1E3204277330038E838 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1DD7B1E4204277450038E838 /* UserServices.swift */,
+			);
+			name = Services;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		1DDCA6971F8D52DE009F1E1C /* Controllers */ = {
@@ -143,7 +160,8 @@
 		1DDCA6991F8D52E8009F1E1C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1D9795021F9E620700D299EF /* UserModel.swift */,
+				1DD7B1DF203F63CE0038E838 /* Profil+CoreDataClass.swift */,
+				1DD7B1E0203F63CE0038E838 /* Profil+CoreDataProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -278,11 +296,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Barde/Pods-Barde-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,17 +322,20 @@
 				1D6E40571F8D4E8D006522C8 /* ViewController.swift in Sources */,
 				1D1013A01FE9AC6E00913E43 /* LoginViewController.swift in Sources */,
 				1D37175B1FC74042000C682B /* UtilsController.swift in Sources */,
+				1DD7B1E2203F63CE0038E838 /* Profil+CoreDataProperties.swift in Sources */,
 				1DCD58491F913D36005F85C5 /* SettingMenuButton.swift in Sources */,
 				1DFBF2632017EFEF002A48BC /* UIViewExtension.swift in Sources */,
 				1D4D266D1F8D65EF00383255 /* MainViewController.swift in Sources */,
 				1DC8525A1FCD0DAD009E9886 /* ProfileViewController.swift in Sources */,
 				1D4C6A851FBF5C410052922E /* SettingsEditAccountView.swift in Sources */,
+				1DD7B1DA203CD5AB0038E838 /* NetworkManager.swift in Sources */,
 				1D4D266B1F8D65C800383255 /* SettingsViewController.swift in Sources */,
+				1DD7B1E1203F63CE0038E838 /* Profil+CoreDataClass.swift in Sources */,
 				1D1013A41FE9F4E800913E43 /* SignupViewController.swift in Sources */,
 				1D10139E1FE9936400913E43 /* FirstPageViewController.swift in Sources */,
-				1D9795031F9E620700D299EF /* UserModel.swift in Sources */,
 				1D6E40551F8D4E8D006522C8 /* AppDelegate.swift in Sources */,
 				1D10139C1FE9871900913E43 /* RoundedButton.swift in Sources */,
+				1DD7B1E5204277450038E838 /* UserServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

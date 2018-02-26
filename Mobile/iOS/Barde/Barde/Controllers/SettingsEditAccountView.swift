@@ -11,16 +11,15 @@ import CoreData
 
 class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet weak var firstNameInput: UITextField!
     @IBOutlet weak var tfFirstName: UITextField!
     @IBOutlet weak var tfLastName: UITextField!
-    @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfUserName: UITextField!
     @IBOutlet weak var tfBirthDate: UITextField!
     @IBOutlet weak var buttonBack: UIBarButtonItem!
     
     var profilFromLocal: Profil? // optional
-    
+    var userService: UserService?
+
     let datePicker = UIDatePicker()
     
     func createDatePicker() {
@@ -43,13 +42,14 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        userService = UserService()
+        
         createDatePicker()
         
-        self.navigationItem.title = "Mon compte"
+        self.navigationItem.title = "My account"
         
         tfFirstName.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
         tfLastName.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
-        tfEmail.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
         tfUserName.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
         tfBirthDate.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
 
@@ -59,6 +59,8 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
     @IBAction func saveButton(_ sender: Any) {
         
         saveUserData()
+        
+        
         ad.saveContext()
         
     }
@@ -68,28 +70,15 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
         
         profil = profilFromLocal
         
-        if let email = tfEmail.text{
-            if (Utils().isValid(email))
-            {
-                profil.email = email
-            } else {
-                let refreshAlert = UIAlertController(title: "Adresse e-mail invalide.", message: "Veuillez saisir une adresse e-mail valide.", preferredStyle: UIAlertControllerStyle.alert)
-                
-                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-                }))
-                
-                present(refreshAlert, animated: true, completion: nil)
-            }
-        }
         if let firstname = tfFirstName.text{
             
             if (!firstname.isEmpty)
             {
                 profil.firstname = firstname
             } else {
-                let refreshAlert = UIAlertController(title: "Champs \"Prénom\" invalide.", message: "Le champs \"Prénom\" ne peut pas être vide.", preferredStyle: UIAlertControllerStyle.alert)
+                let refreshAlert = UIAlertController(title: "Invalid \"Firstname\" field.", message: "Field \"Firstname\" can't be empty.", preferredStyle: UIAlertControllerStyle.alert)
                 
-                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
                 }))
                 
                 present(refreshAlert, animated: true, completion: nil)
@@ -100,9 +89,9 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
             {
                 profil.lastname = lastname
             } else {
-                let refreshAlert = UIAlertController(title: "Champs \"Nom\" invalide.", message: "Le champs \"Nom\" ne peut pas être vide.", preferredStyle: UIAlertControllerStyle.alert)
+                let refreshAlert = UIAlertController(title: "Invalid \"Lastname\" field.", message: "Field \"Lastname\" can't be empty.", preferredStyle: UIAlertControllerStyle.alert)
                 
-                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
                 }))
                 
                 present(refreshAlert, animated: true, completion: nil)
@@ -113,9 +102,9 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
             {
                 profil.username = userName
             } else {
-                let refreshAlert = UIAlertController(title: "Champs \"Pseudo\" invalide.", message: "Le champs \"Pseudo\" ne peut pas être vide.", preferredStyle: UIAlertControllerStyle.alert)
+                let refreshAlert = UIAlertController(title: "Invalid \"Username\" field.", message: "Field \"Username\" can't be empty.", preferredStyle: UIAlertControllerStyle.alert)
                 
-                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
                 }))
                 
                 present(refreshAlert, animated: true, completion: nil)
@@ -126,19 +115,19 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
             {
                 profil.birthdate = birthdate
             } else {
-                let refreshAlert = UIAlertController(title: "Champs \"Date de naissance\" invalide.", message: "Le champs \"Date de naissance\" ne peut pas être vide.", preferredStyle: UIAlertControllerStyle.alert)
+                let refreshAlert = UIAlertController(title: "Invalid \"Birthdate\" field.", message: "Field \"Birthdate\" can't be empty.", preferredStyle: UIAlertControllerStyle.alert)
                 
-                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
                 }))
                 
                 present(refreshAlert, animated: true, completion: nil)
             }
         }
+        
     }
     
     func loadUserData(){
         if let profil = profilFromLocal{
-            tfEmail.text = profil.email
             tfFirstName.text = profil.firstname
             tfLastName.text = profil.lastname
             tfUserName.text = profil.username
@@ -150,7 +139,7 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
         self.navigationItem.setHidesBackButton(true, animated: false)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "OK", style: .plain, target: self, action: #selector(validChange(_:)))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Annuler", style: .plain, target: self, action: #selector(dismissChange(_:)))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(dismissChange(_:)))
     }
     
     @objc func validChange(_ sender: Any) {
@@ -159,11 +148,12 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
         self.navigationItem.leftBarButtonItem = buttonBack;
         tfFirstName.resignFirstResponder()
         tfLastName.resignFirstResponder()
-        tfEmail.resignFirstResponder()
         tfUserName.resignFirstResponder()
         tfBirthDate.resignFirstResponder()
         self.view.endEditing(true)
         saveUserData()
+        let userData: NSManagedObject = (userService?.getLocalData())!
+        userService?.updateUserData(data: userData)
     }
     
     @objc func dismissChange(_ sender: Any) {
@@ -173,7 +163,6 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
         loadUserData()
         tfFirstName.resignFirstResponder()
         tfLastName.resignFirstResponder()
-        tfEmail.resignFirstResponder()
         tfUserName.resignFirstResponder()
         tfBirthDate.resignFirstResponder()
     }

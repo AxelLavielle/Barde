@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -14,20 +14,42 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleAspectFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="UOc-w6-2Pp">
-                                <rect key="frame" x="62" y="212" width="252" height="243"/>
+                                <rect key="frame" x="62" y="284.66666666666669" width="252" height="243.00000000000006"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="243" id="6pr-0u-Q4E"/>
                                     <constraint firstAttribute="width" constant="252" id="ZKa-WX-HUt"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IUF-qq-now">
+                                <rect key="frame" x="0.0" y="604" width="375" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">An Epitech Innovative Project
+</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.79215686269999996" green="0.36862745099999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018 © Barde - All rights reserved" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBD-yf-7HG">
+                                <rect key="frame" x="1" y="620" width="375" height="47"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="375" id="WrV-NU-kal"/>
+                                    <constraint firstAttribute="height" constant="47" id="lyv-jV-ZhA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.79215686269999996" green="0.36862745099999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="fBD-yf-7HG" secondAttribute="trailing" constant="-1" id="1pD-Ny-6Mi"/>
                             <constraint firstItem="UOc-w6-2Pp" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="4ss-ZS-g59"/>
+                            <constraint firstItem="fBD-yf-7HG" firstAttribute="top" secondItem="UOc-w6-2Pp" secondAttribute="bottom" constant="92.329999999999998" id="D2V-49-bGk"/>
+                            <constraint firstItem="fBD-yf-7HG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="1" id="F2N-xG-TZR"/>
                             <constraint firstItem="UOc-w6-2Pp" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="KVC-xX-jav"/>
                             <constraint firstItem="UOc-w6-2Pp" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="KyC-Ie-DTT"/>
                             <constraint firstItem="UOc-w6-2Pp" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="W7o-R2-J9B"/>
