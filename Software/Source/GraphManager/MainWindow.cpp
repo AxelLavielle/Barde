@@ -11,6 +11,7 @@
 #include "MainWindow.hh"
 #include "MainComponent.h"
 #include "LoginComponent.h"
+#include "UserParamsComponent.h"
 #include <sstream> 
 
 MainWindow::MainWindow(const std::string &name) : DocumentWindow(name,
@@ -27,6 +28,7 @@ MainWindow::MainWindow(const std::string &name) : DocumentWindow(name,
 	setSize(getWidth(), getHeight());
 	//setContentOwned(new LoginComponent(), true);
 	setContentOwned(new MainContentComponent(), true);
+	//setContentOwned(new UserParamsComponent(), true);
 	//centreWithSize(getWidth(), getHeight());
 	setVisible(true);
 }

@@ -94,6 +94,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/MainWindow_1a69e1a9.o \
   $(JUCE_OBJDIR)/MusicStyleButton_39681cbe.o \
   $(JUCE_OBJDIR)/Theme_6a8438b3.o \
+  $(JUCE_OBJDIR)/UserParamsComponent_ea189f76.o \
   $(JUCE_OBJDIR)/AMidiManager_545b688.o \
   $(JUCE_OBJDIR)/Midi_8be1d87e.o \
   $(JUCE_OBJDIR)/MidiManager_7f6bb1d9.o \
@@ -283,6 +284,11 @@ $(JUCE_OBJDIR)/MusicStyleButton_39681cbe.o: ../Source/GraphManager/MusicStyleBut
 $(JUCE_OBJDIR)/Theme_6a8438b3.o: ../Source/GraphManager/Theme.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling Theme.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/UserParamsComponent_ea189f76.o: ../Source/GraphManager/UserParamsComponent.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling UserParamsComponent.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/AMidiManager_545b688.o: ../Source/MidiManager/AMidiManager.cpp

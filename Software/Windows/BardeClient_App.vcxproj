@@ -15,7 +15,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D65039C7-FEC2-478D-B242-6D8148618858}</ProjectGuid>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
@@ -23,7 +23,7 @@
                  Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"
@@ -31,7 +31,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props"/>
@@ -42,7 +42,7 @@
             Label="LocalAppDataPlatform"/>
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <PropertyGroup>
@@ -56,7 +56,7 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\App\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">BardeClient</TargetName>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -189,6 +189,7 @@
     <ClCompile Include="..\Source\GraphManager\MainWindow.cpp"/>
     <ClCompile Include="..\Source\GraphManager\MusicStyleButton.cpp"/>
     <ClCompile Include="..\Source\GraphManager\Theme.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\UserParamsComponent.cpp"/>
     <ClCompile Include="..\Source\MidiManager\AMidiManager.cpp"/>
     <ClCompile Include="..\Source\MidiManager\Midi.cpp"/>
     <ClCompile Include="..\Source\MidiManager\MidiManager.cpp"/>
@@ -1856,6 +1857,7 @@
     <ClInclude Include="..\Source\GraphManager\MainWindow.hh"/>
     <ClInclude Include="..\Source\GraphManager\MusicStyleButton.h"/>
     <ClInclude Include="..\Source\GraphManager\Theme.h"/>
+    <ClInclude Include="..\Source\GraphManager\UserParamsComponent.h"/>
     <ClInclude Include="..\Source\MidiManager\AMidiManager.hh"/>
     <ClInclude Include="..\Source\MidiManager\IMidiManager.hpp"/>
     <ClInclude Include="..\Source\MidiManager\Instruments.hh"/>
