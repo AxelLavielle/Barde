@@ -1,3 +1,4 @@
+#include <boost/algorithm/string.hpp>
 #include "Connection.hh"
 
 Connection::Connection(boost::asio::io_service& io_service) : _socket(io_service)
@@ -36,16 +37,38 @@ void Connection::handle_write(const boost::system::error_code& error)
 
 void Connection::handle_receive(const boost::system::error_code& error)
 {
+  std::string line;
+
   if (error) {
     std::cout << "Couldn't read client's message : " << error.message() << std::endl;
     return;
   }
   std::cout << "[" << _socket.remote_endpoint().address().to_string() << ":" << _socket.remote_endpoint().port() << "]" << std::endl;
-  std::string line;
   std::istream is(&_buffer);
   std::getline(is, line);
   std::cout << line;
-  _player.Play();
+  parseGenRequest(line);
+  _mg.createMusic(_mp);
+}
+
+void Connection::parseGenRequest(const std::string& command)
+{
+  std::vector<std::string> params;
+  size_t i;
+  Instrument instrument;
+
+  boost::algorithm::split(params, command, boost::algorithm::is_any_of(" "));
+  _mp.setStyleName(params[0]);
+  _mp.setBpm(std::stoi(params[1]));
+  i = 2;
+  while (i != params.size())
+  {
+    instrument.name = params[i];
+    instrument.nb = instrumentList.find(params[i++])->second;
+    instrument.channel = 1;
+    instrument.velocity = 100;
+    _mp.addInstrument(instrument);
+  }
 }
 
 std::string Connection::make_daytime_string() const

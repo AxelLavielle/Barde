@@ -26,6 +26,7 @@ private:
   Connection(boost::asio::io_service& io_service);
   void handle_write(const boost::system::error_code& error);
   void handle_receive(const boost::system::error_code& error);
+  void parseGenRequest(const std::string& command);
   std::string make_daytime_string() const;
 
   tcp::socket _socket;
@@ -33,7 +34,6 @@ private:
   boost::asio::streambuf _buffer;
   MusicParameters _mp;
   MusicGenerator _mg;
-  Player _player;
 };
 
 #endif //_CONNECTION_HH_

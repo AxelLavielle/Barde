@@ -2,21 +2,23 @@
 #include <boost/array.hpp>
 #include <iostream>
 
+#define HOST "127.0.0.1"
+#define PORT 2468
 
-void send_msg(std::string host, int port, std::string msg)
+void send_msg(boost::asio::ip::tcp::socket *socket, std::string msg)
 {
-	boost::asio::io_service ios;
-	boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::address::from_string(host), port);
-	boost::asio::ip::tcp::socket socket(ios);
-
-	socket.connect(endpoint);
 	boost::system::error_code error;
-	boost::asio::write(socket, boost::asio::buffer(msg), error);
-  socket.close();
+	boost::asio::write(*socket, boost::asio::buffer(msg), error);
 }
 
 int main()
 {
-    send_msg("127.0.0.1", 2468, "Bardinho\n");
-    return 0;
+	boost::asio::io_service ios;
+	boost::asio::ip::tcp::socket *socket = new boost::asio::ip::tcp::socket(ios);
+	boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::address::from_string(HOST), PORT);
+
+	socket->connect(endpoint);
+	send_msg(socket, "Blues 90 ACOUSTICGRANDPIANO\n");
+	socket->close();
+	return 0;
 }
