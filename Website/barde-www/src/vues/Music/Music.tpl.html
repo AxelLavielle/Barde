@@ -1,0 +1,19 @@
+<div id="team" class="section barde-blue scrollspy">
+    <div class="container">
+        <br><br>
+        <div class="row center">
+            <h3 class="header col s12 white-text light">Our <span class="barde-pink-text">Team</span></h3>
+            <hr class="barde-hr">
+            <h5 class="white-text subtitle">Our team is composed of 8 developers, all 4th year Epitech's students. We have for passion music, code, beer-pong and chilling with friends.</h5>
+        </div>
+
+        <div class="row cards">
+            <div v-for="member in team.members" class="col m4 s12">
+                    <div class="team-card center">
+                        <img class="center-align center hoverable" :title="member.name" :src="member.image" alt="">
+                        <p class="profile-name center-align flow-text white-text">{{member.name}}</p>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<div>
+    <div id="about" class="section barde-main-background scrollspy">
+    <div class="container">
+        <br><br>
+        <div class="row center">
+            <h3 class="header col s12 light">Latest <span class="barde-pink-text">News</span></h3>
+            <hr class="barde-hr">
+        </div>
+        <div class="row center content">
+           <div class="col m3 s12">
+               <CardNews v-for="post in posts" link="/blog/last-steps" :image="post.image" :title="post.title" :date="post.date" :author="post.author" :headline="post.headline"></CardNews>
+           </div>
+        </div>
+    </div>
+</div>
+    <div id="team" class="section barde-blue scrollspy">
+        <div class="container">
+            <br><br>
+            <div class="row center">
+                <h3 class="header col s12 white-text light">Flexible <span class="barde-pink-text">Music</span></h3>
+                <hr class="barde-hr">
+                <h5 class="white-text subtitle">Barde mobile and desktop app allows you to easily configure the render of your wanted atmosphere </h5>
+
+                <div class="row phone">
+
+                    <div class="col m4 s12">
+                        <div class="row feature">
+                            <span>Select your Style</span>
+                            <img class="icon" src="/ic_equalizer_black_24px.png" alt="">
+                        </div>
+                        <div class="row feature">
+                            <div class="col s12">
+                                <span>Set your tempo</span>
+                                <img class="icon" src="/ic_slow_motion_video_black_24px@3x.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col m4 hide-on-small-only">
+                        <img src="/phone.png" class="responsive-img" alt="">
+                    </div>
+
+                    <div class="col m4 s12">
+                        <div class="row feature">
+                            <img class="icon" src="/ic_music_note_black_24px@3x.png" alt="">
+                            <span class="feature">Choose instruments</span>
+                        </div>
+                        <div class="row feature">
+                            <img class="icon" src="/Shape@3x.png" alt="">
+                            <span class="">Predefined settings </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

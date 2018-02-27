@@ -1,0 +1,43 @@
+{
+  "members" : [
+    {
+      "name" : "Arnaud Perrault",
+      "image" : "/profils/profil-arnaud.jpg"
+    },
+    {
+      "name" : "Axel Lavielle",
+      "image" : "/profils/profil-axel.jpg"
+    },
+    {
+      "name" : "Anthony Vogelweid",
+      "image" : "/profils/profil-anthony.jpg"
+    },
+    {
+      "name" : "Michael Temem",
+      "image" : "/profils/profil-michael.jpg"
+    },
+    {
+      "name" : "Aurelie Orset",
+      "image" : "/profils/profil-aurelie.jpg"
+    },
+    {
+      "name" : "Alexis Miele",
+      "image" : "/profils/profil-alexis.jpg"
+    },
+    {
+      "name" : "Loic Weinhard",
+      "image" : "/profils/profil-loic.jpg"
+    },
+    {
+      "name" : "Valérian Polizzi",
+      "image" : "/profils/profil-valerian.jpg"
+    },
+    {
+      "name" : "Sebastien Roynette",
+      "image" : "/profils/profil-aurelie.jpg"
+    }
+
+
+  ]
+
+}

@@ -1,0 +1,20 @@
+<div id="about" class="section barde-main-background scrollspy">
+    <div class="container">
+        <br><br>
+        <div class="row center">
+            <h3 class="header col s12 light">Get <span class="barde-pink-text"> in touch</span></h3>
+            <hr class="barde-hr">
+            <h5 class="barde-blue-text subtitle">Subscribe to our newsletter if you want to be informed of our project's avancement.</h5>
+        </div>
+        <div class="row">
+            <div class=" col s12 center-align">
+                <form v-on:submit="subscribe" action="#" method="#" >
+                    <input v-model="email" placeholder="Email" id="sub-email" type="email" class="validate browser-default">
+                    <input type="submit" v-bind:onclick="subscribe" value="subscribe" class="barde-btn btn" id="sub_btn"></input>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

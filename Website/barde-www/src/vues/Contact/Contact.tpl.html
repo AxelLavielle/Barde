@@ -1,0 +1,29 @@
+<div id="contact" class="section barde-blue scrollspy">
+    <div class="container">
+        <br><br>
+        <div class="row center">
+            <h3 class="header col s12 white-text light">Get <span class="barde-pink-text"> in touch</span></h3>
+            <hr class="barde-hr">
+            <h5 class="white-text subtitle">You have a question about our project ? Fill the form below to send your questions</h5>
+        </div>
+        <div class="row">
+            <div class="col s12 contact-form center-align">
+                <form v-on:submit="send_email" action="#" method="#" >
+
+                <div class="row">
+                    <input v-model="name" placeholder="Name" id="email" type="text" class="validate browser-default">
+                </div>
+                <div class="row">
+                    <input v-model="email" placeholder="Email" id="sub-email" type="text" class="validate browser-default">
+                </div>
+                <div class="row">
+                    <textarea v-model="message" placeholder="Message" type="text" class="validate browser-default"></textarea>
+                </div>
+                    <input type="submit" value="send" class="barde-btn btn" id="sub_btn"/>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
