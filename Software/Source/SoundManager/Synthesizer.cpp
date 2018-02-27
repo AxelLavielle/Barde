@@ -45,7 +45,7 @@ void Synthesizer::setUsingSampledSound()
 		ScopedPointer<AudioFormatReader> reader = _audioFormatManager.createReaderFor(*file);
 		try
 		{
-			SynthesizerInstrument::Ptr instrument(new SynthesizerInstrument(FileManager::getFileName(*it), *reader, allNotes, 60, 0, 1, 1.0, instrumentList.at(FileManager::getFileName(*it))));
+			SynthesizerInstrument::Ptr instrument(new SynthesizerInstrument(FileManager::getFileName(*it), *reader, allNotes, 72, 0, 1, 1.0, instrumentList.at(FileManager::getFileName(*it))));
 			_synth.addSound(instrument);
 		}
 		catch (const std::exception & e)
