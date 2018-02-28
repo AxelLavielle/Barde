@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--< <string name="api">http://10.0.2.2:3000</string>-->
-     <string name="api">http://api.barde.io</string>
+     <string name="api">http://api-dev.barde.io</string>
  </resources>

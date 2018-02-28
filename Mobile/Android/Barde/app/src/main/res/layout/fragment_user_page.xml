@@ -11,10 +11,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <LinearLayout
+            android:padding="20dp"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:background="@color/colorPrimary">
             <LinearLayout
+                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -32,6 +34,16 @@
                     android:textColor="#ffffff"
                     android:id="@+id/activity_main_email" />
             </LinearLayout>
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/user_page_button_settings"
+                    android:src="@drawable/ic_settings_white_24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -39,6 +51,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <Button
+            android:visibility="gone"
             android:gravity="start"
             android:padding="10dp"
             android:layout_width="match_parent"
@@ -48,6 +61,7 @@
             android:background="@drawable/button_rounded_corners_white"
             android:id="@+id/update_setting" />
         <Button
+            android:textAllCaps="false"
             android:gravity="start"
             android:padding="10dp"
             android:layout_width="match_parent"
@@ -57,11 +71,13 @@
             android:background="@drawable/button_rounded_corners_white"
             android:id="@+id/update_profile" />
         <TextView
+            android:visibility="gone"
             android:paddingLeft="10dp"
             android:text="My subscription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <Button
+            android:visibility="gone"
             android:gravity="start"
             android:padding="10dp"
             android:layout_width="match_parent"
@@ -72,6 +88,7 @@
             android:id="@+id/update_subscribe" />
 
         <Button
+            android:visibility="gone"
             android:gravity="start"
             android:padding="10dp"
             android:layout_width="match_parent"

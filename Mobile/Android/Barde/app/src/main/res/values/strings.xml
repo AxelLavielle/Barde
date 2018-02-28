@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Barde</string>
-    <string name="str_to_register">to Register</string>
+    <string name="str_to_register">Register</string>
     <string name="str_register">Register</string>
     <string name="str_login">Log in</string>
     <string name="str_email">Email</string>
@@ -22,7 +22,7 @@
     <string name="str_first_page_main_text">Create an account to enjoy all Barde\'s features</string>
     <string name="str_profile">profile</string>
     <string name="str_my_lists">my lists</string>
-    <string name="str_update_profile">update profile</string>
+    <string name="str_update_profile">Edit profile</string>
     <string name="str_my_account">My acccount</string>
     <string name="str_back">back</string>
     <string name="str_cancel">Cancel</string>

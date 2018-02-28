@@ -9,16 +9,15 @@ import android.support.v7.app.AlertDialog
 import android.text.AlteredCharSequence
 import android.view.*
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.github.kittinunf.fuel.core.FuelManager
 import com.project.barde.barde.R
 import com.project.barde.barde.db.UserDbHelper
 import com.project.barde.barde.db.UserTable
 import com.project.barde.barde.db.database
-import com.project.barde.barde.ui.activities.FirstPage
-import com.project.barde.barde.ui.activities.SettingsActivity
-import com.project.barde.barde.ui.activities.SubscriptionActivity
-import com.project.barde.barde.ui.activities.UserProfileActivity
+import com.project.barde.barde.ui.activities.*
 import kotlinx.android.synthetic.main.fragment_user_page.*
 
 /**
@@ -44,6 +43,7 @@ class UserPageFragment : Fragment(), UserDbHelper.dataListener {
         updateUser()
         v.findViewById<Button>(R.id.user_page_logout).setOnClickListener {
             FuelManager.instance.baseHeaders = mapOf("Authorization" to "")
+            Toast.makeText(activity, "disconnected", Toast.LENGTH_SHORT).show()
             startActivity(Intent(activity, FirstPage::class.java))
         }
         v.findViewById<Button>(R.id.update_profile).setOnClickListener {
@@ -56,6 +56,10 @@ class UserPageFragment : Fragment(), UserDbHelper.dataListener {
             subscribeFun()        }
         v.findViewById<Button>(R.id.update_promot_code).setOnClickListener{
            promotCodeFun()
+        }
+
+        v.findViewById<ImageView>(R.id.user_page_button_settings).setOnClickListener {
+            startActivity(Intent(activity, SettingActivity::class.java))
         }
         return v
     }

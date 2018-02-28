@@ -18,6 +18,7 @@ import com.project.barde.barde.db.UserDbHelper
 import com.project.barde.barde.db.UserTable
 import com.project.barde.barde.db.database
 import com.project.barde.barde.model.Login
+import com.project.barde.barde.model.Msg
 import kotlinx.android.synthetic.main.activity_profile_user.*
 
 /**
@@ -63,7 +64,7 @@ class UserProfileActivity : AppCompatActivity(), UserDbHelper.dataListener, Text
                 month = c.getInt(c.getColumnIndex(UserTable.MONTHOFBIRTHDAY))
                 dayOfMonth = c.getInt(c.getColumnIndex(UserTable.DAYOFBIRTHDAY))
                 update_dateofbirthday.setText(StringBuilder().append(dayOfMonth).append("/")
-                        .append(month).append("/").append(year))
+                        .append(month + 1).append("/").append(year))
                 edit = false
             }
         }
@@ -85,7 +86,8 @@ class UserProfileActivity : AppCompatActivity(), UserDbHelper.dataListener, Text
                     }
                 }
             }else{
-                Toast.makeText(this, "error", Toast.LENGTH_SHORT).show()
+                val msg: Msg = Gson().fromJson(String(response.data), Msg::class.java)
+                Toast.makeText(this, msg.data.message, Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -129,7 +131,10 @@ class UserProfileActivity : AppCompatActivity(), UserDbHelper.dataListener, Text
 
         update_dateofbirthday.setOnClickListener {
             DatePickerDialog(this, android.R.style.Theme_DeviceDefault_Dialog, DatePickerDialog.OnDateSetListener { datePicker, yearOfBirth, monthOfBirth, dayOfBirth ->
-                update_dateofbirthday.setText("${dayOfBirth}/${monthOfBirth}/${yearOfBirth}")
+                update_dateofbirthday.setText("${dayOfBirth}/${monthOfBirth + 1}/${yearOfBirth}")
+                year = yearOfBirth
+                month = monthOfBirth
+                dayOfMonth = dayOfBirth
             }, year, month, dayOfMonth).show()
         }
         profile_user_header_button_start.addView(backButton)

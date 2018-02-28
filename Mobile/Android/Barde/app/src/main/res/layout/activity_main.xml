@@ -13,12 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
-    <fragment
+    <!--<fragment
         android:id="@+id/fragment_play"
         android:name="com.project.barde.barde.ui.fragments.PlayerFragment"
         android:layout_width="match_parent"
         android:layout_height="50dp">
-    </fragment>
+    </fragment>-->
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/buttonNavigationMenu"

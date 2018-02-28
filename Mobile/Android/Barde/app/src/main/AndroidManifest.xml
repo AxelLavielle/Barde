@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/barde"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activities.MainActivity">
+        <activity android:name=".ui.activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +24,9 @@
         <activity android:name=".ui.activities.FirstPage" />
         <activity android:name=".ui.activities.PlaylistActivity" />
         <activity android:name=".ui.activities.SettingsActivity" />
-        <activity android:name=".ui.activities.SubscriptionActivity"></activity>
+        <activity android:name=".ui.activities.SubscriptionActivity" />
+        <activity android:name=".ui.activities.MainActivity" />
+        <activity android:name=".ui.activities.SettingActivity"></activity>
     </application>
 
 </manifest>

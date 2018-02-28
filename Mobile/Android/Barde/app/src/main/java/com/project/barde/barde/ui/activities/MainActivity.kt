@@ -29,14 +29,14 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         buttonNavigationMenu.setOnNavigationItemSelectedListener{item ->
             when (item.itemId){
-                R.id.menu_my_list -> {
-                    supportFragmentManager.beginTransaction()
-                            .replace(R.id.container, myLists as Fragment)
-                            .commit()
-                }
                 R.id.menu_profile -> {
                     supportFragmentManager.beginTransaction()
                             .replace(R.id.container, profile as Fragment)
+                            .commit()
+                }
+                R.id.menu_my_list -> {
+                    supportFragmentManager.beginTransaction()
+                            .replace(R.id.container, myLists as Fragment)
                             .commit()
                 }
                 R.id.menu_playlist -> {
