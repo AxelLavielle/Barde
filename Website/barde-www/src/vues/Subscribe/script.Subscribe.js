@@ -20,7 +20,7 @@ export default {
         subscribe(event) {
             event.preventDefault();
 
-            var data      = {'email' : this.email ,'subscribe' : true};
+            var data      = {'email' : this.email.replace(/\s/g, '') ,'subscribe' : true};
             var headers   =    {headers:{'content-type': 'application/json' }}
 
             if (!this.validEmail(data.email)){
@@ -28,16 +28,12 @@ export default {
 
             }
             else{
-
-
             this.$http.put('email', data, headers).then(function (success){
 
 
                 if (success.body.data.message){
                     Materialize.toast(success.body.data.message, '4000', 'green');
                 }
-
-
 
             }, function(error){
 

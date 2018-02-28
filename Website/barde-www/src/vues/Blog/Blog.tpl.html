@@ -15,11 +15,11 @@
                 <hr class="barde-hr">
             </div>
             <div class="row center content">
-                <div class="col  s12">
+                <div  v-for="post in posts" class="col s12">
                     <div class="card">
                         <div class="row">
                             <div class="col s4 card-post">
-                                <img src="http://localhost:8080/blog/1/team.jpg" class="responsive-img" alt="">
+                                <img :src="post.image" class="responsive-img" alt="">
                             </div>
                             <div class="col s8 left-align">
                                 <h3>First steps</h3>

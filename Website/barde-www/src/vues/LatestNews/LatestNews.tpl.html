@@ -6,11 +6,14 @@
             <h3 class="header col s12 light">Latest <span class="barde-pink-text">News</span></h3>
             <hr class="barde-hr">
         </div>
-        <div class="row center content">
-           <div class="col m3 s12">
-               <CardNews v-for="post in posts" link="/blog/last-steps" :image="post.image" :title="post.title" :date="post.date" :author="post.author" :headline="post.headline"></CardNews>
-           </div>
-        </div>
+          <div class="row center">
+              <div v-for="post in posts" class="col s12 m4  center content">
+                  <CardNews link="/blog/last-steps" :image="post.image" :title="post.title" :date="post.date" :author="post.author" :headline="post.headline"></CardNews>
+              </div>
+              <a v-if="posts.length >= 3" href="/blog" class="barde-btn btn center-align">SEE ALL POSTS</a>
+
+          </div>
+
     </div>
 </div>
     <div id="team" class="section barde-blue scrollspy">
