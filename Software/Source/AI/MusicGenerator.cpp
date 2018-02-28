@@ -158,6 +158,54 @@ char			MusicGenerator::searchNoteFromDist(char note, char dist)
   return (note);
 }
 
+void			MusicGenerator::drumsPOC(MusicParameters &parameters)
+{
+	Instrument	drums;
+	int			i = 0;
+	double		beats = 0.0;
+
+
+	drums.name = "Drums";
+	drums.nb = SYNTHDRUM;
+	drums.channel = 10;
+	drums.velocity = 100;
+
+	i = 0;
+	for (beats = 0.0; beats < 48.0; beats = beats + 1.0)
+	{
+		parameters._midiManager.noteOn(drums, PEDALHIHAT, drums.velocity, beats);
+		parameters._midiManager.noteOff(drums, PEDALHIHAT, drums.velocity, beats);
+		if ((i % 2) == 0)
+		{
+			parameters._midiManager.noteOn(drums, BASSDRUM1, drums.velocity, beats);
+			parameters._midiManager.noteOff(drums, BASSDRUM1, drums.velocity, beats);
+		}
+		if ((i % 4) == 0)
+		{
+			parameters._midiManager.noteOn(drums, MIDTOM1, drums.velocity, beats);
+			parameters._midiManager.noteOff(drums, MIDTOM1, drums.velocity, beats);
+		}
+		i++;
+	}
+	
+	i = 1;
+	for (beats = TIME_PER_TS * 2; beats < 48.0; beats += (TIME_PER_TS * 2))
+	{
+		if ((i % 4) == 0)
+		{
+			parameters._midiManager.noteOn(drums, CRASHCYMBAL1, drums.velocity, beats);
+			parameters._midiManager.noteOff(drums, CRASHCYMBAL1, drums.velocity, beats);
+		}
+		else
+		{
+			parameters._midiManager.noteOn(drums, RIDECYMBAL1, drums.velocity, beats);
+			parameters._midiManager.noteOff(drums, RIDECYMBAL1, drums.velocity, beats);
+		}
+		i++;
+	}
+
+}
+
 Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 {
   parameters.setSeed(std::time(NULL));
@@ -169,6 +217,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   instru.velocity = 100; //Need change
   parameters.addInstrument(instru);
   parameters.setStyleName("Blues");
+  drumsPOC(parameters);
 
   srand(parameters.getSeed());
   ObjectMarkov						markovObj(SOURCEMARKOV + std::string("blues.json"), 1, parameters.getSeed());
