@@ -33,7 +33,6 @@ private:
   void			calculateProbaToNoteFromNote(const char note, StyleSettings *proba, const std::vector<char> &listNote, const char probaNote);
   void			calculateProbaToNote(StyleSettings *proba, const std::vector<char> &listNote, const char probaNote);
   void			classifyNotes(const std::vector<char> &chord, std::vector<char> *strong, std::vector<char> *medium, std::vector<char> *weak);
-  void			drumsPOC(MusicParameters &parameters);
 
   char			searchNoteFromDist(char note, char dist);
   char			calculateDist(const char currNote, const char testNote);
