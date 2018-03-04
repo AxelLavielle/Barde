@@ -12,11 +12,11 @@ exports.sendEmail = function (name, email, message, callback) {
 
     var mailOptions = {
 
-        from: name + ' <' + email + '>', // sender address
-        to: conf.mail_sendto, // list of receivers
-        subject: conf.mail_subject + ' ' + name + ' <' + email + '>', // Subject line
-        text: message, // plaintext body
-        html: '<p>' + message + '</p>' // html body
+      from: name + ' <' + email + '>', // sender address
+      to: config.mail_sendto, // list of receivers
+      subject: config.mail_subject + ' ' + name + ' <' + email + '>', // Subject line
+      text: message, // plaintext body
+      html: '<p>' + message + '</p>' // html body
 
     };
 
