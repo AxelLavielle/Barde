@@ -43,15 +43,20 @@ void Synthesizer::setUsingSampledSound()
 		std::cout << "FileName = " << FileManager::getFileName(*it) << std::endl;
 		File* file = new File(*it);
 		ScopedPointer<AudioFormatReader> reader = _audioFormatManager.createReaderFor(*file);
-		try
+		if (reader)
 		{
-			SynthesizerInstrument::Ptr instrument(new SynthesizerInstrument(FileManager::getFileName(*it), *reader, allNotes, 72, 0, 1, 1.0, instrumentList.at(FileManager::getFileName(*it))));
-			_synth.addSound(instrument);
+			try
+			{
+				SynthesizerInstrument::Ptr instrument(new SynthesizerInstrument(FileManager::getFileName(*it), *reader, allNotes, 72, 0, 1, 1.0, instrumentList.at(FileManager::getFileName(*it))));
+				_synth.addSound(instrument);
+			}
+			catch (const std::exception & e)
+			{
+				std::cerr << "WARNING : Can not find instrument from the samples : " << FileManager::getFileName(*it) << std::endl;
+			}
 		}
-		catch (const std::exception & e)
-		{
+		else
 			std::cerr << "WARNING : Can not find instrument from the samples : " << FileManager::getFileName(*it) << std::endl;
-		}
 		++it;
 	}
 }
