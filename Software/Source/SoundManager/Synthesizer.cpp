@@ -22,14 +22,14 @@ Synthesizer::Synthesizer()
 void Synthesizer::setUsingSampledSound()
 {
 	WavAudioFormat	wavFormat;
-	std::vector<std::string> files;
-	std::vector<std::string>::iterator it;
+	std::vector<std::wstring> files;
+	std::vector<std::wstring>::iterator it;
 	#ifdef __linux__
 		std::cout << "Directory = " << FileManager::getCurrentDirectory() + "/../../Samples/" << std::endl;
 		FileManager::getFilesList(FileManager::getCurrentDirectory() +  "/../../Samples/", ".wav", files);
 	#else
-		std::cout << "Directory = " << FileManager::getCurrentDirectory() + "/../../../../Samples/" << std::endl;
-		FileManager::getFilesList(FileManager::getCurrentDirectory() +  "/../../../../Samples/", ".wav", files);
+		std::cout << "Directory = " << (FileManager::getCurrentDirectory() + ((wchar_t*)"/../../../../Samples/")).c_str() << std::endl;
+		FileManager::getFilesList(FileManager::getCurrentDirectory() +  ((wchar_t*)"/../../../../Samples/"), (wchar_t*)".wav", files);
 	#endif // __linux__
 	BigInteger allNotes;
 	allNotes.setRange(0, 128, true);
@@ -39,9 +39,9 @@ void Synthesizer::setUsingSampledSound()
 	it = files.begin();
 	while (it != files.end())
 	{
-		std::cout << "File = " << *it << std::endl;
-		std::cout << "FileName = " << FileManager::getFileName(*it) << std::endl;
-		File* file = new File(*it);
+		std::cout << "File = " << (*it).c_str() << std::endl;
+		std::cout << "FileName = " << FileManager::getFileName(*it).c_str() << std::endl;
+		File* file = new File((*it).c_str());
 		ScopedPointer<AudioFormatReader> reader = _audioFormatManager.createReaderFor(*file);
 		if (reader)
 		{
@@ -52,11 +52,11 @@ void Synthesizer::setUsingSampledSound()
 			}
 			catch (const std::exception & e)
 			{
-				std::cerr << "WARNING : Can not find instrument from the samples : " << FileManager::getFileName(*it) << std::endl;
+				std::cerr << "WARNING : Can not find instrument from the samples : " << FileManager::getFileName(*it).c_str() << std::endl;
 			}
 		}
 		else
-			std::cerr << "WARNING : Can not find instrument from the samples : " << FileManager::getFileName(*it) << std::endl;
+			std::cerr << "WARNING : Can not find instrument from the samples : " << FileManager::getFileName(*it).c_str() << std::endl;
 		++it;
 	}
 }

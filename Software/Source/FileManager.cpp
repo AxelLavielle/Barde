@@ -10,18 +10,18 @@
 
 #include "FileManager.hh"
 
-std::string FileManager::getCurrentDirectory()
+std::wstring FileManager::getCurrentDirectory()
 {
-	char buff[FILENAME_MAX];
+	wchar_t buff[FILENAME_MAX];
 #ifdef __linux__
 	getcwd(buff, FILENAME_MAX);
 #else
-	_getcwd(buff, FILENAME_MAX);
+	_wgetcwd(buff, FILENAME_MAX);
 #endif // __linux__
-	return std::string(buff);
+	return std::wstring(buff);
 }
 
-void FileManager::getFilesList(const std::string &filePath, const std::string &extension, std::vector<std::string> & returnFileName)
+void FileManager::getFilesList(const std::wstring &filePath, const std::wstring &extension, std::vector<std::wstring> & returnFileName)
 {
 #ifdef __linux__
 	DIR *directory;
@@ -40,7 +40,9 @@ void FileManager::getFilesList(const std::string &filePath, const std::string &e
 #else
 	WIN32_FIND_DATA fileInfo;
 	HANDLE hFind;
-	std::string  fullPath = filePath + "*" + extension;
+	std::wstring  fullPath = filePath;
+	fullPath += '*';
+	fullPath += extension;
 	hFind = FindFirstFile(fullPath.c_str(), &fileInfo);
 	if (hFind != INVALID_HANDLE_VALUE) {
 		returnFileName.push_back(filePath + fileInfo.cFileName);
@@ -51,7 +53,19 @@ void FileManager::getFilesList(const std::string &filePath, const std::string &e
 #endif // __linux__
 }
 
-std::string FileManager::getFileName(const std::string & filePath)
+std::string ws2s(const std::wstring& s)
+{
+	int len;
+	int slength = (int)s.length() + 1;
+	len = WideCharToMultiByte(CP_ACP, 0, s.c_str(), slength, 0, 0, 0, 0);
+	char* buf = new char[len];
+	WideCharToMultiByte(CP_ACP, 0, s.c_str(), slength, buf, len, 0, 0);
+	std::string r(buf);
+	delete[] buf;
+	return r;
+}
+
+std::string FileManager::getFileName(const std::wstring & filePath)
 {
 	size_t len;
 	size_t tmpPos;
@@ -64,5 +78,5 @@ std::string FileManager::getFileName(const std::string & filePath)
 	while (len > 0 && filePath[len] != '/' && filePath[len] != '\\')
 		len--;
 	len++;
-	return filePath.substr(len, (filePath.size() - len) - (filePath.size() - tmpPos));
+	return ws2s(filePath.substr(len, (filePath.size() - len) - (filePath.size() - tmpPos)));
 }

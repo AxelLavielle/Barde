@@ -11,6 +11,8 @@
 #ifndef FILEMANAGER_HH_INCLUDED
 #define FILEMANAGER_HH_INCLUDED
 
+#define UNICODE
+
 #include <vector>
 #include <stdio.h>
 #include <string>
@@ -28,9 +30,9 @@
 class FileManager
 {
 public:
-	static void getFilesList(const std::string &filePath, const std::string &extension, std::vector<std::string> & returnFileName);
-	static std::string getFileName(const std::string & filePath);
-	static std::string getCurrentDirectory();
+	static void getFilesList(const std::wstring &filePath, const std::wstring &extension, std::vector<std::wstring> & returnFileName);
+	static std::string getFileName(const std::wstring & filePath);
+	static std::wstring getCurrentDirectory();
 
 private:
 
