@@ -55,8 +55,6 @@ void Synthesizer::setUsingSampledSound()
 		std::wcout << "FileName = " << FileManager::getFileName(*it) << std::endl;
 		File* file = new File((*it).c_str());
 		ScopedPointer<AudioFormatReader> reader = _audioFormatManager.createReaderFor(*file);
-		std::cout << file << std::endl;
-		std::cout << reader << std::endl;
 		if (reader)
 		{
 			try
