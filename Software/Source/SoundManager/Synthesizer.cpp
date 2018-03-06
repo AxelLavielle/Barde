@@ -36,6 +36,7 @@ void Synthesizer::setUsingSampledSound()
 	WavAudioFormat	wavFormat;
 	std::vector<std::wstring> files;
 	std::vector<std::wstring>::iterator it;
+	int channel;
 	#ifdef __linux__
 		std::wcout << "Directory = " << FileManager::getCurrentDirectory() + "/../../Samples/" << std::endl;
 		FileManager::getFilesList(FileManager::getCurrentDirectory() +  "/../../Samples/", ".wav", files);
@@ -49,6 +50,7 @@ void Synthesizer::setUsingSampledSound()
 	_synth.clearSounds();
 
 	it = files.begin();
+	channel = 1;
 	while (it != files.end())
 	{
 		std::wcout << "File = " << *it << std::endl;
@@ -59,7 +61,7 @@ void Synthesizer::setUsingSampledSound()
 		{
 			try
 			{
-				SynthesizerInstrument::Ptr instrument(new SynthesizerInstrument(FileManager::getFileName(*it), *reader, allNotes, 72, 0, 1, 1.0, instrumentList.at(FileManager::getFileName(*it))));
+				SynthesizerInstrument::Ptr instrument(new SynthesizerInstrument(FileManager::getFileName(*it), *reader, allNotes, 72, 0, 1, 1.0, channel));
 				_synth.addSound(instrument);
 			}
 			catch (const std::exception & e)
@@ -70,6 +72,7 @@ void Synthesizer::setUsingSampledSound()
 		else
 			std::wcerr << "WARNING : Can not find instrument from the samples : " << FileManager::getFileName(*it) << std::endl;
 		++it;
+		channel++;
 	}
 }
 
