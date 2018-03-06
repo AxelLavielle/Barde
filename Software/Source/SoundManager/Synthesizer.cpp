@@ -19,18 +19,30 @@ Synthesizer::Synthesizer()
 	setUsingSampledSound();
 }
 
+std::wstring s2ws(const std::string& s)
+{
+	int len;
+	int slength = (int)s.length() + 1;
+	len = MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, 0, 0);
+	wchar_t* buf = new wchar_t[len];
+	MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, buf, len);
+	std::wstring r(buf);
+	delete[] buf;
+	return r;
+}
+
 void Synthesizer::setUsingSampledSound()
 {
 	WavAudioFormat	wavFormat;
 	std::vector<std::wstring> files;
 	std::vector<std::wstring>::iterator it;
 	#ifdef __linux__
-		std::cout << "Directory = " << FileManager::getCurrentDirectory() + "/../../Samples/" << std::endl;
+		std::wcout << "Directory = " << FileManager::getCurrentDirectory() + "/../../Samples/" << std::endl;
 		FileManager::getFilesList(FileManager::getCurrentDirectory() +  "/../../Samples/", ".wav", files);
 	#else
-		std::cout << "Directory = " << (FileManager::getCurrentDirectory() + ((wchar_t*)"/../../../../Samples/")).c_str() << std::endl;
-		FileManager::getFilesList(FileManager::getCurrentDirectory() +  ((wchar_t*)"/../../../../Samples/"), (wchar_t*)".wav", files);
-	#endif // __linux__
+	std::wcout << "Directory = " << FileManager::getCurrentDirectory() + s2ws("/../../../../Samples/") << std::endl;
+	FileManager::getFilesList(FileManager::getCurrentDirectory() + s2ws("/../../../../Samples/"), s2ws(".wav"), files);
+#endif // __linux__
 	BigInteger allNotes;
 	allNotes.setRange(0, 128, true);
 	_audioFormatManager.registerBasicFormats();
@@ -39,10 +51,12 @@ void Synthesizer::setUsingSampledSound()
 	it = files.begin();
 	while (it != files.end())
 	{
-		std::cout << "File = " << (*it).c_str() << std::endl;
-		std::cout << "FileName = " << FileManager::getFileName(*it).c_str() << std::endl;
+		std::wcout << "File = " << *it << std::endl;
+		std::wcout << "FileName = " << FileManager::getFileName(*it) << std::endl;
 		File* file = new File((*it).c_str());
 		ScopedPointer<AudioFormatReader> reader = _audioFormatManager.createReaderFor(*file);
+		std::cout << file << std::endl;
+		std::cout << reader << std::endl;
 		if (reader)
 		{
 			try
@@ -52,11 +66,11 @@ void Synthesizer::setUsingSampledSound()
 			}
 			catch (const std::exception & e)
 			{
-				std::cerr << "WARNING : Can not find instrument from the samples : " << FileManager::getFileName(*it).c_str() << std::endl;
+				std::wcerr << "WARNING : Can not find instrument from the samples : " << FileManager::getFileName(*it) << std::endl;
 			}
 		}
 		else
-			std::cerr << "WARNING : Can not find instrument from the samples : " << FileManager::getFileName(*it).c_str() << std::endl;
+			std::wcerr << "WARNING : Can not find instrument from the samples : " << FileManager::getFileName(*it) << std::endl;
 		++it;
 	}
 }
