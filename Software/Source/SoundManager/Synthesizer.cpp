@@ -25,11 +25,11 @@ void Synthesizer::setUsingSampledSound()
 	std::vector<std::string> files;
 	std::vector<std::string>::iterator it;
 	#ifdef __linux__
-		std::cout << "Directory = " << "/../../Samples/" << std::endl;
-		FileManager::getFilesList("/../../Samples/", ".wav", files);
+		std::cout << "Directory = " << FileManager::getCurrentDirectory() + "/../../Samples/" << std::endl;
+		FileManager::getFilesList(FileManager::getCurrentDirectory() +  "/../../Samples/", ".wav", files);
 	#else
-		std::cout << "Directory = " << "/../../../../Samples/" << std::endl;
-		FileManager::getFilesList("/../../../../Samples/", ".wav", files);
+		std::cout << "Directory = " << FileManager::getCurrentDirectory() + "/../../../../Samples/" << std::endl;
+		FileManager::getFilesList(FileManager::getCurrentDirectory() +  "/../../../../Samples/", ".wav", files);
 	#endif // __linux__
 	BigInteger allNotes;
 	allNotes.setRange(0, 128, true);
