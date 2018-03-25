@@ -30,8 +30,6 @@ void			MusicGenerator::drumsPOC(MusicParameters &parameters)
 	int			i = 0;
 	double		beats = 0.0;
 
-	std::cout << "IN DRUMSPOC" << std::endl;
-
 	bassdrum.name = "Bass Drum";
 	bassdrum.nb = BASSDRUM1;
 	bassdrum.channel = 10;
@@ -47,47 +45,52 @@ void			MusicGenerator::drumsPOC(MusicParameters &parameters)
 	midtom.channel = 12;
 	midtom.velocity = 100;
 
-	parameters._midiManager.changeInstrument(hihat, 1.0);
-	parameters._midiManager.changeInstrument(bassdrum, 1.0);
-	parameters._midiManager.changeInstrument(midtom, 1.0);
+	rcymbal.name = "Ride Cymbal";
+	rcymbal.nb = RIDECYMBAL1;
+	rcymbal.channel = 13;
+	rcymbal.velocity = 100;
 
-	i = 0;
-	for (beats = 0.0; beats < 48.0; beats = beats + 1.0)
+	ccymbal.name = "Crash Cymbal";
+	ccymbal.nb = CRASHCYMBAL1;
+	ccymbal.channel = 14;
+	ccymbal.velocity = 100;
+
+	parameters._midiManager.changeInstrument(hihat, 1.0);
+	for (beats = 1.0; beats <= 48.0; beats = beats + 0.5)
 	{
-		parameters._midiManager.noteOn(hihat, 72, hihat.velocity, beats);
-		parameters._midiManager.noteOff(hihat, 72, hihat.velocity, beats);
-		
-		if ((i % 2) == 0)
-		{
-			parameters._midiManager.noteOn(bassdrum, 72, bassdrum.velocity, beats);
-			parameters._midiManager.noteOff(bassdrum, 72, bassdrum.velocity, beats);
-		}
-		if ((i % 4) == 0)
-		{
-			parameters._midiManager.noteOn(midtom, 72, midtom.velocity, beats);
-			parameters._midiManager.noteOff(midtom, 72, midtom.velocity, beats);
-		}
-		
-		i++;
+		parameters._midiManager.noteOn(hihat.channel, 72, hihat.velocity, beats);
+		parameters._midiManager.noteOff(hihat.channel, 72, hihat.velocity, beats + TIMES_PER_BAR);
+	}
+
+	parameters._midiManager.changeInstrument(bassdrum, 1.0);
+	for (beats = 1.0; beats <= 48.0; beats = beats + 1.0)
+	{
+		parameters._midiManager.noteOn(bassdrum.channel, 72, bassdrum.velocity, beats);
+		parameters._midiManager.noteOff(bassdrum.channel, 72, bassdrum.velocity, beats + TIMES_PER_BAR);
 	}
 
 	/*
-	i = 1;
-	for (beats = TIMES_PER_BAR * 2; beats < 48.0; beats += ( TIMES_PER_BAR * 2))
+	parameters._midiManager.changeInstrument(midtom, 0.0);
+	for (beats = 0.0; beats <= 48.0; beats = beats + 1.0)
 	{
-		if ((i % 4) == 0)
-		{
-			parameters._midiManager.noteOn(ccymbal, 1, drums.velocity, beats);
-			parameters._midiManager.noteOff(ccymbal, 1, drums.velocity, beats);
-		}
-		else
-		{
-			parameters._midiManager.noteOn(rcymbal, 1, drums.velocity, beats);
-			parameters._midiManager.noteOff(rcymbal, 1, drums.velocity, beats);
-		}
-		i++;
+		parameters._midiManager.noteOn(hihat, 72, hihat.velocity, beats);
+		parameters._midiManager.noteOff(hihat, 72, hihat.velocity, beats + TIMES_PER_BAR);
 	}
 	*/
+
+	parameters._midiManager.changeInstrument(rcymbal, 1.0);
+	for (beats = 8.0; beats <= 48.0; beats = beats + 16.0)
+	{
+		parameters._midiManager.noteOn(rcymbal.channel, 72, rcymbal.velocity, beats);
+		parameters._midiManager.noteOff(rcymbal.channel, 72, rcymbal.velocity, beats + 8.0);
+	}
+
+	parameters._midiManager.changeInstrument(ccymbal, 1.0);
+	for (beats = 16.0; beats <= 48.0; beats = beats + 16.0)
+	{
+		parameters._midiManager.noteOn(ccymbal.channel, 72, ccymbal.velocity, beats);
+		parameters._midiManager.noteOff(ccymbal.channel, 72, ccymbal.velocity, beats + 8.0);
+	}
 
 }
 
@@ -104,8 +107,21 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   parameters.addInstrument(instru);
   parameters.setStyleName("Blues");
   srand(parameters.getSeed());
-  drumsPOC(parameters);
   /* PARAMETERS */
+
+  /* DRUMS */
+
+  /*drumsPOC(parameters);
+  bool		onlydrums = false;
+  if (onlydrums == true)
+  {
+	  parameters.setMidi(parameters._midiManager.createMidi(48));
+	  parameters._midiManager.writeToFile("./test.mid");
+	  return (Midi());
+  }
+  */
+
+  /* DRUMS */
 
   /* INITIALISATION */
   ObjectMarkov						markovObj(SOURCEMARKOV + std::string("blues.json"), 1, parameters.getSeed());
