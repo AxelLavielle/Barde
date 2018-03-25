@@ -111,7 +111,6 @@ void Synthesizer::getNextAudioBlock(const AudioSourceChannelInfo& bufferToFill)
 			programNb = midiEvent.getProgramChangeNumber();
 			try
 			{
-				std::cout << "Remove : " << midiEvent.getChannel() - 1  << std::endl;
 				_synth.removeSound(midiEvent.getChannel());
 				instrument = _instruments.at(static_cast<NbInstrument>(programNb));
 				instrument->setChannel(midiEvent.getChannel());
