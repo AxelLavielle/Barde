@@ -20,6 +20,77 @@ MusicGenerator::~MusicGenerator()
 
 }
 
+void			MusicGenerator::drumsPOC(MusicParameters &parameters)
+{
+	Instrument	bassdrum;
+	Instrument	midtom;
+	Instrument	hihat;
+	Instrument	rcymbal;
+	Instrument	ccymbal;
+	int			i = 0;
+	double		beats = 0.0;
+
+	std::cout << "IN DRUMSPOC" << std::endl;
+
+	/*bassdrum.name = "Bass Drum";
+	bassdrum.nb = BASSDRUM1;
+	bassdrum.channel = 10;
+	bassdrum.velocity = 100;*/
+
+	hihat.name = "Pedal Hihat";
+	hihat.nb = PEDALHIHAT;
+	hihat.channel = 11;
+	hihat.velocity = 100;
+
+	/*midtom.name = "Mid Tom";
+	midtom.nb = MIDTOM1;
+	midtom.channel = 12;
+	midtom.velocity = 100;*/
+
+	parameters._midiManager.changeInstrument(hihat, 0.0);
+	//parameters._midiManager.changeInstrument(bassdrum, 0.0);
+	//parameters._midiManager.changeInstrument(midtom, 0.0);
+
+	i = 0;
+	for (beats = 0.0; beats < 48.0; beats = beats + 1.0)
+	{
+		parameters._midiManager.noteOn(hihat, 1, hihat.velocity, beats);
+		parameters._midiManager.noteOff(hihat, 1, hihat.velocity, beats);
+		/*
+		if ((i % 2) == 0)
+		{
+			parameters._midiManager.noteOn(bassdrum, 1, bassdrum.velocity, beats);
+			parameters._midiManager.noteOff(bassdrum, 1, bassdrum.velocity, beats);
+		}
+		if ((i % 4) == 0)
+		{
+			parameters._midiManager.noteOn(midtom, 1, midtom.velocity, beats);
+			parameters._midiManager.noteOff(midtom, 1, midtom.velocity, beats);
+		}
+		*/
+		i++;
+	}
+
+	/*
+	i = 1;
+	for (beats = TIMES_PER_BAR * 2; beats < 48.0; beats += ( TIMES_PER_BAR * 2))
+	{
+		if ((i % 4) == 0)
+		{
+			parameters._midiManager.noteOn(ccymbal, 1, drums.velocity, beats);
+			parameters._midiManager.noteOff(ccymbal, 1, drums.velocity, beats);
+		}
+		else
+		{
+			parameters._midiManager.noteOn(rcymbal, 1, drums.velocity, beats);
+			parameters._midiManager.noteOff(rcymbal, 1, drums.velocity, beats);
+		}
+		i++;
+	}
+	*/
+
+}
+
 Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 {
   /* PARAMETERS */
@@ -33,6 +104,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   parameters.addInstrument(instru);
   parameters.setStyleName("Blues");
   srand(parameters.getSeed());
+  drumsPOC(parameters);
   /* PARAMETERS */
 
   /* INITIALISATION */

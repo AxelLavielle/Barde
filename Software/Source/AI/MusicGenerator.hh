@@ -59,6 +59,7 @@ public:
    *  \return Midi file containing the music
    */
   Midi			createMusic(MusicParameters &parameters);
+  void			drumsPOC(MusicParameters &parameters);
 
 private:
 };
