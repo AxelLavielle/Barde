@@ -16,7 +16,7 @@
 class SynthesizerInstrument : public SamplerSound
 {
 public:
-	SynthesizerInstrument(const String &name, AudioFormatReader &source, const BigInteger & midiNotes, int midiNoteForNormalPitch,
+	SynthesizerInstrument(const String &name, AudioFormatReader &reader, const BigInteger & midiNotes, int midiNoteForNormalPitch,
 		double attackTimeSecs, double releasTimeSecs, double maxSampleLengthSeconds, int midiChannel);
 
 	bool appliesToNote(int midiNoteNumber) override;
@@ -25,7 +25,7 @@ public:
 	virtual ~SynthesizerInstrument();
 
 private:
-	int		_channel;
+	int									_channel;
 };
 
 #endif /*SYNTHESIZERINSTRUMENT_HH*/

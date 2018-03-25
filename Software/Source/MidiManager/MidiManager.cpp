@@ -22,7 +22,7 @@ void MidiManager::noteOn(const int channel, const int noteNumber, const float ve
 {
 	MidiMessage message = MidiMessage::noteOn(channel, noteNumber, (uint8)velocity);
 
-
+	changeInstrument(1, ACOUSTICGRANDPIANO, time);
 	message.setTimeStamp(time * 1000);
 	_midiSequence.addEvent(message);
 	std::cout << getMidiMessageDescription(message) << std::endl;

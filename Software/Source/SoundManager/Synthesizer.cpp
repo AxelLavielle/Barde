@@ -36,12 +36,13 @@ void Synthesizer::setUsingSampledSound()
 	WavAudioFormat	wavFormat;
 	std::vector<std::wstring> files;
 	std::vector<std::wstring>::iterator it;
-	int channel;
 	#ifdef __linux__
-		std::wcout << "Directory = " << FileManager::getCurrentDirectory() + "/../../Samples/" << std::endl;
+		std::wcout << "Directory = " << FileManager::getCurrentDirectory() + "/../../Samples/Drums/" << std::endl;
+		FileManager::getFilesList(FileManager::getCurrentDirectory() + "/../../Samples/Drums/", ".wav", files);
 		FileManager::getFilesList(FileManager::getCurrentDirectory() +  "/../../Samples/", ".wav", files);
 	#else
-	std::wcout << "Directory = " << FileManager::getCurrentDirectory() + s2ws("/../../../../Samples/") << std::endl;
+	std::wcout << "Directory = " << FileManager::getCurrentDirectory() + s2ws("/../../../../Samples/Drums/") << std::endl;
+	FileManager::getFilesList(FileManager::getCurrentDirectory() + s2ws("/../../../../Samples/Drums/"), s2ws(".wav"), files);
 	FileManager::getFilesList(FileManager::getCurrentDirectory() + s2ws("/../../../../Samples/"), s2ws(".wav"), files);
 #endif // __linux__
 	BigInteger allNotes;
@@ -50,19 +51,17 @@ void Synthesizer::setUsingSampledSound()
 	_synth.clearSounds();
 
 	it = files.begin();
-	channel = 1;
 	while (it != files.end())
 	{
 		std::wcout << "File = " << *it << std::endl;
 		std::wcout << "FileName = " << FileManager::getFileName(*it) << std::endl;
 		File* file = new File((*it).c_str());
-		ScopedPointer<AudioFormatReader> reader = _audioFormatManager.createReaderFor(*file);
+		std::shared_ptr<AudioFormatReader> reader = std::shared_ptr<AudioFormatReader>(_audioFormatManager.createReaderFor(*file));
 		if (reader)
 		{
 			try
 			{
-				SynthesizerInstrument::Ptr instrument(new SynthesizerInstrument(FileManager::getFileName(*it), *reader, allNotes, 72, 0, 1, 1.0, channel));
-				_synth.addSound(instrument);
+				_instruments.insert(std::make_pair(instrumentList.at(FileManager::getFileName(*it)), new SynthesizerInstrument(FileManager::getFileName(*it), *reader, allNotes, 72, 0, 1, 1.0, instrumentList.at(FileManager::getFileName(*it)))));
 			}
 			catch (const std::exception & e)
 			{
@@ -72,7 +71,6 @@ void Synthesizer::setUsingSampledSound()
 		else
 			std::wcerr << "WARNING : Can not find instrument from the samples : " << FileManager::getFileName(*it) << std::endl;
 		++it;
-		channel++;
 	}
 }
 
@@ -91,14 +89,41 @@ void Synthesizer::prepareToPlay(int /*samplesPerBlockExpected*/, double sampleRa
 
 void Synthesizer::releaseResources()
 {
+	//Need to release _instruments
 }
 
 void Synthesizer::getNextAudioBlock(const AudioSourceChannelInfo& bufferToFill)
 {
 	MidiBuffer incomingMidi;
+	MidiMessage	midiEvent;
+	int			samplePos;
+	int			programNb;
+	SynthesizerInstrument	*instrument;
 
 	bufferToFill.clearActiveBufferRegion();
 	_midiCollector.removeNextBlockOfMessages(incomingMidi, bufferToFill.numSamples);
+
+	MidiBuffer::Iterator it(incomingMidi);
+	while (it.getNextEvent(midiEvent, samplePos))
+	{
+		if (midiEvent.isProgramChange())
+		{
+			programNb = midiEvent.getProgramChangeNumber();
+			try
+			{
+				std::cout << "Remove : " << midiEvent.getChannel() - 1  << std::endl;
+				_synth.removeSound(midiEvent.getChannel());
+				instrument = _instruments.at(static_cast<NbInstrument>(programNb));
+				instrument->setChannel(midiEvent.getChannel());
+				SynthesizerInstrument::Ptr synthInstrument(instrument);
+				_synth.addSound(instrument);
+			}
+			catch (const std::exception e)
+			{
+				std::wcerr << "WARNING : Can not load instrument number : " << programNb << std::endl;
+			}
+		}
+	}
 	_synth.renderNextBlock(*bufferToFill.buffer, incomingMidi, 0, bufferToFill.numSamples);
 }
 

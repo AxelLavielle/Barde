@@ -10,9 +10,9 @@
 
 #include "SynthesizerInstrument.hh"
 
-SynthesizerInstrument::SynthesizerInstrument(const String &name, AudioFormatReader &source, const BigInteger & midiNotes, int midiNoteForNormalPitch,
+SynthesizerInstrument::SynthesizerInstrument(const String &name, AudioFormatReader &reader, const BigInteger & midiNotes, int midiNoteForNormalPitch,
 	double attackTimeSecs, double releasTimeSecs, double maxSampleLengthSeconds, int midiChannel = 0)
-	: SamplerSound(name, source, midiNotes, midiNoteForNormalPitch, attackTimeSecs, releasTimeSecs, maxSampleLengthSeconds)
+	: SamplerSound(name, reader, midiNotes, midiNoteForNormalPitch, attackTimeSecs, releasTimeSecs, maxSampleLengthSeconds)
 {
 	_channel = midiChannel;
 }

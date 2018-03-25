@@ -34,4 +34,5 @@ private:
 	MidiMessageCollector _midiCollector;
 	Synthesiser _synth;
 	AudioFormatManager _audioFormatManager;
+	std::map<NbInstrument, SynthesizerInstrument*>	_instruments;
 };
