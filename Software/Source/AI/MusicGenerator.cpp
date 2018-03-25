@@ -47,9 +47,9 @@ void			MusicGenerator::drumsPOC(MusicParameters &parameters)
 	midtom.channel = 12;
 	midtom.velocity = 100;
 
-	parameters._midiManager.changeInstrument(hihat, 1.0);
-	parameters._midiManager.changeInstrument(bassdrum, 1.0);
-	parameters._midiManager.changeInstrument(midtom, 1.0);
+	parameters._midiManager.changeInstrument(hihat, 0.0);
+	parameters._midiManager.changeInstrument(bassdrum, 0.0);
+	parameters._midiManager.changeInstrument(midtom, 0.0);
 
 	i = 0;
 	for (beats = 0.0; beats < 48.0; beats = beats + 1.0)

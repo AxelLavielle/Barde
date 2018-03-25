@@ -127,7 +127,7 @@ void MidiManager::changeInstrument(const int channel, const int instrumentNb, co
 {
 	MidiMessage message = MidiMessage::programChange(channel, instrumentNb);
 
-	message.setTimeStamp(time);
+	message.setTimeStamp(time * 1000);
 	_midiSequence.addEvent(message);
 }
 
@@ -135,7 +135,7 @@ void MidiManager::changeInstrument(const Instrument & instrument, const double t
 {
 	MidiMessage message = MidiMessage::programChange(instrument.channel, instrument.nb);
 
-	message.setTimeStamp(time);
+	message.setTimeStamp(time * 1000);
 	_midiSequence.addEvent(message);
 }
 
