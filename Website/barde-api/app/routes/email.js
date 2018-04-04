@@ -90,7 +90,7 @@ function get(req, res, next) {
 function add(req, res, next) {
 
     if (!req.body.email) {
-        return res.status(400).send({msg: "No content", data: {message: "Vous devez inscrire votre email."}});
+        return res.status(400).send({msg: "No content", data: {message: "Email cannot be empty."}});
     }
 
     Email.findOne({"email": req.body.email}, function (err, response) {
@@ -106,14 +106,14 @@ function add(req, res, next) {
 
                 res.status(200).send({
                     msg: "Content added",
-                    data: {message: "Votre inscription a bien été pris en compte."}
+                    data: {message: "You are now registered."}
                 });
             });
         }
         else {
             return res.status(304).send({
                 msg: "Content already exists",
-                data: {message: "Vous êtes déjà inscrit à nos newsletters !"}
+                data: {message: "You are already registered !"}
             });
         }
     });

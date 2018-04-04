@@ -57,7 +57,7 @@ function addContent (req, res, next)
   else
    res.status(400).send({
       msg: "Bad parameters",
-      data: {message: "Le contenu n'est pas valide"}
+      data: {message: "Missing parameters."}
   });
 }
 
@@ -72,7 +72,7 @@ function delContent (req, res, next)
   else
    res.status(400).send({
       msg: "Bad parameters",
-      data: {message: "Le contenu n'est pas valide"}
+      data: {message: "Missing parameters."}
   });
 }
 
@@ -145,7 +145,7 @@ function addTranslation (req, res, next)
 else
   res.status(400).send({
      msg: "Bad parameters",
-     data: {message: "Le contenu n'est pas valide"}
+     data: {message: "Missing parameters."}
  });
 }
 
@@ -170,7 +170,7 @@ function getTranslation (req, res, next)
     else
      res.status(400).send({
         msg: "Bad parameters",
-        data: {message: "Le contenu n'est pas valide"}
+        data: {message: "Missing parameters."}
     });
 }
 
