@@ -24,9 +24,9 @@ bool CmdManager::connectToServer()
 	{
 		std::cerr << "Error on request authentificate : " << e.what() << std::endl;
 	}
-	getUserInfo();
-	_currentUser.setFirstName("Arnaud");
-	editUserInfo(_currentUser);
+	//getUserInfo();
+	//_currentUser.setFirstName("Arnaud");
+	//editUserInfo(_currentUser);
 	return true;
 }
 
