@@ -19,6 +19,8 @@ class User
 public:
 	User(const std::string &email, const std::string &userName, const std::string &firstName, const std::string & lastName);
 	User();
+	User(const User & user);
+	User & operator=(const User & user);
 	~User();
 	void setFirstName(const std::string &firstName);
 	void setLastName(const std::string &lastName);
@@ -30,6 +32,9 @@ public:
 	std::string getUsertName() const;
 	std::string getEmail() const;
 	std::string getDateOfBirth() const;
+	std::string getYearOfBirth() const;
+	std::string getMonthOfBirth() const;
+	std::string getDayOfBirth() const;
 
 private:
 	std::string _firstName;
@@ -37,6 +42,9 @@ private:
 	std::string _userName;
 	std::string _email;
 	std::string	_dateOfBirth;
+	std::string _yearOfBirth;
+	std::string _monthOfBirth;
+	std::string _dayOfBirth;
 };
 
 #endif  // USER_HH_INCLUDED

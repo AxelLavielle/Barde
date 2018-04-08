@@ -22,6 +22,24 @@ User::User()
 {
 }
 
+User::User(const User & user)
+{
+	*this = user;
+}
+
+User & User::operator=(const User & user)
+{
+	_firstName = user.getFirstName();
+	_lastName = user.getLastName();
+	_userName = user.getUsertName();
+	_email = user.getEmail();
+	_dateOfBirth = user.getDateOfBirth();
+	_yearOfBirth = user.getYearOfBirth();
+	_monthOfBirth = user.getMonthOfBirth();
+	_dayOfBirth = user.getDayOfBirth();
+	return *this;
+}
+
 User::~User()
 {
 }
@@ -74,4 +92,19 @@ std::string User::getEmail() const
 std::string User::getDateOfBirth() const
 {
 	return _dateOfBirth;
+}
+
+std::string User::getYearOfBirth() const
+{
+	return _yearOfBirth;
+}
+
+std::string User::getMonthOfBirth() const
+{
+	return _monthOfBirth;
+}
+
+std::string User::getDayOfBirth() const
+{
+	return _dayOfBirth;
 }

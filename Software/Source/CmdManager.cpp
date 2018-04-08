@@ -16,17 +16,6 @@ bool CmdManager::connectToServer()
 	//_socket.setAddr("163.172.128.43", 2010, 1000);
 	//api-dev.barde.io
 	_socket.setAddr("163.172.128.43", 2110, 1000);
-	try
-	{
-		_socket.authentificate("arnaud.p@outlook.fr", "arnaud");
-	}
-	catch (RestClientException &e)
-	{
-		std::cerr << "Error on request authentificate : " << e.what() << std::endl;
-	}
-	//getUserInfo();
-	//_currentUser.setFirstName("Arnaud");
-	//editUserInfo(_currentUser);
 	return true;
 }
 
@@ -72,7 +61,19 @@ User CmdManager::getUserInfo()
 
 bool CmdManager::login(const std::string &email, const std::string &password)
 {
-	return false;
+	try
+	{
+		_socket.authentificate("arnaud.p@outlook.fr", "arnaud");
+	}
+	catch (RestClientException &e)
+	{
+		std::cerr << "Error on request authentificate : " << e.what() << std::endl;
+		return false;
+	}
+	//getUserInfo();
+	//_currentUser.setFirstName("Arnaud");
+	//editUserInfo(_currentUser);
+	return true;
 }
 
 bool CmdManager::logout()
@@ -112,4 +113,32 @@ bool CmdManager::editUserInfo(const User & user)
 bool CmdManager::forgetPassword()
 {
 	return false;
+}
+
+bool CmdManager::signUp(const User & user, const std::string & password)
+{
+	Json::Value				root;
+	int						responseCode;
+	std::string				responseMsg;
+	std::stringstream		ssJson;
+
+	_currentUser = user;
+	root["email"] = user.getEmail();
+	root["password"] = password;
+	root["firstName"] = user.getFirstName();
+	root["lastName"] = user.getLastName();
+	root["yearOfBirth"] = user.getYearOfBirth();
+	root["monthOfBirth"] = user.getMonthOfBirth();
+	root["dayOfBirth"] = user.getDayOfBirth();
+	ssJson << root;
+
+	try
+	{
+		_socket.post("/user/register", ssJson.str(), responseCode, responseMsg);
+	}
+	catch (RestClientException &e)
+	{
+		std::cerr << "Error on request getUserInfo : " << e.what() << std::endl;
+	}
+	return true;
 }

@@ -25,6 +25,7 @@ public:
 	bool logout();
 	bool editUserInfo(const User &user);
 	bool forgetPassword();
+	bool signUp(const User & user, const std::string & password);
 
 private:
 	RestClient				_socket;
