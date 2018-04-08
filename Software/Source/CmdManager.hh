@@ -12,18 +12,23 @@
 #define CMDMANAGER_HH_INCLUDED
 
 #include <sstream>
-#include "json/json.h"
-#include "./SocketManager/RestClient.hh"
-#include "./SocketManager/RestClientException.hh"
+#include "./RestClient/RestClient.hh"
+#include "./RestClient/RestClientException.hh"
+#include "User.hh"
 
 class CmdManager
 {
 public:
 	bool connectToServer();
-	bool getUserInfo();
+	User getUserInfo();
+	bool login(const std::string &email, const std::string & password);
+	bool logout();
+	bool editUserInfo(const User &user);
+	bool forgetPassword();
 
 private:
-	RestClient	_socket;
+	RestClient				_socket;
+	User					_currentUser;
 };
 
 
