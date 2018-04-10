@@ -69,7 +69,6 @@ class UserService {
             if let httpStatusCode = response.response?.statusCode {
                 switch(httpStatusCode) {
                 case 200:
-                    
                     if ((response.result.value) != nil) {
                         
                     }

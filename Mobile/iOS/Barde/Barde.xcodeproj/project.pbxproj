@@ -12,16 +12,17 @@
 		1D1013A01FE9AC6E00913E43 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D10139F1FE9AC6E00913E43 /* LoginViewController.swift */; };
 		1D1013A41FE9F4E800913E43 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1013A31FE9F4E800913E43 /* SignupViewController.swift */; };
 		1D1976D920254DD100A390EB /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1976D820254DD100A390EB /* RootViewController.swift */; };
+		1D21C965207C23C100F12FB6 /* TempoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D21C964207C23C100F12FB6 /* TempoViewController.swift */; };
 		1D37175B1FC74042000C682B /* UtilsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D37175A1FC74042000C682B /* UtilsController.swift */; };
 		1D4C6A851FBF5C410052922E /* SettingsEditAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4C6A841FBF5C410052922E /* SettingsEditAccountView.swift */; };
 		1D4D266B1F8D65C800383255 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4D266A1F8D65C800383255 /* SettingsViewController.swift */; };
-		1D4D266D1F8D65EF00383255 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4D266C1F8D65EF00383255 /* MainViewController.swift */; };
+		1D5C188C207C10E300393DFC /* CheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5C188B207C10E300393DFC /* CheckButton.swift */; };
 		1D6E40551F8D4E8D006522C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E40541F8D4E8D006522C8 /* AppDelegate.swift */; };
-		1D6E40571F8D4E8D006522C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E40561F8D4E8D006522C8 /* ViewController.swift */; };
 		1D6E405A1F8D4E8D006522C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D6E40581F8D4E8D006522C8 /* Main.storyboard */; };
 		1D6E405D1F8D4E8D006522C8 /* Barde.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E405B1F8D4E8D006522C8 /* Barde.xcdatamodeld */; };
 		1D6E405F1F8D4E8D006522C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D6E405E1F8D4E8D006522C8 /* Assets.xcassets */; };
 		1D6E40621F8D4E8D006522C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D6E40601F8D4E8D006522C8 /* LaunchScreen.storyboard */; };
+		1DB53CE9207AB933007149E5 /* GeneratorPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB53CE8207AB933007149E5 /* GeneratorPageViewController.swift */; };
 		1DC8525A1FCD0DAD009E9886 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC852591FCD0DAD009E9886 /* ProfileViewController.swift */; };
 		1DCD58471F913D29005F85C5 /* SettingMenuButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DCD58461F913D29005F85C5 /* SettingMenuButton.xib */; };
 		1DCD58491F913D36005F85C5 /* SettingMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCD58481F913D36005F85C5 /* SettingMenuButton.swift */; };
@@ -29,7 +30,6 @@
 		1DD7B1E1203F63CE0038E838 /* Profil+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7B1DF203F63CE0038E838 /* Profil+CoreDataClass.swift */; };
 		1DD7B1E2203F63CE0038E838 /* Profil+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7B1E0203F63CE0038E838 /* Profil+CoreDataProperties.swift */; };
 		1DD7B1E5204277450038E838 /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7B1E4204277450038E838 /* UserServices.swift */; };
-		1DFBF2632017EFEF002A48BC /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFBF2622017EFEF002A48BC /* UIViewExtension.swift */; };
 		5153432B12B35C53A3111D17 /* Pods_Barde.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C60B6F2CE394949EDAB0D46 /* Pods_Barde.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,18 +39,19 @@
 		1D10139F1FE9AC6E00913E43 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1D1013A31FE9F4E800913E43 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		1D1976D820254DD100A390EB /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		1D21C964207C23C100F12FB6 /* TempoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoViewController.swift; sourceTree = "<group>"; };
 		1D37175A1FC74042000C682B /* UtilsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsController.swift; sourceTree = "<group>"; };
 		1D4C6A841FBF5C410052922E /* SettingsEditAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEditAccountView.swift; sourceTree = "<group>"; };
 		1D4D266A1F8D65C800383255 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		1D4D266C1F8D65EF00383255 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		1D5C188B207C10E300393DFC /* CheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckButton.swift; sourceTree = "<group>"; };
 		1D6E40511F8D4E8D006522C8 /* Barde.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Barde.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D6E40541F8D4E8D006522C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1D6E40561F8D4E8D006522C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1D6E40591F8D4E8D006522C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1D6E405C1F8D4E8D006522C8 /* Barde.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Barde.xcdatamodel; sourceTree = "<group>"; };
 		1D6E405E1F8D4E8D006522C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D6E40611F8D4E8D006522C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D6E40631F8D4E8D006522C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1DB53CE8207AB933007149E5 /* GeneratorPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorPageViewController.swift; sourceTree = "<group>"; };
 		1DC852591FCD0DAD009E9886 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1DCD58461F913D29005F85C5 /* SettingMenuButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingMenuButton.xib; sourceTree = "<group>"; };
 		1DCD58481F913D36005F85C5 /* SettingMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMenuButton.swift; sourceTree = "<group>"; };
@@ -58,7 +59,6 @@
 		1DD7B1DF203F63CE0038E838 /* Profil+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profil+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1DD7B1E0203F63CE0038E838 /* Profil+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profil+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1DD7B1E4204277450038E838 /* UserServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServices.swift; sourceTree = "<group>"; };
-		1DFBF2622017EFEF002A48BC /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		548C4468B491C65C570A70ED /* Pods-Barde.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Barde.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Barde/Pods-Barde.debug.xcconfig"; sourceTree = "<group>"; };
 		8C60B6F2CE394949EDAB0D46 /* Pods_Barde.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Barde.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDB2D9436B3DD60264D5AEA9 /* Pods-Barde.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Barde.release.xcconfig"; path = "Pods/Target Support Files/Pods-Barde/Pods-Barde.release.xcconfig"; sourceTree = "<group>"; };
@@ -103,15 +103,11 @@
 				1DDCA6981F8D52E4009F1E1C /* Views */,
 				1DDCA6971F8D52DE009F1E1C /* Controllers */,
 				1D6E40541F8D4E8D006522C8 /* AppDelegate.swift */,
-				1D6E40561F8D4E8D006522C8 /* ViewController.swift */,
 				1D6E40581F8D4E8D006522C8 /* Main.storyboard */,
 				1D6E405E1F8D4E8D006522C8 /* Assets.xcassets */,
 				1D6E40601F8D4E8D006522C8 /* LaunchScreen.storyboard */,
 				1D6E40631F8D4E8D006522C8 /* Info.plist */,
 				1D6E405B1F8D4E8D006522C8 /* Barde.xcdatamodeld */,
-				1D4D266A1F8D65C800383255 /* SettingsViewController.swift */,
-				1D4D266C1F8D65EF00383255 /* MainViewController.swift */,
-				1DFBF2622017EFEF002A48BC /* UIViewExtension.swift */,
 				1DD7B1D9203CD5AB0038E838 /* NetworkManager.swift */,
 			);
 			path = Barde;
@@ -138,12 +134,15 @@
 		1DDCA6971F8D52DE009F1E1C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1D4D266A1F8D65C800383255 /* SettingsViewController.swift */,
 				1D4C6A841FBF5C410052922E /* SettingsEditAccountView.swift */,
 				1DC852591FCD0DAD009E9886 /* ProfileViewController.swift */,
 				1D10139D1FE9936400913E43 /* FirstPageViewController.swift */,
 				1D10139F1FE9AC6E00913E43 /* LoginViewController.swift */,
 				1D1013A31FE9F4E800913E43 /* SignupViewController.swift */,
 				1D1976D820254DD100A390EB /* RootViewController.swift */,
+				1DB53CE8207AB933007149E5 /* GeneratorPageViewController.swift */,
+				1D21C964207C23C100F12FB6 /* TempoViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -153,6 +152,7 @@
 			children = (
 				1DCD58451F913D19005F85C5 /* SettingMenuButton */,
 				1D10139B1FE9871900913E43 /* RoundedButton.swift */,
+				1D5C188B207C10E300393DFC /* CheckButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -319,22 +319,22 @@
 			files = (
 				1D1976D920254DD100A390EB /* RootViewController.swift in Sources */,
 				1D6E405D1F8D4E8D006522C8 /* Barde.xcdatamodeld in Sources */,
-				1D6E40571F8D4E8D006522C8 /* ViewController.swift in Sources */,
 				1D1013A01FE9AC6E00913E43 /* LoginViewController.swift in Sources */,
 				1D37175B1FC74042000C682B /* UtilsController.swift in Sources */,
 				1DD7B1E2203F63CE0038E838 /* Profil+CoreDataProperties.swift in Sources */,
 				1DCD58491F913D36005F85C5 /* SettingMenuButton.swift in Sources */,
-				1DFBF2632017EFEF002A48BC /* UIViewExtension.swift in Sources */,
-				1D4D266D1F8D65EF00383255 /* MainViewController.swift in Sources */,
 				1DC8525A1FCD0DAD009E9886 /* ProfileViewController.swift in Sources */,
 				1D4C6A851FBF5C410052922E /* SettingsEditAccountView.swift in Sources */,
+				1D21C965207C23C100F12FB6 /* TempoViewController.swift in Sources */,
 				1DD7B1DA203CD5AB0038E838 /* NetworkManager.swift in Sources */,
 				1D4D266B1F8D65C800383255 /* SettingsViewController.swift in Sources */,
+				1DB53CE9207AB933007149E5 /* GeneratorPageViewController.swift in Sources */,
 				1DD7B1E1203F63CE0038E838 /* Profil+CoreDataClass.swift in Sources */,
 				1D1013A41FE9F4E800913E43 /* SignupViewController.swift in Sources */,
 				1D10139E1FE9936400913E43 /* FirstPageViewController.swift in Sources */,
 				1D6E40551F8D4E8D006522C8 /* AppDelegate.swift in Sources */,
 				1D10139C1FE9871900913E43 /* RoundedButton.swift in Sources */,
+				1D5C188C207C10E300393DFC /* CheckButton.swift in Sources */,
 				1DD7B1E5204277450038E838 /* UserServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
