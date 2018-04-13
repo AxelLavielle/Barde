@@ -54,7 +54,7 @@ User CmdManager::getUserInfo()
 	_currentUser.setEmail(user["email"].asString());
 	_currentUser.setFirstName(user["name"]["firstName"].asString());
 	_currentUser.setLastName(user["name"]["lastName"].asString());
-	_currentUser.setUsertName(user["name"]["userName"].asString());
+	_currentUser.setUserName(user["name"]["userName"].asString());
 	_currentUser.setDateOfBirth(user["dateOfBirth"].asString());
 	return _currentUser;
 }
@@ -63,7 +63,8 @@ bool CmdManager::login(const std::string &email, const std::string &password)
 {
 	try
 	{
-		_socket.authentificate("arnaud.p@outlook.fr", "arnaud");
+		//_socket.authentificate("arnaud.p@outlook.fr", "arnaud");
+		_socket.authentificate(email, password);
 	}
 	catch (RestClientException &e)
 	{
@@ -105,7 +106,7 @@ bool CmdManager::editUserInfo(const User & user)
 	}
 	catch (RestClientException &e)
 	{
-		std::cerr << "Error on request getUserInfo : " << e.what() << std::endl;
+		std::cerr << "Error on request editUserInfo : " << e.what() << std::endl;
 	}
 	return false;
 }
@@ -138,7 +139,7 @@ bool CmdManager::signUp(const User & user, const std::string & password)
 	}
 	catch (RestClientException &e)
 	{
-		std::cerr << "Error on request getUserInfo : " << e.what() << std::endl;
+		std::cerr << "Error on request signUp : " << e.what() << std::endl;
 	}
 	return true;
 }

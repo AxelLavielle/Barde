@@ -16,23 +16,38 @@ Author:  Oreo
 //==============================================================================
 UserParamsComponent::UserParamsComponent()
 {
+
 	int x = getParentWidth();
 	int y = getParentHeight();
 
 	setSize(getParentWidth(), getParentHeight() - 10);
 	this->currentTheme = parseTheme("../Themes/Dark");
 
-	//TODO GET INFO FROM API
-	//initData();
+	//Connect to server
+	cmdManager.connectToServer();
+
+	//login
+	cmdManager.login("arnaud.p@outlook.fr", "arnaud");
+
+
+	//get User info
+	user = cmdManager.getUserInfo();
+
+	addAndMakeVisible(firstNameTextEditor);
+	firstNameTextEditor.setText(user.getFirstName());
+	firstNameTextEditor.setText("dd: " + user.getDayOfBirth() + " mm: " + user.getMonthOfBirth() + " yyyy: " + user.getYearOfBirth());
+
+	addAndMakeVisible(lastNameTextEditor);
+	lastNameTextEditor.setText(user.getLastName());
 
 	addAndMakeVisible(userNameTextEditor);
-	userNameTextEditor.setText("");
+	userNameTextEditor.setText(user.getUserName());
 
 	addAndMakeVisible(emailTextEditor);
-	emailTextEditor.setText("");
+	emailTextEditor.setText(user.getEmail());
 
 	addAndMakeVisible(dateOfBirthTextEditor);
-	dateOfBirthTextEditor.setText("");
+	dateOfBirthTextEditor.setText(user.getDateOfBirth());
 	
 	addAndMakeVisible(passwordTextEditor);
 	passwordTextEditor.setText("");
@@ -52,6 +67,16 @@ UserParamsComponent::UserParamsComponent()
 														 comboBox.setEditableText(true);
 														 comboBox.setJustificationType(Justification::centred);*/
 
+
+	addAndMakeVisible(firstNameLabel);
+	firstNameLabel.setText("FirstName:", dontSendNotification);
+	firstNameLabel.attachToComponent(&firstNameTextEditor, true);
+	firstNameLabel.setJustificationType(Justification::right);
+
+	addAndMakeVisible(lastNameLabel);
+	lastNameLabel.setText("LastName:", dontSendNotification);
+	lastNameLabel.attachToComponent(&lastNameTextEditor, true);
+	lastNameLabel.setJustificationType(Justification::right);
 
 	addAndMakeVisible(userNameLabel);
 	userNameLabel.setText("UserName:", dontSendNotification);
@@ -116,7 +141,25 @@ UserParamsComponent::UserParamsComponent()
 
 void UserParamsComponent::ThemeChanged()
 {
-	String tmp = userNameTextEditor.getText();
+	String tmp = firstNameTextEditor.getText();
+	firstNameTextEditor.setColour(TextEditor::backgroundColourId, Colour(this->currentTheme.getBackgroundColor()));
+	firstNameTextEditor.setColour(TextEditor::focusedOutlineColourId, Colour(this->currentTheme.getButtonColor()));
+	firstNameTextEditor.setColour(TextEditor::highlightColourId, Colour(this->currentTheme.getButtonColor()));
+	firstNameTextEditor.setColour(TextEditor::textColourId, Colour(this->currentTheme.getFontColor()));
+	firstNameTextEditor.setColour(TextEditor::outlineColourId, Colour(this->currentTheme.getFontColor()));
+	firstNameTextEditor.clear();
+	firstNameTextEditor.setText(tmp);
+
+	tmp = lastNameTextEditor.getText();
+	lastNameTextEditor.setColour(TextEditor::backgroundColourId, Colour(this->currentTheme.getBackgroundColor()));
+	lastNameTextEditor.setColour(TextEditor::focusedOutlineColourId, Colour(this->currentTheme.getButtonColor()));
+	lastNameTextEditor.setColour(TextEditor::highlightColourId, Colour(this->currentTheme.getButtonColor()));
+	lastNameTextEditor.setColour(TextEditor::textColourId, Colour(this->currentTheme.getFontColor()));
+	lastNameTextEditor.setColour(TextEditor::outlineColourId, Colour(this->currentTheme.getFontColor()));
+	lastNameTextEditor.clear();
+	lastNameTextEditor.setText(tmp);
+
+	tmp = userNameTextEditor.getText();
 	userNameTextEditor.setColour(TextEditor::backgroundColourId, Colour(this->currentTheme.getBackgroundColor()));
 	userNameTextEditor.setColour(TextEditor::focusedOutlineColourId, Colour(this->currentTheme.getButtonColor()));
 	userNameTextEditor.setColour(TextEditor::highlightColourId, Colour(this->currentTheme.getButtonColor()));
@@ -164,7 +207,8 @@ void UserParamsComponent::ThemeChanged()
 	passwordConfirmationTextEditor.clear();
 	passwordConfirmationTextEditor.setText(tmp);
 
-
+	firstNameLabel.setColour(Label::textColourId, Colour(this->currentTheme.getButtonColor()));
+	lastNameLabel.setColour(Label::textColourId, Colour(this->currentTheme.getButtonColor()));
 	userNameLabel.setColour(Label::textColourId, Colour(this->currentTheme.getButtonColor()));
 	emailLabel.setColour(Label::textColourId, Colour(this->currentTheme.getButtonColor()));
 	dateOfBirthLabel.setColour(Label::textColourId, Colour(this->currentTheme.getButtonColor()));
@@ -185,17 +229,34 @@ void UserParamsComponent::buttonClicked(Button* button)
 	String dateofbirth;
 	String password;
 	String confirmpassword;
-	String language;
-
+	
+	errorText.setText("", dontSendNotification);
 	username = userNameTextEditor.getText();
 	email = emailTextEditor.getText();
+	bool a = isEmailValid(email.toStdString());
+	if (!a)
+	{
+		errorText.setText("Error: the email is not valid", dontSendNotification);
+		return;
+	}
 	dateofbirth = dateOfBirthTextEditor.getText();
-	language = languageComboBox.getText();
 	password = passwordTextEditor.getText();
 	confirmpassword = passwordConfirmationTextEditor.getText();
 	if (password != confirmpassword)
 		errorText.setText("Error passwords don't match", dontSendNotification);
-	std::cout << "username : " << username << " email: " << email << "date of birth: " << dateofbirth << " language : " << language << "password: " << password << " confirm password :" << confirmpassword << std::endl;
+	std::cout << "username : " << username << " email: " << email << "date of birth: " << dateofbirth  << "password: " << password << " confirm password :" << confirmpassword << std::endl;
+}
+
+
+
+bool UserParamsComponent::isEmailValid(const std::string &email)
+{
+	// define a regular expression
+	const std::regex pattern
+	("(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+");
+
+	// try to match the string with the regular expression
+	return std::regex_match(email, pattern);
 }
 
 
@@ -214,13 +275,15 @@ void UserParamsComponent::resized()
 	int x = (getParentWidth());
 	int y = (getParentHeight());
 
-	userNameTextEditor.setBounds((x/2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN, BOX_WIDTH, BOX_HEIGHT);
-	emailTextEditor.setBounds((x/2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 2, BOX_WIDTH, BOX_HEIGHT);
-	dateOfBirthTextEditor.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 3, BOX_WIDTH, BOX_HEIGHT);
-	passwordTextEditor.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 4, BOX_WIDTH, BOX_HEIGHT);
-	passwordConfirmationTextEditor.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 5, BOX_WIDTH, BOX_HEIGHT);
-	saveButton.setBounds((x/2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 6, BOX_WIDTH, BOX_HEIGHT);
-	errorText.setBounds((x/2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 7, BOX_WIDTH, BOX_HEIGHT);
+	firstNameTextEditor.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN, BOX_WIDTH, BOX_HEIGHT);
+	lastNameTextEditor.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 2, BOX_WIDTH, BOX_HEIGHT);
+	userNameTextEditor.setBounds((x/2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 3, BOX_WIDTH, BOX_HEIGHT);
+	emailTextEditor.setBounds((x/2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 4, BOX_WIDTH, BOX_HEIGHT);
+	dateOfBirthTextEditor.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 5, BOX_WIDTH, BOX_HEIGHT);
+	passwordTextEditor.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 6, BOX_WIDTH, BOX_HEIGHT);
+	passwordConfirmationTextEditor.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 7, BOX_WIDTH, BOX_HEIGHT);
+	saveButton.setBounds((x/2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 8, BOX_WIDTH, BOX_HEIGHT);
+	errorText.setBounds((x/2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 9, BOX_WIDTH, BOX_HEIGHT);
 
 	// This is called when the MainContentComponent is resized.
 	// If you add any child components, this is where you should

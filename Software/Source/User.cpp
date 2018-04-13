@@ -31,7 +31,7 @@ User & User::operator=(const User & user)
 {
 	_firstName = user.getFirstName();
 	_lastName = user.getLastName();
-	_userName = user.getUsertName();
+	_userName = user.getUserName();
 	_email = user.getEmail();
 	_dateOfBirth = user.getDateOfBirth();
 	_yearOfBirth = user.getYearOfBirth();
@@ -54,14 +54,31 @@ void User::setLastName(const std::string & lastName)
 	_lastName = lastName;
 }
 
-void User::setUsertName(const std::string & userName)
+void User::setUserName(const std::string & userName)
 {
 	_userName = userName;
 }
 
+
 void User::setEmail(const std::string & email)
 {
 	_email = email;
+}
+
+
+void User::setDayOfBirth(const std::string &dayOfBirth)
+{
+	_dayOfBirth = dayOfBirth;
+}
+
+void User::setMonthOfBirth(const std::string &monthOfBirth)
+{
+	_monthOfBirth = monthOfBirth;
+}
+
+void User::setYearOfBirth(const std::string &yearOfBirth)
+{
+	_yearOfBirth = yearOfBirth;
 }
 
 void User::setDateOfBirth(const std::string & dateOfBirth)
@@ -79,7 +96,7 @@ std::string User::getLastName() const
 	return _lastName;
 }
 
-std::string User::getUsertName() const
+std::string User::getUserName() const
 {
 	return _userName;
 }
