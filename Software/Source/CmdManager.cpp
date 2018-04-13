@@ -126,6 +126,7 @@ bool CmdManager::signUp(const User & user, const std::string & password)
 	_currentUser = user;
 	root["email"] = user.getEmail();
 	root["password"] = password;
+	root["userName"] = user.getUserName();
 	root["firstName"] = user.getFirstName();
 	root["lastName"] = user.getLastName();
 	root["yearOfBirth"] = user.getYearOfBirth();
@@ -139,7 +140,7 @@ bool CmdManager::signUp(const User & user, const std::string & password)
 	}
 	catch (RestClientException &e)
 	{
-		std::cerr << "Error on request signUp : " << e.what() << std::endl;
+		std::cerr << "Error on request signUp : " << e.what() << " Message: " << e.getMessage() << " Info : "<< e.getInfo() << std::endl;
 	}
 	return true;
 }

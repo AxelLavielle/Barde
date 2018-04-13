@@ -78,7 +78,7 @@ LoginComponent::LoginComponent()
 	themeChoice.setSelectedId(1);
 	themeChoice.addListener(this);
 	ThemeChanged();
-
+	cmdManager.connectToServer();
 
 }
 
@@ -100,10 +100,15 @@ void LoginComponent::buttonClicked(Button* button)
 	login = textEditor1.getText();
 	password = textEditor2.getText();
 
-	if (login == "abc" && password == "abc")
-		toto = "correct";
-	else
-		toto = "wrong";
+	if (cmdManager.login(login.toStdString(), password.toStdString())) {
+		//TODO Change Window
+		toto = "Login correct";
+	}
+
+	else {
+		toto = "There was an error during the login process";
+	}
+
 
 	errorText.setText(toto, juce::NotificationType::sendNotification);
 }

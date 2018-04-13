@@ -95,6 +95,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/MusicStyleButton_39681cbe.o \
   $(JUCE_OBJDIR)/Theme_6a8438b3.o \
   $(JUCE_OBJDIR)/UserParamsComponent_ea189f76.o \
+  $(JUCE_OBJDIR)/UserRegistration_c9349104.o \
   $(JUCE_OBJDIR)/AMidiManager_545b688.o \
   $(JUCE_OBJDIR)/Midi_8be1d87e.o \
   $(JUCE_OBJDIR)/MidiManager_7f6bb1d9.o \

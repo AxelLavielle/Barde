@@ -140,54 +140,60 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Source\ThreadPool.cpp" />
-    <ClCompile Include="..\Source\Tools.cpp" />
-    <ClCompile Include="..\Source\SynchronizeManager.cpp" />
-    <ClCompile Include="..\Source\ViewManager\AView.cpp" />
-    <ClCompile Include="..\Source\ViewManager\HomePage.cpp" />
-    <ClCompile Include="..\Source\ViewManager\ViewManager.cpp" />
-    <ClCompile Include="..\Source\AI\Pattern.cpp" />
-    <ClCompile Include="..\Source\AI\PatternGenerator.cpp" />
-    <ClCompile Include="..\Source\AI\AI.cpp" />
-    <ClCompile Include="..\Source\AI\Chords.cpp" />
-    <ClCompile Include="..\Source\AI\Disposition.cpp" />
-    <ClCompile Include="..\Source\AI\MusicGenerator.cpp" />
-    <ClCompile Include="..\Source\AI\ObjectMarkov.cpp" />
-    <ClCompile Include="..\Source\AI\Resolution.cpp" />
-    <ClCompile Include="..\Source\AI\StyleSettings.cpp" />
-    <ClCompile Include="..\Source\Instrument.cpp" />
-    <ClCompile Include="..\JsoncppLibrary\jsoncpp.cpp" />
-    <ClCompile Include="..\Source\DatabaseManager\ADatabasManager.cpp" />
-    <ClCompile Include="..\Source\DatabaseManager\SQLiteManager.cpp" />
-    <ClCompile Include="..\Source\EncryptionManager\AEncryptionManager.cpp" />
-    <ClCompile Include="..\Source\EncryptionManager\SSLManager.cpp" />
-    <ClCompile Include="..\Source\GraphManager\AGraphManager.cpp" />
-    <ClCompile Include="..\Source\GraphManager\JuceManager.cpp" />
-    <ClCompile Include="..\Source\GraphManager\MainComponent.cpp" />
-    <ClCompile Include="..\Source\GraphManager\MainWindow.cpp" />
-    <ClCompile Include="..\Source\GraphManager\MusicStyleButton.cpp" />
-    <ClCompile Include="..\Source\GraphManager\Theme.cpp" />
-    <ClCompile Include="..\Source\MidiManager\AMidiManager.cpp" />
-    <ClCompile Include="..\Source\MidiManager\Midi.cpp" />
-    <ClCompile Include="..\Source\MidiManager\MidiManager.cpp" />
-    <ClCompile Include="..\Source\SocketManager\ASocketManager.cpp" />
-    <ClCompile Include="..\Source\SocketManager\TCPSocket.cpp" />
-    <ClCompile Include="..\Source\SoundManager\ASoundManager.cpp" />
-    <ClCompile Include="..\Source\SoundManager\JuceSound.cpp" />
-    <ClCompile Include="..\Source\Authentification.cpp" />
-    <ClCompile Include="..\Source\CmdManager.cpp" />
-    <ClCompile Include="..\Source\Configuration.cpp" />
-    <ClCompile Include="..\Source\Core.cpp" />
-    <ClCompile Include="..\Source\FileManager.cpp" />
-    <ClCompile Include="..\Source\main.cpp" />
-    <ClCompile Include="..\Source\Music.cpp" />
-    <ClCompile Include="..\Source\MusicParameters.cpp" />
-    <ClCompile Include="..\Source\MusicStyle.cpp" />
-    <ClCompile Include="..\Source\Player.cpp" />
-    <ClCompile Include="..\Source\Playlist.cpp" />
-    <ClCompile Include="..\Source\Subscription.cpp" />
-    <ClCompile Include="..\Source\User.cpp" />
-    <ClCompile Include="..\Source\UserSettings.cpp" />
+<ClCompile Include="..\Source\RestClient\ARestClient.cpp" /> 
+    <ClCompile Include="..\Source\RestClient\RestClient.cpp" /> 
+    <ClCompile Include="..\Source\RestClient\RestClientException.cpp" /> 
+    <ClCompile Include="..\Source\ThreadPool.cpp" /> 
+    <ClCompile Include="..\Source\Tools.cpp" /> 
+    <ClCompile Include="..\Source\SynchronizeManager.cpp" /> 
+    <ClCompile Include="..\Source\ViewManager\AView.cpp" /> 
+    <ClCompile Include="..\Source\ViewManager\HomePage.cpp" /> 
+    <ClCompile Include="..\Source\ViewManager\ViewManager.cpp" /> 
+    <ClCompile Include="..\Source\AI\Pattern.cpp" /> 
+    <ClCompile Include="..\Source\AI\PatternGenerator.cpp" /> 
+    <ClCompile Include="..\Source\AI\AI.cpp" /> 
+    <ClCompile Include="..\Source\AI\Chords.cpp" /> 
+    <ClCompile Include="..\Source\AI\Disposition.cpp" /> 
+    <ClCompile Include="..\Source\AI\MusicGenerator.cpp" /> 
+    <ClCompile Include="..\Source\AI\ObjectMarkov.cpp" /> 
+    <ClCompile Include="..\Source\AI\Resolution.cpp" /> 
+    <ClCompile Include="..\Source\AI\StyleSettings.cpp" /> 
+    <ClCompile Include="..\Source\Instrument.cpp" /> 
+    <ClCompile Include="..\JsoncppLibrary\jsoncpp.cpp" /> 
+    <ClCompile Include="..\Source\DatabaseManager\ADatabasManager.cpp" /> 
+    <ClCompile Include="..\Source\DatabaseManager\SQLiteManager.cpp" /> 
+    <ClCompile Include="..\Source\EncryptionManager\AEncryptionManager.cpp" /> 
+    <ClCompile Include="..\Source\EncryptionManager\SSLManager.cpp" /> 
+    <ClCompile Include="..\Source\GraphManager\AGraphManager.cpp" /> 
+    <ClCompile Include="..\Source\GraphManager\JuceManager.cpp" /> 
+    <ClCompile Include="..\Source\GraphManager\LoginComponent.cpp" /> 
+    <ClCompile Include="..\Source\GraphManager\MainComponent.cpp" /> 
+    <ClCompile Include="..\Source\GraphManager\MainWindow.cpp" /> 
+    <ClCompile Include="..\Source\GraphManager\MusicStyleButton.cpp" /> 
+    <ClCompile Include="..\Source\GraphManager\Theme.cpp" /> 
+    <ClCompile Include="..\Source\GraphManager\UserParamsComponent.cpp" />
+ <ClCompile Include="..\Source\GraphManager\UserRegistration.cpp"/> 
+    <ClCompile Include="..\Source\MidiManager\AMidiManager.cpp" /> 
+    <ClCompile Include="..\Source\MidiManager\Midi.cpp" /> 
+    <ClCompile Include="..\Source\MidiManager\MidiManager.cpp" /> 
+    <ClCompile Include="..\Source\SoundManager\ASoundManager.cpp" /> 
+    <ClCompile Include="..\Source\SoundManager\JuceSound.cpp" />
+    <ClCompile Include="..\Source\SoundManager\Synthesizer.cpp" /> 
+    <ClCompile Include="..\Source\SoundManager\SynthesizerInstrument.cpp" /> 
+    <ClCompile Include="..\Source\Authentification.cpp" /> 
+    <ClCompile Include="..\Source\CmdManager.cpp" /> 
+    <ClCompile Include="..\Source\Configuration.cpp" /> 
+    <ClCompile Include="..\Source\Core.cpp" /> 
+    <ClCompile Include="..\Source\FileManager.cpp" /> 
+    <ClCompile Include="..\Source\main.cpp" /> 
+    <ClCompile Include="..\Source\Music.cpp" /> 
+    <ClCompile Include="..\Source\MusicParameters.cpp" /> 
+    <ClCompile Include="..\Source\MusicStyle.cpp" /> 
+    <ClCompile Include="..\Source\Player.cpp" /> 
+    <ClCompile Include="..\Source\Playlist.cpp" /> 
+    <ClCompile Include="..\Source\Subscription.cpp" /> 
+    <ClCompile Include="..\Source\User.cpp" /> 
+    <ClCompile Include="..\Source\UserSettings.cpp" />
     <ClCompile Include="..\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>

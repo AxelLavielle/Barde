@@ -12,6 +12,7 @@
 #include "MainComponent.h"
 #include "LoginComponent.h"
 #include "UserParamsComponent.h"
+#include "UserRegistration.h"
 #include <sstream> 
 
 MainWindow::MainWindow(const std::string &name) : DocumentWindow(name,
@@ -29,6 +30,7 @@ MainWindow::MainWindow(const std::string &name) : DocumentWindow(name,
 	//setContentOwned(new LoginComponent(), true);
 	setContentOwned(new MainContentComponent(), true);
 	//setContentOwned(new UserParamsComponent(), true);
+	//setContentOwned(new UserRegistration(), true);
 	//centreWithSize(getWidth(), getHeight());
 	setVisible(true);
 }

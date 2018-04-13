@@ -14,6 +14,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "Theme.h"
+#include "../CmdManager.hh"
 
 #define LOGO_WIDTH 1024 / 3
 #define LOGO_HEIGHT 927 / 3
@@ -39,6 +40,7 @@ public:
 	void ThemeChanged();
 
 private:
+	CmdManager cmdManager;
 	TextEditor textEditor1, textEditor2;
 	Label inputLabel1, inputLabel2;
 	ComboBox comboBox;

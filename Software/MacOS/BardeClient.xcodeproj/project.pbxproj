@@ -50,6 +50,7 @@
 		2AFD4AB90D751B424D3A070C = {isa = PBXBuildFile; fileRef = 0F2CB3C8CBD8203A2F7A9555; };
 		C1F7BF667EA7F29F633FAFD5 = {isa = PBXBuildFile; fileRef = 7788B5592E66EBFA439E84D0; };
 		2C89EAB104A188F9C700D8DD = {isa = PBXBuildFile; fileRef = 2C964EB08C83668508FE464E; };
+		7A0F52075239D060739E83CE = {isa = PBXBuildFile; fileRef = 90568CB8ED05EA68CCC843C9; };
 		E9758DD1F7A45EB5F42CC758 = {isa = PBXBuildFile; fileRef = DC94FF68FE89397FA007E25A; };
 		0F794E2C35FF07EE614EBC92 = {isa = PBXBuildFile; fileRef = 4A34675E59A7C113FDEBFE5D; };
 		6C48AAC07775E9D5CE906417 = {isa = PBXBuildFile; fileRef = 136778F2191E607B5C2DEA64; };
@@ -195,6 +196,7 @@
 		8BFF7E7C3570E8CA74ECCE39 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8D0FC2BF43685C277D9AAEB3 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_data_structures.mm"; path = "../JuceLibraryCode/include_juce_data_structures.mm"; sourceTree = "SOURCE_ROOT"; };
 		902CE0405C3723F16FA0D660 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LoginComponent.cpp; path = ../Source/GraphManager/LoginComponent.cpp; sourceTree = "SOURCE_ROOT"; };
+		90568CB8ED05EA68CCC843C9 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = UserRegistration.cpp; path = ../Source/GraphManager/UserRegistration.cpp; sourceTree = "SOURCE_ROOT"; };
 		91E2A281DDCFFD5A418C23D9 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ASoundManager.hh; path = ../Source/SoundManager/ASoundManager.hh; sourceTree = "SOURCE_ROOT"; };
 		93B5BA2F6619F977392CE0EB = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = MusicParameters.cpp; path = ../Source/MusicParameters.cpp; sourceTree = "SOURCE_ROOT"; };
 		93F0D60A5B9F2ADED0756129 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
@@ -222,6 +224,7 @@
 		C66885EE35A405DF19A1B307 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AView.cpp; path = ../Source/ViewManager/AView.cpp; sourceTree = "SOURCE_ROOT"; };
 		C88844019D05AD92C166810B = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = json.h; path = ../JsoncppLibrary/json/json.h; sourceTree = "SOURCE_ROOT"; };
 		CA5987DF8DBF4AA7ED49C7C0 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SynthesizerInstrument.hh; path = ../Source/SoundManager/SynthesizerInstrument.hh; sourceTree = "SOURCE_ROOT"; };
+		CAC5072C269A0EA722187B36 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UserRegistration.h; path = ../Source/GraphManager/UserRegistration.h; sourceTree = "SOURCE_ROOT"; };
 		CB33A4F87AF0BABE78B61BCA = {isa = PBXFileReference; lastKnownFileType = file.json; name = people.json; path = ../Source/AI/people.json; sourceTree = "SOURCE_ROOT"; };
 		CBE998D59D7C8DB61FD8667C = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MusicGenerator.hh; path = ../Source/AI/MusicGenerator.hh; sourceTree = "SOURCE_ROOT"; };
 		CDB078481387B346C45D3B87 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ARestClient.hh; path = ../Source/SocketManager/ARestClient.hh; sourceTree = "SOURCE_ROOT"; };
@@ -322,7 +325,9 @@
 					7788B5592E66EBFA439E84D0,
 					AD2028D07F50B93463CF3C09,
 					2C964EB08C83668508FE464E,
-					358EFBAD61C71621C2BE9C3A, ); name = GraphManager; sourceTree = "<group>"; };
+					358EFBAD61C71621C2BE9C3A,
+					90568CB8ED05EA68CCC843C9,
+					CAC5072C269A0EA722187B36, ); name = GraphManager; sourceTree = "<group>"; };
 		F8B637C8C48EC3DF6277127F = {isa = PBXGroup; children = (
 					DC94FF68FE89397FA007E25A,
 					39EEEEFB12D397701125E9CE,
@@ -522,6 +527,7 @@
 				INFOPLIST_FILE = Info-App.plist;
 				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.BardeClient;
@@ -640,6 +646,7 @@
 					2AFD4AB90D751B424D3A070C,
 					C1F7BF667EA7F29F633FAFD5,
 					2C89EAB104A188F9C700D8DD,
+					7A0F52075239D060739E83CE,
 					E9758DD1F7A45EB5F42CC758,
 					0F794E2C35FF07EE614EBC92,
 					6C48AAC07775E9D5CE906417,
