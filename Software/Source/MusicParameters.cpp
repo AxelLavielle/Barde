@@ -38,19 +38,44 @@ void MusicParameters::setSeed(const unsigned int seed)
 	_seed = seed;
 }
 
-void MusicParameters::addInstrument(const Instrument &instrument)
+void MusicParameters::addInstrumentChords(const Instrument &instrument)
 {
-	_instruments.push_back(instrument);
+	_instrumentsChords.push_back(instrument);
 }
 
-std::vector<Instrument> MusicParameters::getInstruments() const
+void MusicParameters::addInstrumentArpeggios(const Instrument &instrument)
 {
-	return (_instruments);
+	_instrumentsArpeggios.push_back(instrument);
 }
 
-void MusicParameters::setInstruments(const std::vector<Instrument> &instruments)
+void MusicParameters::setInstrumentDrums(const bool instrument)
 {
-	_instruments = instruments;
+	_instrumentsDrums = instrument;
+}
+
+std::vector<Instrument> MusicParameters::getInstrumentsChords() const
+{
+	return (_instrumentsChords);
+}
+
+std::vector<Instrument> MusicParameters::getInstrumentsArpeggios() const
+{
+	return (_instrumentsArpeggios);
+}
+
+bool MusicParameters::getInstrumentsDrums() const
+{
+	return (_instrumentsDrums);
+}
+
+void MusicParameters::setInstrumentsChords(const std::vector<Instrument> &instruments)
+{
+	_instrumentsChords = instruments;
+}
+
+void MusicParameters::setInstrumentsArpeggios(const std::vector<Instrument> &instruments)
+{
+	_instrumentsArpeggios = instruments;
 }
 
 void MusicParameters::setStyleName(const std::string & name)

@@ -83,6 +83,17 @@ class Disposition {
      *  \return Modifies the MidiManager contained into the MusicParameters object
      */
    static void	placeArpeggios(MusicParameters &parameters, std::vector<std::vector<t_note> > pattern);
+
+   /*!
+     *  \brief Places drums into a MidiManager object stored into a MusicParameters object
+     *
+     *  This method directly modifies a MidiParameters object by placing arpeggios into its MidiManager object
+     *
+     *  \param parameters : Parameters of the song to create
+     *  \param pattern : Drums pattern to play
+     *  \return Modifies the MidiManager contained into the MusicParameters object
+     */
+   static void	placeDrums(MusicParameters &parameters, std::vector<std::vector<t_note> > pattern);
 };
 
 #endif // DISPOSITION_HH_

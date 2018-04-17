@@ -230,6 +230,7 @@ void UserParamsComponent::buttonClicked(Button* button)
 	String password;
 	String confirmpassword;
 	
+	(void)button;
 	errorText.setText("", dontSendNotification);
 	username = userNameTextEditor.getText();
 	email = emailTextEditor.getText();
@@ -273,7 +274,7 @@ void UserParamsComponent::paint(Graphics& g)
 void UserParamsComponent::resized()
 {
 	int x = (getParentWidth());
-	int y = (getParentHeight());
+	//	int y = (getParentHeight());
 
 	firstNameTextEditor.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN, BOX_WIDTH, BOX_HEIGHT);
 	lastNameTextEditor.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 2, BOX_WIDTH, BOX_HEIGHT);

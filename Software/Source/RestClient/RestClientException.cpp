@@ -19,7 +19,7 @@ const char * RestClientException::getMessage() const
 	return _msg;
 }
 
-const int RestClientException::getCode() const
+int RestClientException::getCode() const
 {
 	return _code;
 }

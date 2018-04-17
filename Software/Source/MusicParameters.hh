@@ -26,9 +26,14 @@ public:
 	void setBpm(const int bpm);
 	unsigned int getSeed() const;
 	void setSeed(const unsigned int seed);
-	void addInstrument(const Instrument &instrument);
-	std::vector<Instrument>	getInstruments() const;
-	void setInstruments(const std::vector<Instrument> &instruments);
+	void addInstrumentChords(const Instrument &instrument);
+	void addInstrumentArpeggios(const Instrument &instrument);
+	void setInstrumentDrums(const bool instrument);
+	std::vector<Instrument>	getInstrumentsChords() const;
+	std::vector<Instrument>	getInstrumentsArpeggios() const;
+	bool	getInstrumentsDrums() const;
+	void setInstrumentsChords(const std::vector<Instrument> &instruments);
+	void setInstrumentsArpeggios(const std::vector<Instrument> &instruments);
 	void setStyleName(const std::string &name);
 	std::string	getStyleName() const;
 	void setMidi(const Midi &midi);
@@ -38,7 +43,9 @@ public:
 private:
 	unsigned int						_seed;
 	int									_bpm;
-	std::vector<Instrument>				_instruments;
+	std::vector<Instrument>				_instrumentsChords;
+	std::vector<Instrument>				_instrumentsArpeggios;
+	bool						_instrumentsDrums;
 	std::string							_styleName;
 	Midi								_midi;
 };

@@ -56,7 +56,7 @@ public:
   std::vector<std::vector<t_note> >	getPattern() const;
   std::vector<std::pair<char, char> >	getChord() const;
   static std::vector<std::vector<t_note> >	correlatePattern(const Pattern pattern, const std::vector<std::pair<char, char> > &prev, const std::vector<std::pair<char, char> > &next);
-  static t_note	correlateNote(const t_note &note, const std::vector<std::pair<char, char> > &prev, const std::vector<std::pair<char, char> > &next,
+  static t_note	correlateNote(const t_note &note, const std::vector<std::pair<char, char> > &next,
 							  const std::vector<char> &strong, const std::vector<char> &medium, const std::vector<char> &weak,
 							  const std::vector<char> &strong2, const std::vector<char> &medium2, const std::vector<char> &weak2);
 

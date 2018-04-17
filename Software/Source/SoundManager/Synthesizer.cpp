@@ -21,11 +21,16 @@ Synthesizer::Synthesizer()
 
 std::wstring s2ws(const std::string& s)
 {
-	int len;
 	int slength = (int)s.length() + 1;
+	#ifdef __linux__
+	wchar_t* buf = new wchar_t[slength];
+	mbtowc(buf, s.c_str(), slength);
+	#else
+	int len;
 	len = MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, 0, 0);
 	wchar_t* buf = new wchar_t[len];
 	MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, buf, len);
+	#endif
 	std::wstring r(buf);
 	delete[] buf;
 	return r;
@@ -37,9 +42,9 @@ void Synthesizer::setUsingSampledSound()
 	std::vector<std::wstring> files;
 	std::vector<std::wstring>::iterator it;
 	#ifdef __linux__
-		std::wcout << "Directory = " << FileManager::getCurrentDirectory() + "/../../Samples/Drums/" << std::endl;
-		FileManager::getFilesList(FileManager::getCurrentDirectory() + "/../../Samples/Drums/", ".wav", files);
-		FileManager::getFilesList(FileManager::getCurrentDirectory() +  "/../../Samples/", ".wav", files);
+	std::wcout << "Directory = " << FileManager::getCurrentDirectory() << s2ws("/../../Samples/Drums/") << std::endl;
+	FileManager::getFilesList(FileManager::getCurrentDirectory() + s2ws("/../../Samples/Drums/"), s2ws(".wav"), files);
+	FileManager::getFilesList(FileManager::getCurrentDirectory() + s2ws("/../../Samples/"), s2ws(".wav"), files);
 	#else
 	std::wcout << "Directory = " << FileManager::getCurrentDirectory() + s2ws("/../../../../Samples/Drums/") << std::endl;
 	FileManager::getFilesList(FileManager::getCurrentDirectory() + s2ws("/../../../../Samples/Drums/"), s2ws(".wav"), files);

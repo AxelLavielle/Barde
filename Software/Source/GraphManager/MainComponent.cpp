@@ -90,7 +90,7 @@ void MainContentComponent::resized()
     // If you add any child components, this is where you should
     // update their positions.
 	const int sliderLeft = 120;
-	int w = (getWidth() / 2) - 150;
+	//	int w = (getWidth() / 2) - 150;
 	frequencySlider.setBounds(sliderLeft, getHeight() - 300, getWidth() - sliderLeft - 10, 20);
 }
 

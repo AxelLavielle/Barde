@@ -22,7 +22,7 @@ void		Disposition::placeChords(MusicParameters &parameters, std::vector<std::pai
   std::vector<char> notesFromChord;
 
   beats = 0;
-  instruments = parameters.getInstruments();
+  instruments = parameters.getInstrumentsChords();
   parameters._midiManager.setTempo(parameters.getBpm());
   for (unsigned char i = 0; i < instruments.size(); i++){
     beats = 0;
@@ -53,7 +53,7 @@ void    Disposition::placeChords(MusicParameters &parameters, std::vector<std::v
   int note;
   std::vector<char> notesFromChord;
 
-  instruments = parameters.getInstruments();
+  instruments = parameters.getInstrumentsChords();
   parameters._midiManager.setTempo(parameters.getBpm());
   for (unsigned char i = 0; i < instruments.size(); i++){
     parameters._midiManager.changeInstrument(instruments[i], 0);
@@ -80,7 +80,7 @@ void		Disposition::placeArpeggios(MusicParameters &parameters, std::vector<std::
   int note;
   double beats;
 
-  instruments = parameters.getInstruments();
+  instruments = parameters.getInstrumentsArpeggios();
   parameters._midiManager.setTempo(parameters.getBpm());
   for (unsigned char i = 0; i < instruments.size(); i++){
     beats = 1;
@@ -100,7 +100,7 @@ void    Disposition::placeArpeggios(MusicParameters &parameters, std::vector<std
   std::vector<Instrument> instruments;
   int note;
 
-  instruments = parameters.getInstruments();
+  instruments = parameters.getInstrumentsArpeggios();
   parameters._midiManager.setTempo(parameters.getBpm());
   for (unsigned char i = 0; i < instruments.size(); i++){
     parameters._midiManager.changeInstrument(instruments[i], 0);
@@ -111,6 +111,25 @@ void    Disposition::placeArpeggios(MusicParameters &parameters, std::vector<std
 		parameters._midiManager.noteOn(instruments[i].channel, note, instruments[i].velocity, pattern[y][k].position + 1 + (y * TIMES_PER_BAR));
         parameters._midiManager.noteOff(instruments[i].channel, note, instruments[i].velocity, pattern[y][k].position + 1 + (y * TIMES_PER_BAR) + pattern[y][k].duration);
       }
+    }
+  }
+}
+
+void	Disposition::placeDrums(MusicParameters &parameters, std::vector<std::vector<t_note> > pattern)
+{
+  if (!parameters.getInstrumentsDrums())
+    return;
+  std::vector<Instrument> instruments;
+  int note;
+  
+  parameters._midiManager.setTempo(parameters.getBpm());
+  for (unsigned char y = 0; y < pattern.size(); y++){
+    for (unsigned char k = 0; k < pattern[y].size(); k++){
+      parameters._midiManager.changeInstrument(instruments[pattern[y][k].note.second], 0);
+      note = (pattern[y][k].note.first / 8) + (5 * 12);
+      std::cout << "Drum: " << (int)y << " Note: " << (float)(pattern[y][k].position + (y * TIMES_PER_BAR)) << std::endl;
+      parameters._midiManager.noteOn(instruments[pattern[y][k].note.second].channel, note, instruments[pattern[y][k].note.second].velocity, pattern[y][k].position + 1 + (y * TIMES_PER_BAR));
+      parameters._midiManager.noteOff(instruments[pattern[y][k].note.second].channel, note, instruments[pattern[y][k].note.second].velocity, pattern[y][k].position + 1 + (y * TIMES_PER_BAR) + pattern[y][k].duration);
     }
   }
 }

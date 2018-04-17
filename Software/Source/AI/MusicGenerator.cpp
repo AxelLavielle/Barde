@@ -27,7 +27,7 @@ void			MusicGenerator::drumsPOC(MusicParameters &parameters)
 	Instrument	hihat;
 	Instrument	rcymbal;
 	Instrument	ccymbal;
-	int			i = 0;
+	//	int			i = 0;
 	double		beats = 0.0;
 
 	std::cout << "IN DRUMSPOC" << std::endl;
@@ -105,7 +105,8 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   instru.nb = ACOUSTICGRANDPIANO;
   instru.channel = 1;
   instru.velocity = 100; //Need change
-  parameters.addInstrument(instru);
+  parameters.addInstrumentArpeggios(instru);
+  parameters.addInstrumentChords(instru);
   parameters.setStyleName("Blues");
   srand(parameters.getSeed());
   /* PARAMETERS */
