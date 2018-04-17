@@ -15,6 +15,7 @@
   import BardeProfileSidePanel from '@/components/BardeProfileSidePanel.vue'
   import BardeProfileEdit from '@/components/BardeProfileEdit.vue'
   import BardePlayer from '@/components/BardePlayer.vue'
+  import 'materialize-css/dist/js/materialize.min'
 
   import '../../../static/css/player.css'
 
@@ -36,13 +37,16 @@
         }
       },
       getUser(){
-        var jwtDecode = require('jwt-decode');
-        this.user = jwtDecode(this.$auth.token('default'));
-        console.log(this.user)
+
+
       }
     },
     beforeMount(){
-      this.getUser();
+
+      //  this.getUser();
+    },
+    mounted(){
+
     }
   }
 </script>

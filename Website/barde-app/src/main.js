@@ -16,16 +16,14 @@ Vue.use(require('@websanova/vue-auth'), {
   router: require('@websanova/vue-auth/drivers/router/vue-router.2.x'),
   auth: require('@websanova/vue-auth/drivers/auth/bearer'),
   http: require('@websanova/vue-auth/drivers/http/vue-resource.1.x'),
-  fetchData: {url: 'user', method: 'GET', enabled: true},
-    loginData: {url: 'auth/login', method: 'POST', redirect: '/home', fetchUser: true}
-}
+  fetchData: {url: 'user/me', method: 'GET', enabled: true},
+    loginData: {url: 'auth/login', method: 'POST', redirect: '/home', fetchUser: false}
 
-
-  );
+});
 
 Vue.http.options.emulateJSON = true;
 
-Vue.http.options.root = 'http://localhost:3000/';
+Vue.http.options.root = 'http://api-dev.barde.io/';
 
 /* eslint-disable no-new */
 new Vue({
