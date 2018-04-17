@@ -124,6 +124,8 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   }
   */
 
+  Drums::placeDrums(parameters);
+
   /* DRUMS */
 
   /* INITIALISATION */

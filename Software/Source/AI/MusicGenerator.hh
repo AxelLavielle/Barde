@@ -21,6 +21,7 @@
 # include "../MusicParameters.hh"
 # include "ObjectMarkov.hh"
 # include "Disposition.hh"
+# include "Drums.hh"
 # include "Chords.hh"
 # include "Pattern.hh"
 # include "AI.hh"
