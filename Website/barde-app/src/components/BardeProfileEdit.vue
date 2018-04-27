@@ -6,13 +6,13 @@
         <form class="col s12">
           <div class="row">
             <div class="input-field col s12">
-              <input v-model="form.username" id="username" type="text" class="validate">
+              <input disabled v-model="form.username"  id="username" type="text" class="validate">
               <label for="username">Username</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input v-model="form.email" id="email" type="email" class="validate">
+              <input disabled v-model="form.email" id="email" type="email" class="validate">
               <label for="email">Email</label>
             </div>
           </div>

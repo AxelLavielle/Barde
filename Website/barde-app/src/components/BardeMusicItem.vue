@@ -1,9 +1,11 @@
 <template>
   <div class="card">
     <div class="card-content white-text">
-      <img src="../../static/img/barde-logo.png" class="responsive-img" alt="">
+      <img :src="image" class="responsive-img" alt="">
     </div>
     <div class="card-action">
+      <a v-show="isPlaying" v-on:click="togglePlay()" class="btn-floating waves-effect waves-light pink"><i class="material-icons">pause</i></a>
+      <a v-show="!isPlaying" v-on:click="togglePlay()" class="btn-floating waves-effect waves-light pink"><i class="material-icons">play_arrow</i></a>
       <span class="card-title">{{title}}</span>
     </div>
   </div>
@@ -13,10 +15,18 @@
 
   export default {
     name: 'BardeMusicItem',
+    props: ['title', 'image'],
     data () {
       return {
-        title : "Title to discover",
-        thumbnail : "thumbnail"
+        thumbnail : "thumbnail",
+        isPlaying: false
+      }
+    },
+    methods: {
+      togglePlay(){
+        this.isPlaying = !this.isPlaying;
+        console.log(this.isPlaying);
+
       }
     }
   }

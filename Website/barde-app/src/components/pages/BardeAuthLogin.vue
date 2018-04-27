@@ -84,18 +84,20 @@
                 email : this.user.email
               },
               success: function (success) {
-                console.log(success.body.data)
+                Materialize.toast(jQuery.parseJSON(success.bodyText).data.message, 4000, 'red');
+                this.error = res.data;
               },
               error: function (error) {
-                console.log(error)
+                Materialize.toast(jQuery.parseJSON(error.bodyText).data.message, 4000, 'red');
+                this.error = res.data;
               },
-              // etc...
+            }).catch(function( err){
+              Materialize.toast(jQuery.parseJSON(error.bodyText).data.message, 4000, 'red');
+              this.error = res.data;
             });
 
           },
           error: function (res) {
-            console.log(res);
-
             Materialize.toast(jQuery.parseJSON(res.bodyText).data.message, 4000, 'red');
             this.error = res.data;
           }
