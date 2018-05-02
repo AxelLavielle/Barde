@@ -189,7 +189,6 @@ ipch/
 *.VC.db
 *.VC.V
 
-<<<<<<< HEAD
 ####################
 DocBarde/
 
@@ -202,4 +201,3 @@ Software/Windows/enc_temp_folder
 =======
 \.idea/
 Software/Linux/BardeInterface/Builds
->>>>>>> 0b77aa19710a7b9c2dbcf58b9ecf3c2de2e86d53
