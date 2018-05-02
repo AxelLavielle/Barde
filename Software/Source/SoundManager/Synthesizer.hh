@@ -10,6 +10,7 @@
 
 #pragma once
 
+#include <stdio.h>
 #include "JuceHeader.h"
 #include "ASoundManager.hh"
 #include "../Tools.hh"

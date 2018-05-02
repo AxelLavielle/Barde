@@ -15,8 +15,12 @@
 #include "../MusicParameters.hh"
 
 
+#ifndef  LOGO_WIDTH
 #define LOGO_WIDTH 1024 / 2
+#endif
+#ifndef  LOGO_HEIGHT
 #define LOGO_HEIGHT 927 / 2
+#endif
 //==============================================================================
 /*
     This component lives inside our window, and this is where you should put all

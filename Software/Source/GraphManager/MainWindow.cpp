@@ -8,12 +8,12 @@
   ==============================================================================
 */
 
+#include <sstream> 
 #include "MainWindow.hh"
 #include "MainComponent.h"
 #include "LoginComponent.h"
 #include "UserParamsComponent.h"
 #include "UserRegistration.h"
-#include <sstream> 
 
 MainWindow::MainWindow(const std::string &name) : DocumentWindow(name,
 																Colours::lightgrey,

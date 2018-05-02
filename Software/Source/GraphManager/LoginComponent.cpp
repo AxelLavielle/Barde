@@ -8,10 +8,10 @@
   ==============================================================================
 */
 
-#include "LoginComponent.h"
-#include "MainComponent.h"
 #include <sstream> 
 #include <string> 
+#include "LoginComponent.h"
+#include "MainComponent.h"
 
 //==============================================================================
 LoginComponent::LoginComponent()
@@ -101,6 +101,7 @@ void LoginComponent::buttonClicked(Button* button)
 	password = textEditor2.getText();
 
 	if (cmdManager.login(login.toStdString(), password.toStdString())) {
+	  (void)button;
 		//TODO Change Window
 		toto = "Login correct";
 	}
@@ -124,16 +125,16 @@ void LoginComponent::paint(Graphics& g)
 	int imgY;
 	float imgH;
 	float imgW;
-	int rectX;
-	int rectY;
+	//	int rectX;
+	//	int rectY;
 
 	imgH = (LOGO_HEIGHT);
 	imgW = (LOGO_WIDTH);
 
 	imgX = (getWidth() / 2) - (imgW / 2);
 	imgY = (getHeight() / 15);
-	rectX = (getWidth() / 2) - (400 / 2);
-	rectY = (getHeight() / 15) + (LOGO_HEIGHT)+50;
+	//	rectX = (getWidth() / 2) - (400 / 2);
+	//	rectY = (getHeight() / 15) + (LOGO_HEIGHT)+50;
 
 	//g.setColour(Colours::white);
 	g.fillAll(Colour(this->currentTheme.getBackgroundColor()));

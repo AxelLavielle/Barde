@@ -154,7 +154,7 @@ std::string RestClient::parseResponse(const std::string &req, int & responseCode
 {
 	size_t		lenPos;
 	size_t		lenNbPos;
-	size_t		bodyLen;
+	//	size_t		bodyLen;
 	size_t		bodyStartPos;
 	size_t		posCode;
 	size_t		posEndCode;
@@ -176,7 +176,7 @@ std::string RestClient::parseResponse(const std::string &req, int & responseCode
 		throw RestClientException("Error header format : Content-Length header not found", 400);
 	if ((lenNbPos = req.find("\r\n", lenPos)) == std::string::npos)
 		throw RestClientException("Bad request : Content-Length empty", 400);
-	bodyLen = std::stoi(req.substr(lenPos + 16, lenNbPos)); //16 is the length of the string "Content-Length: "
+	//bodyLen = std::stoi(req.substr(lenPos + 16, lenNbPos)); //16 is the length of the string "Content-Length: "
 	if ((bodyStartPos = req.find("\r\n\r\n")) == std::string::npos)
 		throw RestClientException("Bad request", 400);
 	bodyStartPos += 4; //4 is the length of the string "\r\n\r\n"

@@ -19,9 +19,9 @@ Pattern::~Pattern()
 {
 }
 
-t_note	Pattern::correlateNote(const t_note &note, const std::vector<std::pair<char, char> > &prev, const std::vector<std::pair<char, char> > &next,
-								const std::vector<char> &strong, const std::vector<char> &medium, const std::vector<char> &weak,
-								const std::vector<char> &strong2, const std::vector<char> &medium2, const std::vector<char> &weak2)
+t_note	Pattern::correlateNote(const t_note &note, const std::vector<std::pair<char, char> > &next,
+						const std::vector<char> &strong, const std::vector<char> &medium, const std::vector<char> &weak,
+						const std::vector<char> &strong2, const std::vector<char> &medium2, const std::vector<char> &weak2)
 {
   t_note		ret;
   char			i;
@@ -69,47 +69,13 @@ std::vector<std::vector<t_note> >	Pattern::correlatePattern(const Pattern patter
   while (weak2.size() < weak.size())
 	  weak2.push_back(medium2[0]);
 
-  //prints
-/*  std::cout << "### STARTING DEBUG FOR CORRELATE PATTERN ###" << std::endl << std::endl;
-
-  std::cout << "Chord 1:" << std::endl;
-  std::cout << "Strong: ";
-  i = -1;
-  while (static_cast<unsigned int>(++i) < strong.size())
-	  std::cout << (int)strong[i] / 8 << " ";
-  std::cout << std::endl << "Medium: ";
-  i = -1;
-  while (static_cast<unsigned int>(++i) < medium.size())
-	  std::cout << (int)medium[i] / 8 << " ";
-  std::cout << std::endl << "Weak: ";
-  i = -1;
-  while (static_cast<unsigned int>(++i) < weak.size())
-	  std::cout << (int)weak[i] / 8 << " ";
-
-  std::cout << std::endl << std::endl << "Chord 2:" << std::endl;
-  std::cout << "Strong: ";
-  i = -1;
-  while (static_cast<unsigned int>(++i) < strong2.size())
-	  std::cout << (int)strong2[i] / 8 << " ";
-  std::cout << std::endl << "Medium: ";
-  i = -1;
-  while (static_cast<unsigned int>(++i) < medium2.size())
-	  std::cout << (int)medium2[i] / 8 << " ";
-  std::cout << std::endl << "Weak: ";
-  i = -1;
-  while (static_cast<unsigned int>(++i) < weak2.size())
-	  std::cout << (int)weak2[i]/8 << " ";
-
-  std::cout << std::endl << std::endl;
-  */
   i = -1;
   while (++i != _pattern.size())
     {
       j = -1;
       while (++j != _pattern[i].size())
-    	  _pattern[i][j] = correlateNote(_pattern[i][j], prev, next, strong, medium, weak, strong2, medium2, weak2);
+    	  _pattern[i][j] = correlateNote(_pattern[i][j], next, strong, medium, weak, strong2, medium2, weak2);
     }
-  //std::cout << std::endl << std::endl << "### ENDING DEBUG FOR CORRELATE PATTERN ###" << std::endl;
   return (_pattern);
 }
 
