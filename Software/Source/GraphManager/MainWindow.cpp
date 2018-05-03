@@ -8,12 +8,7 @@
   ==============================================================================
 */
 
-#include <sstream> 
 #include "MainWindow.hh"
-#include "MainComponent.h"
-#include "LoginComponent.h"
-#include "UserParamsComponent.h"
-#include "UserRegistration.h"
 
 MainWindow::MainWindow(const std::string &name) : DocumentWindow(name,
 																Colours::lightgrey,
@@ -27,8 +22,17 @@ MainWindow::MainWindow(const std::string &name) : DocumentWindow(name,
 #endif
 	setFullScreen(true);
 	setSize(getWidth(), getHeight());
+	_mainComponent = new MainContentComponent();
+	_userParamsComponent = new UserParamsComponent();
+	_loginComponent = new LoginComponent();
+	//_userRegistration = new UserRegistration();
+
+	_mainComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
+
+	setContentNonOwned(_mainComponent, true);
+
 	//setContentOwned(new LoginComponent(), true);
-	setContentOwned(new MainContentComponent(), true);
+	//setContentOwned(new MainContentComponent(), true);
 	//setContentOwned(new UserParamsComponent(), true);
 	//setContentOwned(new UserRegistration(), true);
 	//centreWithSize(getWidth(), getHeight());
@@ -46,4 +50,18 @@ void MainWindow::closeButtonPressed()
 MainWindow::~MainWindow()
 {
 	//deleteAllChildren();
+}
+
+void MainWindow::changeViewCallback(std::string viewName)
+{
+	if (viewName == "Main")
+	{
+		clearContentComponent();
+		setContentNonOwned(_mainComponent, true);
+	}
+	else if (viewName == "UserParams")
+	{
+		clearContentComponent();
+		setContentNonOwned(_userParamsComponent, true);
+	}
 }

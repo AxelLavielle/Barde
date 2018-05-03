@@ -56,6 +56,7 @@ User CmdManager::getUserInfo()
 	_currentUser.setLastName(user["name"]["lastName"].asString());
 	_currentUser.setUserName(user["name"]["userName"].asString());
 	_currentUser.setDateOfBirth(user["dateOfBirth"].asString());
+	std::cout << "Date of birth = " << user["dateOfBirth"] << std::endl;
 	return _currentUser;
 }
 
@@ -64,21 +65,18 @@ bool CmdManager::login(const std::string &email, const std::string &password)
 	try
 	{
 		//_socket.authentificate("arnaud.p@outlook.fr", "arnaud");
-		_socket.authentificate(email, password);
+		return (_socket.authentificate(email, password));
 	}
 	catch (RestClientException &e)
 	{
 		std::cerr << "Error on request authentificate : " << e.what() << std::endl;
-		return false;
 	}
-	//getUserInfo();
-	//_currentUser.setFirstName("Arnaud");
-	//editUserInfo(_currentUser);
-	return true;
+	return false;
 }
 
 bool CmdManager::logout()
 {
+
 	return false;
 }
 

@@ -29,8 +29,8 @@ void MusicStyleButton::paintButton(Graphics& g, const bool isMouseOverButton, co
 	if (isButtonDown)
 	{
 	  g.setColour(Colour(this->theme.getButtonColor()));
-		_threadPlayer = std::thread(&Player::Play, &_player);
-		_threadPlayer.detach();
+		//_threadPlayer = std::thread(&Player::Play, &_player);
+		//_threadPlayer.detach();
 	}
 	else if (isMouseOverButton)
 	{

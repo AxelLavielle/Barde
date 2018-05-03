@@ -72,6 +72,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/AView_4c0b412f.o \
   $(JUCE_OBJDIR)/HomePage_9fb9146f.o \
   $(JUCE_OBJDIR)/ViewManager_527c33d1.o \
+  $(JUCE_OBJDIR)/Drums_ab9e5300.o \
   $(JUCE_OBJDIR)/Pattern_d2006803.o \
   $(JUCE_OBJDIR)/PatternGenerator_f0f3ae5a.o \
   $(JUCE_OBJDIR)/AI_9e723a3f.o \
@@ -87,6 +88,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/SQLiteManager_99d2bf74.o \
   $(JUCE_OBJDIR)/AEncryptionManager_13e06cc8.o \
   $(JUCE_OBJDIR)/SSLManager_f25fe680.o \
+  $(JUCE_OBJDIR)/AComponent_b1bc9abc.o \
   $(JUCE_OBJDIR)/AGraphManager_4508c7ea.o \
   $(JUCE_OBJDIR)/JuceManager_8121b3aa.o \
   $(JUCE_OBJDIR)/LoginComponent_22832b34.o \
@@ -95,13 +97,12 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/MusicStyleButton_39681cbe.o \
   $(JUCE_OBJDIR)/Theme_6a8438b3.o \
   $(JUCE_OBJDIR)/UserParamsComponent_ea189f76.o \
-  $(JUCE_OBJDIR)/UserRegistration_c9349104.o \
   $(JUCE_OBJDIR)/AMidiManager_545b688.o \
   $(JUCE_OBJDIR)/Midi_8be1d87e.o \
   $(JUCE_OBJDIR)/MidiManager_7f6bb1d9.o \
-  $(JUCE_OBJDIR)/ARestClient_9d15733b.o \
-  $(JUCE_OBJDIR)/RestClient_e3a6f2ae.o \
-  $(JUCE_OBJDIR)/RestClientException_b47d0b8b.o \
+  $(JUCE_OBJDIR)/ARestClient_6147572a.o \
+  $(JUCE_OBJDIR)/RestClient_2c154df.o \
+  $(JUCE_OBJDIR)/RestClientException_d1ff907a.o \
   $(JUCE_OBJDIR)/ASoundManager_564990e8.o \
   $(JUCE_OBJDIR)/JuceSound_212948eb.o \
   $(JUCE_OBJDIR)/Synthesizer_4580f451.o \
@@ -175,6 +176,11 @@ $(JUCE_OBJDIR)/HomePage_9fb9146f.o: ../Source/ViewManager/HomePage.cpp
 $(JUCE_OBJDIR)/ViewManager_527c33d1.o: ../Source/ViewManager/ViewManager.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling ViewManager.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/Drums_ab9e5300.o: ../Source/AI/Drums.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Drums.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/Pattern_d2006803.o: ../Source/AI/Pattern.cpp
@@ -252,6 +258,11 @@ $(JUCE_OBJDIR)/SSLManager_f25fe680.o: ../Source/EncryptionManager/SSLManager.cpp
 	@echo "Compiling SSLManager.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/AComponent_b1bc9abc.o: ../Source/GraphManager/AComponent.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling AComponent.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/AGraphManager_4508c7ea.o: ../Source/GraphManager/AGraphManager.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling AGraphManager.cpp"
@@ -292,11 +303,6 @@ $(JUCE_OBJDIR)/UserParamsComponent_ea189f76.o: ../Source/GraphManager/UserParams
 	@echo "Compiling UserParamsComponent.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/UserRegistration_c9349104.o: ../Source/GraphManager/UserRegistration.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling UserRegistration.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
 $(JUCE_OBJDIR)/AMidiManager_545b688.o: ../Source/MidiManager/AMidiManager.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling AMidiManager.cpp"
@@ -312,17 +318,17 @@ $(JUCE_OBJDIR)/MidiManager_7f6bb1d9.o: ../Source/MidiManager/MidiManager.cpp
 	@echo "Compiling MidiManager.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/ARestClient_9d15733b.o: ../Source/RestClient/ARestClient.cpp
+$(JUCE_OBJDIR)/ARestClient_6147572a.o: ../Source/RestClient/ARestClient.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling ARestClient.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/RestClient_e3a6f2ae.o: ../Source/RestClient/RestClient.cpp
+$(JUCE_OBJDIR)/RestClient_2c154df.o: ../Source/RestClient/RestClient.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling RestClient.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/RestClientException_b47d0b8b.o: ../Source/RestClient/RestClientException.cpp
+$(JUCE_OBJDIR)/RestClientException_d1ff907a.o: ../Source/RestClient/RestClientException.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling RestClientException.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"

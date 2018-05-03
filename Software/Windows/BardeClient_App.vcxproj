@@ -23,7 +23,6 @@
                  Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
     <PlatformToolset>v140</PlatformToolset>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -73,7 +72,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>..\JuceLibraryCode;..\JuceLibraryCode\modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;SOURCEMARKOV=&quot;$(ProjectDir.Replace('\','/'))../Source/markovSource/&quot;;JUCER_VS2015_B3A83A63=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader/>
       <AssemblerListingLocation>$(IntDir)\</AssemblerListingLocation>
@@ -122,7 +121,7 @@
       <Optimization>Full</Optimization>
       <AdditionalIncludeDirectories>..\JuceLibraryCode;..\JuceLibraryCode\modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;SOURCEMARKOV=&quot;$(ProjectDir.Replace('\','/'))../Source/markovSource/&quot;;JUCER_VS2015_B3A83A63=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader/>
       <AssemblerListingLocation>$(IntDir)\</AssemblerListingLocation>
@@ -168,6 +167,7 @@
     <ClCompile Include="..\Source\ViewManager\AView.cpp"/>
     <ClCompile Include="..\Source\ViewManager\HomePage.cpp"/>
     <ClCompile Include="..\Source\ViewManager\ViewManager.cpp"/>
+    <ClCompile Include="..\Source\AI\Drums.cpp"/>
     <ClCompile Include="..\Source\AI\Pattern.cpp"/>
     <ClCompile Include="..\Source\AI\PatternGenerator.cpp"/>
     <ClCompile Include="..\Source\AI\AI.cpp"/>
@@ -183,6 +183,7 @@
     <ClCompile Include="..\Source\DatabaseManager\SQLiteManager.cpp"/>
     <ClCompile Include="..\Source\EncryptionManager\AEncryptionManager.cpp"/>
     <ClCompile Include="..\Source\EncryptionManager\SSLManager.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\AComponent.cpp"/>
     <ClCompile Include="..\Source\GraphManager\AGraphManager.cpp"/>
     <ClCompile Include="..\Source\GraphManager\JuceManager.cpp"/>
     <ClCompile Include="..\Source\GraphManager\LoginComponent.cpp"/>
@@ -191,7 +192,6 @@
     <ClCompile Include="..\Source\GraphManager\MusicStyleButton.cpp"/>
     <ClCompile Include="..\Source\GraphManager\Theme.cpp"/>
     <ClCompile Include="..\Source\GraphManager\UserParamsComponent.cpp"/>
-    <ClCompile Include="..\Source\GraphManager\UserRegistration.cpp"/>
     <ClCompile Include="..\Source\MidiManager\AMidiManager.cpp"/>
     <ClCompile Include="..\Source\MidiManager\Midi.cpp"/>
     <ClCompile Include="..\Source\MidiManager\MidiManager.cpp"/>
@@ -1833,6 +1833,7 @@
     <ClInclude Include="..\Source\ViewManager\HomePage.hh"/>
     <ClInclude Include="..\Source\ViewManager\IView.hpp"/>
     <ClInclude Include="..\Source\ViewManager\ViewManager.hh"/>
+    <ClInclude Include="..\Source\AI\Drums.hh"/>
     <ClInclude Include="..\Source\AI\Pattern.hh"/>
     <ClInclude Include="..\Source\AI\PatternGenerator.hh"/>
     <ClInclude Include="..\Source\AI\AI.hh"/>
@@ -1851,6 +1852,7 @@
     <ClInclude Include="..\Source\EncryptionManager\AEncryptionManager.hh"/>
     <ClInclude Include="..\Source\EncryptionManager\IEncryptionManager.hpp"/>
     <ClInclude Include="..\Source\EncryptionManager\SSLManager.hh"/>
+    <ClInclude Include="..\Source\GraphManager\AComponent.hh"/>
     <ClInclude Include="..\Source\GraphManager\AGraphManager.hh"/>
     <ClInclude Include="..\Source\GraphManager\IGraphManager.hpp"/>
     <ClInclude Include="..\Source\GraphManager\JuceManager.hh"/>
@@ -1860,16 +1862,15 @@
     <ClInclude Include="..\Source\GraphManager\MusicStyleButton.h"/>
     <ClInclude Include="..\Source\GraphManager\Theme.h"/>
     <ClInclude Include="..\Source\GraphManager\UserParamsComponent.h"/>
-    <ClInclude Include="..\Source\GraphManager\UserRegistration.h"/>
     <ClInclude Include="..\Source\MidiManager\AMidiManager.hh"/>
     <ClInclude Include="..\Source\MidiManager\IMidiManager.hpp"/>
     <ClInclude Include="..\Source\MidiManager\Instruments.hh"/>
     <ClInclude Include="..\Source\MidiManager\Midi.hh"/>
     <ClInclude Include="..\Source\MidiManager\MidiManager.hh"/>
-    <ClInclude Include="..\Source\SocketManager\ARestClient.hh"/>
-    <ClInclude Include="..\Source\SocketManager\IRestClient.hpp"/>
-    <ClInclude Include="..\Source\SocketManager\RestClient.hh"/>
-    <ClInclude Include="..\Source\SocketManager\RestClientException.hh"/>
+    <ClInclude Include="..\Source\RestClient\ARestClient.hh"/>
+    <ClInclude Include="..\Source\RestClient\IRestClient.hpp"/>
+    <ClInclude Include="..\Source\RestClient\RestClient.hh"/>
+    <ClInclude Include="..\Source\RestClient\RestClientException.hh"/>
     <ClInclude Include="..\Source\SoundManager\ASoundManager.hh"/>
     <ClInclude Include="..\Source\SoundManager\ISoundManager.hpp"/>
     <ClInclude Include="..\Source\SoundManager\JuceSound.hh"/>

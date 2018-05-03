@@ -31,7 +31,7 @@ public:
 	int height; /*!< Button height*/
 	Theme theme; /*!< Theme of the app*/
 	std::thread _threadPlayer; /*!< thread player*/
-	Player _player; /*!< player*/
+	Player _player; /*!< player THIS NEED TO BE CHANGED*/
 
 	/*!
 	*  \brief Constructor

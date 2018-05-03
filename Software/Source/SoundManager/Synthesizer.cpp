@@ -111,7 +111,6 @@ void Synthesizer::getNextAudioBlock(const AudioSourceChannelInfo& bufferToFill)
 	MidiBuffer::Iterator it(incomingMidi);
 	while (it.getNextEvent(midiEvent, samplePos))
 	{
-		std::cout << "CHANNEL =========== " << midiEvent.getChannel() << std::endl;
 		if (midiEvent.isProgramChange())
 		{
 			programNb = midiEvent.getProgramChangeNumber();

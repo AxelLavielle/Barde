@@ -21,9 +21,13 @@ MainContentComponent::MainContentComponent()
 	setSize(getParentWidth(), getParentHeight() - 10);
 	this->currentTheme = parseTheme("../Themes/Dark");
 	addAndMakeVisible(blues = new MusicStyleButton("Generate some blues", 400, 50, this->currentTheme));
+	addAndMakeVisible(params = new MusicStyleButton("User params (TEST)", 400, 50, this->currentTheme));
 	rectX = (600 / 2) - (400 / 2);
 	rectY = (400 / 15) + (LOGO_WIDTH) + 100;
 	blues->setBounds(rectX, rectY, 400, 50);
+	params->setBounds(rectX + 100, rectY + 100, 600, 100);
+	blues->addListener(this);
+	params->addListener(this);
 
 
 	addAndMakeVisible(frequencySlider);
@@ -33,7 +37,7 @@ MainContentComponent::MainContentComponent()
 	frequencySlider.addListener(this);
 	frequencySlider.setName("BPM");
 	frequencyLabel.setText("BPM", dontSendNotification);
-	frequencyLabel.attachToComponent(&frequencySlider, true); // [4] 
+	frequencyLabel.attachToComponent(&frequencySlider, true); // [4] 	
 }
 
 MainContentComponent::~MainContentComponent()
@@ -64,6 +68,7 @@ void MainContentComponent::paint (Graphics& g)
 	g.fillAll(Colour(this->currentTheme.getBackgroundColor()));
     g.drawImage(logo, imgX, imgY, (int) imgW, (int) imgH, 0, 0, 1024, 927, false);
 	blues->setBounds(rectX, rectY, 400, 50);
+	params->setBounds(rectX + 100, rectY + 100, 600, 100);
 
 	//TODO Set correct color according to Theme
 	frequencySlider.setColour(Slider::rotarySliderFillColourId, Colours::aqua);
@@ -71,7 +76,6 @@ void MainContentComponent::paint (Graphics& g)
 	frequencySlider.setColour(Slider::rotarySliderOutlineColourId, Colours::green);
 	frequencySlider.setColour(Slider::thumbColourId, Colours::pink);
 	frequencySlider.setColour(Slider::trackColourId, Colours::indigo);
-
 }
 
 void MainContentComponent::sliderValueChanged(Slider *slider)
@@ -94,3 +98,15 @@ void MainContentComponent::resized()
 	frequencySlider.setBounds(sliderLeft, getHeight() - 300, getWidth() - sliderLeft - 10, 20);
 }
 
+void MainContentComponent::buttonClicked(Button* button)
+{
+	if (button == params)
+	{
+		changeView("UserParams");
+	}
+	else if (button == blues)
+	{
+		_threadPlayer = std::thread(&Player::Play, &_player);
+		_threadPlayer.detach();
+	}
+}

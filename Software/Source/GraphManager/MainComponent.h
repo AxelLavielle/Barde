@@ -9,11 +9,13 @@
 #ifndef MAINCOMPONENT_H_INCLUDED
 #define MAINCOMPONENT_H_INCLUDED
 
+#include <thread>
+#include <mutex>
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "MusicStyleButton.h"
 #include "../UserSettings.h"
 #include "../MusicParameters.hh"
-
+#include "AComponent.hh"
 
 #ifndef  LOGO_WIDTH
 #define LOGO_WIDTH 1024 / 2
@@ -33,15 +35,18 @@
 * The class is containing all the component needed for the client
 */
 
-class MainContentComponent   : public Component, public SliderListener
+class MainContentComponent : public Component, public SliderListener, public Button::Listener, public AComponent
 {
 public:
     //==============================================================================
-	MusicStyleButton *blues;  /*!< button for generating blues*/
+	MusicStyleButton * blues;  /*!< button for generating blues*/
+	MusicStyleButton *params;  /*!< button for generating blues THIS IS FOR TEST !!!! */
 	Theme currentTheme; /*!< Theme defining the colors of the elements*/
 	UserSettings us;
 	Slider frequencySlider;
 	Label frequencyLabel;
+	std::thread _threadPlayer; /*!< thread player*/
+	Player _player; /*!< player THIS NEED TO BE CHANGED*/
 
 	/*!
 	*  \brief Constructor
@@ -71,6 +76,7 @@ public:
 	* Fonction called when the window is resized
 	*/
     void resized() override;
+	void buttonClicked(Button * button);
 	void sliderValueChanged(Slider *slider) override;
 
 private:

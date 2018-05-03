@@ -25,6 +25,8 @@
         <FILE id="f11e5w" name="ViewManager.hh" compile="0" resource="0" file="Source/ViewManager/ViewManager.hh"/>
       </GROUP>
       <GROUP id="{5444B8A4-FB7A-02ED-7754-175A3C60D033}" name="AI">
+        <FILE id="E487my" name="Drums.hh" compile="0" resource="0" file="Source/AI/Drums.hh"/>
+        <FILE id="rpJXui" name="Drums.cpp" compile="1" resource="0" file="Source/AI/Drums.cpp"/>
         <FILE id="hFYTdl" name="Pattern.cpp" compile="1" resource="0" file="Source/AI/Pattern.cpp"/>
         <FILE id="VrYzr7" name="Pattern.hh" compile="0" resource="0" file="Source/AI/Pattern.hh"/>
         <FILE id="m9l2Ul" name="PatternGenerator.cpp" compile="1" resource="0"
@@ -88,6 +90,8 @@
         <FILE id="wSJyIx" name="SSLManager.hh" compile="0" resource="0" file="Source/EncryptionManager/SSLManager.hh"/>
       </GROUP>
       <GROUP id="{67A50DD7-6C2C-A059-E512-F0F0D14AB316}" name="GraphManager">
+        <FILE id="eErgF6" name="AComponent.cpp" compile="1" resource="0" file="Source/GraphManager/AComponent.cpp"/>
+        <FILE id="KUlU1X" name="AComponent.hh" compile="0" resource="0" file="Source/GraphManager/AComponent.hh"/>
         <FILE id="HIx8vh" name="AGraphManager.cpp" compile="1" resource="0"
               file="Source/GraphManager/AGraphManager.cpp"/>
         <FILE id="jmDYIS" name="AGraphManager.hh" compile="0" resource="0"
@@ -129,15 +133,15 @@
         <FILE id="PYjyqB" name="MidiManager.hh" compile="0" resource="0" file="Source/MidiManager/MidiManager.hh"/>
       </GROUP>
       <GROUP id="{7355C593-7CFA-F1F9-4B6F-55F47B09F159}" name="RestClient">
-        <FILE id="R4jjJQ" name="ARestClient.cpp" compile="1" resource="0" file="Source/SocketManager/ARestClient.cpp"/>
-        <FILE id="mfdzio" name="ARestClient.hh" compile="0" resource="0" file="Source/SocketManager/ARestClient.hh"/>
-        <FILE id="Z5AEs6" name="IRestClient.hpp" compile="0" resource="0" file="Source/SocketManager/IRestClient.hpp"/>
-        <FILE id="qoeOFI" name="RestClient.cpp" compile="1" resource="0" file="Source/SocketManager/RestClient.cpp"/>
-        <FILE id="JHOoHI" name="RestClient.hh" compile="0" resource="0" file="Source/SocketManager/RestClient.hh"/>
-        <FILE id="o5QM2Y" name="RestClientException.cpp" compile="1" resource="0"
-              file="Source/SocketManager/RestClientException.cpp"/>
-        <FILE id="Hp2Qc2" name="RestClientException.hh" compile="0" resource="0"
-              file="Source/SocketManager/RestClientException.hh"/>
+        <FILE id="GomWin" name="ARestClient.cpp" compile="1" resource="0" file="Source/RestClient/ARestClient.cpp"/>
+        <FILE id="YkTHkl" name="ARestClient.hh" compile="0" resource="0" file="Source/RestClient/ARestClient.hh"/>
+        <FILE id="V0W6Pw" name="IRestClient.hpp" compile="0" resource="0" file="Source/RestClient/IRestClient.hpp"/>
+        <FILE id="CleUB7" name="RestClient.cpp" compile="1" resource="0" file="Source/RestClient/RestClient.cpp"/>
+        <FILE id="Y8Lxy1" name="RestClient.hh" compile="0" resource="0" file="Source/RestClient/RestClient.hh"/>
+        <FILE id="ZhwAGF" name="RestClientException.cpp" compile="1" resource="0"
+              file="Source/RestClient/RestClientException.cpp"/>
+        <FILE id="FSHzLx" name="RestClientException.hh" compile="0" resource="0"
+              file="Source/RestClient/RestClientException.hh"/>
       </GROUP>
       <GROUP id="{5F7C370B-C39E-F6F2-55F2-8706CAF30B73}" name="SoundManager">
         <FILE id="og9519" name="ASoundManager.cpp" compile="1" resource="0"
