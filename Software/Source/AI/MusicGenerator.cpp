@@ -188,13 +188,15 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   Resolution::parsingMarkov(&markovTmp, strong, medium, weak);
   char						n;
   n = -1;
+  int lastScale = 5;
   while (++n != static_cast<char>(markovTmp.size()))
     {
-      int scale = 5;
-      if (n - 1 != -1 && ABS(markovTmp[n].first - markovTmp[n - 1].first) / 8 > 6)
-	scale = (markovTmp[n].first > markovTmp[n - 1].first) ? (4) : (6);
-      markovPattern->addNote(std::make_pair(markovTmp[n].first, scale), n*3.0/arpN + 1, n*3.0/arpN, 0);
-    }
+      int scale = lastScale;
+      if (n != 0 && ABS(markovTmp[n].first - markovTmp[n - 1].first) / 8 > 6)
+	      scale = (markovTmp[n].first > markovTmp[n - 1].first) ? (lastScale - 1) : (lastScale + 1);
+      markovPattern->addNote(std::make_pair(markovTmp[n].first, scale), n*3.0/arpN + 1, 3.0/arpN, 0);
+	  lastScale = scale;
+  }
   std::vector<std::vector<t_note> >		arpeggios;
   std::vector<std::vector<t_note> >		tmparpeggios;
   n = -1;

@@ -107,7 +107,7 @@ void    Disposition::placeArpeggios(MusicParameters &parameters, std::vector<std
     for (unsigned char y = 0; y < pattern.size(); y++){
       for (unsigned char k = 0; k < pattern[y].size(); k++){
         note = (pattern[y][k].note.first / 8) + ((pattern[y][k].note.second) * 12);
-		std::cout << "Chord: " << (int)y << " Note: " << (float)(pattern[y][k].position + (y * TIMES_PER_BAR)) << std::endl;
+		std::cout << "Arpeggio: " << (int)y << " Note: " << (float)(pattern[y][k].position + (y * TIMES_PER_BAR)) << " - " << (float)(pattern[y][k].duration) << std::endl;
 		parameters._midiManager.noteOn(instruments[i].channel, note, instruments[i].velocity, pattern[y][k].position + 1 + (y * TIMES_PER_BAR));
         parameters._midiManager.noteOff(instruments[i].channel, note, instruments[i].velocity, pattern[y][k].position + 1 + (y * TIMES_PER_BAR) + pattern[y][k].duration);
       }
