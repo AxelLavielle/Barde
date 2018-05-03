@@ -75,7 +75,8 @@ bool							SoundManager::play(const Midi &midi)
 					std::cout << "Je Sleep pour (resTime1) " << resTime - timeToSleep << std::endl;
 					std::cout << "resTime " << resTime << std::endl;
 					std::cout << "timeToSleep " << timeToSleep << std::endl;
-					Tools::sleep(resTime - timeToSleep);
+					//Tools::sleep(resTime - timeToSleep);
+					Tools::sleepActive(resTime - timeToSleep);
 					currentTemp += resTime - timeToSleep;
 					resTime = temps - (resTime + timeToSleep);
 					if (resTime < 0)
@@ -84,7 +85,8 @@ bool							SoundManager::play(const Midi &midi)
 				else
 				{
 					std::cout << "Je Sleep pour (resTime2) " << resTime << std::endl;
-					Tools::sleep(resTime);
+					//Tools::sleep(resTime);
+					Tools::sleepActive(resTime);
 					currentTemp += resTime;
 					resTime = 0;
 				}
@@ -94,7 +96,8 @@ bool							SoundManager::play(const Midi &midi)
 			if (resTime)
 			{
 				std::cout << "Je Sleep pour (resTime3) " << resTime << std::endl;
-				Tools::sleep(resTime);
+				//Tools::sleep(resTime);
+				Tools::sleepActive(resTime);
 				currentTemp += resTime;
 				resTime = 0;
 			}
@@ -113,7 +116,8 @@ bool							SoundManager::play(const Midi &midi)
 					std::cout << "Je Sleep pour : " << ((timeToSleep) ? (timeToSleep) : (temps)) << std::endl;
 					std::cout << "------------------------------------------" << std::endl;
 					currentTemp += ((timeToSleep) ? (timeToSleep) : (temps));
-					Tools::sleep((timeToSleep) ? (timeToSleep) : (temps));
+					//Tools::sleep((timeToSleep) ? (timeToSleep) : (temps));
+					Tools::sleepActive((timeToSleep) ? (timeToSleep) : (temps));
 				}
 			}
 

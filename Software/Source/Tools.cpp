@@ -19,13 +19,14 @@ void Tools::sleep(const unsigned int time)
 #endif
 }
 
-//void Tools::sleepActive(const unsigned int time)
-//{
-//	SYSTEMTIME  system_time;
-//
-//	GetSystemTime(&system_time);
-//	while ()
-//	{
-//
-//	}
-//}
+void Tools::sleepActive(const unsigned int time)
+{
+#ifdef __linux__
+	sleep(time); //Need to change that (use getTimeOfDay)
+#else
+	const DWORD startTime = GetTickCount();
+	const DWORD stopTime = (startTime + time);
+
+	while (GetTickCount() < stopTime);
+#endif
+}

@@ -300,7 +300,7 @@ const static std::map<std::string, NbInstrument> instrumentList = {
 	{ "OPENCUICA", OPENCUICA },
 	{ "MUTETRIANGLE", MUTETRIANGLE },
 	{ "OPENTRIANGLE", OPENTRIANGLE },
-	{"BASSDRUM1", BASSDRUM1}
+	{ "BASSDRUM1", BASSDRUM1 }
 	};
 
 /*! \class Instrument

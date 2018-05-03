@@ -21,6 +21,7 @@ class Tools
 {
 public:
 	static void sleep(const unsigned int time);
+	static void sleepActive(const unsigned int time);
 };
 
 #endif  // TOOLS_HH_INCLUDED
