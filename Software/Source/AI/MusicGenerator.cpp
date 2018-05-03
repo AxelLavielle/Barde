@@ -104,7 +104,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   instru.name = "Piano";
   instru.nb = ACOUSTICGRANDPIANO;
   instru.channel = 1;
-  instru.velocity = 100; //Need change
+  instru.velocity = 10; //Need change
   parameters.addInstrumentArpeggios(instru);
   parameters.addInstrumentChords(instru);
   parameters.setStyleName("Blues");
@@ -113,8 +113,8 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   
   /* DRUMS */
 
-  /*
   drumsPOC(parameters);
+  /*
   bool		onlydrums = true;
   if (onlydrums == true)
   {
@@ -124,7 +124,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   }
   */
 
-  Drums::placeDrums(parameters);
+//  Drums::placeDrums(parameters);
 
   /* DRUMS */
 
@@ -206,9 +206,9 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
       arpeggios.insert(arpeggios.end(), tmparpeggios.begin(), tmparpeggios.end());
     }
   Disposition::placeArpeggios(parameters, arpeggios);
-  /* ARPEGGIOS */
+  ///* ARPEGGIOS */
 
-  /* END */
+  ///* END */
   parameters.setMidi(parameters._midiManager.createMidi(48));
   parameters._midiManager.writeToFile("./test.mid");
   return (Midi());

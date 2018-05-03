@@ -26,7 +26,7 @@ void		Disposition::placeChords(MusicParameters &parameters, std::vector<std::pai
   parameters._midiManager.setTempo(parameters.getBpm());
   for (unsigned char i = 0; i < instruments.size(); i++){
     beats = 0;
-    parameters._midiManager.changeInstrument(instruments[i], beats);
+    parameters._midiManager.changeInstrument(instruments[i], 1.0);
     for (unsigned char x = 0; x < chordsGrid.size(); x++){
       notesFromChord = chords.getChordFromName(chordsGrid[x].first);
       scaleAdjust = 0;
@@ -56,7 +56,7 @@ void    Disposition::placeChords(MusicParameters &parameters, std::vector<std::v
   instruments = parameters.getInstrumentsChords();
   parameters._midiManager.setTempo(parameters.getBpm());
   for (unsigned char i = 0; i < instruments.size(); i++){
-    parameters._midiManager.changeInstrument(instruments[i], 0);
+    parameters._midiManager.changeInstrument(instruments[i], 1.0);
     for (unsigned char x = 0; x < pattern.size(); x++){
       for (unsigned char k = 0; k < pattern[x].size(); k++){
         notesFromChord = chords.getChordFromName(pattern[x][k].note.first);

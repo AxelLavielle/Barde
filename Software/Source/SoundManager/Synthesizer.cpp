@@ -12,7 +12,7 @@
 
 Synthesizer::Synthesizer()
 {
-	for (int i = 4; --i >= 0;)
+	for (int i = 127; --i >= 0;)
 	{
 		_synth.addVoice(new SamplerVoice());
 	}
@@ -99,10 +99,10 @@ void Synthesizer::releaseResources()
 
 void Synthesizer::getNextAudioBlock(const AudioSourceChannelInfo& bufferToFill)
 {
-	MidiBuffer incomingMidi;
-	MidiMessage	midiEvent;
-	int			samplePos;
-	int			programNb;
+	MidiBuffer				incomingMidi;
+	MidiMessage				midiEvent;
+	int						samplePos;
+	int						programNb;
 	SynthesizerInstrument	*instrument;
 
 	bufferToFill.clearActiveBufferRegion();
@@ -116,11 +116,13 @@ void Synthesizer::getNextAudioBlock(const AudioSourceChannelInfo& bufferToFill)
 			programNb = midiEvent.getProgramChangeNumber();
 			try
 			{
+				std::cout << "ChangeInstrument, channel : " << midiEvent.getChannel() << std::endl;
 				_synth.removeSound(midiEvent.getChannel());
 				instrument = _instruments.at(static_cast<NbInstrument>(programNb));
 				instrument->setChannel(midiEvent.getChannel());
 				SynthesizerInstrument::Ptr synthInstrument(instrument);
 				_synth.addSound(instrument);
+				std::cout << "ChangeInstrument, programNb : " << programNb << std::endl;
 			}
 			catch (const std::exception e)
 			{
