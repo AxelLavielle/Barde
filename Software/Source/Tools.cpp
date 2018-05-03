@@ -18,3 +18,14 @@ void Tools::sleep(const unsigned int time)
 	Sleep(time);
 #endif
 }
+
+//void Tools::sleepActive(const unsigned int time)
+//{
+//	SYSTEMTIME  system_time;
+//
+//	GetSystemTime(&system_time);
+//	while ()
+//	{
+//
+//	}
+//}

@@ -17,7 +17,6 @@
 #include <Windows.h>
 #endif // DEBUG
 
-
 class Tools
 {
 public:

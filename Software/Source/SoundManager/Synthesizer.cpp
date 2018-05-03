@@ -42,11 +42,11 @@ void Synthesizer::setUsingSampledSound()
 	std::vector<std::wstring> files;
 	std::vector<std::wstring>::iterator it;
 	#ifdef __linux__
-	std::wcout << "Directory = " << FileManager::getCurrentDirectory() << s2ws("/../../Samples/Drums/") << std::endl;
+	//std::wcout << "Directory = " << FileManager::getCurrentDirectory() << s2ws("/../../Samples/Drums/") << std::endl;
 	FileManager::getFilesList(FileManager::getCurrentDirectory() + s2ws("/../../Samples/Drums/"), s2ws(".wav"), files);
 	FileManager::getFilesList(FileManager::getCurrentDirectory() + s2ws("/../../Samples/"), s2ws(".wav"), files);
 	#else
-	std::wcout << "Directory = " << FileManager::getCurrentDirectory() + s2ws("/../../../../Samples/Drums/") << std::endl;
+	//std::wcout << "Directory = " << FileManager::getCurrentDirectory() + s2ws("/../../../../Samples/Drums/") << std::endl;
 	FileManager::getFilesList(FileManager::getCurrentDirectory() + s2ws("/../../../../Samples/Drums/"), s2ws(".wav"), files);
 	FileManager::getFilesList(FileManager::getCurrentDirectory() + s2ws("/../../../../Samples/"), s2ws(".wav"), files);
 #endif // __linux__
@@ -58,8 +58,8 @@ void Synthesizer::setUsingSampledSound()
 	it = files.begin();
 	while (it != files.end())
 	{
-		std::wcout << "File = " << *it << std::endl;
-		std::wcout << "FileName = " << FileManager::getFileName(*it) << std::endl;
+		//std::wcout << "File = " << *it << std::endl;
+		//std::wcout << "FileName = " << FileManager::getFileName(*it) << std::endl;
 		File* file = new File((*it).c_str());
 		std::shared_ptr<AudioFormatReader> reader = std::shared_ptr<AudioFormatReader>(_audioFormatManager.createReaderFor(*file));
 		if (reader)

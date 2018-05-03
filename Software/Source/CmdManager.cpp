@@ -46,17 +46,17 @@ User CmdManager::getUserInfo()
 		//throw; Need to throw something
 	}
 	user = root["data"]["user"];
-	std::cout << "User email : " << user["email"] << std::endl;
-	std::cout << "User firstname : " << user["name"]["firstName"] << std::endl;
-	std::cout << "User lastname : " << user["name"]["lastName"] << std::endl;
-	std::cout << "User username : " << user["name"]["userName"] << std::endl;
+	//std::cout << "User email : " << user["email"] << std::endl;
+	//std::cout << "User firstname : " << user["name"]["firstName"] << std::endl;
+	//std::cout << "User lastname : " << user["name"]["lastName"] << std::endl;
+	//std::cout << "User username : " << user["name"]["userName"] << std::endl;
 
 	_currentUser.setEmail(user["email"].asString());
 	_currentUser.setFirstName(user["name"]["firstName"].asString());
 	_currentUser.setLastName(user["name"]["lastName"].asString());
 	_currentUser.setUserName(user["name"]["userName"].asString());
 	_currentUser.setDateOfBirth(user["dateOfBirth"].asString());
-	std::cout << "Date of birth = " << user["dateOfBirth"] << std::endl;
+	//std::cout << "Date of birth = " << user["dateOfBirth"] << std::endl;
 	return _currentUser;
 }
 

@@ -192,11 +192,11 @@ std::string RestClient::receive(int & responseCode, std::string & responseMsg)
 	char					buff[1024];
 
 
-	std::cout << "Waiting server..." << std::endl;
+	//std::cout << "Waiting server..." << std::endl;
 	nbByte = 1;
 	while ((socketStatus = _socket.waitUntilReady(true, _timeOut) > 0) && nbByte > 0)
 	{
-		std::cout << "Reading request..." << std::endl;
+		//std::cout << "Reading request..." << std::endl;
 		nbByte = _socket.read(buff, 1023, false);
 		buff[nbByte] = '\0';
 		msg << buff;
@@ -214,7 +214,7 @@ std::string RestClient::getResponse(const std::string &req, int & responseCode, 
 	int				socketStatus;
 	std::string		response;
 
-	std::cout << "Waiting server1..." << std::endl;
+	//std::cout << "Waiting server1..." << std::endl;
 	if (_socket.connect(_address, _port, _timeOut) == false)
 	{
 		throw RestClientException("Can connect to the server", 444);
@@ -222,7 +222,7 @@ std::string RestClient::getResponse(const std::string &req, int & responseCode, 
 	socketStatus = _socket.waitUntilReady(false, _timeOut * 2);
 	if (socketStatus == 1)
 	{
-		std::cout << "Sanding request..." << std::endl;
+		//std::cout << "Sanding request..." << std::endl;
 		if (_socket.write(req.c_str(), strlen(req.c_str())) <= -1)
 		{
 			throw RestClientException("Error on sending request", 444);
