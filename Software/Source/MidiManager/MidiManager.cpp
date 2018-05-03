@@ -63,10 +63,10 @@ Midi MidiManager::createMidi(const double time)
 	Midi				midi;
 
 	message = MidiMessage::endOfTrack();
-	message.setTimeStamp(time);
+	message.setTimeStamp(time * 1000);
 	_midiSequence.addEvent(message);
 	_midiBuff.addTrack(_midiSequence);
-	//_midiBuff.setTicksPerQuarterNote(4); // 80 tick dans une minute
+	_midiBuff.setTicksPerQuarterNote(96); // 80 tick dans une minute
 
 	//MidiOutput *midiOutput;
 	//midiOutput = MidiOutput::openDevice(0);
