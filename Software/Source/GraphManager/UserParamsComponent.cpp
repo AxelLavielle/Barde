@@ -27,8 +27,7 @@ UserParamsComponent::UserParamsComponent()
 	cmdManager.connectToServer();
 
 	//login
-	cmdManager.login("arnaud.p@outlook.fr", "arnaud");
-
+	cmdManager.login("anthony.vogelweid@epitech.eu", "test");
 
 	//get User info
 	user = cmdManager.getUserInfo();

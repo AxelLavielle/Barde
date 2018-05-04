@@ -70,8 +70,9 @@ bool CmdManager::login(const std::string &email, const std::string &password)
 	catch (RestClientException &e)
 	{
 		std::cerr << "Error on request authentificate : " << e.what() << std::endl;
+		return false;
 	}
-	return false;
+	return true;
 }
 
 bool CmdManager::logout()
@@ -105,13 +106,48 @@ bool CmdManager::editUserInfo(const User & user)
 	catch (RestClientException &e)
 	{
 		std::cerr << "Error on request editUserInfo : " << e.what() << std::endl;
+		return false;
 	}
-	return false;
+	return true;
 }
 
 bool CmdManager::forgetPassword()
 {
 	return false;
+}
+
+bool CmdManager::createUser(const User & user, const std::string & password)
+{
+	Json::Value				root;
+	int						responseCode;
+	std::string				responseMsg;
+	std::stringstream		ssJson;
+
+	root["email"] = user.getEmail();
+	root["password"] = password;
+	root["userName"] = user.getUserName();
+	root["firstName"] = user.getFirstName();
+	root["lastName"] = user.getLastName();
+	root["yearOfBirth"] = user.getYearOfBirth();
+	root["monthOfBirth"] = user.getMonthOfBirth();
+	root["dayOfBirth"] = user.getDayOfBirth();
+	ssJson << root;
+
+	try
+	{
+		_socket.post("/auth/register", ssJson.str(), responseCode, responseMsg);
+		if (responseCode != 200)
+		{
+			std::cerr << responseMsg << std::endl;
+			return false;
+		}
+	}
+	catch (RestClientException &e)
+	{
+		std::cerr << "Error on request createUser : " << e.what() << " Message: " << e.getMessage() << " Info : " << e.getInfo() << std::endl;
+		return false;
+	}
+	return true;
 }
 
 bool CmdManager::signUp(const User & user, const std::string & password)
@@ -139,6 +175,7 @@ bool CmdManager::signUp(const User & user, const std::string & password)
 	catch (RestClientException &e)
 	{
 		std::cerr << "Error on request signUp : " << e.what() << " Message: " << e.getMessage() << " Info : "<< e.getInfo() << std::endl;
+		return false;
 	}
 	return true;
 }
