@@ -46,6 +46,7 @@
 		CC28BC066567CAABFCDD7012 = {isa = PBXBuildFile; fileRef = BAC2839A58B20CC041354114; };
 		B197FCEF50185F2F6B16FE7C = {isa = PBXBuildFile; fileRef = 12A17B1F4DDCC99AC595108F; };
 		478DEA34B0C331EA4F8A445C = {isa = PBXBuildFile; fileRef = B9AC81F8D74F1DC31C34E5CF; };
+		DF7C2FB9E0D6F15BA3B96917 = {isa = PBXBuildFile; fileRef = DA6B1E6E01654DC6D016ED7E; };
 		71604C2A2A50A305826EAE53 = {isa = PBXBuildFile; fileRef = 902CE0405C3723F16FA0D660; };
 		A9E0E74023F69AD34E7BC6F1 = {isa = PBXBuildFile; fileRef = 6F00FBD6E5675ED27DB33D5F; };
 		79A9A4B360FF1E865A8F03DF = {isa = PBXBuildFile; fileRef = F9CE27C225105BB5CD24CBB4; };
@@ -321,6 +322,8 @@
 					66F106BAF2510CDFC4FAE3A3,
 					B9AC81F8D74F1DC31C34E5CF,
 					07FE74F71BDDDC444D4E5805,
+					DA6B1E6E01654DC6D016ED7E,
+					EDCD1870E421E305C967946D,
 					902CE0405C3723F16FA0D660,
 					164EDD664D0C7B31AF874943,
 					6F00FBD6E5675ED27DB33D5F,
@@ -426,7 +429,7 @@
 					4A7EBE30793972F12564BC02,
 					6261A205E11F76C9F18B1BE0,
 					ABAF18C87066B4877466E3AE,
-					79B79DDCF896D5D0B0FC94EC, ); name = "Juce Modules"; sourceTree = "<group>"; };
+					79B79DDCF896D5D0B0FC94EC, ); name = "JUCE Modules"; sourceTree = "<group>"; };
 		F1CF3E78B3426A406E952B6D = {isa = PBXGroup; children = (
 					B48576F907A6A34E0E1649AC,
 					DE51185F9B39CBA3092ED5C8,
@@ -445,7 +448,7 @@
 					1EA521E73BF944102BAD2823,
 					011DD6BA39A37A29A0886993,
 					50A8352D63F6139F5CF2ABA3,
-					2891F93FE5106F8FDC034261, ); name = "Juce Library Code"; sourceTree = "<group>"; };
+					2891F93FE5106F8FDC034261, ); name = "JUCE Library Code"; sourceTree = "<group>"; };
 		89C909C51D4FA89CF958632E = {isa = PBXGroup; children = (
 					65FFC0CE3C96AB4D76E627CD,
 					D27DCF836EB785D22056CEAD, ); name = Resources; sourceTree = "<group>"; };
@@ -646,6 +649,7 @@
 					CC28BC066567CAABFCDD7012,
 					B197FCEF50185F2F6B16FE7C,
 					478DEA34B0C331EA4F8A445C,
+					DF7C2FB9E0D6F15BA3B96917,
 					71604C2A2A50A305826EAE53,
 					A9E0E74023F69AD34E7BC6F1,
 					79A9A4B360FF1E865A8F03DF,
@@ -709,7 +713,7 @@
 					D940B3B9B80C6E661C37FC97,
 					F5405195CCCDE90809AF33DD,
 					B413193B355D84FE45F1535C, ); buildRules = ( ); dependencies = (  ); name = "BardeClient - App"; productName = BardeClient; productReference = 84601D50D9D57E3396CF903A; productType = "com.apple.product-type.application"; };
-		7B9AA1E0B7523E7FA809EC22 = {isa = PBXProject; buildConfigurationList = 33BE1F801341D6D1B26FA148; attributes = { LastUpgradeCheck = 0830; TargetAttributes = { F177B87EDBDC0F77F9040BE4 = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; }; }; }; }; compatibilityVersion = "Xcode 3.2"; hasScannedForEncodings = 0; mainGroup = CE1D8A012BBAE223F34EA4A7; projectDirPath = ""; projectRoot = ""; targets = (F177B87EDBDC0F77F9040BE4); };
+		7B9AA1E0B7523E7FA809EC22 = {isa = PBXProject; buildConfigurationList = 33BE1F801341D6D1B26FA148; attributes = { LastUpgradeCheck = 0830; ORGANIZATIONNAME = "Barde"; TargetAttributes = { F177B87EDBDC0F77F9040BE4 = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; }; }; }; }; compatibilityVersion = "Xcode 3.2"; hasScannedForEncodings = 0; mainGroup = CE1D8A012BBAE223F34EA4A7; projectDirPath = ""; projectRoot = ""; targets = (F177B87EDBDC0F77F9040BE4); };
 	};
 	rootObject = 7B9AA1E0B7523E7FA809EC22;
 }

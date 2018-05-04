@@ -27,14 +27,15 @@ UserParamsComponent::UserParamsComponent()
 	cmdManager.connectToServer();
 
 	//login
-	cmdManager.login("anthony.vogelweid@epitech.eu", "test");
+	//cmdManager.login("micha@barde.io", "titiletutu");
+	cmdManager.login("arnaud.p@outlook.fr", "arnaud");
 
 	//get User info
 	user = cmdManager.getUserInfo();
 
 	addAndMakeVisible(firstNameTextEditor);
 	firstNameTextEditor.setText(user.getFirstName());
-	firstNameTextEditor.setText("dd: " + user.getDayOfBirth() + " mm: " + user.getMonthOfBirth() + " yyyy: " + user.getYearOfBirth());
+	firstNameTextEditor.setText(user.getFirstName());
 
 	addAndMakeVisible(lastNameTextEditor);
 	lastNameTextEditor.setText(user.getLastName());
@@ -223,14 +224,19 @@ void UserParamsComponent::buttonClicked(Button* button)
 {
 	//TODO Add API Connection to save changes instead of the code below
 
+	String firstName;
+	String lastName;
 	String username;
 	String email;
 	String dateofbirth;
 	String password;
 	String confirmpassword;
+	User test;
 	
 	(void)button;
 	errorText.setText("", dontSendNotification);
+	firstName = firstNameTextEditor.getText();
+	lastName = lastNameTextEditor.getText();
 	username = userNameTextEditor.getText();
 	email = emailTextEditor.getText();
 	bool a = isEmailValid(email.toStdString());
@@ -245,6 +251,14 @@ void UserParamsComponent::buttonClicked(Button* button)
 	if (password != confirmpassword)
 		errorText.setText("Error passwords don't match", dontSendNotification);
 	std::cout << "username : " << username << " email: " << email << "date of birth: " << dateofbirth  << "password: " << password << " confirm password :" << confirmpassword << std::endl;
+	test.setEmail(email.toStdString());
+	test.setDayOfBirth("25");
+	test.setMonthOfBirth("11");
+	test.setYearOfBirth("1996");
+	test.setFirstName(firstName.toStdString());
+	test.setLastName(lastName.toStdString());
+	test.setUserName(username.toStdString());
+	cmdManager.editUserInfo(user);
 }
 
 

@@ -16,12 +16,13 @@ MainContentComponent::MainContentComponent()
 	int rectY;
 	
 	//TODO Receive MusicParameters from main or something to send to the player
-	us = UserSettings(new MusicParameters());
+	us = UserSettings();
 
 	setSize(getParentWidth(), getParentHeight() - 10);
 	this->currentTheme = parseTheme("../Themes/Dark");
-	addAndMakeVisible(blues = new MusicStyleButton("Generate some blues", 400, 50, this->currentTheme));
-	addAndMakeVisible(params = new MusicStyleButton("User params (TEST)", 400, 50, this->currentTheme));
+	addAndMakeVisible(blues = new MusicStyleButton("Generate some blues", 400, 50, this->currentTheme, &us));
+	addAndMakeVisible(blues = new MusicStyleButton("Generate some blues", 400, 50, this->currentTheme, &us));
+	addAndMakeVisible(params = new MusicStyleButton("User params (TEST)", 400, 50, this->currentTheme, &us));
 	rectX = (600 / 2) - (400 / 2);
 	rectY = (400 / 15) + (LOGO_WIDTH) + 100;
 	blues->setBounds(rectX, rectY, 400, 50);
@@ -37,12 +38,18 @@ MainContentComponent::MainContentComponent()
 	frequencySlider.addListener(this);
 	frequencySlider.setName("BPM");
 	frequencyLabel.setText("BPM", dontSendNotification);
-	frequencyLabel.attachToComponent(&frequencySlider, true); // [4] 	
+	frequencyLabel.attachToComponent(&frequencySlider, true); // [4] 
+
+
+	addAndMakeVisible(Arpeges);
+	//Arpeges.addChildComponent()
+
+
 }
 
 MainContentComponent::~MainContentComponent()
 {
-	deleteAllChildren();
+	//deleteAllChildren();
 }
 
 void MainContentComponent::paint (Graphics& g)

@@ -15,6 +15,7 @@
 #include "MusicStyleButton.h"
 #include "../UserSettings.h"
 #include "../MusicParameters.hh"
+#include "../Instrument.hh"
 #include "AComponent.hh"
 
 #ifndef  LOGO_WIDTH
@@ -45,6 +46,7 @@ public:
 	UserSettings us;
 	Slider frequencySlider;
 	Label frequencyLabel;
+	ListBox Arpeges;
 	std::thread _threadPlayer; /*!< thread player*/
 	Player _player; /*!< player THIS NEED TO BE CHANGED*/
 

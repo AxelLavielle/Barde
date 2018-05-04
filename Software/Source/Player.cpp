@@ -20,11 +20,15 @@ Player::~Player()
 	delete _soundManager;
 }
 
+void Player::setMusicparameters(MusicParameters params)
+{
+	_musicParameters = params;
+}
+
 void Player::Play()
 {
 	MusicGenerator gen;
-	MusicParameters param;
 
-	gen.createMusic(param);
-	_soundManager->play(param.getMidi());
+	gen.createMusic(_musicParameters);
+	_soundManager->play(_musicParameters.getMidi());
 }

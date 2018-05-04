@@ -11,11 +11,13 @@
 #include "MusicStyleButton.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
-MusicStyleButton::MusicStyleButton(const String & buttonName, const int width, const int height, Theme theme) : Button(buttonName)
+
+MusicStyleButton::MusicStyleButton(const String & buttonName, const int width, const int height, Theme theme, UserSettings *us) : Button(buttonName)
 {
 	this->width = width;
 	this->height = height;
 	this->theme = theme;
+	this->us = us;
 }
 
 MusicStyleButton::~MusicStyleButton()
@@ -29,8 +31,9 @@ void MusicStyleButton::paintButton(Graphics& g, const bool isMouseOverButton, co
 	if (isButtonDown)
 	{
 	  g.setColour(Colour(this->theme.getButtonColor()));
-		//_threadPlayer = std::thread(&Player::Play, &_player);
-		//_threadPlayer.detach();
+	  _player.setMusicparameters(us->getMusicParameter());
+		_threadPlayer = std::thread(&Player::Play, &_player);
+		_threadPlayer.detach();
 	}
 	else if (isMouseOverButton)
 	{

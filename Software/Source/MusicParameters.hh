@@ -21,6 +21,8 @@ class MusicParameters
 {
 public:
 	MusicParameters();
+	MusicParameters(const MusicParameters &params);
+	MusicParameters &MusicParameters::operator=(const MusicParameters &params);
 	~MusicParameters();
 	int getBpm() const;
 	void setBpm(const int bpm);

@@ -14,7 +14,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "../Player.hh"
 #include "Theme.h"
-
+#include "../UserSettings.h"
 
 /*! \class MusicStyleButton
 * \brief classe representing a button for a specific music style
@@ -31,7 +31,8 @@ public:
 	int height; /*!< Button height*/
 	Theme theme; /*!< Theme of the app*/
 	std::thread _threadPlayer; /*!< thread player*/
-	Player _player; /*!< player THIS NEED TO BE CHANGED*/
+	Player _player; /*!< player*/
+	UserSettings *us;
 
 	/*!
 	*  \brief Constructor
@@ -43,7 +44,7 @@ public:
 	*  \param h : Button height
 	*  \param theme : Theme
 	*/
-	MusicStyleButton(const String &buttonName, const int w, const int h, Theme theme);
+	MusicStyleButton(const String &buttonName, const int w, const int h, Theme theme, UserSettings *us);
 	/*!
 	*  \brief Destructor
 	*

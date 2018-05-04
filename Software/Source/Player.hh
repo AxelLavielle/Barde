@@ -50,8 +50,13 @@ Player();
 */
 void Play();
 
+
+
+void setMusicparameters(MusicParameters params);
+
 private:
 	ISoundManager		*_soundManager; /*!< Pointer to the sound manager*/
+	MusicParameters		_musicParameters;
 };
 
 #endif  // PLAYER_HH_INCLUDED

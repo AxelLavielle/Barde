@@ -159,6 +159,7 @@ public:
 	void setTheme(Theme theme);
 
 
+	MusicParameters getMusicParameter();
 
 
 private:
@@ -167,7 +168,7 @@ private:
 	bool _mute; /*!< if the sound is muted or not */
 	Theme _theme; /*!< theme used by the software */
 	std::vector<Theme> _themelist; /*!< all existing theme to choose from */
-	MusicParameters *_musicParameters;
+	MusicParameters _musicParameters;
 };
 
 

@@ -14,6 +14,25 @@ MusicParameters::MusicParameters()
 {
 }
 
+
+MusicParameters::MusicParameters(const MusicParameters &params)
+{
+	_bpm = params.getBpm();
+	_instrumentsArpeggios = params.getInstrumentsArpeggios();
+	_instrumentsChords = params.getInstrumentsChords();
+	_instrumentsDrums = params.getInstrumentsDrums();
+}
+
+MusicParameters &MusicParameters::operator=(const MusicParameters &params)
+{
+	MusicParameters tmp;
+	tmp._bpm = params.getBpm();
+	tmp._instrumentsArpeggios = params.getInstrumentsArpeggios();
+	tmp._instrumentsChords = params.getInstrumentsChords();
+	tmp._instrumentsDrums = params.getInstrumentsDrums();
+	return tmp;
+}
+
 MusicParameters::~MusicParameters()
 {
 }

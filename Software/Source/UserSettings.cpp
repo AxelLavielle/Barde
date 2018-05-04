@@ -17,15 +17,6 @@ UserSettings::UserSettings()
 	_volume = 50;
 }
 
-UserSettings::UserSettings(MusicParameters *musicParameters)
-{
-	_mute = false;
-	_language = EN;
-	_volume = 50;
-	_musicParameters = musicParameters;
-	std::cout << "Created FroM here" << std::endl;
-}
-
 
 UserSettings::UserSettings(bool mute, Language language, int volume)
 {
@@ -55,7 +46,7 @@ int UserSettings::getBPM()
 {
 	int returnBpm;
 
-	returnBpm = _musicParameters->getBpm();
+	returnBpm = _musicParameters.getBpm();
 	return (returnBpm);
 }
 
@@ -79,7 +70,7 @@ void UserSettings::setVolume(int volume)
 
 void UserSettings::setBPM(int BPM)
 {
-	_musicParameters->setBpm(BPM);
+	_musicParameters.setBpm(BPM);
 }
 
 void UserSettings::setMute(bool mute)
@@ -90,5 +81,10 @@ void UserSettings::setMute(bool mute)
 void UserSettings::setLanguage(Language language)
 {
 	_language = language;
+}
+
+MusicParameters UserSettings::getMusicParameter()
+{
+	return _musicParameters;
 }
 
