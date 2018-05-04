@@ -20,6 +20,7 @@ MainContentComponent::MainContentComponent()
 
 	setSize(getParentWidth(), getParentHeight() - 10);
 	_currentTheme = parseTheme("../Themes/Dark");
+	//SEND THE USERSETTINGS TO THE BUTTON SO THE PLAYER CAN HAVE THEM AT THE GENRATION TODO REPLACE THEM
 	addAndMakeVisible(_blues = new MusicStyleButton("Generate some blues", 400, 50, _currentTheme, &_us));
 	addAndMakeVisible(_params = new MusicStyleButton("User params (TEST)", 400, 50, _currentTheme, &_us));
 	rectX = (600 / 2) - (400 / 2);
@@ -112,6 +113,8 @@ void MainContentComponent::buttonClicked(Button* button)
 	}
 	else if (button == _blues)
 	{
+		//SET THE PARAMETERS
+		_player.setMusicparameters(_us->getMusicParameter());
 		_threadPlayer = std::thread(&Player::Play, &_player);
 		_threadPlayer.detach();
 	}
