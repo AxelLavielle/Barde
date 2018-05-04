@@ -47,14 +47,14 @@ public:
 	bool isEmailValid(const std::string &email);
 
 private:
-	TextEditor firstNameTextEditor, lastNameTextEditor, userNameTextEditor, emailTextEditor, dateOfBirthTextEditor, passwordTextEditor, passwordConfirmationTextEditor;
-	Label firstNameLabel, lastNameLabel, userNameLabel, emailLabel, dateOfBirthLabel, passwordLabel, passwordConfirmationLabel;
-	ComboBox languageComboBox;
-	Label errorText;
-	TextButton saveButton;
-	Theme currentTheme;
-	User user;
-	CmdManager cmdManager;
+	TextEditor _firstNameTextEditor, _lastNameTextEditor, _userNameTextEditor, _emailTextEditor, _dateOfBirthEditor, _passwordTextEditor, _passwordConfirmationTextEditor;
+	Label _firstNameLabel, _lastNameLabel, _userNameLabel, _emailLabel, _dateOfBirthLabel, _passwordLabel, _passwordConfirmationLabel;
+	ComboBox _languageComboBox;
+	Label _errorText;
+	TextButton _saveButton;
+	Theme _currentTheme;
+	User _user;
+	CmdManager _cmdManager;
 	//ComboBox themeChoice;
 	//==============================================================================
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(UserParamsComponent)

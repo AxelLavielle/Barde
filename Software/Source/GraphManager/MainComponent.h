@@ -40,13 +40,13 @@ class MainContentComponent : public Component, public SliderListener, public But
 {
 public:
     //==============================================================================
-	MusicStyleButton * blues;  /*!< button for generating blues*/
-	MusicStyleButton *params;  /*!< button for generating blues THIS IS FOR TEST !!!! */
-	Theme currentTheme; /*!< Theme defining the colors of the elements*/
-	UserSettings us;
-	Slider frequencySlider;
-	Label frequencyLabel;
-	ListBox Arpeges;
+	MusicStyleButton * _blues;  /*!< button for generating blues*/
+	MusicStyleButton *_params;  /*!< button for generating blues THIS IS FOR TEST !!!! */
+	Theme _currentTheme; /*!< Theme defining the colors of the elements*/
+	UserSettings _us;
+	Slider _frequencySlider;
+	Label _frequencyLabel;
+	ListBox _Arpeges;
 	std::thread _threadPlayer; /*!< thread player*/
 	Player _player; /*!< player THIS NEED TO BE CHANGED*/
 

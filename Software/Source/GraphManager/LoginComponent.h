@@ -44,14 +44,14 @@ public:
 	void ThemeChanged();
 
 private:
-	CmdManager cmdManager;
-	TextEditor textEditor1, textEditor2;
-	Label inputLabel1, inputLabel2;
-	ComboBox comboBox;
-	Label errorText;
-	TextButton loginButton;
-	Theme currentTheme;
-	ComboBox themeChoice;
+	CmdManager _cmdManager;
+	TextEditor _textEditor1, _textEditor2;
+	Label _inputLabel1, _inputLabel2;
+	ComboBox _comboBox;
+	Label _errorText;
+	TextButton _loginButton;
+	Theme _currentTheme;
+	ComboBox _themeChoice;
 	//==============================================================================
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(LoginComponent)
 };

@@ -14,10 +14,10 @@
 
 MusicStyleButton::MusicStyleButton(const String & buttonName, const int width, const int height, Theme theme, UserSettings *us) : Button(buttonName)
 {
-	this->width = width;
-	this->height = height;
-	this->theme = theme;
-	this->us = us;
+	_width = width;
+	_height = height;
+	_theme = theme;
+	_us = us;
 }
 
 MusicStyleButton::~MusicStyleButton()
@@ -30,25 +30,25 @@ void MusicStyleButton::paintButton(Graphics& g, const bool isMouseOverButton, co
 	//Background Color
 	if (isButtonDown)
 	{
-	  g.setColour(Colour(this->theme.getButtonColor()));
-	  _player.setMusicparameters(us->getMusicParameter());
+		g.setColour(Colour(_theme.getButtonColor()));
+		_player.setMusicparameters(_us->getMusicParameter());
 		_threadPlayer = std::thread(&Player::Play, &_player);
 		_threadPlayer.detach();
 	}
 	else if (isMouseOverButton)
 	{
-	  g.setColour(Colour(this->theme.getButtonColor()));
+	  g.setColour(Colour(_theme.getButtonColor()));
 	}
 	else
 	{
-	  g.setColour(Colour(this->theme.getButtonColor()));
+	  g.setColour(Colour(_theme.getButtonColor()));
 	}
 
 	//Background
-	g.fillRoundedRectangle(0, 0, this->width, this->height, 30);
+	g.fillRoundedRectangle(0, 0, _width, _height, 30);
 	//Text
-	g.setColour(Colour(this->theme.getButtonFontColor()));
+	g.setColour(Colour(_theme.getButtonFontColor()));
 	g.setFont(14.0f);
-	g.drawText(this->getName(), 0, 0, this->width, this->height, Justification::centred, true);
+	g.drawText(this->getName(), 0, 0, _width, _height, Justification::centred, true);
 }
 

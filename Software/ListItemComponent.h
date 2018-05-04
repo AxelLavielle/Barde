@@ -29,7 +29,7 @@ public:
 private:
 	String _text;
 	bool _isSelected;
-	int rowNumber;
+	int _rowNumber;
 	//==============================================================================
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ListItemComponent)
 };

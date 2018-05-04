@@ -27,12 +27,12 @@
 class MusicStyleButton : public Button
 {
 public:
-	int width; /*!< Button width*/
-	int height; /*!< Button height*/
-	Theme theme; /*!< Theme of the app*/
+	int _width; /*!< Button width*/
+	int _height; /*!< Button height*/
+	Theme _theme; /*!< Theme of the app*/
 	std::thread _threadPlayer; /*!< thread player*/
 	Player _player; /*!< player*/
-	UserSettings *us;
+	UserSettings *_us;
 
 	/*!
 	*  \brief Constructor
@@ -61,7 +61,7 @@ public:
 	*  \param isMouseOverButton : boolean corresponding to the mouse over button event
 	*  \param isButtonDown :boolean corresponding to the button down event
 	*/
-	void paintButton(Graphics& g, const bool isMouseOverButton, const bool isButtonDown);
+	void paintButton(Graphics& g, const bool isMouseOverButton, const bool isButtonDown) override;
 };
 
 #endif  // MUSICSTYLEBUTTON_H_INCLUDED
