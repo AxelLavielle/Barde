@@ -38,11 +38,11 @@ const MidiMessageSequence		*SoundManager::MidiToMessageSequence(const Midi &midi
 	return (NULL);
 }
 
-bool							SoundManager::play(const Midi &midi)
+bool							SoundManager::play(const Midi &midi, int bpm)
 {
 	MidiMessage					msg;
 	const MidiMessageSequence	*midiSequence;
-	const float	    			time = (60.0 / 80.0);
+	const float	    			time = (60.0f / static_cast<float>(bpm));
 	unsigned int				currentTime;
 	unsigned int				msgTime;
 

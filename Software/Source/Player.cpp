@@ -30,5 +30,5 @@ void Player::Play()
 	MusicGenerator gen;
 
 	gen.createMusic(_musicParameters);
-	_soundManager->play(_musicParameters.getMidi());
+	_soundManager->play(_musicParameters.getMidi(), _musicParameters.getBpm());
 }
