@@ -51,13 +51,14 @@ public:
 	*  \param midi : midi data send to the midi device
 	*  \return true in case of success playing and false in the others case
 	*/
-	virtual bool play(const Midi &midi);
+	virtual bool play(const Midi &midi, int bpm);
 	/*!
 	*  \brief Stop the song who is being played
 	*
 	*  This method stop all the event send to the midi device and provoke the stop of the playing
 	*
 	*  \param midi : midi object need to stop
+	*  \param bpm : the bpm
 	*  \return true in case of success playing and false in the others case
 	*/
 	virtual bool stop(const Midi &midi) const;
