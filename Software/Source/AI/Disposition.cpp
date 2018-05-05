@@ -16,12 +16,13 @@ void		Disposition::placeChords(MusicParameters &parameters, std::vector<std::pai
   Chords chords;
   std::vector<Instrument> instruments;
   char scaleAdjust;
-  char previousNote;
+  int previousNote;
   int note;
   double beats;
   std::vector<char> notesFromChord;
 
   beats = 0;
+  previousNote = 0;
   instruments = parameters.getInstrumentsChords();
   parameters._midiManager.setTempo(parameters.getBpm());
   for (unsigned char i = 0; i < instruments.size(); i++){
@@ -49,10 +50,11 @@ void    Disposition::placeChords(MusicParameters &parameters, std::vector<std::v
   Chords chords;
   std::vector<Instrument> instruments;
   char scaleAdjust;
-  char previousNote;
+  int previousNote;
   int note;
   std::vector<char> notesFromChord;
 
+  previousNote = 0;
   instruments = parameters.getInstrumentsChords();
   parameters._midiManager.setTempo(parameters.getBpm());
   for (unsigned char i = 0; i < instruments.size(); i++){

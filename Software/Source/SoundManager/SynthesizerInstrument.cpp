@@ -23,6 +23,7 @@ SynthesizerInstrument::~SynthesizerInstrument()
 
 bool SynthesizerInstrument::appliesToNote(int midiNoteNumber)
 {
+	(void)midiNoteNumber;
 	return (true);
 }
 

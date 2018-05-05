@@ -56,8 +56,8 @@ void MainContentComponent::paint (Graphics& g)
 {
   int imgX;
   int imgY;
-  float imgH;
-  float imgW;
+  int imgH;
+  int imgW;
   int rectX;
   int rectY;
 
@@ -89,7 +89,7 @@ void MainContentComponent::sliderValueChanged(Slider *slider)
 {
 	if (slider->getName() == "BPM")
 	{
-		_us.setBPM(slider->getValue());
+		_us.setBPM(static_cast<int>(slider->getValue()));
 	}
 
 }
@@ -114,7 +114,7 @@ void MainContentComponent::buttonClicked(Button* button)
 	else if (button == _blues)
 	{
 		//SET THE PARAMETERS
-		_player.setMusicparameters(_us->getMusicParameter());
+		_player.setMusicparameters(_us.getMusicParameter());
 		_threadPlayer = std::thread(&Player::Play, &_player);
 		_threadPlayer.detach();
 	}

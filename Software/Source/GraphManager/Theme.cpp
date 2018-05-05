@@ -112,10 +112,10 @@ Theme parseTheme(std::string fileName)
 	else
 	  return Theme();
 	
-		long long iButton = std::stoll(button, nullptr, 16);
-	unsigned int iBackground = std::stoll(background,0,0);
-	unsigned int iFont = std::stoll(font,0,0);
-	unsigned int iButtonFont = std::stoll(buttonFont, 0, 16);
+	int iButton = static_cast<int>(std::stoll(button, nullptr, 16));
+	int iBackground = static_cast<int>(std::stoll(background,0,0));
+	int iFont = static_cast<int>(std::stoll(font,0,0));
+	int iButtonFont = static_cast<int>(std::stoll(buttonFont, 0, 16));
 	tmp = Theme(iButton, iBackground, iFont, iButtonFont, name);
 	return tmp;
 }

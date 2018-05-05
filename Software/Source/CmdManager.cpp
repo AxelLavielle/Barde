@@ -72,7 +72,6 @@ bool CmdManager::login(const std::string &email, const std::string &password)
 		std::cerr << "Error on request authentificate : " << e.what() << std::endl;
 		return false;
 	}
-	return true;
 }
 
 bool CmdManager::logout()

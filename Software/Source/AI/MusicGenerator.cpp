@@ -98,7 +98,7 @@ void			MusicGenerator::drumsPOC(MusicParameters &parameters)
 Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 {
   /* PARAMETERS */
-  parameters.setSeed(std::time(NULL));
+  parameters.setSeed(static_cast<unsigned int>(std::time(NULL)));
   parameters.setBpm(80);
   Instrument instru;
   instru.name = "Piano";
@@ -144,8 +144,8 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   Resolution::parsingMarkov(style, &markovChords);
 
   std::pair<char, char> noteA = markovChords[0];
-  std::pair<char, char> noteB = std::make_pair(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 5) + markovChords[0].first % 8, 4);
-  std::pair<char, char> noteC = std::make_pair(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 7) + markovChords[0].first % 8, 4);
+  std::pair<char, char> noteB = std::make_pair(static_cast<char>(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 5) + markovChords[0].first % 8), static_cast<char>(4));
+  std::pair<char, char> noteC = std::make_pair(static_cast<char>(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 7) + markovChords[0].first % 8), static_cast<char>(4));
   if (noteB.first < noteA.first)
     noteB.second++;
   if (noteC.first < noteA.first)
@@ -194,7 +194,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
       int scale = lastScale;
       if (n != 0 && ABS(markovTmp[n].first - markovTmp[n - 1].first) / 8 > 6)
 	      scale = (markovTmp[n].first > markovTmp[n - 1].first) ? (lastScale - 1) : (lastScale + 1);
-      markovPattern->addNote(std::make_pair(markovTmp[n].first, scale), n*3.0/arpN + 1, 3.0/arpN, 0);
+      markovPattern->addNote(std::make_pair(markovTmp[n].first, static_cast<char>(scale)), n*3.0f/arpN + 1, 3.0f/arpN, 0);
 	  lastScale = scale;
   }
   std::vector<std::vector<t_note> >		arpeggios;

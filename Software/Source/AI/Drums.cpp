@@ -11,6 +11,7 @@ Drums::~Drums()
 
 void			Drums::pulse(MusicParameters &parameters, Instrument instru, double time)
 {
+	(void)parameters;
 	std::cout << instru.name << " at time " << time << std::endl;
 	//parameters._midiManager.noteOn(instru.channel, 72, instru.velocity, beats);
 	//parameters._midiManager.noteOff(instru.channel, 72, instru.velocity, beats + TIMES_PER_BAR);

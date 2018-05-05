@@ -74,6 +74,6 @@ Pattern		PatternGenerator::getPattern() const
 
   n = -1;
   while (static_cast<unsigned int>(++n) != vec.size())
-    ret.addNote(vec[n], _position[(4 * n) / vec.size()], _duration[(4 * n) / vec.size()], (4 * n) / vec.size()); /* DURATION ET POSITION A AMELIORER */
+    ret.addNote(vec[n], _position[(4 * n) / vec.size()], _duration[(4 * n) / vec.size()], static_cast<char>((4 * n) / vec.size())); /* DURATION ET POSITION A AMELIORER */
   return (ret);
 }

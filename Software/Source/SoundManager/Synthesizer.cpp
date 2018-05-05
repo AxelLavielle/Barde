@@ -70,6 +70,7 @@ void Synthesizer::setUsingSampledSound()
 			}
 			catch (const std::exception & e)
 			{
+				(void)e;
 				std::wcerr << "WARNING : Can not find instrument from the samples : " << FileManager::getFileName(*it) << std::endl;
 			}
 		}
