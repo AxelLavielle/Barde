@@ -8,7 +8,7 @@ ObjectMarkov::ObjectMarkov(const StyleSettings &settings, const unsigned int nbN
   _luaMarkovFunction = SOURCEMARKOV;
   _luaMarkovFunction += "markov.lua";
   _nbNote = nbNote;
-  _seed = std::time(nullptr);
+  _seed = static_cast<unsigned int>(std::time(nullptr));
 }
 
 ObjectMarkov::ObjectMarkov(const StyleSettings &settings, const unsigned int nbNote, const unsigned int seed)
@@ -41,7 +41,7 @@ ObjectMarkov::ObjectMarkov(const std::string &styleJson, const unsigned int nbNo
   _luaMarkovFunction += "markov.lua";
 
   _nbNote = nbNote;
-  _seed = std::time(nullptr);
+  _seed = static_cast<unsigned int>(std::time(nullptr));
 }
 
 ObjectMarkov::ObjectMarkov(const std::string &styleJson, const unsigned int nbNote, const unsigned int seed)
@@ -135,11 +135,11 @@ std::vector<std::pair<char, char> >  ObjectMarkov::getVectorFromJson()
   Json::Value tmp = _response;
   std::vector<std::pair<char, char> >  vector;
 
-  vector.push_back(std::pair<char, char>(atoi(tmp["note"].asString().c_str()), atoi(tmp["scale"].asString().c_str())));
+  vector.push_back(std::pair<char, char>(static_cast<char>(atoi(tmp["note"].asString().c_str())), static_cast<char>(atoi(tmp["scale"].asString().c_str()))));
  while (tmp.isMember("next"))
    {
      tmp = tmp["next"];
-     vector.push_back(std::pair<char, char>(atoi(tmp["note"].asString().c_str()), atoi(tmp["scale"].asString().c_str())));
+     vector.push_back(std::pair<char, char>(static_cast<char>(atoi(tmp["note"].asString().c_str())), static_cast<char>(atoi(tmp["scale"].asString().c_str()))));
 }
   return vector;
 }
@@ -151,14 +151,14 @@ StyleSettings ObjectMarkov::getStyleFromJson()
   Json::Value json = _rootJson["note"];
 
   for (Json::Value::iterator it = json["begin"].begin(); it != json["begin"].end(); ++it)
-    style.addNote(std::stoi(it.key().asString()), (*it).asInt());
+    style.addNote(static_cast<char>(std::stoi(it.key().asString())), (*it).asInt());
   for (Json::Value::iterator it = json.begin(); it != json.end(); ++it)
   {
     if (it.key().asString() != "begin")
     {
       for (Json::Value::iterator it2 = json[it.key().asString()].begin(); it2 != json[it.key().asString()].end(); ++it2)
       {
-        style.addNoteFromNote(std::stoi(it.key().asString()), std::stoi(it2.key().asString()), (*it2).asInt());
+        style.addNoteFromNote(static_cast<char>(std::stoi(it.key().asString())), static_cast<char>(std::stoi(it2.key().asString())), (*it2).asInt());
       }
     }
   }

@@ -121,8 +121,8 @@ void LoginComponent::paint(Graphics& g)
 {
 	int imgX;
 	int imgY;
-	float imgH;
-	float imgW;
+	int imgH;
+	int imgW;
 	//	int rectX;
 	//	int rectY;
 

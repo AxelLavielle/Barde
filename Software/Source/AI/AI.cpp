@@ -13,7 +13,7 @@ char			AI::calculateDistChords(const std::vector<std::pair<char, char> > chord, 
   unsigned char		i;
   char			save;
 
-  i = -1;
+  i = 255;
   save = 6;
   while (++i != chord.size())
     if (calculateDist(note, chord[i].first) < save)
@@ -27,7 +27,7 @@ char			AI::calculateSumDist(const char currNote, const std::vector<char> &listNo
   char			save;
 
   save = 0;
-  i = -1;
+  i = 255;
   while (++i != listNote.size())
     save += calculateDist(listNote[i], currNote);
   return (save);
@@ -37,28 +37,28 @@ void			AI::calculateProbaToNoteFromNote(const char note, StyleSettings *proba, c
 {
   unsigned char		i;
   char			sumDist;
-  char			nbNote;
+  unsigned int	nbNote;
   char			sumProba;
 
-  i = -1;
+  i = 255;
   sumDist = calculateSumDist(i, listNote);
   nbNote = listNote.size();
   while (++i != listNote.size())
     if (note == listNote[i])
       nbNote--;
-  i = -1;
+  i = 255;
   sumProba = 0;
   while (++i != listNote.size())
     {
       if (note == listNote[i])
-	proba->addNoteFromNote(note, listNote[i], (static_cast<float>(probaNote) / listNote.size()));
+	proba->addNoteFromNote(note, listNote[i], static_cast<char>(static_cast<float>(probaNote) / listNote.size()));
       else
-	proba->addNoteFromNote(note, listNote[i], (static_cast<float>(probaNote) / listNote.size()) * (((static_cast<float>(calculateDist(i, listNote[i])) / (static_cast<float>(sumDist) / nbNote)) + DISTIMPACT) / (DISTIMPACT + 1)));
-      sumProba += proba->getProbaFromNote(note, listNote[i]);
+	proba->addNoteFromNote(note, listNote[i], static_cast<char>((static_cast<float>(probaNote) / listNote.size()) * (((static_cast<float>(calculateDist(i, listNote[i])) / (static_cast<float>(sumDist) / nbNote)) + DISTIMPACT) / (DISTIMPACT + 1))));
+      sumProba += static_cast<char>(proba->getProbaFromNote(note, listNote[i]));
     }
   while (sumProba != probaNote)
     {
-      i = -1;
+      i = 255;
       while (sumProba != probaNote && ++i != listNote.size())
 	{
 	  proba->addNoteFromNote(note, listNote[i], proba->getProbaFromNote(note, listNote[i]) + 1);
@@ -86,16 +86,16 @@ void			AI::calculateProbaToNote(StyleSettings *proba, const std::vector<char> &l
   unsigned char		i;
   char			sumProba;
 
-  i = -1;
+  i = 255;
   sumProba = 0;
   while (++i != listNote.size())
     {
       proba->addNote(listNote[i], probaNote / listNote.size());
-      sumProba += probaNote / listNote.size();
+      sumProba += static_cast<char>(probaNote / listNote.size());
     }
   while (sumProba != probaNote)
     {
-      i = -1;
+      i = 255;
       while (sumProba != probaNote && ++i != listNote.size())
   	{
   	  proba->addNote(listNote[i], proba->getProba(listNote[i]) + 1);

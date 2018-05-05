@@ -194,7 +194,7 @@ std::string RestClient::receive(int & responseCode, std::string & responseMsg)
 
 	//std::cout << "Waiting server..." << std::endl;
 	nbByte = 1;
-	while ((socketStatus = _socket.waitUntilReady(true, _timeOut) > 0) && nbByte > 0)
+	while ((socketStatus = _socket.waitUntilReady(true, _timeOut)) > 0 && nbByte > 0)
 	{
 		//std::cout << "Reading request..." << std::endl;
 		nbByte = _socket.read(buff, 1023, false);

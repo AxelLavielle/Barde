@@ -57,7 +57,7 @@ int		StyleSettings::getProba(const char note)
 
 int		StyleSettings::getSumProba()
 {
-  char		total;
+  int		total;
   
   total = 0;
   for (auto const &data : _param)
@@ -86,8 +86,8 @@ int		StyleSettings::getSumProbaFromNote(const char baseNote)
 
 void		StyleSettings::normalize()
 {
-  char		sum;
-  char		sumPartial;
+  int		sum;
+  int		sumPartial;
 
   sum = this->getSumProba();
   for (auto const &data : _param)

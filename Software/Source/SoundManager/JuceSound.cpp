@@ -60,14 +60,14 @@ bool							SoundManager::play(const Midi &midi)
 
 		if (msg.isNoteOn())
 		{
-			msgTime = msg.getTimeStamp();
+			msgTime = static_cast<unsigned int>(msg.getTimeStamp());
 			if (msgTime > currentTime)
 			{
 				std::cout << "msgtime : " << msgTime << std::endl;
 				std::cout << "currentTime : " << currentTime << std::endl;
 				std::cout << "time : " << time << std::endl;
 				std::cout << "Je sleep pour : " << (msgTime - currentTime) * time  << std::endl;
-				Tools::sleepActive((msgTime - currentTime) * time);
+				Tools::sleepActive(static_cast<unsigned int>((msgTime - currentTime) * time));
 				currentTime = msgTime;
 			}
 			std::cout << "Je joue la note qui a le temps : " << msgTime << std::endl;

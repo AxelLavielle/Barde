@@ -2124,8 +2124,8 @@ JSON_API JSONCPP_OSTREAM& operator<<(JSONCPP_OSTREAM&, const Value& root);
   {                                                                            \
     JSONCPP_OSTRINGSTREAM oss; oss << message;                                    \
     Json::throwLogicError(oss.str());                                          \
-    abort();                                                                   \
   }
+//    abort();                                                                   \
 
 #else // JSON_USE_EXCEPTION
 

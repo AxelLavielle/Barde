@@ -45,7 +45,7 @@ void MusicStyleButton::paintButton(Graphics& g, const bool isMouseOverButton, co
 	}
 
 	//Background
-	g.fillRoundedRectangle(0, 0, _width, _height, 30);
+	g.fillRoundedRectangle(0.f, 0.f, static_cast<float>(_width), static_cast<float>(_height), 30.f);
 	//Text
 	g.setColour(Colour(_theme.getButtonFontColor()));
 	g.setFont(14.0f);

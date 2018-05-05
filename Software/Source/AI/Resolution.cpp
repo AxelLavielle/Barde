@@ -4,11 +4,11 @@ char	Resolution::which_state(const char note, const std::vector<char> &strong, c
 {
   unsigned char	i;
 
-  i = -1;
+  i = 255;
   while (++i != strong.size())
     if (note == strong[i])
       return (1);
-  i = -1;
+  i = 255;
   while (++i != medium.size())
     if (note == medium[i])
       return (2);
@@ -21,8 +21,9 @@ void	Resolution::parsingMarkov(std::vector<std::pair<char, char> > *sequence, co
   unsigned char	state;
   unsigned char	percentage;
 
-  i = -1;
+  i = 255;
   state = 0;
+  percentage = 0;
   while (++i != sequence->size())
     {
       if (state == which_state((*sequence)[i].first, strong, medium))
@@ -51,13 +52,14 @@ void	Resolution::parsingMarkov(StyleSettings &style, std::vector<std::pair<char,
   unsigned char	save;
   unsigned char	percentage;
 
-  i = -1;
-  save = -1;
+  i = 255;
+  save = 255;
+  percentage = 0;
   while (++i != sequence->size())
     {
       if (save == (*sequence)[i].first)
 	{
-	  percentage = percentage * style.getProbaFromNote(save, save) / 100;
+	  percentage = static_cast<unsigned char>(percentage * style.getProbaFromNote(save, save) / 100);
 	  if (percentage < NOT_ENOUGH_CHANCE)
 	    {
 	      (*sequence)[i].first = fixingMarkov(style, save, i + static_cast<unsigned int>(1) == sequence->size() ? -1 : (*sequence)[i + 1].first);
@@ -66,7 +68,7 @@ void	Resolution::parsingMarkov(StyleSettings &style, std::vector<std::pair<char,
       if (save != (*sequence)[i].first)
 	{
 	  save = (*sequence)[i].first;
-	  percentage = style.getProbaFromNote(save, save);
+	  percentage = static_cast<unsigned char>(style.getProbaFromNote(save, save));
 	}
     }
 }
@@ -83,7 +85,7 @@ char		Resolution::fixingMarkov(StyleSettings &style, const char prev, const char
   probSave = 0;
   while (tmp != END)
     {
-      prob = style.getProbaFromNote(prev, tmp);
+      prob = static_cast<float>(style.getProbaFromNote(prev, tmp));
       if (next != -1)
 	prob *= style.getProbaFromNote(tmp, next);
       if (prob > probSave)
