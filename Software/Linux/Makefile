@@ -23,8 +23,6 @@ ifndef CONFIG
   CONFIG=Debug
 endif
 
-JUCE_ARCH_LABEL := $(shell uname -m)
-
 ifeq ($(CONFIG),Debug)
   JUCE_BINDIR := build
   JUCE_LIBDIR := build
@@ -100,6 +98,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/MusicStyleButton_39681cbe.o \
   $(JUCE_OBJDIR)/Theme_6a8438b3.o \
   $(JUCE_OBJDIR)/UserParamsComponent_ea189f76.o \
+  $(JUCE_OBJDIR)/UserRegistration_c9349104.o \
   $(JUCE_OBJDIR)/AMidiManager_545b688.o \
   $(JUCE_OBJDIR)/Midi_8be1d87e.o \
   $(JUCE_OBJDIR)/MidiManager_7f6bb1d9.o \
@@ -124,6 +123,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/Subscription_38a53d77.o \
   $(JUCE_OBJDIR)/User_dcb1be25.o \
   $(JUCE_OBJDIR)/UserSettings_491c94e8.o \
+  $(JUCE_OBJDIR)/DateTime_4ce7f75.o \
   $(JUCE_OBJDIR)/BinaryData_371e9b63.o \
   $(JUCE_OBJDIR)/include_juce_audio_basics_10901fdb.o \
   $(JUCE_OBJDIR)/include_juce_audio_devices_a5008791.o \
@@ -149,7 +149,7 @@ $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) : check-pkg-config $(OBJECTS_APP) $(RESOURCES)
 	-$(V_AT)mkdir -p $(JUCE_BINDIR)
 	-$(V_AT)mkdir -p $(JUCE_LIBDIR)
 	-$(V_AT)mkdir -p $(JUCE_OUTDIR)
-	$(V_AT)$(CXX) -o $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) $(OBJECTS_APP) $(JUCE_LDFLAGS) $(JUCE_LDFLAGS_APP) $(RESOURCES) $(TARGET_ARCH)
+	$(V_AT)$(CXX) -o $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) $(OBJECTS_APP) $(JUCE_LDFLAGS) $(RESOURCES) $(TARGET_ARCH)
 
 $(JUCE_OBJDIR)/ThreadPool_dd677260.o: ../Source/ThreadPool.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
@@ -311,6 +311,11 @@ $(JUCE_OBJDIR)/UserParamsComponent_ea189f76.o: ../Source/GraphManager/UserParams
 	@echo "Compiling UserParamsComponent.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/UserRegistration_c9349104.o: ../Source/GraphManager/UserRegistration.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling UserRegistration.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/AMidiManager_545b688.o: ../Source/MidiManager/AMidiManager.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling AMidiManager.cpp"
@@ -429,6 +434,11 @@ $(JUCE_OBJDIR)/User_dcb1be25.o: ../Source/User.cpp
 $(JUCE_OBJDIR)/UserSettings_491c94e8.o: ../Source/UserSettings.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling UserSettings.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/DateTime_4ce7f75.o: ../Source/DateTime.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling DateTime.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/BinaryData_371e9b63.o: ../JuceLibraryCode/BinaryData.cpp

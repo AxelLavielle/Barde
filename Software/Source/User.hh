@@ -10,6 +10,7 @@
 
 //#include "./RestClient/RestClient.hh"
 #include "./RestClient/RestClient.hh"
+#include "DateTime.hh"
 
 #ifndef USER_HH_INCLUDED
 #define USER_HH_INCLUDED
@@ -44,10 +45,7 @@ private:
 	std::string _lastName;
 	std::string _userName;
 	std::string _email;
-	std::string	_dateOfBirth;
-	std::string _yearOfBirth;
-	std::string _monthOfBirth;
-	std::string _dayOfBirth;
+	DateTime	_dateOfBirth;
 };
 
 #endif  // USER_HH_INCLUDED

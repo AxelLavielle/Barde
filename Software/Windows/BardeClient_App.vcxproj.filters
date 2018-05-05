@@ -496,6 +496,9 @@
     <ClCompile Include="..\Source\GraphManager\UserParamsComponent.cpp">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\GraphManager\UserRegistration.cpp">
+      <Filter>BardeClient\Source\GraphManager</Filter>
+    </ClCompile>
     <ClCompile Include="..\Source\MidiManager\AMidiManager.cpp">
       <Filter>BardeClient\Source\MidiManager</Filter>
     </ClCompile>
@@ -567,6 +570,9 @@
     </ClCompile>
     <ClCompile Include="..\Source\UserSettings.cpp">
       <Filter>BardeClient\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\DateTime.cpp">
+      <Filter>BardeClient</Filter>
     </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <Filter>Juce Modules\juce_audio_basics\buffers</Filter>
@@ -2433,6 +2439,9 @@
     <ClInclude Include="..\Source\GraphManager\UserParamsComponent.h">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
+    <ClInclude Include="..\Source\GraphManager\UserRegistration.h">
+      <Filter>BardeClient\Source\GraphManager</Filter>
+    </ClInclude>
     <ClInclude Include="..\Source\MidiManager\AMidiManager.hh">
       <Filter>BardeClient\Source\MidiManager</Filter>
     </ClInclude>
@@ -2516,6 +2525,9 @@
     </ClInclude>
     <ClInclude Include="..\Source\UserSettings.h">
       <Filter>BardeClient\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\DateTime.hh">
+      <Filter>BardeClient</Filter>
     </ClInclude>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h">
       <Filter>Juce Modules\juce_audio_basics\audio_play_head</Filter>

@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="n1PVK4" name="BardeClient" projectType="guiapp" version="1.0.0"
               bundleIdentifier="com.yourcompany.BardeClient" includeBinaryInAppConfig="1"
-              jucerVersion="5.2.1" companyName="Barde" companyWebsite="www.barde.io"
+              jucerVersion="5.2.0" companyName="Barde" companyWebsite="www.barde.io"
               displaySplashScreen="1" reportAppUsage="1" splashScreenColour="Dark"
               cppLanguageStandard="11" companyCopyright="Barde">
   <MAINGROUP id="r1VLiG" name="BardeClient">
@@ -208,6 +208,8 @@
     <GROUP id="{A4238DDD-1308-CF42-59A1-407DADF2E536}" name="Themes">
       <FILE id="SzlgVd" name="Dark" compile="0" resource="1" file="Source/Themes/Dark"/>
     </GROUP>
+    <FILE id="DSddGh" name="DateTime.cpp" compile="1" resource="0" file="Source/DateTime.cpp"/>
+    <FILE id="AE5Ojh" name="DateTime.hh" compile="0" resource="0" file="Source/DateTime.hh"/>
   </MAINGROUP>
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="MacOS" extraDefs="SOURCEMARKOV=\&quot;$(SRCROOT)/../Source/markovSource/\&quot;">
@@ -305,7 +307,7 @@
     <MODULE id="juce_osc" showAllCode="1" useLocalCopy="1" useGlobalPath="0"/>
     <MODULE id="juce_video" showAllCode="1" useLocalCopy="1" useGlobalPath="0"/>
   </MODULES>
-  <JUCEOPTIONS JUCE_ALSA="1"/>
+  <JUCEOPTIONS/>
   <LIVE_SETTINGS>
     <WINDOWS/>
   </LIVE_SETTINGS>

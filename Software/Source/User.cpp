@@ -33,10 +33,7 @@ User & User::operator=(const User & user)
 	_lastName = user.getLastName();
 	_userName = user.getUserName();
 	_email = user.getEmail();
-	_dateOfBirth = user.getDateOfBirth();
-	_yearOfBirth = user.getYearOfBirth();
-	_monthOfBirth = user.getMonthOfBirth();
-	_dayOfBirth = user.getDayOfBirth();
+	//_dateOfBirth = user.getDateOfBirth();
 	return *this;
 }
 
@@ -68,22 +65,22 @@ void User::setEmail(const std::string & email)
 
 void User::setDayOfBirth(const std::string &dayOfBirth)
 {
-	_dayOfBirth = dayOfBirth;
+	_dateOfBirth.setDay(dayOfBirth);
 }
 
 void User::setMonthOfBirth(const std::string &monthOfBirth)
 {
-	_monthOfBirth = monthOfBirth;
+	_dateOfBirth.setMonth(monthOfBirth);
 }
 
 void User::setYearOfBirth(const std::string &yearOfBirth)
 {
-	_yearOfBirth = yearOfBirth;
+	_dateOfBirth.setYear(yearOfBirth);
 }
 
 void User::setDateOfBirth(const std::string & dateOfBirth)
 {
-	_dateOfBirth = dateOfBirth;
+	_dateOfBirth.setISODate(dateOfBirth);
 }
 
 std::string User::getFirstName() const
@@ -108,20 +105,21 @@ std::string User::getEmail() const
 
 std::string User::getDateOfBirth() const
 {
-	return _dateOfBirth;
+	std::cout << "LLLLLLLLLLLLLLLLLLLLLLAAAAAAAAAAAA ===== " << _dateOfBirth.getIsoDate() << std::endl;
+	return _dateOfBirth.getIsoDate();
 }
 
 std::string User::getYearOfBirth() const
 {
-	return _yearOfBirth;
+	return _dateOfBirth.getYear();
 }
 
 std::string User::getMonthOfBirth() const
 {
-	return _monthOfBirth;
+	return _dateOfBirth.getMonth();
 }
 
 std::string User::getDayOfBirth() const
 {
-	return _dayOfBirth;
+	return _dateOfBirth.getDay();
 }

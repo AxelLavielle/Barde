@@ -64,7 +64,6 @@ bool CmdManager::login(const std::string &email, const std::string &password)
 {
 	try
 	{
-		//_socket.authentificate("arnaud.p@outlook.fr", "arnaud");
 		return (_socket.authentificate(email, password));
 	}
 	catch (RestClientException &e)
