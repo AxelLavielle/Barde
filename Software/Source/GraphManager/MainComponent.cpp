@@ -15,14 +15,12 @@ MainContentComponent::MainContentComponent()
 	int rectX;
 	int rectY;
 	
-	//TODO Receive MusicParameters from main or something to send to the player
-	_us = UserSettings();
-
 	setSize(getParentWidth(), getParentHeight() - 10);
 	_currentTheme = parseTheme("../Themes/Dark");
-	//SEND THE USERSETTINGS TO THE BUTTON SO THE PLAYER CAN HAVE THEM AT THE GENRATION TODO REPLACE THEM
-	addAndMakeVisible(_blues = new MusicStyleButton("Generate some blues", 400, 50, _currentTheme, &_us));
-	addAndMakeVisible(_params = new MusicStyleButton("User params (TEST)", 400, 50, _currentTheme, &_us));
+
+	addAndMakeVisible(_blues = new MusicStyleButton("Generate some blues", 400, 50, _currentTheme));
+	addAndMakeVisible(_params = new MusicStyleButton("User params (TEST)", 400, 50, _currentTheme));
+	
 	rectX = (600 / 2) - (400 / 2);
 	rectY = (400 / 15) + (LOGO_WIDTH) + 100;
 	_blues->setBounds(rectX, rectY, 400, 50);
@@ -30,25 +28,25 @@ MainContentComponent::MainContentComponent()
 	_blues->addListener(this);
 	_params->addListener(this);
 
-
 	addAndMakeVisible(_frequencySlider);
-	_frequencySlider.setRange(20, 200, 1);          // [1] 
-	_frequencySlider.setTextValueSuffix(" BPM");     // [2] 
+	_frequencySlider.setRange(20, 200, 1);
+	_frequencySlider.setValue(105);
+	_frequencySlider.setTextValueSuffix(" BPM");
 	addAndMakeVisible(_frequencyLabel);
 	_frequencySlider.addListener(this);
 	_frequencySlider.setName("BPM");
-	_frequencyLabel.setText("BPM", dontSendNotification);
-	_frequencyLabel.attachToComponent(&_frequencySlider, true); // [4] 
+	_frequencyLabel.setText("BPM : 105", dontSendNotification);
+	_frequencyLabel.attachToComponent(&_frequencySlider, true);
 
+	initArpegeList();
 
-	addAndMakeVisible(_Arpeges);
-	//Arpeges.addChildComponent()
-
-
+	initMusicParameters();
 }
 
 MainContentComponent::~MainContentComponent()
 {
+	delete _blues;
+	delete _params;
 	//deleteAllChildren();
 }
 
@@ -74,6 +72,7 @@ void MainContentComponent::paint (Graphics& g)
 					      BinaryData::logo_pngSize);
 	g.fillAll(Colour(_currentTheme.getBackgroundColor()));
     g.drawImage(logo, imgX, imgY, (int) imgW, (int) imgH, 0, 0, 1024, 927, false);
+
 	_blues->setBounds(rectX, rectY, 400, 50);
 	_params->setBounds(rectX + 100, rectY + 100, 600, 100);
 
@@ -89,17 +88,29 @@ void MainContentComponent::sliderValueChanged(Slider *slider)
 {
 	if (slider->getName() == "BPM")
 	{
-		_us.setBPM(static_cast<int>(slider->getValue()));
+		_musicParameters.setBpm(static_cast<int>(slider->getValue()));
 	}
 
 }
 
+void MainContentComponent::initArpegeList()
+{
+	_arpegesList.setBounds(10, 10, 100, 100);
+	//_arpegesList.
+	addAndMakeVisible(_arpegesList);
+}
+
+void MainContentComponent::initMusicParameters()
+{
+	_musicParameters.setBpm(105);
+}
 
 void MainContentComponent::resized()
 {
     // This is called when the MainContentComponent is resized.
     // If you add any child components, this is where you should
     // update their positions.
+
 	const int sliderLeft = 120;
 	//	int w = (getWidth() / 2) - 150;
 	_frequencySlider.setBounds(sliderLeft, getHeight() - 300, getWidth() - sliderLeft - 10, 20);
@@ -113,9 +124,7 @@ void MainContentComponent::buttonClicked(Button* button)
 	}
 	else if (button == _blues)
 	{
-		//SET THE PARAMETERS
-		_player.setMusicparameters(_us.getMusicParameter());
-		_threadPlayer = std::thread(&Player::Play, &_player);
-		_threadPlayer.detach();
+		_player.setMusicparameters(_musicParameters);
+		_player.Play();
 	}
 }

@@ -16,7 +16,6 @@ Author:  Oreo
 //==============================================================================
 UserParamsComponent::UserParamsComponent()
 {
-
 	int x = getParentWidth();
 	int y = getParentHeight();
 
@@ -116,6 +115,11 @@ UserParamsComponent::UserParamsComponent()
 	_saveButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN + SPACE_BETWEEN, BOX_WIDTH, BOX_HEIGHT);
 	_saveButton.addListener(this);
 
+	addAndMakeVisible(_backButton);
+	_backButton.setName("Back");
+	_backButton.setButtonText("Quit");
+	_backButton.setBounds((x / 2) - (BOX_WIDTH / 2), y - 400, BOX_WIDTH, BOX_HEIGHT);
+	_backButton.addListener(this);
 
 	/*
 	addAndMakeVisible(languageComboBox);
@@ -217,6 +221,12 @@ void UserParamsComponent::ThemeChanged()
 
 void UserParamsComponent::buttonClicked(Button* button)
 {
+	if (button->getName() == "Back")
+	{
+		changeView("Main");
+		return;
+	}
+
 	//TODO Add API Connection to save changes instead of the code below
 
 	String firstName;

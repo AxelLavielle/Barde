@@ -39,6 +39,7 @@ public:
 	std::string getYearOfBirth() const;
 	std::string getMonthOfBirth() const;
 	std::string getDayOfBirth() const;
+	DateTime getDateOfBirthObject() const;
 
 private:
 	std::string _firstName;

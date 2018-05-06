@@ -96,6 +96,8 @@
               file="Source/GraphManager/AGraphManager.cpp"/>
         <FILE id="jmDYIS" name="AGraphManager.hh" compile="0" resource="0"
               file="Source/GraphManager/AGraphManager.hh"/>
+        <FILE id="Fr7ElR" name="BasicButton.cpp" compile="1" resource="0" file="Source/GraphManager/BasicButton.cpp"/>
+        <FILE id="yJoUv8" name="BasicButton.hh" compile="0" resource="0" file="Source/GraphManager/BasicButton.hh"/>
         <FILE id="Lbi3bj" name="IGraphManager.hpp" compile="0" resource="0"
               file="Source/GraphManager/IGraphManager.hpp"/>
         <FILE id="rCMkmr" name="JuceManager.cpp" compile="1" resource="0" file="Source/GraphManager/JuceManager.cpp"/>

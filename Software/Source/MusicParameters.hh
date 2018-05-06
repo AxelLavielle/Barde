@@ -47,7 +47,7 @@ private:
 	int									_bpm;
 	std::vector<Instrument>				_instrumentsChords;
 	std::vector<Instrument>				_instrumentsArpeggios;
-	bool						_instrumentsDrums;
+	bool								_instrumentsDrums;
 	std::string							_styleName;
 	Midi								_midi;
 };

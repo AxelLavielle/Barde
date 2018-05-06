@@ -472,6 +472,9 @@
     <ClCompile Include="..\Source\GraphManager\AGraphManager.cpp">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\GraphManager\BasicButton.cpp">
+      <Filter>BardeClient\Source\GraphManager</Filter>
+    </ClCompile>
     <ClCompile Include="..\Source\GraphManager\JuceManager.cpp">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClCompile>
@@ -2410,6 +2413,9 @@
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\GraphManager\AGraphManager.hh">
+      <Filter>BardeClient\Source\GraphManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\GraphManager\BasicButton.hh">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\GraphManager\IGraphManager.hpp">

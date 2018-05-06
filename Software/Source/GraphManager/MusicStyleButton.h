@@ -32,7 +32,6 @@ public:
 	Theme _theme; /*!< Theme of the app*/
 	std::thread _threadPlayer; /*!< thread player*/
 	Player _player; /*!< player*/
-	UserSettings *_us;
 
 	/*!
 	*  \brief Constructor
@@ -44,7 +43,7 @@ public:
 	*  \param h : Button height
 	*  \param theme : Theme
 	*/
-	MusicStyleButton(const String &buttonName, const int w, const int h, Theme theme, UserSettings *us);
+	MusicStyleButton(const String &buttonName, const int w, const int h, Theme theme);
 	/*!
 	*  \brief Destructor
 	*

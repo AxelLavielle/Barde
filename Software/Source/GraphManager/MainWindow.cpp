@@ -16,26 +16,19 @@ MainWindow::MainWindow(const std::string &name) : DocumentWindow(name,
 {
 	setUsingNativeTitleBar(true);
 	setResizable(true, false);
-
-#if JUCE_IOS || JUCE_ANDROID
-	setFullScreen(true);
-#endif
 	setFullScreen(true);
 	setSize(getWidth(), getHeight());
+
+	//Init all the components
 	_mainComponent = new MainContentComponent();
 	_userParamsComponent = new UserParamsComponent();
 	_loginComponent = new LoginComponent();
 	//_userRegistration = new UserRegistration();
-
 	_mainComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
+	_userParamsComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
+	_loginComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 
 	setContentNonOwned(_mainComponent, true);
-
-	//setContentOwned(new LoginComponent(), true);
-	//setContentOwned(new MainContentComponent(), true);
-	//setContentOwned(new UserParamsComponent(), true);
-	//setContentOwned(new UserRegistration(), true);
-	//centreWithSize(getWidth(), getHeight());
 	setVisible(true);
 }
 
@@ -49,6 +42,10 @@ void MainWindow::closeButtonPressed()
 
 MainWindow::~MainWindow()
 {
+	delete _mainComponent;
+	delete _userParamsComponent;
+	delete _loginComponent;
+
 	//deleteAllChildren();
 }
 
@@ -63,5 +60,10 @@ void MainWindow::changeViewCallback(std::string viewName)
 	{
 		clearContentComponent();
 		setContentNonOwned(_userParamsComponent, true);
+	}
+	else if (viewName == "Login")
+	{
+		clearContentComponent();
+		setContentNonOwned(_loginComponent, true);
 	}
 }

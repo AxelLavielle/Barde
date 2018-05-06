@@ -90,6 +90,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/SSLManager_f25fe680.o \
   $(JUCE_OBJDIR)/AComponent_b1bc9abc.o \
   $(JUCE_OBJDIR)/AGraphManager_4508c7ea.o \
+  $(JUCE_OBJDIR)/BasicButton_cecac0aa.o \
   $(JUCE_OBJDIR)/JuceManager_8121b3aa.o \
   $(JUCE_OBJDIR)/ListItemComponent_eef934b2.o \
   $(JUCE_OBJDIR)/LoginComponent_22832b34.o \
@@ -269,6 +270,11 @@ $(JUCE_OBJDIR)/AComponent_b1bc9abc.o: ../Source/GraphManager/AComponent.cpp
 $(JUCE_OBJDIR)/AGraphManager_4508c7ea.o: ../Source/GraphManager/AGraphManager.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling AGraphManager.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/BasicButton_cecac0aa.o: ../Source/GraphManager/BasicButton.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling BasicButton.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/JuceManager_8121b3aa.o: ../Source/GraphManager/JuceManager.cpp

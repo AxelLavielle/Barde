@@ -40,15 +40,6 @@ class MainContentComponent : public Component, public SliderListener, public But
 {
 public:
     //==============================================================================
-	MusicStyleButton * _blues;  /*!< button for generating blues*/
-	MusicStyleButton *_params;  /*!< button for generating blues THIS IS FOR TEST !!!! */
-	Theme _currentTheme; /*!< Theme defining the colors of the elements*/
-	UserSettings _us;
-	Slider _frequencySlider;
-	Label _frequencyLabel;
-	ListBox _Arpeges;
-	std::thread _threadPlayer; /*!< thread player*/
-	Player _player; /*!< player THIS NEED TO BE CHANGED*/
 
 	/*!
 	*  \brief Constructor
@@ -83,7 +74,26 @@ public:
 
 private:
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
+
+	Theme					_currentTheme; /*!< Theme defining the colors of the elements*/
+	//UserSettings			_us;
+	Slider					_frequencySlider;
+
+	Label					_frequencyLabel;
+	Label					_titleLabel;
+
+	ListBox					_arpegesList;
+
+	MusicStyleButton		*_blues;  /*!< button for generating blues*/
+	MusicStyleButton		*_params;  /*!< button for generating blues THIS IS FOR TEST !!!! */
+
+	Player					_player; /*!< player >*/
+	MusicParameters			_musicParameters;
+
+	void initArpegeList();
+	void initMusicParameters();
+
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };
 
 

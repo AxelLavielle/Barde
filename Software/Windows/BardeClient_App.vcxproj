@@ -185,6 +185,7 @@
     <ClCompile Include="..\Source\EncryptionManager\SSLManager.cpp"/>
     <ClCompile Include="..\Source\GraphManager\AComponent.cpp"/>
     <ClCompile Include="..\Source\GraphManager\AGraphManager.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\BasicButton.cpp"/>
     <ClCompile Include="..\Source\GraphManager\JuceManager.cpp"/>
     <ClCompile Include="..\ListItemComponent.cpp"/>
     <ClCompile Include="..\Source\GraphManager\LoginComponent.cpp"/>
@@ -1857,6 +1858,7 @@
     <ClInclude Include="..\Source\EncryptionManager\SSLManager.hh"/>
     <ClInclude Include="..\Source\GraphManager\AComponent.hh"/>
     <ClInclude Include="..\Source\GraphManager\AGraphManager.hh"/>
+    <ClInclude Include="..\Source\GraphManager\BasicButton.hh"/>
     <ClInclude Include="..\Source\GraphManager\IGraphManager.hpp"/>
     <ClInclude Include="..\Source\GraphManager\JuceManager.hh"/>
     <ClInclude Include="..\ListItemComponent.h"/>

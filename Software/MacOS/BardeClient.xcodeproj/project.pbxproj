@@ -45,6 +45,7 @@
 		DDB133C2F216552657A57859 = {isa = PBXBuildFile; fileRef = 8BC6453EF1DA1B36F2440108; };
 		CC28BC066567CAABFCDD7012 = {isa = PBXBuildFile; fileRef = BAC2839A58B20CC041354114; };
 		B197FCEF50185F2F6B16FE7C = {isa = PBXBuildFile; fileRef = 12A17B1F4DDCC99AC595108F; };
+		BC6043B34C0FD6528C87B0FE = {isa = PBXBuildFile; fileRef = A4510CCDD1017609690D5E43; };
 		478DEA34B0C331EA4F8A445C = {isa = PBXBuildFile; fileRef = B9AC81F8D74F1DC31C34E5CF; };
 		DF7C2FB9E0D6F15BA3B96917 = {isa = PBXBuildFile; fileRef = DA6B1E6E01654DC6D016ED7E; };
 		71604C2A2A50A305826EAE53 = {isa = PBXBuildFile; fileRef = 902CE0405C3723F16FA0D660; };
@@ -115,6 +116,7 @@
 		164EDD664D0C7B31AF874943 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LoginComponent.h; path = ../Source/GraphManager/LoginComponent.h; sourceTree = "SOURCE_ROOT"; };
 		19E61BA5AE7962DF5C583C45 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ThreadPool.cpp; path = ../Source/ThreadPool.cpp; sourceTree = "SOURCE_ROOT"; };
 		1A6831012F65AE41273E0900 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Music.cpp; path = ../Source/Music.cpp; sourceTree = "SOURCE_ROOT"; };
+		1E6F22B5339AC9C1E93A1B4A = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BasicButton.hh; path = ../Source/GraphManager/BasicButton.hh; sourceTree = "SOURCE_ROOT"; };
 		1E8F19B7010386E6DD581B6D = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AI.hh; path = ../Source/AI/AI.hh; sourceTree = "SOURCE_ROOT"; };
 		1EA521E73BF944102BAD2823 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_gui_extra.mm"; path = "../JuceLibraryCode/include_juce_gui_extra.mm"; sourceTree = "SOURCE_ROOT"; };
 		1FAEC6C6E6732FD1E5270A0D = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_audio_utils"; path = "../JuceLibraryCode/modules/juce_audio_utils"; sourceTree = "SOURCE_ROOT"; };
@@ -211,6 +213,7 @@
 		9B1996BFF142E6D223BB32F9 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../Source/main.cpp; sourceTree = "SOURCE_ROOT"; };
 		9B5B35D676680BA37A004753 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Midi.hh; path = ../Source/MidiManager/Midi.hh; sourceTree = "SOURCE_ROOT"; };
 		9C3FDA54BC9BBC3A6A6DE749 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_events.mm"; path = "../JuceLibraryCode/include_juce_events.mm"; sourceTree = "SOURCE_ROOT"; };
+		A4510CCDD1017609690D5E43 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BasicButton.cpp; path = ../Source/GraphManager/BasicButton.cpp; sourceTree = "SOURCE_ROOT"; };
 		A666E3BC043D89D2DF91CE84 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MusicStyleButton.h; path = ../Source/GraphManager/MusicStyleButton.h; sourceTree = "SOURCE_ROOT"; };
 		A7E738BE3D9C941B7FF19B90 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Authentification.hh; path = ../Source/Authentification.hh; sourceTree = "SOURCE_ROOT"; };
 		ABA1E7CDE69008542A1DBADA = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SynthesizerInstrument.cpp; path = ../Source/SoundManager/SynthesizerInstrument.cpp; sourceTree = "SOURCE_ROOT"; };
@@ -327,6 +330,8 @@
 					B7D93852065D4309B2059EB7,
 					12A17B1F4DDCC99AC595108F,
 					3EC92B10AB73549BEC1C0AA1,
+					A4510CCDD1017609690D5E43,
+					1E6F22B5339AC9C1E93A1B4A,
 					66F106BAF2510CDFC4FAE3A3,
 					B9AC81F8D74F1DC31C34E5CF,
 					07FE74F71BDDDC444D4E5805,
@@ -660,6 +665,7 @@
 					DDB133C2F216552657A57859,
 					CC28BC066567CAABFCDD7012,
 					B197FCEF50185F2F6B16FE7C,
+					BC6043B34C0FD6528C87B0FE,
 					478DEA34B0C331EA4F8A445C,
 					DF7C2FB9E0D6F15BA3B96917,
 					71604C2A2A50A305826EAE53,

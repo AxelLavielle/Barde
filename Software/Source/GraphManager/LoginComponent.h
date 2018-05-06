@@ -15,6 +15,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "Theme.h"
 #include "../CmdManager.hh"
+#include "AComponent.hh"
 
 #ifndef  LOGO_WIDTH
 #define LOGO_WIDTH 1024 / 3
@@ -30,7 +31,7 @@
 This component lives inside our window, and this is where you should put all
 your controls and content.
 */
-class LoginComponent : public Component, private TextEditor::Listener, public Button::Listener, public ComboBox::Listener
+class LoginComponent : public Component, public AComponent, private TextEditor::Listener, private Button::Listener, private ComboBox::Listener
 {
 public:
 	//==============================================================================
@@ -44,14 +45,14 @@ public:
 	void ThemeChanged();
 
 private:
-	CmdManager _cmdManager;
-	TextEditor _textEditor1, _textEditor2;
-	Label _inputLabel1, _inputLabel2;
-	ComboBox _comboBox;
-	Label _errorText;
-	TextButton _loginButton;
-	Theme _currentTheme;
-	ComboBox _themeChoice;
+	CmdManager	_cmdManager;
+	TextEditor	_textEditor1, _textEditor2;
+	Label		_inputLabel1, _inputLabel2;
+	ComboBox	_comboBox;
+	Label		_errorText;
+	TextButton	_loginButton;
+	Theme		_currentTheme;
+	ComboBox	_themeChoice;
 	//==============================================================================
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(LoginComponent)
 };
