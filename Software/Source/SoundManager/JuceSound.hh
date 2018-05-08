@@ -99,6 +99,8 @@ public:
 	*/
 	virtual bool setVolume(const Midi &midi) const;
 
+	virtual void launch(std::vector<std::pair<Midi, int> > &_gen2playQ, std::mutex &_gen2playM);
+
 	void GetMidiOutputDevice();
 
 private:

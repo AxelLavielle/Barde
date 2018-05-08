@@ -38,6 +38,29 @@ const MidiMessageSequence		*SoundManager::MidiToMessageSequence(const Midi &midi
 	return (NULL);
 }
 
+void SoundManager::launch(std::vector<std::pair<Midi, int> > &_gen2playQ, std::mutex &_gen2playM)
+{
+	Midi m;
+	int bpm = 0;
+
+	while (1)
+	{
+		bool b = false;
+		_gen2playM.lock();
+		if (_gen2playQ.size() > 0)
+		{
+			//Check here if error
+			m = Midi(_gen2playQ[0].first);
+			bpm = _gen2playQ[0].second;
+			b = true;
+			_gen2playQ.erase(_gen2playQ.begin());
+		}
+		_gen2playM.unlock();
+		if (b)
+			play(m, bpm);
+	}
+}
+
 bool							SoundManager::play(const Midi &midi, int bpm)
 {
 	MidiMessage					msg;
@@ -57,6 +80,8 @@ bool							SoundManager::play(const Midi &midi, int bpm)
 	for (int i = 0; i < midiSequence->getNumEvents(); i++)
 	{
 		msg = midiSequence->getEventPointer(i)->message;
+
+		
 
 		if (msg.isNoteOn())
 		{

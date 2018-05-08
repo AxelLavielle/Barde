@@ -9,8 +9,6 @@
 #ifndef MAINCOMPONENT_H_INCLUDED
 #define MAINCOMPONENT_H_INCLUDED
 
-#include <thread>
-#include <mutex>
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "MusicStyleButton.h"
 #include "../UserSettings.h"

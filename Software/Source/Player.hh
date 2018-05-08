@@ -16,6 +16,8 @@
  * \brief File containing the Player class
  */
 
+#include <thread>
+#include <mutex>
 #include "AI/MusicGenerator.hh"
 #include "SoundManager/JuceSound.hh"
 
@@ -48,15 +50,20 @@ Player();
 *
 *  \return play music
 */
-void Play();
 
-
-
-void setMusicparameters(MusicParameters params);
+void newParams(MusicParameters p);
+void Init();
+void Play(MusicParameters _musicParameters);
 
 private:
+	std::thread					_genThread;
+	std::thread					_playThread;
+	std::mutex					_graph2genM;
+	std::mutex					_gen2playM;
+	std::vector<MusicParameters> _graph2genQ;
+	std::vector<std::pair<Midi, int> > _gen2playQ;
 	ISoundManager		*_soundManager; /*!< Pointer to the sound manager*/
-	MusicParameters		_musicParameters;
+	MusicGenerator		*_generator;
 };
 
 #endif  // PLAYER_HH_INCLUDED

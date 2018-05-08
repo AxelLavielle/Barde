@@ -11,6 +11,8 @@
 #ifndef ISOUNDMANAGER_HPP_INCLUDED
 #define ISOUNDMANAGER_HPP_INCLUDED
 #include <iostream>
+#include <vector>
+#include <mutex>
 #include "../MidiManager/Midi.hh"
 
 class ISoundManager
@@ -22,6 +24,7 @@ public:
 	virtual bool pause(const Midi &midi) const = 0;
 	virtual bool setVolume(const int volume) = 0;
 	virtual bool stopAll() const = 0;
+	virtual void launch(std::vector<std::pair<Midi, int> > &_gen2playQ, std::mutex &_gen2playM) = 0;
 };
 
 

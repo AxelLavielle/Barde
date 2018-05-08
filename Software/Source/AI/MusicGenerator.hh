@@ -16,6 +16,7 @@
  * \brief File containing the class that connects all part of our artificial intelligence
  */
 
+# include <mutex>
 # include "Resolution.hh"
 # include "../MidiManager/Midi.hh"
 # include "../MusicParameters.hh"
@@ -59,6 +60,7 @@ public:
    *  \param Settings : Settings of the music as MusicParameters
    *  \return Midi file containing the music
    */
+  void			launch(std::vector<MusicParameters> &graph2genQ, std::vector<std::pair<Midi, int> > &gen2playQ, std::mutex &_graph2genM, std::mutex &_gen2playM);
   Midi			createMusic(MusicParameters &parameters);
   void			drumsPOC(MusicParameters &parameters);
 

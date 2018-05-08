@@ -22,15 +22,12 @@
 *  This class generates a music style button
 */
 
-#include <thread>
-#include <mutex>
 class MusicStyleButton : public Button
 {
 public:
 	int _width; /*!< Button width*/
 	int _height; /*!< Button height*/
 	Theme _theme; /*!< Theme of the app*/
-	std::thread _threadPlayer; /*!< thread player*/
 	Player _player; /*!< player*/
 
 	/*!

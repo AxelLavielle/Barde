@@ -95,11 +95,40 @@ void			MusicGenerator::drumsPOC(MusicParameters &parameters)
 	}
 }
 
+void			MusicGenerator::launch(std::vector<MusicParameters> &_graph2genQ, std::vector<std::pair<Midi, int> > &_gen2playQ, std::mutex &_graph2genM, std::mutex &_gen2playM)
+{
+	MusicParameters p;
+	bool b = false;
+
+	while (1)
+	{
+		_graph2genM.lock();
+		if (_graph2genQ.size() > 0)
+		{
+			//Check here if error and push error in other queue
+			p = _graph2genQ[0];
+			b = true;
+			_graph2genQ.erase(_graph2genQ.begin());
+			_gen2playM.lock();
+			_gen2playQ.clear();
+			_gen2playM.unlock();
+		}
+		_graph2genM.unlock();
+		if (b)
+		{
+			Midi m = createMusic(p);
+			_gen2playM.lock();
+			_gen2playQ.push_back(std::make_pair(m, p.getBpm()));
+			_gen2playM.unlock();
+		}
+	}
+}
+
 Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 {
   /* PARAMETERS */
   parameters.setSeed(static_cast<unsigned int>(std::time(NULL)));
-  parameters.setBpm(80);
+  parameters.setBpm(105);
   Instrument instru;
   instru.name = "Piano";
   instru.nb = ACOUSTICGRANDPIANO;

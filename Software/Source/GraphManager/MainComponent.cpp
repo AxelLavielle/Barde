@@ -124,7 +124,6 @@ void MainContentComponent::buttonClicked(Button* button)
 	}
 	else if (button == _blues)
 	{
-		_player.setMusicparameters(_musicParameters);
-		_player.Play();
+		_player.Play(_musicParameters);
 	}
 }
