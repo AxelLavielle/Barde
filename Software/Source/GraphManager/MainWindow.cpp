@@ -22,13 +22,14 @@ MainWindow::MainWindow(const std::string &name) : DocumentWindow(name,
 	//Init all the components
 	_mainComponent = new MainContentComponent();
 	_userParamsComponent = new UserParamsComponent();
-	_loginComponent = new LoginComponent();
+	_loginComponent = new LoginComponent(_cmdManager);
 	//_userRegistration = new UserRegistration();
 	_mainComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 	_userParamsComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 	_loginComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 
 	setContentNonOwned(_mainComponent, true);
+	//setContentNonOwned(_loginComponent, true);
 	setVisible(true);
 }
 

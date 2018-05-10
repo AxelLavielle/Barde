@@ -35,7 +35,7 @@ class LoginComponent : public Component, public AComponent, private TextEditor::
 {
 public:
 	//==============================================================================
-	LoginComponent();
+	LoginComponent(CmdManager & cmdManager);
 	~LoginComponent();
 
 	void paint(Graphics&) override;
@@ -45,7 +45,7 @@ public:
 	void ThemeChanged();
 
 private:
-	CmdManager	_cmdManager;
+	CmdManager	&_cmdManager;
 	TextEditor	_textEditor1, _textEditor2;
 	Label		_inputLabel1, _inputLabel2;
 	ComboBox	_comboBox;

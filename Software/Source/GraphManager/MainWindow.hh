@@ -31,6 +31,7 @@ private:
 	LoginComponent			*_loginComponent;
 	UserParamsComponent		*_userParamsComponent;
 	UserRegistration		*_userRegistration;
+	CmdManager				_cmdManager;
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MainWindow)
 };
 

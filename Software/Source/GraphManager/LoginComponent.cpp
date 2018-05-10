@@ -14,7 +14,7 @@
 #include "MainComponent.h"
 
 //==============================================================================
-LoginComponent::LoginComponent()
+LoginComponent::LoginComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager)
 {
 	int x = getParentWidth();
 	int y = getParentHeight();
@@ -65,18 +65,16 @@ LoginComponent::LoginComponent()
 
 
 	//TODO Add a file and read theme list
-	addAndMakeVisible(_themeChoice);
 	_themeChoice.setBounds(10, 85, 200, 24);
 	_themeChoice.setEditableText(true);
 	_themeChoice.setJustificationType(Justification::centred);
-
 	_themeChoice.addItem("Dark", 1);
 	_themeChoice.addItem("Light", 2);
-
-
 	_themeChoice.setSelectedId(1);
 	_themeChoice.addListener(this);
+	//addAndMakeVisible(_themeChoice);
 	ThemeChanged();
+
 	_cmdManager.connectToServer();
 
 }
@@ -100,15 +98,13 @@ void LoginComponent::buttonClicked(Button* button)
 
 	if (_cmdManager.login(login.toStdString(), password.toStdString())) {
 	  (void)button;
-		//TODO Change Window
 		errorMessage = "Login correct";
+		changeView("Main");
 	}
 
 	else {
 		errorMessage = "There was an error during the login process";
 	}
-
-
 	_errorText.setText(errorMessage, juce::NotificationType::sendNotification);
 }
 
