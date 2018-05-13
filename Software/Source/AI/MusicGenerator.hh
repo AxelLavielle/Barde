@@ -17,6 +17,7 @@
  */
 
 # include <mutex>
+# include "../Tools.hh"
 # include "Resolution.hh"
 # include "../MidiManager/Midi.hh"
 # include "../MusicParameters.hh"

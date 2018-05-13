@@ -119,15 +119,14 @@ void			MusicGenerator::launch(std::vector<MusicParameters> &_graph2genQ, std::ve
 			Midi m = createMusic(p);
 			_gen2playQ.push_back(std::make_pair(m, p.getBpm()));
 		}
-		std::cout << "GENERATOR !!!!!!!!!" << std::endl;
-		std::cout << "SIZE = " << _gen2playQ.size() << std::endl;
 		_gen2playM.unlock();
+		Tools::sleep(0.5);
 	}
 }
 
 Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 {
-	parameters.setMidi(Midi());
+  parameters.setMidi(Midi());
 	std::cout << "generating" << std::endl;
   /* PARAMETERS */
   parameters.setSeed(static_cast<unsigned int>(std::time(NULL)));

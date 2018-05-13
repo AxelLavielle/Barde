@@ -13,6 +13,7 @@
 #include <iostream>
 #include <vector>
 #include <mutex>
+#include "../Tools.hh"
 #include "../MidiManager/Midi.hh"
 
 class ISoundManager
