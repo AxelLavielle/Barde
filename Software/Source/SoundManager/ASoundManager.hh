@@ -17,12 +17,12 @@ class ASoundManager : public ISoundManager
 public:
 	ASoundManager();
 	virtual ~ASoundManager();
-	virtual bool play(const Midi &midi, int bpm) = 0;
+	virtual bool play(const Midi &midi, int bpm, bool &stop) = 0;
 	virtual bool stop(const Midi &midi) const = 0;
 	virtual bool pause(const Midi &midi) const = 0;
 	virtual bool setVolume(const int volume) = 0;
 	virtual bool stopAll() const = 0;
-	virtual void launch(std::vector<std::pair<Midi, int> > &_gen2playQ, std::mutex &_gen2playM) = 0;
+	virtual void launch(std::vector<std::pair<Midi, int> > &_gen2playQ, std::mutex &_gen2playM, bool &stop) = 0;
 };
 
 

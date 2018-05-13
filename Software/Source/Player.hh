@@ -56,6 +56,7 @@ void Init();
 void Play(MusicParameters _musicParameters);
 
 private:
+	bool						_stopQueue;
 	std::thread					_genThread;
 	std::thread					_playThread;
 	std::mutex					_graph2genM;

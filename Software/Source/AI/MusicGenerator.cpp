@@ -95,17 +95,16 @@ void			MusicGenerator::drumsPOC(MusicParameters &parameters)
 	}
 }
 
-void			MusicGenerator::launch(std::vector<MusicParameters> &_graph2genQ, std::vector<std::pair<Midi, int> > &_gen2playQ, std::mutex &_graph2genM, std::mutex &_gen2playM)
+void			MusicGenerator::launch(std::vector<MusicParameters> &_graph2genQ, std::vector<std::pair<Midi, int> > &_gen2playQ, std::mutex &_graph2genM, std::mutex &_gen2playM, bool &stop)
 {
 	MusicParameters p;
 	bool b = false;
 
-	while (1)
+	while (!stop)
 	{
 		_graph2genM.lock();
 		if (_graph2genQ.size() > 0)
 		{
-			//Check here if error and push error in other queue
 			p = _graph2genQ[0];
 			b = true;
 			_graph2genQ.erase(_graph2genQ.begin());
