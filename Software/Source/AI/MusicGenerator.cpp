@@ -134,7 +134,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   instru.name = "Piano";
   instru.nb = ACOUSTICGRANDPIANO;
   instru.channel = 1;
-  instru.velocity = 10; //Need change
+  instru.velocity = 100; //Need change
   parameters.addInstrumentArpeggios(instru);
   parameters.addInstrumentChords(instru);
   parameters.setStyleName("Blues");
@@ -240,7 +240,6 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 
   ///* END */
   _midiManager.writeToFile("./test.mid");
-  std::cout << "seed: " << parameters.getSeed() << std::endl;
   return (_midiManager.createMidi(48));
   /* ED*/
 }

@@ -57,8 +57,6 @@ void SoundManager::launch(std::vector<std::pair<Midi, int> > &_gen2playQ, std::m
 		}
 		else
 			b = false;
-		std::cout << "PLAYER !!!!!!!!!" << std::endl;
-		std::cout << "SIZE = " << _gen2playQ.size() << std::endl;
 		_gen2playM.unlock();
 		if (b)
 			play(m, bpm, stop);
@@ -75,15 +73,12 @@ bool							SoundManager::play(const Midi &midi, int bpm, bool &stop)
 	unsigned int				currentTime;
 	unsigned int				msgTime;
 
-
-	std::cout << "play" << std::endl;
 	if ((midiSequence = MidiToMessageSequence(midi)) == NULL)
 	{
 		std::cerr << "ERROR: Can not convert Midi Buffer" << std::endl;
 		return false;
 	}
 
-	std::cout << "play" << std::endl;
 	currentTime = 0;
 	for (int i = 0; i < midiSequence->getNumEvents() && !stop; i++)
 	{
@@ -114,114 +109,6 @@ bool							SoundManager::play(const Midi &midi, int bpm, bool &stop)
 	}
 	return true;
 }
-
-//bool							SoundManager::play(const Midi &midi)
-//{
-//	MidiMessage					tmp;
-//	const MidiMessageSequence	*midiSequence;
-//	const unsigned int	    	temps = (1.0 / (80.0 / 60.0)) * 1000;
-//	double						k;
-//	double						resTime;
-//	double						currentTemp;
-//
-//	if ((midiSequence = MidiToMessageSequence(midi)) == NULL)
-//	{
-//		std::cerr << "ERROR: Can not convert Midi Buffer" << std::endl;
-//		return false;
-//	}
-//	tmp = midiSequence->getEventPointer(0)->message;
-//	k = tmp.getTimeStamp();
-//	currentTemp = 0;
-//	resTime = 0;
-//	for (int i = 0; i < midiSequence->getNumEvents(); i++)
-//	{
-//		tmp = midiSequence->getEventPointer(i)->message;
-//
-//		if (tmp.isNoteOn())
-//		{
-//
-//			if (resTime && tmp.getTimeStamp() != k)
-//			{
-//				unsigned int tmpTime = static_cast<unsigned int>(tmp.getTimeStamp() / 1000);
-//				double timeToSleep = temps - temps * ((tmp.getTimeStamp() / 1000) - tmpTime);
-//
-//				std::cout << "------------------------------------------" << std::endl;
-//				std::cout << "Temps actuel : " << currentTemp / temps << std::endl;
-//				if (tmpTime <= currentTemp / temps && resTime >= timeToSleep)
-//				{
-//					std::cout << "Je Sleep pour (resTime1) " << resTime - timeToSleep << std::endl;
-//					std::cout << "resTime " << resTime << std::endl;
-//					std::cout << "timeToSleep " << timeToSleep << std::endl;
-//					//Tools::sleep(resTime - timeToSleep);
-//					Tools::sleepActive(resTime - timeToSleep);
-//					currentTemp += resTime - timeToSleep;
-//					resTime = temps - (resTime + timeToSleep);
-//					if (resTime < 0)
-//						resTime = 0;
-//				}
-//				else
-//				{
-//					std::cout << "Je Sleep pour (resTime2) " << resTime << std::endl;
-//					//Tools::sleep(resTime);
-//					Tools::sleepActive(resTime);
-//					currentTemp += resTime;
-//					resTime = 0;
-//				}
-//				std::cout << "------------------------------------------" << std::endl;
-//			}
-//
-//			if (resTime)
-//			{
-//				std::cout << "Je Sleep pour (resTime3) " << resTime << std::endl;
-//				//Tools::sleep(resTime);
-//				Tools::sleepActive(resTime);
-//				currentTemp += resTime;
-//				resTime = 0;
-//			}
-//			else if (tmp.getTimeStamp() != k)
-//			{
-//				unsigned int tmpTime = static_cast<unsigned int>(tmp.getTimeStamp() / 1000);
-//				double timeToSleep = temps * ((tmp.getTimeStamp() / 1000) - tmpTime);
-//
-//				std::cout << "------------------------------------------" << std::endl;
-//				std::cout << "Temps de la prochaine note " << tmp.getTimeStamp() / 1000 << std::endl;
-//				resTime = temps - ((timeToSleep) ? (timeToSleep) : (temps));
-//
-//				if (tmp.getTimeStamp() / 1000 - currentTemp / temps > 0.01)
-//				{
-//					std::cout << "Temps actuel : " << currentTemp / temps << std::endl;
-//					std::cout << "Je Sleep pour : " << ((timeToSleep) ? (timeToSleep) : (temps)) << std::endl;
-//					std::cout << "------------------------------------------" << std::endl;
-//					currentTemp += ((timeToSleep) ? (timeToSleep) : (temps));
-//					//Tools::sleep((timeToSleep) ? (timeToSleep) : (temps));
-//					Tools::sleepActive((timeToSleep) ? (timeToSleep) : (temps));
-//				}
-//			}
-//
-////#ifdef __linux__
-//			std::cout << "Je joue la note qui a le temps : " << tmp.getTimeStamp() / 1000 << std::endl;
-//			std::cout << "Channel =  : " << tmp.getChannel() << std::endl;
-//			tmp.setTimeStamp(Time::getMillisecondCounterHiRes());
-//			_synthAudioSource.addMessage(tmp);
-////#else
-////			std::cout << "Je joue la note qui a le temps : " << tmp.getTimeStamp() / 1000 << std::endl;
-////			tmp.setTimeStamp(Time::getMillisecondCounterHiRes());
-////			_midiOutput->sendMessageNow(tmp);
-////#endif
-//
-//
-//			k = tmp.getTimeStamp();
-//		}
-//		else
-//		{
-//			tmp.setTimeStamp(Time::getMillisecondCounterHiRes());
-//			_synthAudioSource.addMessage(tmp);
-////			_midiOutput->sendMessageNow((const MidiMessage &)tmp);
-//		}
-//	}
-//	//_midiOutput->clearAllPendingMessages();
-//	return true;
-//}
 
 void SoundManager::GetMidiOutputDevice()
 {

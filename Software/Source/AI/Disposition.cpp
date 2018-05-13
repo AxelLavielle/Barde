@@ -39,7 +39,6 @@ void		Disposition::placeChords(MidiManager &_midiManager, MusicParameters &param
       	_midiManager.noteOff(instruments[i].channel, note, instruments[i].velocity, beats + 1 + TIMES_PER_BAR);
       	previousNote = note;
           }
-	  //std::cout << "Chord " << (int)x << " at time " << beats << std::endl;
 	  beats += TIMES_PER_BAR;
     }
   }
@@ -109,7 +108,6 @@ void    Disposition::placeArpeggios(MidiManager &_midiManager, MusicParameters &
     for (unsigned char y = 0; y < pattern.size(); y++){
       for (unsigned char k = 0; k < pattern[y].size(); k++){
         note = (pattern[y][k].note.first / 8) + ((pattern[y][k].note.second) * 12);
-		//std::cout << "Arpeggio: " << (int)y << " Note: " << (float)(pattern[y][k].position + (y * TIMES_PER_BAR)) << " - " << (float)(pattern[y][k].duration) << std::endl;
 		_midiManager.noteOn(instruments[i].channel, note, instruments[i].velocity, pattern[y][k].position + 1 + (y * TIMES_PER_BAR));
         _midiManager.noteOff(instruments[i].channel, note, instruments[i].velocity, pattern[y][k].position + 1 + (y * TIMES_PER_BAR) + pattern[y][k].duration);
       }
@@ -129,7 +127,6 @@ void	Disposition::placeDrums(MidiManager &_midiManager, MusicParameters &paramet
     for (unsigned char k = 0; k < pattern[y].size(); k++){
       _midiManager.changeInstrument(instruments[pattern[y][k].note.second], 0);
       note = (pattern[y][k].note.first / 8) + (5 * 12);
-      //std::cout << "Drum: " << (int)y << " Note: " << (float)(pattern[y][k].position + (y * TIMES_PER_BAR)) << std::endl;
       _midiManager.noteOn(instruments[pattern[y][k].note.second].channel, note, instruments[pattern[y][k].note.second].velocity, pattern[y][k].position + 1 + (y * TIMES_PER_BAR));
       _midiManager.noteOff(instruments[pattern[y][k].note.second].channel, note, instruments[pattern[y][k].note.second].velocity, pattern[y][k].position + 1 + (y * TIMES_PER_BAR) + pattern[y][k].duration);
     }
