@@ -47,8 +47,6 @@ void SoundManager::launch(std::vector<std::pair<Midi, int> > &_gen2playQ, std::m
 	{
 		bool b = false;
 		_gen2playM.lock();
-		//std::cout << "PLAYER !!!!!!!!!" << std::endl;
-		//std::cout << "SIZE = " << _gen2playQ.size() << std::endl;
 		if (_gen2playQ.size() > 0)
 		{
 			//Check here if error
@@ -57,6 +55,8 @@ void SoundManager::launch(std::vector<std::pair<Midi, int> > &_gen2playQ, std::m
 			b = true;
 			_gen2playQ.erase(_gen2playQ.begin());
 		}
+		std::cout << "PLAYER !!!!!!!!!" << std::endl;
+		std::cout << "SIZE = " << _gen2playQ.size() << std::endl;
 		_gen2playM.unlock();
 		if (b)
 			play(m, bpm, stop);

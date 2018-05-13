@@ -127,6 +127,8 @@ void			MusicGenerator::launch(std::vector<MusicParameters> &_graph2genQ, std::ve
 
 Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 {
+	parameters.setMidi(Midi());
+	std::cout << "generating" << std::endl;
   /* PARAMETERS */
   parameters.setSeed(static_cast<unsigned int>(std::time(NULL)));
   parameters.setBpm(105);
@@ -241,6 +243,6 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   ///* END */
   parameters.setMidi(parameters._midiManager.createMidi(48));
   parameters._midiManager.writeToFile("./test.mid");
-  return (Midi());
+  return (parameters.getMidi());
   /* ED*/
 }
