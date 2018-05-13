@@ -9,35 +9,25 @@
 */
 
 #include "Midi.hh"
-
+#include <iostream>
 Midi::Midi()
 {
-	_midi = new char();
-
 }
 
 Midi::Midi(const Midi & midi)
 {
-	char * tmp = midi.getMidiArray();
+	_midi = midi.getMidiArray();
 	_midiSize = midi.getMidiSize();
-	_midi = new char[_midiSize];
-	for (size_t i = 0; i < _midiSize; i++)
-		_midi[i] = tmp[i];
 }
 
 Midi::~Midi()
 {
-	delete (_midi);
 }
 
 Midi & Midi::operator=(const Midi & midi)
 {
-	delete(_midi);
-	char * tmp = midi.getMidiArray();
+	_midi = midi.getMidiArray();
 	_midiSize = midi.getMidiSize();
-	_midi = new char[_midiSize];
-	for (size_t i = 0; i < _midiSize; i++)
-		_midi[i] = tmp[i];
 	return (*this);
 }
 
@@ -48,10 +38,7 @@ byteArray Midi::getMidiArray(void) const
 
 void Midi::setMidiArray(const byteArray midi)
 {
-	delete(_midi);
-	_midi = new char[_midiSize];
-	for (size_t i = 0; i < _midiSize; i++)
-		_midi[i] = midi[i];
+	_midi = midi;
 }
 
 size_t Midi::getMidiSize(void) const
