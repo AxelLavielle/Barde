@@ -55,6 +55,8 @@ void SoundManager::launch(std::vector<std::pair<Midi, int> > &_gen2playQ, std::m
 			b = true;
 			_gen2playQ.erase(_gen2playQ.begin());
 		}
+		else
+			b = false;
 		std::cout << "PLAYER !!!!!!!!!" << std::endl;
 		std::cout << "SIZE = " << _gen2playQ.size() << std::endl;
 		_gen2playM.unlock();
