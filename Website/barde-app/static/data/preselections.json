@@ -1,38 +1,15 @@
 [
   {
-    "name" : "Rap preselection (Skyrock)",
+    "name" : "Skyrock",
     "style" : "Rap",
     "data" : {
-      "feedUrl" : "http://icecast.skyrock.net/s/natio_aac_96k",
-      "instruments" : [
-        {
-          "name" : "piano",
-          "active" : true
-        },
-        {
-          "name" : "drums",
-          "active" : false
-        }
-      ],
-      "bpm" : "120"
-    }
-  },
-  {
-    "name" : "Rap preselection (Skyrock 2)",
-    "style" : "Rap",
-    "data" : {
-      "feedUrl" : "http://icecast.skyrock.net/s/natio_aac_96k",
-      "instruments" : [
-        {
-          "name" : "piano",
-          "active" : false
-        },
-        {
-          "name" : "drums",
-          "active" : true
-        }
-      ],
-      "bpm" : "14O"
+    "feedUrl" : ["http://icecast.skyrock.net/s/natio_mp3_128k"],
+    "instruments" : {
+      "arpeges" : ["piano"],
+      "accords" : ["strings"],
+      "drums" : true
+    },
+    "bpm" : "140"
     }
   }
 ]

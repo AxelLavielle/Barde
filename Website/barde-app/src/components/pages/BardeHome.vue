@@ -18,19 +18,48 @@
 
               or
 
-              <div class="input-field col s12">
-                <select id="">
-                  <option  value="" disabled selected>Choose a style</option>
-                  <option v-for="(style, index) in stylesList" :value="index">{{style}}</option>
-                </select>
-              </div>
-
               <div class="row">
-                <div class="col s3" v-for="(intrument, index) in Player.instruments">
-                  <input type="checkbox" :id="Player.instruments[index].name" v-model="Player.instruments[index].active">
-                  <label :for="Player.instruments[index].name">{{Player.instruments[index].name }}</label>
+                <div class="col s4">
+                  <h4 class="left-align">Accords</h4>
+
+                  <div class=" col s4 left-align">
+                    <input type="checkbox" id="Piano-accord" value="piano" v-model="Player.instruments.accords">
+                    <label for="Piano-accord">Piano</label>
+                  </div>
+                  <div class=" col s4 left-align">
+                    <input type="checkbox" id="strings-accord" value="strings" v-model="Player.instruments.accords">
+                    <label for="strings-accord">strings</label>
+                  </div>
+
+                </div>
+
+              <div class="col s4">
+                <h4 class="left-align">Apreges</h4>
+
+                <div class=" col s4 left-align">
+                  <input type="checkbox" id="piano-arpege" value="piano" v-model="Player.instruments.arpeges">
+                  <label for="piano-arpege">Piano</label>
+                </div>
+                <div class=" col s4 left-align">
+                  <input type="checkbox" id="strings-arpege" value="strings" v-model="Player.instruments.arpeges">
+                  <label for="strings-arpege">strings</label>
                 </div>
               </div>
+
+              <div class="col s4">
+                <h4 class="left-align">Drums</h4>
+                <div class="switch left-align">
+                  <label>
+                    Off
+                    <input v-model="Player.instruments.drums" type="checkbox">
+                    <span class="lever"></span>
+                    On
+                  </label>
+                </div>
+
+              </div>
+
+
             </div>
 
             <div class="row">
@@ -44,7 +73,7 @@
             </div>
           </div>
         </div>
-        <barde-player :sources="Player.feedUrl" html5="true" :loop="true" ></barde-player>
+        <barde-player :sources="Player.feedUrl" html5 :loop="true" ></barde-player>
       </div>
     </div>
   </div>
@@ -56,7 +85,8 @@
   import BardePlayer from '@/components/BardePlayer.vue'
 
   import Preselections from '../../../static/data/preselections'
-
+  import playerModel from '../models/playerModel'
+  import instruments from '../../../src/assets/data/instruments'
   import '../../../static/css/player.css'
 
 
@@ -70,27 +100,9 @@
     data () {
       return {
         preselectionsList : Preselections,
-        stylesList : [
-          'Rap',
-          'Raggea'
-        ],
         formats: ['mp3', 'aac'],
-        Player : {
-          feedUrl : [
-            "http://icecast.skyrock.net/s/natio_mp3_128k"
-          ],
-            instruments : [
-            {
-              'name' : 'piano',
-              'active' : false
-            },
-            {
-              'name' : 'drums',
-              'active' : false
-            }
-          ],
-          bpm : "120"
-        }
+        instruments: instruments,
+        Player : playerModel,
       }
     },
     methods : {
@@ -112,7 +124,8 @@
         this.instruments[index].active = state;
       },
       setPreset(preset){
-        console.log(preset);
+        this.Player = Preselections[0].data;
+
       },
       setInstruments(instruments){
         this.preselectionsList[data].data.instruments = instruments
@@ -127,6 +140,7 @@
         self.$emit("change", this.value)
       });
       self.$on("change", function(data){
+        this.setPreset(data);
       });
 
       $('#selectStyle').on('change', function () {

@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@websanova/vue-auth": "^2.20.4-beta",
+    "eslint": "^4.19.1",
+    "eslint-plugin-vue": "^4.5.0",
     "jwt-decode": "^2.2.0",
     "materialize-css": "^0.100.2",
     "vue": "^2.5.2",
