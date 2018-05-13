@@ -30,7 +30,6 @@ void Player::newParams(MusicParameters p)
 	_graph2genM.lock();
 	_graph2genQ.push_back(p);
 	_graph2genM.unlock();
-
 }
 
 void Player::Init()

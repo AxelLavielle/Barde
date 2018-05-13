@@ -113,13 +113,13 @@ void			MusicGenerator::launch(std::vector<MusicParameters> &_graph2genQ, std::ve
 			_gen2playM.unlock();
 		}
 		_graph2genM.unlock();
-		if (b)
+		_gen2playM.lock();
+		if (b && _gen2playQ.size() < 3)
 		{
 			Midi m = createMusic(p);
-			_gen2playM.lock();
 			_gen2playQ.push_back(std::make_pair(m, p.getBpm()));
-			_gen2playM.unlock();
 		}
+		_gen2playM.unlock();
 	}
 }
 
