@@ -83,6 +83,8 @@ Midi MidiManager::createMidi(const double time)
 	midi.setMidiArray((char *)_midiStream.getData());
 	//midi.setMidiArray((char *)std::memcpy(midi.getMidiArray(), midiStream.getData(), midiStream.getDataSize()));
 	_midiSequence.clear();
+	_midiBuff.clear();
+	_midiStream.reset();
 
 
 	//MidiFile			midiBuff;
