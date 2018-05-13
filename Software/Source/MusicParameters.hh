@@ -38,7 +38,7 @@ public:
 	void setInstrumentsArpeggios(const std::vector<Instrument> &instruments);
 	void setStyleName(const std::string &name);
 	std::string	getStyleName() const;
-	MidiManager							_midiManager; //THis is bad !! Need modififcation
+
 
 private:
 	unsigned int						_seed;

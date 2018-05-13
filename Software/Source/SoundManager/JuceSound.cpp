@@ -50,7 +50,7 @@ void SoundManager::launch(std::vector<std::pair<Midi, int> > &_gen2playQ, std::m
 		if (_gen2playQ.size() > 0)
 		{
 			//Check here if error
-			m = Midi(_gen2playQ[0].first);
+			m = _gen2playQ[0].first;
 			bpm = _gen2playQ[0].second;
 			b = true;
 			_gen2playQ.erase(_gen2playQ.begin());
@@ -76,15 +76,18 @@ bool							SoundManager::play(const Midi &midi, int bpm, bool &stop)
 	unsigned int				msgTime;
 
 
+	std::cout << "play" << std::endl;
 	if ((midiSequence = MidiToMessageSequence(midi)) == NULL)
 	{
 		std::cerr << "ERROR: Can not convert Midi Buffer" << std::endl;
 		return false;
 	}
 
+	std::cout << "play" << std::endl;
 	currentTime = 0;
 	for (int i = 0; i < midiSequence->getNumEvents() && !stop; i++)
 	{
+		std::cout << i << std::endl;
 		msg = midiSequence->getEventPointer(i)->message;
 
 		if (msg.isNoteOn())

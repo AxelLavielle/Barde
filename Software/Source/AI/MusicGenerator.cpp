@@ -19,7 +19,7 @@ MusicGenerator::~MusicGenerator()
 {
 
 }
-
+/*
 void			MusicGenerator::drumsPOC(MusicParameters &parameters)
 {
 	Instrument	bassdrum;
@@ -78,7 +78,6 @@ void			MusicGenerator::drumsPOC(MusicParameters &parameters)
 		parameters._midiManager.noteOn(hihat, 72, hihat.velocity, beats);
 		parameters._midiManager.noteOff(hihat, 72, hihat.velocity, beats + TIMES_PER_BAR);
 	}
-	*/
 
 	parameters._midiManager.changeInstrument(rcymbal, 1.0);
 	for (beats = 8.0; beats <= 48.0; beats = beats + 16.0)
@@ -94,6 +93,7 @@ void			MusicGenerator::drumsPOC(MusicParameters &parameters)
 		parameters._midiManager.noteOff(ccymbal.channel, 72, ccymbal.velocity, beats + 8.0);
 	}
 }
+*/
 
 void			MusicGenerator::launch(std::vector<MusicParameters> &_graph2genQ, std::vector<std::pair<Midi, int> > &_gen2playQ, std::mutex &_graph2genM, std::mutex &_gen2playM, bool &stop)
 {
@@ -126,8 +126,8 @@ void			MusicGenerator::launch(std::vector<MusicParameters> &_graph2genQ, std::ve
 
 Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 {
-	std::cout << "generating" << std::endl;
-  /* PARAMETERS */
+  MidiManager	_midiManager;
+
   parameters.setSeed(static_cast<unsigned int>(std::time(NULL)));
   parameters.setBpm(105);
   Instrument instru;
@@ -143,8 +143,8 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   
   /* DRUMS */
 
-  drumsPOC(parameters);
   /*
+  drumsPOC(parameters);
   bool		onlydrums = true;
   if (onlydrums == true)
   {
@@ -192,7 +192,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   markovChords.push_back(noteA);
   markovChords.push_back(noteC);
 
-  Disposition::placeChords(parameters, markovChords);
+  Disposition::placeChords(_midiManager, parameters, markovChords);
 
   /* CHORDS */
   
@@ -235,12 +235,12 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
       tmparpeggios = markovPattern->correlatePattern(*markovPattern, chord, allChords.getChordPairFromName(markovChords[n].first));
       arpeggios.insert(arpeggios.end(), tmparpeggios.begin(), tmparpeggios.end());
     }
-  Disposition::placeArpeggios(parameters, arpeggios);
+  Disposition::placeArpeggios(_midiManager, parameters, arpeggios);
   ///* ARPEGGIOS */
 
   ///* END */
-  parameters._midiManager.writeToFile("./test.mid");
+  _midiManager.writeToFile("./test.mid");
   std::cout << "seed: " << parameters.getSeed() << std::endl;
-  return (parameters._midiManager.createMidi(48));
+  return (_midiManager.createMidi(48));
   /* ED*/
 }

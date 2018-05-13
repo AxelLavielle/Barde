@@ -80,11 +80,13 @@ Midi MidiManager::createMidi(const double time)
 	//_midiBuff.convertTimestampTicksToSeconds();
 	_midiBuff.writeTo(_midiStream, 1);
 	midi.setMidiSize(_midiStream.getDataSize());
-	midi.setMidiArray((char *)_midiStream.getData());
-	//midi.setMidiArray((char *)std::memcpy(midi.getMidiArray(), midiStream.getData(), midiStream.getDataSize()));
+	//midi.setMidiArray((char *)_midiStream.getData());
+	std::cout << "size " << _midiStream.getDataSize() << std::endl;
+	midi.setMidiArray(new char[_midiStream.getDataSize()]);
+	midi.setMidiArray((char *)std::memcpy(midi.getMidiArray(), _midiStream.getData(), _midiStream.getDataSize()));
 	_midiSequence.clear();
 	_midiBuff.clear();
-	_midiStream.reset();
+//	_midiStream.reset();
 
 
 	//MidiFile			midiBuff;
@@ -92,6 +94,7 @@ Midi MidiManager::createMidi(const double time)
 
 	//midiBuff.readFrom(stream);
 	//if (midiBuff.getNumTracks() > 0)
+	std::cout << "done" << std::endl;
 	return (midi);
 }
 
