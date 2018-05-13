@@ -41,6 +41,8 @@ MainContentComponent::MainContentComponent()
 	initArpegeList();
 
 	initMusicParameters();
+
+	_player.Init();
 }
 
 MainContentComponent::~MainContentComponent()
@@ -124,6 +126,7 @@ void MainContentComponent::buttonClicked(Button* button)
 	}
 	else if (button == _blues)
 	{
-		_player.Play(_musicParameters);
+		_player.newParams(_musicParameters);
+		//_player.Play(_musicParameters);
 	}
 }

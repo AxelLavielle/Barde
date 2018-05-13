@@ -119,6 +119,8 @@ void			MusicGenerator::launch(std::vector<MusicParameters> &_graph2genQ, std::ve
 			Midi m = createMusic(p);
 			_gen2playQ.push_back(std::make_pair(m, p.getBpm()));
 		}
+		std::cout << "GENERATOR !!!!!!!!!" << std::endl;
+		std::cout << "SIZE = " << _gen2playQ.size() << std::endl;
 		_gen2playM.unlock();
 	}
 }
@@ -141,7 +143,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   
   /* DRUMS */
 
-  drumsPOC(parameters);
+  //drumsPOC(parameters);
   /*
   bool		onlydrums = true;
   if (onlydrums == true)
