@@ -219,6 +219,7 @@ function getOne(req, res, next) {
  * @apiParamExample {json} Request-Example:
  *     {
  *       "email": "",
+ *       "userNAme": "",
  *       "password": "",
  *       "firstName": "",
  *       "lastName": "",
@@ -238,6 +239,14 @@ function getOne(req, res, next) {
  *       "msg": "No content"
  *       "data": {
  *          "message": "Email cannot be empty."
+ *       }
+ *     }
+ *
+ *  @apiErrorExample 409 - User already exists
+ *     {
+ *       "msg": "Content already exists"
+ *       "data": {
+ *          "message": "The username you have used is already registered."
  *       }
  *     }
  *
@@ -263,6 +272,9 @@ function updatePatch(req, res, next) {
     if (req.body.role && req.user.role === "Admin") {
       updateVal["role"] = req.body.role
     }
+    if (req.body.userName) {
+      updateVal["name.userName"] = req.body.userName
+    }
     if (req.body.password) {
       updateVal["password"] = req.body.password
     }
@@ -276,12 +288,14 @@ function updatePatch(req, res, next) {
       updateVal["dateOfBirth"] = new Date(req.body.yearOfBirth, req.body.monthOfBirth, req.body.dayOfBirth)
     }
     User.update({email: req.body.email}, {$set: updateVal}, function (err, response) {
-      if (err)
-        return next(err);
-      if (response.n == 0) {
-        res.status(404).json({msg: "Can't find item.", message: {users: "User not exists."}});
+      if (err) {
+        res.status(409).send({msg: "Content already exists", data: {message: "The username you have used is already registered."}});
       } else {
-        res.status(200).send({msg: "Content updated"});
+        if (response.n == 0) {
+          res.status(404).json({msg: "Can't find item.", message: {users: "User not exists."}});
+        } else {
+          res.status(200).send({msg: "Content updated"});
+        }
       }
     });
   } else {
@@ -297,6 +311,7 @@ function updatePatch(req, res, next) {
  * @apiParamExample {json} Request-Example:
  *     {
  *       "email": "",
+ *       "userName": "",
  *       "password": "",
  *       "firstName": "",
  *       "lastName": "",
@@ -319,6 +334,14 @@ function updatePatch(req, res, next) {
  *       }
  *     }
  *
+ *  @apiErrorExample 409 - User already exists
+ *     {
+ *       "msg": "Content already exists"
+ *       "data": {
+ *          "message": "The username you have used is already registered."
+ *       }
+ *     }
+ *
  * @apiErrorExample 404 - Not found
  *     {
  *       "msg": "Can't find item."
@@ -336,6 +359,8 @@ function updatePatch(req, res, next) {
 function updatePut(req, res, next) {
   if (!req.body.email) {
     res.status(400).send({msg: "No content", data: {message: "Email cannot be empty."}});
+  } else if (!req.body.userName) {
+    res.status(400).send({msg: "No content", data: {message: "UserName cannot be empty."}});
   } else if (!req.body.firstName || !req.body.lastName) {
     res.status(400).send({msg: "No content", data: {message: "FirstName and/or lastName cannot be empty."}});
   } else if (!req.body.yearOfBirth || !req.body.monthOfBirth || !req.body.dayOfBirth) {
@@ -344,6 +369,7 @@ function updatePut(req, res, next) {
     var updateVal = {
         dateOfBirth: new Date(req.body.yearOfBirth, req.body.monthOfBirth, req.body.dayOfBirth),
     }
+    updateVal["name.userName"] = req.body.userName
     updateVal["name.firstName"] = req.body.firstName
     updateVal["name.lastName"] = req.body.lastName
     if (req.body.password) {
@@ -353,12 +379,14 @@ function updatePut(req, res, next) {
       updateVal["role"] = req.body.role
     }
     User.update({email: req.body.email}, {$set: updateVal}, function (err, response) {
-      if (err)
-        return next(err);
-      if (response.n == 0) {
-        res.status(404).json({msg: "Can't find item.", message: {users: "User not exists."}});
+      if (err) {
+        res.status(409).send({msg: "Content already exists", data: {message: "The username you have used is already registered."}});
       } else {
-        res.status(200).send({msg: "Content updated"});
+        if (response.n == 0) {
+          res.status(404).json({msg: "Can't find item.", message: {users: "User not exists."}});
+        } else {
+          res.status(200).send({msg: "Content updated"});
+        }
       }
     });
   } else {

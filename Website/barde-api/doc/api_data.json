@@ -563,6 +563,35 @@
   },
   {
     "type": "get",
+    "url": "/user/me",
+    "title": "Get user authenticated",
+    "group": "User",
+    "success": {
+      "examples": [
+        {
+          "title": "200 - Success",
+          "content": "{\n  \"msg\": \"Success\"\n  \"data\": {\n     \"user\": []\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "401 - Unauthorized",
+          "content": "{\n  \"Unauthorized\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/user.js",
+    "groupTitle": "Users",
+    "groupDescription": "<p>All routes for users</p>",
+    "name": "GetUserMe"
+  },
+  {
+    "type": "get",
     "url": "/user/:perPage/:page",
     "title": "Get users by page",
     "group": "User",
@@ -599,7 +628,7 @@
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n  \"email\": \"\",\n  \"password\": \"\",\n  \"firstName\": \"\",\n  \"lastName\": \"\",\n  \"yearOfBirth\": \"\",\n  \"monthOfBirth\": \"\",\n  \"dayOfBirth\": \"\",\n  \"role\": \"\"\n}",
+          "content": "{\n  \"email\": \"\",\n  \"userNAme\": \"\",\n  \"password\": \"\",\n  \"firstName\": \"\",\n  \"lastName\": \"\",\n  \"yearOfBirth\": \"\",\n  \"monthOfBirth\": \"\",\n  \"dayOfBirth\": \"\",\n  \"role\": \"\"\n}",
           "type": "json"
         }
       ]
@@ -618,6 +647,11 @@
         {
           "title": "400 - Email is empty",
           "content": "{\n  \"msg\": \"No content\"\n  \"data\": {\n     \"message\": \"Email cannot be empty.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "409 - User already exists",
+          "content": "{\n  \"msg\": \"Content already exists\"\n  \"data\": {\n     \"message\": \"The username you have used is already registered.\"\n  }\n}",
           "type": "json"
         },
         {
@@ -647,7 +681,7 @@
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n  \"email\": \"\",\n  \"password\": \"\",\n  \"firstName\": \"\",\n  \"lastName\": \"\",\n  \"yearOfBirth\": \"\",\n  \"monthOfBirth\": \"\",\n  \"dayOfBirth\": \"\",\n  \"role\": \"\"\n}",
+          "content": "{\n  \"email\": \"\",\n  \"userName\": \"\",\n  \"password\": \"\",\n  \"firstName\": \"\",\n  \"lastName\": \"\",\n  \"yearOfBirth\": \"\",\n  \"monthOfBirth\": \"\",\n  \"dayOfBirth\": \"\",\n  \"role\": \"\"\n}",
           "type": "json"
         }
       ]
@@ -666,6 +700,11 @@
         {
           "title": "400 - One param is empty",
           "content": "{\n  \"msg\": \"No content\"\n  \"data\": {\n     \"message\": param + \" cannot be empty.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "409 - User already exists",
+          "content": "{\n  \"msg\": \"Content already exists\"\n  \"data\": {\n     \"message\": \"The username you have used is already registered.\"\n  }\n}",
           "type": "json"
         },
         {
