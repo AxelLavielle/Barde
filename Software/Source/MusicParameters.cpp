@@ -106,13 +106,3 @@ std::string MusicParameters::getStyleName() const
 {
 	return (_styleName);
 }
-
-void MusicParameters::setMidi(const Midi & midi)
-{
-	_midi = midi;
-}
-
-Midi MusicParameters::getMidi() const
-{
-	return (_midi);
-}

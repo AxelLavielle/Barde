@@ -42,5 +42,5 @@ void Player::Init()
 void Player::Play(MusicParameters _musicParameters)
 {
 	_generator->createMusic(_musicParameters);
-	_soundManager->play(_musicParameters.getMidi(), _musicParameters.getBpm(), _stopQueue);
+//	_soundManager->play(_musicParameters.getMidi(), _musicParameters.getBpm(), _stopQueue);
 }

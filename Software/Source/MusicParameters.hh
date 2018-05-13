@@ -38,8 +38,6 @@ public:
 	void setInstrumentsArpeggios(const std::vector<Instrument> &instruments);
 	void setStyleName(const std::string &name);
 	std::string	getStyleName() const;
-	void setMidi(const Midi &midi);
-	Midi getMidi() const;
 	MidiManager							_midiManager; //THis is bad !! Need modififcation
 
 private:
@@ -49,7 +47,6 @@ private:
 	std::vector<Instrument>				_instrumentsArpeggios;
 	bool								_instrumentsDrums;
 	std::string							_styleName;
-	Midi								_midi;
 };
 
 

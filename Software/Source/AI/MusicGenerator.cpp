@@ -120,13 +120,12 @@ void			MusicGenerator::launch(std::vector<MusicParameters> &_graph2genQ, std::ve
 			_gen2playQ.push_back(std::make_pair(m, p.getBpm()));
 		}
 		_gen2playM.unlock();
-		Tools::sleep(0.5);
+		Tools::sleep(1100);
 	}
 }
 
 Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 {
-  parameters.setMidi(Midi());
 	std::cout << "generating" << std::endl;
   /* PARAMETERS */
   parameters.setSeed(static_cast<unsigned int>(std::time(NULL)));
@@ -144,7 +143,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   
   /* DRUMS */
 
-  //drumsPOC(parameters);
+  drumsPOC(parameters);
   /*
   bool		onlydrums = true;
   if (onlydrums == true)
@@ -240,8 +239,8 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   ///* ARPEGGIOS */
 
   ///* END */
-  parameters.setMidi(parameters._midiManager.createMidi(48));
   parameters._midiManager.writeToFile("./test.mid");
-  return (parameters.getMidi());
+  std::cout << "seed: " << parameters.getSeed() << std::endl;
+  return (parameters._midiManager.createMidi(48));
   /* ED*/
 }
