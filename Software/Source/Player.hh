@@ -18,6 +18,9 @@
 
 #include <thread>
 #include <mutex>
+#ifdef __linux__
+	#include <pthread.h>
+#endif
 #include "AI/MusicGenerator.hh"
 #include "SoundManager/JuceSound.hh"
 
