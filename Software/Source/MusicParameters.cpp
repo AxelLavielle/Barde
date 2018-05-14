@@ -67,6 +67,28 @@ void MusicParameters::addInstrumentArpeggios(const Instrument &instrument)
 	_instrumentsArpeggios.push_back(instrument);
 }
 
+bool MusicParameters::delInstrumentChords(const Instrument &instrument)
+{
+	for (unsigned int i = 0; i < _instrumentsChords.size(); i++)
+		if (_instrumentsChords[i].nb == instrument.nb)
+		{
+			_instrumentsChords.erase(_instrumentsChords.begin() + i);
+			return (true);
+		}
+return (false);
+}
+
+bool MusicParameters::delInstrumentArpeggios(const Instrument &instrument)
+{
+	for (unsigned int i = 0; i < _instrumentsArpeggios.size(); i++)
+		if (_instrumentsArpeggios[i].nb == instrument.nb)
+		{
+			_instrumentsArpeggios.erase(_instrumentsArpeggios.begin() + i);
+			return (true);
+		}
+	return (false);
+}
+
 void MusicParameters::setInstrumentDrums(const bool instrument)
 {
 	_instrumentsDrums = instrument;

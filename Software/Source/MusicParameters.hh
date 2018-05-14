@@ -30,6 +30,8 @@ public:
 	void setSeed(const unsigned int seed);
 	void addInstrumentChords(const Instrument &instrument);
 	void addInstrumentArpeggios(const Instrument &instrument);
+	bool delInstrumentChords(const Instrument &instrument);
+	bool delInstrumentArpeggios(const Instrument &instrument);
 	void setInstrumentDrums(const bool instrument);
 	std::vector<Instrument>	getInstrumentsChords() const;
 	std::vector<Instrument>	getInstrumentsArpeggios() const;
