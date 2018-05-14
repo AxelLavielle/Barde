@@ -42,6 +42,7 @@ public:
 	void resized() override;
 	void buttonClicked(Button* button) override;
 	void comboBoxChanged(ComboBox * comboBoxThatHasChanged) override;
+	void login(const std::string & login, const std::string & password);
 	void ThemeChanged();
 
 private:
@@ -51,6 +52,7 @@ private:
 	ComboBox	_comboBox;
 	Label		_errorText;
 	TextButton	_loginButton;
+	TextButton	_signinButton;
 	Theme		_currentTheme;
 	ComboBox	_themeChoice;
 	//==============================================================================

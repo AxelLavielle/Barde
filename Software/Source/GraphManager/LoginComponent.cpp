@@ -54,15 +54,21 @@ LoginComponent::LoginComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager)
 	_textEditor2.addListener(this);
 
 	addAndMakeVisible(_errorText);
-	_errorText.setText("", juce::NotificationType::dontSendNotification);
+	_errorText.setText("LLLLLLL", juce::NotificationType::dontSendNotification);
 	_errorText.setColour(Label::textColourId, Colours::red);
-	_errorText.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN * 3, BOX_WIDTH, BOX_HEIGHT);
+	_errorText.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 - SPACE_BETWEEN - SPACE_BETWEEN, BOX_WIDTH, BOX_HEIGHT);
 
 	addAndMakeVisible(_loginButton);
 	_loginButton.setButtonText("Login");
+	_loginButton.setName("Login");
 	_loginButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN + SPACE_BETWEEN, BOX_WIDTH, BOX_HEIGHT);
 	_loginButton.addListener(this);
 
+	//addAndMakeVisible(_signinButton);
+	_signinButton.setButtonText("Sign in");
+	_signinButton.setName("signin");
+	_signinButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN + SPACE_BETWEEN + 100, BOX_WIDTH, BOX_HEIGHT);
+	_signinButton.addListener(this);
 
 	//TODO Add a file and read theme list
 	_themeChoice.setBounds(10, 85, 200, 24);
@@ -87,17 +93,11 @@ void LoginComponent::comboBoxChanged(ComboBox * comboBox)
 	ThemeChanged();
 }
 
-void LoginComponent::buttonClicked(Button* button)
+void LoginComponent::login(const std::string & login, const std::string & password)
 {
 	String errorMessage;
-	String login;
-	String password;
 
-	login = _textEditor1.getText();
-	password = _textEditor2.getText();
-
-	if (_cmdManager.login(login.toStdString(), password.toStdString())) {
-	  (void)button;
+	if (_cmdManager.login(login, password)) {
 		errorMessage = "Login correct";
 		changeView("Main");
 	}
@@ -106,6 +106,18 @@ void LoginComponent::buttonClicked(Button* button)
 		errorMessage = "There was an error during the login process";
 	}
 	_errorText.setText(errorMessage, juce::NotificationType::sendNotification);
+}
+
+void LoginComponent::buttonClicked(Button* button)
+{
+	if (button->getName() == "Login")
+	{
+		login(_textEditor1.getText().toStdString(), _textEditor2.getText().toStdString());
+	}
+	else if (button->getName() == "signin")
+	{
+		changeView("Signin");
+	}
 }
 
 
@@ -162,6 +174,8 @@ void LoginComponent::ThemeChanged()
 
 	_loginButton.setColour(TextButton::buttonColourId, Colour(_currentTheme.getButtonColor()));
 	_loginButton.setColour(TextButton::textColourOnId, Colour(_currentTheme.getButtonFontColor()));
+	_signinButton.setColour(TextButton::buttonColourId, Colour(_currentTheme.getButtonColor()));
+	_signinButton.setColour(TextButton::textColourOnId, Colour(_currentTheme.getButtonFontColor()));
 	this->repaint();
 }
 
@@ -176,7 +190,8 @@ void LoginComponent::resized()
 	_textEditor1.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN, BOX_WIDTH, BOX_HEIGHT);
 	_textEditor2.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN * 2, BOX_WIDTH, BOX_HEIGHT);
 	_loginButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN * 3, BOX_WIDTH, BOX_HEIGHT);
-	_errorText.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN * 4, BOX_WIDTH, BOX_HEIGHT);
+	_signinButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN + SPACE_BETWEEN + 100, BOX_WIDTH, BOX_HEIGHT);
+	_errorText.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 - SPACE_BETWEEN, BOX_WIDTH, BOX_HEIGHT);
 
 	// This is called when the MainContentComponent is resized.
 	// If you add any child components, this is where you should

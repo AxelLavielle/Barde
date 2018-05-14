@@ -23,10 +23,11 @@ MainWindow::MainWindow(const std::string &name) : DocumentWindow(name,
 	_mainComponent = new MainContentComponent();
 	_userParamsComponent = new UserParamsComponent();
 	_loginComponent = new LoginComponent(_cmdManager);
-	//_userRegistration = new UserRegistration();
+	_userRegistration = new UserRegistration(_cmdManager);
 	_mainComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 	_userParamsComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 	_loginComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
+	_userRegistration->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 
 	setContentNonOwned(_mainComponent, true);
 	//setContentNonOwned(_loginComponent, true);
@@ -66,5 +67,10 @@ void MainWindow::changeViewCallback(std::string viewName)
 	{
 		clearContentComponent();
 		setContentNonOwned(_loginComponent, true);
+	}
+	else if (viewName == "Signin")
+	{
+		clearContentComponent();
+		setContentNonOwned(_userRegistration, true);
 	}
 }
