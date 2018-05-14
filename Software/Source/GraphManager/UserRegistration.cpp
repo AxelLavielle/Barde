@@ -104,11 +104,13 @@ UserRegistration::UserRegistration(CmdManager & cmdManager) : _cmdManager(cmdMan
 
 	addAndMakeVisible(_saveButton);
 	_saveButton.setButtonText("Sign in");
+	_saveButton.setName("signin");
 	_saveButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN + SPACE_BETWEEN, BOX_WIDTH, BOX_HEIGHT);
 	_saveButton.addListener(this);
 
 	addAndMakeVisible(_cancelButton);
 	_cancelButton.setButtonText("Cancel");
+	_cancelButton.setName("cancel");
 	_cancelButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN + SPACE_BETWEEN + 100, BOX_WIDTH, BOX_HEIGHT);
 	_cancelButton.addListener(this);
 
@@ -213,47 +215,50 @@ void UserRegistration::ThemeChanged()
 	this->repaint();
 }
 
-void UserRegistration::buttonClicked(Button* button)
+void UserRegistration::signin(const User & user)
 {
-	//TODO Add API Connection to save changes instead of the code below
-
-	String firstName;
-	String lastName;
-	String username;
-	String email;
-	String dateofbirth;
 	String password;
-	String confirmpassword;
-	User test;
-	(void)button;
+	String confirmPassword;
+
 	_errorText.setText("", dontSendNotification);
-	firstName = _firstNameTextEditor.getText();
-	username = _userNameTextEditor.getText();
-	email = _emailTextEditor.getText();
-	bool a = isEmailValid(email.toStdString());
-	if (!a)
+	bool validEmail = isEmailValid(user.getEmail());
+	if (!validEmail)
 	{
 		_errorText.setText("Error: the email is not valid", dontSendNotification);
 		return;
 	}
-	dateofbirth = _dateOfBirthTextEditor.getText();
 	password = _passwordTextEditor.getText();
-	confirmpassword = _passwordConfirmationTextEditor.getText();
-	if (password != confirmpassword)
+	confirmPassword = _passwordConfirmationTextEditor.getText();
+	if (password != confirmPassword)
 	{
 		_errorText.setText("Error passwords don't match", dontSendNotification);
 		return;
 	}
+	if (_cmdManager.signUp(user, password.toStdString()))
+	{
+		_errorText.setText("Connexion error", dontSendNotification);
+	}
+}
 
-	test.setEmail(email.toStdString());
-	test.setDayOfBirth("25");
-	test.setMonthOfBirth("11");
-	test.setYearOfBirth("1996");
-	test.setFirstName(firstName.toStdString());
-	test.setLastName(lastName.toStdString());
-	test.setUserName(username.toStdString());
-	_cmdManager.signUp(test, password.toStdString());
-	std::cout << "username : " << username << " email: " << email << "date of birth: " << dateofbirth << "password: " << password << " confirm password :" << confirmpassword << std::endl;
+void UserRegistration::buttonClicked(Button* button)
+{
+	if (button->getName() == "signin")
+	{
+		User user;
+
+		user.setEmail(_emailTextEditor.getText().toStdString());
+		user.setDayOfBirth("25");
+		user.setMonthOfBirth("11");
+		user.setYearOfBirth("1996");
+		user.setFirstName(_firstNameTextEditor.getText().toStdString());
+		user.setLastName(_lastNameLabel.getText().toStdString());
+		user.setUserName(_userNameTextEditor.getText().toStdString());
+		signin(user);
+	}
+	else if (button->getName() == "cancel")
+	{
+		changeView("Login");
+	}
 }
 
 

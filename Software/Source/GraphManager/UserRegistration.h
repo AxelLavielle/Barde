@@ -48,6 +48,8 @@ public:
 	bool isEmailValid(const std::string &email);
 
 private:
+	void signin(const User & user);
+
 	TextEditor _firstNameTextEditor, _lastNameTextEditor, _userNameTextEditor, _emailTextEditor, _dateOfBirthTextEditor, _passwordTextEditor, _passwordConfirmationTextEditor;
 	Label _firstNameLabel, _lastNameLabel, _userNameLabel, _emailLabel, _dateOfBirthLabel, _passwordLabel, _passwordConfirmationLabel;
 	ComboBox _languageComboBox;

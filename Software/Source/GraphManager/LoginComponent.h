@@ -42,10 +42,11 @@ public:
 	void resized() override;
 	void buttonClicked(Button* button) override;
 	void comboBoxChanged(ComboBox * comboBoxThatHasChanged) override;
-	void login(const std::string & login, const std::string & password);
 	void ThemeChanged();
 
 private:
+	void login(const std::string & login, const std::string & password);
+
 	CmdManager	&_cmdManager;
 	TextEditor	_textEditor1, _textEditor2;
 	Label		_inputLabel1, _inputLabel2;
