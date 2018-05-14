@@ -88,7 +88,7 @@ void Theme::setName(std::string name)
 
 Theme parseTheme(std::string fileName)
 {
-  Theme tmp;
+	Theme tmp;
 	std::string line;
 	std::string name;
 	std::string button;
@@ -101,16 +101,19 @@ Theme parseTheme(std::string fileName)
 	std::cout << "Reading Theme File :" << fileName << std::endl;
 	if (myfile.is_open())
 	{
-	  getline(myfile, name);
-	  getline(myfile, button);
-	  getline(myfile, background);
-	  getline(myfile, font);
-	  getline(myfile, buttonFont);
-	  std::cout << name << " " << button << " " << background << " " << font << " " << buttonFont << std::endl;
-	  myfile.close();
+		getline(myfile, name);
+		getline(myfile, button);
+		getline(myfile, background);
+		getline(myfile, font);
+		getline(myfile, buttonFont);
+		std::cout << name << " " << button << " " << background << " " << font << " " << buttonFont << std::endl;
+		myfile.close();
 	}
 	else
-	  return Theme();
+	{
+		std::cout << "MDR DIDNT WORKED" << std::endl;
+		return Theme();
+	}
 	
 	int iButton = static_cast<int>(std::stoll(button, nullptr, 16));
 	int iBackground = static_cast<int>(std::stoll(background,0,0));

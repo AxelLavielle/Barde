@@ -17,10 +17,10 @@
 #include "AComponent.hh"
 
 #ifndef  LOGO_WIDTH
-#define LOGO_WIDTH 1024 / 2
+#define LOGO_WIDTH 1024 / 4
 #endif
 #ifndef  LOGO_HEIGHT
-#define LOGO_HEIGHT 927 / 2
+#define LOGO_HEIGHT 927 / 4
 #endif
 //==============================================================================
 /*
@@ -67,7 +67,7 @@ public:
 	* Fonction called when the window is resized
 	*/
     void resized() override;
-	void buttonClicked(Button * button);
+	void buttonClicked(Button * button) override;
 	void sliderValueChanged(Slider *slider) override;
 
 private:
@@ -80,16 +80,21 @@ private:
 	Label					_frequencyLabel;
 	Label					_titleLabel;
 
-	ListBox					_arpegesList;
+	OwnedArray<ToggleButton> _arpegesList;
+	OwnedArray<ToggleButton> _chordsList;
+	//ListBox					_arpegesList;
+	//ListBox					_chordsList;
 
 	MusicStyleButton		*_blues;  /*!< button for generating blues*/
 	MusicStyleButton		*_params;  /*!< button for generating blues THIS IS FOR TEST !!!! */
 
 	Player					_player; /*!< player >*/
 	MusicParameters			_musicParameters;
+	ToggleButton			*_drumsButton;
 
 	void initArpegeList();
 	void initMusicParameters();
+	void initChordsList();
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };

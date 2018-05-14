@@ -34,11 +34,6 @@ LoginComponent::LoginComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager)
 	_textEditor2.setText("");
 	_textEditor2.setPasswordCharacter((juce_wchar)0x2022);//To replace chars with rounds
 
-														 /*addAndMakeVisible(comboBox);
-														 comboBox.setBounds(100, 85, 200, 24);
-														 comboBox.setEditableText(true);
-														 comboBox.setJustificationType(Justification::centred);*/
-	
 
 	addAndMakeVisible(_inputLabel1);
 	_inputLabel1.setText("Login:", dontSendNotification);
@@ -79,11 +74,14 @@ LoginComponent::LoginComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager)
 	_themeChoice.setSelectedId(1);
 	_themeChoice.addListener(this);
 	//addAndMakeVisible(_themeChoice);
+
 	ThemeChanged();
 
 	_cmdManager.connectToServer();
-
 }
+
+
+
 
 void LoginComponent::comboBoxChanged(ComboBox * comboBox)
 {
