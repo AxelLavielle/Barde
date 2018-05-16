@@ -111,7 +111,7 @@ Theme parseTheme(std::string fileName)
 	}
 	else
 	{
-		std::cout << "MDR DIDNT WORKED" << std::endl;
+		std::cerr << "Couldn't find or read file [" << fileName << "]" << std::endl;
 		return Theme();
 	}
 	

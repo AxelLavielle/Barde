@@ -82,6 +82,7 @@ private:
 
 	OwnedArray<ToggleButton> _arpegesList;
 	OwnedArray<ToggleButton> _chordsList;
+	StringArray				_instrusChoice;
 	//ListBox					_arpegesList;
 	//ListBox					_chordsList;
 

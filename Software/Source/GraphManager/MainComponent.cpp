@@ -16,6 +16,11 @@ MainContentComponent::MainContentComponent()
 	int rectY;
 	
 
+	//TO DO CHANGE THIS
+	_instrusChoice = { "ACOUSTICGRANDPIANO", "LOWCONGA", "MARACAS" };
+
+
+
 	setSize(getParentWidth(), getParentHeight() - 10);
 	_currentTheme = parseTheme("../Themes/Dark");
 
@@ -46,9 +51,7 @@ MainContentComponent::MainContentComponent()
 	_drumsButton->addListener(this);
 	_drumsButton->setBounds(10, 50, 600, 600);
 	addAndMakeVisible(_drumsButton);
-	_drumsButton->setColour(ToggleButton::textColourId, Colour(_currentTheme.getFontColor()));
-	_drumsButton->setColour(ToggleButton::tickColourId, Colour(_currentTheme.getFontColor()));
-	_drumsButton->setColour(ToggleButton::tickDisabledColourId, Colour(_currentTheme.getFontColor()));
+
 
 	initArpegeList();
 	initChordsList();
@@ -98,6 +101,11 @@ void MainContentComponent::paint (Graphics& g)
 	_frequencySlider.setColour(Slider::trackColourId, Colour(_currentTheme.getButtonColor()));
 	_frequencySlider.setColour(Slider::textBoxBackgroundColourId, Colour(_currentTheme.getBackgroundColor()));
 	_frequencySlider.setColour(Slider::textBoxTextColourId, Colour(_currentTheme.getFontColor()));
+
+
+	_drumsButton->setColour(ToggleButton::textColourId, Colour(_currentTheme.getFontColor()));
+	_drumsButton->setColour(ToggleButton::tickColourId, Colour(_currentTheme.getFontColor()));
+	_drumsButton->setColour(ToggleButton::tickDisabledColourId, Colour(_currentTheme.getFontColor()));
 }
 
 void MainContentComponent::sliderValueChanged(Slider *slider)
@@ -111,10 +119,9 @@ void MainContentComponent::sliderValueChanged(Slider *slider)
 
 void MainContentComponent::initArpegeList()
 {
-	StringArray instrus = { "Piano", "Saxophone", "Trumpet" };
-	for (int i = 0; i < instrus.size(); i++)
+	for (int i = 0; i < _instrusChoice.size(); i++)
 	{
-		String buttonText = instrus[i];
+		String buttonText = _instrusChoice[i];
 		ToggleButton *btn = new ToggleButton(buttonText);
 		btn->setName("Arpeges");
 		btn->addListener(this);
@@ -131,10 +138,9 @@ void MainContentComponent::initArpegeList()
 
 void MainContentComponent::initChordsList()
 {
-	StringArray instrus = { "Piano", "Saxophone", "Trumpet" };
-	for (int i = 0; i < instrus.size(); i++)
+	for (int i = 0; i < _instrusChoice.size(); i++)
 	{
-		String buttonText = instrus[i];
+		String buttonText = _instrusChoice[i];
 		ToggleButton *btn = new ToggleButton(buttonText);
 		btn->setName("Chords");
 		btn->addListener(this);
@@ -175,7 +181,7 @@ void MainContentComponent::buttonClicked(Button* button)
 	else if (button == _blues)
 	{
 		_player.newParams(_musicParameters);
-		//_player.Play(_musicParameters);
+		_player.Play(_musicParameters);
 	}
 
 	else if (button->getName() == "Arpeges")
@@ -183,6 +189,10 @@ void MainContentComponent::buttonClicked(Button* button)
 		std::cout << "Arpeges: " << button->getButtonText() << " " << button->getToggleState() << std::endl;
 		Instrument instru;
 		//TODO Set Instrument
+		instru.name = button->getButtonText().toStdString();
+		instru.nb = instrumentList.at(instru.name);
+		instru.channel = instru.nb;
+		instru.velocity = 100; //Need change
 		if (button->getToggleState())
 			_musicParameters.addInstrumentArpeggios(instru);
 		else
@@ -193,7 +203,11 @@ void MainContentComponent::buttonClicked(Button* button)
 	{
 		std::cout << "Chords: " << button->getButtonText() << " " << button->getToggleState() << std::endl;
 		Instrument instru;
-		//TODO Set Instrument
+		//TODO CHECK THIS 
+		instru.name = button->getButtonText().toStdString();
+		instru.nb = instrumentList.at(instru.name);
+		instru.channel = instru.nb;
+		instru.velocity = 100; //Need change
 		if (button->getToggleState())
 			_musicParameters.addInstrumentChords(instru);
 		else
