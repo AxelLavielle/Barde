@@ -347,6 +347,136 @@ define({ "api": [
     "groupDescription": "<p>All routes for email</p>"
   },
   {
+    "type": "get",
+    "url": "/report",
+    "title": "Get all reports",
+    "group": "Report",
+    "success": {
+      "examples": [
+        {
+          "title": "200 - Success",
+          "content": "{\n  \"msg\": \"Success\"\n  \"data\": {\n     \"reports\": []\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "401 - Unauthorized",
+          "content": "{\n  \"Unauthorized\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/report.js",
+    "groupTitle": "Reports",
+    "groupDescription": "<p>All routes for reports</p>",
+    "name": "GetReport"
+  },
+  {
+    "type": "get",
+    "url": "/report/count",
+    "title": "Get number of reports",
+    "group": "Report",
+    "success": {
+      "examples": [
+        {
+          "title": "200 - Success",
+          "content": "{\n  \"msg\": \"Success\"\n  \"data\": {\n     \"count\": Number\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "401 - Unauthorized",
+          "content": "{\n  \"Unauthorized\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/report.js",
+    "groupTitle": "Reports",
+    "groupDescription": "<p>All routes for reports</p>",
+    "name": "GetReportCount"
+  },
+  {
+    "type": "get",
+    "url": "/report/:perPage/:page",
+    "title": "Get reports by page",
+    "group": "Report",
+    "success": {
+      "examples": [
+        {
+          "title": "200 - Success",
+          "content": "{\n  \"msg\": \"Success\"\n  \"data\": {\n     \"reports\": [],\n     \"page\": Number,\n     \"count\": Number\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "401 - Unauthorized",
+          "content": "{\n  \"Unauthorized\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/report.js",
+    "groupTitle": "Reports",
+    "groupDescription": "<p>All routes for reports</p>",
+    "name": "GetReportPerpagePage"
+  },
+  {
+    "type": "post",
+    "url": "/report",
+    "title": "New report",
+    "group": "Report",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"description\": \"\",\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "200 - Success",
+          "content": "{\n  \"msg\": \"Content created\"\n  \"data\": {\n     \"message\": \"Report saved.\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "400 - One param is empty",
+          "content": "{\n  \"msg\": \"No content\"\n  \"data\": {\n     \"message\": param + \" cannot be empty.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "401 - Unauthorized",
+          "content": "{\n  \"Unauthorized\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/report.js",
+    "groupTitle": "Reports",
+    "groupDescription": "<p>All routes for reports</p>",
+    "name": "PostReport"
+  },
+  {
     "type": "put",
     "url": "lang/content",
     "title": "Get all traduction content",

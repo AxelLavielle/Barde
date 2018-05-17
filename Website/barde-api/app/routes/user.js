@@ -96,6 +96,7 @@ function getMe(req, res, next) {
     //     }
     //
     // });
+    delete req.user._id;
     res.status(200).json({msg: "Success", data: {user: req.user}});
 }
 

@@ -41,6 +41,7 @@ module.exports = function () {
                 return done(new Error("Authentication failed. User not found."), null);
             } else {
                 return done(null, {
+                    _id: user._id,
                     role: user.role,
                     name: user.name,
                     email: user.email,
