@@ -28,7 +28,6 @@ public:
 	int _width; /*!< Button width*/
 	int _height; /*!< Button height*/
 	Theme _theme; /*!< Theme of the app*/
-	Player _player; /*!< player*/
 
 	/*!
 	*  \brief Constructor

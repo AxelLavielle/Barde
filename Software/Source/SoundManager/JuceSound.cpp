@@ -26,6 +26,8 @@ SoundManager::SoundManager()
 
 SoundManager::~SoundManager()
 {
+	delete _deviceManager;
+	delete _midiOutput;
 }
 
 const MidiMessageSequence		*SoundManager::MidiToMessageSequence(const Midi &midi)
