@@ -148,10 +148,20 @@ h5.subtitle{
 .barde-blue{
     background: #374464;
 }
-
 .barde-btn{
     border-radius: 25px;
     background: #FA0067;
+}
+.barde-btn-secondary{
+    border-radius: 25px;
+    background: #374464 !important;
+}
+
+.download-label{
+    font-size: 24px;
+    color: #374464;
+    font-family: "Work Sans";
+    font-size: medium;
 }
 
 .barde-btn:active,

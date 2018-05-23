@@ -1,5 +1,6 @@
 import LandingVue from '../Landing/Landing.vue'
 import AboutVue from '../About/About.vue'
+import DownloadBardeVue from '../DownloadBarde/DownloadBarde.vue'
 import TeamVue from '../Team/Team.vue'
 import LatestNews from '../LatestNews/LatestNews.vue'
 import SubVue from '../Subscribe/Subscribe'
@@ -18,6 +19,7 @@ export default {
     components : {
         LandingVue,
         AboutVue,
+		DownloadBardeVue,
         TeamVue,
         LatestNews,
         SubVue,
