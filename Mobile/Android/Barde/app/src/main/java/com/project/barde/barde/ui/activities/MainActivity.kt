@@ -34,11 +34,11 @@ class MainActivity : AppCompatActivity() {
                             .replace(R.id.container, profile as Fragment)
                             .commit()
                 }
-                R.id.menu_my_list -> {
+                /*R.id.menu_my_list -> {
                     supportFragmentManager.beginTransaction()
                             .replace(R.id.container, myLists as Fragment)
                             .commit()
-                }
+                }*/
                 R.id.menu_playlist -> {
                     supportFragmentManager.beginTransaction()
                             .replace(R.id.container, playlist as Fragment)

@@ -72,6 +72,16 @@
                 android:textColor="#000000"
                 android:background="@drawable/button_rounded_corners_white"
                 android:id="@+id/setting_theme" />
+            <Button
+                android:textAllCaps="false"
+                android:gravity="start"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="report"
+                android:textColor="#000000"
+                android:background="@drawable/button_rounded_corners_white"
+                android:id="@+id/setting_report" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -29,8 +29,8 @@ class LoginActivity : AppCompatActivity() {
         password.setText("titiletutu")
         /*email.setText("toto")
         password.setText("toto")*/
-
         connexion.setOnClickListener {
+           // finish()//to remove
             doAsync {
                 StringBuilder(getString(R.string.api)).append("/auth/login").toString()
                         .httpPost(listOf("email" to email.text, "password" to password.text)).responseString{ request, response, result ->
