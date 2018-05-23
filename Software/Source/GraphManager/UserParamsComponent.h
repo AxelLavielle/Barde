@@ -29,7 +29,7 @@ Author:  Oreo
 #define BOX_HEIGHT 30
 #define SPACE_BETWEEN 50
 
-class UserParamsComponent : public Component, public AComponent, private TextEditor::Listener, private Button::Listener
+class UserParamsComponent : public AComponent, private TextEditor::Listener, private Button::Listener
 {
 public:
 	//==============================================================================

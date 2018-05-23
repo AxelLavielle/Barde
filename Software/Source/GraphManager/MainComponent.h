@@ -34,7 +34,7 @@
 * The class is containing all the component needed for the client
 */
 
-class MainContentComponent : public Component, public SliderListener, public Button::Listener, public AComponent
+class MainContentComponent : public AComponent, private SliderListener, private Button::Listener
 {
 public:
     //==============================================================================

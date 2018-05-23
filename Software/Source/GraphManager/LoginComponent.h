@@ -31,20 +31,19 @@
 This component lives inside our window, and this is where you should put all
 your controls and content.
 */
-class LoginComponent : public Component, public AComponent, private TextEditor::Listener, private Button::Listener, private ComboBox::Listener
+class LoginComponent : public AComponent, private TextEditor::Listener, private Button::Listener, private ComboBox::Listener
 {
 public:
 	//==============================================================================
 	LoginComponent(CmdManager & cmdManager);
 	~LoginComponent();
 
+private:
 	void paint(Graphics&) override;
 	void resized() override;
 	void buttonClicked(Button* button) override;
 	void comboBoxChanged(ComboBox * comboBoxThatHasChanged) override;
 	void ThemeChanged();
-
-private:
 	void login(const std::string & login, const std::string & password);
 
 	CmdManager	&_cmdManager;

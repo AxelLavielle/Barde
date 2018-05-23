@@ -25,10 +25,6 @@
 class MusicStyleButton : public Button
 {
 public:
-	int _width; /*!< Button width*/
-	int _height; /*!< Button height*/
-	Theme _theme; /*!< Theme of the app*/
-
 	/*!
 	*  \brief Constructor
 	*
@@ -47,6 +43,7 @@ public:
 	*/
 	~MusicStyleButton();
 	
+private:
 	/*!
 	*  \brief Diplay of the button
 	*
@@ -57,6 +54,12 @@ public:
 	*  \param isButtonDown :boolean corresponding to the button down event
 	*/
 	void paintButton(Graphics& g, const bool isMouseOverButton, const bool isButtonDown) override;
+
+
+	int _width; /*!< Button width*/
+	int _height; /*!< Button height*/
+	Theme _theme; /*!< Theme of the app*/
+
 };
 
 #endif  // MUSICSTYLEBUTTON_H_INCLUDED
