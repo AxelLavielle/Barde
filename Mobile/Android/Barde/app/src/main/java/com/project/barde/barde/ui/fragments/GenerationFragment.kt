@@ -28,6 +28,7 @@ class GenerationFragment : Fragment() {
     var fluteSelected = false
     var batterieSelected = false
     var index = 0
+    var lastindex = 0
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater!!.inflate(R.layout.fragment_generation, container, false)
     }
@@ -53,11 +54,9 @@ class GenerationFragment : Fragment() {
             flute_button_generation.setBackgroundResource(R.drawable.button_selection_generation_selected)
             flute_button_generation.setTextColor(Color.parseColor("#CA5E85"))
         }
+        listOfPanination.get(index).setBackgroundResource(R.drawable.rounded_background_white)
+        listOfPanination.get(index).setTextColor(Color.parseColor("#CA5E85"))
         if (index == 0){
-            listOfPanination.get(0).setBackgroundResource(R.drawable.rounded_background_white)
-            listOfPanination.get(0).setTextColor(Color.parseColor("#CA5E85"))
-            listOfPanination.get(1).setBackgroundColor(Color.parseColor("#CA5E85"))
-            listOfPanination.get(1).setTextColor(Color.WHITE)
             listOfChoice.get(0).visibility = View.VISIBLE
             previous_button_generation.visibility = View.INVISIBLE
         }else{
@@ -77,12 +76,13 @@ class GenerationFragment : Fragment() {
 
         next_button_generation.setOnClickListener{
             if (index < (listOfChoice.size - 1)){
+                lastindex = index
                 index++
                 listOfPanination.get(index).setBackgroundResource(R.drawable.rounded_background_white)
                 listOfPanination.get(index).setTextColor(Color.parseColor("#CA5E85"))
-                listOfPanination.get(index - 1).setBackgroundColor(Color.parseColor("#CA5E85"))
-                listOfPanination.get(index - 1).setTextColor(Color.WHITE)
-                listOfChoice.get(index - 1).visibility = View.GONE
+                listOfPanination.get(lastindex).setBackgroundColor(Color.parseColor("#CA5E85"))
+                listOfPanination.get(lastindex).setTextColor(Color.WHITE)
+                listOfChoice.get(lastindex).visibility = View.GONE
                 listOfChoice.get(index).visibility = View.VISIBLE
                 previous_button_generation.visibility = View.VISIBLE
                 if (index >= (listOfChoice.size - 1)){
@@ -93,12 +93,13 @@ class GenerationFragment : Fragment() {
 
         previous_button_generation.setOnClickListener{
             if (index > 0){
+                lastindex = index
                 index--
                 listOfPanination.get(index).setBackgroundResource(R.drawable.rounded_background_white)
                 listOfPanination.get(index).setTextColor(Color.parseColor("#CA5E85"))
-                listOfPanination.get(index + 1).setBackgroundColor(Color.parseColor("#CA5E85"))
-                listOfPanination.get(index + 1).setTextColor(Color.WHITE)
-                listOfChoice.get(index + 1).visibility = View.GONE
+                listOfPanination.get(lastindex).setBackgroundColor(Color.parseColor("#CA5E85"))
+                listOfPanination.get(lastindex).setTextColor(Color.WHITE)
+                listOfChoice.get(lastindex).visibility = View.GONE
                 listOfChoice.get(index).visibility = View.VISIBLE
                 next_button_generation.visibility = View.VISIBLE
                 if (index <= 0){
