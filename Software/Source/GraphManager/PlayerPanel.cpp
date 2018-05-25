@@ -143,5 +143,20 @@ void PlayerPanel::buttonClicked(Button * button)
 		{
 			_musicParameters.setInstrumentDrums(button->getToggleState());
 		}
+		else if (button->getName() == "Blues")
+		{
+			_raggaeButton.setToggleState(false, NotificationType::dontSendNotification);
+			_houseButton.setToggleState(false, NotificationType::dontSendNotification);
+		}
+		else if (button->getName() == "House")
+		{
+			_bluesButton.setToggleState(false, NotificationType::dontSendNotification);
+			_raggaeButton.setToggleState(false, NotificationType::dontSendNotification);
+		}
+		else if (button->getName() == "Raggea")
+		{
+			_bluesButton.setToggleState(false, NotificationType::dontSendNotification);
+			_houseButton.setToggleState(false, NotificationType::dontSendNotification);
+		}
 }
 
