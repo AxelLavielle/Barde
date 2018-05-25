@@ -10,13 +10,13 @@
 
 #pragma once
 
-#include "AComponent.hh"
 #include "UserParamsPanel.hh"
 #include "PlayerPanel.hh"
 #include "LeftPanel.hh"
+#include "ReportPanel.hh"
 #include "../CmdManager.hh"
 
-class CenterPanel : public AComponent
+class CenterPanel : public AView
 {
 public:
 	CenterPanel(MusicParameters	&musicParameters, CmdManager & cmdManager);
@@ -31,9 +31,10 @@ private:
 	CmdManager		&_cmdManager;
 
 	PlayerPanel		_playerPanel;
-	AComponent		*_mainPanel;
+	AView			*_mainPanel;
 	LeftPanel		_leftPanel;
 	UserParamsPanel	_userParamsPanel;
+	ReportPanel		_reportPanel;
 	Grid			_grid;
 
 	User			_user;

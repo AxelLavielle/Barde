@@ -10,14 +10,14 @@
 
 #pragma once
 
-#include "AComponent.hh"
 #include "FlexGroup.hh"
 #include "SimpleLabel.hh"
 #include "../Factories/GuiFactory.hh"
 #include "../MusicParameters.hh"
 #include "../GraphManager/Theme.h"
+#include "../ViewManager/AView.hh"
 
-class PlayerPanel : public AComponent, private Slider::Listener, private ToggleButton::Listener
+class PlayerPanel : public AView, private Slider::Listener, private ToggleButton::Listener
 {
 public:
 	PlayerPanel(MusicParameters & musicParameters);
@@ -37,6 +37,7 @@ private:
 	SimpleLabel				_titleLabel;
 	SimpleLabel				_bpmLabel;
 	FlexGroup				_bpmGroup;
+	SimpleLabel				_bpmTitleLabel;
 
 	FlexGroup				_instrumentsGroup;
 
@@ -52,6 +53,7 @@ private:
 	SimpleLabel				_drumsLabel;
 	ToggleButton			_drumsInstrumentButton;
 
+	FlexGroup				_styleGroup;
 	SimpleLabel				_styleLabel;
 	ToggleButton			_bluesButton;
 	ToggleButton			_raggaeButton;

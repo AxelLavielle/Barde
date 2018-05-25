@@ -27,13 +27,21 @@ PlayerPanel::PlayerPanel(MusicParameters & musicParameters) : _musicParameters(m
 	GuiFactory::initLittleTitle("Arpegios instruments", _arpegiosLabel);
 	GuiFactory::initLittleTitle("Drums instruments", _drumsLabel);
 
+	GuiFactory::initToggleButton("Blues", "Blues", _bluesButton, true);
+	GuiFactory::initToggleButton("Reggae (Comming soon !)", "Reggae", _raggaeButton);
+	GuiFactory::initToggleButton("House (Coming soon !)", "House", _houseButton);
+	GuiFactory::initHoryzontalFlexGroup({ GuiFactory::createFlexItem(_bluesButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_raggaeButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_houseButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1) }, _styleGroup);
+	addFlexItem(_styleGroup, 300, 100);
+
 	initInstrumentsGroup();
 
 	initInstrumentsButtons(_arpegiosInstrumentButtons, "Arpegios");
 	initInstrumentsButtons(_chordInstrumentButtons, "Chords");
-	GuiFactory::initToggleButton("Enable drums", "Drums", _drumsInstrumentButton);
+	GuiFactory::initToggleButton("Enable drums", "Drums", _drumsInstrumentButton, true);
 	_drumsInstrumentButton.addListener(this);
 
+	GuiFactory::initLittleTitle("Modify the BPM", _bpmTitleLabel);
+	addFlexItem(_bpmTitleLabel, GuiFactory::getBoxLabelWidth(_bpmTitleLabel), GuiFactory::getBoxLabelHeight(_bpmTitleLabel));
 	_bpmSlider.setRange(70, 200);
 	_bpmSlider.setValue(_musicParameters.getBpm());
 	_bpmSlider.setTextBoxStyle(Slider::TextEntryBoxPosition::NoTextBox, true, 0, 0);
@@ -61,7 +69,11 @@ void PlayerPanel::initInstrumentsButtons(ToggleButton buttons[], const std::stri
 {
 	for (int i = 0; i < _instrusChoice.size(); i++)
 	{
-		GuiFactory::initToggleButton(_instrusChoice[i].toStdString(), categoryName, buttons[i]);
+		//TO DO init ToggleButton from musicParameters
+		if (i == 0)
+			GuiFactory::initToggleButton(_instrusChoice[i].toStdString(), categoryName, buttons[i], true);
+		else
+			GuiFactory::initToggleButton(_instrusChoice[i].toStdString(), categoryName, buttons[i]);
 		buttons[i].addListener(this);
 
 		if (categoryName == "Arpegios")
@@ -69,16 +81,18 @@ void PlayerPanel::initInstrumentsButtons(ToggleButton buttons[], const std::stri
 		else if (categoryName == "Chords")
 			_chordsGroup.addItem(GuiFactory::createFlexItem(buttons[i], GuiFactory::getBoxLabelWidth(_chordsLabel), 10, FlexItem::AlignSelf::autoAlign, 1));
 	}
+
+
 }
 
 void PlayerPanel::initInstrumentsGroup()
 {
 
-	GuiFactory::initVerticalFlexGroup( { GuiFactory::createFlexItem(_chordsLabel, GuiFactory::getBoxLabelWidth(_chordsLabel), GuiFactory::getBoxLabelHeight(_chordsLabel), FlexItem::AlignSelf::autoAlign, 1) }, _chordsGroup);
+	GuiFactory::initVerticalFlexGroup( { GuiFactory::createFlexItemLabel(_chordsLabel, FlexItem::AlignSelf::autoAlign, 1) }, _chordsGroup);
 
-	GuiFactory::initVerticalFlexGroup( { GuiFactory::createFlexItem(_arpegiosLabel, GuiFactory::getBoxLabelWidth(_arpegiosLabel), GuiFactory::getBoxLabelHeight(_arpegiosLabel), FlexItem::AlignSelf::autoAlign, 1) } , _arpegiosGroup);
+	GuiFactory::initVerticalFlexGroup( { GuiFactory::createFlexItemLabel(_arpegiosLabel, FlexItem::AlignSelf::autoAlign, 1) } , _arpegiosGroup);
 
-	GuiFactory::initVerticalFlexGroup( { GuiFactory::createFlexItem(_drumsLabel, GuiFactory::getBoxLabelWidth(_drumsLabel), GuiFactory::getBoxLabelHeight(_drumsLabel), FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_drumsInstrumentButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1) } , _drumsGroup);
+	GuiFactory::initVerticalFlexGroup( { GuiFactory::createFlexItemLabel(_drumsLabel, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_drumsInstrumentButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1) } , _drumsGroup);
 
 	GuiFactory::initHoryzontalFlexGroup( { GuiFactory::createFlexItem(_chordsGroup, GuiFactory::getBoxLabelWidth(_chordsLabel), 100, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_arpegiosGroup, GuiFactory::getBoxLabelWidth(_arpegiosLabel), 100, FlexItem::AlignSelf::autoAlign, 1),
 											GuiFactory::createFlexItem(_drumsGroup, GuiFactory::getBoxLabelWidth(_drumsLabel), 100, FlexItem::AlignSelf::autoAlign, 1) } , _instrumentsGroup);

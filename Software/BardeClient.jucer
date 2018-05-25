@@ -16,6 +16,8 @@
       <GROUP id="{FC74AE7E-4016-436E-FC96-5C291546A2E5}" name="ViewManager">
         <FILE id="InxVPT" name="AView.cpp" compile="1" resource="0" file="Source/ViewManager/AView.cpp"/>
         <FILE id="MlWh5P" name="AView.hh" compile="0" resource="0" file="Source/ViewManager/AView.hh"/>
+        <FILE id="oYnOTC" name="FlexView.cpp" compile="1" resource="0" file="Source/ViewManager/FlexView.cpp"/>
+        <FILE id="HkOEZn" name="FlexView.hh" compile="0" resource="0" file="Source/ViewManager/FlexView.hh"/>
         <FILE id="vXmj1f" name="HomePage.cpp" compile="1" resource="0" file="Source/ViewManager/HomePage.cpp"/>
         <FILE id="NuTtil" name="HomePage.hh" compile="0" resource="0" file="Source/ViewManager/HomePage.hh"/>
         <FILE id="SiV0lV" name="IView.hpp" compile="0" resource="0" file="Source/ViewManager/IView.hpp"/>
@@ -100,6 +102,8 @@
         <FILE id="wSJyIx" name="SSLManager.hh" compile="0" resource="0" file="Source/EncryptionManager/SSLManager.hh"/>
       </GROUP>
       <GROUP id="{67A50DD7-6C2C-A059-E512-F0F0D14AB316}" name="GraphManager">
+        <FILE id="tw1tTU" name="ReportPanel.cpp" compile="1" resource="0" file="Source/GraphManager/ReportPanel.cpp"/>
+        <FILE id="KIFr5g" name="ReportPanel.hh" compile="0" resource="0" file="Source/GraphManager/ReportPanel.hh"/>
         <FILE id="ILxVWQ" name="SimpleLabel.cpp" compile="1" resource="0" file="Source/GraphManager/SimpleLabel.cpp"/>
         <FILE id="KrI0We" name="SimpleLabel.hh" compile="0" resource="0" file="Source/GraphManager/SimpleLabel.hh"/>
         <FILE id="eErgF6" name="AComponent.cpp" compile="1" resource="0" file="Source/GraphManager/AComponent.cpp"/>

@@ -70,6 +70,7 @@ endif
 OBJECTS_APP := \
   $(JUCE_OBJDIR)/CondVariable_b4fc4f98.o \
   $(JUCE_OBJDIR)/AView_4c0b412f.o \
+  $(JUCE_OBJDIR)/FlexView_447d429f.o \
   $(JUCE_OBJDIR)/HomePage_9fb9146f.o \
   $(JUCE_OBJDIR)/ViewManager_527c33d1.o \
   $(JUCE_OBJDIR)/GuiFactory_36672790.o \
@@ -92,6 +93,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/SQLiteManager_99d2bf74.o \
   $(JUCE_OBJDIR)/AEncryptionManager_13e06cc8.o \
   $(JUCE_OBJDIR)/SSLManager_f25fe680.o \
+  $(JUCE_OBJDIR)/ReportPanel_542b80da.o \
   $(JUCE_OBJDIR)/SimpleLabel_d8204f0c.o \
   $(JUCE_OBJDIR)/AComponent_b1bc9abc.o \
   $(JUCE_OBJDIR)/AGraphManager_4508c7ea.o \
@@ -172,6 +174,11 @@ $(JUCE_OBJDIR)/CondVariable_b4fc4f98.o: ../Source/CondVariable.cpp
 $(JUCE_OBJDIR)/AView_4c0b412f.o: ../Source/ViewManager/AView.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling AView.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/FlexView_447d429f.o: ../Source/ViewManager/FlexView.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling FlexView.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/HomePage_9fb9146f.o: ../Source/ViewManager/HomePage.cpp
@@ -282,6 +289,11 @@ $(JUCE_OBJDIR)/AEncryptionManager_13e06cc8.o: ../Source/EncryptionManager/AEncry
 $(JUCE_OBJDIR)/SSLManager_f25fe680.o: ../Source/EncryptionManager/SSLManager.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling SSLManager.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ReportPanel_542b80da.o: ../Source/GraphManager/ReportPanel.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ReportPanel.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/SimpleLabel_d8204f0c.o: ../Source/GraphManager/SimpleLabel.cpp

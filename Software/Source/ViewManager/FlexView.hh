@@ -1,8 +1,8 @@
 /*
   ==============================================================================
 
-    UserParamPanel.h
-    Created: 25 May 2018 6:46:36am
+    FlexView.h
+    Created: 25 May 2018 1:11:29pm
     Author:  Anthony
 
   ==============================================================================
@@ -10,13 +10,14 @@
 
 #pragma once
 
-#include "../ViewManager/AView.hh"
+#include "AView.hh"
 
-class UserParamsPanel : public AView
+class FlexView : public AView
 {
 public:
 
-private:
-	void paint(Graphics & g) override;
+protected:
+	void resized() override;
 
+	FlexBox		_flexBox;
 };

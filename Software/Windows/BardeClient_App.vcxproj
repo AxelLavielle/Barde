@@ -164,6 +164,7 @@
   <ItemGroup>
     <ClCompile Include="..\Source\CondVariable.cpp"/>
     <ClCompile Include="..\Source\ViewManager\AView.cpp"/>
+    <ClCompile Include="..\Source\ViewManager\FlexView.cpp"/>
     <ClCompile Include="..\Source\ViewManager\HomePage.cpp"/>
     <ClCompile Include="..\Source\ViewManager\ViewManager.cpp"/>
     <ClCompile Include="..\Source\Factories\GuiFactory.cpp"/>
@@ -186,6 +187,7 @@
     <ClCompile Include="..\Source\DatabaseManager\SQLiteManager.cpp"/>
     <ClCompile Include="..\Source\EncryptionManager\AEncryptionManager.cpp"/>
     <ClCompile Include="..\Source\EncryptionManager\SSLManager.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\ReportPanel.cpp"/>
     <ClCompile Include="..\Source\GraphManager\SimpleLabel.cpp"/>
     <ClCompile Include="..\Source\GraphManager\AComponent.cpp"/>
     <ClCompile Include="..\Source\GraphManager\AGraphManager.cpp"/>
@@ -1895,6 +1897,7 @@
     <ClInclude Include="..\Source\Utils\NonCopyable.hpp"/>
     <ClInclude Include="..\Source\CondVariable.hh"/>
     <ClInclude Include="..\Source\ViewManager\AView.hh"/>
+    <ClInclude Include="..\Source\ViewManager\FlexView.hh"/>
     <ClInclude Include="..\Source\ViewManager\HomePage.hh"/>
     <ClInclude Include="..\Source\ViewManager\IView.hpp"/>
     <ClInclude Include="..\Source\ViewManager\ViewManager.hh"/>
@@ -1921,6 +1924,7 @@
     <ClInclude Include="..\Source\EncryptionManager\AEncryptionManager.hh"/>
     <ClInclude Include="..\Source\EncryptionManager\IEncryptionManager.hpp"/>
     <ClInclude Include="..\Source\EncryptionManager\SSLManager.hh"/>
+    <ClInclude Include="..\Source\GraphManager\ReportPanel.hh"/>
     <ClInclude Include="..\Source\GraphManager\SimpleLabel.hh"/>
     <ClInclude Include="..\Source\GraphManager\AComponent.hh"/>
     <ClInclude Include="..\Source\GraphManager\AGraphManager.hh"/>

@@ -19,11 +19,18 @@ LeftPanel::LeftPanel()
 
    //Need CmdManager
    _userButton.setButtonText("Unknow");
+   _userButton.setName("User");
    _userButton.addListener(this);
    addAndMakeVisible(_userButton);
 
+   _reportButton.setButtonText("Report a bug / Write a comment");
+   _reportButton.setName("Report");
+   _reportButton.addListener(this);
+   addAndMakeVisible(_reportButton);
+
+
    _flexBox = GuiFactory::createFlexBox(FlexBox::JustifyContent::flexStart, FlexBox::AlignContent::stretch, FlexBox::AlignItems::stretch, FlexBox::Direction::column,
-	   { GuiFactory::createFlexItem(_logoImage, LOGO_WIDTH, LOGO_HEIGHT, 0, 0, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_userButton, 80, 20) });
+	   { GuiFactory::createFlexItem(_logoImage, LOGO_WIDTH, LOGO_HEIGHT, 0, 0, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_userButton, 80, 20), GuiFactory::createFlexItem(_reportButton, 80, 20) });
 }
 
 void LeftPanel::setUser(const User & user)
@@ -37,12 +44,10 @@ void LeftPanel::paint(Graphics & g)
 	g.fillAll(Colours::grey);
 }
 
-void LeftPanel::resized()
-{
-	_flexBox.performLayout(getLocalBounds().toFloat());
-}
-
 void LeftPanel::buttonClicked(Button * button)
 {
-	changeView("UserParams");
+	if (button->getName() == "User")
+		changeView("UserParams");
+	else if (button->getName() == "Report")
+		changeView("Report");
 }
