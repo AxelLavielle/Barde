@@ -84,8 +84,6 @@ void GuiFactory::initBigTitle(const std::string & text, SimpleLabel & label)
 	label.setLabelText(text);
 	label.setFontSize(BIG_TITLE_SIZE);
 
-	//TO DO manage theme color
-	//label.setColour(Label::textColourId, Colours::black);
 	label.setColour(Label::textColourId, Colour(Theme::getInstance().getFontColor()));
 }
 
@@ -94,8 +92,6 @@ void GuiFactory::initMediumTitle(const std::string & text, SimpleLabel & label)
 	label.setLabelText(text);
 	label.setFontSize(MEDIUM_TITLE_SIZE);
 
-	//TO DO manage theme color
-	//label.setColour(Label::textColourId, Colours::black);
 	label.setColour(Label::textColourId, Colour(Theme::getInstance().getFontColor()));
 }
 
@@ -104,8 +100,6 @@ void GuiFactory::initLittleTitle(const std::string & text, SimpleLabel & label)
 	label.setLabelText(text);
 	label.setFontSize(LITTLE_TITLE_SIZE);
 
-	//TO DO manage theme color
-	//label.setColour(Label::textColourId, Colours::black);
 	label.setColour(Label::textColourId, Colour(Theme::getInstance().getFontColor()));
 }
 
@@ -129,7 +123,6 @@ void GuiFactory::initToggleButton(const std::string & text, const std::string & 
 {
 	button.setButtonText(text);
 	button.setName(name);
-	//TO DO manage Theme Color
 	button.setToggleState(state, NotificationType::dontSendNotification);
 	button.setColour(ToggleButton::textColourId, Colour(Theme::getInstance().getFontColor()));
 	button.setColour(ToggleButton::tickColourId, Colour(Theme::getInstance().getFontColor()));
