@@ -16,35 +16,25 @@ PlayerPanel::PlayerPanel(MusicParameters & musicParameters) : _musicParameters(m
 	_bpmLabel.setLabelText("Bpm : " + std::to_string(_musicParameters.getBpm()));
 	_bpmLabel.setColour(Label::textColourId, Colours::black);
 
-	_titleLabel.setFontSize(30);
-	_titleLabel.setLabelText("Edit your music");
-	_titleLabel.setColour(Label::textColourId, Colours::black);
+	GuiFactory::initBigTitle("Edit your music", _titleLabel);
 	addFlexItem(_titleLabel, 100, 35);
 
-	_styleLabel.setFontSize(20);
-	_styleLabel.setLabelText("Choice your style");
-	_styleLabel.setColour(Label::textColourId, Colours::black);
+	GuiFactory::initLittleTitle("Choice your style", _styleLabel);
 	addFlexItem(_styleLabel, 100, 25);
 
-	_chordsLabel.setFontSize(15);
-	_chordsLabel.setLabelText("Chords instruments");
-	_chordsLabel.setColour(Label::textColourId, Colours::black);
+	GuiFactory::initLittleTitle("Chords instruments", _chordsLabel);
 
-	_arpegiosLabel.setFontSize(15);
-	_arpegiosLabel.setLabelText("Arpegios instruments");
-	_arpegiosLabel.setColour(Label::textColourId, Colours::black);
+	GuiFactory::initLittleTitle("Arpegios instruments", _arpegiosLabel);
 
-	_drumsLabel.setFontSize(15);
-	_drumsLabel.setLabelText("Drums instruments");
-	_drumsLabel.setColour(Label::textColourId, Colours::black);
+	GuiFactory::initLittleTitle("Drums instruments", _drumsLabel);
 
 	_instrumentsGroup.setAlignContent(FlexBox::AlignContent::stretch);
 	_instrumentsGroup.setJustifyContent(FlexBox::JustifyContent::center);
 	_instrumentsGroup.setAlignItems(FlexBox::AlignItems::stretch);
 	_instrumentsGroup.setFlexDirection(FlexBox::Direction::row);
-	_instrumentsGroup.addItem(GuiFactory::createFlexItem(_chordsLabel, 50, 20, FlexItem::AlignSelf::autoAlign, 1));
-	_instrumentsGroup.addItem(GuiFactory::createFlexItem(_arpegiosLabel, 50, 20, FlexItem::AlignSelf::autoAlign, 1));
-	_instrumentsGroup.addItem(GuiFactory::createFlexItem(_drumsLabel, 50, 20, FlexItem::AlignSelf::autoAlign, 1));
+	_instrumentsGroup.addItem(GuiFactory::createFlexItem(_chordsLabel, 50, 25, FlexItem::AlignSelf::autoAlign, 1));
+	_instrumentsGroup.addItem(GuiFactory::createFlexItem(_arpegiosLabel, 50, 25, FlexItem::AlignSelf::autoAlign, 1));
+	_instrumentsGroup.addItem(GuiFactory::createFlexItem(_drumsLabel, 50, 25, FlexItem::AlignSelf::autoAlign, 1));
 	addFlexItem(_instrumentsGroup, 300, 100);
 
 	_bpmSlider.setRange(70, 200);

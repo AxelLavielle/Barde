@@ -67,3 +67,30 @@ FlexItem GuiFactory::createFlexItem(Component & component, const float maxWidth,
 	flexItem.flexGrow = flexGrow;
 	return std::move(flexItem);
 }
+
+void GuiFactory::initBigTitle(const std::string & text, SimpleLabel & label)
+{
+	label.setLabelText(text);
+	label.setFontSize(BIG_TITLE_SIZE);
+
+	//TO DO manage theme color
+	label.setColour(Label::textColourId, Colours::black);
+}
+
+void GuiFactory::initMediumTitle(const std::string & text, SimpleLabel & label)
+{
+	label.setLabelText(text);
+	label.setFontSize(MEDIUM_TITLE_SIZE);
+
+	//TO DO manage theme color
+	label.setColour(Label::textColourId, Colours::black);
+}
+
+void GuiFactory::initLittleTitle(const std::string & text, SimpleLabel & label)
+{
+	label.setLabelText(text);
+	label.setFontSize(LITTLE_TITLE_SIZE);
+
+	//TO DO manage theme color
+	label.setColour(Label::textColourId, Colours::black);
+}

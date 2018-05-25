@@ -27,3 +27,8 @@ void SimpleLabel::setLabelText(const std::string & text)
 {
 	setText(text, NotificationType::dontSendNotification);
 }
+
+Font SimpleLabel::getFont() const
+{
+	return _font;
+}

@@ -18,6 +18,8 @@ public:
 	SimpleLabel();
 	void setFontSize(const float size);
 	void setLabelText(const std::string & text);
+	Font getFont() const;
+
 
 private:
 	Font	_font;

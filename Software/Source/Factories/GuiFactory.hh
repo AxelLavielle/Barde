@@ -10,7 +10,11 @@
 
 #pragma once
 
-#include "../JuceHeader.h"
+#include "../GraphManager/SimpleLabel.hh"
+
+#define BIG_TITLE_SIZE	50
+#define MEDIUM_TITLE_SIZE	30
+#define LITTLE_TITLE_SIZE	20
 
 class GuiFactory
 {
@@ -28,4 +32,7 @@ public:
 	static FlexItem createFlexItem(Component & component, const float maxWidth, const float maxHeight,
 										const float minWidth, const float minHeight,
 										const FlexItem::AlignSelf & alignSelf = FlexItem::AlignSelf::autoAlign, const float flexGrow = 0.f);
+	static void initBigTitle(const std::string & text, SimpleLabel & label);
+	static void initMediumTitle(const std::string & text, SimpleLabel & label);
+	static void initLittleTitle(const std::string & text, SimpleLabel & label);
 };
