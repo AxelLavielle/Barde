@@ -15,6 +15,8 @@
 #include "../MusicParameters.hh"
 #include "../Instrument.hh"
 #include "AComponent.hh"
+#include "PlayerFooter.hh"
+#include "CenterPanel.hh"
 
 #ifndef  LOGO_WIDTH
 #define LOGO_WIDTH 1024 / 4
@@ -34,7 +36,7 @@
 * The class is containing all the component needed for the client
 */
 
-class MainContentComponent : public AComponent, private SliderListener, private Button::Listener
+class MainContentComponent : public AComponent, private Slider::Listener, private Button::Listener
 {
 public:
     //==============================================================================
@@ -71,7 +73,11 @@ public:
 	void sliderValueChanged(Slider *slider) override;
 
 private:
-    //==============================================================================
+    //=============================================================================
+	MusicParameters			_musicParameters;
+	PlayerFooter			_playerFooter;
+	CenterPanel				_centerPanel;
+
 
 	Theme					_currentTheme; /*!< Theme defining the colors of the elements*/
 	//UserSettings			_us;
@@ -82,7 +88,7 @@ private:
 
 	OwnedArray<ToggleButton> _arpegesList;
 	OwnedArray<ToggleButton> _chordsList;
-	StringArray				_instrusChoice;
+	StringArray				_instrusChoice;	
 	//ListBox					_arpegesList;
 	//ListBox					_chordsList;
 
@@ -90,11 +96,9 @@ private:
 	MusicStyleButton		*_params;  /*!< button for generating blues THIS IS FOR TEST !!!! */
 
 	Player					_player; /*!< player >*/
-	MusicParameters			_musicParameters;
 	ToggleButton			*_drumsButton;
 
 	void initArpegeList();
-	void initMusicParameters();
 	void initChordsList();
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)

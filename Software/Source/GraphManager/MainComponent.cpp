@@ -10,102 +10,110 @@
 #include "Theme.h"
 
 //==============================================================================
-MainContentComponent::MainContentComponent()
+
+MainContentComponent::MainContentComponent() : _playerFooter(_player, _musicParameters), _centerPanel(_musicParameters)
 {
-	int rectX;
-	int rectY;
-	
-
-	//TO DO CHANGE THIS
-	_instrusChoice = { "ACOUSTICGRANDPIANO", "LOWCONGA", "MARACAS" };
-
-
-
 	setSize(getParentWidth(), getParentHeight() - 10);
-	_currentTheme = parseTheme("../Themes/Dark");
-
-	addAndMakeVisible(_blues = new MusicStyleButton("Generate some blues", 400, 50, _currentTheme));
-	addAndMakeVisible(_params = new MusicStyleButton("User params (TEST)", 400, 50, _currentTheme));
-
-	rectX = (600 / 2) - (400 / 2);
-	rectY = (400 / 15) + (LOGO_WIDTH) + 100;
-
-	_blues->setBounds(rectX, rectY, 400, 50);
-	_params->setBounds(rectX + 100, rectY + 100, 600, 100);
-	_blues->addListener(this);
-	_params->addListener(this);
-
-	addAndMakeVisible(_frequencySlider);
-	_frequencySlider.setRange(20, 200, 1);
-	_frequencySlider.setValue(105);
-	_frequencySlider.setTextValueSuffix(" BPM");
-	addAndMakeVisible(_frequencyLabel);
-	_frequencySlider.addListener(this);
-	_frequencySlider.setName("BPM");
-	_frequencyLabel.setText("BPM :", dontSendNotification);
-	_frequencyLabel.attachToComponent(&_frequencySlider, true);
+	addAndMakeVisible(_playerFooter);
+	addAndMakeVisible(_centerPanel);
 
 
-	_drumsButton = new ToggleButton("Drums");
-	_drumsButton->setName("Drums");
-	_drumsButton->addListener(this);
-	_drumsButton->setBounds(10, 50, 600, 600);
-	addAndMakeVisible(_drumsButton);
 
 
-	initArpegeList();
-	initChordsList();
 
-	initMusicParameters();
+	//int rectX;
+	//int rectY;
+	//
+
+	////TO DO CHANGE THIS
+	//_instrusChoice = { "ACOUSTICGRANDPIANO", "LOWCONGA", "MARACAS" };
+
+
+
+	//_currentTheme = parseTheme("../Themes/Dark");
+
+	//addAndMakeVisible(_blues = new MusicStyleButton("Generate some blues", 400, 50, _currentTheme));
+	//addAndMakeVisible(_params = new MusicStyleButton("User params (TEST)", 400, 50, _currentTheme));
+
+	//rectX = (600 / 2) - (400 / 2);
+	//rectY = (400 / 15) + (LOGO_WIDTH) + 100;
+
+	//_blues->setBounds(rectX, rectY, 400, 50);
+	//_params->setBounds(rectX + 100, rectY + 100, 600, 100);
+	//_blues->addListener(this);
+	//_params->addListener(this);
+
+	//addAndMakeVisible(_frequencySlider);
+	//_frequencySlider.setRange(20, 200, 1);
+	//_frequencySlider.setValue(105);
+	//_frequencySlider.setTextValueSuffix(" BPM");
+	//addAndMakeVisible(_frequencyLabel);
+	//_frequencySlider.addListener(this);
+	//_frequencySlider.setName("BPM");
+	//_frequencyLabel.setText("BPM :", dontSendNotification);
+	//_frequencyLabel.attachToComponent(&_frequencySlider, true);
+
+
+	//_drumsButton = new ToggleButton("Drums");
+	//_drumsButton->setName("Drums");
+	//_drumsButton->addListener(this);
+	//_drumsButton->setBounds(10, 50, 600, 600);
+	//addAndMakeVisible(_drumsButton);
+
+
+	//initArpegeList();
+	//initChordsList();
 
 	_player.Init();
 }
 
 MainContentComponent::~MainContentComponent()
 {
-	delete _blues;
-	delete _params;
+	//delete _blues;
+	//delete _params;
 	//deleteAllChildren();
 }
 
 void MainContentComponent::paint (Graphics& g)
 {
-  int imgX;
-  int imgY;
-  int imgH;
-  int imgW;
-  int rectX;
-  int rectY;
+	//_playerFooter.paint(g);
+ // int imgX;
+ // int imgY;
+ // int imgH;
+ // int imgW;
+ // int rectX;
+ // int rectY;
 
-  imgH = (LOGO_HEIGHT);
-  imgW = (LOGO_WIDTH);
+ // imgH = (LOGO_HEIGHT);
+ // imgW = (LOGO_WIDTH);
 
-  imgX = (getWidth() / 2) - (imgW / 2);
-  imgY = (getHeight() / 15);
-  rectX = (getWidth() / 2) - (400 / 2);
-  rectY = (getHeight() / 15) + (LOGO_HEIGHT) + 50;
+ // imgX = (getWidth() / 2) - (imgW / 2);
+ // imgY = (getHeight() / 15);
+ // rectX = (getWidth() / 2) - (400 / 2);
+ // rectY = (getHeight() / 15) + (LOGO_HEIGHT) + 50;
 
-	g.setColour (Colours::white);
-    Image logo = ImageCache::getFromMemory (BinaryData::logo_png,    
-					      BinaryData::logo_pngSize);
-	g.fillAll(Colour(_currentTheme.getBackgroundColor()));
-    g.drawImage(logo, imgX, imgY, (int) imgW, (int) imgH, 0, 0, 1024, 927, false);
+	//g.setColour (Colours::white);
+ //   Image logo = ImageCache::getFromMemory (BinaryData::logo_png,    
+	//				      BinaryData::logo_pngSize);
+	//g.fillAll(Colour(_currentTheme.getBackgroundColor()));
+	//g.fillAll(Colours::white);
+ //   g.drawImage(logo, imgX, imgY, (int) imgW, (int) imgH, 0, 0, 1024, 927, false);
 
-	_blues->setBounds(rectX, rectY, 400, 50);
-	_params->setBounds(rectX, rectY + 70, 600, 100);
+	//_blues->setBounds(rectX, rectY, 400, 50);
+	//_params->setBounds(rectX, rectY + 70, 600, 100);
 
-	
-	_frequencyLabel.setColour(Label::textColourId, Colour(_currentTheme.getFontColor()));
-	_frequencySlider.setColour(Slider::backgroundColourId, Colour(_currentTheme.getFontColor()));
-	_frequencySlider.setColour(Slider::thumbColourId, Colours::pink);
-	_frequencySlider.setColour(Slider::trackColourId, Colour(_currentTheme.getButtonColor()));
-	_frequencySlider.setColour(Slider::textBoxBackgroundColourId, Colour(_currentTheme.getBackgroundColor()));
-	_frequencySlider.setColour(Slider::textBoxTextColourId, Colour(_currentTheme.getFontColor()));
+	//
+	//_frequencyLabel.setColour(Label::textColourId, Colour(_currentTheme.getFontColor()));
+	//_frequencySlider.setColour(Slider::backgroundColourId, Colour(_currentTheme.getFontColor()));
+	//_frequencySlider.setColour(Slider::thumbColourId, Colours::pink);
+	//_frequencySlider.setColour(Slider::trackColourId, Colour(_currentTheme.getButtonColor()));
+	//_frequencySlider.setColour(Slider::textBoxBackgroundColourId, Colour(_currentTheme.getBackgroundColor()));
+	//_frequencySlider.setColour(Slider::textBoxTextColourId, Colour(_currentTheme.getFontColor()));
 
 
-	_drumsButton->setColour(ToggleButton::textColourId, Colour(_currentTheme.getFontColor()));
-	_drumsButton->setColour(ToggleButton::tickColourId, Colour(_currentTheme.getFontColor()));
-	_drumsButton->setColour(ToggleButton::tickDisabledColourId, Colour(_currentTheme.getFontColor()));
+	//_drumsButton->setColour(ToggleButton::textColourId, Colour(_currentTheme.getFontColor()));
+	//_drumsButton->setColour(ToggleButton::tickColourId, Colour(_currentTheme.getFontColor()));
+	//_drumsButton->setColour(ToggleButton::tickDisabledColourId, Colour(_currentTheme.getFontColor()));
 }
 
 void MainContentComponent::sliderValueChanged(Slider *slider)
@@ -153,22 +161,22 @@ void MainContentComponent::initChordsList()
 	}
 }
 
-
-
-void MainContentComponent::initMusicParameters()
-{
-	_musicParameters.setBpm(105);
-}
-
 void MainContentComponent::resized()
 {
-    // This is called when the MainContentComponent is resized.
-    // If you add any child components, this is where you should
-    // update their positions.
+	//const int sliderLeft = 120;
+	////	int w = (getWidth() / 2) - 150;
+	//_frequencySlider.setBounds(sliderLeft, getHeight() - 300, getWidth() - sliderLeft - 10, 20);
 
-	const int sliderLeft = 120;
-	//	int w = (getWidth() / 2) - 150;
-	_frequencySlider.setBounds(sliderLeft, getHeight() - 300, getWidth() - sliderLeft - 10, 20);
+	//Need to have a grid with footer, left panel and middle content
+	Grid grid;
+
+	using Track = Grid::TrackInfo;
+
+	grid.templateRows = { Track(8_fr), Track(1_fr) }; //Add 2 rows in the grid
+	grid.templateColumns = { Track(1_fr) }; //Add 1 column in the grid
+	grid.items = { GridItem(_centerPanel), GridItem(_playerFooter) }; //Add the two components in the grid
+
+	grid.performLayout(getLocalBounds());
 }
 
 
@@ -181,7 +189,6 @@ void MainContentComponent::buttonClicked(Button* button)
 	else if (button == _blues)
 	{
 		_player.newParams(_musicParameters);
-		_player.Play(_musicParameters);
 	}
 
 	else if (button->getName() == "Arpeges")

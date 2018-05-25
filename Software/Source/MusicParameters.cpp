@@ -12,6 +12,7 @@
 
 MusicParameters::MusicParameters()
 {
+	_bpm = 105;
 }
 
 

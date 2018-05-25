@@ -11,6 +11,7 @@
 #pragma once
 
 #include <functional>
+#include <map>
 #include "../JuceLibraryCode/JuceHeader.h"
 
 class AComponent : public Component

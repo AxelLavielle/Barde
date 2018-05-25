@@ -60,8 +60,8 @@ void MainWindow::changeViewCallback(std::string viewName)
 	}
 	else if (viewName == "UserParams")
 	{
-		clearContentComponent();
-		setContentNonOwned(_userParamsComponent, true);
+		//clearContentComponent();
+		//setContentNonOwned(_userParamsComponent, true);
 	}
 	else if (viewName == "Login")
 	{
