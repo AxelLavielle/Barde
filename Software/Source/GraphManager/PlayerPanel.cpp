@@ -18,35 +18,27 @@ PlayerPanel::PlayerPanel(MusicParameters & musicParameters) : _musicParameters(m
 	_bpmLabel.setFontSize(13);
 	_bpmLabel.setLabelText("Bpm : " + std::to_string(_musicParameters.getBpm()));
 	_bpmLabel.setColour(Label::textColourId, Colours::black);
-
 	GuiFactory::initBigTitle("Edit your music", _titleLabel);
 	addFlexItem(_titleLabel, GuiFactory::getBoxLabelWidth(_titleLabel), GuiFactory::getBoxLabelHeight(_titleLabel));
-
 	GuiFactory::initLittleTitle("Choice your style", _styleLabel);
 	addFlexItem(_styleLabel, GuiFactory::getBoxLabelWidth(_styleLabel), GuiFactory::getBoxLabelHeight(_styleLabel));
-
 	GuiFactory::initLittleTitle("Chords instruments", _chordsLabel);
-
 	GuiFactory::initLittleTitle("Arpegios instruments", _arpegiosLabel);
-
 	GuiFactory::initLittleTitle("Drums instruments", _drumsLabel);
 
 	initInstrumentsGroup();
 
 	initInstrumentsButtons(_arpegiosInstrumentButtons, "Arpegios");
 	initInstrumentsButtons(_chordInstrumentButtons, "Chords");
+	GuiFactory::initToggleButton("Enable drums", "Drums", _drumsInstrumentButton);
+	_drumsInstrumentButton.addListener(this);
 
 	_bpmSlider.setRange(70, 200);
 	_bpmSlider.setValue(_musicParameters.getBpm());
 	_bpmSlider.setTextBoxStyle(Slider::TextEntryBoxPosition::NoTextBox, true, 0, 0);
 	_bpmSlider.addListener(this);
-
-	_bpmGroup.setAlignContent(FlexBox::AlignContent::stretch);
-	_bpmGroup.setJustifyContent(FlexBox::JustifyContent::center);
-	_bpmGroup.setAlignItems(FlexBox::AlignItems::stretch);
-	_bpmGroup.setFlexDirection(FlexBox::Direction::row);
-	_bpmGroup.addItem(GuiFactory::createFlexItem(_bpmSlider, 300, 30, FlexItem::AlignSelf::autoAlign, 1));
-	_bpmGroup.addItem(GuiFactory::createFlexItem(_bpmLabel, GuiFactory::getBoxLabelWidth(_bpmLabel), GuiFactory::getBoxLabelHeight(_bpmLabel)));
+	GuiFactory::initHoryzontalFlexGroup( { GuiFactory::createFlexItem(_bpmSlider, 300, 30, FlexItem::AlignSelf::autoAlign, 1),
+											GuiFactory::createFlexItem(_bpmLabel, 100, GuiFactory::getBoxLabelHeight(_bpmLabel)) }, _bpmGroup );
 	addFlexItem(_bpmGroup, 400, 30);
 
 	_flexBox = GuiFactory::createFlexBox(FlexBox::JustifyContent::spaceAround, FlexBox::AlignContent::stretch, FlexBox::AlignItems::stretch, FlexBox::Direction::column, _items);
@@ -74,33 +66,15 @@ void PlayerPanel::initInstrumentsButtons(ToggleButton buttons[], const std::stri
 
 void PlayerPanel::initInstrumentsGroup()
 {
-	_instrumentsGroup.setAlignContent(FlexBox::AlignContent::stretch);
-	_instrumentsGroup.setJustifyContent(FlexBox::JustifyContent::center);
-	_instrumentsGroup.setAlignItems(FlexBox::AlignItems::stretch);
-	_instrumentsGroup.setFlexDirection(FlexBox::Direction::row);
 
-	_chordsGroup.setAlignContent(FlexBox::AlignContent::stretch);
-	_chordsGroup.setJustifyContent(FlexBox::JustifyContent::center);
-	_chordsGroup.setAlignItems(FlexBox::AlignItems::stretch);
-	_chordsGroup.setFlexDirection(FlexBox::Direction::column);
-	_chordsGroup.addItem(GuiFactory::createFlexItem(_chordsLabel, GuiFactory::getBoxLabelWidth(_chordsLabel), GuiFactory::getBoxLabelHeight(_chordsLabel), FlexItem::AlignSelf::autoAlign, 1));
+	GuiFactory::initVerticalFlexGroup( { GuiFactory::createFlexItem(_chordsLabel, GuiFactory::getBoxLabelWidth(_chordsLabel), GuiFactory::getBoxLabelHeight(_chordsLabel), FlexItem::AlignSelf::autoAlign, 1) }, _chordsGroup);
 
-	_arpegiosGroup.setAlignContent(FlexBox::AlignContent::stretch);
-	_arpegiosGroup.setJustifyContent(FlexBox::JustifyContent::center);
-	_arpegiosGroup.setAlignItems(FlexBox::AlignItems::stretch);
-	_arpegiosGroup.setFlexDirection(FlexBox::Direction::column);
-	_arpegiosGroup.addItem(GuiFactory::createFlexItem(_arpegiosLabel, GuiFactory::getBoxLabelWidth(_arpegiosLabel), GuiFactory::getBoxLabelHeight(_arpegiosLabel), FlexItem::AlignSelf::autoAlign, 1));
+	GuiFactory::initVerticalFlexGroup( { GuiFactory::createFlexItem(_arpegiosLabel, GuiFactory::getBoxLabelWidth(_arpegiosLabel), GuiFactory::getBoxLabelHeight(_arpegiosLabel), FlexItem::AlignSelf::autoAlign, 1) } , _arpegiosGroup);
 
-	_drumsGroup.setAlignContent(FlexBox::AlignContent::stretch);
-	_drumsGroup.setJustifyContent(FlexBox::JustifyContent::center);
-	_drumsGroup.setAlignItems(FlexBox::AlignItems::stretch);
-	_drumsGroup.setFlexDirection(FlexBox::Direction::column);
-	_drumsGroup.addItem(GuiFactory::createFlexItem(_drumsLabel, GuiFactory::getBoxLabelWidth(_drumsLabel), GuiFactory::getBoxLabelHeight(_drumsLabel), FlexItem::AlignSelf::autoAlign, 1));
+	GuiFactory::initVerticalFlexGroup( { GuiFactory::createFlexItem(_drumsLabel, GuiFactory::getBoxLabelWidth(_drumsLabel), GuiFactory::getBoxLabelHeight(_drumsLabel), FlexItem::AlignSelf::autoAlign, 1) } , _drumsGroup);
 
-
-	_instrumentsGroup.addItem(GuiFactory::createFlexItem(_chordsGroup, GuiFactory::getBoxLabelWidth(_chordsLabel), 100, FlexItem::AlignSelf::autoAlign, 1));
-	_instrumentsGroup.addItem(GuiFactory::createFlexItem(_arpegiosGroup, GuiFactory::getBoxLabelWidth(_chordsLabel), 100, FlexItem::AlignSelf::autoAlign, 1));
-	_instrumentsGroup.addItem(GuiFactory::createFlexItem(_drumsGroup, GuiFactory::getBoxLabelWidth(_chordsLabel), 100, FlexItem::AlignSelf::autoAlign, 1));
+	GuiFactory::initHoryzontalFlexGroup( { GuiFactory::createFlexItem(_chordsGroup, GuiFactory::getBoxLabelWidth(_chordsLabel), 100, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_arpegiosGroup, GuiFactory::getBoxLabelWidth(_chordsLabel), 100, FlexItem::AlignSelf::autoAlign, 1),
+											GuiFactory::createFlexItem(_drumsGroup, GuiFactory::getBoxLabelWidth(_chordsLabel), 100, FlexItem::AlignSelf::autoAlign, 1) } , _instrumentsGroup);
 
 	addFlexItem(_instrumentsGroup, 300, 100);
 }
@@ -125,10 +99,8 @@ void PlayerPanel::buttonClicked(Button * button)
 {
 		if (button->getName() == "Arpegios")
 		{
-			std::cout << "Arpeges: " << button->getButtonText() << " " << button->getToggleState() << std::endl;
 			Instrument instru;
 
-			//TODO Set Instrument
 			instru.name = button->getButtonText().toStdString();
 			instru.nb = instrumentList.at(instru.name);
 			instru.channel = instru.nb;  //This is bad but i don't know how to fix
@@ -141,10 +113,8 @@ void PlayerPanel::buttonClicked(Button * button)
 
 		else if (button->getName() == "Chords")
 		{
-			std::cout << "Chords: " << button->getButtonText() << " " << button->getToggleState() << std::endl;
 			Instrument instru;
 
-			//TODO CHECK THIS 
 			instru.name = button->getButtonText().toStdString();
 			instru.nb = instrumentList.at(instru.name);
 			instru.channel = instru.nb; //This is bad but i don't know how to fix
@@ -155,9 +125,9 @@ void PlayerPanel::buttonClicked(Button * button)
 				_musicParameters.delInstrumentChords(instru);
 
 		}
-		//else if (button->getName() == "Drums")
-		//{
-		//	_musicParameters.setInstrumentDrums(button->getToggleState());
-		//}
+		else if (button->getName() == "Drums")
+		{
+			_musicParameters.setInstrumentDrums(button->getToggleState());
+		}
 }
 

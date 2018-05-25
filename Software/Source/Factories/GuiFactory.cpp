@@ -120,3 +120,41 @@ void GuiFactory::initToggleButton(const std::string & text, const std::string & 
 	button.setColour(ToggleButton::tickColourId, Colours::black);
 	button.setColour(ToggleButton::tickDisabledColourId, Colours::black);
 }
+
+void GuiFactory::initFlexGroup(const FlexBox::JustifyContent & justifyContent, const FlexBox::AlignContent & alignContent, const FlexBox::AlignItems & alignItems, const FlexBox::Direction & direction, const std::vector<FlexItem>& items, FlexGroup & group)
+{
+	std::vector<FlexItem>::const_iterator	it;
+
+	group.setAlignContent(alignContent);
+	group.setJustifyContent(justifyContent);
+	group.setAlignItems(alignItems);
+	group.setFlexDirection(direction);
+	for (it = items.begin(); it != items.end(); it++)
+		group.addItem(*it);
+}
+
+void GuiFactory::initVerticalFlexGroup(const std::vector<FlexItem>& items, FlexGroup & group)
+{
+	std::vector<FlexItem>::const_iterator	it;
+
+	group.setAlignContent(FlexBox::AlignContent::stretch);
+	group.setJustifyContent(FlexBox::JustifyContent::center);
+	group.setAlignItems(FlexBox::AlignItems::stretch);
+	group.setFlexDirection(FlexBox::Direction::column);
+	for (it = items.begin(); it != items.end(); it++)
+		group.addItem(*it);
+
+}
+
+void GuiFactory::initHoryzontalFlexGroup(const std::vector<FlexItem>& items, FlexGroup & group)
+{
+	std::vector<FlexItem>::const_iterator	it;
+
+	group.setAlignContent(FlexBox::AlignContent::stretch);
+	group.setJustifyContent(FlexBox::JustifyContent::center);
+	group.setAlignItems(FlexBox::AlignItems::stretch);
+	group.setFlexDirection(FlexBox::Direction::row);
+	for (it = items.begin(); it != items.end(); it++)
+		group.addItem(*it);
+
+}

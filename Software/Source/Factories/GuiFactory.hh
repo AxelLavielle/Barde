@@ -11,6 +11,7 @@
 #pragma once
 
 #include "../GraphManager/SimpleLabel.hh"
+#include "../GraphManager/FlexGroup.hh"
 
 #define BIG_TITLE_SIZE	50
 #define MEDIUM_TITLE_SIZE	30
@@ -44,4 +45,12 @@ public:
 	static float getBoxLabelWidth(const SimpleLabel & label);
 
 	static void initToggleButton(const std::string & text, const std::string & name, ToggleButton & button);
+
+	static void initFlexGroup(const FlexBox::JustifyContent & justifyContent, const FlexBox::AlignContent & alignContent,
+									const FlexBox::AlignItems & alignItems, const FlexBox::Direction & direction,
+									const std::vector<FlexItem> & items,
+									FlexGroup & group);
+	static void initVerticalFlexGroup(const std::vector<FlexItem>& items, FlexGroup & group);
+	static void initHoryzontalFlexGroup(const std::vector<FlexItem> & items,
+											FlexGroup & group);
 };

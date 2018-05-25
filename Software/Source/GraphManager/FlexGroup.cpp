@@ -32,7 +32,7 @@ void FlexGroup::resized()
 	_flexBox.performLayout(getLocalBounds().toFloat());
 }
 
-void FlexGroup::addItem(FlexItem & item)
+void FlexGroup::addItem(const FlexItem & item)
 {
 	addAndMakeVisible(item.associatedComponent);
 	_flexBox.items.add(item);
