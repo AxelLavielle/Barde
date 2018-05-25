@@ -68,6 +68,7 @@ void PlayerFooter::buttonClicked(Button * button)
 {
 	if (button == _playButton)
 	{
+		std::cout << "Instrument Arpegios 111 == " << _musicParameters.getInstrumentsArpeggios().size() << std::endl;
 		_player.newParams(_musicParameters);
 	}
 	else if (button == _stopButton)
