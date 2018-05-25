@@ -18,6 +18,7 @@ Player::Player()
 
 Player::~Player()
 {
+	_cond.notify();
 	_stopQueue = true;
 	_genThread.join();
 	_playThread.join();

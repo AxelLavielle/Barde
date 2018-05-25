@@ -63,7 +63,7 @@ void SoundManager::launch(std::vector<std::pair<Midi, int> > &_gen2playQ, std::m
 		if (b)
 			play(m, bpm, stop);
 		else
-			Tools::sleep(1100);
+			Tools::sleep(100);
 		if (_stop)
 		{
 			cond.wait();
