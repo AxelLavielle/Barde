@@ -94,3 +94,29 @@ void GuiFactory::initLittleTitle(const std::string & text, SimpleLabel & label)
 	//TO DO manage theme color
 	label.setColour(Label::textColourId, Colours::black);
 }
+
+float GuiFactory::getBoxLabelHeight(const SimpleLabel & label)
+{
+	float fontSize;
+
+	fontSize = label.getFontSize();
+	return fontSize + LABEL_HEIGHT_PADDING;
+}
+
+float GuiFactory::getBoxLabelWidth(const SimpleLabel & label)
+{
+	float fontSize;
+
+	fontSize = label.getTextWidth();
+	return fontSize + LABEL_WIDTH_PADDING;
+}
+
+void GuiFactory::initToggleButton(const std::string & text, const std::string & name, ToggleButton & button)
+{
+	button.setButtonText(text);
+	button.setName(name);
+	//TO DO manage Theme Color
+	button.setColour(ToggleButton::textColourId, Colours::black);
+	button.setColour(ToggleButton::tickColourId, Colours::black);
+	button.setColour(ToggleButton::tickDisabledColourId, Colours::black);
+}

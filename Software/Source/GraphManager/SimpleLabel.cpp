@@ -13,19 +13,30 @@
 SimpleLabel::SimpleLabel()
 {
 	_font.setTypefaceStyle("plain");
-	_font.setSizeAndStyle(10, _font.getTypefaceStyle(), 0.8, 0.5);
+	_font.setSizeAndStyle(10, _font.getTypefaceStyle(), 1, 0.3);
 	setFont(_font);
 }
 
 void SimpleLabel::setFontSize(const float size)
 {
-	_font.setSizeAndStyle(size, _font.getTypefaceStyle(), 0.8, 0.5);
+	_fontSize = size;
+	_font.setSizeAndStyle(size, _font.getTypefaceStyle(), 1, 0.3);
 	setFont(_font);
 }
 
 void SimpleLabel::setLabelText(const std::string & text)
 {
 	setText(text, NotificationType::dontSendNotification);
+}
+
+float SimpleLabel::getFontSize() const
+{
+	return _fontSize;
+}
+
+float SimpleLabel::getTextWidth() const
+{
+	return getText().length() * 0.3;
 }
 
 Font SimpleLabel::getFont() const
