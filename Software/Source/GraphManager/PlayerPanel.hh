@@ -36,6 +36,7 @@ private:
 	SimpleLabel				_titleLabel;
 	SimpleLabel				_bpmLabel;
 	FlexGroup				_bpmGroup;
+	SimpleLabel				_bpmTitleLabel;
 
 	FlexGroup				_instrumentsGroup;
 

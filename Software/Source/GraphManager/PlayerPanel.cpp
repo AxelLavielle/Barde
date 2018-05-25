@@ -39,6 +39,8 @@ PlayerPanel::PlayerPanel(MusicParameters & musicParameters) : _musicParameters(m
 	GuiFactory::initToggleButton("Enable drums", "Drums", _drumsInstrumentButton, true);
 	_drumsInstrumentButton.addListener(this);
 
+	GuiFactory::initLittleTitle("Modify the BPM", _bpmTitleLabel);
+	addFlexItem(_bpmTitleLabel, GuiFactory::getBoxLabelWidth(_bpmTitleLabel), GuiFactory::getBoxLabelHeight(_bpmTitleLabel));
 	_bpmSlider.setRange(70, 200);
 	_bpmSlider.setValue(_musicParameters.getBpm());
 	_bpmSlider.setTextBoxStyle(Slider::TextEntryBoxPosition::NoTextBox, true, 0, 0);
