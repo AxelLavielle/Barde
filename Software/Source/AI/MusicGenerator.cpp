@@ -128,8 +128,6 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 {
   MidiManager	_midiManager;
 
-  std::cout << "Instrument Arpegios == " << parameters.getInstrumentsArpeggios().size() << std::endl;
-
   /* DRUMS */
 
   /*
