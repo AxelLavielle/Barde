@@ -33,6 +33,7 @@ public:
 	
 	static FlexItem createFlexItem(Component & component, const float minWidth = 0.f, const float minHeight = 0.f,
 										const FlexItem::AlignSelf & alignSelf = FlexItem::AlignSelf::autoAlign, const float flexGrow = 0.f);
+	static FlexItem createFlexItemLabel(SimpleLabel & label, const FlexItem::AlignSelf & alignSelf = FlexItem::AlignSelf::autoAlign, const float flexGrow = 0.f);
 	static FlexItem createFlexItem(Component & component, const float maxWidth, const float maxHeight,
 										const float minWidth, const float minHeight,
 										const FlexItem::AlignSelf & alignSelf = FlexItem::AlignSelf::autoAlign, const float flexGrow = 0.f);
@@ -44,7 +45,7 @@ public:
 	static float getBoxLabelHeight(const SimpleLabel & label);
 	static float getBoxLabelWidth(const SimpleLabel & label);
 
-	static void initToggleButton(const std::string & text, const std::string & name, ToggleButton & button);
+	static void initToggleButton(const std::string & text, const std::string & name, ToggleButton & button, const bool state = false);
 
 	static void initFlexGroup(const FlexBox::JustifyContent & justifyContent, const FlexBox::AlignContent & alignContent,
 									const FlexBox::AlignItems & alignItems, const FlexBox::Direction & direction,

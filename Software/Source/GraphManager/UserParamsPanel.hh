@@ -10,9 +10,9 @@
 
 #pragma once
 
-#include "AComponent.hh"
+#include "../ViewManager/AView.hh"
 
-class UserParamsPanel : public AComponent
+class UserParamsPanel : public AView
 {
 public:
 

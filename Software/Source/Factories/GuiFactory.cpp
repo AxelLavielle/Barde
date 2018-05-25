@@ -55,6 +55,17 @@ FlexItem GuiFactory::createFlexItem(Component & component, const float minWidth,
 	return std::move(flexItem);
 }
 
+FlexItem GuiFactory::createFlexItemLabel(SimpleLabel & label, const FlexItem::AlignSelf & alignSelf, const float flexGrow)
+{
+	FlexItem flexItem(label);
+
+	flexItem.minWidth = GuiFactory::getBoxLabelWidth(label);
+	flexItem.minHeight = GuiFactory::getBoxLabelHeight(label);
+	flexItem.alignSelf = alignSelf;
+	flexItem.flexGrow = flexGrow;
+	return std::move(flexItem);
+}
+
 FlexItem GuiFactory::createFlexItem(Component & component, const float maxWidth, const float maxHeight, const float minWidth, const float minHeight, const FlexItem::AlignSelf & alignSelf, const float flexGrow)
 {
 	FlexItem flexItem(component);
@@ -111,7 +122,7 @@ float GuiFactory::getBoxLabelWidth(const SimpleLabel & label)
 	return fontSize + LABEL_WIDTH_PADDING;
 }
 
-void GuiFactory::initToggleButton(const std::string & text, const std::string & name, ToggleButton & button)
+void GuiFactory::initToggleButton(const std::string & text, const std::string & name, ToggleButton & button, const bool state)
 {
 	button.setButtonText(text);
 	button.setName(name);
@@ -119,6 +130,7 @@ void GuiFactory::initToggleButton(const std::string & text, const std::string & 
 	button.setColour(ToggleButton::textColourId, Colours::black);
 	button.setColour(ToggleButton::tickColourId, Colours::black);
 	button.setColour(ToggleButton::tickDisabledColourId, Colours::black);
+	button.setToggleState(state, NotificationType::dontSendNotification);
 }
 
 void GuiFactory::initFlexGroup(const FlexBox::JustifyContent & justifyContent, const FlexBox::AlignContent & alignContent, const FlexBox::AlignItems & alignItems, const FlexBox::Direction & direction, const std::vector<FlexItem>& items, FlexGroup & group)

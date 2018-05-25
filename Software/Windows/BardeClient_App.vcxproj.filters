@@ -412,6 +412,9 @@
     <ClCompile Include="..\Source\ViewManager\AView.cpp">
       <Filter>BardeClient\Source\ViewManager</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\ViewManager\FlexView.cpp">
+      <Filter>BardeClient\Source\ViewManager</Filter>
+    </ClCompile>
     <ClCompile Include="..\Source\ViewManager\HomePage.cpp">
       <Filter>BardeClient\Source\ViewManager</Filter>
     </ClCompile>
@@ -477,6 +480,9 @@
     </ClCompile>
     <ClCompile Include="..\Source\EncryptionManager\SSLManager.cpp">
       <Filter>BardeClient\Source\EncryptionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\GraphManager\ReportPanel.cpp">
+      <Filter>BardeClient\Source\GraphManager</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\GraphManager\SimpleLabel.cpp">
       <Filter>BardeClient\Source\GraphManager</Filter>
@@ -2430,6 +2436,9 @@
     <ClInclude Include="..\Source\ViewManager\AView.hh">
       <Filter>BardeClient\Source\ViewManager</Filter>
     </ClInclude>
+    <ClInclude Include="..\Source\ViewManager\FlexView.hh">
+      <Filter>BardeClient\Source\ViewManager</Filter>
+    </ClInclude>
     <ClInclude Include="..\Source\ViewManager\HomePage.hh">
       <Filter>BardeClient\Source\ViewManager</Filter>
     </ClInclude>
@@ -2507,6 +2516,9 @@
     </ClInclude>
     <ClInclude Include="..\Source\EncryptionManager\SSLManager.hh">
       <Filter>BardeClient\Source\EncryptionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\GraphManager\ReportPanel.hh">
+      <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\GraphManager\SimpleLabel.hh">
       <Filter>BardeClient\Source\GraphManager</Filter>

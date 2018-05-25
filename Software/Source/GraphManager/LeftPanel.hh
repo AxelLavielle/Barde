@@ -10,14 +10,14 @@
 
 #pragma once
 
-#include "AComponent.hh"
+#include "../ViewManager/FlexView.hh"
 #include "../Factories/GuiFactory.hh"
 #include "../User.hh"
 
 #define LOGO_WIDTH 231
 #define LOGO_HEIGHT 256
 
-class LeftPanel : public AComponent, private Button::Listener
+class LeftPanel : public FlexView, private Button::Listener
 {
 public:
 	LeftPanel();
@@ -25,12 +25,11 @@ public:
 
 private:
 	void paint(Graphics & g) override;
-	void resized() override;
 	void buttonClicked(Button * button) override;
 
-	FlexBox				_flexBox;
 	ImageComponent		_logoImage;
 	TextButton			_userButton;
+	TextButton			_reportButton;
 
 	User				_user;
 };
