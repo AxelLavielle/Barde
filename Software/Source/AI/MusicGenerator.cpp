@@ -163,7 +163,6 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   std::pair<char, char> noteA = markovChords[0];
   std::pair<char, char> noteB = std::make_pair(static_cast<char>(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 5) + markovChords[0].first % 8), static_cast<char>(4));
   std::pair<char, char> noteC = std::make_pair(static_cast<char>(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 7) + markovChords[0].first % 8), static_cast<char>(4));
-  std::cout << "##########################BITE " << (int)noteA.first << " " << (int)noteB.first << " " << (int)noteC.first << std::endl;
   if (noteB.first < noteA.first)
     noteB.second++;
   if (noteC.first < noteA.first)
