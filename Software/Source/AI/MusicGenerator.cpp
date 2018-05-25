@@ -120,7 +120,7 @@ void			MusicGenerator::launch(std::vector<MusicParameters> &_graph2genQ, std::ve
 			_gen2playQ.push_back(std::make_pair(m, p.getBpm()));
 		}
 		_gen2playM.unlock();
-		Tools::sleep(100);
+		Tools::sleepActive(1000);
 	}
 }
 
