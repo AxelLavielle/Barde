@@ -11,6 +11,8 @@
 #ifndef TOOLS_HH_INCLUDED
 #define TOOLS_HH_INCLUDED
 
+#include <thread>
+#include <mutex>
 #ifdef __linux__
 #include <unistd.h>
 #else
