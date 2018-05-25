@@ -41,11 +41,16 @@ PlayerFooter::PlayerFooter(Player & player, MusicParameters &musicParameters) : 
 	_musicParameters.setBpm(105);
 	Instrument instru;
 	instru.name = "Piano";
-	instru.nb = ACOUSTICGRANDPIANO;
+	instru.nb = SOPRANOSAX;
 	instru.channel = 1;
 	instru.velocity = 100; //Need change
+	Instrument instru2;
+	instru2.name = "Piano";
+	instru2.nb = ACOUSTICGRANDPIANO;
+	instru2.channel = 2;
+	instru2.velocity = 100; //Need change
 	_musicParameters.addInstrumentArpeggios(instru);
-	_musicParameters.addInstrumentChords(instru);
+	_musicParameters.addInstrumentChords(instru2);
 	_musicParameters.setStyleName("Blues");
 	srand(_musicParameters.getSeed());
 
