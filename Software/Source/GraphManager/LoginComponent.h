@@ -53,7 +53,7 @@ private:
 	Label		_errorText;
 	TextButton	_loginButton;
 	TextButton	_signinButton;
-	Theme		_currentTheme;
+	//static Theme		_currentTheme;
 	ComboBox	_themeChoice;
 	//==============================================================================
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(LoginComponent)

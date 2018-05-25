@@ -95,7 +95,7 @@ void MainContentComponent::paint (Graphics& g)
 	//g.setColour (Colours::white);
  //   Image logo = ImageCache::getFromMemory (BinaryData::logo_png,    
 	//				      BinaryData::logo_pngSize);
-	//g.fillAll(Colour(_currentTheme.getBackgroundColor()));
+	//g.fillAll(Colour(Theme::getInstance().getBackgroundColor()));
 	//g.fillAll(Colours::white);
  //   g.drawImage(logo, imgX, imgY, (int) imgW, (int) imgH, 0, 0, 1024, 927, false);
 
@@ -103,17 +103,17 @@ void MainContentComponent::paint (Graphics& g)
 	//_params->setBounds(rectX, rectY + 70, 600, 100);
 
 	//
-	//_frequencyLabel.setColour(Label::textColourId, Colour(_currentTheme.getFontColor()));
-	//_frequencySlider.setColour(Slider::backgroundColourId, Colour(_currentTheme.getFontColor()));
+	//_frequencyLabel.setColour(Label::textColourId, Colour(Theme::getInstance().getFontColor()));
+	//_frequencySlider.setColour(Slider::backgroundColourId, Colour(Theme::getInstance().getFontColor()));
 	//_frequencySlider.setColour(Slider::thumbColourId, Colours::pink);
-	//_frequencySlider.setColour(Slider::trackColourId, Colour(_currentTheme.getButtonColor()));
-	//_frequencySlider.setColour(Slider::textBoxBackgroundColourId, Colour(_currentTheme.getBackgroundColor()));
-	//_frequencySlider.setColour(Slider::textBoxTextColourId, Colour(_currentTheme.getFontColor()));
+	//_frequencySlider.setColour(Slider::trackColourId, Colour(Theme::getInstance().getButtonColor()));
+	//_frequencySlider.setColour(Slider::textBoxBackgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	//_frequencySlider.setColour(Slider::textBoxTextColourId, Colour(Theme::getInstance().getFontColor()));
 
 
-	//_drumsButton->setColour(ToggleButton::textColourId, Colour(_currentTheme.getFontColor()));
-	//_drumsButton->setColour(ToggleButton::tickColourId, Colour(_currentTheme.getFontColor()));
-	//_drumsButton->setColour(ToggleButton::tickDisabledColourId, Colour(_currentTheme.getFontColor()));
+	//_drumsButton->setColour(ToggleButton::textColourId, Colour(Theme::getInstance().getFontColor()));
+	//_drumsButton->setColour(ToggleButton::tickColourId, Colour(Theme::getInstance().getFontColor()));
+	//_drumsButton->setColour(ToggleButton::tickDisabledColourId, Colour(Theme::getInstance().getFontColor()));
 }
 
 void MainContentComponent::sliderValueChanged(Slider *slider)
@@ -133,11 +133,11 @@ void MainContentComponent::initArpegeList()
 		ToggleButton *btn = new ToggleButton(buttonText);
 		btn->setName("Arpeges");
 		btn->addListener(this);
-		btn->setBounds(10, 100 * i, 100, 100);
+		btn->setBounds(100 * i + 600, 500 + 300, 100, 100);
 		addAndMakeVisible(btn);
-		btn->setColour(ToggleButton::textColourId, Colour(_currentTheme.getFontColor()));
-		btn->setColour(ToggleButton::tickColourId, Colour(_currentTheme.getFontColor()));
-		btn->setColour(ToggleButton::tickDisabledColourId, Colour(_currentTheme.getFontColor()));
+		btn->setColour(ToggleButton::textColourId, Colour(Theme::getInstance().getFontColor()));
+		btn->setColour(ToggleButton::tickColourId, Colour(Theme::getInstance().getFontColor()));
+		btn->setColour(ToggleButton::tickDisabledColourId, Colour(Theme::getInstance().getFontColor()));
 		_arpegesList.add(btn);
 	}
 }
@@ -154,9 +154,9 @@ void MainContentComponent::initChordsList()
 		btn->addListener(this);
 		btn->setBounds(100 * i, 10, 100, 100);
 		addAndMakeVisible(btn);
-		btn->setColour(ToggleButton::textColourId, Colour(_currentTheme.getFontColor()));
-		btn->setColour(ToggleButton::tickColourId, Colour(_currentTheme.getFontColor()));
-		btn->setColour(ToggleButton::tickDisabledColourId, Colour(_currentTheme.getFontColor()));
+		btn->setColour(ToggleButton::textColourId, Colour(Theme::getInstance().getFontColor()));
+		btn->setColour(ToggleButton::tickColourId, Colour(Theme::getInstance().getFontColor()));
+		btn->setColour(ToggleButton::tickDisabledColourId, Colour(Theme::getInstance().getFontColor()));
 		_chordsList.add(btn);
 	}
 }
@@ -198,7 +198,7 @@ void MainContentComponent::buttonClicked(Button* button)
 		//TODO Set Instrument
 		instru.name = button->getButtonText().toStdString();
 		instru.nb = instrumentList.at(instru.name);
-		instru.channel = instru.nb;
+		instru.channel = instru.nb % 16; //NEEDS CHANGE
 		instru.velocity = 100; //Need change
 		if (button->getToggleState())
 			_musicParameters.addInstrumentArpeggios(instru);
@@ -212,8 +212,9 @@ void MainContentComponent::buttonClicked(Button* button)
 		Instrument instru;
 		//TODO CHECK THIS 
 		instru.name = button->getButtonText().toStdString();
+
 		instru.nb = instrumentList.at(instru.name);
-		instru.channel = instru.nb;
+		instru.channel = instru.nb % 16; //NEEDS CHANGE
 		instru.velocity = 100; //Need change
 		if (button->getToggleState())
 			_musicParameters.addInstrumentChords(instru);

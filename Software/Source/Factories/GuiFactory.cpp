@@ -74,7 +74,8 @@ void GuiFactory::initBigTitle(const std::string & text, SimpleLabel & label)
 	label.setFontSize(BIG_TITLE_SIZE);
 
 	//TO DO manage theme color
-	label.setColour(Label::textColourId, Colours::black);
+	//label.setColour(Label::textColourId, Colours::black);
+	label.setColour(Label::textColourId, Colour(Theme::getInstance().getFontColor()));
 }
 
 void GuiFactory::initMediumTitle(const std::string & text, SimpleLabel & label)
@@ -83,7 +84,8 @@ void GuiFactory::initMediumTitle(const std::string & text, SimpleLabel & label)
 	label.setFontSize(MEDIUM_TITLE_SIZE);
 
 	//TO DO manage theme color
-	label.setColour(Label::textColourId, Colours::black);
+	//label.setColour(Label::textColourId, Colours::black);
+	label.setColour(Label::textColourId, Colour(Theme::getInstance().getFontColor()));
 }
 
 void GuiFactory::initLittleTitle(const std::string & text, SimpleLabel & label)
@@ -92,7 +94,8 @@ void GuiFactory::initLittleTitle(const std::string & text, SimpleLabel & label)
 	label.setFontSize(LITTLE_TITLE_SIZE);
 
 	//TO DO manage theme color
-	label.setColour(Label::textColourId, Colours::black);
+	//label.setColour(Label::textColourId, Colours::black);
+	label.setColour(Label::textColourId, Colour(Theme::getInstance().getFontColor()));
 }
 
 float GuiFactory::getBoxLabelHeight(const SimpleLabel & label)
@@ -116,9 +119,12 @@ void GuiFactory::initToggleButton(const std::string & text, const std::string & 
 	button.setButtonText(text);
 	button.setName(name);
 	//TO DO manage Theme Color
-	button.setColour(ToggleButton::textColourId, Colours::black);
-	button.setColour(ToggleButton::tickColourId, Colours::black);
-	button.setColour(ToggleButton::tickDisabledColourId, Colours::black);
+	//button.setColour(ToggleButton::textColourId, Colours::black);
+	//button.setColour(ToggleButton::tickColourId, Colours::black);
+	//button.setColour(ToggleButton::tickDisabledColourId, Colours::black);
+	button.setColour(ToggleButton::textColourId, Colour(Theme::getInstance().getFontColor()));
+	button.setColour(ToggleButton::tickColourId, Colour(Theme::getInstance().getFontColor()));
+	button.setColour(ToggleButton::tickDisabledColourId, Colour(Theme::getInstance().getFontColor()));
 }
 
 void GuiFactory::initFlexGroup(const FlexBox::JustifyContent & justifyContent, const FlexBox::AlignContent & alignContent, const FlexBox::AlignItems & alignItems, const FlexBox::Direction & direction, const std::vector<FlexItem>& items, FlexGroup & group)

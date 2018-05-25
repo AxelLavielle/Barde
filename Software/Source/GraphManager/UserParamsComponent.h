@@ -48,7 +48,6 @@ private:
 	ComboBox			_languageComboBox;
 	Label				_errorText;
 	TextButton			_saveButton;
-	Theme				_currentTheme;
 	User				_user;
 	CmdManager			_cmdManager;
 	BasicButton			_backButton;

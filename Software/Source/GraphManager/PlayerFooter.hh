@@ -37,6 +37,6 @@ private:
 	MusicStyleButton		*_playButton;
 	MusicStyleButton		*_stopButton;
 	Slider					_volumeSlider;
-	Theme					_currentTheme; /*!< Theme defining the colors of the elements*/
+	Theme					*_currentTheme; /*!< Theme defining the colors of the elements*/
 
 };

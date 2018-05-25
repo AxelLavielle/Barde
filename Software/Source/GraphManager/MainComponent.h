@@ -83,11 +83,6 @@ private:
 
 
 
-
-
-
-
-	Theme					_currentTheme; /*!< Theme defining the colors of the elements*/
 	//UserSettings			_us;
 	Slider					_frequencySlider;
 

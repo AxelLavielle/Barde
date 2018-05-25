@@ -12,6 +12,7 @@
 
 #include "../GraphManager/SimpleLabel.hh"
 #include "../GraphManager/FlexGroup.hh"
+#include "../GraphManager/Theme.h"
 
 #define BIG_TITLE_SIZE	50
 #define MEDIUM_TITLE_SIZE	30

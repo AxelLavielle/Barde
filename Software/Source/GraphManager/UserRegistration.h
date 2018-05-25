@@ -54,7 +54,7 @@ private:
 	Label _errorText;
 	TextButton _saveButton;
 	TextButton _cancelButton;
-	Theme _currentTheme;
+	static Theme _currentTheme;
 	User _user;
 	CmdManager &_cmdManager;
 	//ComboBox themeChoice;
