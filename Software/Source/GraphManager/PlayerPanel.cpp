@@ -28,8 +28,11 @@ PlayerPanel::PlayerPanel(MusicParameters & musicParameters) : _musicParameters(m
 	GuiFactory::initLittleTitle("Drums instruments", _drumsLabel);
 
 	GuiFactory::initToggleButton("Blues", "Blues", _bluesButton, true);
+	_bluesButton.addListener(this);
 	GuiFactory::initToggleButton("Reggae (Comming soon !)", "Reggae", _raggaeButton);
+	_raggaeButton.addListener(this);
 	GuiFactory::initToggleButton("House (Coming soon !)", "House", _houseButton);
+	_houseButton.addListener(this);
 	GuiFactory::initHoryzontalFlexGroup({ GuiFactory::createFlexItem(_bluesButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_raggaeButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_houseButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1) }, _styleGroup);
 	addFlexItem(_styleGroup, 300, 100);
 
@@ -127,9 +130,13 @@ void PlayerPanel::buttonClicked(Button * button)
 			instru.channel = instru.nb % 15;  //This is bad but i don't know how to fix
 			instru.velocity = 100; //Need change
 			if (button->getToggleState())
+			{
 				_musicParameters.addInstrumentArpeggios(instru);
+				_arpegiosGroup.refreshExclusiveToggleItems(button->getButtonText().toStdString());
+			}
 			else
 				_musicParameters.delInstrumentArpeggios(instru);
+
 		}
 
 		else if (button->getName() == "Chords")
@@ -141,7 +148,10 @@ void PlayerPanel::buttonClicked(Button * button)
 			instru.channel = instru.nb % 15; //This is bad but i don't know how to fix
 			instru.velocity = 100; //Need change
 			if (button->getToggleState())
+			{
+				_chordsGroup.refreshExclusiveToggleItems(button->getButtonText().toStdString());
 				_musicParameters.addInstrumentChords(instru);
+			}
 			else
 				_musicParameters.delInstrumentChords(instru);
 
@@ -150,20 +160,10 @@ void PlayerPanel::buttonClicked(Button * button)
 		{
 			_musicParameters.setInstrumentDrums(button->getToggleState());
 		}
-		else if (button->getName() == "Blues")
+		else if (button->getName() == "Blues" || button->getName() == "Reggae" || button->getName() == "House")
 		{
-			_raggaeButton.setToggleState(false, NotificationType::dontSendNotification);
-			_houseButton.setToggleState(false, NotificationType::dontSendNotification);
-		}
-		else if (button->getName() == "House")
-		{
-			_bluesButton.setToggleState(false, NotificationType::dontSendNotification);
-			_raggaeButton.setToggleState(false, NotificationType::dontSendNotification);
-		}
-		else if (button->getName() == "Raggea")
-		{
-			_bluesButton.setToggleState(false, NotificationType::dontSendNotification);
-			_houseButton.setToggleState(false, NotificationType::dontSendNotification);
+			if (button->getToggleState())
+				_styleGroup.refreshExclusiveToggleItems(button->getButtonText().toStdString());
 		}
 }
 

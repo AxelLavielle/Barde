@@ -23,6 +23,7 @@ public:
 	void setAlignContent(const FlexBox::AlignContent & alignContent);
 	void setAlignItems(const FlexBox::AlignItems & alignItem);
 	void setFlexDirection(const FlexBox::Direction & direction);
+	void refreshExclusiveToggleItems(const std::string & toggleName);
 
 private:
 	void paint(Graphics & g) override;

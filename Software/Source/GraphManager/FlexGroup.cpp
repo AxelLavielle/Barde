@@ -58,3 +58,16 @@ void FlexGroup::setFlexDirection(const FlexBox::Direction & direction)
 {
 	_flexBox.flexDirection = direction;
 }
+
+void FlexGroup::refreshExclusiveToggleItems(const std::string & toggleName)
+{
+	Array<FlexItem> & items = _flexBox.items;
+
+	for (int i = 0; i < items.size(); i++)
+	{
+		if (std::string((typeid (*items[i].associatedComponent)).name()) == "class juce::ToggleButton" && (dynamic_cast<ToggleButton*>(items[i].associatedComponent))->getButtonText().toStdString() != toggleName)
+		{
+			(dynamic_cast<ToggleButton*>(items[i].associatedComponent))->setToggleState(false, NotificationType::sendNotification);
+		}
+	}
+}
