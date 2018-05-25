@@ -274,7 +274,8 @@
     <VS2015 targetFolder="Windows" externalLibraries="..\LuaLibrary\lua53.lib"
             extraCompilerFlags="-I..\JsoncppLibrary\&#10;-I..\LuaLibrary\include&#10;"
             extraDefs="SOURCEMARKOV=&quot;$(ProjectDir.Replace('\'\,'/'))../Source/markovSource/&quot;"
-            windowsTargetPlatformVersion="8.1" toolset="v140">
+            windowsTargetPlatformVersion="8.1" toolset="v140" smallIcon="YTFWvq"
+            bigIcon="YTFWvq">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
                        isDebug="1" optimisation="1" targetName="BardeClient" postbuildCommand="xcopy /d /y &quot;$(ProjectDir)..\LuaLibrary\lua53.dll&quot; &quot;$(OutDir)&quot;"
