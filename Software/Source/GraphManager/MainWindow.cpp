@@ -33,7 +33,6 @@ MainWindow::MainWindow(const std::string &name) : DocumentWindow(name,
 	_userParamsComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 	_loginComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 	_userRegistration->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
-
 	setContentNonOwned(_mainComponent, true);
 #else
 	//Init all the components

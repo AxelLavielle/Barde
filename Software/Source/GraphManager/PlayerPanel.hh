@@ -15,6 +15,7 @@
 #include "SimpleLabel.hh"
 #include "../Factories/GuiFactory.hh"
 #include "../MusicParameters.hh"
+#include "../GraphManager/Theme.h"
 
 class PlayerPanel : public AComponent, private Slider::Listener, private ToggleButton::Listener
 {

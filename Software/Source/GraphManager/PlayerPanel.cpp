@@ -12,15 +12,16 @@
 
 PlayerPanel::PlayerPanel(MusicParameters & musicParameters) : _musicParameters(musicParameters)
 {
+	Theme::getInstance().parseTheme("../Themes/Dark");
 	//TO DO remove this list after the beta and use full instrumentList from instrument.hh
 	_instrusChoice = { "ACOUSTICGRANDPIANO", "TRUMPET", "SOPRANOSAX" };
 
 	_bpmLabel.setFontSize(13);
 	_bpmLabel.setLabelText("Bpm : " + std::to_string(_musicParameters.getBpm()));
-	_bpmLabel.setColour(Label::textColourId, Colours::black);
+	_bpmLabel.setColour(Label::textColourId, Colour(Theme::getInstance().getFontColor()));
 	GuiFactory::initBigTitle("Edit your music", _titleLabel);
 	addFlexItem(_titleLabel, GuiFactory::getBoxLabelWidth(_titleLabel), GuiFactory::getBoxLabelHeight(_titleLabel));
-	GuiFactory::initLittleTitle("Choice your style", _styleLabel);
+	GuiFactory::initLittleTitle("Choose your style", _styleLabel);
 	addFlexItem(_styleLabel, GuiFactory::getBoxLabelWidth(_styleLabel), GuiFactory::getBoxLabelHeight(_styleLabel));
 	GuiFactory::initLittleTitle("Chords instruments", _chordsLabel);
 	GuiFactory::initLittleTitle("Arpegios instruments", _arpegiosLabel);
@@ -36,6 +37,12 @@ PlayerPanel::PlayerPanel(MusicParameters & musicParameters) : _musicParameters(m
 	_bpmSlider.setRange(70, 200);
 	_bpmSlider.setValue(_musicParameters.getBpm());
 	_bpmSlider.setTextBoxStyle(Slider::TextEntryBoxPosition::NoTextBox, true, 0, 0);
+	_bpmSlider.setColour(Label::textColourId, Colour(Theme::getInstance().getFontColor()));
+	_bpmSlider.setColour(Slider::backgroundColourId, Colour(Theme::getInstance().getFontColor()));
+	_bpmSlider.setColour(Slider::thumbColourId, Colours::pink);
+	_bpmSlider.setColour(Slider::trackColourId, Colour(Theme::getInstance().getButtonColor()));
+	_bpmSlider.setColour(Slider::textBoxBackgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	_bpmSlider.setColour(Slider::textBoxTextColourId, Colour(Theme::getInstance().getFontColor()));
 	_bpmSlider.addListener(this);
 	GuiFactory::initHoryzontalFlexGroup( { GuiFactory::createFlexItem(_bpmSlider, 300, 30, FlexItem::AlignSelf::autoAlign, 1),
 											GuiFactory::createFlexItem(_bpmLabel, 100, GuiFactory::getBoxLabelHeight(_bpmLabel)) }, _bpmGroup );
@@ -81,7 +88,7 @@ void PlayerPanel::initInstrumentsGroup()
 
 void PlayerPanel::paint(Graphics & g)
 {
-	g.fillAll(Colours::white);
+	g.fillAll(Colour(Theme::getInstance().getBackgroundColor()));
 }
 
 void PlayerPanel::resized()
