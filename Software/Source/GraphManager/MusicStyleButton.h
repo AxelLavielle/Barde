@@ -35,7 +35,7 @@ public:
 	*  \param h : Button height
 	*  \param theme : Theme
 	*/
-	MusicStyleButton(const String &buttonName, const int w, const int h, Theme theme);
+	MusicStyleButton(const String &buttonName, const int w, const int h);
 	/*!
 	*  \brief Destructor
 	*
@@ -58,7 +58,7 @@ private:
 
 	int _width; /*!< Button width*/
 	int _height; /*!< Button height*/
-	Theme _theme; /*!< Theme of the app*/
+
 
 };
 
