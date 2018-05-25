@@ -81,9 +81,6 @@ private:
 	PlayerFooter			_playerFooter;
 	CenterPanel				_centerPanel;
 
-
-
-	//UserSettings			_us;
 	Slider					_frequencySlider;
 
 	Label					_frequencyLabel;

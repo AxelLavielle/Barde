@@ -16,6 +16,7 @@ MainContentComponent::MainContentComponent(CmdManager & cmdManager) : _cmdManage
 	setSize(getParentWidth(), getParentHeight() - 10);
 	addAndMakeVisible(_playerFooter);
 	addAndMakeVisible(_centerPanel);
+	Theme::getInstance().parseTheme("../Theme/Dark");
 
 
 

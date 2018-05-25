@@ -100,7 +100,7 @@ void Theme::parseTheme(const std::string &fileName)
 		getline(myfile, background);
 		getline(myfile, font);
 		getline(myfile, buttonFont);
-		std::cout << name << " " << button << " " << background << " " << font << " " << buttonFont << std::endl;
+		std::cout << "Theme name: "<< name << " Button color: " << button << " Background color: " << background << " Font color: " << font << " Button Font: " << buttonFont << std::endl;
 		myfile.close();
 		int iButton = static_cast<int>(std::stoll(button, nullptr, 16));
 		int iBackground = static_cast<int>(std::stoll(background, 0, 0));
