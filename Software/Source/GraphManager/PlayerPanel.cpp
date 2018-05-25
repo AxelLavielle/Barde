@@ -103,7 +103,7 @@ void PlayerPanel::buttonClicked(Button * button)
 
 			instru.name = button->getButtonText().toStdString();
 			instru.nb = instrumentList.at(instru.name);
-			instru.channel = instru.nb;  //This is bad but i don't know how to fix
+			instru.channel = instru.nb % 15;  //This is bad but i don't know how to fix
 			instru.velocity = 100; //Need change
 			if (button->getToggleState())
 				_musicParameters.addInstrumentArpeggios(instru);
@@ -117,7 +117,7 @@ void PlayerPanel::buttonClicked(Button * button)
 
 			instru.name = button->getButtonText().toStdString();
 			instru.nb = instrumentList.at(instru.name);
-			instru.channel = instru.nb; //This is bad but i don't know how to fix
+			instru.channel = instru.nb % 15; //This is bad but i don't know how to fix
 			instru.velocity = 100; //Need change
 			if (button->getToggleState())
 				_musicParameters.addInstrumentChords(instru);
