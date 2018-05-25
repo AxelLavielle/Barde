@@ -173,3 +173,17 @@ void GuiFactory::initHoryzontalFlexGroup(const std::vector<FlexItem>& items, Fle
 		group.addItem(*it);
 
 }
+
+void GuiFactory::initSlider(const float min, const float max, const float value, Slider & slider)
+{
+	slider.setTextBoxStyle(Slider::TextEntryBoxPosition::NoTextBox, true, 0, 0);
+	slider.setColour(Label::textColourId, Colour(Theme::getInstance().getFontColor()));
+	slider.setColour(Slider::backgroundColourId, Colour(Theme::getInstance().getFontColor()));
+	slider.setColour(Slider::thumbColourId, Colours::pink);
+	slider.setColour(Slider::trackColourId, Colour(Theme::getInstance().getButtonColor()));
+	slider.setColour(Slider::textBoxBackgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	slider.setColour(Slider::textBoxTextColourId, Colour(Theme::getInstance().getFontColor()));
+	slider.setRange(min, max, 1);
+	slider.setValue(value);
+
+}

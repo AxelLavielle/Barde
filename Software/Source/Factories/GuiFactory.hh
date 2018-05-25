@@ -55,4 +55,6 @@ public:
 	static void initVerticalFlexGroup(const std::vector<FlexItem>& items, FlexGroup & group);
 	static void initHoryzontalFlexGroup(const std::vector<FlexItem> & items,
 											FlexGroup & group);
+
+	static void initSlider(const float min, const float max, const float value, Slider & slider);
 };

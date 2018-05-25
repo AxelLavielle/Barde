@@ -19,10 +19,9 @@ PlayerFooter::PlayerFooter(Player & player, MusicParameters &musicParameters) : 
 	_stopButton = new MusicStyleButton("Stop", 100, 50);
 	_stopButton->addListener(this);
 
-	addAndMakeVisible(_volumeSlider);
-	_volumeSlider.setRange(0, 100, 1);
+	GuiFactory::initSlider(0, 100, 100, _volumeSlider);
 	_volumeSlider.addListener(this);
-	_volumeSlider.setTextBoxStyle(Slider::TextEntryBoxPosition::NoTextBox, true, 0, 0);
+	addAndMakeVisible(_volumeSlider);
 
 	addAndMakeVisible(_controlGroup);
 	FlexItem item(*_playButton);
