@@ -61,7 +61,7 @@ public:
 	*  \param bpm : the bpm
 	*  \return true in case of success playing and false in the others case
 	*/
-	virtual bool stop(const Midi &midi) const;
+	virtual bool stop();
 	/*!
 	*  \brief Pause the song who is being played
 	*
@@ -99,11 +99,12 @@ public:
 	*/
 	virtual bool setVolume(const Midi &midi) const;
 
-	virtual void launch(std::vector<std::pair<Midi, int> > &_gen2playQ, std::mutex &_gen2playM, bool &stop);
+	virtual void launch(std::vector<std::pair<Midi, int> > &_gen2playQ, std::mutex &_gen2playM, bool &stop, CondVariable &cond);
 
 	void GetMidiOutputDevice();
 
 private:
+	bool _stop;
 	int									volume = 0; /*!< current volume of the midi device*/
 	MidiOutput					*_midiOutput; /*!< pointer to the midi devce*/
 	MidiFile						_midiBuff; /*!< Buffer containing all the midi data*/

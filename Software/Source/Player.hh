@@ -56,9 +56,11 @@ Player();
 
 void newParams(MusicParameters p);
 void Init();
+void Stop();
 void Play(MusicParameters _musicParameters);
 
 private:
+	CondVariable				_cond;
 	bool						_stopQueue;
 	std::thread					_genThread;
 	std::thread					_playThread;
