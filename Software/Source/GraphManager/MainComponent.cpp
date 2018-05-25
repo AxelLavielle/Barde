@@ -11,7 +11,7 @@
 
 //==============================================================================
 
-MainContentComponent::MainContentComponent() : _playerFooter(_player, _musicParameters), _centerPanel(_musicParameters)
+MainContentComponent::MainContentComponent(CmdManager & cmdManager) : _cmdManager(cmdManager), _playerFooter(_player, _musicParameters), _centerPanel(_musicParameters, _cmdManager)
 {
 	setSize(getParentWidth(), getParentHeight() - 10);
 	addAndMakeVisible(_playerFooter);
@@ -229,4 +229,3 @@ void MainContentComponent::buttonClicked(Button* button)
 
 	
 }
-

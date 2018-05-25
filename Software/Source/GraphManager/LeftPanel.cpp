@@ -17,8 +17,19 @@ LeftPanel::LeftPanel()
    _logoImage.setImage(logo);
    addAndMakeVisible(_logoImage);
 
+   //Need CmdManager
+   _userButton.setButtonText("Unknow");
+   _userButton.addListener(this);
+   addAndMakeVisible(_userButton);
+
    _flexBox = GuiFactory::createFlexBox(FlexBox::JustifyContent::flexStart, FlexBox::AlignContent::stretch, FlexBox::AlignItems::stretch, FlexBox::Direction::column,
-	   { GuiFactory::createFlexItem(_logoImage, LOGO_WIDTH, LOGO_HEIGHT, 0, 0, FlexItem::AlignSelf::autoAlign, 1) });
+	   { GuiFactory::createFlexItem(_logoImage, LOGO_WIDTH, LOGO_HEIGHT, 0, 0, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_userButton, 80, 20) });
+}
+
+void LeftPanel::setUser(const User & user)
+{
+	_user = user;
+	_userButton.setButtonText(_user.getFirstName() + " " + _user.getLastName());
 }
 
 void LeftPanel::paint(Graphics & g)
@@ -29,4 +40,9 @@ void LeftPanel::paint(Graphics & g)
 void LeftPanel::resized()
 {
 	_flexBox.performLayout(getLocalBounds().toFloat());
+}
+
+void LeftPanel::buttonClicked(Button * button)
+{
+	changeView("UserParams");
 }

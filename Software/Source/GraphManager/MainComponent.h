@@ -47,7 +47,7 @@ public:
 	*  MainContentComponent class constructor
 	*
 	*/
-	MainContentComponent();
+	MainContentComponent(CmdManager & cmdManager);
 
 	/*!
 	*  \brief Destructor
@@ -74,9 +74,17 @@ public:
 
 private:
     //=============================================================================
+	CmdManager				& _cmdManager;
+	Player					_player; /*!< player >*/
+
 	MusicParameters			_musicParameters;
 	PlayerFooter			_playerFooter;
 	CenterPanel				_centerPanel;
+
+
+
+
+
 
 
 	Theme					_currentTheme; /*!< Theme defining the colors of the elements*/
@@ -95,7 +103,6 @@ private:
 	MusicStyleButton		*_blues;  /*!< button for generating blues*/
 	MusicStyleButton		*_params;  /*!< button for generating blues THIS IS FOR TEST !!!! */
 
-	Player					_player; /*!< player >*/
 	ToggleButton			*_drumsButton;
 
 	void initArpegeList();

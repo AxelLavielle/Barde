@@ -15,8 +15,9 @@
 #include "./RestClient/RestClient.hh"
 #include "./RestClient/RestClientException.hh"
 #include "User.hh"
+#include "Utils/NonCopyable.hpp"
 
-class CmdManager
+class CmdManager : public NonCopyable
 {
 public:
 	bool connectToServer();

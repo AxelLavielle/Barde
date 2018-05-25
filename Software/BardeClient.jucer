@@ -7,6 +7,9 @@
               cppLanguageStandard="11" companyCopyright="Barde">
   <MAINGROUP id="r1VLiG" name="BardeClient">
     <GROUP id="{6687DB59-98D3-42FE-E900-5BC523D33DDC}" name="Source">
+      <GROUP id="{24E1D38D-B5FC-4280-56B0-A9BD1F18BEB8}" name="Utils">
+        <FILE id="qgBgYy" name="NonCopyable.hpp" compile="0" resource="0" file="Source/Utils/NonCopyable.hpp"/>
+      </GROUP>
       <FILE id="oqcD8J" name="CondVariable.cpp" compile="1" resource="0"
             file="Source/CondVariable.cpp"/>
       <FILE id="Mp6NGF" name="CondVariable.hh" compile="0" resource="0" file="Source/CondVariable.hh"/>
@@ -97,6 +100,8 @@
         <FILE id="wSJyIx" name="SSLManager.hh" compile="0" resource="0" file="Source/EncryptionManager/SSLManager.hh"/>
       </GROUP>
       <GROUP id="{67A50DD7-6C2C-A059-E512-F0F0D14AB316}" name="GraphManager">
+        <FILE id="ILxVWQ" name="SimpleLabel.cpp" compile="1" resource="0" file="Source/GraphManager/SimpleLabel.cpp"/>
+        <FILE id="KrI0We" name="SimpleLabel.hh" compile="0" resource="0" file="Source/GraphManager/SimpleLabel.hh"/>
         <FILE id="eErgF6" name="AComponent.cpp" compile="1" resource="0" file="Source/GraphManager/AComponent.cpp"/>
         <FILE id="KUlU1X" name="AComponent.hh" compile="0" resource="0" file="Source/GraphManager/AComponent.hh"/>
         <FILE id="HIx8vh" name="AGraphManager.cpp" compile="1" resource="0"
@@ -139,6 +144,10 @@
         <FILE id="eS257S" name="PlayerPanel.hh" compile="0" resource="0" file="Source/GraphManager/PlayerPanel.hh"/>
         <FILE id="anX9Wi" name="Theme.cpp" compile="1" resource="0" file="Source/GraphManager/Theme.cpp"/>
         <FILE id="UcsbfQ" name="Theme.h" compile="0" resource="0" file="Source/GraphManager/Theme.h"/>
+        <FILE id="lmOBXm" name="UserParamsPanel.cpp" compile="1" resource="0"
+              file="Source/GraphManager/UserParamsPanel.cpp"/>
+        <FILE id="SkjqhJ" name="UserParamsPanel.hh" compile="0" resource="0"
+              file="Source/GraphManager/UserParamsPanel.hh"/>
         <FILE id="XanxvO" name="UserParamsComponent.cpp" compile="1" resource="0"
               file="Source/GraphManager/UserParamsComponent.cpp"/>
         <FILE id="rg8N4I" name="UserParamsComponent.h" compile="0" resource="0"

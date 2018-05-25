@@ -19,8 +19,13 @@ MainWindow::MainWindow(const std::string &name) : DocumentWindow(name,
 	setFullScreen(true);
 	setSize(getWidth(), getHeight());
 
+
+#ifdef DEBUG
+	_cmdManager.connectToServer();
+	_cmdManager.login("anthony.vogelweid@epitech.eu", "test");
+
 	//Init all the components
-	_mainComponent = new MainContentComponent();
+	_mainComponent = new MainContentComponent(_cmdManager);
 	_userParamsComponent = new UserParamsComponent();
 	_loginComponent = new LoginComponent(_cmdManager);
 	_userRegistration = new UserRegistration(_cmdManager);
@@ -30,6 +35,21 @@ MainWindow::MainWindow(const std::string &name) : DocumentWindow(name,
 	_userRegistration->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 
 	setContentNonOwned(_mainComponent, true);
+#else
+	//Init all the components
+	_mainComponent = new MainContentComponent(_cmdManager);
+	_userParamsComponent = new UserParamsComponent();
+	_loginComponent = new LoginComponent(_cmdManager);
+	_userRegistration = new UserRegistration(_cmdManager);
+	_mainComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
+	_userParamsComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
+	_loginComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
+	_userRegistration->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
+
+	setContentNonOwned(_loginComponent, true);
+#endif // DEBUG
+
+
 	//setContentNonOwned(_loginComponent, true);
 	setVisible(true);
 }
@@ -57,11 +77,6 @@ void MainWindow::changeViewCallback(std::string viewName)
 	{
 		clearContentComponent();
 		setContentNonOwned(_mainComponent, true);
-	}
-	else if (viewName == "UserParams")
-	{
-		//clearContentComponent();
-		//setContentNonOwned(_userParamsComponent, true);
 	}
 	else if (viewName == "Login")
 	{

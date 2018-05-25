@@ -10,12 +10,13 @@
 
 #pragma once
 
+#include "AComponent.hh"
 #include "MusicStyleButton.h"
 #include "../MusicParameters.hh"
 #include "FlexGroup.hh"
 #include "../Factories/GuiFactory.hh"
 
-class PlayerFooter : public Component, private Button::Listener, private Slider::Listener
+class PlayerFooter : public AComponent, private Button::Listener, private Slider::Listener
 {
 public:
 	PlayerFooter(Player & player, MusicParameters &musicParameters);

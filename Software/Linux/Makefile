@@ -92,6 +92,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/SQLiteManager_99d2bf74.o \
   $(JUCE_OBJDIR)/AEncryptionManager_13e06cc8.o \
   $(JUCE_OBJDIR)/SSLManager_f25fe680.o \
+  $(JUCE_OBJDIR)/SimpleLabel_d8204f0c.o \
   $(JUCE_OBJDIR)/AComponent_b1bc9abc.o \
   $(JUCE_OBJDIR)/AGraphManager_4508c7ea.o \
   $(JUCE_OBJDIR)/BasicButton_cecac0aa.o \
@@ -107,6 +108,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/PlayerFooter_7463c23c.o \
   $(JUCE_OBJDIR)/PlayerPanel_a8984dcd.o \
   $(JUCE_OBJDIR)/Theme_6a8438b3.o \
+  $(JUCE_OBJDIR)/UserParamsPanel_241772fd.o \
   $(JUCE_OBJDIR)/UserParamsComponent_ea189f76.o \
   $(JUCE_OBJDIR)/UserRegistration_c9349104.o \
   $(JUCE_OBJDIR)/AMidiManager_545b688.o \
@@ -282,6 +284,11 @@ $(JUCE_OBJDIR)/SSLManager_f25fe680.o: ../Source/EncryptionManager/SSLManager.cpp
 	@echo "Compiling SSLManager.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/SimpleLabel_d8204f0c.o: ../Source/GraphManager/SimpleLabel.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling SimpleLabel.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/AComponent_b1bc9abc.o: ../Source/GraphManager/AComponent.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling AComponent.cpp"
@@ -355,6 +362,11 @@ $(JUCE_OBJDIR)/PlayerPanel_a8984dcd.o: ../Source/GraphManager/PlayerPanel.cpp
 $(JUCE_OBJDIR)/Theme_6a8438b3.o: ../Source/GraphManager/Theme.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling Theme.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/UserParamsPanel_241772fd.o: ../Source/GraphManager/UserParamsPanel.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling UserParamsPanel.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/UserParamsComponent_ea189f76.o: ../Source/GraphManager/UserParamsComponent.cpp

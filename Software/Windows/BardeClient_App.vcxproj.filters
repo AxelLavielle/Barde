@@ -2,6 +2,9 @@
 
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="BardeClient\Source\Utils">
+      <UniqueIdentifier>{A2BCE773-7497-86EF-A73C-8658C72E033A}</UniqueIdentifier>
+    </Filter>
     <Filter Include="BardeClient\Source\ViewManager">
       <UniqueIdentifier>{CE62C358-4A16-5859-3B63-14FA08A30273}</UniqueIdentifier>
     </Filter>
@@ -475,6 +478,9 @@
     <ClCompile Include="..\Source\EncryptionManager\SSLManager.cpp">
       <Filter>BardeClient\Source\EncryptionManager</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\GraphManager\SimpleLabel.cpp">
+      <Filter>BardeClient\Source\GraphManager</Filter>
+    </ClCompile>
     <ClCompile Include="..\Source\GraphManager\AComponent.cpp">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClCompile>
@@ -518,6 +524,9 @@
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\GraphManager\Theme.cpp">
+      <Filter>BardeClient\Source\GraphManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\GraphManager\UserParamsPanel.cpp">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\GraphManager\UserParamsComponent.cpp">
@@ -2412,6 +2421,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\Utils\NonCopyable.hpp">
+      <Filter>BardeClient\Source\Utils</Filter>
+    </ClInclude>
     <ClInclude Include="..\Source\CondVariable.hh">
       <Filter>BardeClient\Source</Filter>
     </ClInclude>
@@ -2496,6 +2508,9 @@
     <ClInclude Include="..\Source\EncryptionManager\SSLManager.hh">
       <Filter>BardeClient\Source\EncryptionManager</Filter>
     </ClInclude>
+    <ClInclude Include="..\Source\GraphManager\SimpleLabel.hh">
+      <Filter>BardeClient\Source\GraphManager</Filter>
+    </ClInclude>
     <ClInclude Include="..\Source\GraphManager\AComponent.hh">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
@@ -2542,6 +2557,9 @@
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\GraphManager\Theme.h">
+      <Filter>BardeClient\Source\GraphManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\GraphManager\UserParamsPanel.hh">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\GraphManager\UserParamsComponent.h">
