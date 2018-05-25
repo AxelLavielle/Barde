@@ -54,3 +54,16 @@ FlexItem GuiFactory::createFlexItem(Component & component, const float minWidth,
 	flexItem.flexGrow = flexGrow;
 	return std::move(flexItem);
 }
+
+FlexItem GuiFactory::createFlexItem(Component & component, const float maxWidth, const float maxHeight, const float minWidth, const float minHeight, const FlexItem::AlignSelf & alignSelf, const float flexGrow)
+{
+	FlexItem flexItem(component);
+
+	flexItem.minWidth = minWidth;
+	flexItem.minHeight = minHeight;
+	flexItem.maxWidth = maxWidth;
+	flexItem.maxHeight = maxHeight;
+	flexItem.alignSelf = alignSelf;
+	flexItem.flexGrow = flexGrow;
+	return std::move(flexItem);
+}

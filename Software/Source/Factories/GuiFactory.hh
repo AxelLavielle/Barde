@@ -21,5 +21,11 @@ public:
 							const FlexBox::Wrap & wrap = FlexBox::Wrap::noWrap);
 
 	static FlexBox createRowCenterFlexBox(const std::vector<FlexItem> & items);
-	static FlexItem createFlexItem(Component & component, const float minWidth = 0.f, const float minHeight = 0.f, const FlexItem::AlignSelf & alignSelf = FlexItem::AlignSelf::autoAlign, const float flexGrow = 0.f);
+	
+	static FlexItem createFlexItem(Component & component, const float minWidth = 0.f, const float minHeight = 0.f,
+										const FlexItem::AlignSelf & alignSelf = FlexItem::AlignSelf::autoAlign, const float flexGrow = 0.f);
+
+	static FlexItem createFlexItem(Component & component, const float maxWidth, const float maxHeight,
+										const float minWidth, const float minHeight,
+										const FlexItem::AlignSelf & alignSelf = FlexItem::AlignSelf::autoAlign, const float flexGrow = 0.f);
 };

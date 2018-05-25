@@ -128,6 +128,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 {
   MidiManager	_midiManager;
 
+
   /* DRUMS */
 
   /*

@@ -10,7 +10,7 @@
 
 #include "CenterPanel.hh"
 
-CenterPanel::CenterPanel(MusicParameters & musicParameters) : _musicParameters(musicParameters), _playerPanel(musicParameters)
+CenterPanel::CenterPanel(MusicParameters & musicParameters) : _musicParameters(musicParameters), _playerPanel(_musicParameters)
 {
 	addAndMakeVisible(_playerPanel);
 	addAndMakeVisible(_leftPanel);

@@ -52,5 +52,6 @@ void PlayerPanel::resized()
 void PlayerPanel::sliderValueChanged(Slider * slider)
 {
 	_bpmLabel.setText("Bpm : " + std::to_string(static_cast<int>(slider->getValue())), NotificationType::dontSendNotification);
+	_musicParameters.setBpm(static_cast<int>(slider->getValue()));
 }
 
