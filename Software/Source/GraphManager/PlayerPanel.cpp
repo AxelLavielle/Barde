@@ -55,12 +55,6 @@ PlayerPanel::PlayerPanel(MusicParameters & musicParameters) : _musicParameters(m
 	_flexBox = GuiFactory::createFlexBox(FlexBox::JustifyContent::spaceAround, FlexBox::AlignContent::stretch, FlexBox::AlignItems::stretch, FlexBox::Direction::column, _items);
 }
 
-void PlayerPanel::addFlexItem(Component & component, const float minWidth, const float maxHeight, const FlexItem::AlignSelf & align)
-{
-	addAndMakeVisible(component);
-	_items.push_back(GuiFactory::createFlexItem(component, minWidth, maxHeight, align));
-}
-
 void PlayerPanel::initInstrumentsButtons(ToggleButton buttons[], const std::string & categoryName)
 {
 	for (int i = 0; i < _instrusChoice.size(); i++)
@@ -99,11 +93,6 @@ void PlayerPanel::initInstrumentsGroup()
 void PlayerPanel::paint(Graphics & g)
 {
 	g.fillAll(Colour(Theme::getInstance().getBackgroundColor()));
-}
-
-void PlayerPanel::resized()
-{
-	_flexBox.performLayout(getLocalBounds().toFloat());
 }
 
 void PlayerPanel::sliderValueChanged(Slider * slider)

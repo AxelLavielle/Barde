@@ -21,6 +21,7 @@ public:
 	float getFontSize() const;
 	float getTextWidth() const;
 	Font getFont() const;
+	void setFontStyle(const std::string fontStyle);
 
 
 private:

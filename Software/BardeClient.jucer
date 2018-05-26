@@ -9,6 +9,10 @@
     <GROUP id="{6687DB59-98D3-42FE-E900-5BC523D33DDC}" name="Source">
       <GROUP id="{24E1D38D-B5FC-4280-56B0-A9BD1F18BEB8}" name="Utils">
         <FILE id="qgBgYy" name="NonCopyable.hpp" compile="0" resource="0" file="Source/Utils/NonCopyable.hpp"/>
+        <FILE id="oK5O92" name="StringChecker.cpp" compile="1" resource="0"
+              file="Source/Utils/StringChecker.cpp"/>
+        <FILE id="dGCkCM" name="StringChecker.hh" compile="0" resource="0"
+              file="Source/Utils/StringChecker.hh"/>
       </GROUP>
       <FILE id="oqcD8J" name="CondVariable.cpp" compile="1" resource="0"
             file="Source/CondVariable.cpp"/>
@@ -102,6 +106,10 @@
         <FILE id="wSJyIx" name="SSLManager.hh" compile="0" resource="0" file="Source/EncryptionManager/SSLManager.hh"/>
       </GROUP>
       <GROUP id="{67A50DD7-6C2C-A059-E512-F0F0D14AB316}" name="GraphManager">
+        <FILE id="dmNefZ" name="LabeledTextBox.cpp" compile="1" resource="0"
+              file="Source/GraphManager/LabeledTextBox.cpp"/>
+        <FILE id="ort6VL" name="LabeledTextBox.hh" compile="0" resource="0"
+              file="Source/GraphManager/LabeledTextBox.hh"/>
         <FILE id="tw1tTU" name="ReportPanel.cpp" compile="1" resource="0" file="Source/GraphManager/ReportPanel.cpp"/>
         <FILE id="KIFr5g" name="ReportPanel.hh" compile="0" resource="0" file="Source/GraphManager/ReportPanel.hh"/>
         <FILE id="ILxVWQ" name="SimpleLabel.cpp" compile="1" resource="0" file="Source/GraphManager/SimpleLabel.cpp"/>

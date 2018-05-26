@@ -23,9 +23,29 @@ FlexBox GuiFactory::createFlexBox(const FlexBox::JustifyContent & justifyContent
 	flexBox.alignItems = alignItems;
 	flexBox.flexDirection = direction;
 	flexBox.flexWrap = wrap;
-
+	
 	for (it = items.begin(); it != items.end(); it++)
 		flexBox.items.add(*it);
+	return std::move(flexBox);
+}
+
+FlexBox GuiFactory::createFlexBox(const FlexBox::JustifyContent & justifyContent, const FlexBox::AlignContent & alignContent, const FlexBox::AlignItems & alignItems, const FlexBox::Direction & direction, std::vector<FlexItem>& items, const float maxWidth, const float maxHeight, const FlexBox::Wrap & wrap)
+{
+	FlexBox	flexBox;
+	std::vector<FlexItem>::iterator	it;
+
+	flexBox.justifyContent = justifyContent;
+	flexBox.alignContent = alignContent;
+	flexBox.alignItems = alignItems;
+	flexBox.flexDirection = direction;
+	flexBox.flexWrap = wrap;
+
+	for (it = items.begin(); it != items.end(); it++)
+	{
+		it->maxWidth = maxWidth;
+		it->maxHeight = maxHeight;
+		flexBox.items.add(*it);
+	}
 	return std::move(flexBox);
 }
 
@@ -103,6 +123,14 @@ void GuiFactory::initLittleTitle(const std::string & text, SimpleLabel & label)
 	label.setColour(Label::textColourId, Colour(Theme::getInstance().getFontColor()));
 }
 
+void GuiFactory::initLegendLabel(const std::string & text, SimpleLabel & label)
+{
+	label.setLabelText(text);
+	label.setFontSize(LEGEND_LABEL_SIZE);
+
+	label.setColour(Label::textColourId, Colour(Theme::getInstance().getFontColor()));
+}
+
 float GuiFactory::getBoxLabelHeight(const SimpleLabel & label)
 {
 	float fontSize;
@@ -116,7 +144,7 @@ float GuiFactory::getBoxLabelWidth(const SimpleLabel & label)
 	float fontSize;
 
 	fontSize = label.getTextWidth();
-	return fontSize + LABEL_WIDTH_PADDING;
+	return fontSize * LABEL_WIDTH_PADDING;
 }
 
 void GuiFactory::initToggleButton(const std::string & text, const std::string & name, ToggleButton & button, const bool state)

@@ -406,6 +406,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Source\Utils\StringChecker.cpp">
+      <Filter>BardeClient\Source\Utils</Filter>
+    </ClCompile>
     <ClCompile Include="..\Source\CondVariable.cpp">
       <Filter>BardeClient\Source</Filter>
     </ClCompile>
@@ -480,6 +483,9 @@
     </ClCompile>
     <ClCompile Include="..\Source\EncryptionManager\SSLManager.cpp">
       <Filter>BardeClient\Source\EncryptionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\GraphManager\LabeledTextBox.cpp">
+      <Filter>BardeClient\Source\GraphManager</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\GraphManager\ReportPanel.cpp">
       <Filter>BardeClient\Source\GraphManager</Filter>
@@ -2430,6 +2436,9 @@
     <ClInclude Include="..\Source\Utils\NonCopyable.hpp">
       <Filter>BardeClient\Source\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="..\Source\Utils\StringChecker.hh">
+      <Filter>BardeClient\Source\Utils</Filter>
+    </ClInclude>
     <ClInclude Include="..\Source\CondVariable.hh">
       <Filter>BardeClient\Source</Filter>
     </ClInclude>
@@ -2516,6 +2525,9 @@
     </ClInclude>
     <ClInclude Include="..\Source\EncryptionManager\SSLManager.hh">
       <Filter>BardeClient\Source\EncryptionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\GraphManager\LabeledTextBox.hh">
+      <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\GraphManager\ReportPanel.hh">
       <Filter>BardeClient\Source\GraphManager</Filter>

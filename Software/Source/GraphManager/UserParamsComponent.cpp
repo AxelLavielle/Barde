@@ -8,10 +8,10 @@ Author:  Oreo
 ==============================================================================
 */
 
-#include "UserParamsComponent.h"
-#include "MainComponent.h"
 #include <sstream> 
 #include <string> 
+#include "UserParamsComponent.h"
+#include "MainComponent.h"
 
 //==============================================================================
 UserParamsComponent::UserParamsComponent()

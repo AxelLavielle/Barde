@@ -28,9 +28,14 @@ LeftPanel::LeftPanel()
    _reportButton.addListener(this);
    addAndMakeVisible(_reportButton);
 
+   _homeButton.setButtonText("Home");
+   _homeButton.setName("Home");
+   _homeButton.addListener(this);
+   addAndMakeVisible(_homeButton);
+
 
    _flexBox = GuiFactory::createFlexBox(FlexBox::JustifyContent::flexStart, FlexBox::AlignContent::stretch, FlexBox::AlignItems::stretch, FlexBox::Direction::column,
-	   { GuiFactory::createFlexItem(_logoImage, LOGO_WIDTH, LOGO_HEIGHT, 0, 0, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_userButton, 80, 20), GuiFactory::createFlexItem(_reportButton, 80, 20) });
+	   { GuiFactory::createFlexItem(_logoImage, LOGO_WIDTH, LOGO_HEIGHT, 0, 0, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_homeButton, 80, 20), GuiFactory::createFlexItem(_userButton, 80, 20), GuiFactory::createFlexItem(_reportButton, 80, 20) });
 }
 
 void LeftPanel::setUser(const User & user)
@@ -50,4 +55,6 @@ void LeftPanel::buttonClicked(Button * button)
 		changeView("UserParams");
 	else if (button->getName() == "Report")
 		changeView("Report");
+	else if (button->getName() == "Home")
+		changeView("Player");
 }

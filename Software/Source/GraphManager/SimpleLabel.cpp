@@ -43,3 +43,8 @@ Font SimpleLabel::getFont() const
 {
 	return _font;
 }
+
+void SimpleLabel::setFontStyle(const std::string fontStyle)
+{
+	_font.setTypefaceStyle(fontStyle);
+}

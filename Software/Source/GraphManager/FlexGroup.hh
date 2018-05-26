@@ -19,13 +19,14 @@ public:
 	FlexGroup();
 	FlexGroup(const FlexBox::JustifyContent & justifyContent, const FlexBox::AlignContent & alignContent, const FlexBox::AlignItems & alignItem, const FlexBox::Direction & direction);
 	void addItem(const FlexItem & item);
+	void refreshItems(const std::vector<FlexItem> & items);
 	void setJustifyContent(const FlexBox::JustifyContent & justifyContent);
 	void setAlignContent(const FlexBox::AlignContent & alignContent);
 	void setAlignItems(const FlexBox::AlignItems & alignItem);
 	void setFlexDirection(const FlexBox::Direction & direction);
 	void refreshExclusiveToggleItems(const std::string & toggleName);
 
-private:
+protected:
 	void paint(Graphics & g) override;
 	void resized() override;
 

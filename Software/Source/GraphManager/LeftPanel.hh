@@ -28,6 +28,7 @@ private:
 	void buttonClicked(Button * button) override;
 
 	ImageComponent		_logoImage;
+	TextButton			_homeButton;
 	TextButton			_userButton;
 	TextButton			_reportButton;
 

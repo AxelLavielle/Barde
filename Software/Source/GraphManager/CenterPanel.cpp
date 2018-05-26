@@ -20,6 +20,7 @@ CenterPanel::CenterPanel(MusicParameters & musicParameters, CmdManager & cmdMana
 
 	_reportPanel.setChangeViewCallback(std::bind(&CenterPanel::changeViewCallback, this, std::placeholders::_1));
 	_leftPanel.setChangeViewCallback(std::bind(&CenterPanel::changeViewCallback, this, std::placeholders::_1));
+	_userParamsPanel.setChangeViewCallback(std::bind(&CenterPanel::changeViewCallback, this, std::placeholders::_1));
 	_mainPanel = &_playerPanel;
 	addAndMakeVisible(*_mainPanel);
 

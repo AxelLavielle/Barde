@@ -38,6 +38,15 @@ void FlexGroup::addItem(const FlexItem & item)
 	_flexBox.items.add(item);
 }
 
+void FlexGroup::refreshItems(const std::vector<FlexItem>& items)
+{
+	std::vector<FlexItem>::const_iterator it;
+
+	_flexBox.items.clearQuick();
+	for (it = items.begin(); it != items.end(); it++)
+		_flexBox.items.add(*it);
+}
+
 void FlexGroup::setJustifyContent(const FlexBox::JustifyContent & justifyContent)
 {
 	_flexBox.justifyContent = justifyContent;

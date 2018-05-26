@@ -15,19 +15,17 @@
 #include "../Factories/GuiFactory.hh"
 #include "../MusicParameters.hh"
 #include "../GraphManager/Theme.h"
-#include "../ViewManager/AView.hh"
+#include "../ViewManager/FlexView.hh"
 
-class PlayerPanel : public AView, private Slider::Listener, private ToggleButton::Listener
+class PlayerPanel : public FlexView, private Slider::Listener, private ToggleButton::Listener
 {
 public:
 	PlayerPanel(MusicParameters & musicParameters);
 
 private:
 	void paint(Graphics & g) override;
-	void resized() override;
 	void sliderValueChanged(Slider *slider) override;
 	void buttonClicked(Button * button) override;
-	void addFlexItem(Component & component, const float minWidth = 0.f, const float maxHeight = 0.f, const FlexItem::AlignSelf & align = FlexItem::AlignSelf::autoAlign);
 	void initInstrumentsButtons(ToggleButton buttons[], const std::string & categoryName);
 	void initInstrumentsGroup();
 
@@ -58,11 +56,6 @@ private:
 	ToggleButton			_bluesButton;
 	ToggleButton			_raggaeButton;
 	ToggleButton			_houseButton;
-
-
-	FlexBox					_flexBox;
-
-	std::vector<FlexItem>	_items;
 
 	StringArray				_instrusChoice;
 };
