@@ -43,11 +43,11 @@ const MidiMessageSequence		*SoundManager::MidiToMessageSequence(const Midi &midi
 
 void SoundManager::launch(std::vector<std::pair<Midi, int> > &_gen2playQ, std::mutex &_gen2playM, bool &stop, CondVariable &cond)
 {
-	Midi m;
 	int bpm = 0;
 
 	while (!stop)
 	{
+		Midi m;
 		std::cout << "==A" << std::endl;
 		bool b = false;
 		_gen2playM.lock();
