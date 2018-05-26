@@ -29,7 +29,7 @@ Author:  Oreo
 #define BOX_HEIGHT 30
 #define SPACE_BETWEEN 50
 
-class UserParamsComponent : public Component, public AComponent, private TextEditor::Listener, private Button::Listener
+class UserParamsComponent : public AComponent, private TextEditor::Listener, private Button::Listener
 {
 public:
 	//==============================================================================
@@ -48,7 +48,6 @@ private:
 	ComboBox			_languageComboBox;
 	Label				_errorText;
 	TextButton			_saveButton;
-	Theme				_currentTheme;
 	User				_user;
 	CmdManager			_cmdManager;
 	BasicButton			_backButton;

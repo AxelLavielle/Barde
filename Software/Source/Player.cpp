@@ -18,6 +18,7 @@ Player::Player()
 
 Player::~Player()
 {
+	_cond.notify();
 	_stopQueue = true;
 	_genThread.join();
 	_playThread.join();
@@ -27,6 +28,7 @@ Player::~Player()
 
 void Player::newParams(MusicParameters p)
 {
+	_cond.notify();
 	_graph2genM.lock();
 	_graph2genQ.push_back(p);
 	_graph2genM.unlock();
@@ -36,7 +38,7 @@ void Player::Init()
 {
 	_stopQueue = false;
 	_genThread = std::thread(&MusicGenerator::launch, _generator, std::ref(_graph2genQ), std::ref(_gen2playQ), std::ref(_graph2genM), std::ref(_gen2playM), std::ref(_stopQueue));
-	_playThread = std::thread(&SoundManager::launch, static_cast<SoundManager *>(_soundManager), std::ref(_gen2playQ), std::ref(_gen2playM), std::ref(_stopQueue));
+	_playThread = std::thread(&SoundManager::launch, static_cast<SoundManager *>(_soundManager), std::ref(_gen2playQ), std::ref(_gen2playM), std::ref(_stopQueue), std::ref(_cond));
 
 #ifdef __linux__
 	int policy;
@@ -53,8 +55,12 @@ void Player::Init()
 #endif
 }
 
+void Player::Stop()
+{
+	_soundManager->stop();
+}
+
 void Player::Play(MusicParameters _musicParameters)
 {
-	_generator->createMusic(_musicParameters);
-//	_soundManager->play(_musicParameters.getMidi(), _musicParameters.getBpm(), _stopQueue);
+
 }

@@ -20,12 +20,15 @@ SoundManager::SoundManager()
   _deviceManager->addAudioCallback (&_audioSourcePlayer);
 
 //#endif
+  _stop = false;
 
   GetMidiOutputDevice();
 }
 
 SoundManager::~SoundManager()
 {
+	delete _deviceManager;
+	delete _midiOutput;
 }
 
 const MidiMessageSequence		*SoundManager::MidiToMessageSequence(const Midi &midi)
@@ -38,7 +41,7 @@ const MidiMessageSequence		*SoundManager::MidiToMessageSequence(const Midi &midi
 	return (NULL);
 }
 
-void SoundManager::launch(std::vector<std::pair<Midi, int> > &_gen2playQ, std::mutex &_gen2playM, bool &stop)
+void SoundManager::launch(std::vector<std::pair<Midi, int> > &_gen2playQ, std::mutex &_gen2playM, bool &stop, CondVariable &cond)
 {
 	Midi m;
 	int bpm = 0;
@@ -49,7 +52,6 @@ void SoundManager::launch(std::vector<std::pair<Midi, int> > &_gen2playQ, std::m
 		_gen2playM.lock();
 		if (_gen2playQ.size() > 0)
 		{
-			//Check here if error
 			m = _gen2playQ[0].first;
 			bpm = _gen2playQ[0].second;
 			b = true;
@@ -61,7 +63,12 @@ void SoundManager::launch(std::vector<std::pair<Midi, int> > &_gen2playQ, std::m
 		if (b)
 			play(m, bpm, stop);
 		else
-			Tools::sleep(1100);
+			Tools::sleepActive(100);
+		if (_stop)
+		{
+			cond.wait();
+			_stop = !_stop;
+		}
 	}
 }
 
@@ -80,7 +87,7 @@ bool							SoundManager::play(const Midi &midi, int bpm, bool &stop)
 	}
 
 	currentTime = 0;
-	for (int i = 0; i < midiSequence->getNumEvents() && !stop; i++)
+	for (int i = 0; i < midiSequence->getNumEvents() && !stop && !_stop; i++)
 	{
 		std::cout << i << std::endl;
 		msg = midiSequence->getEventPointer(i)->message;
@@ -106,7 +113,7 @@ bool							SoundManager::play(const Midi &midi, int bpm, bool &stop)
 			msg.setTimeStamp(Time::getMillisecondCounterHiRes());
 			_synthAudioSource.addMessage(msg);
 		}
-	}
+ 	}
 	return true;
 }
 
@@ -136,9 +143,9 @@ void SoundManager::GetMidiOutputDevice()
 	// std::cout << _audioManager.getDefaultMidiOutputName() << std::endl;
 }
 
-bool					SoundManager::stop(const Midi &) const
+bool					SoundManager::stop()
 {
-	//Not implemented
+	_stop = true;
 	return true;
 }
 

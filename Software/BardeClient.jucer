@@ -2,28 +2,40 @@
 
 <JUCERPROJECT id="n1PVK4" name="BardeClient" projectType="guiapp" version="1.0.0"
               bundleIdentifier="com.yourcompany.BardeClient" includeBinaryInAppConfig="1"
-              jucerVersion="5.2.0" companyName="Barde" companyWebsite="www.barde.io"
+              jucerVersion="5.3.2" companyName="Barde" companyWebsite="www.barde.io"
               displaySplashScreen="1" reportAppUsage="1" splashScreenColour="Dark"
               cppLanguageStandard="11" companyCopyright="Barde">
   <MAINGROUP id="r1VLiG" name="BardeClient">
     <GROUP id="{6687DB59-98D3-42FE-E900-5BC523D33DDC}" name="Source">
+      <GROUP id="{24E1D38D-B5FC-4280-56B0-A9BD1F18BEB8}" name="Utils">
+        <FILE id="qgBgYy" name="NonCopyable.hpp" compile="0" resource="0" file="Source/Utils/NonCopyable.hpp"/>
+      </GROUP>
+      <FILE id="oqcD8J" name="CondVariable.cpp" compile="1" resource="0"
+            file="Source/CondVariable.cpp"/>
+      <FILE id="Mp6NGF" name="CondVariable.hh" compile="0" resource="0" file="Source/CondVariable.hh"/>
+      <GROUP id="{FC74AE7E-4016-436E-FC96-5C291546A2E5}" name="ViewManager">
+        <FILE id="InxVPT" name="AView.cpp" compile="1" resource="0" file="Source/ViewManager/AView.cpp"/>
+        <FILE id="MlWh5P" name="AView.hh" compile="0" resource="0" file="Source/ViewManager/AView.hh"/>
+        <FILE id="oYnOTC" name="FlexView.cpp" compile="1" resource="0" file="Source/ViewManager/FlexView.cpp"/>
+        <FILE id="HkOEZn" name="FlexView.hh" compile="0" resource="0" file="Source/ViewManager/FlexView.hh"/>
+        <FILE id="vXmj1f" name="HomePage.cpp" compile="1" resource="0" file="Source/ViewManager/HomePage.cpp"/>
+        <FILE id="NuTtil" name="HomePage.hh" compile="0" resource="0" file="Source/ViewManager/HomePage.hh"/>
+        <FILE id="SiV0lV" name="IView.hpp" compile="0" resource="0" file="Source/ViewManager/IView.hpp"/>
+        <FILE id="V3G2Pu" name="ViewManager.cpp" compile="1" resource="0" file="Source/ViewManager/ViewManager.cpp"/>
+        <FILE id="SvADQ8" name="ViewManager.hh" compile="0" resource="0" file="Source/ViewManager/ViewManager.hh"/>
+      </GROUP>
+      <GROUP id="{FC4962DE-49E3-03E8-DA8B-D356646FA654}" name="Factories">
+        <FILE id="cRJqlx" name="GuiFactory.cpp" compile="1" resource="0" file="Source/Factories/GuiFactory.cpp"/>
+        <FILE id="RSiUam" name="GuiFactory.hh" compile="0" resource="0" file="Source/Factories/GuiFactory.hh"/>
+      </GROUP>
       <FILE id="y0Wt8b" name="ThreadPool.cpp" compile="1" resource="0" file="Source/ThreadPool.cpp"/>
+      <FILE id="A50ma2" name="SynchronizeManager.hh" compile="0" resource="0"
+            file="Source/SynchronizeManager.hh"/>
       <FILE id="DLuudu" name="ThreadPool.hh" compile="0" resource="0" file="Source/ThreadPool.hh"/>
       <FILE id="xeM74q" name="Tools.cpp" compile="1" resource="0" file="Source/Tools.cpp"/>
       <FILE id="vs2D6f" name="Tools.hh" compile="0" resource="0" file="Source/Tools.hh"/>
       <FILE id="ro2yD2" name="SynchronizeManager.cpp" compile="1" resource="0"
             file="Source/SynchronizeManager.cpp"/>
-      <FILE id="A50ma2" name="SynchronizeManager.hh" compile="0" resource="0"
-            file="Source/SynchronizeManager.hh"/>
-      <GROUP id="{232E6AD8-A50D-53BC-2432-D6E48554A0F2}" name="ViewManager">
-        <FILE id="GoWy4d" name="AView.cpp" compile="1" resource="0" file="Source/ViewManager/AView.cpp"/>
-        <FILE id="KSYQp0" name="AView.hh" compile="0" resource="0" file="Source/ViewManager/AView.hh"/>
-        <FILE id="XmgIJi" name="HomePage.cpp" compile="1" resource="0" file="Source/ViewManager/HomePage.cpp"/>
-        <FILE id="G3DUGg" name="HomePage.hh" compile="0" resource="0" file="Source/ViewManager/HomePage.hh"/>
-        <FILE id="zq5a2B" name="IView.hpp" compile="0" resource="0" file="Source/ViewManager/IView.hpp"/>
-        <FILE id="tSDjkr" name="ViewManager.cpp" compile="1" resource="0" file="Source/ViewManager/ViewManager.cpp"/>
-        <FILE id="f11e5w" name="ViewManager.hh" compile="0" resource="0" file="Source/ViewManager/ViewManager.hh"/>
-      </GROUP>
       <GROUP id="{5444B8A4-FB7A-02ED-7754-175A3C60D033}" name="AI">
         <FILE id="E487my" name="Drums.hh" compile="0" resource="0" file="Source/AI/Drums.hh"/>
         <FILE id="rpJXui" name="Drums.cpp" compile="1" resource="0" file="Source/AI/Drums.cpp"/>
@@ -90,6 +102,10 @@
         <FILE id="wSJyIx" name="SSLManager.hh" compile="0" resource="0" file="Source/EncryptionManager/SSLManager.hh"/>
       </GROUP>
       <GROUP id="{67A50DD7-6C2C-A059-E512-F0F0D14AB316}" name="GraphManager">
+        <FILE id="tw1tTU" name="ReportPanel.cpp" compile="1" resource="0" file="Source/GraphManager/ReportPanel.cpp"/>
+        <FILE id="KIFr5g" name="ReportPanel.hh" compile="0" resource="0" file="Source/GraphManager/ReportPanel.hh"/>
+        <FILE id="ILxVWQ" name="SimpleLabel.cpp" compile="1" resource="0" file="Source/GraphManager/SimpleLabel.cpp"/>
+        <FILE id="KrI0We" name="SimpleLabel.hh" compile="0" resource="0" file="Source/GraphManager/SimpleLabel.hh"/>
         <FILE id="eErgF6" name="AComponent.cpp" compile="1" resource="0" file="Source/GraphManager/AComponent.cpp"/>
         <FILE id="KUlU1X" name="AComponent.hh" compile="0" resource="0" file="Source/GraphManager/AComponent.hh"/>
         <FILE id="HIx8vh" name="AGraphManager.cpp" compile="1" resource="0"
@@ -98,10 +114,16 @@
               file="Source/GraphManager/AGraphManager.hh"/>
         <FILE id="Fr7ElR" name="BasicButton.cpp" compile="1" resource="0" file="Source/GraphManager/BasicButton.cpp"/>
         <FILE id="yJoUv8" name="BasicButton.hh" compile="0" resource="0" file="Source/GraphManager/BasicButton.hh"/>
+        <FILE id="K4qWej" name="CenterPanel.cpp" compile="1" resource="0" file="Source/GraphManager/CenterPanel.cpp"/>
+        <FILE id="R3WTYS" name="CenterPanel.hh" compile="0" resource="0" file="Source/GraphManager/CenterPanel.hh"/>
+        <FILE id="RqIcY2" name="FlexGroup.cpp" compile="1" resource="0" file="Source/GraphManager/FlexGroup.cpp"/>
+        <FILE id="lxP3gN" name="FlexGroup.hh" compile="0" resource="0" file="Source/GraphManager/FlexGroup.hh"/>
         <FILE id="Lbi3bj" name="IGraphManager.hpp" compile="0" resource="0"
               file="Source/GraphManager/IGraphManager.hpp"/>
         <FILE id="rCMkmr" name="JuceManager.cpp" compile="1" resource="0" file="Source/GraphManager/JuceManager.cpp"/>
         <FILE id="dnE53f" name="JuceManager.hh" compile="0" resource="0" file="Source/GraphManager/JuceManager.hh"/>
+        <FILE id="JKulCT" name="LeftPanel.cpp" compile="1" resource="0" file="Source/GraphManager/LeftPanel.cpp"/>
+        <FILE id="aQDoFC" name="LeftPanel.hh" compile="0" resource="0" file="Source/GraphManager/LeftPanel.hh"/>
         <FILE id="vjUgyq" name="ListItemComponent.cpp" compile="1" resource="0"
               file="ListItemComponent.cpp"/>
         <FILE id="P3G4EZ" name="ListItemComponent.h" compile="0" resource="0"
@@ -119,8 +141,17 @@
               file="Source/GraphManager/MusicStyleButton.cpp"/>
         <FILE id="COOJPI" name="MusicStyleButton.h" compile="0" resource="0"
               file="Source/GraphManager/MusicStyleButton.h"/>
+        <FILE id="MrpYCp" name="PlayerFooter.cpp" compile="1" resource="0"
+              file="Source/GraphManager/PlayerFooter.cpp"/>
+        <FILE id="FUaMxD" name="PlayerFooter.hh" compile="0" resource="0" file="Source/GraphManager/PlayerFooter.hh"/>
+        <FILE id="cZ0dYD" name="PlayerPanel.cpp" compile="1" resource="0" file="Source/GraphManager/PlayerPanel.cpp"/>
+        <FILE id="eS257S" name="PlayerPanel.hh" compile="0" resource="0" file="Source/GraphManager/PlayerPanel.hh"/>
         <FILE id="anX9Wi" name="Theme.cpp" compile="1" resource="0" file="Source/GraphManager/Theme.cpp"/>
         <FILE id="UcsbfQ" name="Theme.h" compile="0" resource="0" file="Source/GraphManager/Theme.h"/>
+        <FILE id="lmOBXm" name="UserParamsPanel.cpp" compile="1" resource="0"
+              file="Source/GraphManager/UserParamsPanel.cpp"/>
+        <FILE id="SkjqhJ" name="UserParamsPanel.hh" compile="0" resource="0"
+              file="Source/GraphManager/UserParamsPanel.hh"/>
         <FILE id="XanxvO" name="UserParamsComponent.cpp" compile="1" resource="0"
               file="Source/GraphManager/UserParamsComponent.cpp"/>
         <FILE id="rg8N4I" name="UserParamsComponent.h" compile="0" resource="0"
@@ -212,6 +243,8 @@
     </GROUP>
     <FILE id="DSddGh" name="DateTime.cpp" compile="1" resource="0" file="Source/DateTime.cpp"/>
     <FILE id="AE5Ojh" name="DateTime.hh" compile="0" resource="0" file="Source/DateTime.hh"/>
+    <FILE id="WNFnNx" name="Semaphore.cpp" compile="1" resource="0" file="Source/Semaphore.cpp"/>
+    <FILE id="hHWpAV" name="Semaphore.hh" compile="0" resource="0" file="Source/Semaphore.hh"/>
   </MAINGROUP>
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="MacOS" extraDefs="SOURCEMARKOV=\&quot;$(SRCROOT)/../Source/markovSource/\&quot;">
@@ -241,7 +274,8 @@
     <VS2015 targetFolder="Windows" externalLibraries="..\LuaLibrary\lua53.lib"
             extraCompilerFlags="-I..\JsoncppLibrary\&#10;-I..\LuaLibrary\include&#10;"
             extraDefs="SOURCEMARKOV=&quot;$(ProjectDir.Replace('\'\,'/'))../Source/markovSource/&quot;"
-            windowsTargetPlatformVersion="8.1" toolset="v140">
+            windowsTargetPlatformVersion="8.1" toolset="v140" smallIcon="YTFWvq"
+            bigIcon="YTFWvq">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
                        isDebug="1" optimisation="1" targetName="BardeClient" postbuildCommand="xcopy /d /y &quot;$(ProjectDir)..\LuaLibrary\lua53.dll&quot; &quot;$(OutDir)&quot;"
@@ -311,6 +345,8 @@
   </MODULES>
   <JUCEOPTIONS/>
   <LIVE_SETTINGS>
-    <WINDOWS/>
+    <WINDOWS buildEnabled="0" headerPath=".\JsoncppLibrary\&#10;.\LuaLibrary\include&#10;"
+             defines="SOURCEMARKOV=&quot;$(ProjectDir.Replace('\'\,'/'))../Source/markovSource/&quot;"
+             extraDLLs="..\LuaLibrary\lua53.lib"/>
   </LIVE_SETTINGS>
 </JUCERPROJECT>

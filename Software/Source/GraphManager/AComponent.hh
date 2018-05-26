@@ -11,8 +11,10 @@
 #pragma once
 
 #include <functional>
+#include <map>
+#include "../JuceLibraryCode/JuceHeader.h"
 
-class AComponent
+class AComponent : public Component
 {
 public:
 	virtual ~AComponent() {};

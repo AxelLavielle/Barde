@@ -1,0 +1,14 @@
+Installer les packages vlc et libvlc
+
+Utilisation:
+
+<user> : Id de l'user et du channel. Sera utilisé pour l'adresse de stream
+<media> : Path pour acceder au fichier audio
+
+Lancer le binaire et utiliser les commandes suivante sur l'entrée standart:
+new;<user>;<media> // Creer un channel sur rtsp://:3333/<user> (Port modifiable dans le code) et lance directement le media
+delete;<user> // Delete le channel
+play;<user> // Met sur play le channel (Fonctionne pas)
+stop;<user> // Met sur stop le channel (Fonctionne pas)
+add;<user>;<media> // Ajoute le media dans le channel pour une lecture a la suite
+info;<user> // Affiche les infos sous forme de JSON avec playlist et etat du channel

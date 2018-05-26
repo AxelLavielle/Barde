@@ -31,26 +31,8 @@ public:
 
 
 
-	/*!
-	*  \brief Constructor
-	*
-	*  Default Constructor
-	*
-	*/
-	Theme();
 
-	/*!
-	*  \brief Constructor
-	*
-	*  Complete Constructor
-	*
-	*  \param buttonColor : color of the buttons.
-	*  \param backgroundColor : color of the background.
-	*  \param fontColor : color of the font.
-	*  \param buttonFontColor : color of the button font.
-	*  \param name : name of the theme.
-	*/
-	Theme(int buttonColor, int backgroundColor, int fontColor, int buttonFontColor, std::string name);
+
 
 	/*!
 	*  \brief Destructor
@@ -149,7 +131,19 @@ public:
 	*
 	*  \param name : name of the theme
 	*/
-	void setName(std::string name);
+	void setName(const std::string &name);
+
+	static Theme &getInstance();
+
+	/*!
+	*  \brief creates Theme from file
+	*
+	*  creates a Theme with the theme settings located in the settings file.
+	*
+	*  \param filename : name of the file where the theme settings are defined
+	*
+	*/
+	void parseTheme(const std::string &fileName);
 
 private:
 	int _buttonColor; /*!< color of all buttons in the software */
@@ -158,17 +152,11 @@ private:
 	int _buttonFontColor; /*!< color of the font of the buttons*/
 	std::string _name; /*!< name of the theme */
 
+	static Theme _theme;
+
+	Theme();
+
 };
 
-/*!
-*  \brief creates Theme from file
-*
-*  creates a Theme with the theme settings located in the settings file.
-*
-*  \param filename : name of the file where the theme settings are defined
-*  
-*  \return : Theme with the informaton of the file
-*/
-Theme parseTheme(std::string fileName);
 
 #endif  // THEME_H_INCLUDED

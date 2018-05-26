@@ -27,9 +27,10 @@
 namespace juce
 {
 
-bool BluetoothMidiDevicePairingDialogue::open (ModalComponentManager::Callback* exitCallback)
+bool BluetoothMidiDevicePairingDialogue::open (ModalComponentManager::Callback* exitCallback,
+                                               Rectangle<int>*)
 {
-    ScopedPointer<ModalComponentManager::Callback> cb (exitCallback);
+    std::unique_ptr<ModalComponentManager::Callback> cb (exitCallback);
     // not implemented on Linux yet!
     // You should check whether the dialogue is available on your system
     // using isAvailable() before calling open().

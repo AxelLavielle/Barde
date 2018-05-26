@@ -120,7 +120,7 @@ void			MusicGenerator::launch(std::vector<MusicParameters> &_graph2genQ, std::ve
 			_gen2playQ.push_back(std::make_pair(m, p.getBpm()));
 		}
 		_gen2playM.unlock();
-		Tools::sleep(1100);
+		Tools::sleepActive(1000);
 	}
 }
 
@@ -128,19 +128,6 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 {
   MidiManager	_midiManager;
 
-  parameters.setSeed(static_cast<unsigned int>(std::time(NULL)));
-  parameters.setBpm(105);
-  Instrument instru;
-  instru.name = "Piano";
-  instru.nb = ACOUSTICGRANDPIANO;
-  instru.channel = 1;
-  instru.velocity = 100; //Need change
-  parameters.addInstrumentArpeggios(instru);
-  parameters.addInstrumentChords(instru);
-  parameters.setStyleName("Blues");
-  srand(parameters.getSeed());
-  /* PARAMETERS */
-  
   /* DRUMS */
 
   /*

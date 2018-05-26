@@ -12,7 +12,6 @@ Author:  Oreo
 #ifndef USERREGISTRATION_H_INCLUDED
 #define USERREGISTRATION_H_INCLUDED
 
-#include "../JuceLibraryCode/JuceHeader.h"
 #include "Theme.h"
 #include "../CmdManager.hh"
 #include "../User.hh"
@@ -34,20 +33,19 @@ Author:  Oreo
 
 
 
-class UserRegistration : public Component, public AComponent, private TextEditor::Listener, private Button::Listener
+class UserRegistration : public AComponent, private TextEditor::Listener, private Button::Listener
 {
 public:
 	//==============================================================================
 	UserRegistration(CmdManager & cmdManager);
 	~UserRegistration();
 
+private:
 	void paint(Graphics&) override;
 	void resized() override;
 	void buttonClicked(Button* button) override;
 	void ThemeChanged();
 	bool isEmailValid(const std::string &email);
-
-private:
 	void signin(const User & user);
 
 	TextEditor _firstNameTextEditor, _lastNameTextEditor, _userNameTextEditor, _emailTextEditor, _dateOfBirthTextEditor, _passwordTextEditor, _passwordConfirmationTextEditor;
@@ -56,7 +54,7 @@ private:
 	Label _errorText;
 	TextButton _saveButton;
 	TextButton _cancelButton;
-	Theme _currentTheme;
+	static Theme _currentTheme;
 	User _user;
 	CmdManager &_cmdManager;
 	//ComboBox themeChoice;

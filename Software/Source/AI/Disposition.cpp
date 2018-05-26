@@ -16,13 +16,11 @@ void		Disposition::placeChords(MidiManager &_midiManager, MusicParameters &param
   Chords chords;
   std::vector<Instrument> instruments;
   char scaleAdjust;
-  int previousNote;
   int note;
   double beats;
   std::vector<char> notesFromChord;
 
   beats = 0;
-  previousNote = 0;
   instruments = parameters.getInstrumentsChords();
   _midiManager.setTempo(parameters.getBpm());
   for (unsigned char i = 0; i < instruments.size(); i++){
@@ -33,11 +31,10 @@ void		Disposition::placeChords(MidiManager &_midiManager, MusicParameters &param
       scaleAdjust = 0;
       for (unsigned char y = 0; y < notesFromChord.size(); y++){
       	if (y != 0)
-      	  scaleAdjust = (notesFromChord[y] < previousNote ? 0 : 1);
+      	  scaleAdjust = (notesFromChord[y] < notesFromChord[y-1] ? 0 : 1);
       	note = (notesFromChord[y] / 8) + ((chordsGrid[x].second + scaleAdjust) * 12);
       	_midiManager.noteOn(instruments[i].channel, note, instruments[i].velocity, beats + 1);
       	_midiManager.noteOff(instruments[i].channel, note, instruments[i].velocity, beats + 1 + TIMES_PER_BAR);
-      	previousNote = note;
           }
 	  beats += TIMES_PER_BAR;
     }
@@ -49,11 +46,9 @@ void    Disposition::placeChords(MidiManager &_midiManager, MusicParameters &par
   Chords chords;
   std::vector<Instrument> instruments;
   char scaleAdjust;
-  int previousNote;
   int note;
   std::vector<char> notesFromChord;
 
-  previousNote = 0;
   instruments = parameters.getInstrumentsChords();
   _midiManager.setTempo(parameters.getBpm());
   for (unsigned char i = 0; i < instruments.size(); i++){
@@ -64,11 +59,10 @@ void    Disposition::placeChords(MidiManager &_midiManager, MusicParameters &par
         scaleAdjust = 0;
         for (unsigned char y = 0; y < notesFromChord.size(); y++){
           if (y != 0)
-            scaleAdjust = (notesFromChord[y] < previousNote ? 1 : 0);
+            scaleAdjust = (notesFromChord[y] < notesFromChord[y-1] ? 1 : 0);
           note = (notesFromChord[y] / 8) + ((pattern[x][k].note.second + scaleAdjust) * 12);
           _midiManager.noteOn(instruments[i].channel, note, instruments[i].velocity, pattern[x][k].position);
           _midiManager.noteOff(instruments[i].channel, note, instruments[i].velocity, pattern[x][k].position + pattern[x][k].duration);
-          previousNote = note;
         }
       }
     }

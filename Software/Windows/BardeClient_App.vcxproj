@@ -23,6 +23,7 @@
                  Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <PlatformToolset>v141</PlatformToolset>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -72,7 +73,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>..\JuceLibraryCode;..\JuceLibraryCode\modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;SOURCEMARKOV=&quot;$(ProjectDir.Replace('\','/'))../Source/markovSource/&quot;;JUCER_VS2015_B3A83A63=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader/>
       <AssemblerListingLocation>$(IntDir)\</AssemblerListingLocation>
@@ -121,7 +122,7 @@
       <Optimization>Full</Optimization>
       <AdditionalIncludeDirectories>..\JuceLibraryCode;..\JuceLibraryCode\modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;SOURCEMARKOV=&quot;$(ProjectDir.Replace('\','/'))../Source/markovSource/&quot;;JUCER_VS2015_B3A83A63=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader/>
       <AssemblerListingLocation>$(IntDir)\</AssemblerListingLocation>
@@ -161,12 +162,15 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Source\CondVariable.cpp"/>
+    <ClCompile Include="..\Source\ViewManager\AView.cpp"/>
+    <ClCompile Include="..\Source\ViewManager\FlexView.cpp"/>
+    <ClCompile Include="..\Source\ViewManager\HomePage.cpp"/>
+    <ClCompile Include="..\Source\ViewManager\ViewManager.cpp"/>
+    <ClCompile Include="..\Source\Factories\GuiFactory.cpp"/>
     <ClCompile Include="..\Source\ThreadPool.cpp"/>
     <ClCompile Include="..\Source\Tools.cpp"/>
     <ClCompile Include="..\Source\SynchronizeManager.cpp"/>
-    <ClCompile Include="..\Source\ViewManager\AView.cpp"/>
-    <ClCompile Include="..\Source\ViewManager\HomePage.cpp"/>
-    <ClCompile Include="..\Source\ViewManager\ViewManager.cpp"/>
     <ClCompile Include="..\Source\AI\Drums.cpp"/>
     <ClCompile Include="..\Source\AI\Pattern.cpp"/>
     <ClCompile Include="..\Source\AI\PatternGenerator.cpp"/>
@@ -183,16 +187,24 @@
     <ClCompile Include="..\Source\DatabaseManager\SQLiteManager.cpp"/>
     <ClCompile Include="..\Source\EncryptionManager\AEncryptionManager.cpp"/>
     <ClCompile Include="..\Source\EncryptionManager\SSLManager.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\ReportPanel.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\SimpleLabel.cpp"/>
     <ClCompile Include="..\Source\GraphManager\AComponent.cpp"/>
     <ClCompile Include="..\Source\GraphManager\AGraphManager.cpp"/>
     <ClCompile Include="..\Source\GraphManager\BasicButton.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\CenterPanel.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\FlexGroup.cpp"/>
     <ClCompile Include="..\Source\GraphManager\JuceManager.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\LeftPanel.cpp"/>
     <ClCompile Include="..\ListItemComponent.cpp"/>
     <ClCompile Include="..\Source\GraphManager\LoginComponent.cpp"/>
     <ClCompile Include="..\Source\GraphManager\MainComponent.cpp"/>
     <ClCompile Include="..\Source\GraphManager\MainWindow.cpp"/>
     <ClCompile Include="..\Source\GraphManager\MusicStyleButton.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\PlayerFooter.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\PlayerPanel.cpp"/>
     <ClCompile Include="..\Source\GraphManager\Theme.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\UserParamsPanel.cpp"/>
     <ClCompile Include="..\Source\GraphManager\UserParamsComponent.cpp"/>
     <ClCompile Include="..\Source\GraphManager\UserRegistration.cpp"/>
     <ClCompile Include="..\Source\MidiManager\AMidiManager.cpp"/>
@@ -220,6 +232,7 @@
     <ClCompile Include="..\Source\User.cpp"/>
     <ClCompile Include="..\Source\UserSettings.cpp"/>
     <ClCompile Include="..\Source\DateTime.cpp"/>
+    <ClCompile Include="..\Source\Semaphore.cpp"/>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -274,10 +287,10 @@
     <ClCompile Include="..\JuceLibraryCode\modules\juce_audio_basics\mpe\juce_MPESynthesiserVoice.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\JuceLibraryCode\modules\juce_audio_basics\mpe\juce_MPEValue.cpp">
+    <ClCompile Include="..\JuceLibraryCode\modules\juce_audio_basics\mpe\juce_MPEUtils.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\JuceLibraryCode\modules\juce_audio_basics\mpe\juce_MPEZone.cpp">
+    <ClCompile Include="..\JuceLibraryCode\modules\juce_audio_basics\mpe\juce_MPEValue.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_audio_basics\mpe\juce_MPEZoneLayout.cpp">
@@ -334,6 +347,9 @@
     <ClCompile Include="..\JuceLibraryCode\modules\juce_audio_devices\native\juce_android_Midi.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\JuceLibraryCode\modules\juce_audio_devices\native\juce_android_Oboe.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_audio_devices\native\juce_android_OpenSL.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -341,6 +357,9 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_audio_devices\native\juce_linux_ALSA.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\JuceLibraryCode\modules\juce_audio_devices\native\juce_linux_Bela.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_audio_devices\native\juce_linux_JackAudio.cpp">
@@ -553,10 +572,16 @@
     <ClCompile Include="..\JuceLibraryCode\modules\juce_audio_processors\format_types\juce_LADSPAPluginFormat.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\JuceLibraryCode\modules\juce_audio_processors\format_types\juce_LegacyAudioParameter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_audio_processors\format_types\juce_VST3PluginFormat.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_audio_processors\format_types\juce_VSTPluginFormat.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\JuceLibraryCode\modules\juce_audio_processors\processors\juce_AudioPluginInstance.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_audio_processors\processors\juce_AudioProcessor.cpp">
@@ -649,13 +674,13 @@
     <ClCompile Include="..\JuceLibraryCode\modules\juce_core\containers\juce_HashMap_test.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\JuceLibraryCode\modules\juce_core\containers\juce_ListenerList.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_core\containers\juce_NamedValueSet.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_core\containers\juce_PropertySet.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\JuceLibraryCode\modules\juce_core\containers\juce_SparseSet.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_core\containers\juce_Variant.cpp">
@@ -812,6 +837,9 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_core\streams\juce_SubregionStream.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\JuceLibraryCode\modules\juce_core\streams\juce_URLInputSource.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_core\system\juce_SystemStats.cpp">
@@ -1405,6 +1433,9 @@
     <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_basics\drawables\juce_SVGParser.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_basics\filebrowser\juce_ContentSharer.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_basics\filebrowser\juce_DirectoryContentsDisplayComponent.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -1495,6 +1526,9 @@
     <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_basics\layout\juce_ScrollBar.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_basics\layout\juce_SidePanel.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_basics\layout\juce_StretchableLayoutManager.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -1526,6 +1560,9 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_basics\lookandfeel\juce_LookAndFeel_V4.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_basics\menus\juce_BurgerMenuComponent.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_basics\menus\juce_MenuBarComponent.cpp">
@@ -1567,10 +1604,19 @@
     <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_basics\mouse\juce_MouseListener.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_basics\native\juce_android_ContentSharer.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_basics\native\juce_android_FileChooser.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_basics\native\juce_android_Windowing.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_basics\native\juce_common_MimeTypes.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_basics\native\juce_ios_ContentSharer.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_basics\native\juce_linux_FileChooser.cpp">
@@ -1622,6 +1668,9 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_basics\properties\juce_ChoicePropertyComponent.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_basics\properties\juce_MultiChoicePropertyComponent.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_basics\properties\juce_PropertyComponent.cpp">
@@ -1741,6 +1790,9 @@
     <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_extra\misc\juce_PreferencesPanel.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_extra\misc\juce_PushNotifications.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_extra\misc\juce_RecentlyOpenedFilesList.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -1750,7 +1802,16 @@
     <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_extra\misc\juce_SystemTrayIconComponent.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_extra\native\juce_android_PushNotifications.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_extra\native\juce_android_WebBrowserComponent.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_extra\native\juce_AndroidViewComponent.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_extra\native\juce_ios_PushNotifications.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_extra\native\juce_linux_X11_SystemTrayIcon.cpp">
@@ -1760,6 +1821,9 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_extra\native\juce_linux_XEmbedComponent.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_extra\native\juce_mac_PushNotifications.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_gui_extra\native\juce_mac_SystemTrayIcon.cpp">
@@ -1830,13 +1894,17 @@
     <ClCompile Include="..\JuceLibraryCode\include_juce_video.cpp"/>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Source\ThreadPool.hh"/>
-    <ClInclude Include="..\Source\Tools.hh"/>
-    <ClInclude Include="..\Source\SynchronizeManager.hh"/>
+    <ClInclude Include="..\Source\Utils\NonCopyable.hpp"/>
+    <ClInclude Include="..\Source\CondVariable.hh"/>
     <ClInclude Include="..\Source\ViewManager\AView.hh"/>
+    <ClInclude Include="..\Source\ViewManager\FlexView.hh"/>
     <ClInclude Include="..\Source\ViewManager\HomePage.hh"/>
     <ClInclude Include="..\Source\ViewManager\IView.hpp"/>
     <ClInclude Include="..\Source\ViewManager\ViewManager.hh"/>
+    <ClInclude Include="..\Source\Factories\GuiFactory.hh"/>
+    <ClInclude Include="..\Source\SynchronizeManager.hh"/>
+    <ClInclude Include="..\Source\ThreadPool.hh"/>
+    <ClInclude Include="..\Source\Tools.hh"/>
     <ClInclude Include="..\Source\AI\Drums.hh"/>
     <ClInclude Include="..\Source\AI\Pattern.hh"/>
     <ClInclude Include="..\Source\AI\PatternGenerator.hh"/>
@@ -1856,17 +1924,25 @@
     <ClInclude Include="..\Source\EncryptionManager\AEncryptionManager.hh"/>
     <ClInclude Include="..\Source\EncryptionManager\IEncryptionManager.hpp"/>
     <ClInclude Include="..\Source\EncryptionManager\SSLManager.hh"/>
+    <ClInclude Include="..\Source\GraphManager\ReportPanel.hh"/>
+    <ClInclude Include="..\Source\GraphManager\SimpleLabel.hh"/>
     <ClInclude Include="..\Source\GraphManager\AComponent.hh"/>
     <ClInclude Include="..\Source\GraphManager\AGraphManager.hh"/>
     <ClInclude Include="..\Source\GraphManager\BasicButton.hh"/>
+    <ClInclude Include="..\Source\GraphManager\CenterPanel.hh"/>
+    <ClInclude Include="..\Source\GraphManager\FlexGroup.hh"/>
     <ClInclude Include="..\Source\GraphManager\IGraphManager.hpp"/>
     <ClInclude Include="..\Source\GraphManager\JuceManager.hh"/>
+    <ClInclude Include="..\Source\GraphManager\LeftPanel.hh"/>
     <ClInclude Include="..\ListItemComponent.h"/>
     <ClInclude Include="..\Source\GraphManager\LoginComponent.h"/>
     <ClInclude Include="..\Source\GraphManager\MainComponent.h"/>
     <ClInclude Include="..\Source\GraphManager\MainWindow.hh"/>
     <ClInclude Include="..\Source\GraphManager\MusicStyleButton.h"/>
+    <ClInclude Include="..\Source\GraphManager\PlayerFooter.hh"/>
+    <ClInclude Include="..\Source\GraphManager\PlayerPanel.hh"/>
     <ClInclude Include="..\Source\GraphManager\Theme.h"/>
+    <ClInclude Include="..\Source\GraphManager\UserParamsPanel.hh"/>
     <ClInclude Include="..\Source\GraphManager\UserParamsComponent.h"/>
     <ClInclude Include="..\Source\GraphManager\UserRegistration.h"/>
     <ClInclude Include="..\Source\MidiManager\AMidiManager.hh"/>
@@ -1898,6 +1974,7 @@
     <ClInclude Include="..\Source\User.hh"/>
     <ClInclude Include="..\Source\UserSettings.h"/>
     <ClInclude Include="..\Source\DateTime.hh"/>
+    <ClInclude Include="..\Source\Semaphore.hh"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioChannelSet.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h"/>
@@ -1921,8 +1998,8 @@
     <ClInclude Include="..\JuceLibraryCode\modules\juce_audio_basics\mpe\juce_MPESynthesiser.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_audio_basics\mpe\juce_MPESynthesiserBase.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_audio_basics\mpe\juce_MPESynthesiserVoice.h"/>
+    <ClInclude Include="..\JuceLibraryCode\modules\juce_audio_basics\mpe\juce_MPEUtils.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_audio_basics\mpe\juce_MPEValue.h"/>
-    <ClInclude Include="..\JuceLibraryCode\modules\juce_audio_basics\mpe\juce_MPEZone.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_audio_basics\mpe\juce_MPEZoneLayout.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_audio_basics\native\juce_mac_CoreAudioLayouts.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_audio_basics\sources\juce_AudioSource.h"/>
@@ -2163,6 +2240,7 @@
     <ClInclude Include="..\JuceLibraryCode\modules\juce_core\streams\juce_MemoryOutputStream.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_core\streams\juce_OutputStream.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_core\streams\juce_SubregionStream.h"/>
+    <ClInclude Include="..\JuceLibraryCode\modules\juce_core\streams\juce_URLInputSource.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_core\system\juce_CompilerSupport.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_core\system\juce_PlatformDefs.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_core\system\juce_StandardHeader.h"/>
@@ -2235,6 +2313,7 @@
     <ClInclude Include="..\JuceLibraryCode\modules\juce_data_structures\values\juce_Value.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_data_structures\values\juce_ValueTree.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_data_structures\values\juce_ValueTreeSynchroniser.h"/>
+    <ClInclude Include="..\JuceLibraryCode\modules\juce_data_structures\values\juce_ValueWithDefault.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_data_structures\juce_data_structures.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_events\broadcasters\juce_ActionBroadcaster.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_events\broadcasters\juce_ActionListener.h"/>
@@ -2282,6 +2361,7 @@
     <ClInclude Include="..\JuceLibraryCode\modules\juce_graphics\geometry\juce_BorderSize.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_graphics\geometry\juce_EdgeTable.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_graphics\geometry\juce_Line.h"/>
+    <ClInclude Include="..\JuceLibraryCode\modules\juce_graphics\geometry\juce_Parallelogram.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_graphics\geometry\juce_Path.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_graphics\geometry\juce_PathIterator.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_graphics\geometry\juce_PathStrokeType.h"/>
@@ -2344,6 +2424,7 @@
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\drawables\juce_DrawableRectangle.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\drawables\juce_DrawableShape.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\drawables\juce_DrawableText.h"/>
+    <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\filebrowser\juce_ContentSharer.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\filebrowser\juce_DirectoryContentsDisplayComponent.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\filebrowser\juce_DirectoryContentsList.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\filebrowser\juce_FileBrowserComponent.h"/>
@@ -2381,6 +2462,7 @@
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\layout\juce_ResizableCornerComponent.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\layout\juce_ResizableEdgeComponent.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\layout\juce_ScrollBar.h"/>
+    <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\layout\juce_SidePanel.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\layout\juce_StretchableLayoutManager.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\layout\juce_StretchableLayoutResizerBar.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\layout\juce_StretchableObjectResizer.h"/>
@@ -2392,6 +2474,7 @@
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\lookandfeel\juce_LookAndFeel_V2.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\lookandfeel\juce_LookAndFeel_V3.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\lookandfeel\juce_LookAndFeel_V4.h"/>
+    <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\menus\juce_BurgerMenuComponent.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\menus\juce_MenuBarComponent.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\menus\juce_MenuBarModel.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\menus\juce_PopupMenu.h"/>
@@ -2423,6 +2506,7 @@
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\properties\juce_BooleanPropertyComponent.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\properties\juce_ButtonPropertyComponent.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\properties\juce_ChoicePropertyComponent.h"/>
+    <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\properties\juce_MultiChoicePropertyComponent.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\properties\juce_PropertyComponent.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\properties\juce_PropertyPanel.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_basics\properties\juce_SliderPropertyComponent.h"/>
@@ -2461,6 +2545,7 @@
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_extra\code_editor\juce_XMLCodeTokeniser.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_extra\documents\juce_FileBasedDocument.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_extra\embedding\juce_ActiveXControlComponent.h"/>
+    <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_extra\embedding\juce_AndroidViewComponent.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_extra\embedding\juce_NSViewComponent.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_extra\embedding\juce_UIViewComponent.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_extra\embedding\juce_XEmbedComponent.h"/>
@@ -2471,6 +2556,7 @@
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_extra\misc\juce_KeyMappingEditorComponent.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_extra\misc\juce_LiveConstantEditor.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_extra\misc\juce_PreferencesPanel.h"/>
+    <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_extra\misc\juce_PushNotifications.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_extra\misc\juce_RecentlyOpenedFilesList.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_extra\misc\juce_SplashScreen.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_gui_extra\misc\juce_SystemTrayIconComponent.h"/>
@@ -2488,6 +2574,7 @@
     <ClInclude Include="..\JuceLibraryCode\modules\juce_osc\juce_osc.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_video\capture\juce_CameraDevice.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_video\native\juce_android_CameraDevice.h"/>
+    <ClInclude Include="..\JuceLibraryCode\modules\juce_video\native\juce_ios_CameraDevice.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_video\native\juce_mac_CameraDevice.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_video\native\juce_mac_Video.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_video\native\juce_win32_CameraDevice.h"/>
@@ -2507,6 +2594,7 @@
     <None Include="..\JuceLibraryCode\modules\juce_audio_formats\codecs\oggvorbis\Ogg Vorbis Licence.txt"/>
     <None Include="..\JuceLibraryCode\modules\juce_graphics\image_formats\jpglib\changes to libjpeg for JUCE.txt"/>
     <None Include="..\JuceLibraryCode\modules\juce_graphics\image_formats\pnglib\libpng_readme.txt"/>
+    <None Include=".\icon.ico"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include=".\resources.rc"/>

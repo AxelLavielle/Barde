@@ -23,6 +23,8 @@ ifndef CONFIG
   CONFIG=Debug
 endif
 
+JUCE_ARCH_LABEL := $(shell uname -m)
+
 ifeq ($(CONFIG),Debug)
   JUCE_BINDIR := build
   JUCE_LIBDIR := build
@@ -66,12 +68,15 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS_APP := \
+  $(JUCE_OBJDIR)/CondVariable_b4fc4f98.o \
+  $(JUCE_OBJDIR)/AView_4c0b412f.o \
+  $(JUCE_OBJDIR)/FlexView_447d429f.o \
+  $(JUCE_OBJDIR)/HomePage_9fb9146f.o \
+  $(JUCE_OBJDIR)/ViewManager_527c33d1.o \
+  $(JUCE_OBJDIR)/GuiFactory_36672790.o \
   $(JUCE_OBJDIR)/ThreadPool_dd677260.o \
   $(JUCE_OBJDIR)/Tools_90322e8b.o \
   $(JUCE_OBJDIR)/SynchronizeManager_e9a9ccd7.o \
-  $(JUCE_OBJDIR)/AView_4c0b412f.o \
-  $(JUCE_OBJDIR)/HomePage_9fb9146f.o \
-  $(JUCE_OBJDIR)/ViewManager_527c33d1.o \
   $(JUCE_OBJDIR)/Drums_ab9e5300.o \
   $(JUCE_OBJDIR)/Pattern_d2006803.o \
   $(JUCE_OBJDIR)/PatternGenerator_f0f3ae5a.o \
@@ -88,16 +93,24 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/SQLiteManager_99d2bf74.o \
   $(JUCE_OBJDIR)/AEncryptionManager_13e06cc8.o \
   $(JUCE_OBJDIR)/SSLManager_f25fe680.o \
+  $(JUCE_OBJDIR)/ReportPanel_542b80da.o \
+  $(JUCE_OBJDIR)/SimpleLabel_d8204f0c.o \
   $(JUCE_OBJDIR)/AComponent_b1bc9abc.o \
   $(JUCE_OBJDIR)/AGraphManager_4508c7ea.o \
   $(JUCE_OBJDIR)/BasicButton_cecac0aa.o \
+  $(JUCE_OBJDIR)/CenterPanel_e1927ed9.o \
+  $(JUCE_OBJDIR)/FlexGroup_f57b13f0.o \
   $(JUCE_OBJDIR)/JuceManager_8121b3aa.o \
+  $(JUCE_OBJDIR)/LeftPanel_1a786ca7.o \
   $(JUCE_OBJDIR)/ListItemComponent_eef934b2.o \
   $(JUCE_OBJDIR)/LoginComponent_22832b34.o \
   $(JUCE_OBJDIR)/MainComponent_fb729fae.o \
   $(JUCE_OBJDIR)/MainWindow_1a69e1a9.o \
   $(JUCE_OBJDIR)/MusicStyleButton_39681cbe.o \
+  $(JUCE_OBJDIR)/PlayerFooter_7463c23c.o \
+  $(JUCE_OBJDIR)/PlayerPanel_a8984dcd.o \
   $(JUCE_OBJDIR)/Theme_6a8438b3.o \
+  $(JUCE_OBJDIR)/UserParamsPanel_241772fd.o \
   $(JUCE_OBJDIR)/UserParamsComponent_ea189f76.o \
   $(JUCE_OBJDIR)/UserRegistration_c9349104.o \
   $(JUCE_OBJDIR)/AMidiManager_545b688.o \
@@ -125,6 +138,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/User_dcb1be25.o \
   $(JUCE_OBJDIR)/UserSettings_491c94e8.o \
   $(JUCE_OBJDIR)/DateTime_4ce7f75.o \
+  $(JUCE_OBJDIR)/Semaphore_1c93f0f4.o \
   $(JUCE_OBJDIR)/BinaryData_371e9b63.o \
   $(JUCE_OBJDIR)/include_juce_audio_basics_10901fdb.o \
   $(JUCE_OBJDIR)/include_juce_audio_devices_a5008791.o \
@@ -150,7 +164,37 @@ $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) : check-pkg-config $(OBJECTS_APP) $(RESOURCES)
 	-$(V_AT)mkdir -p $(JUCE_BINDIR)
 	-$(V_AT)mkdir -p $(JUCE_LIBDIR)
 	-$(V_AT)mkdir -p $(JUCE_OUTDIR)
-	$(V_AT)$(CXX) -o $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) $(OBJECTS_APP) $(JUCE_LDFLAGS) $(RESOURCES) $(TARGET_ARCH)
+	$(V_AT)$(CXX) -o $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) $(OBJECTS_APP) $(JUCE_LDFLAGS) $(JUCE_LDFLAGS_APP) $(RESOURCES) $(TARGET_ARCH)
+
+$(JUCE_OBJDIR)/CondVariable_b4fc4f98.o: ../Source/CondVariable.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling CondVariable.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/AView_4c0b412f.o: ../Source/ViewManager/AView.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling AView.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/FlexView_447d429f.o: ../Source/ViewManager/FlexView.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling FlexView.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/HomePage_9fb9146f.o: ../Source/ViewManager/HomePage.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling HomePage.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ViewManager_527c33d1.o: ../Source/ViewManager/ViewManager.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ViewManager.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/GuiFactory_36672790.o: ../Source/Factories/GuiFactory.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling GuiFactory.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/ThreadPool_dd677260.o: ../Source/ThreadPool.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
@@ -165,21 +209,6 @@ $(JUCE_OBJDIR)/Tools_90322e8b.o: ../Source/Tools.cpp
 $(JUCE_OBJDIR)/SynchronizeManager_e9a9ccd7.o: ../Source/SynchronizeManager.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling SynchronizeManager.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/AView_4c0b412f.o: ../Source/ViewManager/AView.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling AView.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/HomePage_9fb9146f.o: ../Source/ViewManager/HomePage.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling HomePage.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/ViewManager_527c33d1.o: ../Source/ViewManager/ViewManager.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling ViewManager.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/Drums_ab9e5300.o: ../Source/AI/Drums.cpp
@@ -262,6 +291,16 @@ $(JUCE_OBJDIR)/SSLManager_f25fe680.o: ../Source/EncryptionManager/SSLManager.cpp
 	@echo "Compiling SSLManager.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/ReportPanel_542b80da.o: ../Source/GraphManager/ReportPanel.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ReportPanel.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/SimpleLabel_d8204f0c.o: ../Source/GraphManager/SimpleLabel.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling SimpleLabel.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/AComponent_b1bc9abc.o: ../Source/GraphManager/AComponent.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling AComponent.cpp"
@@ -277,9 +316,24 @@ $(JUCE_OBJDIR)/BasicButton_cecac0aa.o: ../Source/GraphManager/BasicButton.cpp
 	@echo "Compiling BasicButton.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/CenterPanel_e1927ed9.o: ../Source/GraphManager/CenterPanel.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling CenterPanel.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/FlexGroup_f57b13f0.o: ../Source/GraphManager/FlexGroup.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling FlexGroup.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/JuceManager_8121b3aa.o: ../Source/GraphManager/JuceManager.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling JuceManager.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/LeftPanel_1a786ca7.o: ../Source/GraphManager/LeftPanel.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling LeftPanel.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/ListItemComponent_eef934b2.o: ../ListItemComponent.cpp
@@ -307,9 +361,24 @@ $(JUCE_OBJDIR)/MusicStyleButton_39681cbe.o: ../Source/GraphManager/MusicStyleBut
 	@echo "Compiling MusicStyleButton.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/PlayerFooter_7463c23c.o: ../Source/GraphManager/PlayerFooter.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling PlayerFooter.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/PlayerPanel_a8984dcd.o: ../Source/GraphManager/PlayerPanel.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling PlayerPanel.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/Theme_6a8438b3.o: ../Source/GraphManager/Theme.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling Theme.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/UserParamsPanel_241772fd.o: ../Source/GraphManager/UserParamsPanel.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling UserParamsPanel.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/UserParamsComponent_ea189f76.o: ../Source/GraphManager/UserParamsComponent.cpp
@@ -445,6 +514,11 @@ $(JUCE_OBJDIR)/UserSettings_491c94e8.o: ../Source/UserSettings.cpp
 $(JUCE_OBJDIR)/DateTime_4ce7f75.o: ../Source/DateTime.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling DateTime.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/Semaphore_1c93f0f4.o: ../Source/Semaphore.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Semaphore.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/BinaryData_371e9b63.o: ../JuceLibraryCode/BinaryData.cpp

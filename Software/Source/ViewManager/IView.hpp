@@ -15,7 +15,6 @@ class IView
 {
 public:
 	virtual ~IView() {};
-	virtual	bool init() = 0;
 };
 
 #endif  // IVIEW_HPP_INCLUDED

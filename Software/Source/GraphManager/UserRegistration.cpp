@@ -21,7 +21,7 @@ UserRegistration::UserRegistration(CmdManager & cmdManager) : _cmdManager(cmdMan
 	int y = getParentHeight();
 
 	setSize(getParentWidth(), getParentHeight() - 10);
-	this->_currentTheme = parseTheme("../Themes/Dark");
+	//this->_currentTheme = parseTheme("../Themes/Dark");
 
 	//Connect to server
 	cmdManager.connectToServer();
@@ -135,83 +135,83 @@ UserRegistration::UserRegistration(CmdManager & cmdManager) : _cmdManager(cmdMan
 void UserRegistration::ThemeChanged()
 {
 	String tmp = _firstNameTextEditor.getText();
-	_firstNameTextEditor.setColour(TextEditor::backgroundColourId, Colour(this->_currentTheme.getBackgroundColor()));
-	_firstNameTextEditor.setColour(TextEditor::focusedOutlineColourId, Colour(this->_currentTheme.getButtonColor()));
-	_firstNameTextEditor.setColour(TextEditor::highlightColourId, Colour(this->_currentTheme.getButtonColor()));
-	_firstNameTextEditor.setColour(TextEditor::textColourId, Colour(this->_currentTheme.getFontColor()));
-	_firstNameTextEditor.setColour(TextEditor::outlineColourId, Colour(this->_currentTheme.getFontColor()));
+	_firstNameTextEditor.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	_firstNameTextEditor.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
+	_firstNameTextEditor.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonColor()));
+	_firstNameTextEditor.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getFontColor()));
+	_firstNameTextEditor.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getFontColor()));
 	_firstNameTextEditor.clear();
 	_firstNameTextEditor.setText(tmp);
 
 	tmp = _lastNameTextEditor.getText();
-	_lastNameTextEditor.setColour(TextEditor::backgroundColourId, Colour(this->_currentTheme.getBackgroundColor()));
-	_lastNameTextEditor.setColour(TextEditor::focusedOutlineColourId, Colour(this->_currentTheme.getButtonColor()));
-	_lastNameTextEditor.setColour(TextEditor::highlightColourId, Colour(this->_currentTheme.getButtonColor()));
-	_lastNameTextEditor.setColour(TextEditor::textColourId, Colour(this->_currentTheme.getFontColor()));
-	_lastNameTextEditor.setColour(TextEditor::outlineColourId, Colour(this->_currentTheme.getFontColor()));
+	_lastNameTextEditor.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	_lastNameTextEditor.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
+	_lastNameTextEditor.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonColor()));
+	_lastNameTextEditor.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getFontColor()));
+	_lastNameTextEditor.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getFontColor()));
 	_lastNameTextEditor.clear();
 	_lastNameTextEditor.setText(tmp);
 
 	tmp = _userNameTextEditor.getText();
-	_userNameTextEditor.setColour(TextEditor::backgroundColourId, Colour(this->_currentTheme.getBackgroundColor()));
-	_userNameTextEditor.setColour(TextEditor::focusedOutlineColourId, Colour(this->_currentTheme.getButtonColor()));
-	_userNameTextEditor.setColour(TextEditor::highlightColourId, Colour(this->_currentTheme.getButtonColor()));
-	_userNameTextEditor.setColour(TextEditor::textColourId, Colour(this->_currentTheme.getFontColor()));
-	_userNameTextEditor.setColour(TextEditor::outlineColourId, Colour(this->_currentTheme.getFontColor()));
+	_userNameTextEditor.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	_userNameTextEditor.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
+	_userNameTextEditor.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonColor()));
+	_userNameTextEditor.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getFontColor()));
+	_userNameTextEditor.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getFontColor()));
 	_userNameTextEditor.clear();
 	_userNameTextEditor.setText(tmp);
 
 	tmp = _emailTextEditor.getText();
-	_emailTextEditor.setColour(TextEditor::backgroundColourId, Colour(this->_currentTheme.getBackgroundColor()));
-	_emailTextEditor.setColour(TextEditor::focusedOutlineColourId, Colour(this->_currentTheme.getButtonColor()));
-	_emailTextEditor.setColour(TextEditor::highlightColourId, Colour(this->_currentTheme.getButtonColor()));
-	_emailTextEditor.setColour(TextEditor::textColourId, Colour(this->_currentTheme.getFontColor()));
-	_emailTextEditor.setColour(TextEditor::outlineColourId, Colour(this->_currentTheme.getFontColor()));
+	_emailTextEditor.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	_emailTextEditor.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
+	_emailTextEditor.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonColor()));
+	_emailTextEditor.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getFontColor()));
+	_emailTextEditor.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getFontColor()));
 	_emailTextEditor.clear();
 	_emailTextEditor.setText(tmp);
 
 
 	tmp = _dateOfBirthTextEditor.getText();
-	_dateOfBirthTextEditor.setColour(TextEditor::backgroundColourId, Colour(this->_currentTheme.getBackgroundColor()));
-	_dateOfBirthTextEditor.setColour(TextEditor::focusedOutlineColourId, Colour(this->_currentTheme.getButtonColor()));
-	_dateOfBirthTextEditor.setColour(TextEditor::highlightColourId, Colour(this->_currentTheme.getButtonColor()));
-	_dateOfBirthTextEditor.setColour(TextEditor::textColourId, Colour(this->_currentTheme.getFontColor()));
-	_dateOfBirthTextEditor.setColour(TextEditor::outlineColourId, Colour(this->_currentTheme.getFontColor()));
+	_dateOfBirthTextEditor.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	_dateOfBirthTextEditor.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
+	_dateOfBirthTextEditor.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonColor()));
+	_dateOfBirthTextEditor.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getFontColor()));
+	_dateOfBirthTextEditor.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getFontColor()));
 	_dateOfBirthTextEditor.clear();
 	_dateOfBirthTextEditor.setText(tmp);
 
 
 	tmp = _passwordTextEditor.getText();
-	_passwordTextEditor.setColour(TextEditor::backgroundColourId, Colour(this->_currentTheme.getBackgroundColor()));
-	_passwordTextEditor.setColour(TextEditor::focusedOutlineColourId, Colour(this->_currentTheme.getButtonColor()));
-	_passwordTextEditor.setColour(TextEditor::highlightColourId, Colour(this->_currentTheme.getButtonColor()));
-	_passwordTextEditor.setColour(TextEditor::textColourId, Colour(this->_currentTheme.getFontColor()));
-	_passwordTextEditor.setColour(TextEditor::outlineColourId, Colour(this->_currentTheme.getFontColor()));
+	_passwordTextEditor.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	_passwordTextEditor.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
+	_passwordTextEditor.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonColor()));
+	_passwordTextEditor.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getFontColor()));
+	_passwordTextEditor.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getFontColor()));
 	_passwordTextEditor.clear();
 	_passwordTextEditor.setText(tmp);
 
 
 	tmp = _passwordConfirmationTextEditor.getText();
-	_passwordConfirmationTextEditor.setColour(TextEditor::backgroundColourId, Colour(this->_currentTheme.getBackgroundColor()));
-	_passwordConfirmationTextEditor.setColour(TextEditor::focusedOutlineColourId, Colour(this->_currentTheme.getButtonColor()));
-	_passwordConfirmationTextEditor.setColour(TextEditor::highlightColourId, Colour(this->_currentTheme.getButtonColor()));
-	_passwordConfirmationTextEditor.setColour(TextEditor::textColourId, Colour(this->_currentTheme.getFontColor()));
-	_passwordConfirmationTextEditor.setColour(TextEditor::outlineColourId, Colour(this->_currentTheme.getFontColor()));
+	_passwordConfirmationTextEditor.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	_passwordConfirmationTextEditor.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
+	_passwordConfirmationTextEditor.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonColor()));
+	_passwordConfirmationTextEditor.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getFontColor()));
+	_passwordConfirmationTextEditor.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getFontColor()));
 	_passwordConfirmationTextEditor.clear();
 	_passwordConfirmationTextEditor.setText(tmp);
 
-	_firstNameLabel.setColour(Label::textColourId, Colour(this->_currentTheme.getButtonColor()));
-	_lastNameLabel.setColour(Label::textColourId, Colour(this->_currentTheme.getButtonColor()));
-	_userNameLabel.setColour(Label::textColourId, Colour(this->_currentTheme.getButtonColor()));
-	_emailLabel.setColour(Label::textColourId, Colour(this->_currentTheme.getButtonColor()));
-	_dateOfBirthLabel.setColour(Label::textColourId, Colour(this->_currentTheme.getButtonColor()));
-	_passwordLabel.setColour(Label::textColourId, Colour(this->_currentTheme.getButtonColor()));
-	_passwordConfirmationLabel.setColour(Label::textColourId, Colour(this->_currentTheme.getButtonColor()));
+	_firstNameLabel.setColour(Label::textColourId, Colour(Theme::getInstance().getButtonColor()));
+	_lastNameLabel.setColour(Label::textColourId, Colour(Theme::getInstance().getButtonColor()));
+	_userNameLabel.setColour(Label::textColourId, Colour(Theme::getInstance().getButtonColor()));
+	_emailLabel.setColour(Label::textColourId, Colour(Theme::getInstance().getButtonColor()));
+	_dateOfBirthLabel.setColour(Label::textColourId, Colour(Theme::getInstance().getButtonColor()));
+	_passwordLabel.setColour(Label::textColourId, Colour(Theme::getInstance().getButtonColor()));
+	_passwordConfirmationLabel.setColour(Label::textColourId, Colour(Theme::getInstance().getButtonColor()));
 
-	_saveButton.setColour(TextButton::buttonColourId, Colour(this->_currentTheme.getButtonColor()));
-	_saveButton.setColour(TextButton::textColourOnId, Colour(this->_currentTheme.getButtonFontColor()));
-	_cancelButton.setColour(TextButton::buttonColourId, Colour(this->_currentTheme.getButtonColor()));
-	_cancelButton.setColour(TextButton::textColourOnId, Colour(this->_currentTheme.getButtonFontColor()));
+	_saveButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
+	_saveButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
+	_cancelButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
+	_cancelButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
 	this->repaint();
 }
 
@@ -281,7 +281,7 @@ UserRegistration::~UserRegistration()
 void UserRegistration::paint(Graphics& g)
 {
 	//g.setColour(Colours::white);
-	g.fillAll(Colour(this->_currentTheme.getBackgroundColor()));
+	g.fillAll(Colour(Theme::getInstance().getBackgroundColor()));
 }
 
 void UserRegistration::resized()

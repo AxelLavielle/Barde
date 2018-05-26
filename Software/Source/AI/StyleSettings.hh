@@ -10,11 +10,11 @@
 # include	<list>
 
 /*! Sum of the probabilities of all the strong notes */
-# define	PROBASTRONG		57
+# define	PROBASTRONG		66
 /*! Sum of the probabilities of all the medium notes */
-# define	PROBAMEDIUM		38
+# define	PROBAMEDIUM		34
 /*! Sum of the probabilities of all the weak notes */
-# define	PROBAWEAK		5
+# define	PROBAWEAK		0
 
 /*! \class StyleSettings
  * \brief Simplify the access to a probability tree
