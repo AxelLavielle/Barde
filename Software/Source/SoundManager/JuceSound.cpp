@@ -48,27 +48,41 @@ void SoundManager::launch(std::vector<std::pair<Midi, int> > &_gen2playQ, std::m
 
 	while (!stop)
 	{
+		std::cout << "==A" << std::endl;
 		bool b = false;
 		_gen2playM.lock();
+		std::cout << "==B" << std::endl;
 		if (_gen2playQ.size() > 0)
 		{
+			std::cout << "==C" << std::endl;
 			m = _gen2playQ[0].first;
+			std::cout << "==D" << std::endl;
 			bpm = _gen2playQ[0].second;
+			std::cout << "==E" << std::endl;
 			b = true;
+			std::cout << "==F" << std::endl;
 			_gen2playQ.erase(_gen2playQ.begin());
+			std::cout << "==G" << std::endl;
 		}
 		else
 			b = false;
+		std::cout << "==H" << std::endl;
 		_gen2playM.unlock();
+		std::cout << "==I" << std::endl;
 		if (b)
 			play(m, bpm, stop);
 		else
 			Tools::sleepActive(100);
+		std::cout << "==J" << std::endl;
 		if (_stop)
 		{
+			std::cout << "==K" << std::endl;
 			cond.wait();
+			std::cout << "==L" << std::endl;
 			_stop = !_stop;
+			std::cout << "==M" << std::endl;
 		}
+		std::cout << "==N" << std::endl;
 	}
 }
 

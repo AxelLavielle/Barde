@@ -102,25 +102,36 @@ void			MusicGenerator::launch(std::vector<MusicParameters> &_graph2genQ, std::ve
 
 	while (!stop)
 	{
+		std::cout << "==a" << std::endl;
 		_graph2genM.lock();
+		std::cout << "==b" << std::endl;
 		if (_graph2genQ.size() > 0)
 		{
+			std::cout << "==c" << std::endl;
 			p = _graph2genQ[0];
+			std::cout << "==d" << std::endl;
 			b = true;
 			_graph2genQ.erase(_graph2genQ.begin());
-			_gen2playM.lock();
-			_gen2playQ.clear();
-			_gen2playM.unlock();
+			std::cout << "==e" << std::endl;
 		}
+		std::cout << "==i" << std::endl;
 		_graph2genM.unlock();
+		std::cout << "==j" << std::endl;
 		_gen2playM.lock();
+		std::cout << "==k" << std::endl;
 		if (b && _gen2playQ.size() < 3)
 		{
+			std::cout << "==l" << std::endl;
 			Midi m = createMusic(p);
+			std::cout << "==m" << std::endl;
 			_gen2playQ.push_back(std::make_pair(m, p.getBpm()));
+			std::cout << "==n" << std::endl;
 		}
+		std::cout << "==o" << std::endl;
 		_gen2playM.unlock();
+		std::cout << "==p" << std::endl;
 		Tools::sleepActive(1000);
+		std::cout << "==q" << std::endl;
 	}
 }
 
@@ -145,6 +156,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 
   /* DRUMS */
 
+  std::cout << "INITIALISATION" << std::endl;
   /* INITIALISATION */
   ObjectMarkov						markovObj(SOURCEMARKOV + std::string("blues.json"), 1, parameters.getSeed());
   std::vector<std::pair<char, char> >			markovChords;
@@ -153,7 +165,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   std::vector<std::pair<char, char> >			chord;
   Chords						allChords;
   /* INITIALISATION */
-
+  std::cout << "CHORDS" << std::endl;
   /* CHORDS */
   markovObj.callLua();
   markovChords = markovObj.getVectorFromJson();
@@ -183,7 +195,8 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 
   /* CHORDS */
   
-  /* MARKOVIAN TREE GENERATION */		
+  std::cout << "MTG" << std::endl;
+  /* MARKOVIAN TREE GENERATION */
   StyleSettings						proba;
   std::vector<char>					strong;
   std::vector<char>					medium;
@@ -196,6 +209,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   AI::calculateProbaToScaleFromNote(&proba, strong, medium, weak);
   /* MARKOVIAN TREE GENERATION */		
 
+  std::cout << "ARPEGGIOS" << std::endl;
   /* ARPEGGIOS */
   int arpN = rand() % 3 + 4;
   Pattern					*markovPattern = new Pattern(chord);
@@ -225,6 +239,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   Disposition::placeArpeggios(_midiManager, parameters, arpeggios);
   ///* ARPEGGIOS */
 
+  std::cout << "END" << std::endl;
   ///* END */
   _midiManager.writeToFile("./test.mid");
   return (_midiManager.createMidi(48));

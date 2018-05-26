@@ -28,10 +28,19 @@ Player::~Player()
 
 void Player::newParams(MusicParameters p)
 {
-	_cond.notify();
-	_graph2genM.lock();
+	{
+		std::cout << "--0" << std::endl;
+		std::lock_guard<std::mutex> lock(_gen2playM);
+		std::cout << "--1" << std::endl;
+		_gen2playQ.clear();
+	}
+	std::cout << "--2" << std::endl;
+	std::lock_guard<std::mutex> lock(_graph2genM);
+	std::cout << "--3" << std::endl;
 	_graph2genQ.push_back(p);
-	_graph2genM.unlock();
+	std::cout << "--4" << std::endl;
+	_cond.notify();
+	std::cout << "--5" << std::endl;
 }
 
 void Player::Init()
