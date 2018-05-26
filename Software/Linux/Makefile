@@ -113,7 +113,6 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/PlayerPanel_a8984dcd.o \
   $(JUCE_OBJDIR)/Theme_6a8438b3.o \
   $(JUCE_OBJDIR)/UserParamsPanel_241772fd.o \
-  $(JUCE_OBJDIR)/UserParamsComponent_ea189f76.o \
   $(JUCE_OBJDIR)/UserRegistration_c9349104.o \
   $(JUCE_OBJDIR)/AMidiManager_545b688.o \
   $(JUCE_OBJDIR)/Midi_8be1d87e.o \
@@ -391,11 +390,6 @@ $(JUCE_OBJDIR)/Theme_6a8438b3.o: ../Source/GraphManager/Theme.cpp
 $(JUCE_OBJDIR)/UserParamsPanel_241772fd.o: ../Source/GraphManager/UserParamsPanel.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling UserParamsPanel.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/UserParamsComponent_ea189f76.o: ../Source/GraphManager/UserParamsComponent.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling UserParamsComponent.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/UserRegistration_c9349104.o: ../Source/GraphManager/UserRegistration.cpp

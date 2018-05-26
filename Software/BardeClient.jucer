@@ -160,10 +160,6 @@
               file="Source/GraphManager/UserParamsPanel.cpp"/>
         <FILE id="SkjqhJ" name="UserParamsPanel.hh" compile="0" resource="0"
               file="Source/GraphManager/UserParamsPanel.hh"/>
-        <FILE id="XanxvO" name="UserParamsComponent.cpp" compile="1" resource="0"
-              file="Source/GraphManager/UserParamsComponent.cpp"/>
-        <FILE id="rg8N4I" name="UserParamsComponent.h" compile="0" resource="0"
-              file="Source/GraphManager/UserParamsComponent.h"/>
         <FILE id="Ps92aY" name="UserRegistration.cpp" compile="1" resource="0"
               file="Source/GraphManager/UserRegistration.cpp"/>
         <FILE id="tUPkX0" name="UserRegistration.h" compile="0" resource="0"

@@ -15,7 +15,6 @@
 #include <sstream> 
 #include "MainComponent.h"
 #include "LoginComponent.h"
-#include "UserParamsComponent.h"
 #include "UserRegistration.h"
 
 class MainWindow : public  DocumentWindow, public ComponentListener
@@ -29,7 +28,6 @@ public:
 private:
 	MainContentComponent	*_mainComponent;
 	LoginComponent			*_loginComponent;
-	UserParamsComponent		*_userParamsComponent;
 	UserRegistration		*_userRegistration;
 	CmdManager				_cmdManager;
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MainWindow)

@@ -541,9 +541,6 @@
     <ClCompile Include="..\Source\GraphManager\UserParamsPanel.cpp">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\GraphManager\UserParamsComponent.cpp">
-      <Filter>BardeClient\Source\GraphManager</Filter>
-    </ClCompile>
     <ClCompile Include="..\Source\GraphManager\UserRegistration.cpp">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClCompile>
@@ -2584,9 +2581,6 @@
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\GraphManager\UserParamsPanel.hh">
-      <Filter>BardeClient\Source\GraphManager</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\GraphManager\UserParamsComponent.h">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\GraphManager\UserRegistration.h">
