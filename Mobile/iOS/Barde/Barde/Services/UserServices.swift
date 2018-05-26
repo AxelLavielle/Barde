@@ -12,20 +12,16 @@ import Alamofire
 
 class UserService {
     
-    func getLocalData() -> NSManagedObject? {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Profil")
-        //request.predicate = NSPredicate(format: "age = %@", "12")
-        request.returnsObjectsAsFaults = false
-        request.fetchLimit = 1
-        
+    func getLocalData() -> Profil? {
         do {
-            let result = try context.fetch(request)
-            
-            for data in result as! [NSManagedObject] {
-                return data
-            }
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Profil")
+            fetchRequest.fetchLimit = 1
+            let result = try context.fetch(fetchRequest) as! [Profil]
+            let profil = result.first
+           
+            return profil
         } catch {
-            print("Failed")
+            print("Cannot fetch profile")
         }
         
         return nil
@@ -61,6 +57,39 @@ class UserService {
         print(headers);
         
         Alamofire.request(Utils().getApiUrl() + "/user/", method:.put, parameters: parameters, headers: headers).responseJSON { response in
+            print("Request: \(String(describing: response.request))")   // original url request
+            print("Response: \(String(describing: response.response))") // http url response
+            print("Result: \(String(describing: response.result.value))")
+            // response serialization result
+            
+            if let httpStatusCode = response.response?.statusCode {
+                switch(httpStatusCode) {
+                case 200:
+                    if ((response.result.value) != nil) {
+                        
+                    }
+                    break
+                case 400:
+                    
+                    break
+                default:
+                    print("default")
+                    
+                }
+            }
+        }
+    }
+    
+    func reportProblem (data: String) {
+        let headers: HTTPHeaders = [
+            "Authorization": UserDefaults.standard.string(forKey: "Token")!,
+            ]
+        
+        let parameters: Parameters = [
+            "description":  data
+        ]
+        
+        Alamofire.request(Utils().getApiUrl() + "/report/", method:.post, parameters: parameters, headers: headers).responseJSON { response in
             print("Request: \(String(describing: response.request))")   // original url request
             print("Response: \(String(describing: response.response))") // http url response
             print("Result: \(String(describing: response.result.value))")

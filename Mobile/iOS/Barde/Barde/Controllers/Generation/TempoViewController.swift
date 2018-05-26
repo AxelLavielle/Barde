@@ -21,7 +21,7 @@ class TempoViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        currentTempoLabel.text =  "60 BPM"
+        currentTempoLabel.text =  "70 BPM"
     }
     
 }

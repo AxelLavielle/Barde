@@ -12,12 +12,20 @@ import Alamofire
 
 class SettingsViewController: UIViewController, SettingMenuButtonDelegate, NSFetchedResultsControllerDelegate {
     
+    @IBOutlet weak var reportButton: SettingMenuButton!
     @IBOutlet weak var imageRefresh: UIImageView!
     
     var userService: UserService?
     
     func buttonClicked(button: SettingMenuButton, sender: UIButton) {
+        performSegue(withIdentifier: "ReportProblemView", sender: nil)
         
+        switch button.tag {
+        case 1:
+            performSegue(withIdentifier: "ReportProblemView", sender: nil)
+        default:
+            print("lol")
+        }
     }
     
     @IBAction func buttonBack(_ sender: Any) {
@@ -33,6 +41,7 @@ class SettingsViewController: UIViewController, SettingMenuButtonDelegate, NSFet
         imageRefresh.isUserInteractionEnabled = true
         
         userService = UserService()
+        reportButton.delegate = self
     }
     
     

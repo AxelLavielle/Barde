@@ -26,8 +26,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationBarAppearace.tintColor = Utils().uicolorFromHex(rgbValue: 0xFFFFFF)
         navigationBarAppearace.barTintColor = Utils().uicolorFromHex(rgbValue: 0xD53972)
         
-//        Utils().deleteAllRecord(entity: "Profil")
-//        UserDefaults.standard.removeObject(forKey: "Token")
+        
+        Utils().deleteAllRecord(entity: "Style")
+        Utils().deleteAllRecord(entity: "Instrument")
+        
+        StyleService().initData()
+        InstrumentService().initData()
+        
+        //Check return of initData() - If false, error message asking for realoading data and if continue, restart app
+        
+        //        UserDefaults.standard.removeObject(forKey: "Token")
         
        
         
