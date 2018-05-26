@@ -40,9 +40,9 @@ void Player::Init()
 
 #ifdef __linux__
 	int policy;
-	
+
 	sched_param sch;
-	pthread_getschedparam(t1.native_handle(), &policy, &sch);
+	pthread_getschedparam(_playThread.native_handle(), &policy, &sch);
 	sch.sched_priority = -18;
 	if (pthread_setschedparam(_playThread.native_handle(), SCHED_FIFO, &sch)) {
 		std::cerr << "Failed to setschedparam: " << std::strerror(errno) << '\n';
