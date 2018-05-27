@@ -10,7 +10,7 @@
 
 #include "CenterPanel.hh"
 
-CenterPanel::CenterPanel(MusicParameters & musicParameters, CmdManager & cmdManager) : _musicParameters(musicParameters), _cmdManager(cmdManager), _playerPanel(_musicParameters)
+CenterPanel::CenterPanel(MusicParameters & musicParameters) : _musicParameters(musicParameters), _cmdManager(CmdManager::getInstance()), _playerPanel(_musicParameters)
 {
 	//TO DO create a singletone to manage userInstance
 	_user = _cmdManager.getUserInfo();

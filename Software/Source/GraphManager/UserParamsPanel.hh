@@ -15,6 +15,7 @@
 #include "../ViewManager/FlexView.hh"
 #include "../Utils/StringChecker.hh"
 #include "../User.hh"
+#include "../CmdManager.hh"
 #include "LabeledTextBox.hh"
 
 #define TEXTBOX_MIN_WIDTH 400
@@ -44,6 +45,8 @@ private:
 	LabeledTextBox		_passwordConfirmationTextBox;
 	TextButton			_confirmButton;
 	TextButton			_cancelButton;
+
+	CmdManager			&_cmdManager;
 
 	User				_user;
 };

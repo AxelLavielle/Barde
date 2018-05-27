@@ -38,7 +38,6 @@ public:
 	
 private:
 	ViewManager		_viewManager;
-	CmdManager		_cmdManager;
 };
 
 

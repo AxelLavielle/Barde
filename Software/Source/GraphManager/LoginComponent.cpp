@@ -50,7 +50,7 @@ LoginComponent::LoginComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager)
 	_textEditor2.addListener(this);
 
 	addAndMakeVisible(_errorText);
-	_errorText.setText("LLLLLLL", juce::NotificationType::dontSendNotification);
+	_errorText.setText("", juce::NotificationType::dontSendNotification);
 	_errorText.setColour(Label::textColourId, Colours::red);
 	_errorText.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 - SPACE_BETWEEN - SPACE_BETWEEN, BOX_WIDTH, BOX_HEIGHT);
 
@@ -96,12 +96,20 @@ void LoginComponent::login(const std::string & login, const std::string & passwo
 {
 	String errorMessage;
 
-	if (_cmdManager.login(login, password)) {
-		errorMessage = "Login correct";
-		changeView("Main");
-	}
 
-	else {
+	try
+	{
+		if (_cmdManager.login(login, password)) {
+			errorMessage = "Login correct";
+			changeView("Player");
+		}
+		else
+		{
+			errorMessage = "There was an error during the login process";
+		}
+	}
+	catch (RestClientException &e)
+	{
 		errorMessage = "There was an error during the login process";
 	}
 	_errorText.setText(errorMessage, juce::NotificationType::sendNotification);

@@ -41,7 +41,7 @@ public:
 	*  MainContentComponent class constructor
 	*
 	*/
-	MainContentComponent(CmdManager & cmdManager);
+	MainContentComponent();
 
 	/*!
 	*  \brief Destructor

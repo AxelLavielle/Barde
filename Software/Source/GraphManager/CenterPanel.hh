@@ -19,7 +19,7 @@
 class CenterPanel : public AView
 {
 public:
-	CenterPanel(MusicParameters	&musicParameters, CmdManager & cmdManager);
+	CenterPanel(MusicParameters	&musicParameters);
 
 private:
 	void paint(Graphics & g) override;

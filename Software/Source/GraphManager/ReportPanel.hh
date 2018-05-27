@@ -12,6 +12,7 @@
 
 #include "../ViewManager/FlexView.hh"
 #include "../Factories/GuiFactory.hh"
+#include "../CmdManager.hh"
 
 class ReportPanel : public FlexView, private Button::Listener
 {
@@ -25,4 +26,7 @@ private:
 	TextButton		_sendButton;
 	TextButton		_cancelButton;
 	SimpleLabel		_titleLabel;
+	SimpleLabel		_errorLabel;
+
+	CmdManager		&_cmdManager;
 };

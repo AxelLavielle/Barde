@@ -10,7 +10,7 @@
 
 #include "UserParamsPanel.hh"
 
-UserParamsPanel::UserParamsPanel()
+UserParamsPanel::UserParamsPanel() : _cmdManager(CmdManager::getInstance())
 {
 	GuiFactory::initBigTitle("Edit your informations", _titleLabel);
 	addFlexItem(_titleLabel, 200, 30, FlexItem::AlignSelf::stretch, 1);
@@ -41,6 +41,17 @@ void UserParamsPanel::paint(Graphics & g)
 
 void UserParamsPanel::initTextBoxes()
 {
+	try
+	{
+		_user = _cmdManager.getUserInfo();
+
+	}
+	catch (RestClientException &e)
+	{
+		_errorLabel.setLabelText("Connection error.");
+		return;
+	}
+
 	_firstNameTextBox.setLabelText("Firstname");
 	_firstNameTextBox.setText(_user.getFirstName());
 	addFlexItem(_firstNameTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
@@ -83,7 +94,7 @@ bool UserParamsPanel::updateUser()
 		_errorLabel.setLabelText("Invalid email.");
 		return false;
 	}
-	if (_passwordTextBox.getText() != _passwordConfirmationTextBox.getText() && _passwordTextBox.getText() != "")
+	if (_passwordTextBox.getText() != _passwordConfirmationTextBox.getText() || _passwordTextBox.getText() == "")
 	{
 		_errorLabel.setLabelText("Error passwords don't match");
 		return false;
@@ -95,7 +106,23 @@ bool UserParamsPanel::updateUser()
 	_user.setFirstName(_firstNameTextBox.getText());
 	_user.setLastName(_lastNameTextBox.getText());
 	_user.setUserName(_userNameTextBox.getText());
-	//TO DO make API call
+	try
+	{
+		if (_cmdManager.editUserInfo(_user, _passwordTextBox.getText()) == false)
+		{
+			if (_cmdManager.getResponseMsg() !="")
+				_errorLabel.setLabelText("API error : " + _cmdManager.getResponseMsg());
+			else
+				_errorLabel.setLabelText("Connection error.");
+			return false;
+		}
+
+	}
+	catch (RestClientException &e)
+	{
+		_errorLabel.setLabelText("Connection error, please reconnect you.");
+		return false;
+	}
 	return true;
 }
 
@@ -108,6 +135,7 @@ void UserParamsPanel::buttonClicked(Button * button)
 		{
 			//TO DO manage theme
 			_errorLabel.setColour(Label::textColourId, Colours::black);
+			initTextBoxes();
 			_errorLabel.setLabelText("Informations updated.");
 		}
 	}
