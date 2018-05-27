@@ -13,9 +13,9 @@ CondVariable::~CondVariable()
 
 void CondVariable::notify()
 {
+	std::lock_guard<std::mutex> lock(_m);
 	if (!_wait)
 		return;
-	std::lock_guard<std::mutex> lock(_m);
 	_state = true;
 	_cond.notify_one();
 }
@@ -31,12 +31,9 @@ void CondVariable::wait()
 		std::lock_guard<std::mutex> lock(_m);
 		_wait = true;
 	}
-	{
-		std::unique_lock<std::mutex> lk(_m);
-		while (!getState())
-			_cond.wait(lk, std::bind(&CondVariable::getState, this));
-	}
-	std::lock_guard<std::mutex> lock(_m);
+	std::unique_lock<std::mutex> lk(_m);
+	while (!getState())
+		_cond.wait(lk, std::bind(&CondVariable::getState, this));
 	_state = false;
 	_wait = false;
 }
