@@ -64,6 +64,8 @@ public:
 	*/
     void resized() override;
 
+	void refresh() override;
+
 private:
     //=============================================================================
 	CmdManager				& _cmdManager;

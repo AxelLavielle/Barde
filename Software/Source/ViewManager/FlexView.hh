@@ -22,6 +22,7 @@ protected:
 	void addFlexItem(Component & component, const float minWidth = 0.f, const float maxHeight = 0.f, const FlexItem::AlignSelf & align = FlexItem::AlignSelf::autoAlign, const float grow = 0);
 	void addLabel(SimpleLabel & component);
 
+	virtual void refresh();
 
 	FlexBox					_flexBox;
 	std::vector<FlexItem>	_items;

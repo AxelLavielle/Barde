@@ -16,10 +16,11 @@
 #include "ReportPanel.hh"
 #include "../CmdManager.hh"
 
-class CenterPanel : public AView
+class CenterPanel : public FlexView //Need to change heritage
 {
 public:
 	CenterPanel(MusicParameters	&musicParameters);
+	void refresh() override;
 
 private:
 	void paint(Graphics & g) override;

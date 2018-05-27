@@ -19,3 +19,7 @@ void AComponent::changeView(std::string viewName)
 {
 	_viewChanger(viewName);
 }
+
+void AComponent::refresh()
+{
+}

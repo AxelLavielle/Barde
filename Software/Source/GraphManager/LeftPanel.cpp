@@ -58,3 +58,8 @@ void LeftPanel::buttonClicked(Button * button)
 	else if (button->getName() == "Home")
 		changeView("Player");
 }
+
+void LeftPanel::refresh()
+{
+
+}

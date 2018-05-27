@@ -22,6 +22,7 @@ class LeftPanel : public FlexView, private Button::Listener
 public:
 	LeftPanel();
 	void setUser(const User & user);
+	void refresh() override;
 
 private:
 	void paint(Graphics & g) override;

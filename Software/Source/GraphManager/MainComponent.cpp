@@ -40,3 +40,9 @@ void MainContentComponent::resized()
 
 	grid.performLayout(getLocalBounds());
 }
+
+void MainContentComponent::refresh()
+{
+	_centerPanel.refresh();
+	_playerFooter.refresh();
+}

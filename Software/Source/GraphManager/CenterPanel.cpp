@@ -12,7 +12,6 @@
 
 CenterPanel::CenterPanel(MusicParameters & musicParameters) : _musicParameters(musicParameters), _cmdManager(CmdManager::getInstance()), _playerPanel(_musicParameters)
 {
-	//TO DO create a singletone to manage userInstance
 	_user = _cmdManager.getUserInfo();
 
 	_leftPanel.setUser(_user);
@@ -32,6 +31,14 @@ CenterPanel::CenterPanel(MusicParameters & musicParameters) : _musicParameters(m
 	_grid.templateColumns = { Track(1_fr), Track(6_fr) }; //Add 2 column in the grid
 
 	refreshGrid();
+}
+
+void CenterPanel::refresh()
+{
+	_user = _cmdManager.getUserInfo();
+
+	_leftPanel.setUser(_user);
+	_leftPanel.refresh();
 }
 
 void CenterPanel::paint(Graphics & g)
@@ -66,6 +73,7 @@ void CenterPanel::changeViewCallback(std::string viewName)
 		refreshGrid();
 		resized();
 	}
+	_mainPanel->refresh();
 }
 
 void CenterPanel::refreshGrid()

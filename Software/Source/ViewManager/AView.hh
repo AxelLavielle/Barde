@@ -22,6 +22,8 @@ public:
 	void setChangeViewCallback(std::function<void(std::string)> changeView);
 	void changeView(std::string viewName);
 
+	virtual void refresh() = 0;
+
 private:
 	std::function<void(std::string)>	_viewChanger;
 };

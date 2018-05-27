@@ -20,6 +20,7 @@ public:
 	virtual ~AComponent() {};
 	virtual void setChangeViewCallback(std::function<void(std::string)> changeView);
 	virtual void changeView(std::string viewName);
+	virtual void refresh();
 
 private:
 	std::function<void(std::string)>	_viewChanger;

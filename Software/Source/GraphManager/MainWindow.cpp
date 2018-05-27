@@ -22,7 +22,7 @@ MainWindow::MainWindow(const std::string &name) : _cmdManager(CmdManager::getIns
 	_cmdManager.connectToServer();
 
 #ifdef DEBUG
-	_cmdManager.login("anthony.vogelweid@epitech.eu", "test");
+	//_cmdManager.login("anthony.vogelweid@epitech.eu", "test");
 
 	//Init all the components
 	_mainComponent = new MainContentComponent();
@@ -31,7 +31,7 @@ MainWindow::MainWindow(const std::string &name) : _cmdManager(CmdManager::getIns
 	_mainComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 	_loginComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 	_userRegistration->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
-	setContentNonOwned(_mainComponent, true);
+	setContentNonOwned(_loginComponent, true);
 #else
 	//Init all the components
 	_mainComponent = new MainContentComponent();
@@ -69,16 +69,19 @@ void MainWindow::changeViewCallback(std::string viewName)
 	if (viewName == "Player")
 	{
 		clearContentComponent();
+		_mainComponent->refresh();
 		setContentNonOwned(_mainComponent, true);
 	}
 	else if (viewName == "Login")
 	{
 		clearContentComponent();
+		_loginComponent->refresh();
 		setContentNonOwned(_loginComponent, true);
 	}
 	else if (viewName == "Signin")
 	{
 		clearContentComponent();
+		_userRegistration->refresh();
 		setContentNonOwned(_userRegistration, true);
 	}
 }

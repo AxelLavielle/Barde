@@ -26,3 +26,7 @@ void FlexView::addLabel(SimpleLabel & component)
 	addAndMakeVisible(component);
 	_items.push_back(GuiFactory::createFlexItemLabel(component));
 }
+
+void FlexView::refresh()
+{
+}
