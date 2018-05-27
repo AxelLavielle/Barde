@@ -31,7 +31,7 @@ MainWindow::MainWindow(const std::string &name) : _cmdManager(CmdManager::getIns
 	_mainComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 	_loginComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 	_userRegistration->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
-	setContentNonOwned(_loginComponent, true);
+	setContentNonOwned(_mainComponent, true);
 #else
 	//Init all the components
 	_mainComponent = new MainContentComponent();

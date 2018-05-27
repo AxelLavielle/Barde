@@ -35,6 +35,11 @@ ReportPanel::ReportPanel() : _cmdManager(CmdManager::getInstance())
 											{ GuiFactory::createFlexItem(_titleLabel, 1000, 55), GuiFactory::createFlexItem(_errorLabel, 500, 20), GuiFactory::createFlexItem(_commentTextEditor, 1000, 400), GuiFactory::createFlexItem(_sendButton, 100, 50, FlexItem::AlignSelf::flexEnd), GuiFactory::createFlexItem(_cancelButton, 100, 50, FlexItem::AlignSelf::flexEnd) } );
 }
 
+void ReportPanel::refresh()
+{
+	_errorLabel.setLabelText("");
+}
+
 void ReportPanel::buttonClicked(Button * button)
 {
 	if (button->getName() == "Send")
