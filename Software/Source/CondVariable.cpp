@@ -27,10 +27,13 @@ bool CondVariable::getState()
 
 void CondVariable::wait()
 {
-	std::lock_guard<std::mutex> lock(_m);
-	_wait = true;
+	{
+		std::lock_guard<std::mutex> lock(_m);
+		_wait = true;
+	}
+	std::unique_lock<std::mutex> lk(_m);
 	while (!getState())
-		_cond.wait(lock, std::bind(&CondVariable::getState, this));
+		_cond.wait(lk, std::bind(&CondVariable::getState, this));
 	_state = false;
 	_wait = false;
 }
