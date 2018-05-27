@@ -46,9 +46,10 @@ void Synthesizer::setUsingSampledSound()
 	FileManager::getFilesList(FileManager::getCurrentDirectory() + s2ws("/../../Samples/Drums/"), s2ws(".wav"), files);
 	FileManager::getFilesList(FileManager::getCurrentDirectory() + s2ws("/../../Samples/"), s2ws(".wav"), files);
 	#else
+	std::wstring test = FileManager::getCurrentDirectory();
 	//std::wcout << "Directory = " << FileManager::getCurrentDirectory() + s2ws("/../../../../Samples/Drums/") << std::endl;
-	FileManager::getFilesList(FileManager::getCurrentDirectory() + s2ws("/../../../../Samples/Drums/"), s2ws(".wav"), files);
-	FileManager::getFilesList(FileManager::getCurrentDirectory() + s2ws("/../../../../Samples/"), s2ws(".wav"), files);
+	FileManager::getFilesList(FileManager::getCurrentDirectory() + s2ws("/../Samples/Drums/"), s2ws(".wav"), files);
+	FileManager::getFilesList(FileManager::getCurrentDirectory() + s2ws("/../Samples/"), s2ws(".wav"), files);
 #endif // __linux__
 	BigInteger allNotes;
 	allNotes.setRange(0, 128, true);
@@ -106,6 +107,7 @@ void Synthesizer::getNextAudioBlock(const AudioSourceChannelInfo& bufferToFill)
 	int						programNb;
 	SynthesizerInstrument	*instrument;
 
+
 	bufferToFill.clearActiveBufferRegion();
 	_midiCollector.removeNextBlockOfMessages(incomingMidi, bufferToFill.numSamples);
 
@@ -118,10 +120,9 @@ void Synthesizer::getNextAudioBlock(const AudioSourceChannelInfo& bufferToFill)
 			try
 			{
 				std::cout << "ChangeInstrument, channel : " << midiEvent.getChannel() << std::endl;
-				_synth.removeSound(midiEvent.getChannel());
+				//_synth.removeSound(midiEvent.getChannel()); do not decomment this line !!
 				instrument = _instruments.at(static_cast<NbInstrument>(programNb));
 				instrument->setChannel(midiEvent.getChannel());
-				SynthesizerInstrument::Ptr synthInstrument(instrument);
 				_synth.addSound(instrument);
 				std::cout << "ChangeInstrument, programNb : " << programNb << std::endl;
 			}
