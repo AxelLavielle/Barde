@@ -34,7 +34,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "C:\Users\Oreo\Documents\GitHub\Barde\Software\Windows\Win32\Debug\App\Barde.ico"; DestDir: "{app}\app"; Flags: ignoreversion
-Source: "C:\Users\Oreo\Documents\GitHub\Barde\Software\Windows\Win32\Debug\App\BardeClient.exe"; DestDir: "{app}\app"; Flags: ignoreversion
+Source: "C:\Users\Oreo\Documents\GitHub\Barde\Software\Windows\Win32\Release\App\BardeClient.exe"; DestDir: "{app}\app"; Flags: ignoreversion
 Source: "C:\Users\Oreo\Documents\GitHub\Barde\Software\Windows\Win32\Debug\App\lua53.dll"; DestDir: "{app}\app"; Flags: ignoreversion
 Source: "C:\Users\Oreo\Documents\GitHub\Barde\Software\Windows\Win32\Debug\Themes\Dark"; DestDir: "{app}\Themes"; Flags: ignoreversion
 ; SAMPLES
