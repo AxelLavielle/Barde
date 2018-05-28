@@ -1,5 +1,5 @@
 var playerModel = {
-  feedUrl : ["rtsp://5.135.160.60:3333/test"],
+  feedUrl : ["http://5.135.160.60:3333/test"],
   instruments : {
     arpeges : [],
     accords : [],

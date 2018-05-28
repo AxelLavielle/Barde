@@ -72,7 +72,7 @@
             </div>
           </div>
         </div>
-        <barde-player :formats="Player.formats" :sources="Player.feedUrl" html5 :loop="true" ></barde-player>
+        <barde-player :formats="this.formats" :sources="Player.feedUrl" html5 :loop="true" preload ></barde-player>
       </div>
     </div>
   </div>
@@ -99,7 +99,7 @@
     data () {
       return {
         preselectionsList : Preselections,
-        formats: ['mp3', 'aac'],
+        formats: ['mp3'],
         instruments: instruments,
         Player : playerModel,
       }
@@ -140,6 +140,14 @@
       });
       self.$on("change", function(data){
         this.setPreset(data);
+      });
+
+      self.$on("loaderror", function(data){
+        console.log("error", data);
+      });
+
+      self.$on("playerror", function(data){
+        console.log("error", data);
       });
 
       $('#selectStyle').on('change', function () {

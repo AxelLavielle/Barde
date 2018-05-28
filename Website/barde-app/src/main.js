@@ -26,14 +26,17 @@ Vue.http.options.emulateJSON = true;
 Vue.http.options.root = 'http://api-dev.barde.io/';
 
 /* eslint-disable no-new */
-new Vue({
+var vm = new Vue({
   el: '#app',
   router,
   template: '<App/>',
   components: { App }
 })
 
+global.vm = vm;
 
-
+vm.$on("play", function(data){
+  console.log("play", data);
+});
 
 
