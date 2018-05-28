@@ -10,7 +10,7 @@
 
 #include "MainWindow.hh"
 
-MainWindow::MainWindow(const std::string &name) : DocumentWindow(name,
+MainWindow::MainWindow(const std::string &name) : _cmdManager(CmdManager::getInstance()), DocumentWindow(name,
 																Colours::lightgrey,
 																DocumentWindow::allButtons)
 {
@@ -19,17 +19,31 @@ MainWindow::MainWindow(const std::string &name) : DocumentWindow(name,
 	setFullScreen(true);
 	setSize(getWidth(), getHeight());
 
+	_cmdManager.connectToServer();
+
+#ifdef DEBUG
+	//_cmdManager.login("anthony.vogelweid@epitech.eu", "test");
+
 	//Init all the components
 	_mainComponent = new MainContentComponent();
-	_userParamsComponent = new UserParamsComponent();
 	_loginComponent = new LoginComponent(_cmdManager);
 	_userRegistration = new UserRegistration(_cmdManager);
 	_mainComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
-	_userParamsComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 	_loginComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 	_userRegistration->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
-
 	setContentNonOwned(_mainComponent, true);
+#else
+	//Init all the components
+	_mainComponent = new MainContentComponent();
+	_loginComponent = new LoginComponent(_cmdManager);
+	_userRegistration = new UserRegistration(_cmdManager);
+	_mainComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
+	_loginComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
+	_userRegistration->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
+	setContentNonOwned(_loginComponent, true);
+#endif // DEBUG
+
+
 	//setContentNonOwned(_loginComponent, true);
 	setVisible(true);
 }
@@ -45,7 +59,6 @@ void MainWindow::closeButtonPressed()
 MainWindow::~MainWindow()
 {
 	delete _mainComponent;
-	delete _userParamsComponent;
 	delete _loginComponent;
 
 	//deleteAllChildren();
@@ -53,24 +66,22 @@ MainWindow::~MainWindow()
 
 void MainWindow::changeViewCallback(std::string viewName)
 {
-	if (viewName == "Main")
+	if (viewName == "Player")
 	{
 		clearContentComponent();
+		_mainComponent->refresh();
 		setContentNonOwned(_mainComponent, true);
-	}
-	else if (viewName == "UserParams")
-	{
-		clearContentComponent();
-		setContentNonOwned(_userParamsComponent, true);
 	}
 	else if (viewName == "Login")
 	{
 		clearContentComponent();
+		_loginComponent->refresh();
 		setContentNonOwned(_loginComponent, true);
 	}
 	else if (viewName == "Signin")
 	{
 		clearContentComponent();
+		_userRegistration->refresh();
 		setContentNonOwned(_userRegistration, true);
 	}
 }

@@ -19,81 +19,6 @@ MusicGenerator::~MusicGenerator()
 {
 
 }
-/*
-void			MusicGenerator::drumsPOC(MusicParameters &parameters)
-{
-	Instrument	bassdrum;
-	Instrument	midtom;
-	Instrument	hihat;
-	Instrument	rcymbal;
-	Instrument	ccymbal;
-	//	int			i = 0;
-	double		beats = 0.0;
-
-	std::cout << "IN DRUMSPOC" << std::endl;
-
-	bassdrum.name = "Bass Drum";
-	bassdrum.nb = BASSDRUM1;
-	bassdrum.channel = 10;
-	bassdrum.velocity = 100;
-
-	hihat.name = "Pedal Hihat";
-	hihat.nb = PEDALHIHAT;
-	hihat.channel = 11;
-	hihat.velocity = 100;
-
-	midtom.name = "Mid Tom";
-	midtom.nb = MIDTOM1;
-	midtom.channel = 12;
-	midtom.velocity = 100;
-
-	rcymbal.name = "Ride Cymbal";
-	rcymbal.nb = RIDECYMBAL1;
-	rcymbal.channel = 13;
-	rcymbal.velocity = 100;
-
-	ccymbal.name = "Crash Cymbal";
-	ccymbal.nb = CRASHCYMBAL1;
-	ccymbal.channel = 14;
-	ccymbal.velocity = 100;
-
-	parameters._midiManager.changeInstrument(hihat, 1.0);
-	for (beats = 1.0; beats <= 48.0; beats = beats + 0.5)
-	{
-		parameters._midiManager.noteOn(hihat.channel, 72, hihat.velocity, beats);
-		parameters._midiManager.noteOff(hihat.channel, 72, hihat.velocity, beats + TIMES_PER_BAR);
-	}
-
-	parameters._midiManager.changeInstrument(bassdrum, 1.0);
-	for (beats = 1.0; beats <= 48.0; beats = beats + 1.0)
-	{
-		parameters._midiManager.noteOn(bassdrum.channel, 72, bassdrum.velocity, beats);
-		parameters._midiManager.noteOff(bassdrum.channel, 72, bassdrum.velocity, beats + TIMES_PER_BAR);
-	}
-
-	/*
-	parameters._midiManager.changeInstrument(midtom, 0.0);
-	for (beats = 0.0; beats <= 48.0; beats = beats + 1.0)
-	{
-		parameters._midiManager.noteOn(hihat, 72, hihat.velocity, beats);
-		parameters._midiManager.noteOff(hihat, 72, hihat.velocity, beats + TIMES_PER_BAR);
-	}
-
-	parameters._midiManager.changeInstrument(rcymbal, 1.0);
-	for (beats = 8.0; beats <= 48.0; beats = beats + 16.0)
-	{
-		parameters._midiManager.noteOn(rcymbal.channel, 72, rcymbal.velocity, beats);
-		parameters._midiManager.noteOff(rcymbal.channel, 72, rcymbal.velocity, beats + 8.0);
-	}
-
-	parameters._midiManager.changeInstrument(ccymbal, 1.0);
-	for (beats = 16.0; beats <= 48.0; beats = beats + 16.0)
-	{
-		parameters._midiManager.noteOn(ccymbal.channel, 72, ccymbal.velocity, beats);
-		parameters._midiManager.noteOff(ccymbal.channel, 72, ccymbal.velocity, beats + 8.0);
-	}
-}
-*/
 
 void			MusicGenerator::launch(std::vector<MusicParameters> &_graph2genQ, std::vector<std::pair<Midi, int> > &_gen2playQ, std::mutex &_graph2genM, std::mutex &_gen2playM, bool &stop)
 {
@@ -102,25 +27,36 @@ void			MusicGenerator::launch(std::vector<MusicParameters> &_graph2genQ, std::ve
 
 	while (!stop)
 	{
+		std::cout << "==a" << std::endl;
 		_graph2genM.lock();
+		std::cout << "==b" << std::endl;
 		if (_graph2genQ.size() > 0)
 		{
+			std::cout << "==c" << std::endl;
 			p = _graph2genQ[0];
+			std::cout << "==d" << std::endl;
 			b = true;
 			_graph2genQ.erase(_graph2genQ.begin());
-			_gen2playM.lock();
-			_gen2playQ.clear();
-			_gen2playM.unlock();
+			std::cout << "==e" << std::endl;
 		}
+		std::cout << "==i" << std::endl;
 		_graph2genM.unlock();
+		std::cout << "==j" << std::endl;
 		_gen2playM.lock();
+		std::cout << "==k" << std::endl;
 		if (b && _gen2playQ.size() < 3)
 		{
+			std::cout << "==l" << std::endl;
 			Midi m = createMusic(p);
+			std::cout << "==m" << std::endl;
 			_gen2playQ.push_back(std::make_pair(m, p.getBpm()));
+			std::cout << "==n" << std::endl;
 		}
+		std::cout << "==o" << std::endl;
 		_gen2playM.unlock();
-		Tools::sleep(1100);
+		std::cout << "==p" << std::endl;
+		Tools::sleepActive(1000);
+		std::cout << "==q" << std::endl;
 	}
 }
 
@@ -128,36 +64,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 {
   MidiManager	_midiManager;
 
-  parameters.setSeed(static_cast<unsigned int>(std::time(NULL)));
-  parameters.setBpm(105);
-  Instrument instru;
-  instru.name = "Piano";
-  instru.nb = ACOUSTICGRANDPIANO;
-  instru.channel = 1;
-  instru.velocity = 100; //Need change
-  parameters.addInstrumentArpeggios(instru);
-  parameters.addInstrumentChords(instru);
-  parameters.setStyleName("Blues");
-  srand(parameters.getSeed());
-  /* PARAMETERS */
-  
-  /* DRUMS */
-
-  /*
-  drumsPOC(parameters);
-  bool		onlydrums = true;
-  if (onlydrums == true)
-  {
-	  parameters.setMidi(parameters._midiManager.createMidi(48));
-	  parameters._midiManager.writeToFile("./test.mid");
-	  return (Midi());
-  }
-  */
-
-//  Drums::placeDrums(parameters);
-
-  /* DRUMS */
-
+  std::cout << "INITIALISATION" << std::endl;
   /* INITIALISATION */
   ObjectMarkov						markovObj(SOURCEMARKOV + std::string("blues.json"), 1, parameters.getSeed());
   std::vector<std::pair<char, char> >			markovChords;
@@ -166,7 +73,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   std::vector<std::pair<char, char> >			chord;
   Chords						allChords;
   /* INITIALISATION */
-
+  std::cout << "CHORDS" << std::endl;
   /* CHORDS */
   markovObj.callLua();
   markovChords = markovObj.getVectorFromJson();
@@ -195,8 +102,19 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   Disposition::placeChords(_midiManager, parameters, markovChords);
 
   /* CHORDS */
+
+  /* DRUMS */
+
+  std::vector<std::vector<t_note>>		drumSequence;
+
+  Drums::initialize(_midiManager, parameters);
+  Drums::prepareDrums(parameters, drumSequence);
+  Disposition::placeDrums(_midiManager, parameters, drumSequence);
+
+  /* DRUMS */
   
-  /* MARKOVIAN TREE GENERATION */		
+  std::cout << "MTG" << std::endl;
+  /* MARKOVIAN TREE GENERATION */
   StyleSettings						proba;
   std::vector<char>					strong;
   std::vector<char>					medium;
@@ -209,6 +127,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   AI::calculateProbaToScaleFromNote(&proba, strong, medium, weak);
   /* MARKOVIAN TREE GENERATION */		
 
+  std::cout << "ARPEGGIOS" << std::endl;
   /* ARPEGGIOS */
   int arpN = rand() % 3 + 4;
   Pattern					*markovPattern = new Pattern(chord);
@@ -238,6 +157,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   Disposition::placeArpeggios(_midiManager, parameters, arpeggios);
   ///* ARPEGGIOS */
 
+  std::cout << "END" << std::endl;
   ///* END */
   _midiManager.writeToFile("./test.mid");
   return (_midiManager.createMidi(48));

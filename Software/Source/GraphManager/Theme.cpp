@@ -10,6 +10,12 @@
 
 #include "Theme.h"
 
+Theme Theme::_theme;
+
+Theme &Theme::getInstance()
+{
+	return _theme;
+}
 
 
 Theme::Theme()
@@ -20,16 +26,6 @@ Theme::Theme()
 	_buttonFontColor = 0xFFFFFFFF;
 	_name = "Default";
 }
-
-Theme::Theme(int buttonColor, int backgroundColor, int fontColor, int buttonFontColor, std::string name)
-{
-	_buttonColor = buttonColor;
-	_backgroundColor = backgroundColor;
-	_fontColor = fontColor;
-	_buttonFontColor = buttonFontColor;
-	_name = name;
-}
-
 
 Theme::~Theme()
 {
@@ -81,22 +77,20 @@ void Theme::setButtonFontColor(int color)
 	_buttonFontColor = color;
 }
 
-void Theme::setName(std::string name)
+void Theme::setName(const std::string &name)
 {
 	_name = name;
 }
 
-Theme parseTheme(std::string fileName)
+void Theme::parseTheme(const std::string &fileName)
 {
-	Theme tmp;
+	std::ifstream myfile(fileName.c_str());
 	std::string line;
 	std::string name;
 	std::string button;
 	std::string background;
 	std::string font;
 	std::string buttonFont;
-	std::ifstream myfile;
-	myfile.open(fileName, std::ifstream::in);
 
 	std::cout << "Reading Theme File :" << fileName << std::endl;
 	if (myfile.is_open())
@@ -106,20 +100,23 @@ Theme parseTheme(std::string fileName)
 		getline(myfile, background);
 		getline(myfile, font);
 		getline(myfile, buttonFont);
-		std::cout << name << " " << button << " " << background << " " << font << " " << buttonFont << std::endl;
+		std::cout << "Theme name: "<< name << " Button color: " << button << " Background color: " << background << " Font color: " << font << " Button Font: " << buttonFont << std::endl;
 		myfile.close();
+		int iButton = static_cast<int>(std::stoll(button, nullptr, 16));
+		int iBackground = static_cast<int>(std::stoll(background, 0, 0));
+		int iFont = static_cast<int>(std::stoll(font, 0, 0));
+		int iButtonFont = static_cast<int>(std::stoll(buttonFont, 0, 16));
+		setBackgroundColor(iBackground);
+		setButtonColor(iButton);
+		setButtonFontColor(iButtonFont);
+		setFontColor(iFont);
+		setName(name);
 	}
 	else
 	{
-		std::cerr << "Couldn't find or read file [" << fileName << "]" << std::endl;
-		return Theme();
+		//throw std::runtime_error("Couldn't find or read file [" + fileName + "]");
 	}
 	
-	int iButton = static_cast<int>(std::stoll(button, nullptr, 16));
-	int iBackground = static_cast<int>(std::stoll(background,0,0));
-	int iFont = static_cast<int>(std::stoll(font,0,0));
-	int iButtonFont = static_cast<int>(std::stoll(buttonFont, 0, 16));
-	tmp = Theme(iButton, iBackground, iFont, iButtonFont, name);
-	return tmp;
+	
 }
 

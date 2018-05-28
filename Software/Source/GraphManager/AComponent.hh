@@ -11,13 +11,16 @@
 #pragma once
 
 #include <functional>
+#include <map>
+#include "../JuceLibraryCode/JuceHeader.h"
 
-class AComponent
+class AComponent : public Component
 {
 public:
 	virtual ~AComponent() {};
 	virtual void setChangeViewCallback(std::function<void(std::string)> changeView);
 	virtual void changeView(std::string viewName);
+	virtual void refresh();
 
 private:
 	std::function<void(std::string)>	_viewChanger;

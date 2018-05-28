@@ -10,6 +10,18 @@
 
 #include "CmdManager.hh"
 
+CmdManager CmdManager::_cmdManager;
+
+CmdManager::CmdManager()
+{
+}
+
+void CmdManager::clearResponses()
+{
+	_responseCode = 0;
+	_responseMsg = "";
+}
+
 bool CmdManager::connectToServer()
 {
 	//api.barde.io
@@ -26,12 +38,11 @@ User CmdManager::getUserInfo()
 	Json::CharReaderBuilder rbuilder;
 	std::string				errs;
 	std::stringstream		ss;
-	int						responseCode;
-	std::string				responseMsg;
 
 	try
 	{
-		ss << _socket.get("/user/me", responseCode, responseMsg);
+		clearResponses();
+		ss << _socket.get("/user/me", _responseCode, _responseMsg);
 	}
 	catch (RestClientException &e)
 	{
@@ -69,31 +80,29 @@ bool CmdManager::login(const std::string &email, const std::string &password)
 
 bool CmdManager::logout()
 {
-
 	return false;
 }
 
-bool CmdManager::editUserInfo(const User & user)
+bool CmdManager::editUserInfo(const User & user, const std::string & password)
 {
 	Json::Value				root;
-	int						responseCode;
-	std::string				responseMsg;
 	std::stringstream		ssJson;
 
 	_currentUser = user;
 
 	root["email"] = user.getEmail();
-	//root["password"] = user.getPassword();
 	root["firstName"] = user.getFirstName();
 	root["lastName"] = user.getLastName();
 	root["dayOfBirth"] = user.getDayOfBirth();
 	root["monthOfBirth"] = user.getMonthOfBirth();
 	root["yearOfBirth"] = user.getYearOfBirth();
+	root["password"] = password;
 	ssJson << root;
 
 	try
 	{
-		_socket.patch("/user/", ssJson.str(), responseCode, responseMsg);
+		clearResponses();
+		_socket.patch("/user/", ssJson.str(), _responseCode, _responseMsg);
 	}
 	catch (RestClientException &e)
 	{
@@ -111,8 +120,6 @@ bool CmdManager::forgetPassword()
 bool CmdManager::createUser(const User & user, const std::string & password)
 {
 	Json::Value				root;
-	int						responseCode;
-	std::string				responseMsg;
 	std::stringstream		ssJson;
 
 	root["email"] = user.getEmail();
@@ -127,10 +134,11 @@ bool CmdManager::createUser(const User & user, const std::string & password)
 
 	try
 	{
-		_socket.post("/auth/register", ssJson.str(), responseCode, responseMsg);
-		if (responseCode != 200)
+		clearResponses();
+		_socket.post("/auth/register", ssJson.str(), _responseCode, _responseMsg);
+		if (_responseCode != 200)
 		{
-			std::cerr << responseMsg << std::endl;
+			std::cerr << _responseMsg << std::endl;
 			return false;
 		}
 	}
@@ -145,8 +153,6 @@ bool CmdManager::createUser(const User & user, const std::string & password)
 bool CmdManager::signUp(const User & user, const std::string & password)
 {
 	Json::Value				root;
-	int						responseCode;
-	std::string				responseMsg;
 	std::stringstream		ssJson;
 
 	_currentUser = user;
@@ -162,7 +168,7 @@ bool CmdManager::signUp(const User & user, const std::string & password)
 
 	try
 	{
-		_socket.post("/user/register", ssJson.str(), responseCode, responseMsg);
+		_socket.post("/user/register", ssJson.str(), _responseCode, _responseMsg);
 	}
 	catch (RestClientException &e)
 	{
@@ -170,4 +176,40 @@ bool CmdManager::signUp(const User & user, const std::string & password)
 		return false;
 	}
 	return true;
+}
+
+bool CmdManager::sendComment(const std::string & comment)
+{
+	Json::Value				root;
+	std::stringstream		ssJson;
+
+	root["description"] = comment;
+	ssJson << root;
+
+	try
+	{
+		_socket.post("/report", ssJson.str(), _responseCode, _responseMsg);
+	}
+	catch (RestClientException &e)
+	{
+		std::cerr << "Error on request signUp : " << e.what() << " Message: " << e.getMessage() << " Info : " << e.getInfo() << std::endl;
+		return false;
+	}
+
+	return true;
+}
+
+int CmdManager::getResponseCode() const
+{
+	return _responseCode;
+}
+
+std::string CmdManager::getResponseMsg() const
+{
+	return _responseMsg;
+}
+
+CmdManager & CmdManager::getInstance()
+{
+	return _cmdManager;
 }

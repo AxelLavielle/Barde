@@ -20,12 +20,15 @@ SoundManager::SoundManager()
   _deviceManager->addAudioCallback (&_audioSourcePlayer);
 
 //#endif
+  _stop = false;
 
   GetMidiOutputDevice();
 }
 
 SoundManager::~SoundManager()
 {
+	delete _deviceManager;
+	delete _midiOutput;
 }
 
 const MidiMessageSequence		*SoundManager::MidiToMessageSequence(const Midi &midi)
@@ -38,30 +41,75 @@ const MidiMessageSequence		*SoundManager::MidiToMessageSequence(const Midi &midi
 	return (NULL);
 }
 
-void SoundManager::launch(std::vector<std::pair<Midi, int> > &_gen2playQ, std::mutex &_gen2playM, bool &stop)
+#include "../AI/MusicGenerator.hh"
+
+void SoundManager::launch(std::vector<std::pair<Midi, int> > &_gen2playQ, std::mutex &_gen2playM, bool &stop, CondVariable &cond)
 {
-	Midi m;
 	int bpm = 0;
+
+	// TOREMOVE
+	MusicGenerator mg;
+	MusicParameters _musicParameters;
+
+	_musicParameters.setSeed(static_cast<unsigned int>(std::time(NULL)));
+	_musicParameters.setBpm(105);
+	Instrument instru;
+	instru.name = "Piano";
+	instru.nb = SOPRANOSAX;
+	instru.channel = 1;
+	instru.velocity = 100; //Need change
+	Instrument instru2;
+	instru2.name = "Piano";
+	instru2.nb = ACOUSTICGRANDPIANO;
+	instru2.channel = 2;
+	instru2.velocity = 100; //Need change
+	_musicParameters.addInstrumentArpeggios(instru);
+	_musicParameters.addInstrumentChords(instru2);
+	_musicParameters.setStyleName("Blues");
+	srand(_musicParameters.getSeed());
+
+	// TOREMOVE
 
 	while (!stop)
 	{
+		Midi m;
+		std::cout << "==A" << std::endl;
 		bool b = false;
 		_gen2playM.lock();
+		std::cout << "==B" << std::endl;
 		if (_gen2playQ.size() > 0)
 		{
-			//Check here if error
+			std::cout << "==C" << std::endl;
 			m = _gen2playQ[0].first;
+			std::cout << "==D" << std::endl;
 			bpm = _gen2playQ[0].second;
+			std::cout << "==E" << std::endl;
 			b = true;
+			std::cout << "==F" << std::endl;
 			_gen2playQ.erase(_gen2playQ.begin());
+			std::cout << "==G" << std::endl;
 		}
 		else
 			b = false;
+		std::cout << "==H" << std::endl;
 		_gen2playM.unlock();
+		std::cout << "==I" << std::endl;
+//		if (b)
+	//		play(m, bpm, stop);
 		if (b)
-			play(m, bpm, stop);
+			play(mg.createMusic(_musicParameters), bpm, stop);
 		else
-			Tools::sleep(1100);
+			Tools::sleepActive(100);
+		std::cout << "==J" << std::endl;
+		if (_stop)
+		{
+			std::cout << "==K" << std::endl;
+			cond.wait();
+			std::cout << "==L" << std::endl;
+			_stop = !_stop;
+			std::cout << "==M" << std::endl;
+		}
+		std::cout << "==N" << std::endl;
 	}
 }
 
@@ -80,7 +128,7 @@ bool							SoundManager::play(const Midi &midi, int bpm, bool &stop)
 	}
 
 	currentTime = 0;
-	for (int i = 0; i < midiSequence->getNumEvents() && !stop; i++)
+	for (int i = 0; i < midiSequence->getNumEvents() && !stop && !_stop; i++)
 	{
 		std::cout << i << std::endl;
 		msg = midiSequence->getEventPointer(i)->message;
@@ -106,7 +154,7 @@ bool							SoundManager::play(const Midi &midi, int bpm, bool &stop)
 			msg.setTimeStamp(Time::getMillisecondCounterHiRes());
 			_synthAudioSource.addMessage(msg);
 		}
-	}
+ 	}
 	return true;
 }
 
@@ -136,9 +184,9 @@ void SoundManager::GetMidiOutputDevice()
 	// std::cout << _audioManager.getDefaultMidiOutputName() << std::endl;
 }
 
-bool					SoundManager::stop(const Midi &) const
+bool					SoundManager::stop()
 {
-	//Not implemented
+	_stop = true;
 	return true;
 }
 

@@ -13,7 +13,7 @@
 /*! Get the value of a number wthout his sign. */
 # define ABS(x) ((x) > 0 ? (x) : (-(x)))
 /*! Define the impact of the distance between two notes. */
-# define DISTIMPACT	2
+# define DISTIMPACT	4
 
 /*! \class AI
  * \brief Mathematics for artificial intelligence

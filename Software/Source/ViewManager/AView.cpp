@@ -13,3 +13,13 @@
 AView::~AView()
 {
 }
+
+void AView::setChangeViewCallback(std::function<void(std::string)> changeView)
+{
+	_viewChanger = changeView;
+}
+
+void AView::changeView(std::string viewName)
+{
+	_viewChanger(viewName);
+}

@@ -2,8 +2,9 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Barde"
-#define MyAppVersion "alpha2"
+#define MyAppVersion "beta"
 #define MyAppPublisher "Barde"
+#define MyAppIcoName "Barde.ico"
 #define MyAppURL "http://www.barde.io/"
 #define MyAppExeName "BardeClient.exe"
 
@@ -14,7 +15,7 @@
 AppId={{BDC6EDD6-5A74-4F81-8AB5-5D27E02D6B63}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
-;AppVerName={#MyAppName} {#MyAppVersion}
+AppVerName={#MyAppName}
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
@@ -32,14 +33,23 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\Oreo\Documents\GitHub\Barde\Software\Windows\Debug\BardeClient.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Oreo\Documents\GitHub\Barde\Software\Windows\Debug\lua53.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\Oreo\Documents\GitHub\Barde\Software\Windows\Win32\Debug\App\Barde.ico"; DestDir: "{app}\app"; Flags: ignoreversion
+Source: "C:\Users\Oreo\Documents\GitHub\Barde\Software\Windows\Win32\Release\App\BardeClient.exe"; DestDir: "{app}\app"; Flags: ignoreversion
+Source: "C:\Users\Oreo\Documents\GitHub\Barde\Software\Windows\Win32\Debug\App\lua53.dll"; DestDir: "{app}\app"; Flags: ignoreversion
+Source: "C:\Users\Oreo\Documents\GitHub\Barde\Software\Windows\Win32\Debug\Themes\Dark"; DestDir: "{app}\Themes"; Flags: ignoreversion
+; SAMPLES
+Source: "C:\Users\Oreo\Documents\GitHub\Barde\Software\Samples\*"; DestDir: "{app}\Samples"; Flags: ignoreversion
+Source: "C:\Users\Oreo\Documents\GitHub\Barde\Software\Samples\Drums\*"; DestDir: "{app}\Samples\Drums"; Flags: ignoreversion
+                                                                                               
+
+
+
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-Name: "{commonprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
-Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
+Name: "{commonprograms}\{#MyAppName}"; Filename: "{app}\app\{#MyAppExeName}"; IconFilename: "{app}\app\{#MyAppIcoName}"; Tasks: desktopicon
+Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\app\{#MyAppExeName}"; IconFilename: "{app}\app\{#MyAppIcoName}"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\app\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 

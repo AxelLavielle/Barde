@@ -9,114 +9,128 @@ Drums::~Drums()
 
 }
 
-void			Drums::pulse(MusicParameters &parameters, Instrument instru, double time)
+void					Drums::createPattern(std::array<std::array<int, 12>, 3> &drumPattern)
 {
-	(void)parameters;
-	std::cout << instru.name << " at time " << time << std::endl;
-	//parameters._midiManager.noteOn(instru.channel, 72, instru.velocity, beats);
-	//parameters._midiManager.noteOff(instru.channel, 72, instru.velocity, beats + TIMES_PER_BAR);
-}
+	int					hihat_shuffle;
+	int					type;
 
-void			Drums::bluesHihat(MusicParameters &parameters, double start, double end, int style)
-{
-	double		beats;
-	Instrument	hihat;
-
-	hihat.name = "Pedal Hihat";
-	hihat.nb = PEDALHIHAT;
-	hihat.channel = 11;
-	hihat.velocity = 100;
-
-	if (style == 1)
-		for (beats = start; beats <= end; beats += 0.5)
-			pulse(parameters, hihat, beats);
-	else
-		for (beats = start; beats <= end; beats += 1.0)
-			pulse(parameters, hihat, beats);
-}
-
-void			Drums::bluesBassdrum(MusicParameters &parameters, double start, double end, int style)
-{
-	double		beats;
-	Instrument	bass;
-
-	bass.name = "Bass Drum";
-	bass.nb = BASSDRUM1;
-	bass.channel = 10;
-	bass.velocity = 100;
-
-	if (style == 1)
-		for (beats = start; beats <= end; beats += 1.0)
-			pulse(parameters, bass, beats);
-	else if (style == 2)
-		for (beats = start; beats <= end; beats += 2.0)
-		{
-			pulse(parameters, bass, beats);
-			pulse(parameters, bass, beats + 0.5);
-		}
-	else
-		for (beats = start; beats <= end; beats += 2.0)
-		{
-			pulse(parameters, bass, beats);
-			pulse(parameters, bass, beats + 0.5);
-			pulse(parameters, bass, beats + 1.5);
-		}
-}
-
-void			Drums::bluesSnare(MusicParameters &parameters, double start, double end, int style)
-{
-	double		beats;
-	Instrument	tom;
-
-	tom.name = "Mid Tom";
-	tom.nb = MIDTOM1;
-	tom.channel = 12;
-	tom.velocity = 100;
-
-	if (style == 1)
-		for (beats = start; beats <= end; beats += 2.0)
-			pulse(parameters, tom, beats);
-	else if (style == 2)
-		for (beats = start; beats <= end; beats += 2.0)
-		{
-			pulse(parameters, tom, beats);
-			pulse(parameters, tom, beats + 0.5);
-		}
-	else
-		for (beats = start; beats <= end; beats += 2.0)
-		{
-			pulse(parameters, tom, beats);
-			pulse(parameters, tom, beats + 0.5);
-			pulse(parameters, tom, beats + 1.5);
-		}
-}
-
-void		Drums::blues(MusicParameters &parameters, double time)
-{
-	double	beats;
-	int		i = 1;
-	int		style[3];
-
-	style[0] = (rand() % 2) + 1;
-	style[1] = (rand() % 3) + 1;
-	style[2] = (rand() % 2) + 1;
-
-	std::cout << "Charleston rythm style " << style[0] << std::endl;
-	std::cout << "Bass drum rythm style " << style[1] << std::endl;
-	std::cout << "Snare rythm style " << style[2] << std::endl;
-
-	for (beats = 0.0; beats <= time; beats = beats + TIMES_PER_TRIPLET)
+	hihat_shuffle = rand() % 100;
+	if (hihat_shuffle >= 40)
 	{
-		std::cout << "[Generating eigth note triplet number " << i << "]" << std::endl;
-		bluesHihat(parameters, beats, beats + TIMES_PER_TRIPLET, style[0]);
-		bluesBassdrum(parameters, beats, beats + TIMES_PER_TRIPLET, style[1]);
-		bluesSnare(parameters, beats, beats + TIMES_PER_TRIPLET, style[2]);
-		i++;
+		drumPattern[0] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+		type = rand() % 5;
+		switch (type)
+		{
+		case 0 : drumPattern[1] = { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0 };
+				 break;
+		case 1 : drumPattern[1] = { 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0 };
+				 break;
+		case 2 : drumPattern[1] = { 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1 };
+				 break;
+		case 3 : drumPattern[1] = { 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1 };
+				 break;
+		case 4 : drumPattern[1] = { 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1 };
+				 break;
+		}
+	}
+	else
+	{
+		drumPattern[0] = { 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1 };
+		type = rand() % 4;
+		switch (type)
+		{
+		case 0: drumPattern[1] = { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0 };
+				break;
+		case 1: drumPattern[1] = { 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1 };
+				break;
+		case 2: drumPattern[1] = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1 };
+				break;
+		case 3: drumPattern[1] = { 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1 };
+				break;
+		}
+	}
+
+	drumPattern[2] = { 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0 };
+	return;
+}
+
+t_note					Drums::createNote(char instru, int bar_pos)
+{
+	t_note				ret;
+
+	ret.note.first = 72;
+	ret.note.second = instru;
+	ret.position = bar_pos * 0.3333;
+	ret.duration = 0.2;
+	return (ret);
+}
+
+std::vector<t_note>		Drums::createBar(std::array<std::array<int, 12>, 3> drumPattern)
+{
+	std::vector<t_note>	bar;
+	char				i;
+	int					j;
+
+
+	for (j = 0; j < 12; j++)
+	{
+		i = 0;
+		while (i < 3)
+		{
+			if (drumPattern[i][j] == 1)
+				bar.push_back(createNote(i, j));
+			i++;
+		}
+	}
+	return (bar);
+}
+
+void		Drums::blues(std::vector<std::vector<t_note>> &pattern, int total_bar)
+{
+	int		bar_nb;
+	std::array<std::array<int, 12>,3> patternBar;
+
+	bar_nb = 0;
+	createPattern(patternBar);
+	while (bar_nb < total_bar)
+	{
+		pattern.push_back(createBar(patternBar));
+		bar_nb++;
 	}
 }
 
-void		Drums::placeDrums(MusicParameters &parameters)
+void		Drums::prepareDrums(MusicParameters &parameters, std::vector<std::vector<t_note>> &pattern)
 {
 	if (parameters.getStyleName() == "Blues")
-		blues(parameters, 48.0);
+		blues(pattern, 12);
+}
+
+void		Drums::initialize(MidiManager &_midiManager, MusicParameters &parameters)
+{
+	Instrument	hihat;
+	Instrument	bass;
+	Instrument	snare;
+
+	hihat.name = "Pedal Hihat";
+	hihat.nb = PEDALHIHAT;
+	hihat.channel = 10;
+	hihat.velocity = 100;
+
+	bass.name = "Bass Drum";
+	bass.nb = BASSDRUM1;
+	bass.channel = 11;
+	bass.velocity = 100;
+
+	snare.name = "Snare Drum";
+	snare.nb = SNAREDRUMACOUSTICSNARE;
+	snare.channel = 12;
+	snare.velocity = 100;
+
+	parameters.addInstrumentDrums(hihat);
+	parameters.addInstrumentDrums(bass);
+	parameters.addInstrumentDrums(snare);
+
+	_midiManager.changeInstrument(hihat, 1.0);
+	_midiManager.changeInstrument(bass, 1.0);
+	_midiManager.changeInstrument(snare, 1.0);
 }

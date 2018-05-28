@@ -20,7 +20,8 @@ LoginComponent::LoginComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager)
 	int y = getParentHeight();
 
 	setSize(getParentWidth(), getParentHeight() - 10);
-	_currentTheme = parseTheme("../Themes/Dark");
+	//_currentTheme = Theme::getInstance();
+	Theme::getInstance().parseTheme("../Themes/Dark");
 
 
 	addAndMakeVisible(_textEditor1);
@@ -49,7 +50,7 @@ LoginComponent::LoginComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager)
 	_textEditor2.addListener(this);
 
 	addAndMakeVisible(_errorText);
-	_errorText.setText("LLLLLLL", juce::NotificationType::dontSendNotification);
+	_errorText.setText("", juce::NotificationType::dontSendNotification);
 	_errorText.setColour(Label::textColourId, Colours::red);
 	_errorText.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 - SPACE_BETWEEN - SPACE_BETWEEN, BOX_WIDTH, BOX_HEIGHT);
 
@@ -87,7 +88,7 @@ void LoginComponent::comboBoxChanged(ComboBox * comboBox)
 {
 	String value = comboBox->getText();
 	//String pathOfTheme = "../Themes/" + value;
-	_currentTheme = parseTheme("../Themes/" + value.toStdString());
+	Theme::getInstance().parseTheme("../Themes/" + value.toStdString());
 	ThemeChanged();
 }
 
@@ -95,12 +96,20 @@ void LoginComponent::login(const std::string & login, const std::string & passwo
 {
 	String errorMessage;
 
-	if (_cmdManager.login(login, password)) {
-		errorMessage = "Login correct";
-		changeView("Main");
-	}
 
-	else {
+	try
+	{
+		if (_cmdManager.login(login, password)) {
+			errorMessage = "Login correct";
+			changeView("Player");
+		}
+		else
+		{
+			errorMessage = "There was an error during the login process";
+		}
+	}
+	catch (RestClientException &e)
+	{
 		errorMessage = "There was an error during the login process";
 	}
 	_errorText.setText(errorMessage, juce::NotificationType::sendNotification);
@@ -141,7 +150,7 @@ void LoginComponent::paint(Graphics& g)
 	//	rectY = (getHeight() / 15) + (LOGO_HEIGHT)+50;
 
 	//g.setColour(Colours::white);
-	g.fillAll(Colour(_currentTheme.getBackgroundColor()));
+	g.fillAll(Colour(Theme::getInstance().getBackgroundColor()));
 	Image logo = ImageCache::getFromMemory(BinaryData::logo_png,
 		BinaryData::logo_pngSize);
 	g.drawImage(logo, imgX, imgY, (int)imgW, (int)imgH, 0, 0, 1024, 927, false);
@@ -150,30 +159,30 @@ void LoginComponent::paint(Graphics& g)
 void LoginComponent::ThemeChanged()
 {
 	String tmp = _textEditor1.getText();
-	_textEditor1.setColour(TextEditor::backgroundColourId, Colour(_currentTheme.getBackgroundColor()));
-	_textEditor1.setColour(TextEditor::focusedOutlineColourId, Colour(_currentTheme.getButtonColor()));
-	_textEditor1.setColour(TextEditor::highlightColourId, Colour(_currentTheme.getButtonColor()));
-	_textEditor1.setColour(TextEditor::textColourId, Colour(_currentTheme.getFontColor()));
-	_textEditor1.setColour(TextEditor::outlineColourId, Colour(_currentTheme.getFontColor()));
+	_textEditor1.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	_textEditor1.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
+	_textEditor1.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonColor()));
+	_textEditor1.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getFontColor()));
+	_textEditor1.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getFontColor()));
 	_textEditor1.clear();
 	_textEditor1.setText(tmp);
 
 	tmp = _textEditor2.getText();
-	_textEditor2.setColour(TextEditor::backgroundColourId, Colour(_currentTheme.getBackgroundColor()));
-	_textEditor2.setColour(TextEditor::focusedOutlineColourId, Colour(_currentTheme.getButtonColor()));
-	_textEditor2.setColour(TextEditor::highlightColourId, Colour(_currentTheme.getButtonColor()));
-	_textEditor2.setColour(TextEditor::textColourId, Colour(_currentTheme.getFontColor()));
-	_textEditor2.setColour(TextEditor::outlineColourId, Colour(_currentTheme.getFontColor()));
+	_textEditor2.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	_textEditor2.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
+	_textEditor2.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonColor()));
+	_textEditor2.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getFontColor()));
+	_textEditor2.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getFontColor()));
 	_textEditor2.clear();
 	_textEditor2.setText(tmp);
 
-	_inputLabel1.setColour(Label::textColourId, Colour(_currentTheme.getButtonColor()));
-	_inputLabel2.setColour(Label::textColourId, Colour(_currentTheme.getButtonColor()));
+	_inputLabel1.setColour(Label::textColourId, Colour(Theme::getInstance().getButtonColor()));
+	_inputLabel2.setColour(Label::textColourId, Colour(Theme::getInstance().getButtonColor()));
 
-	_loginButton.setColour(TextButton::buttonColourId, Colour(_currentTheme.getButtonColor()));
-	_loginButton.setColour(TextButton::textColourOnId, Colour(_currentTheme.getButtonFontColor()));
-	_signinButton.setColour(TextButton::buttonColourId, Colour(_currentTheme.getButtonColor()));
-	_signinButton.setColour(TextButton::textColourOnId, Colour(_currentTheme.getButtonFontColor()));
+	_loginButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
+	_loginButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
+	_signinButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
+	_signinButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
 	this->repaint();
 }
 

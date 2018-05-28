@@ -87,7 +87,7 @@ class Disposition {
    /*!
      *  \brief Places drums into a MidiManager object stored into a MusicParameters object
      *
-     *  This method directly modifies a MidiParameters object by placing arpeggios into its MidiManager object
+     *  This method directly modifies a MidiParameters object by placing drums into its MidiManager object
      *
      *  \param parameters : Parameters of the song to create
      *  \param pattern : Drums pattern to play

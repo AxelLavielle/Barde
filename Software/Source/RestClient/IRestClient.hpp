@@ -12,8 +12,9 @@
 #define ISOCKERMANAGER_HPP_INCLUDED
 
 #include <string>
+#include "../Utils/NonCopyable.hpp"
 
-class IRestTClient
+class IRestTClient : public NonCopyable
 {
 public:
 	virtual void setAddr(const std::string & address, const unsigned int port, unsigned int timeOut) = 0;

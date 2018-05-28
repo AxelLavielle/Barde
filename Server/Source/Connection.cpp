@@ -1,13 +1,12 @@
-#include <boost/algorithm/string.hpp>
 #include "Connection.hh"
 
-Connection::Connection(boost::asio::io_service& io_service) : _socket(io_service)
+Connection::Connection(boost::asio::io_service& io_service, boost::asio::thread_pool *genPool, boost::asio::thread_pool *playPool) : _socket(io_service), _genPool(genPool), _playPool(playPool)
 {
 }
 
-Connection::pointer Connection::create(boost::asio::io_service& io_service)
+Connection::pointer Connection::create(boost::asio::io_service& io_service, boost::asio::thread_pool *genPool, boost::asio::thread_pool *playPool)
 {
-  return pointer(new Connection(io_service));
+  return pointer(new Connection(io_service, genPool, playPool));
 }
 
 tcp::socket& Connection::getSocket()
@@ -37,7 +36,7 @@ void Connection::handle_write(const boost::system::error_code& error)
 
 void Connection::handle_receive(const boost::system::error_code& error)
 {
-  std::string line;
+  std::string command;
 
   if (error) {
     std::cout << "Couldn't read client's message : " << error.message() << std::endl;
@@ -45,30 +44,14 @@ void Connection::handle_receive(const boost::system::error_code& error)
   }
   std::cout << "[" << _socket.remote_endpoint().address().to_string() << ":" << _socket.remote_endpoint().port() << "]" << std::endl;
   std::istream is(&_buffer);
-  std::getline(is, line);
-  std::cout << line;
-  parseGenRequest(line);
-  _mg.createMusic(_mp);
-}
-
-void Connection::parseGenRequest(const std::string& command)
-{
-  std::vector<std::string> params;
-  size_t i;
-  Instrument instrument;
-
-  boost::algorithm::split(params, command, boost::algorithm::is_any_of(" "));
-  _mp.setStyleName(params[0]);
-  _mp.setBpm(std::stoi(params[1]));
-  i = 2;
-  while (i != params.size())
-  {
-    instrument.name = params[i];
-    instrument.nb = instrumentList.find(params[i++])->second;
-    instrument.channel = 1;
-    instrument.velocity = 100;
-    _mp.addInstrument(instrument);
-  }
+  std::getline(is, command);
+  std::cout << command;
+  std::cout << "Waiting for music generation..." << std::endl;
+  boost::asio::post(_genPool, );
+  std::cout << "Generation done !" << std::endl;
+  std::cout << "Waiting for music to play..." << std::endl;
+  boost::asio::post(_playPool, _socket);
+  std::cout << "Hope you had fun !" << std::endl;
 }
 
 std::string Connection::make_daytime_string() const

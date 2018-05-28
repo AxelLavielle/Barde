@@ -30,14 +30,15 @@ public:
 	void setSeed(const unsigned int seed);
 	void addInstrumentChords(const Instrument &instrument);
 	void addInstrumentArpeggios(const Instrument &instrument);
+	void addInstrumentDrums(const Instrument &instrument);
 	bool delInstrumentChords(const Instrument &instrument);
 	bool delInstrumentArpeggios(const Instrument &instrument);
-	void setInstrumentDrums(const bool instrument);
 	std::vector<Instrument>	getInstrumentsChords() const;
 	std::vector<Instrument>	getInstrumentsArpeggios() const;
-	bool	getInstrumentsDrums() const;
+	std::vector<Instrument>	getInstrumentsDrums() const;
 	void setInstrumentsChords(const std::vector<Instrument> &instruments);
 	void setInstrumentsArpeggios(const std::vector<Instrument> &instruments);
+	void setInstrumentsDrums(const std::vector<Instrument> &instruments);
 	void setStyleName(const std::string &name);
 	std::string	getStyleName() const;
 
@@ -47,7 +48,7 @@ private:
 	int									_bpm;
 	std::vector<Instrument>				_instrumentsChords;
 	std::vector<Instrument>				_instrumentsArpeggios;
-	bool								_instrumentsDrums;
+	std::vector<Instrument>				_instrumentsDrums;
 	std::string							_styleName;
 };
 
