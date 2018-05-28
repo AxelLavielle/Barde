@@ -67,6 +67,11 @@ void MusicParameters::addInstrumentArpeggios(const Instrument &instrument)
 	_instrumentsArpeggios.push_back(instrument);
 }
 
+void MusicParameters::addInstrumentDrums(const Instrument &instrument)
+{
+	_instrumentsDrums.push_back(instrument);
+}
+
 bool MusicParameters::delInstrumentChords(const Instrument &instrument)
 {
 	for (unsigned int i = 0; i < _instrumentsChords.size(); i++)
@@ -89,11 +94,6 @@ bool MusicParameters::delInstrumentArpeggios(const Instrument &instrument)
 	return (false);
 }
 
-void MusicParameters::setInstrumentDrums(const bool instrument)
-{
-	_instrumentsDrums = instrument;
-}
-
 std::vector<Instrument> MusicParameters::getInstrumentsChords() const
 {
 	return (_instrumentsChords);
@@ -104,7 +104,7 @@ std::vector<Instrument> MusicParameters::getInstrumentsArpeggios() const
 	return (_instrumentsArpeggios);
 }
 
-bool MusicParameters::getInstrumentsDrums() const
+std::vector<Instrument> MusicParameters::getInstrumentsDrums() const
 {
 	return (_instrumentsDrums);
 }
@@ -117,6 +117,11 @@ void MusicParameters::setInstrumentsChords(const std::vector<Instrument> &instru
 void MusicParameters::setInstrumentsArpeggios(const std::vector<Instrument> &instruments)
 {
 	_instrumentsArpeggios = instruments;
+}
+
+void MusicParameters::setInstrumentsDrums(const std::vector<Instrument> &instruments)
+{
+	_instrumentsDrums = instruments;
 }
 
 void MusicParameters::setStyleName(const std::string & name)
