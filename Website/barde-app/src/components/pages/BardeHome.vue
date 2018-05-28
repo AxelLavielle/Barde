@@ -9,26 +9,21 @@
         <div class="barde-main-dashboard">
           <div class="container">
             <div class="">
-              <div class="input-field col s12">
-                <select id="vueSelect">
-                  <option  :value="preselectionsList[0]" disabled selected>Choose a preselection</option>
-                  <option v-for="(Preselection, index) in preselectionsList" :value="index">{{Preselection.name}}</option>
-                </select>
-              </div>
-
-              or
-
               <div class="row">
                 <div class="col s4">
                   <h4 class="left-align">Accords</h4>
 
                   <div class=" col s4 left-align">
-                    <input type="checkbox" id="Piano-accord" value="piano" v-model="Player.instruments.accords">
-                    <label for="Piano-accord">Piano</label>
+                    <input disabled type="checkbox" id="Piano-accord" value="piano" v-model="Player.instruments.accords">
+                    <label disabled for="Piano-accord">Piano</label>
                   </div>
-                  <div class=" col s4 left-align">
-                    <input type="checkbox" id="strings-accord" value="strings" v-model="Player.instruments.accords">
-                    <label for="strings-accord">strings</label>
+                  <div class=" col s12 left-align">
+                    <input disabled type="checkbox" id="trumpet-accord" value="trumpet-accord" v-model="Player.instruments.arpeges">
+                    <label disabled for="trumpet-accord">trumpet</label>
+                  </div>
+                  <div class=" col s12 left-align">
+                    <input disabled type="checkbox" id="saxophone-accord" value="saxophone-accord" v-model="Player.instruments.arpeges">
+                    <label disabled for="saxophone-accord">saxophone</label>
                   </div>
 
                 </div>
@@ -36,13 +31,17 @@
               <div class="col s4">
                 <h4 class="left-align">Apreges</h4>
 
-                <div class=" col s4 left-align">
-                  <input type="checkbox" id="piano-arpege" value="piano" v-model="Player.instruments.arpeges">
+                <div class=" col s12 left-align">
+                  <input disabled type="checkbox" id="piano-arpege" value="piano" v-model="Player.instruments.arpeges">
                   <label for="piano-arpege">Piano</label>
                 </div>
-                <div class=" col s4 left-align">
-                  <input type="checkbox" id="strings-arpege" value="strings" v-model="Player.instruments.arpeges">
-                  <label for="strings-arpege">strings</label>
+                <div class=" col s12 left-align">
+                  <input disabled type="checkbox" id="trumpet-arpege" value="trumpet" v-model="Player.instruments.arpeges">
+                  <label for="trumpet-arpege">trumpet</label>
+                </div>
+                <div class=" col s12 left-align">
+                  <input disabled type="checkbox" id="saxophone-arpege" value="saxophone" v-model="Player.instruments.arpeges">
+                  <label for="saxophone-arpege">saxophone</label>
                 </div>
               </div>
 
@@ -51,7 +50,7 @@
                 <div class="switch left-align">
                   <label>
                     Off
-                    <input v-model="Player.instruments.drums" type="checkbox">
+                    <input disabled v-model="Player.instruments.drums" type="checkbox">
                     <span class="lever"></span>
                     On
                   </label>
@@ -64,7 +63,7 @@
 
             <div class="row">
               <div class="col s8 offset-s1">
-                <input v-model="Player.bpm" type="range" id="test5" min="0" max="200" />
+                <input disabled v-model="Player.bpm" type="range" id="test5" min="60" max="150" />
               </div>
               <div class="col s2">
                 <span>BPM : {{Player.bpm}}</span>
@@ -73,7 +72,7 @@
             </div>
           </div>
         </div>
-        <barde-player :sources="Player.feedUrl" html5 :loop="true" ></barde-player>
+        <barde-player :formats="Player.formats" :sources="Player.feedUrl" html5 :loop="true" ></barde-player>
       </div>
     </div>
   </div>

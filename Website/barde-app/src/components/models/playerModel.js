@@ -1,5 +1,5 @@
 var playerModel = {
-  feedUrl : ["http://icecast.skyrock.net/s/natio_mp3_128k"],
+  feedUrl : ["rtsp://5.135.160.60:3333/test"],
   instruments : {
     arpeges : [],
     accords : [],

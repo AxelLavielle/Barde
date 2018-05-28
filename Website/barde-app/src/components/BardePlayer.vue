@@ -8,8 +8,9 @@
                   <p class="range-field">
                     <button @click="togglePlayback" class="btn-floating waves-effect waves-light pink"><i class="material-icons">{{ playing ? 'pause' : 'play_arrow' }}</i></button>
 
+                    <!--
                     <a class="btn-floating waves-effect waves-light pink"><i class="material-icons">volume_up</i></a>
-
+-->
                   </p>
               </div>
             </div>
