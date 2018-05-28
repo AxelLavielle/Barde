@@ -93,7 +93,7 @@ class Disposition {
      *  \param pattern : Drums pattern to play
      *  \return Modifies the MidiManager contained into the MusicParameters object
      */
-   static void	placeDrums(MidiManager &_midiManager, MusicParameters &parameters, std::vector<std::vector<t_note> > pattern);
+   static void	placeDrums(MidiManager &_midiManager, MusicParameters &parameters, std::vector<std::vector<t_note>> pattern, std::vector<Instrument> drumInstruments);
 };
 
 #endif // DISPOSITION_HH_

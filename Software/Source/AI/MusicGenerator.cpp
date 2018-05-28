@@ -105,11 +105,12 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
 
   /* DRUMS */
 
+  std::vector<Instrument>				drumInstruments;
   std::vector<std::vector<t_note>>		drumSequence;
 
-  Drums::initialize(_midiManager, parameters);
+  Drums::initialize(_midiManager, drumInstruments);
   Drums::prepareDrums(parameters, drumSequence);
-  Disposition::placeDrums(_midiManager, parameters, drumSequence);
+  Disposition::placeDrums(_midiManager, parameters, drumSequence, drumInstruments);
 
   /* DRUMS */
   

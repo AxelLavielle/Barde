@@ -109,16 +109,12 @@ void    Disposition::placeArpeggios(MidiManager &_midiManager, MusicParameters &
   }
 }
 
-void	Disposition::placeDrums(MidiManager &_midiManager, MusicParameters &parameters, std::vector<std::vector<t_note> > pattern)
+void	Disposition::placeDrums(MidiManager &_midiManager, MusicParameters &parameters, std::vector<std::vector<t_note> > pattern, std::vector<Instrument> drumInstruments)
 {
-  std::vector<Instrument>	instruments;
   Instrument				instru;
   t_note					current;
   int						note;
-  float						position;
-  float						duration;
   
-  instruments = parameters.getInstrumentsDrums();
   _midiManager.setTempo(parameters.getBpm());
 
   for (unsigned char y = 0; y < pattern.size(); y++)
@@ -126,14 +122,12 @@ void	Disposition::placeDrums(MidiManager &_midiManager, MusicParameters &paramet
     for (unsigned char k = 0; k < pattern[y].size(); k++)
 	{
 		current = pattern[y][k];
-		instru = instruments[current.note.second];
+		instru = drumInstruments[current.note.second];
 		// note = (current.note.first / 8) + (5 * 12);
 		note = current.note.first;
-		position = current.position + 1 + (y * TIMES_PER_BAR);
-		duration = current.position + 1 + (y * TIMES_PER_BAR) + current.duration;
 		// std::cout << instru.channel << "/" << (int)note << "/" << instru.velocity << "/" << position << "/" << duration << std::endl;
-		_midiManager.noteOn(instru.channel, note, instru.velocity, position);
-		_midiManager.noteOff(instru.channel, note, instru.velocity, duration);
+		_midiManager.noteOn(instru.channel, note, instru.velocity, current.position + 1 + (y * TIMES_PER_BAR));
+		_midiManager.noteOff(instru.channel, note, instru.velocity, current.position + 1 + (y * TIMES_PER_BAR) + current.duration);
     }
   }
 }

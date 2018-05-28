@@ -105,7 +105,7 @@ void		Drums::prepareDrums(MusicParameters &parameters, std::vector<std::vector<t
 		blues(pattern, 12);
 }
 
-void		Drums::initialize(MidiManager &_midiManager, MusicParameters &parameters)
+void		Drums::initialize(MidiManager &_midiManager, std::vector<Instrument> &drumInstruments)
 {
 	Instrument	hihat;
 	Instrument	bass;
@@ -126,9 +126,9 @@ void		Drums::initialize(MidiManager &_midiManager, MusicParameters &parameters)
 	snare.channel = 12;
 	snare.velocity = 100;
 
-	parameters.addInstrumentDrums(hihat);
-	parameters.addInstrumentDrums(bass);
-	parameters.addInstrumentDrums(snare);
+	drumInstruments.push_back(hihat);
+	drumInstruments.push_back(bass);
+	drumInstruments.push_back(snare);
 
 	_midiManager.changeInstrument(hihat, 1.0);
 	_midiManager.changeInstrument(bass, 1.0);

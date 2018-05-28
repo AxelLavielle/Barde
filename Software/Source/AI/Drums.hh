@@ -13,7 +13,7 @@ public:
 	~Drums();
 
 	static void					prepareDrums(MusicParameters &parameters, std::vector<std::vector<t_note>> &pattern);
-	static void					initialize(MidiManager &_midiManager, MusicParameters &parameters);
+	static void					initialize(MidiManager &_midiManager, std::vector<Instrument> &drumInstruments);
 
 private:
 	static	void				createPattern(std::array<std::array<int, 12>, 3> &drumPattern);

@@ -13,14 +13,12 @@
 MusicParameters::MusicParameters()
 {
 	_bpm = 105;
-	_drums = false;
 }
 
 
 MusicParameters::MusicParameters(const MusicParameters &params)
 {
 	_bpm = params.getBpm();
-	_drums = params.getDrums();
 	_instrumentsArpeggios = params.getInstrumentsArpeggios();
 	_instrumentsChords = params.getInstrumentsChords();
 	_instrumentsDrums = params.getInstrumentsDrums();
@@ -29,7 +27,6 @@ MusicParameters::MusicParameters(const MusicParameters &params)
 MusicParameters &MusicParameters::operator=(const MusicParameters &params)
 {
 	_bpm = params.getBpm();
-	_drums = params.getDrums();
 	_instrumentsArpeggios = params.getInstrumentsArpeggios();
 	_instrumentsChords = params.getInstrumentsChords();
 	_instrumentsDrums = params.getInstrumentsDrums();
@@ -70,11 +67,6 @@ void MusicParameters::addInstrumentArpeggios(const Instrument &instrument)
 	_instrumentsArpeggios.push_back(instrument);
 }
 
-void MusicParameters::addInstrumentDrums(const Instrument &instrument)
-{
-	_instrumentsDrums.push_back(instrument);
-}
-
 bool MusicParameters::delInstrumentChords(const Instrument &instrument)
 {
 	for (unsigned int i = 0; i < _instrumentsChords.size(); i++)
@@ -107,7 +99,7 @@ std::vector<Instrument> MusicParameters::getInstrumentsArpeggios() const
 	return (_instrumentsArpeggios);
 }
 
-std::vector<Instrument> MusicParameters::getInstrumentsDrums() const
+bool MusicParameters::getInstrumentsDrums() const
 {
 	return (_instrumentsDrums);
 }
@@ -122,19 +114,9 @@ void MusicParameters::setInstrumentsArpeggios(const std::vector<Instrument> &ins
 	_instrumentsArpeggios = instruments;
 }
 
-void MusicParameters::setInstrumentsDrums(const std::vector<Instrument> &instruments)
+void MusicParameters::setInstrumentsDrums(const bool instruments)
 {
 	_instrumentsDrums = instruments;
-}
-
-void MusicParameters::setDrums(const bool drums)
-{
-	_drums = drums;
-}
-
-bool MusicParameters::getDrums() const
-{
-	return(_drums);
 }
 
 void MusicParameters::setStyleName(const std::string & name)

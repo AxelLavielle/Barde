@@ -140,7 +140,7 @@ void PlayerPanel::buttonClicked(Button * button)
 		}
 		else if (button->getName() == "Drums")
 		{
-			_musicParameters.setDrums(button->getToggleState());
+			_musicParameters.setInstrumentsDrums(button->getToggleState());
 		}
 		else if (button->getName() == "Blues" || button->getName() == "Reggae" || button->getName() == "House")
 		{
