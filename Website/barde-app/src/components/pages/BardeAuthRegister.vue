@@ -40,16 +40,16 @@
               </div>
               <div class="row">
                 <div class="input-field col s4">
-                  <input v-model="user.dayOfBirth" id="dayOfBirth" type="text" class="validate">
-                  <label for="firstname">dayOfBirth</label>
+                  <input v-model="user.dayOfBirth" id="dayOfBirth" min="01" max="31" value=1 type="number" class="validate">
+                  <label for="firstname">Day of birth</label>
                 </div>
                 <div class="input-field col s4">
-                  <input v-model="user.monthOfBirth" id="monthOfBirth" type="text" class="validate">
-                  <label for="monthOfBirth">monthOfBirth</label>
+                  <input v-model="user.monthOfBirth" id="monthOfBirth" type="number" class="validate">
+                  <label for="monthOfBirth">Month of birth</label>
                 </div>
                 <div class="input-field col s4">
-                  <input v-model="user.yearOfBirth" id="yearOfBirth" type="text" class="validate">
-                  <label for="monthOfBirth">yearOfBirth</label>
+                  <input v-model="user.yearOfBirth" id="yearOfBirth" min="1900" max="2000" type="number" class="validate">
+                  <label for="monthOfBirth">Year of birth</label>
                 </div>
               </div>
               <div class="row">
@@ -86,7 +86,9 @@
     data() {
       return {
         user: {
-
+          "dayOfBirth": "01",
+          "monthOfBirth" : "01",
+          "yearOfBirth": "1900"
         }
       }
     },
