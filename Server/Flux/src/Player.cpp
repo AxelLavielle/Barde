@@ -24,7 +24,8 @@ int Player::infoStream(std::string user) {
 }
 
 int Player::newStream(std::string user, std::string media, bool loop, bool play) {
-  std::string output("#transcode{vcodec=none,acodec=mpga,vb=800,ab=128,deinterlace}:duplicate{dst=rtp{sdp=rtsp://:");
+  // std::string output("#transcode{vcodec=none,acodec=mpga,vb=800,ab=128,deinterlace}:duplicate{dst=rtp{sdp=rtsp://:");
+  std::string output("#transcode{vcodec=none,acodec=mpga,vb=800,ab=128,deinterlace}:standard{access=http,mux=ts{use-key-frames},dst=:");
 
   if (this->existStream(user)) {
     std::cerr << "Stream " << user << " already exist" << std::endl;
@@ -33,7 +34,7 @@ int Player::newStream(std::string user, std::string media, bool loop, bool play)
   output += _port;
   output += "/";
   output += user;
-  output += "}}";
+  output += "}";
   if (libvlc_vlm_add_broadcast(_vlc, user.c_str(), media.c_str(), output.c_str(), 0, NULL, true, loop) == -1) {
     std::cerr << "Failed to add broadcast " << user << " with input " << media << std::endl;
     return -1;
