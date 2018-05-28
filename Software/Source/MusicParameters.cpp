@@ -13,12 +13,14 @@
 MusicParameters::MusicParameters()
 {
 	_bpm = 105;
+	_drums = false;
 }
 
 
 MusicParameters::MusicParameters(const MusicParameters &params)
 {
 	_bpm = params.getBpm();
+	_drums = params.getDrums();
 	_instrumentsArpeggios = params.getInstrumentsArpeggios();
 	_instrumentsChords = params.getInstrumentsChords();
 	_instrumentsDrums = params.getInstrumentsDrums();
@@ -27,6 +29,7 @@ MusicParameters::MusicParameters(const MusicParameters &params)
 MusicParameters &MusicParameters::operator=(const MusicParameters &params)
 {
 	_bpm = params.getBpm();
+	_drums = params.getDrums();
 	_instrumentsArpeggios = params.getInstrumentsArpeggios();
 	_instrumentsChords = params.getInstrumentsChords();
 	_instrumentsDrums = params.getInstrumentsDrums();
@@ -122,6 +125,16 @@ void MusicParameters::setInstrumentsArpeggios(const std::vector<Instrument> &ins
 void MusicParameters::setInstrumentsDrums(const std::vector<Instrument> &instruments)
 {
 	_instrumentsDrums = instruments;
+}
+
+void MusicParameters::setDrums(const bool drums)
+{
+	_drums = drums;
+}
+
+bool MusicParameters::getDrums() const
+{
+	return(_drums);
 }
 
 void MusicParameters::setStyleName(const std::string & name)

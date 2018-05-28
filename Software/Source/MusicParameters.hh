@@ -39,6 +39,8 @@ public:
 	void setInstrumentsChords(const std::vector<Instrument> &instruments);
 	void setInstrumentsArpeggios(const std::vector<Instrument> &instruments);
 	void setInstrumentsDrums(const std::vector<Instrument> &instruments);
+	void setDrums(const bool drums);
+	bool getDrums() const;
 	void setStyleName(const std::string &name);
 	std::string	getStyleName() const;
 
@@ -49,6 +51,7 @@ private:
 	std::vector<Instrument>				_instrumentsChords;
 	std::vector<Instrument>				_instrumentsArpeggios;
 	std::vector<Instrument>				_instrumentsDrums;
+	bool								_drums;
 	std::string							_styleName;
 };
 
