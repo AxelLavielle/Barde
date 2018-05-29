@@ -6,24 +6,24 @@
         <form class="col s12">
           <div class="row">
             <div class="input-field col s12">
-              <input disabled v-model="form.username"  id="username" type="text" class="validate">
-              <label for="username">Username</label>
+              <input disabled v-model="form.username"  id="username" type="text" class="validate active">
+              <label class="active" for="username">Username</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
               <input disabled v-model="form.email" id="email" type="email" class="validate">
-              <label for="email">Email</label>
+              <label class="active" for="email">Email</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s6">
               <input v-model="form.firstName" id="firstname" type="text" class="validate">
-              <label for="firstname">Firstname</label>
+              <label class="active" for="firstname">Firstname</label>
             </div>
             <div class="input-field col s6">
               <input v-model="form.lastName" id="lastname" type="text" class="validate">
-              <label for="lastname">Lastname</label>
+              <label class="active" for="lastname">Lastname</label>
             </div>
           </div>
           <div class="row">
@@ -37,6 +37,8 @@
 
 <script>
   import BardeProfileSidePanel from '@/components/BardeProfileSidePanel.vue'
+  import Materialize from 'materialize-css/dist/js/materialize.min.js'
+
 
   import '../../static/css/player.css'
 
@@ -60,7 +62,6 @@
       checkToken(){
         if (!this.$auth.token('default')){
           !this.$auth.logout();
-          console.log(this.$http.options.root)
         }
       },
       getUser(){
@@ -91,7 +92,6 @@
             Authorization: this.$auth.token('default')
           }
         }).then(function (res){
-          console.log(res);
           Materialize.toast(res.body.msg, 4000, 'green');
         }).catch(function (err){
           Materialize.toast(res.body.msg, 4000, 'red');
@@ -101,14 +101,6 @@
     },
     beforeMount(){
       this.getUser();
-    },
-    mounted(){
-      console.log(Materialize);
-      $( document ).ready(function() {
-        Materialize.updateTextFields();
-      });
-
-
     }
   }
 </script>

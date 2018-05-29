@@ -16,7 +16,13 @@
   import '../static/css/barde.css'
 
   export default {
-  name: 'app'
+    name: 'app',
+      watch: {
+        '$route': function(from, to) {
+            Materialize.updateTextFields();
+        }
+      }
+
 }
 </script>
 

@@ -25,7 +25,6 @@
     methods: {
       togglePlay(){
         this.isPlaying = !this.isPlaying;
-        console.log(this.isPlaying);
 
       }
     }

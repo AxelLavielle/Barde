@@ -15,7 +15,7 @@
   import BardeProfileSidePanel from '@/components/BardeProfileSidePanel.vue'
   import BardeProfileEdit from '@/components/BardeProfileEdit.vue'
   import BardePlayer from '@/components/BardePlayer.vue'
-  import 'materialize-css/dist/js/materialize.min'
+  import Materialize from 'materialize-css/dist/js/materialize.min.js'
 
   import '../../../static/css/player.css'
 
@@ -29,6 +29,9 @@
       return {
         user : {}
       }
+    },
+    mounted: function (){
+      Materialize.updateTextFields()
     },
     methods : {
       checkToken(){

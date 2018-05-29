@@ -36,7 +36,6 @@ var vm = new Vue({
 global.vm = vm;
 
 vm.$on("play", function(data){
-  console.log("play", data);
 });
 
 

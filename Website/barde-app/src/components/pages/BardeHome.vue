@@ -119,7 +119,6 @@
           this.user = jwtDecode(this.$auth.token('default'));
       },
       setIntrumentState(index, state){
-        console.log("changing");
         this.instruments[index].active = state;
       },
       setPreset(preset){
@@ -143,11 +142,9 @@
       });
 
       self.$on("loaderror", function(data){
-        console.log("error", data);
       });
 
       self.$on("playerror", function(data){
-        console.log("error", data);
       });
 
       $('#selectStyle').on('change', function () {

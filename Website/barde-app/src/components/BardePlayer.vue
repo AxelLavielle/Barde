@@ -41,11 +41,9 @@
     methods: {
       mounted(){
         this.$on("loaderror", function(data){
-          console.log("loaderror", data);
         });
 
         this.$on(event, function(event){
-          console.log("event", event);
         });
 
 
