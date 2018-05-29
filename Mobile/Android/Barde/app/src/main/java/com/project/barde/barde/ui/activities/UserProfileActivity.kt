@@ -33,6 +33,7 @@ class UserProfileActivity : AppCompatActivity(), UserDbHelper.dataListener, Text
     private lateinit var okButton : TextView
     private lateinit var backButton : TextView
     private lateinit var cancelButton : TextView
+    private lateinit var username : String
 
     override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
     }
@@ -59,7 +60,7 @@ class UserProfileActivity : AppCompatActivity(), UserDbHelper.dataListener, Text
                 /*update_password.setText(c.getString(c.getColumnIndex(UserTable.PASSWORD)))*/
                 update_firstname.setText(c.getString(c.getColumnIndex(UserTable.FIRSTNAME)))
                 update_lastname.setText(c.getString(c.getColumnIndex(UserTable.LASTNAME)))
-                /* update_username.setText(c.getString(c.getColumnIndex(UserTable.USERNAME)))*/
+                username = c.getString(c.getColumnIndex(UserTable.USERNAME))
                 year = c.getInt(c.getColumnIndex(UserTable.YEAROFBIRTHDAY))
                 month = c.getInt(c.getColumnIndex(UserTable.MONTHOFBIRTHDAY))
                 dayOfMonth = c.getInt(c.getColumnIndex(UserTable.DAYOFBIRTHDAY))
@@ -74,7 +75,7 @@ class UserProfileActivity : AppCompatActivity(), UserDbHelper.dataListener, Text
         StringBuilder(getString(R.string.api)).append("/user").toString()
                 .httpPut(listOf("email" to update_email.text, /*"password" to update_password.text,*/ "firstName" to update_firstname.text,
                         "lastName" to update_lastname.text, "yearOfBirth" to year,
-                        "monthOfBirth" to month, "dayOfBirth" to dayOfMonth)).responseString { request, response, result ->
+                        "monthOfBirth" to month, "dayOfBirth" to dayOfMonth, "userName" to username)).responseString { request, response, result ->
             println(String(response.data))
             if (response.statusCode == 200){
                 val update: Login = Gson().fromJson(String(response.data), Login::class.java)

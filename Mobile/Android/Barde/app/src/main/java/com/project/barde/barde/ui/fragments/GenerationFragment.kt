@@ -1,5 +1,6 @@
 package com.project.barde.barde.ui.fragments
 
+import android.content.ContentValues.TAG
 import android.graphics.Color
 import android.media.AudioManager
 import android.media.MediaPlayer
@@ -9,6 +10,9 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
+import android.util.TypedValue
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,38 +26,40 @@ import kotlinx.android.synthetic.main.fragment_generation.*
  * Created by michael on 17/02/2018.
  */
 class GenerationFragment : Fragment() {
-    private val fluxAudio = "http://cdn.nrjaudio.fm/audio1/fr/30001/mp3_128.mp3?origine=fluxradios"
-    lateinit var mediaPlayer : MediaPlayer
+    //private val fluxAudio = "http://5.135.160.60:3333/test"
+    private val fluxAudio = "http://cdn.nrjaudio.fm/audio1/fr/30001/mp3_128.mp3?origine=fluxradioss"
+    data class Instrument(val name: String, var isSelected: Boolean)
+    val listOfInstruementChords = listOf<Instrument>(Instrument("Acoustic Grand piano", false), Instrument("Trumpet", false),
+            Instrument("Soprano Sax", false))
+    val listOfInstruementArpeges = listOf<Instrument>(Instrument("Acoustic Grand piano", false), Instrument("Trumpet", false),
+            Instrument("Soprano Sax", false))
+    val listOfInstruement = listOf<Instrument>(Instrument("Drums", false))
+    var  mediaPlayer = MediaPlayer()
     var pianoSelected = true
     var fluteSelected = false
     var batterieSelected = false
     var index = 0
     var lastindex = 0
+    var firstPlay = true
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+
         return inflater!!.inflate(R.layout.fragment_generation, container, false)
     }
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        var listOfChoice = listOf<LinearLayout>(style_choice_genearation, instrument_choice_generation, rythme_choice_genaration)
+        var listOfChoice = listOf<LinearLayout>(style_choice_genearation, instrument_choice_generation_chords,
+                instrument_choice_generation_arpeges, instrument_choice_generation, rythme_choice_genaration)
         var listOfPanination = listOf<TextView>(pagination_style, pagination_instruments, pagination_bpm)
         /*add_to_playlist.setOnClickListener {
             add_to_playlist()
         }*/
         next_button_generation.visibility = View.VISIBLE
         previous_button_generation.visibility = View.VISIBLE
-        if (!pianoSelected){
-            piano_button_generation.setBackgroundResource(R.drawable.button_selection_generation)
-            piano_button_generation.setTextColor(Color.WHITE)
-        }else{
-            piano_button_generation.setBackgroundResource(R.drawable.button_selection_generation_selected)
-            piano_button_generation.setTextColor(Color.parseColor("#CA5E85"))
-        }
-        if (!fluteSelected){
-            flute_button_generation.setBackgroundResource(R.drawable.button_selection_generation)
-            flute_button_generation.setTextColor(Color.WHITE)
-        }else{
-            flute_button_generation.setBackgroundResource(R.drawable.button_selection_generation_selected)
-            flute_button_generation.setTextColor(Color.parseColor("#CA5E85"))
-        }
+
+        viewSelectButtonGeneration(listOfInstruementChords, R.id.list_instrument_generation_chords)
+        viewSelectButtonGeneration(listOfInstruementArpeges, R.id.instrument_choice_generation_arpeges)
+        viewSelectButtonGeneration(listOfInstruement, R.id.instrument_choice_generation)
+
         listOfPanination.get(index).setBackgroundResource(R.drawable.rounded_background_white)
         listOfPanination.get(index).setTextColor(Color.parseColor("#CA5E85"))
         if (index == 0){
@@ -66,22 +72,11 @@ class GenerationFragment : Fragment() {
             }
         }
 
-        if (!batterieSelected){
-            batterie_button_generation.setBackgroundResource(R.drawable.button_selection_generation)
-            batterie_button_generation.setTextColor(Color.WHITE)
-        }else{
-            batterie_button_generation.setBackgroundResource(R.drawable.button_selection_generation_selected)
-            batterie_button_generation.setTextColor(Color.parseColor("#CA5E85"))
-        }
 
         next_button_generation.setOnClickListener{
             if (index < (listOfChoice.size - 1)){
                 lastindex = index
                 index++
-                listOfPanination.get(index).setBackgroundResource(R.drawable.rounded_background_white)
-                listOfPanination.get(index).setTextColor(Color.parseColor("#CA5E85"))
-                listOfPanination.get(lastindex).setBackgroundColor(Color.parseColor("#CA5E85"))
-                listOfPanination.get(lastindex).setTextColor(Color.WHITE)
                 listOfChoice.get(lastindex).visibility = View.GONE
                 listOfChoice.get(index).visibility = View.VISIBLE
                 previous_button_generation.visibility = View.VISIBLE
@@ -95,10 +90,6 @@ class GenerationFragment : Fragment() {
             if (index > 0){
                 lastindex = index
                 index--
-                listOfPanination.get(index).setBackgroundResource(R.drawable.rounded_background_white)
-                listOfPanination.get(index).setTextColor(Color.parseColor("#CA5E85"))
-                listOfPanination.get(lastindex).setBackgroundColor(Color.parseColor("#CA5E85"))
-                listOfPanination.get(lastindex).setTextColor(Color.WHITE)
                 listOfChoice.get(lastindex).visibility = View.GONE
                 listOfChoice.get(index).visibility = View.VISIBLE
                 next_button_generation.visibility = View.VISIBLE
@@ -109,32 +100,48 @@ class GenerationFragment : Fragment() {
         }
 
 
-        /*println(Uri.parse(fluxAudio))
-        mediaPlayer = MediaPlayer.create(context, Uri.parse(fluxAudio))
+        println("uri = " + Uri.parse(fluxAudio))
+        if (firstPlay == true){
+            firstPlay = false
+            mediaPlayer.setDataSource(fluxAudio)
+            mediaPlayer.prepare()
+        }
+
+        if (mediaPlayer.isPlaying){
+            button_generation.setImageResource(R.drawable.ic_pause_circle_filled_white_48dp)
+        }else{
+            button_generation.setImageResource(R.drawable.ic_play_circle_filled_white_white_48dp)
+        }
         button_generation.setOnClickListener{
+
+            println("uri = click")
+            println("uri = looping " + mediaPlayer.isLooping)
+            println("uri = playing " + mediaPlayer.isPlaying)
             if (mediaPlayer.isPlaying){
+                println("uri =  pause")
                 mediaPlayer.pause()
                 button_generation.setImageResource(R.drawable.ic_play_circle_filled_white_white_48dp)
             }else{
                 mediaPlayer.start()
+                println("uri = duraition ")
                 button_generation.setImageResource(R.drawable.ic_pause_circle_filled_white_48dp)
             }
-        }*/
+        }
 
 
         style_button_radio.setOnCheckedChangeListener { radioGroup, i ->
-                jazz_style_radio.setBackgroundResource(R.drawable.button_selection_generation)
-                jazz_style_radio.setTextColor(Color.WHITE)
-                blues_style_radio.setBackgroundResource(R.drawable.button_selection_generation)
-                blues_style_radio.setTextColor(Color.WHITE)
-                if (jazz_style_radio.isChecked){
-                    jazz_style_radio.setBackgroundResource(R.drawable.button_selection_generation_selected)
-                    jazz_style_radio.setTextColor(Color.parseColor("#CA5E85"))
-                }else if (blues_style_radio.isChecked){
-                    blues_style_radio.setBackgroundResource(R.drawable.button_selection_generation_selected)
-                    blues_style_radio.setTextColor(Color.parseColor("#CA5E85"))
+            jazz_style_radio.setBackgroundResource(R.drawable.button_selection_generation)
+            jazz_style_radio.setTextColor(Color.WHITE)
+            blues_style_radio.setBackgroundResource(R.drawable.button_selection_generation)
+            blues_style_radio.setTextColor(Color.WHITE)
+            if (jazz_style_radio.isChecked){
+                jazz_style_radio.setBackgroundResource(R.drawable.button_selection_generation_selected)
+                jazz_style_radio.setTextColor(Color.parseColor("#CA5E85"))
+            }else if (blues_style_radio.isChecked){
+                blues_style_radio.setBackgroundResource(R.drawable.button_selection_generation_selected)
+                blues_style_radio.setTextColor(Color.parseColor("#CA5E85"))
 
-                }
+            }
         }
 
         seek_bar_bpm.setProgress(22)
@@ -152,40 +159,43 @@ class GenerationFragment : Fragment() {
             }
         })
 
-        piano_button_generation.setOnClickListener{
-            if (pianoSelected){
-                pianoSelected = false
-                piano_button_generation.setBackgroundResource(R.drawable.button_selection_generation)
-                piano_button_generation.setTextColor(Color.WHITE)
-            }else{
-                pianoSelected = true
-                piano_button_generation.setBackgroundResource(R.drawable.button_selection_generation_selected)
-                piano_button_generation.setTextColor(Color.parseColor("#CA5E85"))
-            }
-        }
-        flute_button_generation.setOnClickListener{
-            if (fluteSelected){
-                fluteSelected = false
-                flute_button_generation.setBackgroundResource(R.drawable.button_selection_generation)
-                flute_button_generation.setTextColor(Color.WHITE)
-            }else{
-                fluteSelected = true
-                flute_button_generation.setBackgroundResource(R.drawable.button_selection_generation_selected)
-                flute_button_generation.setTextColor(Color.parseColor("#CA5E85"))
-            }
-        }
-        batterie_button_generation.setOnClickListener{
-            if (batterieSelected){
-                batterieSelected = false
-                batterie_button_generation.setBackgroundResource(R.drawable.button_selection_generation)
-                batterie_button_generation.setTextColor(Color.WHITE)
-            }else{
-                batterieSelected = true
-                batterie_button_generation.setBackgroundResource(R.drawable.button_selection_generation_selected)
-                batterie_button_generation.setTextColor(Color.parseColor("#CA5E85"))
-            }
-        }
+    }
 
+    fun viewSelectButtonGeneration(list: List<Instrument>, id : Int){
+        var ln = view?.findViewById<LinearLayout>(id)
+        val margin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5.toFloat(), getResources().getDisplayMetrics()).toInt()
+        val params = LinearLayout.LayoutParams(
+                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 180.toFloat(), getResources().getDisplayMetrics()).toInt(),
+                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30.toFloat(), getResources().getDisplayMetrics()).toInt()
+        )
+        /*params.setMargins(margin, margin, margin, margin)*/
+        ln?.setLayoutParams(LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                1.0f
+        ))
+        //ln?.gravity = Gravity.CENTER
+        for (instrument in list){
+            var button = Button(context)
+            button.text = instrument.name
+            button.textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 9.toFloat(), getResources().getDisplayMetrics())
+            button.setTextColor(Color.parseColor("#FFFFFF"))
+            //button.layoutParams = params
+            button.textAlignment = View.TEXT_ALIGNMENT_CENTER
+            button.setBackgroundResource(R.drawable.button_selection_generation)
+            ln?.addView(button)
+            button.setOnClickListener{
+                if (instrument.isSelected){
+                    instrument.isSelected = false
+                    button.setBackgroundResource(R.drawable.button_selection_generation)
+                    button.setTextColor(Color.WHITE)
+                }else{
+                    instrument.isSelected = true
+                    button.setBackgroundResource(R.drawable.button_selection_generation_selected)
+                    button.setTextColor(Color.parseColor("#CA5E85"))
+                }
+            }
+        }
     }
 
     fun add_to_playlist(){

@@ -4,39 +4,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary">
-   <!-- <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/barde"/>
-        <LinearLayout
-            android:gravity="center"
-            android:padding="5dp"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_weight="1"
-                android:textColor="#ffffff"
-                android:text="Jazz Music"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-            <ImageView
-                android:src="@drawable/ic_mode_edit_white_24dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <ImageView
-                android:id="@+id/add_to_playlist"
-                android:src="@drawable/ic_add_white_24dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+    <!-- <LinearLayout
+         android:orientation="vertical"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:gravity="center">
+         <ImageView
+             android:layout_width="100dp"
+             android:layout_height="100dp"
+             android:src="@drawable/barde"/>
+         <LinearLayout
+             android:gravity="center"
+             android:padding="5dp"
+             android:layout_width="200dp"
+             android:layout_height="wrap_content"
+             android:orientation="horizontal">
+             <TextView
+                 android:layout_weight="1"
+                 android:textColor="#ffffff"
+                 android:text="Jazz Music"
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent" />
+             <ImageView
+                 android:src="@drawable/ic_mode_edit_white_24dp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content" />
+             <ImageView
+                 android:id="@+id/add_to_playlist"
+                 android:src="@drawable/ic_add_white_24dp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content" />
 
-        </LinearLayout>
-    </LinearLayout>-->
+         </LinearLayout>
+     </LinearLayout>-->
     <!--<LinearLayout
         android:padding="5dp"
         android:background="#ffffff"
@@ -168,51 +168,86 @@
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
-                android:gravity="center"
+                android:visibility="gone"
+                android:id="@+id/instrument_choice_generation_chords"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:textAlignment="center"
+                    android:paddingTop="20dp"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"
+                    android:text="Choose your instrument"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:textColor="@color/colorWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Chords"/>
+                <LinearLayout
+                    android:id="@+id/list_instrument_generation_chords"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/instrument_choice_generation_arpeges"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:textAlignment="center"
+                    android:paddingTop="20dp"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"
+                    android:text="Choose your instrument"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:textColor="@color/colorWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Arpege"/>
+                <LinearLayout
+                    android:gravity="center"
+                    android:id="@+id/list_instrument_generation_arpeges"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
                 android:visibility="gone"
                 android:id="@+id/instrument_choice_generation"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <TextView
+                    android:textAlignment="center"
                     android:paddingTop="20dp"
                     android:textSize="25sp"
                     android:textStyle="bold"
                     android:textColor="#ffffff"
                     android:text="Choose your instrument"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <LinearLayout
+                    android:id="@+id/list_instrument_generation"
                     android:orientation="vertical"
-                    android:gravity="center"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <Button
-                        android:id="@+id/piano_button_generation"
-                        android:layout_margin="5dp"
-                        android:layout_width="180dp"
-                        android:background="@drawable/button_selection_generation_selected"
-                        android:layout_height="30dp"
-                        android:textColor="@color/colorPrimary"
-                        android:text="Piano" />
-
-                    <Button
-                        android:id="@+id/flute_button_generation"
-                        android:layout_margin="5dp"
-                        android:layout_width="180dp"
-                        android:background="@drawable/button_selection_generation"
-                        android:layout_height="30dp"
-                        android:textColor="#ffffff"
-                        android:text="Flute" />
-                    <Button
-                        android:id="@+id/batterie_button_generation"
-                        android:layout_margin="5dp"
-                        android:layout_width="180dp"
-                        android:background="@drawable/button_selection_generation"
-                        android:layout_height="30dp"
-                        android:textColor="#ffffff"
-                        android:text="Batterie" />
-
+                    android:layout_height="wrap_content">
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
