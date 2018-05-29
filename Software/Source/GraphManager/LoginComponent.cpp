@@ -61,8 +61,8 @@ LoginComponent::LoginComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager)
 	_loginButton.addListener(this);
 
 	addAndMakeVisible(_signinButton);
-	_signinButton.setButtonText("Sign in");
-	_signinButton.setName("signin");
+	_signinButton.setButtonText("Sign up");
+	_signinButton.setName("signup");
 	_signinButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN + SPACE_BETWEEN + 100, BOX_WIDTH, BOX_HEIGHT);
 	_signinButton.addListener(this);
 
@@ -121,9 +121,9 @@ void LoginComponent::buttonClicked(Button* button)
 	{
 		login(_textEditor1.getText().toStdString(), _textEditor2.getText().toStdString());
 	}
-	else if (button->getName() == "signin")
+	else if (button->getName() == "signup")
 	{
-		changeView("Signin");
+		changeView("Signup");
 	}
 }
 

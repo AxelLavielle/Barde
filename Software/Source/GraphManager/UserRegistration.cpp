@@ -103,8 +103,8 @@ UserRegistration::UserRegistration(CmdManager & cmdManager) : _cmdManager(cmdMan
 	_errorText.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN * 3, BOX_WIDTH, BOX_HEIGHT);
 
 	addAndMakeVisible(_saveButton);
-	_saveButton.setButtonText("Sign in");
-	_saveButton.setName("signin");
+	_saveButton.setButtonText("Sign up");
+	_saveButton.setName("signup");
 	_saveButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN + SPACE_BETWEEN, BOX_WIDTH, BOX_HEIGHT);
 	_saveButton.addListener(this);
 
@@ -227,6 +227,14 @@ void UserRegistration::signin(const User & user)
 		_errorText.setText("Error: the email is not valid", dontSendNotification);
 		return;
 	}
+	
+	if (!isDateValid(user.getDateOfBirth()));
+	{
+		_errorText.setText("Error: The date is not valid", dontSendNotification);
+		return;
+	}
+
+
 	password = _passwordTextEditor.getText();
 	confirmPassword = _passwordConfirmationTextEditor.getText();
 	if (password != confirmPassword)
@@ -238,15 +246,20 @@ void UserRegistration::signin(const User & user)
 	{
 		_errorText.setText("Connexion error", dontSendNotification);
 	}
+	else
+	{
+		_errorText.setText("Subscription successfull", dontSendNotification);
+	}
 }
 
 void UserRegistration::buttonClicked(Button* button)
 {
-	if (button->getName() == "signin")
+	if (button->getName() == "signup")
 	{
 		User user;
 
 		user.setEmail(_emailTextEditor.getText().toStdString());
+		user.setDateOfBirth(_dateOfBirthTextEditor.getText().toStdString());
 		user.setDayOfBirth("25");
 		user.setMonthOfBirth("11");
 		user.setYearOfBirth("1996");
@@ -265,13 +278,18 @@ void UserRegistration::buttonClicked(Button* button)
 
 bool UserRegistration::isEmailValid(const std::string &email)
 {
-	// define a regular expression
-	const std::regex pattern
-	("(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+");
-
-	// try to match the string with the regular expression
-	return std::regex_match(email, pattern);
+	//TODO CHECK DATE
+	return true;
 }
+
+bool UserRegistration::isDateValid(const std::string &date)
+{
+	const std::regex pattern
+	("(0 ? [1 - 9] | [12][0 - 9] | 3[01])[\ / \ - ](0 ? [1 - 9] | 1[012])[\ / \ - ]\d{ 4 }");
+
+	return std::regex_match(date, pattern);
+}
+
 
 
 UserRegistration::~UserRegistration()

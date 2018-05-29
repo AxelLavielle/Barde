@@ -46,6 +46,7 @@ private:
 	void buttonClicked(Button* button) override;
 	void ThemeChanged();
 	bool isEmailValid(const std::string &email);
+	bool isDateValid(const std::string &date);
 	void signin(const User & user);
 
 	TextEditor _firstNameTextEditor, _lastNameTextEditor, _userNameTextEditor, _emailTextEditor, _dateOfBirthTextEditor, _passwordTextEditor, _passwordConfirmationTextEditor;

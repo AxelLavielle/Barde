@@ -78,7 +78,7 @@ void MainWindow::changeViewCallback(std::string viewName)
 		_loginComponent->refresh();
 		setContentNonOwned(_loginComponent, true);
 	}
-	else if (viewName == "Signin")
+	else if (viewName == "Signup")
 	{
 		clearContentComponent();
 		_userRegistration->refresh();
