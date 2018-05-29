@@ -27,8 +27,6 @@
             </div>
           </div>
           <div class="row">
-            <a class="waves-effect waves-light btn white pink-text">Cancel</a>
-
             <a v-on:click="updateUser()" class="waves-effect waves-light btn pink"><i class="material-icons right">save</i>Save</a>
           </div>
         </form>
