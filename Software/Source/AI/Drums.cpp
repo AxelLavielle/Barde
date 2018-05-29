@@ -58,7 +58,7 @@ t_note					Drums::createNote(char instru, int bar_pos)
 {
 	t_note				ret;
 
-	ret.note.first = 72;
+	ret.note.first = 0;
 	ret.note.second = instru;
 	ret.position = bar_pos * 0.3333;
 	ret.duration = 0.2;
