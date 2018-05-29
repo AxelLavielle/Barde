@@ -81,9 +81,11 @@ void UserParamsPanel::initTextBoxes()
 	addFlexItem(_yearOfBirthTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
 	_passwordTextBox.setLabelText("Password");
+	_passwordTextBox.setPasswordCharacter((juce_wchar)0x2022);
 	addFlexItem(_passwordTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
 	_passwordConfirmationTextBox.setLabelText("Password confirmation");
+	_passwordConfirmationTextBox.setPasswordCharacter((juce_wchar)0x2022);
 	addFlexItem(_passwordConfirmationTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 }
 
@@ -120,7 +122,7 @@ bool UserParamsPanel::updateUser()
 	}
 	catch (RestClientException &e)
 	{
-		_errorLabel.setLabelText("Connection error, please reconnect you.");
+		_errorLabel.setLabelText("Connection error, please reconnect yourself.");
 		return false;
 	}
 	return true;

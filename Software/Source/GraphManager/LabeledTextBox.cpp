@@ -37,3 +37,8 @@ void LabeledTextBox::setText(const std::string & text)
 {
 	_textBox.setText(text);
 }
+
+void LabeledTextBox::setPasswordCharacter(juce::juce_wchar passwordCharacter)
+{
+	_textBox.setPasswordCharacter(passwordCharacter);
+}

@@ -20,6 +20,7 @@ public:
 	void setLabelText(const std::string & text);
 	std::string	getText() const;
 	void setText(const std::string & text);
+	void setPasswordCharacter(juce::juce_wchar passwordCharacter);
 
 private:
 
