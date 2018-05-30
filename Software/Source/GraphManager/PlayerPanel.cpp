@@ -114,7 +114,6 @@ void PlayerPanel::buttonClicked(Button * button)
 			if (button->getToggleState())
 			{
 				_musicParameters.addInstrumentArpeggios(instru);
-				_arpegiosGroup.refreshExclusiveToggleItems(button->getButtonText().toStdString());
 			}
 			else
 				_musicParameters.delInstrumentArpeggios(instru);
@@ -131,7 +130,6 @@ void PlayerPanel::buttonClicked(Button * button)
 			instru.velocity = 100; //Need change
 			if (button->getToggleState())
 			{
-				_chordsGroup.refreshExclusiveToggleItems(button->getButtonText().toStdString());
 				_musicParameters.addInstrumentChords(instru);
 			}
 			else
