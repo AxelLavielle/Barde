@@ -19,6 +19,8 @@ MusicParameters::MusicParameters()
 MusicParameters::MusicParameters(const MusicParameters &params)
 {
 	_bpm = params.getBpm();
+	_styleName = params.getStyleName();
+	_seed = params.getSeed();
 	_instrumentsArpeggios = params.getInstrumentsArpeggios();
 	_instrumentsChords = params.getInstrumentsChords();
 	_instrumentsDrums = params.getInstrumentsDrums();
@@ -27,6 +29,8 @@ MusicParameters::MusicParameters(const MusicParameters &params)
 MusicParameters &MusicParameters::operator=(const MusicParameters &params)
 {
 	_bpm = params.getBpm();
+	_styleName = params.getStyleName();
+	_seed = params.getSeed();
 	_instrumentsArpeggios = params.getInstrumentsArpeggios();
 	_instrumentsChords = params.getInstrumentsChords();
 	_instrumentsDrums = params.getInstrumentsDrums();

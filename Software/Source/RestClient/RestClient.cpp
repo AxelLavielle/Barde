@@ -109,7 +109,10 @@ std::string RestClient::post(const std::string & uri, const std::string & body, 
 	ss << "Content-Length: " << body.length() << "\r\n";
 	ss << "Host: localhost:8080\r\n";
 	ss << "Connection: close\r\n";
-	ss << "Authorization: " << _token;
+	if (_isAuthenticated)
+		ss << "Authorization: " << _token;
+	else
+		ss << "Authorization: ";
 	ss << "\r\n";
 	ss << "\r\n";
 	ss << body;
