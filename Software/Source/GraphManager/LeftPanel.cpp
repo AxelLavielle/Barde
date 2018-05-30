@@ -22,7 +22,7 @@ LeftPanel::LeftPanel()
    _homeButton.addListener(this);
    addAndMakeVisible(_homeButton);
 
-   _userButton.setButtonText("Unknow");
+   _userButton.setButtonText("Not connected");
    _userButton.setName("User");
    _userButton.addListener(this);
    addAndMakeVisible(_userButton);

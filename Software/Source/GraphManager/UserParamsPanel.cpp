@@ -12,7 +12,7 @@
 
 UserParamsPanel::UserParamsPanel() : _cmdManager(CmdManager::getInstance())
 {
-	GuiFactory::initBigTitle("Edit your informations", _titleLabel);
+	GuiFactory::initMediumTitle("Edit your informations", _titleLabel);
 	addFlexItem(_titleLabel, 200, 30, FlexItem::AlignSelf::stretch, 1);
 
 	GuiFactory::initLittleTitle("", _errorLabel);

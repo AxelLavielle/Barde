@@ -13,9 +13,17 @@
 CenterPanel::CenterPanel(MusicParameters & musicParameters) : _musicParameters(musicParameters), _cmdManager(CmdManager::getInstance()), _playerPanel(_musicParameters)
 {
 	//TO DO check the return of that
-	_user = _cmdManager.getUserInfo();
+	try
+	{
+		_user = _cmdManager.getUserInfo();
+		_leftPanel.setUser(_user);
+	}
+	catch (RestClientException &e)
+	{
+		//Do nothing for now but need to inform user
+	}
 
-	_leftPanel.setUser(_user);
+
 	addAndMakeVisible(_leftPanel);
 
 	_reportPanel.setChangeViewCallback(std::bind(&CenterPanel::changeViewCallback, this, std::placeholders::_1));
@@ -36,9 +44,15 @@ CenterPanel::CenterPanel(MusicParameters & musicParameters) : _musicParameters(m
 
 void CenterPanel::refresh()
 {
-	_user = _cmdManager.getUserInfo();
-
-	_leftPanel.setUser(_user);
+	try
+	{
+		_user = _cmdManager.getUserInfo();
+		_leftPanel.setUser(_user);
+	}
+	catch (RestClientException &e)
+	{
+		//Do nothing for now but need to inform user
+	}
 	_leftPanel.refresh();
 }
 
