@@ -22,7 +22,7 @@ MainWindow::MainWindow(const std::string &name) : _cmdManager(CmdManager::getIns
 	_cmdManager.connectToServer();
 
 #ifdef DEBUG
-	_cmdManager.login("anthony.vogelweid@epitech.eu", "test");
+	//_cmdManager.login("anthony.vogelweid@epitech.eu", "test");
 
 	//Init all the components
 	_mainComponent = new MainContentComponent();
@@ -31,7 +31,8 @@ MainWindow::MainWindow(const std::string &name) : _cmdManager(CmdManager::getIns
 	_mainComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 	_loginComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 	_userRegistration->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
-	setContentNonOwned(_mainComponent, true);
+	//setContentNonOwned(_mainComponent, true);
+	setContentNonOwned(_loginComponent, true);
 #else
 	//Init all the components
 	_mainComponent = new MainContentComponent();
