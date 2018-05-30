@@ -14,6 +14,9 @@
 MainContentComponent::MainContentComponent() : _cmdManager(CmdManager::getInstance()), _playerFooter(_player, _musicParameters), _centerPanel(_musicParameters)
 {
 	setSize(getParentWidth(), getParentHeight() - 10);
+
+	_centerPanel.setChangeViewCallback(std::bind(&MainContentComponent::changeViewCallback, this, std::placeholders::_1));
+
 	addAndMakeVisible(_playerFooter);
 	addAndMakeVisible(_centerPanel);
 	Theme::getInstance().parseTheme("../Theme/Dark");
@@ -45,4 +48,12 @@ void MainContentComponent::refresh()
 {
 	_centerPanel.refresh();
 	_playerFooter.refresh();
+}
+
+void MainContentComponent::changeViewCallback(std::string viewName)
+{
+	if (viewName == "Logout")
+	{
+		changeView("Logout");
+	}
 }

@@ -24,7 +24,7 @@ PlayerPanel::PlayerPanel(MusicParameters & musicParameters) : _musicParameters(m
 	GuiFactory::initLittleTitle("Choose your style", _styleLabel);
 	addFlexItem(_styleLabel, GuiFactory::getBoxLabelWidth(_styleLabel), GuiFactory::getBoxLabelHeight(_styleLabel));
 	GuiFactory::initLittleTitle("Chords instruments", _chordsLabel);
-	GuiFactory::initLittleTitle("Arpegios instruments", _arpegiosLabel);
+	GuiFactory::initLittleTitle("Arpeggios instruments", _arpegiosLabel);
 	GuiFactory::initLittleTitle("Drums instruments", _drumsLabel);
 
 	GuiFactory::initToggleButton("Blues", "Blues", _bluesButton, true);
@@ -36,10 +36,12 @@ PlayerPanel::PlayerPanel(MusicParameters & musicParameters) : _musicParameters(m
 	GuiFactory::initHoryzontalFlexGroup({ GuiFactory::createFlexItem(_bluesButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_raggaeButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_houseButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1) }, _styleGroup);
 	addFlexItem(_styleGroup, 300, 100);
 
+	initMusicParameters();
+
 	initInstrumentsGroup();
 
-	initInstrumentsButtons(_arpegiosInstrumentButtons, "Arpegios");
-	initInstrumentsButtons(_chordInstrumentButtons, "Chords");
+	initInstrumentsButtons(_arpegiosInstrumentButtons, "Arpeggios", _musicParameters.getInstrumentsArpeggios());
+	initInstrumentsButtons(_chordInstrumentButtons, "Chords", _musicParameters.getInstrumentsChords());
 	GuiFactory::initToggleButton("Enable drums", "Drums", _drumsInstrumentButton, true);
 	_drumsInstrumentButton.addListener(this);
 
@@ -55,24 +57,57 @@ PlayerPanel::PlayerPanel(MusicParameters & musicParameters) : _musicParameters(m
 	_flexBox = GuiFactory::createFlexBox(FlexBox::JustifyContent::spaceAround, FlexBox::AlignContent::stretch, FlexBox::AlignItems::stretch, FlexBox::Direction::column, _items);
 }
 
-void PlayerPanel::initInstrumentsButtons(ToggleButton buttons[], const std::string & categoryName)
+void PlayerPanel::initMusicParameters()
 {
-	for (int i = 0; i < _instrusChoice.size(); i++)
+	//TO DO CHANGE THAT
+	_musicParameters.setSeed(static_cast<unsigned int>(std::time(NULL)));
+	_musicParameters.setBpm(105);
+	Instrument instru;
+	instru.name = "SOPRANOSAX";
+	instru.nb = SOPRANOSAX;
+	instru.channel = 65 % 15;
+	instru.velocity = 100; //Need change
+	Instrument instru2;
+	instru2.name = "ACOUSTICGRANDPIANO";
+	instru2.nb = ACOUSTICGRANDPIANO;
+	instru2.channel = 1;
+	instru2.velocity = 100; //Need change
+	_musicParameters.addInstrumentArpeggios(instru);
+	_musicParameters.addInstrumentChords(instru2);
+	_musicParameters.setStyleName("Blues");
+	srand(_musicParameters.getSeed());
+	_musicParameters.setInstrumentsDrums(true);
+}
+
+bool PlayerPanel::containInstrument(const std::vector<Instrument> & instruments, const std::string & instrumentName)
+{
+	std::vector<Instrument>::const_iterator it;
+
+	for (it = instruments.begin(); it != instruments.end(); ++it)
 	{
-		//TO DO init ToggleButton from musicParameters
-		if (i == 0)
+		if (instrumentName == it->name)
+			return true;
+	}
+	return false;
+}
+
+void PlayerPanel::initInstrumentsButtons(ToggleButton buttons[], const std::string & categoryName, const std::vector<Instrument> & instruments)
+{
+	size_t i;
+
+	i = 0;
+	for (i = 0; i < _instrusChoice.size(); ++i)
+	{
+		if (containInstrument(instruments, _instrusChoice[i].toStdString()))
 			GuiFactory::initToggleButton(_instrusChoice[i].toStdString(), categoryName, buttons[i], true);
 		else
 			GuiFactory::initToggleButton(_instrusChoice[i].toStdString(), categoryName, buttons[i]);
 		buttons[i].addListener(this);
-
-		if (categoryName == "Arpegios")
+		if (categoryName == "Arpeggios")
 			_arpegiosGroup.addItem(GuiFactory::createFlexItem(buttons[i], GuiFactory::getBoxLabelWidth(_arpegiosLabel), 10, FlexItem::AlignSelf::autoAlign, 1));
 		else if (categoryName == "Chords")
 			_chordsGroup.addItem(GuiFactory::createFlexItem(buttons[i], GuiFactory::getBoxLabelWidth(_chordsLabel), 10, FlexItem::AlignSelf::autoAlign, 1));
 	}
-
-
 }
 
 void PlayerPanel::initInstrumentsGroup()
@@ -103,7 +138,7 @@ void PlayerPanel::sliderValueChanged(Slider * slider)
 
 void PlayerPanel::buttonClicked(Button * button)
 {
-		if (button->getName() == "Arpegios")
+		if (button->getName() == "Arpeggios")
 		{
 			Instrument instru;
 
@@ -130,7 +165,7 @@ void PlayerPanel::buttonClicked(Button * button)
 			instru.velocity = 100; //Need change
 			if (button->getToggleState())
 			{
-				_musicParameters.addInstrumentChords(instru);
+				_musicParameters.addInstrumentChords(instru); 
 			}
 			else
 				_musicParameters.delInstrumentChords(instru);

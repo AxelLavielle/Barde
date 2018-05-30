@@ -34,25 +34,6 @@ PlayerFooter::PlayerFooter(Player & player, MusicParameters &musicParameters) : 
 	_controlGroup.addItem(item2.withMinWidth(100.0f).withMinHeight(50.0f));
 
 	initFlexBox();
-
-	//TO DO CHANGE THAT
-	_musicParameters.setSeed(static_cast<unsigned int>(std::time(NULL)));
-	_musicParameters.setBpm(105);
-	Instrument instru;
-	instru.name = "Piano";
-	instru.nb = SOPRANOSAX;
-	instru.channel = 1;
-	instru.velocity = 100; //Need change
-	Instrument instru2;
-	instru2.name = "Piano";
-	instru2.nb = ACOUSTICGRANDPIANO;
-	instru2.channel = 2;
-	instru2.velocity = 100; //Need change
-	_musicParameters.addInstrumentArpeggios(instru);
-	_musicParameters.addInstrumentChords(instru2);
-	_musicParameters.setStyleName("Blues");
-	srand(_musicParameters.getSeed());
-
 }
 
 PlayerFooter::~PlayerFooter()

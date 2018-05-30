@@ -10,6 +10,8 @@
 
 #pragma once
 
+#include <ctime>
+
 #include "FlexGroup.hh"
 #include "SimpleLabel.hh"
 #include "../Factories/GuiFactory.hh"
@@ -26,7 +28,9 @@ private:
 	void paint(Graphics & g) override;
 	void sliderValueChanged(Slider *slider) override;
 	void buttonClicked(Button * button) override;
-	void initInstrumentsButtons(ToggleButton buttons[], const std::string & categoryName);
+	void initInstrumentsButtons(ToggleButton buttons[], const std::string & categoryName, const std::vector<Instrument> & instruments);
+	void initMusicParameters();
+	bool containInstrument(const std::vector<Instrument>& instruments, const std::string & instrumentName);
 	void initInstrumentsGroup();
 
 	MusicParameters			&_musicParameters;

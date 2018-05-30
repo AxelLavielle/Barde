@@ -41,6 +41,12 @@ bool RestClient::getToken(const std::string & response)
 	return true;
 }
 
+bool RestClient::logout()
+{
+	_isAuthenticated = false;
+	return true;
+}
+
 bool RestClient::authentificate(const std::string & email, const std::string & password)
 {
 	std::stringstream	ss;

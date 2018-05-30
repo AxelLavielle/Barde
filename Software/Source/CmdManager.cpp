@@ -25,9 +25,9 @@ void CmdManager::clearResponses()
 bool CmdManager::connectToServer()
 {
 	//api.barde.io
-	//_socket.setAddr("163.172.128.43", 2010, 1000);
+	//_socket.setAddr("163.172.128.43", 2010, 5000);
 	//api-dev.barde.io
-	_socket.setAddr("163.172.128.43", 2110, 1000);
+	_socket.setAddr("163.172.128.43", 2110, 5000);
 	return true;
 }
 
@@ -47,6 +47,7 @@ User CmdManager::getUserInfo()
 	catch (RestClientException &e)
 	{
 		std::cerr << "Error on request getUserInfo : " << e.what() << std::endl;
+		throw RestClientException(_responseMsg.c_str() , _responseCode);
 	}
 
 	rbuilder["collectComments"] = false;
@@ -80,7 +81,8 @@ bool CmdManager::login(const std::string &email, const std::string &password)
 
 bool CmdManager::logout()
 {
-	return false;
+	_socket.logout();
+	return true;
 }
 
 bool CmdManager::editUserInfo(const User & user, const std::string & password)
