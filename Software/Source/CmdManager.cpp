@@ -122,35 +122,36 @@ bool CmdManager::forgetPassword()
 
 bool CmdManager::createUser(const User & user, const std::string & password)
 {
-	Json::Value				root;
-	std::stringstream		ssJson;
+	//Json::Value				root;
+	//std::stringstream		ssJson;
 
-	root["email"] = user.getEmail();
-	root["password"] = password;
-	root["userName"] = user.getUserName();
-	root["firstName"] = user.getFirstName();
-	root["lastName"] = user.getLastName();
-	root["yearOfBirth"] = user.getYearOfBirth();
-	root["monthOfBirth"] = user.getMonthOfBirth();
-	root["dayOfBirth"] = user.getDayOfBirth();
-	ssJson << root;
+	//root["email"] = user.getEmail();
+	//root["password"] = password;
+	//root["userName"] = user.getUserName();
+	//root["firstName"] = user.getFirstName();
+	//root["lastName"] = user.getLastName();
+	//root["yearOfBirth"] = user.getYearOfBirth();
+	//root["monthOfBirth"] = user.getMonthOfBirth();
+	//root["dayOfBirth"] = user.getDayOfBirth();
+	//ssJson << root;
 
-	try
-	{
-		clearResponses();
-		_socket.post("/auth/register", ssJson.str(), _responseCode, _responseMsg);
-		if (_responseCode != 200)
-		{
-			std::cerr << _responseMsg << std::endl;
-			return false;
-		}
-	}
-	catch (RestClientException &e)
-	{
-		std::cerr << "Error on request createUser : " << e.what() << " Message: " << e.getMessage() << " Info : " << e.getInfo() << std::endl;
-		return false;
-	}
-	return true;
+	//try
+	//{
+	//	clearResponses();
+	//	_socket.post("/auth/register", ssJson.str(), _responseCode, _responseMsg);
+	//	if (_responseCode != 200)
+	//	{
+	//		std::cerr << _responseMsg << std::endl;
+	//		return false;
+	//	}
+	//}
+	//catch (RestClientException &e)
+	//{
+	//	std::cerr << "Error on request createUser : " << e.what() << " Message: " << e.getMessage() << " Info : " << e.getInfo() << std::endl;
+	//	return false;
+	//}
+	//return true;
+	return false;
 }
 
 bool CmdManager::signUp(const User & user, const std::string & password)
@@ -171,7 +172,12 @@ bool CmdManager::signUp(const User & user, const std::string & password)
 
 	try
 	{
-		_socket.post("/user/register", ssJson.str(), _responseCode, _responseMsg);
+		clearResponses();
+		_socket.post("/auth/register", ssJson.str(), _responseCode, _responseMsg);
+		if (_responseCode != 200)
+			return false;
+		if (_socket.authentificate(user.getEmail(), password) == false)
+			return false;
 	}
 	catch (RestClientException &e)
 	{

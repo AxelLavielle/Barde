@@ -26,6 +26,7 @@ class UserParamsPanel : public FlexView, private Button::Listener
 {
 public:
 	UserParamsPanel();
+	void refresh() override;
 
 private:
 	void paint(Graphics & g) override;

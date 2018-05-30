@@ -100,8 +100,8 @@ std::string RestClient::post(const std::string & uri, const std::string & body, 
 {
 	std::stringstream	ss;
 
-	if (_isAuthenticated == false)
-		throw RestClientException("Unauthorized", 401);
+	//if (_isAuthenticated == false)
+	//	throw RestClientException("Unauthorized", 401);
 	ss << "POST " << uri << " HTTP/1.1\r\n";
 	ss << "User-Agent: BardeClient/1.0\r\n";
 	ss << "Accept: */*\r\n";
