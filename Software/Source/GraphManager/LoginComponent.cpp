@@ -98,7 +98,7 @@ void LoginComponent::login(const std::string & login, const std::string & passwo
 	try
 	{
 		if (_cmdManager.login(login, password)) {
-			errorMessage = "Login correct";
+			errorMessage = "";
 			changeView("Player");
 		}
 		else

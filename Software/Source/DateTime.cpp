@@ -12,6 +12,9 @@
 
 DateTime::DateTime()
 {
+	_day = "1";
+	_month = "1";
+	_year = "1900";
 }
 
 DateTime::DateTime(const DateTime & other)

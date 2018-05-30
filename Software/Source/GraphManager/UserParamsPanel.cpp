@@ -34,6 +34,11 @@ UserParamsPanel::UserParamsPanel() : _cmdManager(CmdManager::getInstance())
 	_flexBox = GuiFactory::createFlexBox(FlexBox::JustifyContent::center, FlexBox::AlignContent::center, FlexBox::AlignItems::stretch, FlexBox::Direction::column, _items, 500, 50);
 }
 
+void UserParamsPanel::refresh()
+{
+	initTextBoxes();
+}
+
 void UserParamsPanel::paint(Graphics & g)
 {
 	g.fillAll(Colour(Theme::getInstance().getBackgroundColor()));
@@ -41,6 +46,7 @@ void UserParamsPanel::paint(Graphics & g)
 
 void UserParamsPanel::initTextBoxes()
 {
+	_errorLabel.setLabelText("");
 	try
 	{
 		_user = _cmdManager.getUserInfo();
@@ -49,7 +55,6 @@ void UserParamsPanel::initTextBoxes()
 	catch (RestClientException &e)
 	{
 		_errorLabel.setLabelText("Connection error.");
-		return;
 	}
 
 	_firstNameTextBox.setLabelText("Firstname");
