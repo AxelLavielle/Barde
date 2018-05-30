@@ -171,13 +171,17 @@ bool CmdManager::signUp(const User & user, const std::string & password)
 
 	try
 	{
-		_socket.post("/user/register", ssJson.str(), _responseCode, _responseMsg);
+		_socket.post("/auth/register", ssJson.str(), _responseCode, _responseMsg);
+		if (_socket.authentificate(user.getEmail(), password) == false)
+			return false;
 	}
 	catch (RestClientException &e)
 	{
 		std::cerr << "Error on request signUp : " << e.what() << " Message: " << e.getMessage() << " Info : "<< e.getInfo() << std::endl;
 		return false;
 	}
+	if (_responseCode != 200)
+		return false;
 	return true;
 }
 

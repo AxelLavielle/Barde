@@ -265,13 +265,17 @@ void UserRegistration::signin(const User & user)
 		return;
 	}
 
-	if (_cmdManager.signUp(user, password.toStdString()))
+	if (_cmdManager.signUp(user, password.toStdString()) == false)
 	{
-		_errorText.setText("Connexion error", dontSendNotification);
+		if (_cmdManager.getResponseMsg() != "")
+			_errorText.setText("Error : " + _cmdManager.getResponseMsg(), dontSendNotification);
+		else
+			_errorText.setText("Connexion error", dontSendNotification);
 	}
 	else
 	{
-		_errorText.setText("Subscription successfull", dontSendNotification);
+		_errorText.setText("", dontSendNotification);
+		changeView("Player");
 	}
 }
 
