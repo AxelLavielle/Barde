@@ -12,6 +12,7 @@
 
 CenterPanel::CenterPanel(MusicParameters & musicParameters) : _musicParameters(musicParameters), _cmdManager(CmdManager::getInstance()), _playerPanel(_musicParameters)
 {
+	//TO DO check the return of that
 	_user = _cmdManager.getUserInfo();
 
 	_leftPanel.setUser(_user);

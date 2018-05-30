@@ -41,34 +41,9 @@ const MidiMessageSequence		*SoundManager::MidiToMessageSequence(const Midi &midi
 	return (NULL);
 }
 
-#include "../AI/MusicGenerator.hh"
-
 void SoundManager::launch(std::vector<std::pair<Midi, int> > &_gen2playQ, std::mutex &_gen2playM, bool &stop, CondVariable &cond)
 {
 	int bpm = 0;
-
-	// TOREMOVE
-	MusicGenerator mg;
-	MusicParameters _musicParameters;
-
-	_musicParameters.setSeed(static_cast<unsigned int>(std::time(NULL)));
-	_musicParameters.setBpm(105);
-	Instrument instru;
-	instru.name = "Piano";
-	instru.nb = SOPRANOSAX;
-	instru.channel = 1;
-	instru.velocity = 100; //Need change
-	Instrument instru2;
-	instru2.name = "Piano";
-	instru2.nb = ACOUSTICGRANDPIANO;
-	instru2.channel = 2;
-	instru2.velocity = 100; //Need change
-	_musicParameters.addInstrumentArpeggios(instru);
-	_musicParameters.addInstrumentChords(instru2);
-	_musicParameters.setStyleName("Blues");
-	srand(_musicParameters.getSeed());
-
-	// TOREMOVE
 
 	while (!stop)
 	{
@@ -94,10 +69,8 @@ void SoundManager::launch(std::vector<std::pair<Midi, int> > &_gen2playQ, std::m
 		std::cout << "==H" << std::endl;
 		_gen2playM.unlock();
 		std::cout << "==I" << std::endl;
-//		if (b)
-	//		play(m, bpm, stop);
 		if (b)
-			play(mg.createMusic(_musicParameters), bpm, stop);
+			play(m, bpm, stop);
 		else
 			Tools::sleepActive(100);
 		std::cout << "==J" << std::endl;
