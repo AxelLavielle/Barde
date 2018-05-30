@@ -76,6 +76,7 @@ void PlayerPanel::initMusicParameters()
 	_musicParameters.addInstrumentChords(instru2);
 	_musicParameters.setStyleName("Blues");
 	srand(_musicParameters.getSeed());
+	_musicParameters.setInstrumentsDrums(true);
 }
 
 bool PlayerPanel::containInstrument(const std::vector<Instrument> & instruments, const std::string & instrumentName)
