@@ -84,4 +84,11 @@ void MainWindow::changeViewCallback(std::string viewName)
 		_userRegistration->refresh();
 		setContentNonOwned(_userRegistration, true);
 	}
+	else if (viewName == "Logout")
+	{
+		_cmdManager.logout();
+		clearContentComponent();
+		_loginComponent->refresh();
+		setContentNonOwned(_loginComponent, true);
+	}
 }

@@ -80,7 +80,8 @@ bool CmdManager::login(const std::string &email, const std::string &password)
 
 bool CmdManager::logout()
 {
-	return false;
+	_socket.logout();
+	return true;
 }
 
 bool CmdManager::editUserInfo(const User & user, const std::string & password)

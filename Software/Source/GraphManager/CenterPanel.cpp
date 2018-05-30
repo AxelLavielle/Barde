@@ -74,6 +74,10 @@ void CenterPanel::changeViewCallback(std::string viewName)
 		refreshGrid();
 		resized();
 	}
+	else if (viewName == "Logout")
+	{
+		changeView("Logout");
+	}
 	_mainPanel->refresh();
 }
 

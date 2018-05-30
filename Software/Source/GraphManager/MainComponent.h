@@ -66,7 +66,10 @@ public:
 
 	void refresh() override;
 
+	void changeViewCallback(std::string viewName);
+
 private:
+
     //=============================================================================
 	CmdManager				& _cmdManager;
 	Player					_player; /*!< player >*/
