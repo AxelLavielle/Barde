@@ -96,7 +96,8 @@ bool CmdManager::editUserInfo(const User & user, const std::string & password)
 	root["dayOfBirth"] = user.getDayOfBirth();
 	root["monthOfBirth"] = user.getMonthOfBirth();
 	root["yearOfBirth"] = user.getYearOfBirth();
-	root["password"] = password;
+	if (password != "")
+		root["password"] = password;
 	ssJson << root;
 
 	try

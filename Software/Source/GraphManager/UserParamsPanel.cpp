@@ -80,11 +80,11 @@ void UserParamsPanel::initTextBoxes()
 	_yearOfBirthTextBox.setText(_user.getYearOfBirth());
 	addFlexItem(_yearOfBirthTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
-	_passwordTextBox.setLabelText("Password");
+	_passwordTextBox.setLabelText("New password (optional)");
 	_passwordTextBox.setPasswordCharacter((juce_wchar)0x2022);
 	addFlexItem(_passwordTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
-	_passwordConfirmationTextBox.setLabelText("Password confirmation");
+	_passwordConfirmationTextBox.setLabelText("New password confirmation (optional)");
 	_passwordConfirmationTextBox.setPasswordCharacter((juce_wchar)0x2022);
 	addFlexItem(_passwordConfirmationTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 }
@@ -96,7 +96,7 @@ bool UserParamsPanel::updateUser()
 		_errorLabel.setLabelText("Invalid email.");
 		return false;
 	}
-	if (_passwordTextBox.getText() != _passwordConfirmationTextBox.getText() || _passwordTextBox.getText() == "")
+	if (_passwordTextBox.getText() != _passwordConfirmationTextBox.getText())
 	{
 		_errorLabel.setLabelText("Error passwords don't match");
 		return false;

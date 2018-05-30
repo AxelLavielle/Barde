@@ -77,8 +77,6 @@ LoginComponent::LoginComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager)
 	//addAndMakeVisible(_themeChoice);
 
 	ThemeChanged();
-
-	_cmdManager.connectToServer();
 }
 
 

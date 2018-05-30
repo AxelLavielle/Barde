@@ -23,9 +23,6 @@ UserRegistration::UserRegistration(CmdManager & cmdManager) : _cmdManager(cmdMan
 	setSize(getParentWidth(), getParentHeight() - 10);
 	//this->_currentTheme = parseTheme("../Themes/Dark");
 
-	//Connect to server
-	cmdManager.connectToServer();
-
 	addAndMakeVisible(_firstNameTextEditor);
 	_firstNameTextEditor.setText(_user.getFirstName());
 	_firstNameTextEditor.setText("");
