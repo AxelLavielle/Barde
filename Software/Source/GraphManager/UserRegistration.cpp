@@ -218,16 +218,35 @@ void UserRegistration::signin(const User & user)
 	String confirmPassword;
 
 	_errorText.setText("", dontSendNotification);
-	bool validEmail = isEmailValid(user.getEmail());
-	if (!validEmail)
+
+	if (!(StringChecker::isNameValid(user.getFirstName())))
 	{
-		_errorText.setText("Error: the email is not valid", dontSendNotification);
+		_errorText.setText("Error: FirstName is not valid", dontSendNotification);
+		return;
+	}
+
+	if (!(StringChecker::isNameValid(user.getLastName())))
+	{
+		_errorText.setText("Error: LastName is not valid", dontSendNotification);
+		return;
+	}
+
+ 
+	if (!(StringChecker::isUserNameValid(user.getUserName())))
+	{
+		_errorText.setText("Error: UserName is not valid", dontSendNotification);
+		return;
+	}
+
+	if (!(StringChecker::isEmailValid(user.getEmail())))
+	{
+		_errorText.setText("Error: Email is not valid", dontSendNotification);
 		return;
 	}
 	
-	if (!isDateValid(user.getDateOfBirth()));
+	if (!(StringChecker::isDateValid(user.getDateOfBirth())))
 	{
-		_errorText.setText("Error: The date is not valid", dontSendNotification);
+		_errorText.setText("Error: Date is not valid", dontSendNotification);
 		return;
 	}
 
@@ -239,6 +258,13 @@ void UserRegistration::signin(const User & user)
 		_errorText.setText("Error passwords don't match", dontSendNotification);
 		return;
 	}
+
+	if (password == "")
+	{
+		_errorText.setText("Password can't be empty", dontSendNotification);
+		return;
+	}
+
 	if (_cmdManager.signUp(user, password.toStdString()))
 	{
 		_errorText.setText("Connexion error", dontSendNotification);
@@ -254,14 +280,17 @@ void UserRegistration::buttonClicked(Button* button)
 	if (button->getName() == "signup")
 	{
 		User user;
-
+		std::string date = _dateOfBirthTextEditor.getText().toStdString();
 		user.setEmail(_emailTextEditor.getText().toStdString());
 		user.setDateOfBirth(_dateOfBirthTextEditor.getText().toStdString());
-		user.setDayOfBirth("25");
-		user.setMonthOfBirth("11");
-		user.setYearOfBirth("1996");
+		if (StringChecker::isDateValid(date))
+		{
+			user.setDayOfBirth(date.substr(0, 2));
+			user.setMonthOfBirth(date.substr(3, 2));
+			user.setYearOfBirth(date.substr(6, 4));
+		}
 		user.setFirstName(_firstNameTextEditor.getText().toStdString());
-		user.setLastName(_lastNameLabel.getText().toStdString());
+		user.setLastName(_lastNameTextEditor.getText().toStdString());
 		user.setUserName(_userNameTextEditor.getText().toStdString());
 		signin(user);
 	}
@@ -273,19 +302,6 @@ void UserRegistration::buttonClicked(Button* button)
 
 
 
-bool UserRegistration::isEmailValid(const std::string &email)
-{
-	//TODO CHECK DATE
-	return true;
-}
-
-bool UserRegistration::isDateValid(const std::string &date)
-{
-	const std::regex pattern
-	("(0 ? [1 - 9] | [12][0 - 9] | 3[01])[\ / \ - ](0 ? [1 - 9] | 1[012])[\ / \ - ]\d{ 4 }");
-
-	return std::regex_match(date, pattern);
-}
 
 
 

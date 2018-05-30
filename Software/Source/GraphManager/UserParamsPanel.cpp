@@ -91,11 +91,53 @@ void UserParamsPanel::initTextBoxes()
 
 bool UserParamsPanel::updateUser()
 {
+
+	if (!(StringChecker::isNameValid(_firstNameTextBox.getText())))
+	{
+		_errorLabel.setLabelText("Invalid firstName.");
+		return false;
+	}
+
+
+	if (!(StringChecker::isNameValid(_lastNameTextBox.getText())))
+	{
+		_errorLabel.setLabelText("Invalid lastName.");
+		return false;
+	}
+
+	if (!(StringChecker::isUserNameValid(_userNameTextBox.getText())))
+	{
+		_errorLabel.setLabelText("Invalid userName.");
+		return false;
+	}
+
 	if (StringChecker::isEmailValid(_emailTextBox.getText()) == false)
 	{
 		_errorLabel.setLabelText("Invalid email.");
 		return false;
 	}
+
+	if (!(StringChecker::isDayValid(_dayOfBirthTextBox.getText())))
+	{
+		_errorLabel.setLabelText("Invalid day of birth.");
+		return false;
+	}
+
+
+	if (!(StringChecker::isMonthValid(_monthOfBirthTextBox.getText())))
+	{
+		_errorLabel.setLabelText("Invalid month of birth.");
+		return false;
+	}
+
+
+	if (!(StringChecker::isYearValid(_yearOfBirthTextBox.getText())))
+	{
+		_errorLabel.setLabelText("Invalid year of birth.");
+		return false;
+	}
+
+
 	if (_passwordTextBox.getText() != _passwordConfirmationTextBox.getText())
 	{
 		_errorLabel.setLabelText("Error passwords don't match");

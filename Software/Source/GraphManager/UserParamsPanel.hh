@@ -18,6 +18,7 @@
 #include "../CmdManager.hh"
 #include "LabeledTextBox.hh"
 
+
 #define TEXTBOX_MIN_WIDTH 400
 #define TEXTBOX_MIN_HEIGHT 50
 
