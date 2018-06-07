@@ -86,6 +86,16 @@ UserSchema.pre('update', function (next) {
     }
 });
 
+UserSchema.path('email').validate(function (email) {
+  var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+  return emailRegex.test(email);
+}, 'The email format is wrong.')
+
+UserSchema.path('dateOfBirth').validate(function (dateOfBirth) {
+  var now = Date.now()
+  return dateOfBirth < now;
+}, 'The date of birth is wrong.')
+
 // Create method to compare password input to password saved in database
 UserSchema.methods.comparePassword = function (pw, cb) {
     bcrypt.compare(pw, this.password, function (err, isMatch) {
@@ -94,6 +104,26 @@ UserSchema.methods.comparePassword = function (pw, cb) {
         }
         cb(null, isMatch);
     });
+};
+
+UserSchema.methods.policyPassword = function (cb) {
+  var lowerCaseLetters = /[a-z]/g;
+  var upperCaseLetters = /[A-Z]/g;
+  var symbols = /\W/g;
+  var numbers = /[0-9]/g;
+  var minLength = 8;
+
+  if (!lowerCaseLetters.test(this.password))
+    return cb({name: 'Password policy', message: 'The password must have at least one lowercase character.'});
+  if (!upperCaseLetters.test(this.password))
+    return cb({name: 'Password policy', message: 'The password must have at least one uppercase character.'});
+  if (!symbols.test(this.password))
+    return cb({name: 'Password policy', message: 'The password must have at least one symbol character.'});
+  if (!numbers.test(this.password))
+    return cb({name: 'Password policy', message: 'The password must have at least one number character.'});
+  if (!(this.password.length >= minLength))
+    return cb({name: 'Password policy', message: 'The password must have at least eight characters.'});
+  cb(null);
 };
 
 module.exports = mongoose.model('User', UserSchema);

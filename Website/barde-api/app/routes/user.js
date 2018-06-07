@@ -195,7 +195,7 @@ function getByPage(req, res, next) {
 function getOne(req, res, next) {
 
     User.findOne({
-        email: req.params.email
+        email: req.params.email.toLowerCase()
     }, function (err, response) {
 
         if (err) {
@@ -288,7 +288,7 @@ function updatePatch(req, res, next) {
     if (req.body.yearOfBirth && req.body.monthOfBirth && req.body.dayOfBirth) {
       updateVal["dateOfBirth"] = new Date(req.body.yearOfBirth, req.body.monthOfBirth, req.body.dayOfBirth)
     }
-    User.update({email: req.body.email}, {$set: updateVal}, function (err, response) {
+    User.update({email: req.body.email.toLowerCase()}, {$set: updateVal}, function (err, response) {
       if (err) {
         res.status(409).send({msg: "Content already exists", data: {message: "The username you have used is already registered."}});
       } else {
@@ -379,7 +379,7 @@ function updatePut(req, res, next) {
     if (req.body.role && req.user.role === "Admin") {
       updateVal["role"] = req.body.role
     }
-    User.update({email: req.body.email}, {$set: updateVal}, function (err, response) {
+    User.update({email: req.body.email.toLowerCase()}, {$set: updateVal}, function (err, response) {
       if (err) {
         res.status(409).send({msg: "Content already exists", data: {message: "The username you have used is already registered."}});
       } else {
@@ -430,7 +430,7 @@ function updatePut(req, res, next) {
  */
 function del(req, res, next) {
     User.findOneAndRemove({
-      "email": req.body.email
+      "email": req.body.email.toLowerCase()
     }, function (err, response) {
       if (err)
         return next(err);

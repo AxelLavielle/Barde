@@ -60,6 +60,22 @@ module.exports = function (apiRoutes, passport) {
  *          "message": "The email address or the username you have used is already registered."
  *       }
  *     }
+ *
+ *  @apiErrorExample 400 - Email validation failed
+ *     {
+ *       "msg": "Content validation"
+ *       "data": {
+ *          "message": "The email format is wrong."
+ *       }
+ *     }
+ *
+ *  @apiErrorExample 400 - DateOfBirth validation failed
+ *     {
+ *       "msg": "Content validation"
+ *       "data": {
+ *          "message": "The date of birth is wrong."
+ *       }
+ *     }
  */
 function register(req, res, next) {
     if (!req.body.email) {
@@ -84,15 +100,26 @@ function register(req, res, next) {
             dateOfBirth: new Date(req.body.yearOfBirth, req.body.monthOfBirth, req.body.dayOfBirth),
         });
 
-        newUser.save(function (err) {
-            if (err) {
-                res.status(409).send({msg: "Content already exists", data: {message: "The email address or the username you have used is already registered."}});
-            } else {
-              res.status(200).send({
-                  msg: "Content created",
-                  data: {message: "You are now registered."}
-              });
-            }
+        newUser.policyPassword(function (error) {
+          if (!error) {
+            newUser.save(function (err) {
+                if (err) {
+                    if (err.errors && err.errors.email)
+                      res.status(400).send({msg: "Content validation", data: {message: err.errors.email.message}});
+                    else if (err.errors && err.errors.dateOfBirth)
+                      res.status(400).send({msg: "Content validation", data: {message: err.errors.dateOfBirth.message}});
+                    else
+                      res.status(409).send({msg: "Content already exists", data: {message: "The email address or the username you have used is already registered."}});
+                } else {
+                  res.status(200).send({
+                      msg: "Content created",
+                      data: {message: "You are now registered."}
+                  });
+                }
+            });
+          } else {
+            res.status(400).send({msg: error.name, data: {message: error.message}});
+          }
         });
     }
 
@@ -136,7 +163,7 @@ function register(req, res, next) {
  */
 function login(req, res, next) {
     User.findOne({
-        email: req.body.email
+        email: req.body.email.toLowerCase()
     }, function (err, user) {
         if (err) throw err;
 
