@@ -5,6 +5,7 @@
     <string name="str_login">Se connecter</string>
     <string name="str_email">Email</string>
     <string name="str_password">Mot de passe</string>
+    <string name="str_confirm_password">Comfirmer votre mot de passe</string>
     <string name="str_firstname">Prénom</string>
     <string name="str_lastname">Nom de famille</string>
     <string name="str_username">Nom utilisateur</string>

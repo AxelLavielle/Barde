@@ -93,6 +93,48 @@
         android:layout_height="wrap_content" />
 </LinearLayout>-->
     <LinearLayout
+        android:paddingTop="15dp"
+        android:id="@+id/pagination_generation"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/pagination_a"
+            android:layout_margin="5dp"
+            android:src="@drawable/circle_full_white"
+            android:layout_width="12dp"
+            android:layout_height="12dp" />
+
+        <ImageView
+            android:id="@+id/pagination_b"
+            android:layout_margin="5dp"
+            android:src="@drawable/circle_full_white"
+            android:layout_width="12dp"
+            android:layout_height="12dp" />
+
+        <ImageView
+            android:id="@+id/pagination_c"
+            android:layout_margin="5dp"
+            android:src="@drawable/circle_full_white"
+            android:layout_width="12dp"
+            android:layout_height="12dp" />
+
+        <ImageView
+            android:id="@+id/pagination_d"
+            android:layout_margin="5dp"
+            android:src="@drawable/circle_full_white"
+            android:layout_width="12dp"
+            android:layout_height="12dp" />
+
+        <ImageView
+            android:id="@+id/pagination_e"
+            android:layout_margin="5dp"
+            android:src="@drawable/circle_full_white"
+            android:layout_width="12dp"
+            android:layout_height="12dp" />
+    </LinearLayout>
+    <LinearLayout
         android:layout_gravity="center"
         android:layout_weight="1"
         android:orientation="horizontal"
@@ -115,7 +157,7 @@
             android:orientation="horizontal">
             <LinearLayout
                 android:gravity="center"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:id="@+id/style_choice_genearation"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -135,16 +177,17 @@
 
                     <RadioGroup
                         android:id="@+id/style_button_radio"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="vertical">
 
                         <RadioButton
+                            android:padding="10dp"
                             android:id="@+id/jazz_style_radio"
-                            android:layout_width="180dp"
-                            android:layout_height="30dp"
-                            android:layout_margin="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
                             android:layout_weight="1"
                             android:background="@drawable/button_selection_generation_selected"
                             android:button="@android:color/transparent"
@@ -154,10 +197,11 @@
                             android:textColor="@color/colorPrimary" />
 
                         <RadioButton
+                            android:padding="10dp"
                             android:id="@+id/blues_style_radio"
-                            android:layout_width="180dp"
-                            android:layout_height="30dp"
-                            android:layout_margin="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
                             android:layout_weight="1"
                             android:background="@drawable/button_selection_generation"
                             android:button="@android:color/transparent"
@@ -168,7 +212,7 @@
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
-                android:visibility="gone"
+                android:visibility="visible"
                 android:id="@+id/instrument_choice_generation_chords"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -198,7 +242,7 @@
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
-                android:visibility="gone"
+                android:visibility="visible"
                 android:id="@+id/instrument_choice_generation_arpeges"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -221,7 +265,6 @@
                     android:layout_height="wrap_content"
                     android:text="Arpege"/>
                 <LinearLayout
-                    android:gravity="center"
                     android:id="@+id/list_instrument_generation_arpeges"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -229,7 +272,7 @@
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
-                android:visibility="gone"
+                android:visibility="visible"
                 android:id="@+id/instrument_choice_generation"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -252,7 +295,7 @@
             </LinearLayout>
             <LinearLayout
                 android:gravity="center"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:id="@+id/rythme_choice_genaration"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -262,7 +305,7 @@
                     android:textSize="25sp"
                     android:textStyle="bold"
                     android:textColor="#ffffff"
-                    android:text="Choose your BPM"
+                    android:text="Choose your tempo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <LinearLayout
@@ -271,6 +314,15 @@
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+                    <TextView
+                        android:paddingTop="30dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:text="70 BPM"
+                        android:textColor="@color/colorWhite"
+                        android:id="@+id/value_bpm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
                     <LinearLayout
                         android:gravity="center"
                         android:orientation="horizontal"
@@ -278,7 +330,7 @@
                         android:layout_height="wrap_content">
                         <TextView
                             android:textColor="@color/colorWhite"
-                            android:text="60"
+                            android:text="70"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <LinearLayout
@@ -292,19 +344,10 @@
                         </LinearLayout>
                         <TextView
                             android:textColor="@color/colorWhite"
-                            android:text="150"
+                            android:text="200"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
-                    <TextView
-                        android:paddingTop="30dp"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:text="80"
-                        android:textColor="@color/colorWhite"
-                        android:id="@+id/value_bpm"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -321,6 +364,7 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
     <LinearLayout
+        android:visibility="gone"
         android:paddingBottom="50dp"
         android:gravity="center"
         android:layout_width="match_parent"
@@ -378,6 +422,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <ImageView
+            android:visibility="invisible"
             android:src="@drawable/ic_linear_scale_black_24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

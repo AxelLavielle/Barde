@@ -25,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
         val user: User
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        email.setText("micha@barde.io")
+      email.setText("micha@barde.io")
         password.setText("titiletutu")
         /*email.setText("toto")
         password.setText("toto")*/

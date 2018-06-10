@@ -57,6 +57,27 @@
                 android:background="#ffffff"
                 android:layout_marginBottom="2dp">
                 <EditText
+                    android:id="@+id/update_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@android:color/transparent" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/str_username"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|end"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:background="#ffffff"
+                android:layout_marginBottom="2dp">
+                <EditText
                     android:id="@+id/update_firstname"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -83,7 +104,6 @@
                     android:id="@+id/update_lastname"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:hint="@string/str_lastname"
                     android:layout_weight="3"
                     android:background="@android:color/transparent"/>
                 <TextView
@@ -105,7 +125,6 @@
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:hint="@string/str_dateofbirthday"
                     android:id="@+id/update_dateofbirthday"
                     android:inputType="date"
                     android:focusable="false"

@@ -8,10 +8,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.text.AlteredCharSequence
 import android.view.*
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.github.kittinunf.fuel.core.FuelManager
 import com.project.barde.barde.R
 import com.project.barde.barde.db.UserDbHelper
@@ -46,7 +43,7 @@ class UserPageFragment : Fragment(), UserDbHelper.dataListener {
             Toast.makeText(activity, "disconnected", Toast.LENGTH_SHORT).show()
             startActivity(Intent(activity, FirstPage::class.java))
         }
-        v.findViewById<Button>(R.id.update_profile).setOnClickListener {
+        v.findViewById<LinearLayout>(R.id.update_profile).setOnClickListener {
             startActivity(Intent(activity, UserProfileActivity::class.java))
         }
         v.findViewById<Button>(R.id.update_setting).setOnClickListener {

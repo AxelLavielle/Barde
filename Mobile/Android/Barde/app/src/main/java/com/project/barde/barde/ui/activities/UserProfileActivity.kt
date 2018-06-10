@@ -60,7 +60,7 @@ class UserProfileActivity : AppCompatActivity(), UserDbHelper.dataListener, Text
                 /*update_password.setText(c.getString(c.getColumnIndex(UserTable.PASSWORD)))*/
                 update_firstname.setText(c.getString(c.getColumnIndex(UserTable.FIRSTNAME)))
                 update_lastname.setText(c.getString(c.getColumnIndex(UserTable.LASTNAME)))
-                username = c.getString(c.getColumnIndex(UserTable.USERNAME))
+                update_username.setText(c.getString(c.getColumnIndex(UserTable.USERNAME)))
                 year = c.getInt(c.getColumnIndex(UserTable.YEAROFBIRTHDAY))
                 month = c.getInt(c.getColumnIndex(UserTable.MONTHOFBIRTHDAY))
                 dayOfMonth = c.getInt(c.getColumnIndex(UserTable.DAYOFBIRTHDAY))
@@ -75,7 +75,7 @@ class UserProfileActivity : AppCompatActivity(), UserDbHelper.dataListener, Text
         StringBuilder(getString(R.string.api)).append("/user").toString()
                 .httpPut(listOf("email" to update_email.text, /*"password" to update_password.text,*/ "firstName" to update_firstname.text,
                         "lastName" to update_lastname.text, "yearOfBirth" to year,
-                        "monthOfBirth" to month, "dayOfBirth" to dayOfMonth, "userName" to username)).responseString { request, response, result ->
+                        "monthOfBirth" to month, "dayOfBirth" to dayOfMonth, "userName" to update_username.text)).responseString { request, response, result ->
             println(String(response.data))
             if (response.statusCode == 200){
                 val update: Login = Gson().fromJson(String(response.data), Login::class.java)
@@ -126,7 +126,7 @@ class UserProfileActivity : AppCompatActivity(), UserDbHelper.dataListener, Text
 
         update_firstname.addTextChangedListener(this)
         update_lastname.addTextChangedListener(this)
-        /*update_username.addTextChangedListener(this)*/
+        update_username.addTextChangedListener(this)
         /*update_email.addTextChangedListener(this)*/
         update_dateofbirthday.addTextChangedListener(this)
 
