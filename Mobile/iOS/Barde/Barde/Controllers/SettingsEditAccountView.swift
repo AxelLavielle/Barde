@@ -24,7 +24,8 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
     
     func createDatePicker() {
         datePicker.datePickerMode = .date
-        
+        datePicker.maximumDate = Date.init()
+
         tfBirthDate.inputView = datePicker
         datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
     }
@@ -152,6 +153,7 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
         tfBirthDate.resignFirstResponder()
         self.view.endEditing(true)
         saveUserData()
+        userService?.getUserData()
         let userData: NSManagedObject = (userService?.getLocalData())!
         userService?.updateUserData(data: userData)
     }

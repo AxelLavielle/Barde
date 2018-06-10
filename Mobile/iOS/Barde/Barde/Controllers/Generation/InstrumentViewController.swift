@@ -1,5 +1,5 @@
 //
-//  InstrumentViewController.swift
+//  InstrumentAccordsViewController.swift
 //  Barde
 //
 //  Created by Arnaud Perrault on 11/04/2018.

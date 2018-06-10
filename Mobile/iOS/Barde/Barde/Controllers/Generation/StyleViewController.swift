@@ -12,7 +12,9 @@ import UIKit
 class StyleViewController: UIViewController {
     
     @IBOutlet weak var styleScrollView: UIScrollView!
-    
+
+    var styleSelected: String! = "ok"
+
     override func viewDidLoad() {
 
         super.viewDidLoad()
@@ -20,7 +22,8 @@ class StyleViewController: UIViewController {
         let styles = StyleService().getAll()
         var x = 8
         var y = 0
-
+        
+        
         
         styles?.forEach{style in
             y += 50
@@ -35,10 +38,23 @@ class StyleViewController: UIViewController {
             button.bottomAnchor.constraint(equalTo: styleScrollView.bottomAnchor, constant:410).isActive = true
             button.trailingAnchor.constraint(equalTo: styleScrollView.trailingAnchor, constant: 0).isActive = true
             button.centerXAnchor.constraint(equalTo: styleScrollView.centerXAnchor, constant: 0).isActive = true
-
+            
+            button.addTarget(self, action: #selector(buttonAction(_:)), for: .touchUpInside)
+            
             }
-        //button.addTarget(self, action: #selector(buttonAction), forControlEvents: .TouchUpInside)
         
     }
     
+    @objc func buttonAction(_ button: CheckButton) {
+        
+        styleSelected = button.titleLabel!.text
+        print("1", styleSelected)
+
+        
+    }
+    
+    func getValue() -> String? {
+        print(">", styleSelected)
+        return styleSelected!
+    }
 }

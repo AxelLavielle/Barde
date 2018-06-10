@@ -21,7 +21,7 @@ class ReportProblemViewController: UIViewController, UITextViewDelegate {
         
         userService = UserService()
 
-        self.navigationItem.title = "Report"
+        self.navigationItem.title = "Comment"
         tvDescription.text = "Write your message..."
         tvDescription.textColor = .lightGray
     }

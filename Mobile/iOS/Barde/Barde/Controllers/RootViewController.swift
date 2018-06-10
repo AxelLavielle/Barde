@@ -17,7 +17,6 @@ class RootViewController: UITabBarController, NSFetchedResultsControllerDelegate
     var controller: NSFetchedResultsController <Profil>!
     
     override func viewDidLoad() {
-                
         let headers: HTTPHeaders = [
             "Authorization": UserDefaults.standard.string(forKey: "Token")!,
             ]
@@ -47,7 +46,7 @@ class RootViewController: UITabBarController, NSFetchedResultsControllerDelegate
                         let date = dateFormatter.date(from: data["user"]["dateOfBirth"].stringValue)!
                         dateFormatter.dateFormat = "MM/dd/YYYY"
                         let dateString = dateFormatter.string(from: date)
-
+                        
                         
                         profil.setValue(dateString, forKey: "birthdate")
                         

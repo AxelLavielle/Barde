@@ -20,11 +20,13 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var confirmPasswordTextField: UITextField!
     
     let datePicker = UIDatePicker()
     
     func createDatePicker() {
         datePicker.datePickerMode = .date
+        datePicker.maximumDate = Date.init()
         
         birthdateTextField.inputView = datePicker
         datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
@@ -75,10 +77,10 @@ class SignupViewController: UIViewController {
     
     func signUp() {
         
-        if (checkIfEmpty(str: emailTextField.text!) || checkIfEmpty(str: passwordTextField.text!) || checkIfEmpty(str: firstnameTextField.text!) || checkIfEmpty(str: lastnameTextField.text!) || checkIfEmpty(str: lastnameTextField.text!)
+        if (checkIfEmpty(str: confirmPasswordTextField.text!) || checkIfEmpty(str: emailTextField.text!) || checkIfEmpty(str: passwordTextField.text!) || checkIfEmpty(str: firstnameTextField.text!) || checkIfEmpty(str: lastnameTextField.text!) || checkIfEmpty(str: lastnameTextField.text!)
             || checkIfEmpty(str: usernameTextField.text!) || checkIfEmpty(str: birthdateTextField.text!))
         {
-            let refreshAlert = UIAlertController(title: "Champs invalide.", message: "Tous les champs doivent être remplis.", preferredStyle: UIAlertControllerStyle.alert)
+            let refreshAlert = UIAlertController(title: "Invalid field.", message: "Field cannot be empty.", preferredStyle: UIAlertControllerStyle.alert)
             
             refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
             }))
@@ -87,44 +89,87 @@ class SignupViewController: UIViewController {
         }
         else
         {
-            let parameters: Parameters = [
-                "email":  emailTextField.text ?? "",
-                "password": passwordTextField.text ?? "",
-                "firstName": firstnameTextField.text ?? "",
-                "lastName": lastnameTextField.text ?? "",
-                "userName": usernameTextField.text ?? "",
-                "yearOfBirth": getSubstr(str: birthdateTextField.text!, indexStart: 6, indexEnd: 0),
-                "monthOfBirth": getSubstr(str: birthdateTextField.text!, indexStart: 0, indexEnd: -8),
-                "dayOfBirth": getSubstr(str: birthdateTextField.text!, indexStart: 3, indexEnd: -5),
-                ]
             
-            
-            Alamofire.request(Utils().getApiUrl() + "/auth/register", method:.post, parameters: parameters).responseJSON { response in
-                
-                if let httpStatusCode = response.response?.statusCode {
-                    switch(httpStatusCode) {
-                    case 200:
+            if let password = passwordTextField.text {
+                if let confirmPassword = confirmPasswordTextField.text {
+                   
+                    print(password, confirmPassword)
+                    
+                    if (password != confirmPassword)
+                    {
+                        let refreshAlert = UIAlertController(title: "Invalid password.", message: "Passwords are not the same.", preferredStyle: UIAlertControllerStyle.alert)
+                        
+                        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                        }))
+                        
+                        present(refreshAlert, animated: true, completion: nil)
+                    }
+                    else
+                    {
                         let parameters: Parameters = [
-                            "email":  self.emailTextField.text ?? "",
-                            "password": self.passwordTextField.text ?? "",
+                            "email":  emailTextField.text ?? "",
+                            "password": passwordTextField.text ?? "",
+                            "firstName": firstnameTextField.text ?? "",
+                            "lastName": lastnameTextField.text ?? "",
+                            "userName": usernameTextField.text ?? "",
+                            "yearOfBirth": getSubstr(str: birthdateTextField.text!, indexStart: 6, indexEnd: 0),
+                            "monthOfBirth": getSubstr(str: birthdateTextField.text!, indexStart: 0, indexEnd: -8),
+                            "dayOfBirth": getSubstr(str: birthdateTextField.text!, indexStart: 3, indexEnd: -5),
                             ]
                         
-                        Alamofire.request(Utils().getApiUrl() + "/auth/login", method:.post, parameters: parameters).responseJSON { response in
+                        
+                        Alamofire.request(Utils().getApiUrl() + "/auth/register", method:.post, parameters: parameters).responseJSON { response in
                             
                             if let httpStatusCode = response.response?.statusCode {
+                                
+                                let data = JSON(response.result.value!)
+
                                 switch(httpStatusCode) {
                                 case 200:
+                                    let parameters: Parameters = [
+                                        "email":  self.emailTextField.text ?? "",
+                                        "password": self.passwordTextField.text ?? "",
+                                        ]
                                     
-                                    if ((response.result.value) != nil) {
-                                        let data = JSON(response.result.value!)
+                                    Alamofire.request(Utils().getApiUrl() + "/auth/login", method:.post, parameters: parameters).responseJSON { response in
                                         
-                                        UserDefaults.standard.set(data["data"]["token"].stringValue, forKey: "Token")
-                                        UserDefaults.standard.set(self.emailTextField.text, forKey: "Email")
-                                        self.performSegue(withIdentifier: "ToMainView", sender: self)
+                                        if let httpStatusCode = response.response?.statusCode {
+                                            switch(httpStatusCode) {
+                                            case 200:
+                                                
+                                                if ((response.result.value) != nil) {
+                                                    let data = JSON(response.result.value!)
+                                                    
+                                                    UserDefaults.standard.set(data["data"]["token"].stringValue, forKey: "Token")
+                                                    UserDefaults.standard.set(self.emailTextField.text, forKey: "Email")
+                                                    self.performSegue(withIdentifier: "ToMainView", sender: self)
+                                                }
+                                                break
+                                            case 400:
+                                                let refreshAlert = UIAlertController(title: data["msg"].stringValue, message: data["data"]["message"].stringValue, preferredStyle: UIAlertControllerStyle.alert)
+                                                
+                                                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                                                }))
+                                                
+                                                self.present(refreshAlert, animated: true, completion: nil)
+                                                break
+                                            default:
+                                                print("default")
+                                                
+                                            }
+                                        }
                                     }
                                     break
                                 case 400:
-                                    let refreshAlert = UIAlertController(title: "Wrong content", message: "The email or password is incorrect.", preferredStyle: UIAlertControllerStyle.alert)
+                                    let refreshAlert = UIAlertController(title: data["msg"].stringValue, message: data["data"]["message"].stringValue, preferredStyle: UIAlertControllerStyle.alert)
+                                    
+                                    refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                                    }))
+                                    
+                                    self.present(refreshAlert, animated: true, completion: nil)
+                                    break
+                                case 409:
+                                    let refreshAlert = UIAlertController(title: data["msg"].stringValue, message: data["data"]["message"].stringValue, preferredStyle: UIAlertControllerStyle.alert)
                                     
                                     refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
                                     }))
@@ -136,22 +181,10 @@ class SignupViewController: UIViewController {
                                     
                                 }
                             }
+                            
                         }
-                        break
-                    case 409:
-                        let refreshAlert = UIAlertController(title: "E-mail déjà utilisé.", message: "Un compte utilisant cette adresse e-mail existe déjà. Veuillez saisir une autre adresse e-mail.", preferredStyle: UIAlertControllerStyle.alert)
-                        
-                        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-                        }))
-                        
-                        self.present(refreshAlert, animated: true, completion: nil)
-                        break
-                    default:
-                        print("default")
-
                     }
                 }
-    
             }
         }
     }
@@ -199,6 +232,10 @@ class SignupViewController: UIViewController {
         let passwordPaddingView: UIView = UIView.init(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
         passwordTextField.leftView = passwordPaddingView
         passwordTextField.leftViewMode = .always
+        
+        let confirmPasswordPaddingView: UIView = UIView.init(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
+        confirmPasswordTextField.leftView = confirmPasswordPaddingView
+        confirmPasswordTextField.leftViewMode = .always
     }
     
     

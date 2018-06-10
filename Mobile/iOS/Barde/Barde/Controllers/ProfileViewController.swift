@@ -89,9 +89,9 @@ class ProfileViewController: UIViewController, SettingMenuButtonDelegate, NSFetc
     
     @IBAction func logoutButtonAction(_ sender: Any) {
         
-        let alertController = UIAlertController(title: "Déconnexion", message: "Voulez-vous vous déconnecter ?", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "Log out", message: "Would you like to log out ?", preferredStyle: .actionSheet)
         
-        alertController.addAction(UIAlertAction(title: "Se déconnecter", style: .destructive, handler: { (action) -> Void in
+        alertController.addAction(UIAlertAction(title: "Log out", style: .destructive, handler: { (action) -> Void in
             print("Delete button tapped")
             Utils().deleteAllRecord(entity: "Profil")
             UserDefaults.standard.removeObject(forKey: "Token")
