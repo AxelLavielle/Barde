@@ -19,6 +19,7 @@ import android.view.ViewGroup
 import android.widget.*
 import com.project.barde.barde.R
 import com.project.barde.barde.adapter.PlaylistChoiceAdapter
+import com.project.barde.barde.static.SocketServer
 import kotlinx.android.synthetic.main.fragment_generation.*
 import org.jetbrains.anko.doAsync
 import java.io.BufferedReader
@@ -52,6 +53,8 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener {
     var firstPlay = true
     var serverPort = 23
     var serverIp = "192.168.1.36"
+    val serverSocket = SocketServer()
+    val thread = Thread(serverSocket)
 
     override fun onPrepared(p0: MediaPlayer) {
         button_generation.setImageResource(R.drawable.ic_pause_circle_filled_white_48dp)
@@ -71,24 +74,9 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener {
             add_to_playlist()
 
         }*/
-        var thread = Thread(Runnable() {
-            try {
-                val client = Socket("192.168.1.36", 23)
-                println("connected")
-                val get = BufferedReader(InputStreamReader(client.getInputStream()))
-                val rec = PrintWriter(client.getOutputStream(), true)
-                val buffer = get.readLine()
-                println("message = " + buffer)
-                rec.println("coucou")
-               // client.close()
-            } catch (e : UnknownHostException) {
-                e.printStackTrace();
-            } catch (e : IOException){
-                e.printStackTrace();
-            }
-        })
-
-        thread.start()
+        if (thread.state == Thread.State.NEW){
+            thread.start()
+        }
         for (choice in listOfChoice){
             choice.visibility = View.GONE
         }
@@ -96,9 +84,9 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener {
         next_button_generation.visibility = View.VISIBLE
         previous_button_generation.visibility = View.VISIBLE
 
-        viewSelectButtonGeneration(listOfInstruementChords, R.id.list_instrument_generation_chords)
-        viewSelectButtonGeneration(listOfInstruementArpeges, R.id.list_instrument_generation_arpeges)
-        viewSelectButtonGeneration(listOfInstruement, R.id.list_instrument_generation)
+        viewSelectButtonGeneration(listOfInstruementChords, R.id.list_instrument_generation_chords, "CHORDS")
+        viewSelectButtonGeneration(listOfInstruementArpeges, R.id.list_instrument_generation_arpeges, "ARPEGES")
+        viewSelectButtonGeneration(listOfInstruement, R.id.list_instrument_generation, "BPM")
 
         if (index == 0){
             listOfPanination.get(0).setImageResource(R.drawable.circle_full_pink)
@@ -146,53 +134,22 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener {
 
         println("uri = " + Uri.parse(fluxAudio))
 
-
-
-        if (mediaPlayer.isPlaying){
-            button_generation.setImageResource(R.drawable.ic_pause_circle_filled_white_48dp)
-        }else{
-            button_generation.setImageResource(R.drawable.ic_play_circle_filled_white_white_48dp)
-        }
-        button_generation.setOnClickListener {
-            try {
-                if (firstPlay == true){
-                    mediaPlayer.setDataSource(fluxAudio)
-                    mediaPlayer.setOnPreparedListener(this);
-                    mediaPlayer.prepareAsync();
-                    button_generation.setImageResource(R.drawable.ic_loading_white_24dp)
-                    button_generation.isEnabled = false
-                    firstPlay = false
-                }else if (mediaPlayer.isPlaying){
-                    println("uri =  pause")
-                    mediaPlayer.pause()
-                    button_generation.setImageResource(R.drawable.ic_play_circle_filled_white_white_48dp)
-                }else {
-                    mediaPlayer.start()
-                    println("uri = duraition ")
-                    button_generation.setImageResource(R.drawable.ic_pause_circle_filled_white_48dp)
-                }
-            }catch (e : Exception){
-                println("error = " + e.message)
-            }
-        }
-
-
         style_button_radio.setOnCheckedChangeListener { radioGroup, i ->
-            jazz_style_radio.setBackgroundResource(R.drawable.button_selection_generation)
+            /*jazz_style_radio.setBackgroundResource(R.drawable.button_selection_generation)
             jazz_style_radio.setTextColor(Color.WHITE)
             blues_style_radio.setBackgroundResource(R.drawable.button_selection_generation)
             blues_style_radio.setTextColor(Color.WHITE)
             if (jazz_style_radio.isChecked){
+                //serverSocket.rec().println("MUSIQUEPARAM;STYLE;BLUE")
                 jazz_style_radio.setBackgroundResource(R.drawable.button_selection_generation_selected)
                 jazz_style_radio.setTextColor(Color.parseColor("#CA5E85"))
             }else if (blues_style_radio.isChecked){
+                //serverSocket.rec().println("MUSIQUEPARAM;STYLE;JAZZ")
                 blues_style_radio.setBackgroundResource(R.drawable.button_selection_generation_selected)
                 blues_style_radio.setTextColor(Color.parseColor("#CA5E85"))
 
-            }
+            }*/
         }
-
-        seek_bar_bpm.setProgress(0)
         seek_bar_bpm.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             var max = 200.0f
             var min  = 70.0f
@@ -205,14 +162,44 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener {
 
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 var p = (m * progress) + min
-
+                serverSocket.rec().println("MUSIQUEPARAM;BPM;" + p.toInt().toString())
                 value_bpm.text = (p.toInt().toString() + " BPM")
             }
         })
 
+        if (mediaPlayer.isPlaying){
+            button_generation.setImageResource(R.drawable.ic_pause_circle_filled_white_48dp)
+        }else{
+            button_generation.setImageResource(R.drawable.ic_play_circle_filled_white_white_48dp)
+        }
+        button_generation.setOnClickListener {
+            try {
+                if (firstPlay == true) {
+                    mediaPlayer.setDataSource(fluxAudio)
+                    mediaPlayer.setOnPreparedListener(this);
+                    mediaPlayer.prepareAsync();
+                    button_generation.setImageResource(R.drawable.ic_loading_white_24dp)
+                    button_generation.isEnabled = false
+                    firstPlay = false
+                } else if (mediaPlayer.isPlaying) {
+                    println("uri =  pause")
+                    mediaPlayer.pause()
+                    button_generation.setImageResource(R.drawable.ic_play_circle_filled_white_white_48dp)
+                } else {
+                    mediaPlayer.start()
+                    println("uri = duraition ")
+                    button_generation.setImageResource(R.drawable.ic_pause_circle_filled_white_48dp)
+                }
+            } catch (e: Exception) {
+                println("error = " + e.message)
+            }
+        }
+
+        seek_bar_bpm.setProgress(0)
+
     }
 
-    fun viewSelectButtonGeneration(list: List<Instrument>, id : Int){
+    fun viewSelectButtonGeneration(list: List<Instrument>, id : Int, type: String){
         var ln = view?.findViewById<LinearLayout>(id)
         val margin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, 10.toFloat(), getResources().getDisplayMetrics()).toInt()
         /*val params = LinearLayout.LayoutParams(
@@ -233,10 +220,15 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener {
             var button = Button(context)
             button.text = instrument.name
             //button.textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 9.toFloat(), getResources().getDisplayMetrics())
-            button.setTextColor(Color.parseColor("#FFFFFF"))
+            if (instrument.isSelected){
+                button.setBackgroundResource(R.drawable.button_selection_generation_selected)
+                button.setTextColor(Color.parseColor("#CA5E85"))
+            }else{
+                button.setTextColor(Color.parseColor("#FFFFFF"))
+                button.setBackgroundResource(R.drawable.button_selection_generation)
+            }
             button.layoutParams = params
             button.textAlignment = View.TEXT_ALIGNMENT_CENTER
-            button.setBackgroundResource(R.drawable.button_selection_generation)
             ln?.addView(button)
             button.setOnClickListener{
                 if (instrument.isSelected){
@@ -244,6 +236,7 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener {
                     button.setBackgroundResource(R.drawable.button_selection_generation)
                     button.setTextColor(Color.WHITE)
                 }else{
+                    serverSocket.rec().println("MUSIQUEPARAM;" + type + ":" + instrument.name.toUpperCase())
                     instrument.isSelected = true
                     button.setBackgroundResource(R.drawable.button_selection_generation_selected)
                     button.setTextColor(Color.parseColor("#CA5E85"))

@@ -197,6 +197,7 @@
                             android:textColor="@color/colorPrimary" />
 
                         <RadioButton
+                            android:visibility="invisible"
                             android:padding="10dp"
                             android:id="@+id/blues_style_radio"
                             android:layout_width="match_parent"
