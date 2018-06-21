@@ -31,85 +31,91 @@ int Socket::StartSocket()
   return (0);
 }
 
-std::string	Socket::readClient(int client_fd)
+int		Socket::readClient(int client_fd, char *str, int *size)
 {
   char	buffer[30];
-  std::ostringstream ss;
+  char *copy;
+  copy = str;
   int len = 0;
-  std::string str;
+  int	i = 0;
+  int	j = 0;
   while ((len = read(client_fd, buffer, 30)) >= 30)
     {
-      ss << buffer;
+      j = 0;
+      *size += len;
+      copy = (char *)realloc(str, len * sizeof(char *));
+      str = copy;
+      while (len > 0)
+	{
+	  str[i] = buffer[j];
+	  len--;
+	  i++;
+	  j++;
+	}
       memset(&_buffer, 0, strlen(_buffer));
     }
   if (len == 0)
-    return str;
-  ss << buffer;
-  str = ss.str();
-  return str;
-}
-
-int Socket::runMultiClient()
-{
-  int max_sd;
-  int client_fd;
-  std::string   buffer;
-  int sd = 0;
-
-  while (1)
+    return (0);
+  else
     {
-      FD_ZERO(&_master);
-      FD_SET(_fd, &_master);
-      max_sd = _fd;
-
-      for (std::list<Client>::iterator it = _clients.begin(); it != _clients.end(); it++)
+      *size += len;
+      copy = (char *)realloc(str, len * sizeof(char *));
+      str = copy;
+      while (len > 0)
 	{
-	  sd = it->getFd();
-	  if (sd > 0)
-	    {
-	       FD_SET(sd, &_master);
-	    }
-	  if (sd > max_sd)
-	    {
-	      max_sd = sd;
-	    }
-	}
-      int socketCount = select(max_sd +1, &_master, NULL, NULL, NULL);
-      if (FD_ISSET(_fd, &_master))
-	{
-	  client_fd = accept(_fd, (struct sockaddr *)&_client, (socklen_t *)&_client_size);
-
-	  send(client_fd, "hello\r\n", strlen("hello\r\n"), 0);
-	  std::cout << "client " << client_fd << " a rejoin le server" << std::endl;
-	  _clients.push_back(Client(client_fd));
-	  FD_SET(client_fd, &_master);
-	}
-      std::list<Client>::iterator it = _clients.begin();
-      while (it != _clients.end())
-	{
-
-	  sd = it->getFd();
-	  if (FD_ISSET(sd, &_master))
-	    {
-	      buffer = Socket::readClient(sd);
-	      if (!buffer.empty())
-		{
-		  _cm.parseMessage((char *)buffer.c_str(), 1, *it);
-		  it++;
-		}
-	      else
-		{
-		  std::cout << "client " << sd << "est partie" << std::endl;
-		  if (close(sd) == -1)
-		    return (1);
-		  FD_CLR(sd, &_master);
-		  _clients.erase(it++);
-		}
-	    }
-	  else
-	    {
-	      it++;
-	    }
+	  str[i] = buffer[j];
+	  i++;
+	  j++;
+	  len--;
 	}
     }
+  return (0);
+}
+
+void	Socket::addFdAndsetMax(int sd)
+{
+  if (sd > 0)
+    {
+      FD_SET(sd, &_master);
+    }
+  if (sd > _max_sd)
+    {
+      _max_sd = sd;
+    }
+}
+
+int	Socket::fdIsSet(int fd)
+{
+  return FD_ISSET(fd, &_master);
+}
+
+int	Socket::closeFd(int fd)
+{
+  if (close(fd) == -1)
+    return (1);
+  FD_CLR(fd, &_master);
+  return 0;
+}
+
+void	Socket::initFd()
+{
+  FD_ZERO(&_master);
+  FD_SET(_fd, &_master);
+  _max_sd = _fd;
+}
+
+int	Socket::handleEntries(std::list<Client> *clients, char *msg)
+{
+  int client_fd;
+  int socketCount = select(_max_sd +1, &_master, NULL, NULL, NULL);
+  if (FD_ISSET(_fd, &_master))
+    {
+      client_fd = accept(_fd, (struct sockaddr *)&_client, (socklen_t *)&_client_size);
+
+      send(client_fd, msg, strlen(msg), 0);
+      std::cout << "client " << client_fd << " a rejoin le server" << std::endl;
+      clients->push_back(Client(client_fd));
+      FD_SET(client_fd, &_master);
+    }
+  return (0);
 }

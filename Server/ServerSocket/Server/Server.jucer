@@ -73,6 +73,7 @@
     <FILE id="cgV3sx" name="Instrument.cpp" compile="1" resource="0" file="../../../Software/Source/Instrument.cpp"/>
     <FILE id="cQEL23" name="Instrument.hh" compile="0" resource="0" file="../../../Software/Source/Instrument.hh"/>
     <FILE id="MMtAa6" name="jsoncpp.cpp" compile="1" resource="0" file="JsoncppLibrary/jsoncpp.cpp"/>
+    <FILE id="CnGAUW" name="main.cpp" compile="1" resource="0" file="../main.cpp"/>
     <FILE id="ELWHPX" name="MusicParameters.cpp" compile="1" resource="0"
           file="../../../Software/Source/MusicParameters.cpp"/>
     <FILE id="pdGgqr" name="MusicParameters.hh" compile="0" resource="0"
@@ -82,9 +83,9 @@
     <FILE id="GE2MuI" name="server.cpp" compile="1" resource="0" file="../server.cpp"/>
     <FILE id="RUxrRV" name="socket.cpp" compile="1" resource="0" file="../socket.cpp"/>
     <FILE id="Ycd0ge" name="socket.hh" compile="0" resource="0" file="../socket.hh"/>
-    <FILE id="dTeeqK" name="ThreadPoolGenerator.cpp" compile="1" resource="0"
+    <FILE id="Ee2Pir" name="ThreadPoolGenerator.cpp" compile="1" resource="0"
           file="../ThreadPoolGenerator.cpp"/>
-    <FILE id="dz1faH" name="ThreadPoolGenerator.hh" compile="0" resource="0"
+    <FILE id="EblaLl" name="ThreadPoolGenerator.hh" compile="0" resource="0"
           file="../ThreadPoolGenerator.hh"/>
     <FILE id="o020Av" name="Tools.cpp" compile="1" resource="0" file="../../../Software/Source/Tools.cpp"/>
     <FILE id="N0hSa5" name="Tools.hh" compile="0" resource="0" file="../../../Software/Source/Tools.hh"/>

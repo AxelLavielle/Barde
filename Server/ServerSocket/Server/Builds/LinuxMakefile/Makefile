@@ -91,6 +91,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/FileManager_bb5feb0b.o \
   $(JUCE_OBJDIR)/Instrument_5dba4437.o \
   $(JUCE_OBJDIR)/jsoncpp_d54fdfa1.o \
+  $(JUCE_OBJDIR)/main_3f4fc5bd.o \
   $(JUCE_OBJDIR)/MusicParameters_73d74e9.o \
   $(JUCE_OBJDIR)/MusicStyle_f876545c.o \
   $(JUCE_OBJDIR)/server_61ebe287.o \
@@ -229,6 +230,11 @@ $(JUCE_OBJDIR)/Instrument_5dba4437.o: ../../../../../Software/Source/Instrument.
 $(JUCE_OBJDIR)/jsoncpp_d54fdfa1.o: ../../JsoncppLibrary/jsoncpp.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling jsoncpp.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/main_3f4fc5bd.o: ../../../main.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling main.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/MusicParameters_73d74e9.o: ../../../../../Software/Source/MusicParameters.cpp

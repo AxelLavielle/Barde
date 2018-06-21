@@ -1,0 +1,17 @@
+#ifndef __SERVER__HH__
+# define __SERVER__HH__
+
+#include "socket.hh"
+#include "Client.hh"
+
+class Server
+{
+private:
+  Socket		_so;
+  std::list<Client>	_clients;
+public:
+  Server();
+  int			runServer();
+};
+
+#endif /* __SERVER__HH__ */
