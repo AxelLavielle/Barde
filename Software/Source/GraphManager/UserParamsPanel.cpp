@@ -57,40 +57,31 @@ void UserParamsPanel::initTextBoxes()
 		_errorLabel.setLabelText("Connection error.");
 	}
 
-	_firstNameTextBox.setLabelText("Firstname");
-	_firstNameTextBox.setText(_user.getFirstName());
+	GuiFactory::initLabeledTextBox("Firstname", _user.getFirstName(), _firstNameTextBox);
 	addFlexItem(_firstNameTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
-	_lastNameTextBox.setLabelText("Lastname");
-	_lastNameTextBox.setText(_user.getLastName());
+	GuiFactory::initLabeledTextBox("Lastname", _user.getLastName(), _lastNameTextBox);
 	addFlexItem(_lastNameTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
-	_userNameTextBox.setLabelText("Username");
-	_userNameTextBox.setText(_user.getUserName());
+	GuiFactory::initLabeledTextBox("Username", _user.getUserName(), _userNameTextBox);
 	addFlexItem(_userNameTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
-	_emailTextBox.setLabelText("Email");
-	_emailTextBox.setText(_user.getEmail());
+	GuiFactory::initLabeledTextBox("Email", _user.getEmail(), _emailTextBox);
 	addFlexItem(_emailTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
-	_dayOfBirthTextBox.setLabelText("Day of birth");
-	_dayOfBirthTextBox.setText(_user.getDayOfBirth());
+	GuiFactory::initLabeledTextBox("Day of birth", _user.getDayOfBirth(), _dayOfBirthTextBox);
 	addFlexItem(_dayOfBirthTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
-	_monthOfBirthTextBox.setLabelText("Month of birth");
-	_monthOfBirthTextBox.setText(_user.getMonthOfBirth());
+	GuiFactory::initLabeledTextBox("Month of birth", _user.getMonthOfBirth(), _monthOfBirthTextBox);
 	addFlexItem(_monthOfBirthTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
-	_yearOfBirthTextBox.setLabelText("Year of birth");
-	_yearOfBirthTextBox.setText(_user.getYearOfBirth());
+	GuiFactory::initLabeledTextBox("Year of birth", _user.getYearOfBirth(), _yearOfBirthTextBox);
 	addFlexItem(_yearOfBirthTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
-	_passwordTextBox.setLabelText("New password (optional)");
-	_passwordTextBox.setPasswordCharacter((juce_wchar)0x2022);
+	GuiFactory::initLabeledTextBoxPassword("New password (optional)", (juce_wchar)0x2022, _passwordTextBox);
 	addFlexItem(_passwordTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
-	_passwordConfirmationTextBox.setLabelText("New password confirmation (optional)");
-	_passwordConfirmationTextBox.setPasswordCharacter((juce_wchar)0x2022);
+	GuiFactory::initLabeledTextBoxPassword("New password confirmation (optional)", (juce_wchar)0x2022, _passwordConfirmationTextBox);
 	addFlexItem(_passwordConfirmationTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 }
 

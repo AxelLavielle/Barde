@@ -1,48 +1,65 @@
-#include "Player.h"
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <arpa/inet.h>
+#include <string.h>
+#include <iostream>
 
-int execCommand(Player *player, std::vector<std::string> command) {
-  if (command[0] == "exit") {
-    return -1;
-  }
-  else if (command[0] == "new") {
-    player->newStream(command[1], command[2], true, true);
-  }
-  else if (command[0] == "delete") {
-    player->deleteStream(command[1]);
-  }
-  else if (command[0] == "play") {
-    player->playStream(command[1]); // MARCHE PAS
-  }
-  else if (command[0] == "stop") {
-    player->stopStream(command[1]); // MARCHE PAS
-  }
-  else if (command[0] == "add") {
-    player->addMediaStream(command[1], command[2]);
-  }
-  else if (command[0] == "info") {
-    player->infoStream(command[1]);
-  }
-  return 0;
-}
+#include "CmdManager.hh"
 
-int main() {
-  std::string line;
-  std::string token;
-  Player      *player = new Player();
+int			main()
+{
+  struct protoent	*pe;
+  int			fd;
+  struct sockaddr_in	server;
+  struct sockaddr_in	client;
+  int			port;
+  socklen_t		client_size;
+  int			client_fd;
+  char			buffer[100];
+  port = 23;
 
-  while (std::getline(std::cin, line))
+  if (!(pe = getprotobyname("TCP")))
+    return (1);
+  client_size = sizeof(struct sockaddr_in);
+  server.sin_family = AF_INET;
+  server.sin_port = htons(port);
+  server.sin_addr.s_addr = INADDR_ANY;
+  if ((fd = socket(AF_INET, SOCK_STREAM, pe->p_proto)) == -1)
+    return (1);
+  if (bind(fd, (const struct sockaddr *)&server, sizeof(server)) == -1)
+    {
+      if (close(fd) == -1)
+	return (1);
+      return (1);
+    }
+
+  if (listen(fd, 2) == -1)
+    {
+      if (close(fd) == -1)
+	return (1);
+      return (1);
+    }
+  if ((client_fd = accept(fd, (struct sockaddr *)&client, (socklen_t *)&client_size)) == -1)
+    {
+      if (close(fd) == -1)
+	return (1);
+      return (1);
+    }
+  std::cout << "le fs = " << client_fd << std::endl;
+  write(client_fd, "coucoutoi\r\n", strlen("coucoutoi\r\n"));
+  CmdManager cmd;
+
+  cmd.sendMusicData(client_fd);
+  while (read(client_fd, buffer, 100))
   {
-    std::istringstream iss(line);
-    std::vector<std::string> command;
-    while(std::getline(iss, token, ';')) {
-	    command.push_back(token);
-    }
-    if (command.size() > 0) {
-      if (execCommand(player, command) == -1) {
-        return 0;
-      }
-    }
-    command.clear();
+    std::cout << buffer << std::endl;
+    memset(&buffer, 0, strlen(buffer));
   }
-  return 0;
+  if (close(fd) == -1)
+    return (1);
+  if (close(client_fd) == -1)
+    return (1);
 }

@@ -10,8 +10,8 @@
 
 #pragma once
 
-#include "../ViewManager/FlexView.hh"
 #include "../Factories/GuiFactory.hh"
+#include "../ViewManager/FlexView.hh"
 #include "../CmdManager.hh"
 
 class ReportPanel : public FlexView, private Button::Listener

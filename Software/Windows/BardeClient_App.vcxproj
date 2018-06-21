@@ -15,7 +15,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D65039C7-FEC2-478D-B242-6D8148618858}</ProjectGuid>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
@@ -24,7 +24,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"
@@ -32,7 +32,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props"/>
@@ -43,7 +43,7 @@
             Label="LocalAppDataPlatform"/>
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <PropertyGroup>
@@ -57,7 +57,7 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\App\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">BardeClient</TargetName>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -162,6 +162,14 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Source\GraphManager\RegistrationPanel.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\LoginPanel.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\ReportPanel.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\CenterPanel.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\LeftPanel.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\PlayerFooter.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\PlayerPanel.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\UserParamsPanel.cpp"/>
     <ClCompile Include="..\Source\Utils\StringChecker.cpp"/>
     <ClCompile Include="..\Source\CondVariable.cpp"/>
     <ClCompile Include="..\Source\ViewManager\AView.cpp"/>
@@ -189,24 +197,18 @@
     <ClCompile Include="..\Source\EncryptionManager\AEncryptionManager.cpp"/>
     <ClCompile Include="..\Source\EncryptionManager\SSLManager.cpp"/>
     <ClCompile Include="..\Source\GraphManager\LabeledTextBox.cpp"/>
-    <ClCompile Include="..\Source\GraphManager\ReportPanel.cpp"/>
     <ClCompile Include="..\Source\GraphManager\SimpleLabel.cpp"/>
     <ClCompile Include="..\Source\GraphManager\AComponent.cpp"/>
     <ClCompile Include="..\Source\GraphManager\AGraphManager.cpp"/>
     <ClCompile Include="..\Source\GraphManager\BasicButton.cpp"/>
-    <ClCompile Include="..\Source\GraphManager\CenterPanel.cpp"/>
     <ClCompile Include="..\Source\GraphManager\FlexGroup.cpp"/>
     <ClCompile Include="..\Source\GraphManager\JuceManager.cpp"/>
-    <ClCompile Include="..\Source\GraphManager\LeftPanel.cpp"/>
     <ClCompile Include="..\ListItemComponent.cpp"/>
     <ClCompile Include="..\Source\GraphManager\LoginComponent.cpp"/>
     <ClCompile Include="..\Source\GraphManager\MainComponent.cpp"/>
     <ClCompile Include="..\Source\GraphManager\MainWindow.cpp"/>
     <ClCompile Include="..\Source\GraphManager\MusicStyleButton.cpp"/>
-    <ClCompile Include="..\Source\GraphManager\PlayerFooter.cpp"/>
-    <ClCompile Include="..\Source\GraphManager\PlayerPanel.cpp"/>
     <ClCompile Include="..\Source\GraphManager\Theme.cpp"/>
-    <ClCompile Include="..\Source\GraphManager\UserParamsPanel.cpp"/>
     <ClCompile Include="..\Source\GraphManager\UserRegistration.cpp"/>
     <ClCompile Include="..\Source\MidiManager\AMidiManager.cpp"/>
     <ClCompile Include="..\Source\MidiManager\Midi.cpp"/>
@@ -1895,6 +1897,14 @@
     <ClCompile Include="..\JuceLibraryCode\include_juce_video.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\GraphManager\RegistrationPanel.hh"/>
+    <ClInclude Include="..\Source\GraphManager\LoginPanel.hh"/>
+    <ClInclude Include="..\Source\GraphManager\ReportPanel.hh"/>
+    <ClInclude Include="..\Source\GraphManager\CenterPanel.hh"/>
+    <ClInclude Include="..\Source\GraphManager\LeftPanel.hh"/>
+    <ClInclude Include="..\Source\GraphManager\PlayerFooter.hh"/>
+    <ClInclude Include="..\Source\GraphManager\PlayerPanel.hh"/>
+    <ClInclude Include="..\Source\GraphManager\UserParamsPanel.hh"/>
     <ClInclude Include="..\Source\Utils\NonCopyable.hpp"/>
     <ClInclude Include="..\Source\Utils\StringChecker.hh"/>
     <ClInclude Include="..\Source\CondVariable.hh"/>
@@ -1927,25 +1937,19 @@
     <ClInclude Include="..\Source\EncryptionManager\IEncryptionManager.hpp"/>
     <ClInclude Include="..\Source\EncryptionManager\SSLManager.hh"/>
     <ClInclude Include="..\Source\GraphManager\LabeledTextBox.hh"/>
-    <ClInclude Include="..\Source\GraphManager\ReportPanel.hh"/>
     <ClInclude Include="..\Source\GraphManager\SimpleLabel.hh"/>
     <ClInclude Include="..\Source\GraphManager\AComponent.hh"/>
     <ClInclude Include="..\Source\GraphManager\AGraphManager.hh"/>
     <ClInclude Include="..\Source\GraphManager\BasicButton.hh"/>
-    <ClInclude Include="..\Source\GraphManager\CenterPanel.hh"/>
     <ClInclude Include="..\Source\GraphManager\FlexGroup.hh"/>
     <ClInclude Include="..\Source\GraphManager\IGraphManager.hpp"/>
     <ClInclude Include="..\Source\GraphManager\JuceManager.hh"/>
-    <ClInclude Include="..\Source\GraphManager\LeftPanel.hh"/>
     <ClInclude Include="..\ListItemComponent.h"/>
     <ClInclude Include="..\Source\GraphManager\LoginComponent.h"/>
     <ClInclude Include="..\Source\GraphManager\MainComponent.h"/>
     <ClInclude Include="..\Source\GraphManager\MainWindow.hh"/>
     <ClInclude Include="..\Source\GraphManager\MusicStyleButton.h"/>
-    <ClInclude Include="..\Source\GraphManager\PlayerFooter.hh"/>
-    <ClInclude Include="..\Source\GraphManager\PlayerPanel.hh"/>
     <ClInclude Include="..\Source\GraphManager\Theme.h"/>
-    <ClInclude Include="..\Source\GraphManager\UserParamsPanel.hh"/>
     <ClInclude Include="..\Source\GraphManager\UserRegistration.h"/>
     <ClInclude Include="..\Source\MidiManager\AMidiManager.hh"/>
     <ClInclude Include="..\Source\MidiManager\IMidiManager.hpp"/>

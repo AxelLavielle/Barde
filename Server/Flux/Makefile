@@ -1,18 +1,16 @@
-SRC				=	src/main.cpp \
-						src/Player.cpp
+SRC				=	src/main.cpp							\
+						src/CmdManager.cpp
 
 OBJ 			= $(SRC:.cpp=.o)
 
 CPPFLAGS	=	-Iinclude
-
-LDLIBS		= -lvlc
 
 NAME			=	player
 
 all:				$(NAME)
 
 $(NAME):		$(OBJ)
-						g++ $(OBJ) $(LDLIBS) -o $(NAME)
+						g++ $(OBJ) -o $(NAME)
 
 clean:
 						rm -f $(OBJ)

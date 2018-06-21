@@ -208,3 +208,15 @@ void GuiFactory::initSlider(const float min, const float max, const float value,
 	slider.setValue(value);
 
 }
+
+void GuiFactory::initLabeledTextBox(const std::string & labelText, const std::string & boxText, LabeledTextBox & textBox)
+{
+	textBox.setLabelText(labelText);
+	textBox.setText(boxText);
+}
+
+void GuiFactory::initLabeledTextBoxPassword(const std::string & labelText, const juce_wchar & boxText, LabeledTextBox & textBox)
+{
+	textBox.setLabelText(labelText);
+	textBox.setPasswordCharacter(boxText);
+}

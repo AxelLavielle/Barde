@@ -15,6 +15,7 @@
 #include <string>
 #include <fstream>
 
+#include "../Utils/NonCopyable.hpp"
 
 
 /*! \class Theme
@@ -25,7 +26,7 @@
 *  - ButtonColor
 *  - FontColor
 */
-class Theme
+class Theme : public NonCopyable
 {
 public:
 
