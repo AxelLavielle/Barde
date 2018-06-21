@@ -8,7 +8,7 @@ class CmdManager
 {
 public:
   CmdManager();
-  void	parseMessage(char *buffer, size_t bufferSize, Client &client);
+  void	parseMessage(char *buffer, Client &client, size_t bufferSize);
   void  disconnectClient(const Client & client);
 
 private:

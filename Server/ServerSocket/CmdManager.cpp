@@ -5,7 +5,7 @@ CmdManager::CmdManager()
   _threadPool.init();
 }
 
-void CmdManager::parseMessage(char *buffer, size_t bufferSize, Client &client)
+void CmdManager::parseMessage(char *buffer, Client &client, size_t bufferSize)
 {
   if (bufferSize > 0 && buffer[0] == 'P')
   {
