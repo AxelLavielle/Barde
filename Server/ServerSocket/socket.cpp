@@ -61,6 +61,7 @@ int		Socket::readClient(int client_fd, char *str, int *size)
       *size += len;
       copy = (char *)realloc(str, len * sizeof(char *));
       str = copy;
+      //      std::cout << "la dernier length " << len << std::endl;
       while (len > 0)
 	{
 	  str[i] = buffer[j];
@@ -68,7 +69,10 @@ int		Socket::readClient(int client_fd, char *str, int *size)
 	  j++;
 	  len--;
 	}
+      str[i] = '\0';
     }
+  //  std::cout << "la valeur de read " << str << std::endl;
+
   return (0);
 }
 
