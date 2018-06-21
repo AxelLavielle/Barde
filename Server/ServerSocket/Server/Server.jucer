@@ -83,9 +83,9 @@
     <FILE id="GE2MuI" name="server.cpp" compile="1" resource="0" file="../server.cpp"/>
     <FILE id="RUxrRV" name="socket.cpp" compile="1" resource="0" file="../socket.cpp"/>
     <FILE id="Ycd0ge" name="socket.hh" compile="0" resource="0" file="../socket.hh"/>
-    <FILE id="Ee2Pir" name="ThreadPoolGenerator.cpp" compile="1" resource="0"
+    <FILE id="PG1F5I" name="ThreadPoolGenerator.cpp" compile="1" resource="0"
           file="../ThreadPoolGenerator.cpp"/>
-    <FILE id="EblaLl" name="ThreadPoolGenerator.hh" compile="0" resource="0"
+    <FILE id="QP2xtn" name="ThreadPoolGenerator.hh" compile="0" resource="0"
           file="../ThreadPoolGenerator.hh"/>
     <FILE id="o020Av" name="Tools.cpp" compile="1" resource="0" file="../../../Software/Source/Tools.cpp"/>
     <FILE id="N0hSa5" name="Tools.hh" compile="0" resource="0" file="../../../Software/Source/Tools.hh"/>
