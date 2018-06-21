@@ -34,8 +34,6 @@ int Socket::StartSocket()
 int		Socket::readClient(int client_fd, char *str, int *size)
 {
   char	buffer[30];
-  char *copy;
-  copy = str;
   int len = 0;
   int	i = 0;
   int	j = 0;
@@ -43,8 +41,7 @@ int		Socket::readClient(int client_fd, char *str, int *size)
     {
       j = 0;
       *size += len;
-      copy = (char *)realloc(str, len * sizeof(char *));
-      str = copy;
+      str = (char *)realloc(str, len * sizeof(char *));
       while (len > 0)
 	{
 	  str[i] = buffer[j];
@@ -53,15 +50,15 @@ int		Socket::readClient(int client_fd, char *str, int *size)
 	  j++;
 	}
       memset(&_buffer, 0, strlen(_buffer));
-    }
+      }
   if (len == 0)
     return (0);
   else
     {
       *size += len;
-      copy = (char *)realloc(str, len * sizeof(char *));
-      str = copy;
-      //      std::cout << "la dernier length " << len << std::endl;
+      str = (char *)realloc(str, len * sizeof(char *));
+      //std::cout << "la dernier length " << len << std::endl;
+      j = 0;
       while (len > 0)
 	{
 	  str[i] = buffer[j];

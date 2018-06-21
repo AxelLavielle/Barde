@@ -34,11 +34,13 @@ int	Server::runServer()
 		{
 		  //std::cout << "message recu: " << str << "pour size = " << size << std::endl;
 		  _cm.parseMessage(str, *it, size);
+		  free(str);
 		  it++;
 		}
 	      else
 		{
 		  std::cout << "client " << sd << "est partie" << std::endl;
+		  _cm.disconnectClient(*it);
 		  _so.closeFd(sd);
 		  _clients.erase(it++);
 		}
