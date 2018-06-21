@@ -271,6 +271,9 @@
     <ClCompile Include="..\..\JsoncppLibrary\jsoncpp.cpp">
       <Filter>Server</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\main.cpp">
+      <Filter>Server</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\Software\Source\MusicParameters.cpp">
       <Filter>Server</Filter>
     </ClCompile>

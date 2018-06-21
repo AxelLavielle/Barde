@@ -15,11 +15,11 @@
 #include <list>
 #include "Client.hh"
 #include <string>
-#include "CmdManager.hh"
 
 class Socket
 {
 private:
+  int			_max_sd;
   struct protoent	*_pe;
   int			_fd;
   struct sockaddr_in	_server;
@@ -28,13 +28,15 @@ private:
   socklen_t		_client_size;
   char			_buffer[30];
   fd_set		_master;
-  std::list<Client>	_clients;
-  std::string		readClient(int client_fd);
-  CmdManager		_cm;
 public:
   Socket();
-  int			runMultiClient();
   int			StartSocket();
+  int			handleEntries(std::list<Client> *clients, char *msg);
+  void			initFd();
+  int			fdIsSet(int fd);
+  void			addFdAndsetMax(int sd);
+  int			closeFd(int fd);
+  int			readClient(int client_fd, char *str, int *size);
 };
 
 #endif /* __SOCKET__HH__*/

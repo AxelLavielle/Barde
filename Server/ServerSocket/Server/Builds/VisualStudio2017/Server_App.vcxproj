@@ -171,6 +171,7 @@
     <ClCompile Include="..\..\..\..\..\Software\Source\FileManager.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\Source\Instrument.cpp"/>
     <ClCompile Include="..\..\JsoncppLibrary\jsoncpp.cpp"/>
+    <ClCompile Include="..\..\..\main.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\Source\MusicParameters.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\Source\MusicStyle.cpp"/>
     <ClCompile Include="..\..\..\server.cpp"/>

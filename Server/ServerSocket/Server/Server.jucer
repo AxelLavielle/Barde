@@ -73,6 +73,7 @@
     <FILE id="cgV3sx" name="Instrument.cpp" compile="1" resource="0" file="../../../Software/Source/Instrument.cpp"/>
     <FILE id="cQEL23" name="Instrument.hh" compile="0" resource="0" file="../../../Software/Source/Instrument.hh"/>
     <FILE id="MMtAa6" name="jsoncpp.cpp" compile="1" resource="0" file="JsoncppLibrary/jsoncpp.cpp"/>
+    <FILE id="CnGAUW" name="main.cpp" compile="1" resource="0" file="../main.cpp"/>
     <FILE id="ELWHPX" name="MusicParameters.cpp" compile="1" resource="0"
           file="../../../Software/Source/MusicParameters.cpp"/>
     <FILE id="pdGgqr" name="MusicParameters.hh" compile="0" resource="0"
