@@ -166,8 +166,10 @@
     <ClCompile Include="..\..\..\..\..\Software\Source\SoundManager\Synthesizer.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\Source\SoundManager\SynthesizerInstrument.cpp"/>
     <ClCompile Include="..\..\..\Client.cpp"/>
+    <ClCompile Include="..\..\..\..\..\Software\Source\CondVariable.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\Source\FileManager.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\Source\Instrument.cpp"/>
+    <ClCompile Include="..\..\JsoncppLibrary\jsoncpp.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\Source\MusicParameters.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\Source\MusicStyle.cpp"/>
     <ClCompile Include="..\..\..\server.cpp"/>
@@ -896,6 +898,7 @@
     <ClInclude Include="..\..\..\..\..\Software\Source\SoundManager\Synthesizer.hh"/>
     <ClInclude Include="..\..\..\..\..\Software\Source\SoundManager\SynthesizerInstrument.hh"/>
     <ClInclude Include="..\..\..\Client.hh"/>
+    <ClInclude Include="..\..\..\..\..\Software\Source\CondVariable.hh"/>
     <ClInclude Include="..\..\..\..\..\Software\Source\FileManager.hh"/>
     <ClInclude Include="..\..\..\..\..\Software\Source\Instrument.hh"/>
     <ClInclude Include="..\..\..\..\..\Software\Source\MusicParameters.hh"/>

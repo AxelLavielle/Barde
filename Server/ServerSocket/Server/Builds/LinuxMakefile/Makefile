@@ -86,8 +86,10 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/Synthesizer_b97be987.o \
   $(JUCE_OBJDIR)/SynthesizerInstrument_eb92ef8e.o \
   $(JUCE_OBJDIR)/Client_8748ff2f.o \
+  $(JUCE_OBJDIR)/CondVariable_9f84e5ce.o \
   $(JUCE_OBJDIR)/FileManager_bb5feb0b.o \
   $(JUCE_OBJDIR)/Instrument_5dba4437.o \
+  $(JUCE_OBJDIR)/jsoncpp_d54fdfa1.o \
   $(JUCE_OBJDIR)/MusicParameters_73d74e9.o \
   $(JUCE_OBJDIR)/MusicStyle_f876545c.o \
   $(JUCE_OBJDIR)/server_61ebe287.o \
@@ -202,6 +204,11 @@ $(JUCE_OBJDIR)/Client_8748ff2f.o: ../../../Client.cpp
 	@echo "Compiling Client.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/CondVariable_9f84e5ce.o: ../../../../../Software/Source/CondVariable.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling CondVariable.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/FileManager_bb5feb0b.o: ../../../../../Software/Source/FileManager.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling FileManager.cpp"
@@ -210,6 +217,11 @@ $(JUCE_OBJDIR)/FileManager_bb5feb0b.o: ../../../../../Software/Source/FileManage
 $(JUCE_OBJDIR)/Instrument_5dba4437.o: ../../../../../Software/Source/Instrument.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling Instrument.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/jsoncpp_d54fdfa1.o: ../../JsoncppLibrary/jsoncpp.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling jsoncpp.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/MusicParameters_73d74e9.o: ../../../../../Software/Source/MusicParameters.cpp
