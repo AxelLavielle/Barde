@@ -63,10 +63,14 @@
     <GROUP id="{95B0FCE6-F486-6033-197B-D35E96511A4B}" name="Source"/>
     <FILE id="cjjuBM" name="Client.cpp" compile="1" resource="0" file="../Client.cpp"/>
     <FILE id="RJpR1a" name="Client.hh" compile="0" resource="0" file="../Client.hh"/>
+    <FILE id="PrCrq4" name="CondVariable.cpp" compile="1" resource="0"
+          file="../../../Software/Source/CondVariable.cpp"/>
+    <FILE id="yDH87L" name="CondVariable.hh" compile="0" resource="0" file="../../../Software/Source/CondVariable.hh"/>
     <FILE id="DZb2Hp" name="FileManager.cpp" compile="1" resource="0" file="../../../Software/Source/FileManager.cpp"/>
     <FILE id="iqDApJ" name="FileManager.hh" compile="0" resource="0" file="../../../Software/Source/FileManager.hh"/>
     <FILE id="cgV3sx" name="Instrument.cpp" compile="1" resource="0" file="../../../Software/Source/Instrument.cpp"/>
     <FILE id="cQEL23" name="Instrument.hh" compile="0" resource="0" file="../../../Software/Source/Instrument.hh"/>
+    <FILE id="MMtAa6" name="jsoncpp.cpp" compile="1" resource="0" file="JsoncppLibrary/jsoncpp.cpp"/>
     <FILE id="ELWHPX" name="MusicParameters.cpp" compile="1" resource="0"
           file="../../../Software/Source/MusicParameters.cpp"/>
     <FILE id="pdGgqr" name="MusicParameters.hh" compile="0" resource="0"
