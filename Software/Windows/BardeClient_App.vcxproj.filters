@@ -2,6 +2,9 @@
 
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="BardeClient\Source\GraphicPanels">
+      <UniqueIdentifier>{73682D20-67FE-702A-D199-BFFCB26FE048}</UniqueIdentifier>
+    </Filter>
     <Filter Include="BardeClient\Source\Utils">
       <UniqueIdentifier>{A2BCE773-7497-86EF-A73C-8658C72E033A}</UniqueIdentifier>
     </Filter>
@@ -406,6 +409,30 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Source\GraphManager\RegistrationPanel.cpp">
+      <Filter>BardeClient\Source\GraphicPanels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\GraphManager\LoginPanel.cpp">
+      <Filter>BardeClient\Source\GraphicPanels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\GraphManager\ReportPanel.cpp">
+      <Filter>BardeClient\Source\GraphicPanels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\GraphManager\CenterPanel.cpp">
+      <Filter>BardeClient\Source\GraphicPanels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\GraphManager\LeftPanel.cpp">
+      <Filter>BardeClient\Source\GraphicPanels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\GraphManager\PlayerFooter.cpp">
+      <Filter>BardeClient\Source\GraphicPanels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\GraphManager\PlayerPanel.cpp">
+      <Filter>BardeClient\Source\GraphicPanels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\GraphManager\UserParamsPanel.cpp">
+      <Filter>BardeClient\Source\GraphicPanels</Filter>
+    </ClCompile>
     <ClCompile Include="..\Source\Utils\StringChecker.cpp">
       <Filter>BardeClient\Source\Utils</Filter>
     </ClCompile>
@@ -487,9 +514,6 @@
     <ClCompile Include="..\Source\GraphManager\LabeledTextBox.cpp">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\GraphManager\ReportPanel.cpp">
-      <Filter>BardeClient\Source\GraphManager</Filter>
-    </ClCompile>
     <ClCompile Include="..\Source\GraphManager\SimpleLabel.cpp">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClCompile>
@@ -502,16 +526,10 @@
     <ClCompile Include="..\Source\GraphManager\BasicButton.cpp">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\GraphManager\CenterPanel.cpp">
-      <Filter>BardeClient\Source\GraphManager</Filter>
-    </ClCompile>
     <ClCompile Include="..\Source\GraphManager\FlexGroup.cpp">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\GraphManager\JuceManager.cpp">
-      <Filter>BardeClient\Source\GraphManager</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\GraphManager\LeftPanel.cpp">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClCompile>
     <ClCompile Include="..\ListItemComponent.cpp">
@@ -529,16 +547,7 @@
     <ClCompile Include="..\Source\GraphManager\MusicStyleButton.cpp">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\GraphManager\PlayerFooter.cpp">
-      <Filter>BardeClient\Source\GraphManager</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\GraphManager\PlayerPanel.cpp">
-      <Filter>BardeClient\Source\GraphManager</Filter>
-    </ClCompile>
     <ClCompile Include="..\Source\GraphManager\Theme.cpp">
-      <Filter>BardeClient\Source\GraphManager</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\GraphManager\UserParamsPanel.cpp">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\GraphManager\UserRegistration.cpp">
@@ -2430,6 +2439,30 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\GraphManager\RegistrationPanel.hh">
+      <Filter>BardeClient\Source\GraphicPanels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\GraphManager\LoginPanel.hh">
+      <Filter>BardeClient\Source\GraphicPanels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\GraphManager\ReportPanel.hh">
+      <Filter>BardeClient\Source\GraphicPanels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\GraphManager\CenterPanel.hh">
+      <Filter>BardeClient\Source\GraphicPanels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\GraphManager\LeftPanel.hh">
+      <Filter>BardeClient\Source\GraphicPanels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\GraphManager\PlayerFooter.hh">
+      <Filter>BardeClient\Source\GraphicPanels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\GraphManager\PlayerPanel.hh">
+      <Filter>BardeClient\Source\GraphicPanels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\GraphManager\UserParamsPanel.hh">
+      <Filter>BardeClient\Source\GraphicPanels</Filter>
+    </ClInclude>
     <ClInclude Include="..\Source\Utils\NonCopyable.hpp">
       <Filter>BardeClient\Source\Utils</Filter>
     </ClInclude>
@@ -2526,9 +2559,6 @@
     <ClInclude Include="..\Source\GraphManager\LabeledTextBox.hh">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\GraphManager\ReportPanel.hh">
-      <Filter>BardeClient\Source\GraphManager</Filter>
-    </ClInclude>
     <ClInclude Include="..\Source\GraphManager\SimpleLabel.hh">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
@@ -2541,9 +2571,6 @@
     <ClInclude Include="..\Source\GraphManager\BasicButton.hh">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\GraphManager\CenterPanel.hh">
-      <Filter>BardeClient\Source\GraphManager</Filter>
-    </ClInclude>
     <ClInclude Include="..\Source\GraphManager\FlexGroup.hh">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
@@ -2551,9 +2578,6 @@
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\GraphManager\JuceManager.hh">
-      <Filter>BardeClient\Source\GraphManager</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\GraphManager\LeftPanel.hh">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
     <ClInclude Include="..\ListItemComponent.h">
@@ -2571,16 +2595,7 @@
     <ClInclude Include="..\Source\GraphManager\MusicStyleButton.h">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\GraphManager\PlayerFooter.hh">
-      <Filter>BardeClient\Source\GraphManager</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\GraphManager\PlayerPanel.hh">
-      <Filter>BardeClient\Source\GraphManager</Filter>
-    </ClInclude>
     <ClInclude Include="..\Source\GraphManager\Theme.h">
-      <Filter>BardeClient\Source\GraphManager</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\GraphManager\UserParamsPanel.hh">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\GraphManager\UserRegistration.h">

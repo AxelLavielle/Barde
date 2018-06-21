@@ -11,7 +11,18 @@
 #pragma once
 
 #include "FlexGroup.hh"
-#include "../Factories/GuiFactory.hh"
+#include "SimpleLabel.hh"
+
+#ifndef __GUIFACTORY__
+class GuiFactory
+{
+public:
+	static void initVerticalFlexGroup(const std::vector<FlexItem>& items, FlexGroup & group);
+	static FlexItem createFlexItem(Component & component, const float minWidth = 0.f, const float minHeight = 0.f,
+		const FlexItem::AlignSelf & alignSelf = FlexItem::AlignSelf::autoAlign, const float flexGrow = 0.f);
+	static void initLegendLabel(const std::string & text, SimpleLabel & label);
+};
+#endif
 
 class LabeledTextBox : public FlexGroup
 {

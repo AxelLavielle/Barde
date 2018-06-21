@@ -8,11 +8,13 @@
   ==============================================================================
 */
 
-#pragma once
+#ifndef __GUIFACTORY__
+#define __GUIFACTORY__
 
 #include "../GraphManager/SimpleLabel.hh"
 #include "../GraphManager/FlexGroup.hh"
 #include "../GraphManager/Theme.h"
+#include "../GraphManager/LabeledTextBox.hh"
 
 #define BIG_TITLE_SIZE	50
 #define MEDIUM_TITLE_SIZE	30
@@ -65,4 +67,9 @@ public:
 											FlexGroup & group);
 
 	static void initSlider(const float min, const float max, const float value, Slider & slider);
+
+	static void initLabeledTextBox(const std::string & labelText, const std::string &boxText, LabeledTextBox & textBox);
+	static void initLabeledTextBoxPassword(const std::string & labelText, const juce_wchar &boxText, LabeledTextBox & textBox);
 };
+
+#endif

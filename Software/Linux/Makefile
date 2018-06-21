@@ -68,6 +68,14 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS_APP := \
+  $(JUCE_OBJDIR)/RegistrationPanel_9331c735.o \
+  $(JUCE_OBJDIR)/LoginPanel_7ca98dbb.o \
+  $(JUCE_OBJDIR)/ReportPanel_542b80da.o \
+  $(JUCE_OBJDIR)/CenterPanel_e1927ed9.o \
+  $(JUCE_OBJDIR)/LeftPanel_1a786ca7.o \
+  $(JUCE_OBJDIR)/PlayerFooter_7463c23c.o \
+  $(JUCE_OBJDIR)/PlayerPanel_a8984dcd.o \
+  $(JUCE_OBJDIR)/UserParamsPanel_241772fd.o \
   $(JUCE_OBJDIR)/StringChecker_38b3156.o \
   $(JUCE_OBJDIR)/CondVariable_b4fc4f98.o \
   $(JUCE_OBJDIR)/AView_4c0b412f.o \
@@ -95,24 +103,18 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/AEncryptionManager_13e06cc8.o \
   $(JUCE_OBJDIR)/SSLManager_f25fe680.o \
   $(JUCE_OBJDIR)/LabeledTextBox_e19ff76b.o \
-  $(JUCE_OBJDIR)/ReportPanel_542b80da.o \
   $(JUCE_OBJDIR)/SimpleLabel_d8204f0c.o \
   $(JUCE_OBJDIR)/AComponent_b1bc9abc.o \
   $(JUCE_OBJDIR)/AGraphManager_4508c7ea.o \
   $(JUCE_OBJDIR)/BasicButton_cecac0aa.o \
-  $(JUCE_OBJDIR)/CenterPanel_e1927ed9.o \
   $(JUCE_OBJDIR)/FlexGroup_f57b13f0.o \
   $(JUCE_OBJDIR)/JuceManager_8121b3aa.o \
-  $(JUCE_OBJDIR)/LeftPanel_1a786ca7.o \
   $(JUCE_OBJDIR)/ListItemComponent_eef934b2.o \
   $(JUCE_OBJDIR)/LoginComponent_22832b34.o \
   $(JUCE_OBJDIR)/MainComponent_fb729fae.o \
   $(JUCE_OBJDIR)/MainWindow_1a69e1a9.o \
   $(JUCE_OBJDIR)/MusicStyleButton_39681cbe.o \
-  $(JUCE_OBJDIR)/PlayerFooter_7463c23c.o \
-  $(JUCE_OBJDIR)/PlayerPanel_a8984dcd.o \
   $(JUCE_OBJDIR)/Theme_6a8438b3.o \
-  $(JUCE_OBJDIR)/UserParamsPanel_241772fd.o \
   $(JUCE_OBJDIR)/UserRegistration_c9349104.o \
   $(JUCE_OBJDIR)/AMidiManager_545b688.o \
   $(JUCE_OBJDIR)/Midi_8be1d87e.o \
@@ -166,6 +168,46 @@ $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) : check-pkg-config $(OBJECTS_APP) $(RESOURCES)
 	-$(V_AT)mkdir -p $(JUCE_LIBDIR)
 	-$(V_AT)mkdir -p $(JUCE_OUTDIR)
 	$(V_AT)$(CXX) -o $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) $(OBJECTS_APP) $(JUCE_LDFLAGS) $(JUCE_LDFLAGS_APP) $(RESOURCES) $(TARGET_ARCH)
+
+$(JUCE_OBJDIR)/RegistrationPanel_9331c735.o: ../Source/GraphManager/RegistrationPanel.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling RegistrationPanel.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/LoginPanel_7ca98dbb.o: ../Source/GraphManager/LoginPanel.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling LoginPanel.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ReportPanel_542b80da.o: ../Source/GraphManager/ReportPanel.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ReportPanel.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/CenterPanel_e1927ed9.o: ../Source/GraphManager/CenterPanel.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling CenterPanel.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/LeftPanel_1a786ca7.o: ../Source/GraphManager/LeftPanel.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling LeftPanel.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/PlayerFooter_7463c23c.o: ../Source/GraphManager/PlayerFooter.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling PlayerFooter.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/PlayerPanel_a8984dcd.o: ../Source/GraphManager/PlayerPanel.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling PlayerPanel.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/UserParamsPanel_241772fd.o: ../Source/GraphManager/UserParamsPanel.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling UserParamsPanel.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/StringChecker_38b3156.o: ../Source/Utils/StringChecker.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
@@ -302,11 +344,6 @@ $(JUCE_OBJDIR)/LabeledTextBox_e19ff76b.o: ../Source/GraphManager/LabeledTextBox.
 	@echo "Compiling LabeledTextBox.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/ReportPanel_542b80da.o: ../Source/GraphManager/ReportPanel.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling ReportPanel.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
 $(JUCE_OBJDIR)/SimpleLabel_d8204f0c.o: ../Source/GraphManager/SimpleLabel.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling SimpleLabel.cpp"
@@ -327,11 +364,6 @@ $(JUCE_OBJDIR)/BasicButton_cecac0aa.o: ../Source/GraphManager/BasicButton.cpp
 	@echo "Compiling BasicButton.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/CenterPanel_e1927ed9.o: ../Source/GraphManager/CenterPanel.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling CenterPanel.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
 $(JUCE_OBJDIR)/FlexGroup_f57b13f0.o: ../Source/GraphManager/FlexGroup.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling FlexGroup.cpp"
@@ -340,11 +372,6 @@ $(JUCE_OBJDIR)/FlexGroup_f57b13f0.o: ../Source/GraphManager/FlexGroup.cpp
 $(JUCE_OBJDIR)/JuceManager_8121b3aa.o: ../Source/GraphManager/JuceManager.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling JuceManager.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/LeftPanel_1a786ca7.o: ../Source/GraphManager/LeftPanel.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling LeftPanel.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/ListItemComponent_eef934b2.o: ../ListItemComponent.cpp
@@ -372,24 +399,9 @@ $(JUCE_OBJDIR)/MusicStyleButton_39681cbe.o: ../Source/GraphManager/MusicStyleBut
 	@echo "Compiling MusicStyleButton.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/PlayerFooter_7463c23c.o: ../Source/GraphManager/PlayerFooter.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling PlayerFooter.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/PlayerPanel_a8984dcd.o: ../Source/GraphManager/PlayerPanel.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling PlayerPanel.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
 $(JUCE_OBJDIR)/Theme_6a8438b3.o: ../Source/GraphManager/Theme.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling Theme.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/UserParamsPanel_241772fd.o: ../Source/GraphManager/UserParamsPanel.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling UserParamsPanel.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/UserRegistration_c9349104.o: ../Source/GraphManager/UserRegistration.cpp

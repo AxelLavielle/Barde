@@ -7,6 +7,29 @@
               cppLanguageStandard="11" companyCopyright="Barde">
   <MAINGROUP id="r1VLiG" name="BardeClient">
     <GROUP id="{6687DB59-98D3-42FE-E900-5BC523D33DDC}" name="Source">
+      <GROUP id="{8AC2CD38-DB9F-38EE-F442-CF7863417114}" name="GraphicPanels">
+        <FILE id="oAdDpa" name="RegistrationPanel.hh" compile="0" resource="0"
+              file="Source/GraphManager/RegistrationPanel.hh"/>
+        <FILE id="LwkYBO" name="RegistrationPanel.cpp" compile="1" resource="0"
+              file="Source/GraphManager/RegistrationPanel.cpp"/>
+        <FILE id="T2wz1B" name="LoginPanel.hh" compile="0" resource="0" file="Source/GraphManager/LoginPanel.hh"/>
+        <FILE id="hghofU" name="LoginPanel.cpp" compile="1" resource="0" file="Source/GraphManager/LoginPanel.cpp"/>
+        <FILE id="tw1tTU" name="ReportPanel.cpp" compile="1" resource="0" file="Source/GraphManager/ReportPanel.cpp"/>
+        <FILE id="KIFr5g" name="ReportPanel.hh" compile="0" resource="0" file="Source/GraphManager/ReportPanel.hh"/>
+        <FILE id="K4qWej" name="CenterPanel.cpp" compile="1" resource="0" file="Source/GraphManager/CenterPanel.cpp"/>
+        <FILE id="R3WTYS" name="CenterPanel.hh" compile="0" resource="0" file="Source/GraphManager/CenterPanel.hh"/>
+        <FILE id="JKulCT" name="LeftPanel.cpp" compile="1" resource="0" file="Source/GraphManager/LeftPanel.cpp"/>
+        <FILE id="aQDoFC" name="LeftPanel.hh" compile="0" resource="0" file="Source/GraphManager/LeftPanel.hh"/>
+        <FILE id="MrpYCp" name="PlayerFooter.cpp" compile="1" resource="0"
+              file="Source/GraphManager/PlayerFooter.cpp"/>
+        <FILE id="FUaMxD" name="PlayerFooter.hh" compile="0" resource="0" file="Source/GraphManager/PlayerFooter.hh"/>
+        <FILE id="cZ0dYD" name="PlayerPanel.cpp" compile="1" resource="0" file="Source/GraphManager/PlayerPanel.cpp"/>
+        <FILE id="eS257S" name="PlayerPanel.hh" compile="0" resource="0" file="Source/GraphManager/PlayerPanel.hh"/>
+        <FILE id="lmOBXm" name="UserParamsPanel.cpp" compile="1" resource="0"
+              file="Source/GraphManager/UserParamsPanel.cpp"/>
+        <FILE id="SkjqhJ" name="UserParamsPanel.hh" compile="0" resource="0"
+              file="Source/GraphManager/UserParamsPanel.hh"/>
+      </GROUP>
       <GROUP id="{24E1D38D-B5FC-4280-56B0-A9BD1F18BEB8}" name="Utils">
         <FILE id="qgBgYy" name="NonCopyable.hpp" compile="0" resource="0" file="Source/Utils/NonCopyable.hpp"/>
         <FILE id="oK5O92" name="StringChecker.cpp" compile="1" resource="0"
@@ -110,8 +133,6 @@
               file="Source/GraphManager/LabeledTextBox.cpp"/>
         <FILE id="ort6VL" name="LabeledTextBox.hh" compile="0" resource="0"
               file="Source/GraphManager/LabeledTextBox.hh"/>
-        <FILE id="tw1tTU" name="ReportPanel.cpp" compile="1" resource="0" file="Source/GraphManager/ReportPanel.cpp"/>
-        <FILE id="KIFr5g" name="ReportPanel.hh" compile="0" resource="0" file="Source/GraphManager/ReportPanel.hh"/>
         <FILE id="ILxVWQ" name="SimpleLabel.cpp" compile="1" resource="0" file="Source/GraphManager/SimpleLabel.cpp"/>
         <FILE id="KrI0We" name="SimpleLabel.hh" compile="0" resource="0" file="Source/GraphManager/SimpleLabel.hh"/>
         <FILE id="eErgF6" name="AComponent.cpp" compile="1" resource="0" file="Source/GraphManager/AComponent.cpp"/>
@@ -122,16 +143,12 @@
               file="Source/GraphManager/AGraphManager.hh"/>
         <FILE id="Fr7ElR" name="BasicButton.cpp" compile="1" resource="0" file="Source/GraphManager/BasicButton.cpp"/>
         <FILE id="yJoUv8" name="BasicButton.hh" compile="0" resource="0" file="Source/GraphManager/BasicButton.hh"/>
-        <FILE id="K4qWej" name="CenterPanel.cpp" compile="1" resource="0" file="Source/GraphManager/CenterPanel.cpp"/>
-        <FILE id="R3WTYS" name="CenterPanel.hh" compile="0" resource="0" file="Source/GraphManager/CenterPanel.hh"/>
         <FILE id="RqIcY2" name="FlexGroup.cpp" compile="1" resource="0" file="Source/GraphManager/FlexGroup.cpp"/>
         <FILE id="lxP3gN" name="FlexGroup.hh" compile="0" resource="0" file="Source/GraphManager/FlexGroup.hh"/>
         <FILE id="Lbi3bj" name="IGraphManager.hpp" compile="0" resource="0"
               file="Source/GraphManager/IGraphManager.hpp"/>
         <FILE id="rCMkmr" name="JuceManager.cpp" compile="1" resource="0" file="Source/GraphManager/JuceManager.cpp"/>
         <FILE id="dnE53f" name="JuceManager.hh" compile="0" resource="0" file="Source/GraphManager/JuceManager.hh"/>
-        <FILE id="JKulCT" name="LeftPanel.cpp" compile="1" resource="0" file="Source/GraphManager/LeftPanel.cpp"/>
-        <FILE id="aQDoFC" name="LeftPanel.hh" compile="0" resource="0" file="Source/GraphManager/LeftPanel.hh"/>
         <FILE id="vjUgyq" name="ListItemComponent.cpp" compile="1" resource="0"
               file="ListItemComponent.cpp"/>
         <FILE id="P3G4EZ" name="ListItemComponent.h" compile="0" resource="0"
@@ -149,17 +166,8 @@
               file="Source/GraphManager/MusicStyleButton.cpp"/>
         <FILE id="COOJPI" name="MusicStyleButton.h" compile="0" resource="0"
               file="Source/GraphManager/MusicStyleButton.h"/>
-        <FILE id="MrpYCp" name="PlayerFooter.cpp" compile="1" resource="0"
-              file="Source/GraphManager/PlayerFooter.cpp"/>
-        <FILE id="FUaMxD" name="PlayerFooter.hh" compile="0" resource="0" file="Source/GraphManager/PlayerFooter.hh"/>
-        <FILE id="cZ0dYD" name="PlayerPanel.cpp" compile="1" resource="0" file="Source/GraphManager/PlayerPanel.cpp"/>
-        <FILE id="eS257S" name="PlayerPanel.hh" compile="0" resource="0" file="Source/GraphManager/PlayerPanel.hh"/>
         <FILE id="anX9Wi" name="Theme.cpp" compile="1" resource="0" file="Source/GraphManager/Theme.cpp"/>
         <FILE id="UcsbfQ" name="Theme.h" compile="0" resource="0" file="Source/GraphManager/Theme.h"/>
-        <FILE id="lmOBXm" name="UserParamsPanel.cpp" compile="1" resource="0"
-              file="Source/GraphManager/UserParamsPanel.cpp"/>
-        <FILE id="SkjqhJ" name="UserParamsPanel.hh" compile="0" resource="0"
-              file="Source/GraphManager/UserParamsPanel.hh"/>
         <FILE id="Ps92aY" name="UserRegistration.cpp" compile="1" resource="0"
               file="Source/GraphManager/UserRegistration.cpp"/>
         <FILE id="tUPkX0" name="UserRegistration.h" compile="0" resource="0"
