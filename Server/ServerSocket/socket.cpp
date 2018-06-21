@@ -36,17 +36,20 @@ std::string	Socket::readClient(int client_fd)
   char	buffer[30];
   std::ostringstream ss;
   int len = 0;
+  std::string str;
   while ((len = read(client_fd, buffer, 30)) >= 30)
     {
       ss << buffer;
       memset(&_buffer, 0, strlen(_buffer));
     }
+  if (len == 0)
+    return str;
   ss << buffer;
-  std::string str = ss.str();
+  str = ss.str();
   return str;
 }
 
-void Socket::runMultiClient()
+int Socket::runMultiClient()
 {
   int max_sd;
   int client_fd;
@@ -77,26 +80,35 @@ void Socket::runMultiClient()
 	  client_fd = accept(_fd, (struct sockaddr *)&_client, (socklen_t *)&_client_size);
 
 	  send(client_fd, "hello\r\n", strlen("hello\r\n"), 0);
+	  std::cout << "client " << client_fd << " a rejoin le server" << std::endl;
 	  _clients.push_back(Client(client_fd));
 	  FD_SET(client_fd, &_master);
 	}
-      for (std::list<Client>::iterator it = _clients.begin(); it != _clients.end(); it++)
+      std::list<Client>::iterator it = _clients.begin();      
+      while (it != _clients.end())
 	{
+	
 	  sd = it->getFd();
 	  if (FD_ISSET(sd, &_master))
 	    {
 	      buffer = Socket::readClient(sd);
 	      if (!buffer.empty())
 		{
-		  std::cout << "client " << sd << "message : " << buffer << std::endl;
+		  std::cout << "client " << sd << " message : " << buffer << std::endl;
+		  it++;
 		}
 	      else
 		{
-		  /*if (close(client_fd) == -1)
+		  std::cout << "client " << sd << "est partie" << std::endl;
+		  if (close(sd) == -1)
 		    return (1);
-		    */
+		  FD_CLR(sd, &_master);
+		  _clients.erase(it++);
 		}
-	  
+	    }
+	  else
+	    {
+	      it++;
 	    }
 	}
     }

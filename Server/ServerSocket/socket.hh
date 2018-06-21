@@ -30,7 +30,7 @@ private:
   std::string		readClient(int client_fd);
 public:
   Socket();
-  void			runMultiClient();
+  int			runMultiClient();
   int			StartSocket();
 };
 
