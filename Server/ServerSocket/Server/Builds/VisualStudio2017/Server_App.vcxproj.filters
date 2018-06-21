@@ -283,6 +283,9 @@
     <ClCompile Include="..\..\..\socket.cpp">
       <Filter>Server</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\ThreadPoolGenerator.cpp">
+      <Filter>Server</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\Software\Source\Tools.cpp">
       <Filter>Server</Filter>
     </ClCompile>
@@ -1123,6 +1126,9 @@
       <Filter>Server</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\socket.hh">
+      <Filter>Server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ThreadPoolGenerator.hh">
       <Filter>Server</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Software\Source\Tools.hh">

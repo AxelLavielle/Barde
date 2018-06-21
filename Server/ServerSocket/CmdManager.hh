@@ -2,12 +2,17 @@
 # define __CMDMANAGER__HH__
 
 #include "Client.hh"
+#include "ThreadPoolGenerator.hh"
 
 class CmdManager
 {
 public:
   CmdManager();
-  void	parseMessage(char *buffer, Client &client);
+  void	parseMessage(char *buffer, size_t bufferSize, Client &client);
+  void  disconnectClient(const Client & client);
+
+private:
+  ThreadPoolGenerator      _threadPool;
 };
 
 #endif /* __CMDMANAGER__HH__*/

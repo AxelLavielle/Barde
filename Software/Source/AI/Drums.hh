@@ -12,7 +12,7 @@ public:
 	Drums();
 	~Drums();
 
-	static void					prepareDrums(MusicParameters &parameters, std::vector<std::vector<t_note>> &pattern);
+	static void					prepareDrums(const MusicParameters &parameters, std::vector<std::vector<t_note>> &pattern);
 	static void					initialize(MidiManager &_midiManager, std::vector<Instrument> &drumInstruments);
 
 private:

@@ -60,7 +60,7 @@ void			MusicGenerator::launch(std::vector<MusicParameters> &_graph2genQ, std::ve
 	}
 }
 
-Midi			MusicGenerator::createMusic(MusicParameters &parameters)
+Midi			MusicGenerator::createMusic(const MusicParameters &parameters)
 {
   MidiManager	_midiManager;
 
@@ -116,7 +116,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   }
 
   /* DRUMS */
-  
+
   std::cout << "MTG" << std::endl;
   /* MARKOVIAN TREE GENERATION */
   StyleSettings						proba;
@@ -129,7 +129,7 @@ Midi			MusicGenerator::createMusic(MusicParameters &parameters)
   AI::calculateProbaToNote(&proba, medium, PROBAMEDIUM);
   AI::calculateProbaToNote(&proba, weak, PROBAWEAK);
   AI::calculateProbaToScaleFromNote(&proba, strong, medium, weak);
-  /* MARKOVIAN TREE GENERATION */		
+  /* MARKOVIAN TREE GENERATION */
 
   std::cout << "ARPEGGIOS" << std::endl;
   /* ARPEGGIOS */

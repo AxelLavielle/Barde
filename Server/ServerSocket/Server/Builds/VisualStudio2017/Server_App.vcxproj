@@ -175,6 +175,7 @@
     <ClCompile Include="..\..\..\..\..\Software\Source\MusicStyle.cpp"/>
     <ClCompile Include="..\..\..\server.cpp"/>
     <ClCompile Include="..\..\..\socket.cpp"/>
+    <ClCompile Include="..\..\..\ThreadPoolGenerator.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\Source\Tools.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
@@ -906,6 +907,7 @@
     <ClInclude Include="..\..\..\..\..\Software\Source\MusicParameters.hh"/>
     <ClInclude Include="..\..\..\..\..\Software\Source\MusicStyle.hh"/>
     <ClInclude Include="..\..\..\socket.hh"/>
+    <ClInclude Include="..\..\..\ThreadPoolGenerator.hh"/>
     <ClInclude Include="..\..\..\..\..\Software\Source\Tools.hh"/>
     <ClInclude Include="..\..\..\..\..\Software\JuceLibraryCode\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h"/>
     <ClInclude Include="..\..\..\..\..\Software\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioChannelSet.h"/>

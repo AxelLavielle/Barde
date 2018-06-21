@@ -82,6 +82,10 @@
     <FILE id="GE2MuI" name="server.cpp" compile="1" resource="0" file="../server.cpp"/>
     <FILE id="RUxrRV" name="socket.cpp" compile="1" resource="0" file="../socket.cpp"/>
     <FILE id="Ycd0ge" name="socket.hh" compile="0" resource="0" file="../socket.hh"/>
+    <FILE id="dTeeqK" name="ThreadPoolGenerator.cpp" compile="1" resource="0"
+          file="../ThreadPoolGenerator.cpp"/>
+    <FILE id="dz1faH" name="ThreadPoolGenerator.hh" compile="0" resource="0"
+          file="../ThreadPoolGenerator.hh"/>
     <FILE id="o020Av" name="Tools.cpp" compile="1" resource="0" file="../../../Software/Source/Tools.cpp"/>
     <FILE id="N0hSa5" name="Tools.hh" compile="0" resource="0" file="../../../Software/Source/Tools.hh"/>
   </MAINGROUP>
@@ -127,6 +131,7 @@
   </MODULES>
   <LIVE_SETTINGS>
     <WINDOWS/>
+    <LINUX/>
   </LIVE_SETTINGS>
   <JUCEOPTIONS/>
 </JUCERPROJECT>

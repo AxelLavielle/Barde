@@ -21,7 +21,7 @@ int Socket::StartSocket()
 	return (1);
       return (1);
     }
-  
+
   if (listen(_fd, 2) == -1)
     {
       if (close(_fd) == -1)
@@ -84,17 +84,17 @@ int Socket::runMultiClient()
 	  _clients.push_back(Client(client_fd));
 	  FD_SET(client_fd, &_master);
 	}
-      std::list<Client>::iterator it = _clients.begin();      
+      std::list<Client>::iterator it = _clients.begin();
       while (it != _clients.end())
 	{
-	
+
 	  sd = it->getFd();
 	  if (FD_ISSET(sd, &_master))
 	    {
 	      buffer = Socket::readClient(sd);
 	      if (!buffer.empty())
 		{
-		  _cm.parseMessage((char *)buffer.c_str(), *it);
+		  _cm.parseMessage((char *)buffer.c_str(), 1, *it);
 		  it++;
 		}
 	      else

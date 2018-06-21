@@ -99,7 +99,7 @@ void		Drums::blues(std::vector<std::vector<t_note>> &pattern, int total_bar)
 	}
 }
 
-void		Drums::prepareDrums(MusicParameters &parameters, std::vector<std::vector<t_note>> &pattern)
+void		Drums::prepareDrums(const MusicParameters &parameters, std::vector<std::vector<t_note>> &pattern)
 {
 	if (parameters.getStyleName() == "Blues")
 		blues(pattern, 12);

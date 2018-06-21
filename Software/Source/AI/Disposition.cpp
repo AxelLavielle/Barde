@@ -11,7 +11,7 @@ Disposition::~Disposition()
 
 }
 
-void		Disposition::placeChords(MidiManager &_midiManager, MusicParameters &parameters, std::vector<std::pair<char, char> > chordsGrid)
+void		Disposition::placeChords(MidiManager &_midiManager, const MusicParameters &parameters, std::vector<std::pair<char, char> > chordsGrid)
 {
   Chords chords;
   std::vector<Instrument> instruments;
@@ -41,7 +41,7 @@ void		Disposition::placeChords(MidiManager &_midiManager, MusicParameters &param
   }
 }
 
-void    Disposition::placeChords(MidiManager &_midiManager, MusicParameters &parameters, std::vector<std::vector<t_note> > pattern)
+void    Disposition::placeChords(MidiManager &_midiManager, const MusicParameters &parameters, std::vector<std::vector<t_note> > pattern)
 {
   Chords chords;
   std::vector<Instrument> instruments;
@@ -69,7 +69,7 @@ void    Disposition::placeChords(MidiManager &_midiManager, MusicParameters &par
   }
 }
 
-void		Disposition::placeArpeggios(MidiManager &_midiManager, MusicParameters &parameters, std::vector<std::pair<char, char> > notesList)
+void		Disposition::placeArpeggios(MidiManager &_midiManager, const MusicParameters &parameters, std::vector<std::pair<char, char> > notesList)
 {
   std::vector<Instrument> instruments;
   int note;
@@ -90,7 +90,7 @@ void		Disposition::placeArpeggios(MidiManager &_midiManager, MusicParameters &pa
   }
 }
 
-void    Disposition::placeArpeggios(MidiManager &_midiManager, MusicParameters &parameters, std::vector<std::vector<t_note> > pattern)
+void    Disposition::placeArpeggios(MidiManager &_midiManager, const MusicParameters &parameters, std::vector<std::vector<t_note> > pattern)
 {
   std::vector<Instrument> instruments;
   int note;
@@ -109,12 +109,12 @@ void    Disposition::placeArpeggios(MidiManager &_midiManager, MusicParameters &
   }
 }
 
-void	Disposition::placeDrums(MidiManager &_midiManager, MusicParameters &parameters, std::vector<std::vector<t_note> > pattern, std::vector<Instrument> drumInstruments)
+void	Disposition::placeDrums(MidiManager &_midiManager, const MusicParameters &parameters, std::vector<std::vector<t_note> > pattern, std::vector<Instrument> drumInstruments)
 {
   Instrument				instru;
   t_note					current;
   int						note;
-  
+
   _midiManager.setTempo(parameters.getBpm());
 
   for (unsigned char y = 0; y < pattern.size(); y++)
