@@ -15,6 +15,8 @@
 #include <list>
 #include "Client.hh"
 #include <string>
+#include "CmdManager.hh"
+
 class Socket
 {
 private:
@@ -28,6 +30,7 @@ private:
   fd_set		_master;
   std::list<Client>	_clients;
   std::string		readClient(int client_fd);
+  CmdManager		_cm;
 public:
   Socket();
   int			runMultiClient();

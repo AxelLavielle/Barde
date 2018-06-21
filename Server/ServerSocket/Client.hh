@@ -1,13 +1,17 @@
 #ifndef __CLIENT__HH__
-# define __CLIENT_HH__
+# define __CLIENT__HH__
 
-class Client
+#include "MusicParameters.hh"
+
+class			Client
 {
 private:
-  int		_fd;
+  int			_fd;
+  MusicParameters	_mp;
 public:
   Client(int fd);
-  const int	getFd();
+  const int		getFd();
+  MusicParameters	getMp();
 };
 
-#endif /* __CLIENT__HH__*/
+#endif /* __CLIENT__HH__ */

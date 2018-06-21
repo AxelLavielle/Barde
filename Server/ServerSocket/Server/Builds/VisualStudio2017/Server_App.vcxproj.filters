@@ -256,6 +256,9 @@
     <ClCompile Include="..\..\..\Client.cpp">
       <Filter>Server</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\CmdManager.cpp">
+      <Filter>Server</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\Software\Source\CondVariable.cpp">
       <Filter>Server</Filter>
     </ClCompile>
@@ -1099,6 +1102,9 @@
       <Filter>Server\SoundManager</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Client.hh">
+      <Filter>Server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\CmdManager.hh">
       <Filter>Server</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Software\Source\CondVariable.hh">

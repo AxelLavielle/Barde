@@ -63,6 +63,8 @@
     <GROUP id="{95B0FCE6-F486-6033-197B-D35E96511A4B}" name="Source"/>
     <FILE id="cjjuBM" name="Client.cpp" compile="1" resource="0" file="../Client.cpp"/>
     <FILE id="RJpR1a" name="Client.hh" compile="0" resource="0" file="../Client.hh"/>
+    <FILE id="PzzQug" name="CmdManager.cpp" compile="1" resource="0" file="../CmdManager.cpp"/>
+    <FILE id="OP70k0" name="CmdManager.hh" compile="0" resource="0" file="../CmdManager.hh"/>
     <FILE id="PrCrq4" name="CondVariable.cpp" compile="1" resource="0"
           file="../../../Software/Source/CondVariable.cpp"/>
     <FILE id="yDH87L" name="CondVariable.hh" compile="0" resource="0" file="../../../Software/Source/CondVariable.hh"/>
@@ -99,7 +101,7 @@
       </MODULEPATHS>
     </VS2017>
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile" extraDefs="SOURCEMARKOV=\&quot;${CURDIR}/../../../../../SoftwareSource/markovSource/\&quot;"
-                extraCompilerFlags="-I../../../../../Software/JsoncppLibrary/&#10;-I../../../../../Software/LuaLibrary/include&#10;-W&#10;-Wall&#10;-Wextra"
+                extraCompilerFlags="-I../../../../../Software/JsoncppLibrary/&#10;-I../../../../../Software/LuaLibrary/include&#10;-I../../../../../Software/Source&#10;-W&#10;-Wall&#10;-Wextra"
                 extraLinkerFlags="-L../../../../../Software/LuaLibrary" externalLibraries="lua">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug"/>

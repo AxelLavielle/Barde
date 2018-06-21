@@ -39,7 +39,7 @@ ifeq ($(CONFIG),Debug)
   JUCE_CPPFLAGS_APP := -DJucePlugin_Build_VST=0 -DJucePlugin_Build_VST3=0 -DJucePlugin_Build_AU=0 -DJucePlugin_Build_AUv3=0 -DJucePlugin_Build_RTAS=0 -DJucePlugin_Build_AAX=0 -DJucePlugin_Build_Standalone=0
   JUCE_TARGET_APP := Server
 
-  JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -g -ggdb -O0 -I../../../../../Software/JsoncppLibrary/ -I../../../../../Software/LuaLibrary/include -W -Wall -Wextra $(CFLAGS)
+  JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -g -ggdb -O0 -I../../../../../Software/JsoncppLibrary/ -I../../../../../Software/LuaLibrary/include -I../../../../../Software/Source -W -Wall -Wextra $(CFLAGS)
   JUCE_CXXFLAGS += $(JUCE_CFLAGS) -std=c++14 $(CXXFLAGS)
   JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) $(shell pkg-config --libs alsa libcurl) -L../../../../../Software/LuaLibrary -ldl -lpthread -lrt -llua $(LDFLAGS)
 
@@ -60,7 +60,7 @@ ifeq ($(CONFIG),Release)
   JUCE_CPPFLAGS_APP := -DJucePlugin_Build_VST=0 -DJucePlugin_Build_VST3=0 -DJucePlugin_Build_AU=0 -DJucePlugin_Build_AUv3=0 -DJucePlugin_Build_RTAS=0 -DJucePlugin_Build_AAX=0 -DJucePlugin_Build_Standalone=0
   JUCE_TARGET_APP := Server
 
-  JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -O3 -I../../../../../Software/JsoncppLibrary/ -I../../../../../Software/LuaLibrary/include -W -Wall -Wextra $(CFLAGS)
+  JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -O3 -I../../../../../Software/JsoncppLibrary/ -I../../../../../Software/LuaLibrary/include -I../../../../../Software/Source -W -Wall -Wextra $(CFLAGS)
   JUCE_CXXFLAGS += $(JUCE_CFLAGS) -std=c++14 $(CXXFLAGS)
   JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) $(shell pkg-config --libs alsa libcurl) -fvisibility=hidden -L../../../../../Software/LuaLibrary -ldl -lpthread -lrt -llua $(LDFLAGS)
 
@@ -86,6 +86,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/Synthesizer_b97be987.o \
   $(JUCE_OBJDIR)/SynthesizerInstrument_eb92ef8e.o \
   $(JUCE_OBJDIR)/Client_8748ff2f.o \
+  $(JUCE_OBJDIR)/CmdManager_136ea8f7.o \
   $(JUCE_OBJDIR)/CondVariable_9f84e5ce.o \
   $(JUCE_OBJDIR)/FileManager_bb5feb0b.o \
   $(JUCE_OBJDIR)/Instrument_5dba4437.o \
@@ -202,6 +203,11 @@ $(JUCE_OBJDIR)/SynthesizerInstrument_eb92ef8e.o: ../../../../../Software/Source/
 $(JUCE_OBJDIR)/Client_8748ff2f.o: ../../../Client.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling Client.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/CmdManager_136ea8f7.o: ../../../CmdManager.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling CmdManager.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/CondVariable_9f84e5ce.o: ../../../../../Software/Source/CondVariable.cpp

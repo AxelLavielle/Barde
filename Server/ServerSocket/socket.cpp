@@ -94,7 +94,7 @@ int Socket::runMultiClient()
 	      buffer = Socket::readClient(sd);
 	      if (!buffer.empty())
 		{
-		  std::cout << "client " << sd << " message : " << buffer << std::endl;
+		  _cm.parseMessage((char *)buffer.c_str(), *it);
 		  it++;
 		}
 	      else
