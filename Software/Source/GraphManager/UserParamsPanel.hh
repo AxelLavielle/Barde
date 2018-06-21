@@ -40,9 +40,7 @@ private:
 	LabeledTextBox		_lastNameTextBox;
 	LabeledTextBox		_userNameTextBox;
 	LabeledTextBox		_emailTextBox;
-	LabeledTextBox		_dayOfBirthTextBox;
-	LabeledTextBox		_monthOfBirthTextBox;
-	LabeledTextBox		_yearOfBirthTextBox;
+	LabeledTextBox		_dateOfBirthTextBox;
 	LabeledTextBox		_passwordTextBox;
 	LabeledTextBox		_passwordConfirmationTextBox;
 	TextButton			_confirmButton;

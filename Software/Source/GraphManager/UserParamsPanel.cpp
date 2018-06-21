@@ -69,14 +69,16 @@ void UserParamsPanel::initTextBoxes()
 	GuiFactory::initLabeledTextBox("Email", _user.getEmail(), _emailTextBox);
 	addFlexItem(_emailTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
-	GuiFactory::initLabeledTextBox("Day of birth", _user.getDayOfBirth(), _dayOfBirthTextBox);
-	addFlexItem(_dayOfBirthTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
-	GuiFactory::initLabeledTextBox("Month of birth", _user.getMonthOfBirth(), _monthOfBirthTextBox);
-	addFlexItem(_monthOfBirthTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
+	int d = stoi(_user.getMonthOfBirth());
+	if (d == 1)
+		d = 12;
+	else
+		d = d - 1;
 
-	GuiFactory::initLabeledTextBox("Year of birth", _user.getYearOfBirth(), _yearOfBirthTextBox);
-	addFlexItem(_yearOfBirthTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
+	std::string dateUser = _user.getDayOfBirth() + "/" + std::to_string(d) + "/" + _user.getYearOfBirth();
+	GuiFactory::initLabeledTextBox("Date of birth", dateUser, _dateOfBirthTextBox);
+	addFlexItem(_dateOfBirthTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
 	GuiFactory::initLabeledTextBoxPassword("New password (optional)", (juce_wchar)0x2022, _passwordTextBox);
 	addFlexItem(_passwordTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
@@ -113,23 +115,15 @@ bool UserParamsPanel::updateUser()
 		return false;
 	}
 
-	if (!(StringChecker::isDayValid(_dayOfBirthTextBox.getText())))
+	if (!(StringChecker::isDateValid(_dateOfBirthTextBox.getText())))
 	{
-		_errorLabel.setLabelText("Invalid day of birth.");
+		_errorLabel.setText("Error: Date is not valid", dontSendNotification);
 		return false;
 	}
 
-
-	if (!(StringChecker::isMonthValid(_monthOfBirthTextBox.getText())))
+	if (!(StringChecker::isDateInPast(_dateOfBirthTextBox.getText())))
 	{
-		_errorLabel.setLabelText("Invalid month of birth.");
-		return false;
-	}
-
-
-	if (!(StringChecker::isYearValid(_yearOfBirthTextBox.getText())))
-	{
-		_errorLabel.setLabelText("Invalid year of birth.");
+		_errorLabel.setText("Error: Date should not be in the future", dontSendNotification);
 		return false;
 	}
 
@@ -140,7 +134,10 @@ bool UserParamsPanel::updateUser()
 		return false;
 	}
 	_user.setEmail(_emailTextBox.getText());
-	_user.setDayOfBirth(_user.getDayOfBirth());
+	std::string date = _dateOfBirthTextBox.getText();
+	_user.setDayOfBirth(date.substr(0, 2));
+	_user.setMonthOfBirth(date.substr(3, 2));
+	_user.setYearOfBirth(date.substr(6, 4));
 	_user.setMonthOfBirth(_user.getMonthOfBirth());
 	_user.setYearOfBirth(_user.getYearOfBirth());
 	_user.setFirstName(_firstNameTextBox.getText());

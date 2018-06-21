@@ -250,6 +250,11 @@ void UserRegistration::signin(const User & user)
 		return;
 	}
 
+	if (!(StringChecker::isDateInPast(user.getDateOfBirth())))
+	{
+		_errorText.setText("Error: Date should not be in the future", dontSendNotification);
+		return;
+	}
 
 	password = _passwordTextEditor.getText();
 	confirmPassword = _passwordConfirmationTextEditor.getText();
@@ -287,7 +292,7 @@ void UserRegistration::buttonClicked(Button* button)
 		std::string date = _dateOfBirthTextEditor.getText().toStdString();
 		user.setEmail(_emailTextEditor.getText().toStdString());
 		user.setDateOfBirth(_dateOfBirthTextEditor.getText().toStdString());
-		if (StringChecker::isDateValid(date))
+		if (StringChecker::isDateValid(date) && StringChecker::isDateInPast(date))
 		{
 			user.setDayOfBirth(date.substr(0, 2));
 			user.setMonthOfBirth(date.substr(3, 2));

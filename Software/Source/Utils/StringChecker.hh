@@ -12,6 +12,9 @@
 
 #include <string>
 #include <regex>
+#include <chrono>
+#include <string>
+
 
 class StringChecker
 {
@@ -23,5 +26,5 @@ public:
 	static bool isDayValid(const std::string & date);
 	static bool isMonthValid(const std::string & date);
 	static bool isYearValid(const std::string & date);
-
+	static bool isDateInPast(const std::string &date);
 };
