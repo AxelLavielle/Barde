@@ -31,18 +31,27 @@ int Socket::StartSocket()
   return (0);
 }
 
+std::string	Socket::readClient(int client_fd)
+{
+  char	buffer[30];
+  std::ostringstream ss;
+  int len = 0;
+  while ((len = read(client_fd, buffer, 30)) >= 30)
+    {
+      ss << buffer;
+      memset(&_buffer, 0, strlen(_buffer));
+    }
+  ss << buffer;
+  std::string str = ss.str();
+  return str;
+}
 
 void Socket::runMultiClient()
 {
-  int	client_socket[30];
   int max_sd;
   int client_fd;
-
+  std::string   buffer;
   int sd = 0;
-  for(int i = 0; i < 30; i++)
-    {
-      client_socket[i] = 0;
-    }
 
   while (1)
     {
@@ -50,9 +59,9 @@ void Socket::runMultiClient()
       FD_SET(_fd, &_master);
       max_sd = _fd;
 
-      for (int i = 0; i < 30; i++)
+      for (std::list<Client>::iterator it = _clients.begin(); it != _clients.end(); it++)
 	{
-	  sd = client_socket[i];
+	  sd = it->getFd();
 	  if (sd > 0)
 	    {
 	       FD_SET(sd, &_master);
@@ -68,32 +77,26 @@ void Socket::runMultiClient()
 	  client_fd = accept(_fd, (struct sockaddr *)&_client, (socklen_t *)&_client_size);
 
 	  send(client_fd, "hello\r\n", strlen("hello\r\n"), 0);
-	  for (int i = 0; i < 30; i++)
-	    {
-	      if (client_socket[i] == 0)
-		{
-		  client_socket[i] = client_fd;
-		  FD_SET(client_fd, &_master);
-		  break;
-		}
-	    }
+	  _clients.push_back(Client(client_fd));
+	  FD_SET(client_fd, &_master);
 	}
-      for (int i = 0; i < 30; i++)
+      for (std::list<Client>::iterator it = _clients.begin(); it != _clients.end(); it++)
 	{
-	  sd = client_socket[i];
+	  sd = it->getFd();
 	  if (FD_ISSET(sd, &_master))
 	    {
-	      if (read(sd, _buffer, 100))
+	      buffer = Socket::readClient(sd);
+	      if (!buffer.empty())
 		{
-		  std::cout << "client " << sd << "message : " << _buffer << std::endl;
+		  std::cout << "client " << sd << "message : " << buffer << std::endl;
 		}
 	      else
 		{
 		  /*if (close(client_fd) == -1)
 		    return (1);
-		    client_socket[i] = 0;*/
+		    */
 		}
-	      memset(&_buffer, 0, strlen(_buffer));
+	  
 	    }
 	}
     }

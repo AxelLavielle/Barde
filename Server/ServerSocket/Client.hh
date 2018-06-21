@@ -4,9 +4,10 @@
 class Client
 {
 private:
-  int	_fd;
+  int		_fd;
 public:
   Client(int fd);
+  const int	getFd();
 };
 
 #endif /* __CLIENT__HH__*/
