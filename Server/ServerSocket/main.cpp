@@ -4,5 +4,7 @@ int	main()
 {
   Server s;
 
-  s.runServer();
+  if ((s.runServer()) == 1)
+    return (1);
+  return (0);
 }

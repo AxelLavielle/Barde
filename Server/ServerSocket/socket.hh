@@ -15,7 +15,7 @@
 #include <list>
 #include "Client.hh"
 #include <string>
-
+#include <cerrno>
 class Socket
 {
 private:
@@ -28,6 +28,8 @@ private:
   socklen_t		_client_size;
   char			_buffer[30];
   fd_set		_master;
+  char			*_message;
+  unsigned long		_sizeOfMessage;
 public:
   Socket();
   int			StartSocket();
@@ -36,7 +38,9 @@ public:
   int			fdIsSet(int fd);
   void			addFdAndsetMax(int sd);
   int			closeFd(int fd);
-  int			readClient(int client_fd, char *str, int *size);
+  int			readClient(int client_fd);
+  char			*getLastMessage();
+  unsigned long		getLastSizeOfMessage();
 };
 
 #endif /* __SOCKET__HH__*/

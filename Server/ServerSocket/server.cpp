@@ -7,7 +7,8 @@ Server::Server()
 
 int	Server::runServer()
 {
-  _so.StartSocket();
+  if (_so.StartSocket() == 1)
+    return (1);
   while (1)
     {
       _so.initFd();
@@ -17,31 +18,29 @@ int	Server::runServer()
 	{
 	  _so.addFdAndsetMax(it->getFd());
 	}
-      _so.handleEntries(&_clients, "hello\r\n");
+      if ((_so.handleEntries(&_clients, "hello\r\n")) == 1)
+	return (1);
       
       std::list<Client>::iterator it = _clients.begin();      
       while (it != _clients.end())
 	{
-	  
 	  sd = it->getFd();
 	  if (_so.fdIsSet(sd))
 	    {
-	      char *str;
-	      int size = 0;
-	      str = (char *)malloc(1 * sizeof(char*));
-	      int len = _so.readClient(sd, str, &size);
-	      if (size > 0)
+
+	      if ((_so.readClient(sd)) == 1)
+		return (1);
+	      if (_so.getLastSizeOfMessage() > 0)
 		{
-		  //std::cout << "message recu: " << str << "pour size = " << size << std::endl;
-		  _cm.parseMessage(str, *it, size);
-		  free(str);
+		  _cm.parseMessage(_so.getLastMessage(), *it, _so.getLastSizeOfMessage());
 		  it++;
 		}
 	      else
 		{
 		  std::cout << "client " << sd << "est partie" << std::endl;
-		  _cm.disconnectClient(*it);
-		  _so.closeFd(sd);
+		  //_cm.disconnectClient(*it);
+		  if ((_so.closeFd(sd)) == 1)
+		    return (1);
 		  _clients.erase(it++);
 		}
 	    }
