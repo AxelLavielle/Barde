@@ -20,7 +20,6 @@ LoginComponent::LoginComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager)
 	int y = getParentHeight();
 
 	setSize(getParentWidth(), getParentHeight() - 10);
-	//_currentTheme = Theme::getInstance();
 	Theme::getInstance().parseTheme("../Themes/Dark");
 
 
@@ -51,7 +50,6 @@ LoginComponent::LoginComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager)
 
 	addAndMakeVisible(_errorText);
 	_errorText.setText("", juce::NotificationType::dontSendNotification);
-	_errorText.setColour(Label::textColourId, Colours::red);
 	_errorText.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 - SPACE_BETWEEN - SPACE_BETWEEN, BOX_WIDTH, BOX_HEIGHT);
 
 	addAndMakeVisible(_loginButton);
@@ -139,7 +137,7 @@ void LoginComponent::paint(Graphics& g)
 	//	int rectX;
 	//	int rectY;
 
-	imgH = (LOGO_HEIGHT);
+	imgH = (LOGO_HEIGHT_LOGIN);
 	imgW = (LOGO_WIDTH);
 
 	imgX = (getWidth() / 2) - (imgW / 2);
@@ -152,10 +150,13 @@ void LoginComponent::paint(Graphics& g)
 	Image logo = ImageCache::getFromMemory(BinaryData::logo_png,
 		BinaryData::logo_pngSize);
 	g.drawImage(logo, imgX, imgY, (int)imgW, (int)imgH, 0, 0, 1024, 927, false);
+
 }
 
 void LoginComponent::ThemeChanged()
 {
+	_errorText.setColour(Label::textColourId, Colour(Theme::getInstance().getErrorTextColor()));
+	
 	String tmp = _textEditor1.getText();
 	_textEditor1.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
 	_textEditor1.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
@@ -179,8 +180,10 @@ void LoginComponent::ThemeChanged()
 
 	_loginButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
 	_loginButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
+	_loginButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
 	_signinButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
 	_signinButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
+	_signinButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
 	this->repaint();
 }
 

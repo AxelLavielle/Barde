@@ -38,7 +38,7 @@ UserRegistration::UserRegistration(CmdManager & cmdManager) : _cmdManager(cmdMan
 
 	addAndMakeVisible(_dateOfBirthTextEditor);
 	_dateOfBirthTextEditor.setText("");
-	_dateOfBirthTextEditor.setTextToShowWhenEmpty("Format: dd/mm/yyyy", juce::Colours::aqua);
+	_dateOfBirthTextEditor.setTextToShowWhenEmpty("Format: dd/mm/yyyy", Colour(Theme::getInstance().getClueColor()));
 
 	addAndMakeVisible(_passwordTextEditor);
 	_passwordTextEditor.setText("");
@@ -94,10 +94,6 @@ UserRegistration::UserRegistration(CmdManager & cmdManager) : _cmdManager(cmdMan
 	_passwordConfirmationLabel.attachToComponent(&_passwordConfirmationTextEditor, true);
 	_passwordConfirmationLabel.setJustificationType(Justification::right);
 
-	addAndMakeVisible(_errorText);
-	_errorText.setText("", juce::NotificationType::dontSendNotification);
-	_errorText.setColour(Label::textColourId, Colours::red);
-	_errorText.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN * 3, BOX_WIDTH, BOX_HEIGHT);
 
 	addAndMakeVisible(_saveButton);
 	_saveButton.setButtonText("Sign up");
@@ -110,6 +106,11 @@ UserRegistration::UserRegistration(CmdManager & cmdManager) : _cmdManager(cmdMan
 	_cancelButton.setName("cancel");
 	_cancelButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN + SPACE_BETWEEN + 100, BOX_WIDTH, BOX_HEIGHT);
 	_cancelButton.addListener(this);
+
+	addAndMakeVisible(_errorText);
+	_errorText.setText("", juce::NotificationType::dontSendNotification);
+	_errorText.setColour(Label::textColourId, Colour(Theme::getInstance().getErrorTextColor()));
+	_errorText.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN * 3, BOX_WIDTH, BOX_HEIGHT);
 
 
 	/*
@@ -207,7 +208,9 @@ void UserRegistration::ThemeChanged()
 
 	_saveButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
 	_saveButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
+	_saveButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
 	_cancelButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
+	_cancelButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
 	_cancelButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
 	this->repaint();
 }

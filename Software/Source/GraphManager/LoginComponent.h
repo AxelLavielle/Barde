@@ -17,11 +17,11 @@
 #include "../CmdManager.hh"
 #include "AComponent.hh"
 
-#ifndef  LOGO_WIDTH
-#define LOGO_WIDTH 1024 / 3
+#ifndef  LOGO_WIDTH_LOGIN
+#define LOGO_WIDTH_LOGIN 1024 / 3
 #endif
-#ifndef  LOGO_HEIGHT
-#define LOGO_HEIGHT 927 / 3
+#ifndef  LOGO_HEIGHT_LOGIN
+#define LOGO_HEIGHT_LOGIN 927 / 3
 #endif
 #define BOX_WIDTH 400
 #define BOX_HEIGHT 30

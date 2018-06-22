@@ -1,6 +1,12 @@
 Example of Theme File
 
 Name
-Background color in hexadecimal
+Background color in hexadecimal (ex: 0xFFFFFFFF)
 Button color in hexadecimal
+Button Font color in hexadecimal
 Font color in hexadecimal
+Slider On color in hexadecimal
+Slider Off color in hexadecimal
+Slider Pointer color in hexadecimal
+Clue color in hexadecimal
+Error Text color in hexadecimal

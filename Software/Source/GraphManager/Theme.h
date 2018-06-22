@@ -79,6 +79,18 @@ public:
 	*/
 	int getButtonFontColor();
 
+	int getSliderOnColor();
+
+	int getSliderOffColor();
+
+	int getSliderPointerColor();
+
+	int getClueColor();
+
+	int getErrorTextColor();
+
+
+
 	/*!
 	*  \brief name getter
 	*
@@ -125,6 +137,18 @@ public:
 	*/
 	void setButtonFontColor(int color);
 
+	void setSliderOnColor(int color);
+
+	void setSliderOffColor(int color);
+
+	void setSliderPointerColor(int color);
+
+	void setClueColor(int color);
+
+	void setErrorTextColor(int color);
+
+
+
 	/*!
 	*  \brief name setter
 	*
@@ -151,6 +175,11 @@ private:
 	int _backgroundColor; /*!< background color of the software */
 	int _fontColor; /*!< fontcolor of the software */
 	int _buttonFontColor; /*!< color of the font of the buttons*/
+	int _sliderOnColor;
+	int _sliderOffColor;
+	int _sliderPointerColor;
+	int _clueColor;
+	int _errorTextColor;
 	std::string _name; /*!< name of the theme */
 
 	static Theme _theme;
