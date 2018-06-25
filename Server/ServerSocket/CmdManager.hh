@@ -1,6 +1,8 @@
 #ifndef __CMDMANAGER__HH__
 # define __CMDMANAGER__HH__
 
+#include <map>
+
 #include "Client.hh"
 #include "ThreadPoolGenerator.hh"
 
@@ -16,8 +18,8 @@ private:
   void managePlayerCtrl(int *data);
   void manageDisconnection(int *data);
 
-  std::function<void(int *data)> _cmdFunctions[3];
-  std::function<void(int *data)> _playerCtrlFunctions[4];
+  std::map<int, std::function<void(int *data) > > _cmdFunctions;
+  std::map<int, std::function<void(int *data) > > _playerCtrlFunctions;
 
   ThreadPoolGenerator      _threadPool;
 };

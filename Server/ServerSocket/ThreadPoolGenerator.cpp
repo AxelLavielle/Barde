@@ -43,11 +43,9 @@ void ThreadPoolGenerator::generationManager()
 
       if (clients.size() > 0)
       {
-        std::cout << "COUCOU !!!!" << std::endl;
         for (it = clients.begin(); it != clients.end(); ++it)
         {
           midiData = _musicGenerator.createMusic(it->getMp());
-
           send(it->getFd(), midiData.getMidiArray(), midiData.getMidiSize(), MSG_NOSIGNAL);
         }
       }

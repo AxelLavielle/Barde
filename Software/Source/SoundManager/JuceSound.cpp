@@ -121,11 +121,13 @@ bool							SoundManager::play(const Midi &midi, int bpm, bool &stop)
 			std::cout << "Je joue la note qui a le temps : " << msgTime << std::endl;
 			msg.setTimeStamp(Time::getMillisecondCounterHiRes());
 			_synthAudioSource.addMessage(msg);
+      msg.setTimeStamp(Time::getMillisecondCounterHiRes() * 100);
 		}
 		else
 		{
 			msg.setTimeStamp(Time::getMillisecondCounterHiRes());
 			_synthAudioSource.addMessage(msg);
+      msg.setTimeStamp(Time::getMillisecondCounterHiRes() * 100);
 		}
  	}
 	return true;
