@@ -41,6 +41,11 @@ bool RestClient::getToken(const std::string & response)
 	return true;
 }
 
+void RestClient::setToken(const std::string & token)
+{
+	_token = token;
+}
+
 bool RestClient::logout()
 {
 	_isAuthenticated = false;
@@ -174,8 +179,8 @@ std::string RestClient::parseResponse(const std::string &req, int & responseCode
 	if ((posCode = req.find("HTTP/1.1 ")) == std::string::npos) //Manage HTTP error code from server
 		throw RestClientException("Bad response", 501);
 	posEndCode = req.find("\r\n");
-	responseMessageCode = req.substr(posCode + 9, posEndCode - (posCode + 9)); //9 is the lenght of the string "HTTP/1.1 "	
-	responseCode = std::stoi(req.substr(posCode + 9, 3)); //9 is the lenght of the string "HTTP/1.1 ", 3 is the lenght of the HTTP response code (3 digits)	
+	responseMessageCode = req.substr(posCode + 9, posEndCode - (posCode + 9)); //9 is the lenght of the string "HTTP/1.1 "
+	responseCode = std::stoi(req.substr(posCode + 9, 3)); //9 is the lenght of the string "HTTP/1.1 ", 3 is the lenght of the HTTP response code (3 digits)
 	responseMsg = req.substr(posCode + 9 + 4, posEndCode - (posCode + 9 + 4));
 
 	if ((lenPos = req.find("Content-Length: ")) == std::string::npos)

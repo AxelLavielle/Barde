@@ -10,8 +10,9 @@ private:
   MusicParameters	_mp;
 public:
   Client(int fd);
-  const int		getFd();
+  const int		getFd() const;
   MusicParameters	getMp();
+  bool operator==(const Client & lv);
 };
 
 #endif /* __CLIENT__HH__ */

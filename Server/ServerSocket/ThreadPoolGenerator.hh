@@ -10,6 +10,7 @@
 
 #pragma once
 
+#include <list>
 #include <thread>
 #include <mutex>
 
@@ -25,7 +26,7 @@ public:
   void generationManager();
 
 private:
-    std::vector<Client>         _clients;
+    std::list<Client>         _clients;
     std::thread                 _generatorThread;
     std::mutex					        _clientsMutex;
     MusicGenerator              _musicGenerator;

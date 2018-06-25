@@ -5,7 +5,7 @@ Client::Client(int fd)
   _fd = fd;
 }
 
-const int	Client::getFd()
+const int	Client::getFd() const
 {
   return _fd;
 }
@@ -13,4 +13,9 @@ const int	Client::getFd()
 MusicParameters	Client::getMp()
 {
   return _mp;
+}
+
+bool Client::operator==(const Client & lv)
+{
+  return (lv.getFd() == getFd());
 }

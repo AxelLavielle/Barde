@@ -23,6 +23,7 @@ public:
 	~RestClient();
 	virtual void setAddr(const std::string & address, const unsigned int port, unsigned int timeOut = 3000);
 	bool getToken(const std::string & response);
+	void setToken(const std::string & token);
 	bool logout();
 	bool authentificate(const std::string & email, const std::string & password);
 	virtual std::string get(const std::string &uri, int & responseCode, std::string & responseMsg);

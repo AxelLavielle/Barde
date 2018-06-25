@@ -12,6 +12,13 @@ public:
   void  disconnectClient(const Client & client);
 
 private:
+  void manageMusicParameter(int *data);
+  void managePlayerCtrl(int *data);
+  void manageDisconnection(int *data);
+
+  std::function<void(int *data)> _cmdFunctions[3];
+  std::function<void(int *data)> _playerCtrlFunctions[4];
+
   ThreadPoolGenerator      _threadPool;
 };
 

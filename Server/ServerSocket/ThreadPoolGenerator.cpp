@@ -17,17 +17,21 @@ void ThreadPoolGenerator::init()
 
 void ThreadPoolGenerator::addClient(const Client & client)
 {
-    _clients.push_back(client);
+  _clientsMutex.lock();
+  _clients.push_back(client);
+  _clientsMutex.unlock();
 }
 
 void ThreadPoolGenerator::removeClient(const Client & client)
 {
-  _clients.push_back(client);
+  _clientsMutex.lock();
+  _clients.remove(client);
+  _clientsMutex.unlock();
 }
 
 void ThreadPoolGenerator::generationManager()
 {
-  std::vector<Client>::iterator it;
+  std::list<Client>::iterator it;
   Midi midiData;
   while (42)
   {
