@@ -15,8 +15,9 @@
 #include "../MusicParameters.hh"
 #include "FlexGroup.hh"
 #include "../Factories/GuiFactory.hh"
+#include "../ViewManager/FlexView.hh"
 
-class PlayerFooter : public AComponent, private Button::Listener, private Slider::Listener
+class PlayerFooter : public FlexView, private Button::Listener, private Slider::Listener
 {
 public:
 	PlayerFooter(Player & player, MusicParameters &musicParameters);
@@ -32,7 +33,7 @@ private:
 	Player					&_player;
 	MusicParameters			&_musicParameters;
 
-	FlexBox					_flexBox;
+	//FlexBox					_flexBox;
 	FlexGroup				_controlGroup;
 	MusicStyleButton		*_playButton;
 	MusicStyleButton		*_stopButton;

@@ -17,6 +17,7 @@
 #include "AComponent.hh"
 #include "PlayerFooter.hh"
 #include "CenterPanel.hh"
+#include "LoginPanel.hh"
 
 //==============================================================================
 /*
@@ -75,8 +76,11 @@ private:
 	Player					_player; /*!< player >*/
 
 	MusicParameters			_musicParameters;
+	std::vector<AView * >	_currentsPanel;
+
 	PlayerFooter			_playerFooter;
 	CenterPanel				_centerPanel;
+	LoginPanel				_loginPanel;
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };
