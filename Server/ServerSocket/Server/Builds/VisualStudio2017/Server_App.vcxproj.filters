@@ -8,6 +8,9 @@
     <Filter Include="Server\MidiManager">
       <UniqueIdentifier>{3EEDB76F-E677-5ECF-DB07-51620609EFD6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Server\RestClient">
+      <UniqueIdentifier>{5EDDBF57-05E3-AD84-AF94-081AD95448A8}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Server\SoundManager">
       <UniqueIdentifier>{614B5893-9777-08BC-44DE-5AE2D4DE443B}</UniqueIdentifier>
     </Filter>
@@ -240,6 +243,15 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\Software\Source\MidiManager\MidiManager.cpp">
       <Filter>Server\MidiManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Software\Source\RestClient\ARestClient.cpp">
+      <Filter>Server\RestClient</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Software\Source\RestClient\RestClient.cpp">
+      <Filter>Server\RestClient</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Software\Source\RestClient\RestClientException.cpp">
+      <Filter>Server\RestClient</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\Software\Source\SoundManager\ASoundManager.cpp">
       <Filter>Server\SoundManager</Filter>
@@ -1091,6 +1103,18 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Software\Source\MidiManager\MidiManager.hh">
       <Filter>Server\MidiManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Software\Source\RestClient\ARestClient.hh">
+      <Filter>Server\RestClient</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Software\Source\RestClient\IRestClient.hpp">
+      <Filter>Server\RestClient</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Software\Source\RestClient\RestClient.hh">
+      <Filter>Server\RestClient</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Software\Source\RestClient\RestClientException.hh">
+      <Filter>Server\RestClient</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Software\Source\SoundManager\ASoundManager.hh">
       <Filter>Server\SoundManager</Filter>

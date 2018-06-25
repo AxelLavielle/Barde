@@ -44,6 +44,17 @@
       <FILE id="xi4mSP" name="MidiManager.cpp" compile="1" resource="0" file="../../../Software/Source/MidiManager/MidiManager.cpp"/>
       <FILE id="fVZecx" name="MidiManager.hh" compile="0" resource="0" file="../../../Software/Source/MidiManager/MidiManager.hh"/>
     </GROUP>
+    <GROUP id="{08E2D5DD-B81C-0E02-243D-536998EE28CD}" name="RestClient">
+      <FILE id="xjMhZw" name="ARestClient.cpp" compile="1" resource="0" file="../../../Software/Source/RestClient/ARestClient.cpp"/>
+      <FILE id="L7MFxQ" name="ARestClient.hh" compile="0" resource="0" file="../../../Software/Source/RestClient/ARestClient.hh"/>
+      <FILE id="ciKxxX" name="IRestClient.hpp" compile="0" resource="0" file="../../../Software/Source/RestClient/IRestClient.hpp"/>
+      <FILE id="fxW838" name="RestClient.cpp" compile="1" resource="0" file="../../../Software/Source/RestClient/RestClient.cpp"/>
+      <FILE id="okOpHZ" name="RestClient.hh" compile="0" resource="0" file="../../../Software/Source/RestClient/RestClient.hh"/>
+      <FILE id="KtmHhD" name="RestClientException.cpp" compile="1" resource="0"
+            file="../../../Software/Source/RestClient/RestClientException.cpp"/>
+      <FILE id="dK1n09" name="RestClientException.hh" compile="0" resource="0"
+            file="../../../Software/Source/RestClient/RestClientException.hh"/>
+    </GROUP>
     <GROUP id="{C23AA503-71F3-2689-25A0-18B72F7D300D}" name="SoundManager">
       <FILE id="isioi6" name="ASoundManager.cpp" compile="1" resource="0"
             file="../../../Software/Source/SoundManager/ASoundManager.cpp"/>

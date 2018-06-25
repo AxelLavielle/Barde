@@ -9,6 +9,7 @@ int	Server::runServer()
 {
   if (_so.StartSocket() == 1)
     return (1);
+  std::cout << "Server is ready" << std::endl;
   while (1)
     {
       _so.initFd();

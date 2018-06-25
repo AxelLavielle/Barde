@@ -23,6 +23,7 @@ int Socket::StartSocket()
       std::cerr << "failed to create socket" << std::endl;
       return (1);
     }
+  std::cout << "Creating socket TCP protocol" << std::endl;
   if (bind(_fd, (const struct sockaddr *)&_server, sizeof(_server)) == -1)
     {
       std::cerr << "failed to bind" << std::endl;
@@ -33,6 +34,7 @@ int Socket::StartSocket()
 	}
       return (1);
     }
+  std::cout << "binding socket" << std::endl;
 
   if (listen(_fd, 2) == -1)
     {
@@ -44,6 +46,7 @@ int Socket::StartSocket()
 	}
       return (1);
     }
+  std::cout << "listen on port 23" << std::endl;
 
   return (0);
 }
@@ -153,6 +156,8 @@ void	Socket::initFd()
 int	Socket::handleEntries(std::list<Client> *clients, char *msg)
 {
   int client_fd;
+
+  std::cout << "Wating action ..." << std::endl;
   select(_max_sd +1, &_master, NULL, NULL, NULL);
   if (FD_ISSET(_fd, &_master))
     {

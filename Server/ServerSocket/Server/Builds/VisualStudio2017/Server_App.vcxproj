@@ -161,6 +161,9 @@
     <ClCompile Include="..\..\..\..\..\Software\Source\MidiManager\AMidiManager.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\Source\MidiManager\Midi.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\Source\MidiManager\MidiManager.cpp"/>
+    <ClCompile Include="..\..\..\..\..\Software\Source\RestClient\ARestClient.cpp"/>
+    <ClCompile Include="..\..\..\..\..\Software\Source\RestClient\RestClient.cpp"/>
+    <ClCompile Include="..\..\..\..\..\Software\Source\RestClient\RestClientException.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\Source\SoundManager\ASoundManager.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\Source\SoundManager\JuceSound.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\Source\SoundManager\Synthesizer.cpp"/>
@@ -895,6 +898,10 @@
     <ClInclude Include="..\..\..\..\..\Software\Source\MidiManager\Instruments.hh"/>
     <ClInclude Include="..\..\..\..\..\Software\Source\MidiManager\Midi.hh"/>
     <ClInclude Include="..\..\..\..\..\Software\Source\MidiManager\MidiManager.hh"/>
+    <ClInclude Include="..\..\..\..\..\Software\Source\RestClient\ARestClient.hh"/>
+    <ClInclude Include="..\..\..\..\..\Software\Source\RestClient\IRestClient.hpp"/>
+    <ClInclude Include="..\..\..\..\..\Software\Source\RestClient\RestClient.hh"/>
+    <ClInclude Include="..\..\..\..\..\Software\Source\RestClient\RestClientException.hh"/>
     <ClInclude Include="..\..\..\..\..\Software\Source\SoundManager\ASoundManager.hh"/>
     <ClInclude Include="..\..\..\..\..\Software\Source\SoundManager\ISoundManager.hpp"/>
     <ClInclude Include="..\..\..\..\..\Software\Source\SoundManager\JuceSound.hh"/>

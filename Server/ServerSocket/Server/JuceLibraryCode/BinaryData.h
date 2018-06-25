@@ -9,7 +9,7 @@
 namespace BinaryData
 {
     extern const char*   people_json;
-    const int            people_jsonSize = 204;
+    const int            people_jsonSize = 215;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
     const int namedResourceListSize = 1;
