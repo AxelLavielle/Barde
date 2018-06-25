@@ -13,6 +13,8 @@
 #include <list>
 #include <thread>
 #include <mutex>
+#include <sys/types.h>
+#include <sys/socket.h>
 
 #include "Client.hh"
 #include "AI/MusicGenerator.hh"

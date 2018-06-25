@@ -1,6 +1,8 @@
 #ifndef __CLIENT__HH__
 # define __CLIENT__HH__
 
+#include <ctime>
+
 #include "MusicParameters.hh"
 
 class			Client

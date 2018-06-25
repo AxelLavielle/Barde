@@ -32,24 +32,28 @@ void ThreadPoolGenerator::removeClient(const Client & client)
 void ThreadPoolGenerator::generationManager()
 {
   std::list<Client>::iterator it;
+  std::list<Client>           clients;
   Midi midiData;
+
   while (42)
   {
       _clientsMutex.lock();
-      if (_clients.size() > 0)
+      clients = _clients; //This may be improved !!
+      _clientsMutex.unlock();
+
+      if (clients.size() > 0)
       {
         std::cout << "COUCOU !!!!" << std::endl;
-        for (it = _clients.begin(); it != _clients.end(); ++it)
+        for (it = clients.begin(); it != clients.end(); ++it)
         {
           midiData = _musicGenerator.createMusic(it->getMp());
 
-          write(it->getFd(), midiData.getMidiArray(), midiData.getMidiSize());
+          send(it->getFd(), midiData.getMidiArray(), midiData.getMidiSize(), MSG_NOSIGNAL);
         }
       }
       else
       {
         //Need to do a pause
       }
-      _clientsMutex.unlock();
   }
 }
