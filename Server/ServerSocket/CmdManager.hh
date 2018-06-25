@@ -5,6 +5,7 @@
 
 #include "Client.hh"
 #include "ThreadPoolGenerator.hh"
+#include "Instrument.hh"
 
 class CmdManager
 {

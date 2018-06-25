@@ -22,17 +22,41 @@ CmdManager::~CmdManager()
 
 void CmdManager::manageMusicParameter(int *buffer, Client &client, size_t bufferSize)
 {
+  if (bufferSize < 12)
+  {
+    //Need to send an error to the client
+    return;
+  }
   if (buffer[1] == 0x11) //STYLE
   {
-
+    if (buffer[2] == 0x111)
+    {
+      client.getMp().setStyleName("JAZZ");
+    }
+    else if (buffer[2] == 0x211)
+    {
+      client.getMp().setStyleName("BLUES");
+    }
   }
   else if (buffer[1] == 0x21) //CHORD
   {
+    Instrument instru;
 
+    instru.name = ""; //Need to get from request
+    instru.nb = static_cast<NbInstrument>(buffer[2]);
+    instru.channel = 1; //Need to manage that
+    instru.velocity = 100; //Need to get from request
+    client.getMp().addInstrumentChords(instru);
   }
   else if (buffer[1] == 0x31) //AEPEGES
   {
+    Instrument instru;
 
+    instru.name = "";
+    instru.nb = static_cast<NbInstrument>(buffer[2]);
+    instru.channel = 2;
+    instru.velocity = 100;
+    client.getMp().addInstrumentArpeggios(instru);
   }
   else if (buffer[1] == 0x41) //DRUM
   {
@@ -49,6 +73,11 @@ void CmdManager::manageMusicParameter(int *buffer, Client &client, size_t buffer
 
 void CmdManager::managePlayerCtrl(int *buffer, Client &client, size_t bufferSize)
 {
+  if (bufferSize < 8)
+  {
+    //Need to send an error to the client
+    return;
+  }
   try
   {
     (_playerCtrlFunctions.at(buffer[1]))(client);
@@ -74,30 +103,30 @@ void CmdManager::parseMessage(char *buffer, Client &client, size_t bufferSize)
 
   data = (int *)buffer;
 
-  // if (bufferSize <= 4)
-  //   return;
-  // try
-  // {
-  //   (_cmdFunctions.at(buffer[0]))(client);
-  // }
-  // catch (const std::out_of_range & e)
-  // {
-  //   std::cerr << "Error command unknow." << std::endl;
-  //   //Need to send an error to the client !!!
-  //   return;
-  // }
+  if (bufferSize <= 4)
+    return;
+  try
+  {
+    (_cmdFunctions.at(buffer[0]))(data, client, bufferSize);
+  }
+  catch (const std::out_of_range & e)
+  {
+    std::cerr << "Error command unknow." << std::endl;
+    //Need to send an error to the client !!!
+    return;
+  }
 
   //For Debug
-  if (bufferSize > 0 && buffer[0] == 'P')
-  {
-    std::cout << "The client want to play something" << std::endl;
-    _threadPool.addClient(client);
-  }
-  else if (bufferSize > 0 && buffer[0] == 'S')
-  {
-    std::cout << "The client want to stop playing" << std::endl;
-    _threadPool.removeClient(client);
-  }
+  // if (bufferSize > 0 && buffer[0] == 'P')
+  // {
+  //   std::cout << "The client want to play something" << std::endl;
+  //   _threadPool.addClient(client);
+  // }
+  // else if (bufferSize > 0 && buffer[0] == 'S')
+  // {
+  //   std::cout << "The client want to stop playing" << std::endl;
+  //   _threadPool.removeClient(client);
+  // }
   //END debug
 }
 
