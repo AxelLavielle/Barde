@@ -19,37 +19,39 @@ int	Server::runServer()
 	{
 	  _so.addFdAndsetMax(it->getFd());
 	}
-      if ((_so.handleEntries(&_clients, "hello\r\n")) == 1)
+      int entries = _so.handleEntries(&_clients, "hello\r\n");
+      if (entries == 1)
 	return (1);
-      
-      std::list<Client>::iterator it = _clients.begin();      
-      while (it != _clients.end())
+      else if (entries != 2)
 	{
-	  sd = it->getFd();
-	  if (_so.fdIsSet(sd))
+	  std::list<Client>::iterator it = _clients.begin();      
+	  while (it != _clients.end())
 	    {
-
-	      if ((_so.readClient(sd)) == 1)
-		return (1);
-	      if (_so.getLastSizeOfMessage() > 0)
+	      sd = it->getFd();
+	      if (_so.fdIsSet(sd))
 		{
-		  _cm.parseMessage(_so.getLastMessage(), *it, _so.getLastSizeOfMessage());
-		  it++;
+		  
+		  if ((_so.readClient(sd)) == 1)
+		    return (1);
+		  if (_so.getLastSizeOfMessage() > 0)
+		    {
+		      _cm.parseMessage(_so.getLastMessage(), *it, _so.getLastSizeOfMessage());
+		      it++;
+		    }
+		  else
+		    {
+		      std::cout << "client " << sd << "est partie" << std::endl;
+		      _cm.disconnectClient(*it);
+		      if ((_so.closeFd(sd)) == 1)
+			return (1);
+		      _clients.erase(it++);
+		    }
 		}
 	      else
 		{
-		  std::cout << "client " << sd << "est partie" << std::endl;
-		  //_cm.disconnectClient(*it);
-		  if ((_so.closeFd(sd)) == 1)
-		    return (1);
-		  _clients.erase(it++);
+		  it++;
 		}
-	    }
-	  else
-	    {
-	      it++;
 	    }
 	}
     }
-  
 }

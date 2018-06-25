@@ -175,6 +175,7 @@ int	Socket::handleEntries(std::list<Client> *clients, char *msg)
       std::cout << "client " << client_fd << " a rejoin le server" << std::endl;
       clients->push_back(Client(client_fd));
       FD_SET(client_fd, &_master);
+      return (2);
     }
   return (0);
 }
