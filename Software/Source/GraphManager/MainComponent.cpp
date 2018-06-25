@@ -15,10 +15,21 @@ MainContentComponent::MainContentComponent() : _cmdManager(CmdManager::getInstan
 {
 	setSize(getParentWidth(), getParentHeight() - 10);
 
+	_loginPanel.setChangeViewCallback(std::bind(&MainContentComponent::changeViewCallback, this, std::placeholders::_1));
 	_centerPanel.setChangeViewCallback(std::bind(&MainContentComponent::changeViewCallback, this, std::placeholders::_1));
 
-	addAndMakeVisible(_playerFooter);
-	addAndMakeVisible(_centerPanel);
+	//_currentsPanel.push_back(&_loginPanel);
+
+	_currentsPanel.push_back(&_centerPanel);
+	_currentsPanel.push_back(&_playerFooter);
+
+	std::vector<AView * >::iterator	it;
+
+	for (it = _currentsPanel.begin(); it != _currentsPanel.end(); ++it)
+	{
+		addAndMakeVisible(*it);
+	}
+
 	Theme::getInstance().parseTheme("../Theme/Dark");
 	_player.Init();
 }
@@ -39,15 +50,25 @@ void MainContentComponent::resized()
 
 	grid.templateRows = { Track(8_fr), Track(1_fr) }; //Add 2 rows in the grid
 	grid.templateColumns = { Track(1_fr) }; //Add 1 column in the grid
-	grid.items = { GridItem(_centerPanel), GridItem(_playerFooter) }; //Add the two components in the grid
+
+	std::vector<AView * >::iterator	it;
+
+	for (it = _currentsPanel.begin(); it != _currentsPanel.end(); ++it)
+	{
+		grid.items.add(GridItem(*it));
+	}
 
 	grid.performLayout(getLocalBounds());
 }
 
 void MainContentComponent::refresh()
 {
-	_centerPanel.refresh();
-	_playerFooter.refresh();
+	std::vector<AView * >::iterator	it;
+
+	for (it = _currentsPanel.begin(); it != _currentsPanel.end(); ++it)
+	{
+		(*it)->refresh();
+	}
 }
 
 void MainContentComponent::changeViewCallback(std::string viewName)

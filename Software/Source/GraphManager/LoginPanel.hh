@@ -18,6 +18,7 @@ class LoginPanel : public FlexView, private Button::Listener
 {
 public:
 	LoginPanel();
+	void buttonClicked(Button * button) override;
 
 private:
 	LabeledTextBox		_userNameTextBox;
