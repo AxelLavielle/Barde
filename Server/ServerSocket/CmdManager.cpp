@@ -61,6 +61,5 @@ void CmdManager::parseMessage(char *buffer, Client &client, size_t bufferSize)
 
 void CmdManager::disconnectClient(const Client & client)
 {
-  std::cout << "DISCONNECT CLIENT" << std::endl;
   _threadPool.removeClient(client);
 }
