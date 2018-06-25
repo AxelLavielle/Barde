@@ -171,6 +171,7 @@
     <ClCompile Include="..\..\..\Client.cpp"/>
     <ClCompile Include="..\..\..\CmdManager.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\Source\CondVariable.cpp"/>
+    <ClCompile Include="..\..\..\..\..\Software\Source\DateTime.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\Source\FileManager.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\Source\Instrument.cpp"/>
     <ClCompile Include="..\..\JsoncppLibrary\jsoncpp.cpp"/>
@@ -181,6 +182,7 @@
     <ClCompile Include="..\..\..\socket.cpp"/>
     <ClCompile Include="..\..\..\ThreadPoolGenerator.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\Source\Tools.cpp"/>
+    <ClCompile Include="..\..\..\..\..\Software\Source\User.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -910,6 +912,7 @@
     <ClInclude Include="..\..\..\Client.hh"/>
     <ClInclude Include="..\..\..\CmdManager.hh"/>
     <ClInclude Include="..\..\..\..\..\Software\Source\CondVariable.hh"/>
+    <ClInclude Include="..\..\..\..\..\Software\Source\DateTime.hh"/>
     <ClInclude Include="..\..\..\..\..\Software\Source\FileManager.hh"/>
     <ClInclude Include="..\..\..\..\..\Software\Source\Instrument.hh"/>
     <ClInclude Include="..\..\..\..\..\Software\Source\MusicParameters.hh"/>
@@ -917,6 +920,7 @@
     <ClInclude Include="..\..\..\socket.hh"/>
     <ClInclude Include="..\..\..\ThreadPoolGenerator.hh"/>
     <ClInclude Include="..\..\..\..\..\Software\Source\Tools.hh"/>
+    <ClInclude Include="..\..\..\..\..\Software\Source\User.hh"/>
     <ClInclude Include="..\..\..\..\..\Software\JuceLibraryCode\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h"/>
     <ClInclude Include="..\..\..\..\..\Software\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioChannelSet.h"/>
     <ClInclude Include="..\..\..\..\..\Software\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h"/>

@@ -91,6 +91,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/Client_8748ff2f.o \
   $(JUCE_OBJDIR)/CmdManager_136ea8f7.o \
   $(JUCE_OBJDIR)/CondVariable_9f84e5ce.o \
+  $(JUCE_OBJDIR)/DateTime_9f56a0ab.o \
   $(JUCE_OBJDIR)/FileManager_bb5feb0b.o \
   $(JUCE_OBJDIR)/Instrument_5dba4437.o \
   $(JUCE_OBJDIR)/jsoncpp_d54fdfa1.o \
@@ -101,6 +102,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/socket_d09e3ab7.o \
   $(JUCE_OBJDIR)/ThreadPoolGenerator_8cb91693.o \
   $(JUCE_OBJDIR)/Tools_9ad28915.o \
+  $(JUCE_OBJDIR)/User_92b6ea5b.o \
   $(JUCE_OBJDIR)/BinaryData_ce4232d4.o \
   $(JUCE_OBJDIR)/include_juce_audio_basics_8a4e984a.o \
   $(JUCE_OBJDIR)/include_juce_audio_devices_63111d02.o \
@@ -235,6 +237,11 @@ $(JUCE_OBJDIR)/CondVariable_9f84e5ce.o: ../../../../../Software/Source/CondVaria
 	@echo "Compiling CondVariable.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/DateTime_9f56a0ab.o: ../../../../../Software/Source/DateTime.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling DateTime.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/FileManager_bb5feb0b.o: ../../../../../Software/Source/FileManager.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling FileManager.cpp"
@@ -283,6 +290,11 @@ $(JUCE_OBJDIR)/ThreadPoolGenerator_8cb91693.o: ../../../ThreadPoolGenerator.cpp
 $(JUCE_OBJDIR)/Tools_9ad28915.o: ../../../../../Software/Source/Tools.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling Tools.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/User_92b6ea5b.o: ../../../../../Software/Source/User.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling User.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/BinaryData_ce4232d4.o: ../../JuceLibraryCode/BinaryData.cpp

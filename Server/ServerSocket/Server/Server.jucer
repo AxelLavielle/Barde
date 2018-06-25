@@ -79,6 +79,8 @@
     <FILE id="PrCrq4" name="CondVariable.cpp" compile="1" resource="0"
           file="../../../Software/Source/CondVariable.cpp"/>
     <FILE id="yDH87L" name="CondVariable.hh" compile="0" resource="0" file="../../../Software/Source/CondVariable.hh"/>
+    <FILE id="vB6Gdo" name="DateTime.cpp" compile="1" resource="0" file="../../../Software/Source/DateTime.cpp"/>
+    <FILE id="EnI1u7" name="DateTime.hh" compile="0" resource="0" file="../../../Software/Source/DateTime.hh"/>
     <FILE id="DZb2Hp" name="FileManager.cpp" compile="1" resource="0" file="../../../Software/Source/FileManager.cpp"/>
     <FILE id="iqDApJ" name="FileManager.hh" compile="0" resource="0" file="../../../Software/Source/FileManager.hh"/>
     <FILE id="cgV3sx" name="Instrument.cpp" compile="1" resource="0" file="../../../Software/Source/Instrument.cpp"/>
@@ -100,6 +102,8 @@
           file="../ThreadPoolGenerator.hh"/>
     <FILE id="o020Av" name="Tools.cpp" compile="1" resource="0" file="../../../Software/Source/Tools.cpp"/>
     <FILE id="N0hSa5" name="Tools.hh" compile="0" resource="0" file="../../../Software/Source/Tools.hh"/>
+    <FILE id="wTo3Pc" name="User.cpp" compile="1" resource="0" file="../../../Software/Source/User.cpp"/>
+    <FILE id="QSMDtO" name="User.hh" compile="0" resource="0" file="../../../Software/Source/User.hh"/>
   </MAINGROUP>
   <EXPORTFORMATS>
     <VS2017 targetFolder="Builds/VisualStudio2017">

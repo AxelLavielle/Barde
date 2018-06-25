@@ -274,6 +274,9 @@
     <ClCompile Include="..\..\..\..\..\Software\Source\CondVariable.cpp">
       <Filter>Server</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Software\Source\DateTime.cpp">
+      <Filter>Server</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\Software\Source\FileManager.cpp">
       <Filter>Server</Filter>
     </ClCompile>
@@ -302,6 +305,9 @@
       <Filter>Server</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\Software\Source\Tools.cpp">
+      <Filter>Server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Software\Source\User.cpp">
       <Filter>Server</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\Software\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
@@ -1140,6 +1146,9 @@
     <ClInclude Include="..\..\..\..\..\Software\Source\CondVariable.hh">
       <Filter>Server</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Software\Source\DateTime.hh">
+      <Filter>Server</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\Software\Source\FileManager.hh">
       <Filter>Server</Filter>
     </ClInclude>
@@ -1159,6 +1168,9 @@
       <Filter>Server</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Software\Source\Tools.hh">
+      <Filter>Server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Software\Source\User.hh">
       <Filter>Server</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Software\JuceLibraryCode\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h">
