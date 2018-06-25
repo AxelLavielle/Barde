@@ -10,16 +10,17 @@ class CmdManager
 {
 public:
   CmdManager();
+  ~CmdManager();
   void	parseMessage(char *buffer, Client &client, size_t bufferSize);
   void  disconnectClient(const Client & client);
 
 private:
-  void manageMusicParameter(int *data);
-  void managePlayerCtrl(int *data);
-  void manageDisconnection(int *data);
+  void manageMusicParameter(int *buffer, Client &client, size_t bufferSize);
+  void managePlayerCtrl(int *buffer, Client &client, size_t bufferSize);
+  void manageDisconnection(int *buffer, Client &client, size_t bufferSize);
 
-  std::map<int, std::function<void(int *data) > > _cmdFunctions;
-  std::map<int, std::function<void(int *data) > > _playerCtrlFunctions;
+  std::map<int, std::function<void(int *buffer, Client &client, size_t bufferSize) > > _cmdFunctions;
+  std::map<int, std::function<void(Client &client) > > _playerCtrlFunctions;
 
   ThreadPoolGenerator      _threadPool;
 };

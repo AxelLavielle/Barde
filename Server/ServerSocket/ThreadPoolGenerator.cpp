@@ -10,6 +10,16 @@
 
 #include "ThreadPoolGenerator.hh"
 
+ThreadPoolGenerator::ThreadPoolGenerator()
+{
+
+}
+
+ThreadPoolGenerator::~ThreadPoolGenerator()
+{
+
+}
+
 void ThreadPoolGenerator::init()
 {
   _generatorThread = std::thread(&ThreadPoolGenerator::generationManager, this);

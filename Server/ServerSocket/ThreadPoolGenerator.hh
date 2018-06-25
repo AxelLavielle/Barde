@@ -22,6 +22,8 @@
 class ThreadPoolGenerator
 {
 public:
+  ThreadPoolGenerator();
+  ~ThreadPoolGenerator();
   void init();
   void addClient(const Client & client);
   void removeClient(const Client & client);
