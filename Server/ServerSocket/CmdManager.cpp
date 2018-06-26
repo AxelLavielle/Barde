@@ -10,8 +10,8 @@ CmdManager::CmdManager()
 
   _playerCtrlFunctions[0x12] = std::bind(&ThreadPoolGenerator::addClient, &_threadPool, std::placeholders::_1);
   _playerCtrlFunctions[0x22] = std::bind(&ThreadPoolGenerator::removeClient, &_threadPool, std::placeholders::_1);
-  // _playerCtrlFunctions[0x32] = std::bind(&ThreadPoolGenerator::addClient, _threadPool, std::placeholders::_1);
-  // _playerCtrlFunctions[0x42] = std::bind(&ThreadPoolGenerator::addClient, _threadPool, std::placeholders::_1);
+  _playerCtrlFunctions[0x32] = std::bind(&ThreadPoolGenerator::removeClient, &_threadPool, std::placeholders::_1); //Pause not implemented in the IA
+  _playerCtrlFunctions[0x42] = std::bind(&ThreadPoolGenerator::refreshClient, &_threadPool, std::placeholders::_1);
 
 }
 

@@ -15,6 +15,8 @@ Client::Client(int fd)
   _mp.addInstrumentArpeggios(instru);
   _mp.setStyleName("Blues");
   srand(_mp.getSeed()); //Need to change that
+
+  _nbGeneration = 0;
 }
 
 const int	Client::getFd() const
@@ -30,4 +32,19 @@ MusicParameters	Client::getMp()
 bool Client::operator==(const Client & lv)
 {
   return (lv.getFd() == getFd());
+}
+
+void Client::addGeneration()
+{
+  _nbGeneration += 1;
+}
+
+void Client::refreshGeneration()
+{
+  _nbGeneration = 0;
+}
+
+bool Client::needGeneration()
+{
+  return (_nbGeneration < 5); //5 is arbritary
 }

@@ -58,7 +58,6 @@ void ThreadPoolGenerator::generationManager()
         for (it = clients.begin(); it != clients.end(); ++it)
         {
           midiData = _musicGenerator.createMusic(it->getMp());
-          //Need to add \r\n
 
           char *tmp = new char[midiData.getMidiSize() + 2];
 
@@ -75,4 +74,16 @@ void ThreadPoolGenerator::generationManager()
         _condVar.wait();
       }
   }
+}
+
+void ThreadPoolGenerator::refreshClient(const Client & client)
+{
+  std::list<Client>::iterator it;
+
+  _clientsMutex.lock();
+  for (it = _clients.begin(); it != _clients.end(); ++it)
+  {
+    *it = client;
+  }
+  _clientsMutex.unlock();
 }

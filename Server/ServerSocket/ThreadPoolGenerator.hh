@@ -29,6 +29,7 @@ public:
   void addClient(const Client & client);
   void removeClient(const Client & client);
   void generationManager();
+  void refreshClient(const Client & client);
 
 private:
     std::list<Client>           _clients;
