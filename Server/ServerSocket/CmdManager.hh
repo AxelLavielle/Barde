@@ -19,6 +19,7 @@ private:
   void manageMusicParameter(int *buffer, Client &client, size_t bufferSize);
   void managePlayerCtrl(int *buffer, Client &client, size_t bufferSize);
   void manageDisconnection(int *buffer, Client &client, size_t bufferSize);
+  void sendResponseMessage(const int responseCode, const Client & client, const std::string & message);
 
   std::map<int, std::function<void(int *buffer, Client &client, size_t bufferSize) > > _cmdFunctions;
   std::map<int, std::function<void(Client &client) > > _playerCtrlFunctions;

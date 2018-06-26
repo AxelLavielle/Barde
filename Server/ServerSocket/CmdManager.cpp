@@ -20,11 +20,20 @@ CmdManager::~CmdManager()
 
 }
 
+void CmdManager::sendResponseMessage(const int responseCode, const Client & client, const std::string & message)
+{
+  int *msg = new int[1 + (message.length() / 4)];
+
+  msg[0] = responseCode;
+  memcpy(&msg[1], message.c_str(), message.length());
+  send(client.getFd(), msg, message.length(), MSG_NOSIGNAL);
+}
+
 void CmdManager::manageMusicParameter(int *buffer, Client &client, size_t bufferSize)
 {
   if (bufferSize < 12)
   {
-    //Need to send an error to the client
+    sendResponseMessage(0x1F4, client, "Bad Request : bad format for music parameter request.");
     return;
   }
   if (buffer[1] == 0x11) //STYLE
@@ -75,7 +84,7 @@ void CmdManager::managePlayerCtrl(int *buffer, Client &client, size_t bufferSize
 {
   if (bufferSize < 8)
   {
-    //Need to send an error to the client
+    sendResponseMessage(0x1F4, client, "Bad Request : bad format for player control request.");
     return;
   }
   try
@@ -85,7 +94,7 @@ void CmdManager::managePlayerCtrl(int *buffer, Client &client, size_t bufferSize
   catch (const std::out_of_range & e)
   {
     std::cerr << "Error Player control command unknow." << std::endl;
-    //Need to send an error to the client !!!
+    sendResponseMessage(0x1F4, client, "Bad Request : Player control command unknow.");
   }
 }
 
@@ -112,7 +121,7 @@ void CmdManager::parseMessage(char *buffer, Client &client, size_t bufferSize)
   catch (const std::out_of_range & e)
   {
     std::cerr << "Error command unknow." << std::endl;
-    //Need to send an error to the client !!!
+    sendResponseMessage(0x1F4, client, "Bad Request : command unknow.");
     return;
   }
 

@@ -30,7 +30,7 @@ public:
   void generationManager();
 
 private:
-    std::list<Client>         _clients;
+    std::list<Client>           _clients;
     std::thread                 _generatorThread;
     std::mutex					        _clientsMutex;
     MusicGenerator              _musicGenerator;
