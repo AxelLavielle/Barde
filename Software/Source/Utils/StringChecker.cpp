@@ -94,7 +94,39 @@ bool StringChecker::isDateInPast(const std::string &date)
 	}
 
 
+	bool StringChecker::isPasswordValid(const std::string &password)
+	{
+		const std::regex pattern("^(?=.[a-z])(?=.[A-Z])(?=.\\d)(?=.[^A-Za-z\\d])[\\s\\S]{8,}$");
+		return std::regex_match(password, pattern);
+	}
 
+	bool StringChecker::isPasswordLongEnough(const std::string &password)
+	{
+		const std::regex pattern("^.{8,}$");
+		return std::regex_match(password, pattern);
+	}
 
+	bool StringChecker::containsUppercase(const std::string &password)
+	{
+		const std::regex pattern("^(?=.*[A-Z]).+$");
+		return std::regex_match(password, pattern);
+	}
 
+	bool StringChecker::containsLowercase(const std::string &password)
+	{
+		const std::regex pattern("^(?=.*[a-z]).+$");
+		return std::regex_match(password, pattern);
+	}
+
+	bool StringChecker::containsNumber(const std::string &password)
+	{
+		const std::regex pattern("^(?=.*\\d).+$");
+		return std::regex_match(password, pattern);
+	}
+
+	bool StringChecker::containsSpecialChar(const std::string &password)
+	{
+		const std::regex pattern("^(?=.*[^A-Za-z\\d]).+$");
+		return std::regex_match(password, pattern);
+	}
 

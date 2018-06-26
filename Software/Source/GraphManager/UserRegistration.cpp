@@ -110,7 +110,7 @@ UserRegistration::UserRegistration(CmdManager & cmdManager) : _cmdManager(cmdMan
 	addAndMakeVisible(_errorText);
 	_errorText.setText("", juce::NotificationType::dontSendNotification);
 	_errorText.setColour(Label::textColourId, Colour(Theme::getInstance().getErrorTextColor()));
-	_errorText.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN * 3, BOX_WIDTH, BOX_HEIGHT);
+	_errorText.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN * 3, 1000, BOX_HEIGHT);
 
 
 	/*
@@ -270,6 +270,42 @@ void UserRegistration::signin(const User & user)
 	if (password == "")
 	{
 		_errorText.setText("Password can't be empty", dontSendNotification);
+		return;
+	}
+
+	/*if (!(StringChecker::isPasswordValid(password.toStdString())))
+	{
+		_errorText.setText("Error Password must be 8 characters long, \ncontain an uppercase letter, one number and one special character", dontSendNotification);
+		return;
+	}*/
+
+	if (!(StringChecker::isPasswordLongEnough(password.toStdString())))
+	{
+		_errorText.setText("Password should be at least 8 characters long", dontSendNotification);
+		return;
+	}
+
+	if (!(StringChecker::containsLowercase(password.toStdString())))
+	{
+		_errorText.setText("Password should contain at least one lowercase letter", dontSendNotification);
+		return;
+	}
+
+	if (!(StringChecker::containsUppercase(password.toStdString())))
+	{
+		_errorText.setText("Password should contain at least one uppercase letter", dontSendNotification);
+		return;
+	}
+
+	if (!(StringChecker::containsNumber(password.toStdString())))
+	{
+		_errorText.setText("Password should contain at least one number", dontSendNotification);
+		return;
+	}
+
+	if (!(StringChecker::containsSpecialChar(password.toStdString())))
+	{
+		_errorText.setText("Password should contain at least one special character", dontSendNotification);
 		return;
 	}
 

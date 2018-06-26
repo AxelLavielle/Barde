@@ -216,8 +216,9 @@ void GuiFactory::initLabeledTextBox(const std::string & labelText, const std::st
 	textBox.setText(boxText);
 }
 
-void GuiFactory::initLabeledTextBoxPassword(const std::string & labelText, const juce_wchar & boxText, LabeledTextBox & textBox)
+void GuiFactory::initLabeledTextBoxPassword(const std::string & labelText, const std::string & boxText, const juce_wchar & character, LabeledTextBox & textBox)
 {
 	textBox.setLabelText(labelText);
-	textBox.setPasswordCharacter(boxText);
+	textBox.setText(boxText);
+	textBox.setPasswordCharacter(character);
 }

@@ -80,10 +80,10 @@ void UserParamsPanel::initTextBoxes()
 	GuiFactory::initLabeledTextBox("Date of birth", dateUser, _dateOfBirthTextBox);
 	addFlexItem(_dateOfBirthTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
-	GuiFactory::initLabeledTextBoxPassword("New password (optional)", (juce_wchar)0x2022, _passwordTextBox);
+	GuiFactory::initLabeledTextBoxPassword("New password (optional)", "", (juce_wchar)0x2022, _passwordTextBox);
 	addFlexItem(_passwordTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
-	GuiFactory::initLabeledTextBoxPassword("New password confirmation (optional)", (juce_wchar)0x2022, _passwordConfirmationTextBox);
+	GuiFactory::initLabeledTextBoxPassword("New password confirmation (optional)", "", (juce_wchar)0x2022, _passwordConfirmationTextBox);
 	addFlexItem(_passwordConfirmationTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 }
 

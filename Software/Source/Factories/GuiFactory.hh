@@ -69,7 +69,7 @@ public:
 	static void initSlider(const float min, const float max, const float value, Slider & slider);
 
 	static void initLabeledTextBox(const std::string & labelText, const std::string &boxText, LabeledTextBox & textBox);
-	static void initLabeledTextBoxPassword(const std::string & labelText, const juce_wchar &boxText, LabeledTextBox & textBox);
+	static void initLabeledTextBoxPassword(const std::string & labelText, const std::string & boxText, const juce_wchar &character, LabeledTextBox & textBox);
 };
 
 #endif
