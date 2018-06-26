@@ -22,18 +22,18 @@ CmdManager::~CmdManager()
 
 void CmdManager::sendResponseMessage(const int responseCode, const Client & client, const std::string & message)
 {
-  int *msg = new int[2 + message.length() / 4];
+  int *msg = new int[2 + message.length() / sizeof(int)];
 
   msg[0] = responseCode;
   std::memcpy(&msg[1], message.c_str(), message.length());
-  send(client.getFd(), msg, 4 + message.length(), MSG_NOSIGNAL);
+  send(client.getFd(), msg, sizeof(int) + message.length(), MSG_NOSIGNAL);
 }
 
 void CmdManager::manageMusicParameter(int *buffer, Client &client, size_t bufferSize)
 {
   if (bufferSize < 12)
   {
-    sendResponseMessage(0x1F4, client, "Bad Request : bad format for music parameter request.");
+    sendResponseMessage(0x1F4, client, "Bad Request : bad format for music parameter request.\r\n");
     return;
   }
   if (buffer[1] == 0x11) //STYLE
@@ -84,7 +84,7 @@ void CmdManager::managePlayerCtrl(int *buffer, Client &client, size_t bufferSize
 {
   if (bufferSize < 8)
   {
-    sendResponseMessage(0x1F4, client, "Bad Request : bad format for player control request.");
+    sendResponseMessage(0x1F4, client, "Bad Request : bad format for player control request.\r\n");
     return;
   }
   try
@@ -94,7 +94,7 @@ void CmdManager::managePlayerCtrl(int *buffer, Client &client, size_t bufferSize
   catch (const std::out_of_range & e)
   {
     std::cerr << "Error Player control command unknow." << std::endl;
-    sendResponseMessage(0x1F4, client, "Bad Request : Player control command unknow.");
+    sendResponseMessage(0x1F4, client, "Bad Request : Player control command unknow.\r\n");
   }
 }
 
@@ -112,34 +112,34 @@ void CmdManager::parseMessage(char *buffer, Client &client, size_t bufferSize)
 
   data = (int *)buffer;
 
-  if (bufferSize <= 4)
-  {
-    std::cerr << "Error request size too small." << std::endl;
-    sendResponseMessage(0x1F4, client, "Bad Request : request size too small.");
-    return;
-  }
-  try
-  {
-    (_cmdFunctions.at(buffer[0]))(data, client, bufferSize);
-  }
-  catch (const std::out_of_range & e)
-  {
-    std::cerr << "Error command unknow." << std::endl;
-    sendResponseMessage(0x1F4, client, "Bad Request : command unknow.");
-    return;
-  }
+  // if (bufferSize <= 4)
+  // {
+  //   std::cerr << "Error request size too small." << std::endl;
+  //   sendResponseMessage(0x1F4, client, "Bad Request : request size too small.\r\n");
+  //   return;
+  // }
+  // try
+  // {
+  //   (_cmdFunctions.at(buffer[0]))(data, client, bufferSize);
+  // }
+  // catch (const std::out_of_range & e)
+  // {
+  //   std::cerr << "Error command unknow." << std::endl;
+  //   sendResponseMessage(0x1F4, client, "Bad Request : command unknow.\r\n");
+  //   return;
+  // }
 
   //For Debug
-  // if (bufferSize > 0 && buffer[0] == 'P')
-  // {
-  //   std::cout << "The client want to play something" << std::endl;
-  //   _threadPool.addClient(client);
-  // }
-  // else if (bufferSize > 0 && buffer[0] == 'S')
-  // {
-  //   std::cout << "The client want to stop playing" << std::endl;
-  //   _threadPool.removeClient(client);
-  // }
+  if (bufferSize > 0 && buffer[0] == 'P')
+  {
+    std::cout << "The client want to play something" << std::endl;
+    _threadPool.addClient(client);
+  }
+  else if (bufferSize > 0 && buffer[0] == 'S')
+  {
+    std::cout << "The client want to stop playing" << std::endl;
+    _threadPool.removeClient(client);
+  }
   //END debug
 }
 

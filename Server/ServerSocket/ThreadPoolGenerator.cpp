@@ -56,7 +56,16 @@ void ThreadPoolGenerator::generationManager()
         for (it = clients.begin(); it != clients.end(); ++it)
         {
           midiData = _musicGenerator.createMusic(it->getMp());
-          send(it->getFd(), midiData.getMidiArray(), midiData.getMidiSize(), MSG_NOSIGNAL);
+          //Need to add \r\n
+
+          char *tmp = new char[midiData.getMidiSize() + 2];
+
+          std::memcpy(tmp, midiData.getMidiArray(), midiData.getMidiSize());
+          tmp[midiData.getMidiSize()] = '\r';
+          tmp[midiData.getMidiSize() + 1] = '\n';
+          send(it->getFd(), tmp, midiData.getMidiSize() + 2, MSG_NOSIGNAL);
+
+          delete[] tmp;
         }
       }
       else
