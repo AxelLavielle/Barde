@@ -18,6 +18,7 @@
 
 #include "Client.hh"
 #include "AI/MusicGenerator.hh"
+#include "CondVariable.hh"
 
 class ThreadPoolGenerator
 {
@@ -34,4 +35,5 @@ private:
     std::thread                 _generatorThread;
     std::mutex					        _clientsMutex;
     MusicGenerator              _musicGenerator;
+    CondVariable                _condVar;
 };

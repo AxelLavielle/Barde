@@ -28,6 +28,8 @@ void ThreadPoolGenerator::init()
 void ThreadPoolGenerator::addClient(const Client & client)
 {
   _clientsMutex.lock();
+  if (_clients.size() == 0)
+    _condVar.notify();
   _clients.push_back(client);
   _clientsMutex.unlock();
 }
@@ -70,7 +72,7 @@ void ThreadPoolGenerator::generationManager()
       }
       else
       {
-        //Need to do a pause
+        _condVar.wait();
       }
   }
 }
