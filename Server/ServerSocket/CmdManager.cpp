@@ -22,11 +22,11 @@ CmdManager::~CmdManager()
 
 void CmdManager::sendResponseMessage(const int responseCode, const Client & client, const std::string & message)
 {
-  int *msg = new int[1 + (message.length() / 4)];
+  int *msg = new int[2 + message.length() / 4];
 
   msg[0] = responseCode;
-  memcpy(&msg[1], message.c_str(), message.length());
-  send(client.getFd(), msg, message.length(), MSG_NOSIGNAL);
+  std::memcpy(&msg[1], message.c_str(), message.length());
+  send(client.getFd(), msg, 4 + message.length(), MSG_NOSIGNAL);
 }
 
 void CmdManager::manageMusicParameter(int *buffer, Client &client, size_t bufferSize)
@@ -113,7 +113,11 @@ void CmdManager::parseMessage(char *buffer, Client &client, size_t bufferSize)
   data = (int *)buffer;
 
   if (bufferSize <= 4)
+  {
+    std::cerr << "Error request size too small." << std::endl;
+    sendResponseMessage(0x1F4, client, "Bad Request : request size too small.");
     return;
+  }
   try
   {
     (_cmdFunctions.at(buffer[0]))(data, client, bufferSize);
