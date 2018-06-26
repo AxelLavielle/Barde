@@ -17,7 +17,7 @@ UserParamsPanel::UserParamsPanel() : _cmdManager(CmdManager::getInstance())
 
 	GuiFactory::initLittleTitle("", _errorLabel);
 	_errorLabel.setColour(Label::textColourId, Colours::red);
-	addFlexItem(_errorLabel, 200, 30, FlexItem::AlignSelf::center, 1);
+	addFlexItem(_errorLabel, 500, 30, FlexItem::AlignSelf::center, 1);
 
 	initTextBoxes();
 
@@ -32,16 +32,20 @@ UserParamsPanel::UserParamsPanel() : _cmdManager(CmdManager::getInstance())
 	addFlexItem(_confirmButton, 100, 20, FlexItem::AlignSelf::flexEnd, 1);
 
 	_flexBox = GuiFactory::createFlexBox(FlexBox::JustifyContent::center, FlexBox::AlignContent::center, FlexBox::AlignItems::stretch, FlexBox::Direction::column, _items, 500, 50);
+
+	applyTheme();
 }
 
 void UserParamsPanel::refresh()
 {
 	initTextBoxes();
+	applyTheme();
 }
 
 void UserParamsPanel::paint(Graphics & g)
 {
 	g.fillAll(Colour(Theme::getInstance().getBackgroundColor()));
+	applyTheme();
 }
 
 void UserParamsPanel::initTextBoxes()
@@ -86,6 +90,77 @@ void UserParamsPanel::initTextBoxes()
 	GuiFactory::initLabeledTextBoxPassword("New password confirmation (optional)", "", (juce_wchar)0x2022, _passwordConfirmationTextBox);
 	addFlexItem(_passwordConfirmationTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 }
+
+void UserParamsPanel::applyTheme()
+{
+
+
+	LabeledTextBox		_emailTextBox;
+	LabeledTextBox		_dateOfBirthTextBox;
+	LabeledTextBox		_passwordTextBox;
+	LabeledTextBox		_passwordConfirmationTextBox;
+
+
+
+	_titleLabel.setColour(Label::textColourId, Colour(Theme::getInstance().getFontColor()));
+	_errorLabel.setColour(Label::textColourId, Colour(Theme::getInstance().getErrorTextColor()));
+
+
+
+	_confirmButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
+	_confirmButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
+	_confirmButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
+	_cancelButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
+	_cancelButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
+	_cancelButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
+
+
+	_firstNameTextBox.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	_firstNameTextBox.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
+	_firstNameTextBox.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonColor()));
+	_firstNameTextBox.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getFontColor()));
+	_firstNameTextBox.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getFontColor()));
+
+	_lastNameTextBox.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	_lastNameTextBox.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
+	_lastNameTextBox.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonColor()));
+	_lastNameTextBox.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getFontColor()));
+	_lastNameTextBox.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getFontColor()));
+
+
+	_userNameTextBox.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	_userNameTextBox.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
+	_userNameTextBox.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonColor()));
+	_userNameTextBox.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getFontColor()));
+	_userNameTextBox.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getFontColor()));
+
+	_emailTextBox.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	_emailTextBox.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
+	_emailTextBox.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonColor()));
+	_emailTextBox.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getFontColor()));
+	_emailTextBox.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getFontColor()));
+
+	_dateOfBirthTextBox.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	_dateOfBirthTextBox.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
+	_dateOfBirthTextBox.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonColor()));
+	_dateOfBirthTextBox.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getFontColor()));
+	_dateOfBirthTextBox.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getFontColor()));
+
+	_passwordTextBox.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	_passwordTextBox.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
+	_passwordTextBox.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonColor()));
+	_passwordTextBox.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getFontColor()));
+	_passwordTextBox.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getFontColor()));
+
+	_passwordConfirmationTextBox.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	_passwordConfirmationTextBox.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
+	_passwordConfirmationTextBox.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonColor()));
+	_passwordConfirmationTextBox.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getFontColor()));
+	_passwordConfirmationTextBox.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getFontColor()));
+
+}
+
+
 
 bool UserParamsPanel::updateUser()
 {
@@ -133,6 +208,43 @@ bool UserParamsPanel::updateUser()
 		_errorLabel.setLabelText("Error passwords don't match");
 		return false;
 	}
+
+	String password = _passwordTextBox.getText();
+
+	if (password != "" && password != " ")
+	{
+
+		if (!(StringChecker::isPasswordLongEnough(password.toStdString())))
+		{
+			_errorLabel.setText("Password should be at least 8 characters long", dontSendNotification);
+			return false;
+		}
+
+		if (!(StringChecker::containsLowercase(password.toStdString())))
+		{
+			_errorLabel.setText("Password should contain at least one lowercase letter", dontSendNotification);
+			return false;
+		}
+
+		if (!(StringChecker::containsUppercase(password.toStdString())))
+		{
+			_errorLabel.setText("Password should contain at least one uppercase letter", dontSendNotification);
+			return false;
+		}
+
+		if (!(StringChecker::containsNumber(password.toStdString())))
+		{
+			_errorLabel.setText("Password should contain at least one number", dontSendNotification);
+			return false;
+		}
+
+		if (!(StringChecker::containsSpecialChar(password.toStdString())))
+		{
+			_errorLabel.setText("Password should contain at least one special character", dontSendNotification);
+			return false;
+		}
+	}
+
 	_user.setEmail(_emailTextBox.getText());
 	std::string date = _dateOfBirthTextBox.getText();
 	_user.setDayOfBirth(date.substr(0, 2));

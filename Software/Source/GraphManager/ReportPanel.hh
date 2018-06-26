@@ -19,6 +19,7 @@ class ReportPanel : public FlexView, private Button::Listener
 public:
 	ReportPanel();
 	void refresh() override;
+	void paint(Graphics & g) override;
 
 private:
 	void buttonClicked(Button * button) override;

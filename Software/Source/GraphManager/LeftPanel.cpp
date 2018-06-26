@@ -44,8 +44,10 @@ LeftPanel::LeftPanel()
 
 void LeftPanel::setUser(const User & user)
 {
+	//TODO FIX THIS
 	_user = user;
-	_userButton.setButtonText(_user.getFirstName() + " " + _user.getLastName());
+	//_userButton.setButtonText(_user.getFirstName() + " " + _user.getLastName());
+	_userButton.setButtonText("Edit user info");
 }
 
 void LeftPanel::paint(Graphics & g)

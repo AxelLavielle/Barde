@@ -33,6 +33,7 @@ private:
 	void buttonClicked(Button * button) override;
 	void initTextBoxes();
 	bool updateUser();
+	void applyTheme();
 
 	SimpleLabel			_titleLabel;
 	SimpleLabel			_errorLabel;

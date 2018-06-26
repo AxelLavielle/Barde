@@ -33,12 +33,42 @@ ReportPanel::ReportPanel() : _cmdManager(CmdManager::getInstance())
 
 	_flexBox = GuiFactory::createFlexBox(FlexBox::JustifyContent::center, FlexBox::AlignContent::center, FlexBox::AlignItems::center, FlexBox::Direction::column,
 											{ GuiFactory::createFlexItem(_titleLabel, 1000, 55), GuiFactory::createFlexItem(_errorLabel, 500, 20), GuiFactory::createFlexItem(_commentTextEditor, 1000, 400), GuiFactory::createFlexItem(_sendButton, 100, 50, FlexItem::AlignSelf::flexEnd), GuiFactory::createFlexItem(_cancelButton, 100, 50, FlexItem::AlignSelf::flexEnd) } );
+
+
+	_titleLabel.setColour(Label::textColourId, Colour(Theme::getInstance().getFontColor()));
+	_errorLabel.setColour(Label::textColourId, Colour(Theme::getInstance().getErrorTextColor()));
+
+
+
+	_sendButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
+	_sendButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
+	_sendButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
+	_cancelButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
+	_cancelButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
+	_cancelButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
+
+
+	_commentTextEditor.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	_commentTextEditor.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
+	_commentTextEditor.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonColor()));
+	_commentTextEditor.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getFontColor()));
+	_commentTextEditor.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getFontColor()));
+
+
+
+
 }
 
 void ReportPanel::refresh()
 {
 	_errorLabel.setLabelText("");
 }
+
+void ReportPanel::paint(Graphics & g)
+{
+	g.fillAll(Colour(Theme::getInstance().getBackgroundColor()));
+}
+
 
 void ReportPanel::buttonClicked(Button * button)
 {
