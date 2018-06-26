@@ -1,12 +1,15 @@
 package com.project.barde.barde.ui.fragments
 
 import android.content.ContentValues.TAG
+import android.content.Context.*
 import android.graphics.Color
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.os.NetworkOnMainThreadException
+import android.provider.Telephony.Mms.Part.FILENAME
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
@@ -17,23 +20,88 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.github.kittinunf.fuel.core.requests.write
 import com.project.barde.barde.R
 import com.project.barde.barde.adapter.PlaylistChoiceAdapter
+import com.project.barde.barde.static.ListenerSocket
 import com.project.barde.barde.static.SocketServer
 import kotlinx.android.synthetic.main.fragment_generation.*
 import org.jetbrains.anko.doAsync
-import java.io.BufferedReader
-import java.io.IOException
-import java.io.InputStreamReader
+import java.io.*
 import java.net.Socket
 import java.net.UnknownHostException
-import java.io.PrintWriter
 
 
 /**
  * Created by michael on 17/02/2018.
  */
-class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener {
+class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerSocket {
+    override fun getListenerSocket(buffer: ByteArray){
+        //println("coucou je get " + buffer)
+        if (buffer.size > 0 && buffer[0].toChar() != 'h'){
+            try {
+                var path = Environment.getExternalStorageDirectory().toString();
+                var directory = File(path  + "/bardeMusique");
+                directory.mkdir()
+                var file = File(directory, "bbbbarde.mid")
+                var modeAppend = false
+                if (file.exists()){
+                    if (firstPlay && !startingPreparing){
+                        file.delete()
+                        modeAppend = false
+                    }else{
+                        modeAppend = true
+                    }
+                }
+                var fos  = FileOutputStream(file, modeAppend)
+                fos.write(buffer)
+                fos.close()
+                var b = buffer.size
+                var p = buffer[b - 1]
+                println("la dernier valeur is " + buffer[b - 1] + " " + buffer[b - 2] + "efeufenuf voila")
+                println("size = " + buffer.size   )
+                //println("buffer add " + buffer)
+
+                // println("size = " + buffer.length)
+                //println("content = " + buffer.toByteArray())
+                /*val fos = context.openFileOutput("test.mid", MODE_WORLD_READABLE)
+                fos.write(buffer.toByteArray())
+                fos.close()
+                println("file created")*/
+//                val file = File(context.filesDir.toString() + "/test.mid")
+               /* file.setReadable(true, false)*/
+                /*val bufferedReader = file.bufferedReader()
+                val text:List<String> = bufferedReader.readLines()
+                print("coucou je get ")
+                for(line in text){
+                    println(line)
+                }*/
+                //println("file path = " + context.filesDir.toString() + "/test.mid")
+
+
+                if (firstPlay && !startingPreparing){
+                    var fis = FileInputStream(file)
+                    var fd = fis.getFD()
+                    startingPreparing = true;
+
+                    //mediaPlayer.setDataSource(context.filesDir.toString() +"/test.mid")
+                    mediaPlayer.setDataSource(fd)
+                    fis.close()
+
+                    //mediaPlayer.setDataSource("/storage/emulated/0/file.mid")
+                    mediaPlayer.setOnPreparedListener(this);
+                    mediaPlayer.prepareAsync();
+                    mediaPlayer.start()
+                    //serverSocket.rec().println("S")
+                }
+
+
+            }catch (e : Exception){
+                println("error = "+ e.message)
+            }
+
+        }
+    }
 
 
     private val fluxAudio = "http://5.135.160.60:3333/test/mobile"
@@ -50,11 +118,12 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener {
     var batterieSelected = false
     var index = 0
     var lastindex = 0
-    var firstPlay = true
+    var firstPlay = false
     var serverPort = 23
     var serverIp = "192.168.1.36"
-    val serverSocket = SocketServer()
+    val serverSocket = SocketServer(this)
     val thread = Thread(serverSocket)
+    var startingPreparing = false;
 
     override fun onPrepared(p0: MediaPlayer) {
         button_generation.setImageResource(R.drawable.ic_pause_circle_filled_white_48dp)
@@ -173,7 +242,31 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener {
             button_generation.setImageResource(R.drawable.ic_play_circle_filled_white_white_48dp)
         }
         button_generation.setOnClickListener {
-            try {
+
+            var builder = StringBuilder()
+            builder.append('\u0002')
+            builder.append('\u0000')
+            builder.append('\u0012')
+            builder.append('\u0012')
+            builder.append('\u0012')
+            builder.append('\u0012')
+            builder.append('\u0012')
+            println("message = " + builder.toString())
+            //serverSocket.rec().println(builder.toString())
+            if (firstPlay){
+                serverSocket.rec().println("S")
+                button_generation.setImageResource(R.drawable.ic_play_circle_filled_white_white_48dp)
+                firstPlay = false
+                if (mediaPlayer.isPlaying){
+                    mediaPlayer.pause()
+                    startingPreparing = false;
+                }
+            }else{
+                serverSocket.rec().println("P")
+                firstPlay = true
+                button_generation.setImageResource(R.drawable.ic_pause_circle_filled_white_48dp)
+            }
+           /* try {
                 if (firstPlay == true) {
                     mediaPlayer.setDataSource(fluxAudio)
                     mediaPlayer.setOnPreparedListener(this);
@@ -192,7 +285,7 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener {
                 }
             } catch (e: Exception) {
                 println("error = " + e.message)
-            }
+            }*/
         }
 
         seek_bar_bpm.setProgress(0)
