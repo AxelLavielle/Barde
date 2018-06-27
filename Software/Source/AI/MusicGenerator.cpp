@@ -164,6 +164,7 @@ Midi			MusicGenerator::createMusic(const MusicParameters &parameters)
   std::cout << "END" << std::endl;
   ///* END */
   _midiManager.writeToFile("./test.mid");
+	delete markovPattern;
   return (_midiManager.createMidi(48));
   /* ED*/
 }
