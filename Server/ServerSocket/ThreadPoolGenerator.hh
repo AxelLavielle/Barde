@@ -8,7 +8,8 @@
   ==============================================================================
 */
 
-#pragma once
+#ifndef __THREAD_POOL_GENERATOR_HH__
+#define __THREAD_POOL_GENERATOR_HH__
 
 #include <list>
 #include <thread>
@@ -16,9 +17,25 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 
+#include "Semaphore.hh"
 #include "Client.hh"
 #include "AI/MusicGenerator.hh"
-#include "Semaphore.hh"
+
+#ifndef __CMDMANAGER__HH__
+
+#define BAD_REQUEST 0xC8
+#define OK_REQUEST 0xC8
+
+class CmdManager
+{
+public:
+  CmdManager();
+  ~CmdManager();
+  void	parseMessage(char *buffer, Client &client, size_t bufferSize);
+  void  disconnectClient(const Client & client);
+  static void sendResponseMessage(const int responseCode, const Client & client, const std::string & message);
+};
+#endif
 
 class ThreadPoolGenerator
 {
@@ -38,3 +55,4 @@ private:
     MusicGenerator              _musicGenerator;
     Semaphore                   _sem;
 };
+ #endif //__THREAD_POOL_GENERATOR_HH__
