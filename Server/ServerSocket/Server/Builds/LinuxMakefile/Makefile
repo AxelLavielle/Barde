@@ -98,6 +98,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/main_3f4fc5bd.o \
   $(JUCE_OBJDIR)/MusicParameters_73d74e9.o \
   $(JUCE_OBJDIR)/MusicStyle_f876545c.o \
+  $(JUCE_OBJDIR)/Semaphore_d30ff67e.o \
   $(JUCE_OBJDIR)/server_61ebe287.o \
   $(JUCE_OBJDIR)/socket_d09e3ab7.o \
   $(JUCE_OBJDIR)/ThreadPoolGenerator_8cb91693.o \
@@ -270,6 +271,11 @@ $(JUCE_OBJDIR)/MusicParameters_73d74e9.o: ../../../../../Software/Source/MusicPa
 $(JUCE_OBJDIR)/MusicStyle_f876545c.o: ../../../../../Software/Source/MusicStyle.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling MusicStyle.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/Semaphore_d30ff67e.o: ../../../../../Software/Source/Semaphore.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Semaphore.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/server_61ebe287.o: ../../../server.cpp

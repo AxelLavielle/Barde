@@ -2,7 +2,14 @@
 
 Server::Server()
 {
-  
+//  signal(SIGINT, std::bind(&Server::signalHandler, this, std::placeholders::_1));
+}
+
+void Server::signalHandler(int signal)
+{
+  _so.stopSocket();
+  std::cout << "COUCOU SIGNAL" << std::endl;
+  exit(1); //Need to change that
 }
 
 int	Server::runServer()
@@ -13,7 +20,7 @@ int	Server::runServer()
   while (1)
     {
       _so.initFd();
-      
+
       int sd;
       for (std::list<Client>::iterator it = _clients.begin(); it != _clients.end(); it++)
 	{
@@ -24,13 +31,13 @@ int	Server::runServer()
 	return (1);
       else if (entries != 2)
 	{
-	  std::list<Client>::iterator it = _clients.begin();      
+	  std::list<Client>::iterator it = _clients.begin();
 	  while (it != _clients.end())
 	    {
 	      sd = it->getFd();
 	      if (_so.fdIsSet(sd))
 		{
-		  
+
 		  if ((_so.readClient(sd)) == 1)
 		    return (1);
 		  if (_so.getLastSizeOfMessage() > 0)

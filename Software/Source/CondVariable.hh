@@ -10,6 +10,7 @@ public:
 	~CondVariable();
 	void notify();
 	void wait();
+	void notifyAll();
 
 private:
 	bool getState();
@@ -18,4 +19,3 @@ private:
 	bool _wait;
 	std::mutex _m;
 };
-

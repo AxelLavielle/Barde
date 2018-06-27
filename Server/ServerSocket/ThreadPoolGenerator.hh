@@ -18,7 +18,7 @@
 
 #include "Client.hh"
 #include "AI/MusicGenerator.hh"
-#include "CondVariable.hh"
+#include "Semaphore.hh"
 
 class ThreadPoolGenerator
 {
@@ -33,8 +33,8 @@ public:
 
 private:
     std::list<Client>           _clients;
-    std::thread                 _generatorThread;
+    std::list<std::thread>      _generatorThreads;
     std::mutex					        _clientsMutex;
     MusicGenerator              _musicGenerator;
-    CondVariable                _condVar;
+    Semaphore                   _sem;
 };

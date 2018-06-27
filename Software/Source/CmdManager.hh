@@ -37,7 +37,7 @@ public:
 private:
 	CmdManager();
 	void clearResponses();
-	
+
 	RestClient				_socket;
 	User					_currentUser;
 	int						_responseCode;

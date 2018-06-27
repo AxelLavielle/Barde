@@ -93,6 +93,8 @@
           file="../../../Software/Source/MusicParameters.hh"/>
     <FILE id="zfCbS7" name="MusicStyle.cpp" compile="1" resource="0" file="../../../Software/Source/MusicStyle.cpp"/>
     <FILE id="pkqYSW" name="MusicStyle.hh" compile="0" resource="0" file="../../../Software/Source/MusicStyle.hh"/>
+    <FILE id="OR9eYU" name="Semaphore.cpp" compile="1" resource="0" file="../../../Software/Source/Semaphore.cpp"/>
+    <FILE id="XpvZdd" name="Semaphore.hh" compile="0" resource="0" file="../../../Software/Source/Semaphore.hh"/>
     <FILE id="GE2MuI" name="server.cpp" compile="1" resource="0" file="../server.cpp"/>
     <FILE id="RUxrRV" name="socket.cpp" compile="1" resource="0" file="../socket.cpp"/>
     <FILE id="Ycd0ge" name="socket.hh" compile="0" resource="0" file="../socket.hh"/>

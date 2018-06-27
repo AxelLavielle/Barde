@@ -14,6 +14,7 @@ private:
 public:
   Server();
   int			runServer();
+  void signalHandler(int signal);
 };
 
 #endif /* __SERVER__HH__ */

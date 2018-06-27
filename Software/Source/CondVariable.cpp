@@ -20,6 +20,15 @@ void CondVariable::notify()
 	_cond.notify_one();
 }
 
+void CondVariable::notifyAll()
+{
+	std::lock_guard<std::mutex> lock(_m);
+	if (!_wait)
+		return;
+	_state = true;
+	_cond.notify_all();
+}
+
 bool CondVariable::getState()
 {
 	return (_state);

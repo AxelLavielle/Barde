@@ -33,6 +33,7 @@ private:
 public:
   Socket();
   int			StartSocket();
+  int     stopSocket();
   int			handleEntries(std::list<Client> *clients, char *msg);
   void			initFd();
   int			fdIsSet(int fd);

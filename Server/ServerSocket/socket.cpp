@@ -87,7 +87,7 @@ int Socket::readClient(int client_fd)
 	  std::cerr << "failed to realloc message with " << _sizeOfMessage << "as size" << std::endl;
 	  return (1);
 	}
-      
+
       while (len > 0)
 	{
 	  _message[i] = buffer[j];
@@ -178,4 +178,9 @@ int	Socket::handleEntries(std::list<Client> *clients, char *msg)
       return (2);
     }
   return (0);
+}
+
+int     Socket::stopSocket()
+{
+  close(_fd);
 }

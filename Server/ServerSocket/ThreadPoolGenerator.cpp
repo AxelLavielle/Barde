@@ -22,15 +22,21 @@ ThreadPoolGenerator::~ThreadPoolGenerator()
 
 void ThreadPoolGenerator::init()
 {
-  _generatorThread = std::thread(&ThreadPoolGenerator::generationManager, this);
+  unsigned int n = std::thread::hardware_concurrency();
+  std::cout << n << " concurrent threads are supported." << std::endl;
+
+  while (n != 0)
+  {
+    _generatorThreads.push_back(std::thread(&ThreadPoolGenerator::generationManager, this));
+    n--;
+  }
 }
 
 void ThreadPoolGenerator::addClient(const Client & client)
 {
   _clientsMutex.lock();
-  if (_clients.size() == 0)
-    _condVar.notify();
   _clients.push_back(client);
+  _sem.notify();
   _clientsMutex.unlock();
 }
 
@@ -45,33 +51,40 @@ void ThreadPoolGenerator::generationManager()
 {
   std::list<Client>::iterator it;
   std::list<Client>           clients;
+  Client                      client;
   Midi midiData;
 
   while (42)
   {
+
       _clientsMutex.lock();
-      clients = _clients; //This may be improved !!
+      if (_clients.size() == 0)
+      {
+        _clientsMutex.unlock();
+        _sem.wait();
+        _clientsMutex.lock();
+      }
+      client = _clients.front();
+      _clients.pop_front();
       _clientsMutex.unlock();
 
-      if (clients.size() > 0)
+      while (client.needGeneration())
       {
-        for (it = clients.begin(); it != clients.end(); ++it)
-        {
-          midiData = _musicGenerator.createMusic(it->getMp());
+        midiData = _musicGenerator.createMusic(client.getMp());
 
-          char *tmp = new char[midiData.getMidiSize() + 2];
+        char *tmp = new char[midiData.getMidiSize() + 2];
 
-          std::memcpy(tmp, midiData.getMidiArray(), midiData.getMidiSize());
-          tmp[midiData.getMidiSize()] = '\r';
-          tmp[midiData.getMidiSize() + 1] = '\n';
-          send(it->getFd(), tmp, midiData.getMidiSize() + 2, MSG_NOSIGNAL);
+        std::memcpy(tmp, midiData.getMidiArray(), midiData.getMidiSize());
+        tmp[midiData.getMidiSize()] = '\r';
+        tmp[midiData.getMidiSize() + 1] = '\n';
 
-          delete[] tmp;
-        }
-      }
-      else
-      {
-        _condVar.wait();
+        //Need to check the return of send
+        if (send(client.getFd(), tmp, midiData.getMidiSize() + 2, MSG_NOSIGNAL) == -1)
+          break; //If the client is disconnected or other error, he don't need generation
+
+        client.addGeneration();
+
+        delete[] tmp;
       }
   }
 }

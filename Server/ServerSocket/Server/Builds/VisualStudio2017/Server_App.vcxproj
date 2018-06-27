@@ -178,6 +178,7 @@
     <ClCompile Include="..\..\..\main.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\Source\MusicParameters.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\Source\MusicStyle.cpp"/>
+    <ClCompile Include="..\..\..\..\..\Software\Source\Semaphore.cpp"/>
     <ClCompile Include="..\..\..\server.cpp"/>
     <ClCompile Include="..\..\..\socket.cpp"/>
     <ClCompile Include="..\..\..\ThreadPoolGenerator.cpp"/>
@@ -917,6 +918,7 @@
     <ClInclude Include="..\..\..\..\..\Software\Source\Instrument.hh"/>
     <ClInclude Include="..\..\..\..\..\Software\Source\MusicParameters.hh"/>
     <ClInclude Include="..\..\..\..\..\Software\Source\MusicStyle.hh"/>
+    <ClInclude Include="..\..\..\..\..\Software\Source\Semaphore.hh"/>
     <ClInclude Include="..\..\..\socket.hh"/>
     <ClInclude Include="..\..\..\ThreadPoolGenerator.hh"/>
     <ClInclude Include="..\..\..\..\..\Software\Source\Tools.hh"/>

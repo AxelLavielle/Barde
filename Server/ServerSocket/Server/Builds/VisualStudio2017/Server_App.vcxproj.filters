@@ -295,6 +295,9 @@
     <ClCompile Include="..\..\..\..\..\Software\Source\MusicStyle.cpp">
       <Filter>Server</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Software\Source\Semaphore.cpp">
+      <Filter>Server</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\server.cpp">
       <Filter>Server</Filter>
     </ClCompile>
@@ -1159,6 +1162,9 @@
       <Filter>Server</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Software\Source\MusicStyle.hh">
+      <Filter>Server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Software\Source\Semaphore.hh">
       <Filter>Server</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\socket.hh">
