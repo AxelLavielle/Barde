@@ -47,7 +47,7 @@ void CmdManager::manageMusicParameter(int *buffer, Client &client, size_t buffer
       client.getMp().setStyleName("BLUES");
     }
   }
-  else if (buffer[1] == 0x21) //CHORD
+  else if (buffer[1] == 0x21) //ADDCHORD
   {
     Instrument instru;
 
@@ -57,7 +57,7 @@ void CmdManager::manageMusicParameter(int *buffer, Client &client, size_t buffer
     instru.velocity = 100; //Need to get from request
     client.getMp().addInstrumentChords(instru);
   }
-  else if (buffer[1] == 0x31) //AEPEGES
+  else if (buffer[1] == 0x31) //ADDAEPEGES
   {
     Instrument instru;
 
@@ -66,6 +66,26 @@ void CmdManager::manageMusicParameter(int *buffer, Client &client, size_t buffer
     instru.channel = 2;
     instru.velocity = 100;
     client.getMp().addInstrumentArpeggios(instru);
+  }
+  else if (buffer[1] == 0x61) //REMOVECHORD
+  {
+    Instrument instru;
+
+    instru.name = ""; //Need to get from request
+    instru.nb = static_cast<NbInstrument>(buffer[2]);
+    instru.channel = 1; //Need to manage that
+    instru.velocity = 100; //Need to get from request
+    client.getMp().delInstrumentChords(instru);
+  }
+  else if (buffer[1] == 0x71) //REMOVEAEPEGES
+  {
+    Instrument instru;
+
+    instru.name = "";
+    instru.nb = static_cast<NbInstrument>(buffer[2]);
+    instru.channel = 2;
+    instru.velocity = 100;
+    client.getMp().delInstrumentArpeggios(instru);
   }
   else if (buffer[1] == 0x41) //DRUM
   {
