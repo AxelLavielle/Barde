@@ -72,14 +72,19 @@ void ThreadPoolGenerator::generationManager()
       {
         midiData = _musicGenerator.createMusic(client.getMp());
 
-        char *tmp = new char[midiData.getMidiSize() + 2];
+        char *tmp = new char[midiData.getMidiSize() + 2 + sizeof(int)];
 
-        std::memcpy(tmp, midiData.getMidiArray(), midiData.getMidiSize());
-        tmp[midiData.getMidiSize()] = '\r';
-        tmp[midiData.getMidiSize() + 1] = '\n';
+        tmp[0] = 0x0;
+        tmp[1] = 0x0;
+        tmp[2] = 0x0;
+        tmp[3] = 0x4; //This depends of the endieness !!
+
+        std::memcpy(&tmp[4], midiData.getMidiArray(), midiData.getMidiSize());
+        tmp[midiData.getMidiSize() + 4] = '\r';
+        tmp[midiData.getMidiSize() + 5] = '\n';
 
         //Need to check the return of send
-        if (send(client.getFd(), tmp, midiData.getMidiSize() + 2, MSG_NOSIGNAL) == -1)
+        if (send(client.getFd(), tmp, midiData.getMidiSize() + 2 + sizeof(int), MSG_NOSIGNAL) == -1)
           break; //If the client is disconnected or other error, he don't need generation
 
         delete[] midiData.getMidiArray();

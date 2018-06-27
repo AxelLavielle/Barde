@@ -13,6 +13,8 @@ Socket::Socket()
 
 int Socket::StartSocket()
 {
+  int option = 1;
+
   if (!(_pe = getprotobyname("TCP")))
     {
       std::cerr << "error to get the proto name " << std::endl;
@@ -23,6 +25,7 @@ int Socket::StartSocket()
       std::cerr << "failed to create socket" << std::endl;
       return (1);
     }
+  setsockopt(_fd, SOL_SOCKET, SO_REUSEADDR, &option, sizeof(option));
   std::cout << "Creating socket TCP protocol" << std::endl;
   if (bind(_fd, (const struct sockaddr *)&_server, sizeof(_server)) == -1)
     {
