@@ -123,7 +123,7 @@ void CmdManager::manageMusicParameter(int *buffer, Client &client, size_t buffer
 
 void CmdManager::managePlayerCtrl(int *buffer, Client &client, size_t bufferSize)
 {
-  if (bufferSize < 8)
+  if (bufferSize < 2)
   {
     sendResponseMessage(BAD_REQUEST, client, "Bad Request : bad format for player control request.\r\n");
     return;
@@ -146,43 +146,41 @@ void CmdManager::manageDisconnection(int *buffer, Client &client, size_t bufferS
   sendResponseMessage(OK_REQUEST, client, "OK : client disconnected.\r\n");
 }
 
-void CmdManager::parseMessage(char *buffer, Client &client, size_t bufferSize)
+void CmdManager::parseMessage(int *buffer, Client &client, size_t bufferSize)
 {
 
   //Need to get the first in in order to know the request type
 
-  int *data;
 
-  data = (int *)buffer;
-
-  // if (bufferSize <= 4)
-  // {
-  //   std::cerr << "Error request size too small." << std::endl;
-  //   sendResponseMessage(0x1F4, client, "Bad Request : request size too small.\r\n");
-  //   return;
-  // }
-  // try
-  // {
-  //   (_cmdFunctions.at(buffer[0]))(data, client, bufferSize);
-  // }
-  // catch (const std::out_of_range & e)
-  // {
-  //   std::cerr << "Error command unknow." << std::endl;
-  //   sendResponseMessage(0x1F4, client, "Bad Request : command unknow.\r\n");
-  //   return;
-  // }
+  if (bufferSize <= 0)
+  {
+    std::cerr << "Error request size too small." << std::endl;
+    sendResponseMessage(0x1F4, client, "Bad Request : request size too small.\r\n");
+    return;
+  }
+  try
+  {
+    std::cout << "la valeur est = " << buffer[0] << std::endl;
+    (_cmdFunctions.at(buffer[0]))(buffer, client, bufferSize);
+  }
+  catch (const std::out_of_range & e)
+  {
+    std::cerr << "Error command unknow." << std::endl;
+    sendResponseMessage(0x1F4, client, "Bad Request : command unknow.\r\n");
+    return;
+  }
 
   //For Debug
-  if (bufferSize > 0 && buffer[0] == 'P')
-  {
-    std::cout << "The client want to play something" << std::endl;
-    _threadPool.addClient(client);
-  }
-  else if (bufferSize > 0 && buffer[0] == 'S')
-  {
-    std::cout << "The client want to stop playing" << std::endl;
-    _threadPool.removeClient(client);
-  }
+  // if (bufferSize > 0 && buffer[0] == 'P')
+  // {
+  //   std::cout << "The client want to play something" << std::endl;
+  //   _threadPool.addClient(client);
+  // }
+  // else if (bufferSize > 0 && buffer[0] == 'S')
+  // {
+  //   std::cout << "The client want to stop playing" << std::endl;
+  //   _threadPool.removeClient(client);
+  // }
   //END debug
 }
 

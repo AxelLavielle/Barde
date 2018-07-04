@@ -19,7 +19,7 @@ class CmdManager
 public:
   CmdManager();
   ~CmdManager();
-  void	parseMessage(char *buffer, Client &client, size_t bufferSize);
+  void	parseMessage(int *buffer, Client &client, size_t bufferSize);
   void  disconnectClient(const Client & client);
   static void sendResponseMessage(const int responseCode, const Client & client, const std::string & message);
 

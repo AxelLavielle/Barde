@@ -28,7 +28,7 @@ private:
   socklen_t		_client_size;
   char			_buffer[30];
   fd_set		_master;
-  char			*_message;
+  int			*_message;
   unsigned long		_sizeOfMessage;
 public:
   Socket();
@@ -40,7 +40,7 @@ public:
   void			addFdAndsetMax(int sd);
   int			closeFd(int fd);
   int			readClient(int client_fd);
-  char			*getLastMessage();
+  int			*getLastMessage();
   unsigned long		getLastSizeOfMessage();
 };
 

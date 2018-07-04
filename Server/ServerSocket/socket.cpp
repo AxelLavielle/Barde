@@ -54,7 +54,7 @@ int Socket::StartSocket()
   return (0);
 }
 
-char *Socket::getLastMessage()
+int *Socket::getLastMessage()
 {
   return _message;
 }
@@ -66,7 +66,7 @@ unsigned long Socket::getLastSizeOfMessage()
 
 int Socket::readClient(int client_fd)
 {
-  char buffer[30];
+  int buffer[30];
   int len = 0;
   int i = 0;
   int j = 0;
@@ -75,17 +75,17 @@ int Socket::readClient(int client_fd)
       free(_message);
       _sizeOfMessage = 0;
     }
-  if ((_message = (char *)calloc(0, sizeof(char *))) == NULL)
+  if ((_message = (int *)calloc(0, sizeof(int))) == NULL)
     {
       std::cerr << "failed to malloc message with 0 as size " << std::endl;
       return (1);
     }
-
-  while ((len = read(client_fd, buffer, 30)) >= 30)
+  memset(buffer, '\0', sizeof(buffer));
+  while ((len = read(client_fd, buffer, sizeof(int) * 30)) >= 30)
     {
       j = 0;
       _sizeOfMessage += len;
-      if ((_message = (char *)realloc(_message, _sizeOfMessage * sizeof(char *))) == NULL)
+      if ((_message = (int *)realloc(_message, _sizeOfMessage * sizeof(int))) == NULL)
 	{
 	  std::cerr << "failed to realloc message with " << _sizeOfMessage << "as size" << std::endl;
 	  return (1);
@@ -104,7 +104,7 @@ int Socket::readClient(int client_fd)
   else
     {
       _sizeOfMessage += len;
-      if (( _message = (char *)realloc(_message, _sizeOfMessage * sizeof(char *))) == NULL)
+      if (( _message = (int *)realloc(_message, _sizeOfMessage * sizeof(int))) == NULL)
 	{
 	  std::cerr << "failed to realloc message with " << _sizeOfMessage << "as size" << std::endl;
 	  return (1);
