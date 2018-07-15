@@ -3,6 +3,7 @@ package com.project.barde.barde.static
 import java.io.*
 import java.net.Socket
 import java.net.UnknownHostException
+import java.nio.ByteBuffer
 
 /**
  * Created by michael on 08/06/2018.
@@ -85,6 +86,18 @@ class SocketServer(val listenerSocket: ListenerSocket) : Runnable {
     }
     public fun reb() : DataOutputStream {
         return reb
+    }
+    fun sendToServer(array: IntArray){
+        var byteArray = ByteArray((array.size * 4))
+        var index = 0
+        for (i in 1..array.size){
+            var byteBuffer = ByteBuffer.allocate(4).putInt(array[i - 1]).array()
+            for (j in 1..byteBuffer.size){
+                byteArray.set(index, byteBuffer.get(byteBuffer.size - j))
+                index++
+            }
+        }
+        reb.write(byteArray)
     }
 }
 
