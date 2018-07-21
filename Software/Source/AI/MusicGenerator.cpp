@@ -20,221 +20,151 @@ MusicGenerator::~MusicGenerator()
 
 }
 
-char			MusicGenerator::calculateDist(const char currNote, const char testNote)
+void			MusicGenerator::launch(std::vector<MusicParameters> &_graph2genQ, std::vector<std::pair<Midi, int> > &_gen2playQ, std::mutex &_graph2genM, std::mutex &_gen2playM, bool &stop)
 {
-  char			a;
+	MusicParameters p;
+	bool b = false;
 
-  a = ABS(testNote / 8 - currNote / 8);
-  return (a < 6 ? a : (12 - a));
-}
-
-char			MusicGenerator::calculateDistChords(const std::vector<char> chord, const char note)
-{
-  unsigned char		i;
-  char			save;
-
-  i = -1;
-  save = 6;
-  while (++i != chord.size())
-    if (calculateDist(note, chord[i]) < save)
-      save = calculateDist(note, chord[i]);
-  return (save);
-}
-
-char			MusicGenerator::calculateSumDist(const char currNote, const std::vector<char> &listNote)
-{
-  unsigned char		i;
-  char			save;
-
-  save = 0;
-  i = -1;
-  while (++i != listNote.size())
-    save += calculateDist(listNote[i], currNote);
-  return (save);
-}
-
-void			MusicGenerator::calculateProbaToNoteFromNote(const char note, StyleSettings *proba, const std::vector<char> &listNote, const char probaNote)
-{
-  unsigned char		i;
-  char			sumDist;
-  char			nbNote;
-  char			sumProba;
-
-  i = -1;
-  sumDist = calculateSumDist(i, listNote);
-  nbNote = listNote.size();
-  while (++i != listNote.size())
-    if (note == listNote[i])
-      nbNote--;
-  i = -1;
-  sumProba = 0;
-  while (++i != listNote.size())
-    {
-      if (note == listNote[i])
-	proba->addNoteFromNote(note, listNote[i], (static_cast<float>(probaNote) / listNote.size()));
-      else
-	proba->addNoteFromNote(note, listNote[i], (static_cast<float>(probaNote) / listNote.size()) * (((static_cast<float>(calculateDist(i, listNote[i])) / (static_cast<float>(sumDist) / nbNote)) + DISTIMPACT) / (DISTIMPACT + 1)));
-      sumProba += proba->getProbaFromNote(note, listNote[i]);
-    }
-  while (sumProba != probaNote)
-    {
-      i = -1;
-      while (sumProba != probaNote && ++i != listNote.size())
+	while (!stop)
 	{
-	  proba->addNoteFromNote(note, listNote[i], proba->getProbaFromNote(note, listNote[i]) + 1);
-	  sumProba++;
+		std::cout << "==a" << std::endl;
+		_graph2genM.lock();
+		std::cout << "==b" << std::endl;
+		if (_graph2genQ.size() > 0)
+		{
+			std::cout << "==c" << std::endl;
+			p = _graph2genQ[0];
+			std::cout << "==d" << std::endl;
+			b = true;
+			_graph2genQ.erase(_graph2genQ.begin());
+			std::cout << "==e" << std::endl;
+		}
+		std::cout << "==i" << std::endl;
+		_graph2genM.unlock();
+		std::cout << "==j" << std::endl;
+		_gen2playM.lock();
+		std::cout << "==k" << std::endl;
+		if (b && _gen2playQ.size() < 3)
+		{
+			std::cout << "==l" << std::endl;
+			Midi m = createMusic(p);
+			std::cout << "==m" << std::endl;
+			_gen2playQ.push_back(std::make_pair(m, p.getBpm()));
+			std::cout << "==n" << std::endl;
+		}
+		std::cout << "==o" << std::endl;
+		_gen2playM.unlock();
+		std::cout << "==p" << std::endl;
+		Tools::sleepActive(1000);
+		std::cout << "==q" << std::endl;
 	}
-    }
 }
 
-void			MusicGenerator::calculateProbaToScaleFromNote(StyleSettings *proba, const std::vector<char> &strong, const std::vector<char> &medium, const std::vector<char> &weak)
+Midi			MusicGenerator::createMusic(const MusicParameters &parameters)
 {
-  unsigned char		i;
+  MidiManager	_midiManager;
 
-  i = C;
-  while (i != END)
-    {
-      calculateProbaToNoteFromNote(i, proba, strong, PROBASTRONG);
-      calculateProbaToNoteFromNote(i, proba, medium, PROBAMEDIUM);
-      calculateProbaToNoteFromNote(i, proba, weak, PROBAWEAK);
-      i += 8;
-    }
-}
-
-void			MusicGenerator::calculateProbaToNote(StyleSettings *proba, const std::vector<char> &listNote, const char probaNote)
-{
-  unsigned char		i;
-  char			sumProba;
-
-  i = -1;
-  sumProba = 0;
-  while (++i != listNote.size())
-    {
-      proba->addNote(listNote[i], probaNote / listNote.size());
-      sumProba += probaNote / listNote.size();
-    }
-  while (sumProba != probaNote)
-    {
-      i = -1;
-      while (sumProba != probaNote && ++i != listNote.size())
-  	{
-  	  proba->addNote(listNote[i], proba->getProba(listNote[i]) + 1);
-  	  sumProba++;
-  	}
-    }
-}
-
-void			MusicGenerator::classifyNotes(const std::vector<char> &chord, std::vector<char> *strong, std::vector<char> *medium, std::vector<char> *weak)
-{
-  unsigned char		i;
-  char			save;
-
-  i = C;
-  while (i != END)
-    {
-      save = calculateDistChords(chord, i);
-      if (!save)
-	strong->push_back(i);
-      else if (save != 1)
-	medium->push_back(i);
-      else
-	weak->push_back(i);
-      i += 8;
-    }
-}
-
-char			MusicGenerator::searchNoteFromDist(char note, char dist)
-{
-  while (dist != 0)
-    {
-      if (note != B && note != E)
-	note += 16;
-      else
-	note += 8;
-      if (note == END)
-	note = C;
-      dist--;
-    }
-  return (note);
-}
-
-Midi			MusicGenerator::createMusic(MusicParameters &parameters)
-{
-  parameters.setSeed(std::time(NULL));
-  parameters.setBpm(80);
-  Instrument instru;
-  instru.name = "Piano";
-  instru.nb = ACOUSTICGRANDPIANO;
-  instru.channel = 1;
-  instru.velocity = 100; //Need change
-  parameters.addInstrument(instru);
-  parameters.setStyleName("Blues");
-
-  srand(parameters.getSeed());
+  std::cout << "INITIALISATION" << std::endl;
+  /* INITIALISATION */
   ObjectMarkov						markovObj(SOURCEMARKOV + std::string("blues.json"), 1, parameters.getSeed());
-
-  unsigned char						i;
   std::vector<std::pair<char, char> >			markovChords;
   std::vector<std::pair<char, char> >			markovTmp;
-  std::vector<std::pair<char, char> >			markovArpeggio;
   StyleSettings						style;
-  std::vector<char>					chord;
+  std::vector<std::pair<char, char> >			chord;
   Chords						allChords;
-
+  /* INITIALISATION */
+  std::cout << "CHORDS" << std::endl;
+  /* CHORDS */
   markovObj.callLua();
   markovChords = markovObj.getVectorFromJson();
-
   style = markovObj.getStyleFromJson();
-
   Resolution::parsingMarkov(style, &markovChords);
 
-  markovChords.push_back(markovChords[0]);
-  markovChords.push_back(markovChords[0]);
-  markovChords.push_back(markovChords[0]);
+  std::pair<char, char> noteA = markovChords[0];
+  std::pair<char, char> noteB = std::make_pair(static_cast<char>(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 5) + markovChords[0].first % 8), static_cast<char>(4));
+  std::pair<char, char> noteC = std::make_pair(static_cast<char>(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 7) + markovChords[0].first % 8), static_cast<char>(4));
+  if (noteB.first < noteA.first)
+    noteB.second++;
+  if (noteC.first < noteA.first)
+    noteC.second++;
+  markovChords.push_back(noteA);
+  markovChords.push_back(noteA);
+  markovChords.push_back(noteA);
+  markovChords.push_back(noteB);
+  markovChords.push_back(noteB);
+  markovChords.push_back(noteA);
+  markovChords.push_back(noteA);
+  markovChords.push_back(noteC);
+  markovChords.push_back(noteB);
+  markovChords.push_back(noteA);
+  markovChords.push_back(noteC);
 
-  markovChords.push_back(std::make_pair(searchNoteFromDist((markovChords[0].first / 8 * 8), 3) + markovChords[0].first % 8, 4));
-  markovChords.push_back(std::make_pair(searchNoteFromDist((markovChords[0].first / 8 * 8), 3) + markovChords[0].first % 8, 4));
-  markovChords.push_back(markovChords[0]);
-  markovChords.push_back(markovChords[0]);
+  Disposition::placeChords(_midiManager, parameters, markovChords);
 
-  markovChords.push_back(std::make_pair(searchNoteFromDist((markovChords[0].first / 8 * 8), 4) + markovChords[0].first % 8, 4));
-  markovChords.push_back(std::make_pair(searchNoteFromDist((markovChords[0].first / 8 * 8), 3) + markovChords[0].first % 8, 4));
-  markovChords.push_back(markovChords[0]);
-  markovChords.push_back(std::make_pair(searchNoteFromDist((markovChords[0].first / 8 * 8), 4) + markovChords[0].first % 8, 4));
+  /* CHORDS */
 
-  Disposition::placeChords(parameters, markovChords);
+  /* DRUMS */
 
-  i = 0;
-  while (i != markovChords.size())
+  std::vector<Instrument>				drumInstruments;
+  std::vector<std::vector<t_note>>		drumSequence;
+
+  if (parameters.getInstrumentsDrums() == true)
+  {
+	  Drums::initialize(_midiManager, drumInstruments);
+	  Drums::prepareDrums(parameters, drumSequence);
+	  Disposition::placeDrums(_midiManager, parameters, drumSequence, drumInstruments);
+  }
+
+  /* DRUMS */
+
+  std::cout << "MTG" << std::endl;
+  /* MARKOVIAN TREE GENERATION */
+  StyleSettings						proba;
+  std::vector<char>					strong;
+  std::vector<char>					medium;
+  std::vector<char>					weak;
+  chord = allChords.getChordPairFromName(markovChords[0].first);
+  AI::classifyNotes(chord, &strong, &medium, &weak);
+  AI::calculateProbaToNote(&proba, strong, PROBASTRONG);
+  AI::calculateProbaToNote(&proba, medium, PROBAMEDIUM);
+  AI::calculateProbaToNote(&proba, weak, PROBAWEAK);
+  AI::calculateProbaToScaleFromNote(&proba, strong, medium, weak);
+  /* MARKOVIAN TREE GENERATION */
+
+  std::cout << "ARPEGGIOS" << std::endl;
+  /* ARPEGGIOS */
+  int arpN = rand() % 3 + 4;
+  Pattern					*markovPattern = new Pattern(chord);
+  ObjectMarkov				       	markovObj2(proba, arpN++, parameters.getSeed());
+  markovObj2.callLua();
+  markovTmp = markovObj2.getVectorFromJson();
+  Resolution::parsingMarkov(&markovTmp, strong, medium, weak);
+  char						n;
+  n = -1;
+  int lastScale = 5;
+  while (++n != static_cast<char>(markovTmp.size()))
     {
-      StyleSettings					proba;
-      std::vector<char>					strong;
-      std::vector<char>					medium;
-      std::vector<char>					weak;
-
-      chord = allChords.getChordFromName(markovChords[i].first);
-      classifyNotes(chord, &strong, &medium, &weak);
-      calculateProbaToNote(&proba, strong, PROBASTRONG);
-      calculateProbaToNote(&proba, medium, PROBAMEDIUM);
-      calculateProbaToNote(&proba, weak, PROBAWEAK);
-      calculateProbaToScaleFromNote(&proba, strong, medium, weak);
-
-      ObjectMarkov				       	markovObj(proba, 3, parameters.getSeed());
-      markovObj.callLua();
-
-      markovTmp = markovObj.getVectorFromJson();
-      Resolution::parsingMarkov(&markovTmp, strong, medium, weak);
-      if (!markovArpeggio.size())
-	markovArpeggio = markovTmp;
-      else
-	markovArpeggio.insert(markovArpeggio.end(), markovTmp.begin(), markovTmp.end());
-      i++;
+      int scale = lastScale;
+      if (n != 0 && ABS(markovTmp[n].first - markovTmp[n - 1].first) / 8 > 6)
+	      scale = (markovTmp[n].first > markovTmp[n - 1].first) ? (lastScale - 1) : (lastScale + 1);
+      markovPattern->addNote(std::make_pair(markovTmp[n].first, static_cast<char>(scale)), n*3.0f/arpN + 1, 3.0f/arpN, 0);
+	  lastScale = scale;
+  }
+  std::vector<std::vector<t_note> >		arpeggios;
+  std::vector<std::vector<t_note> >		tmparpeggios;
+  n = -1;
+  while (++n != static_cast<char>(markovChords.size()))
+    {
+      tmparpeggios = markovPattern->correlatePattern(*markovPattern, chord, allChords.getChordPairFromName(markovChords[n].first));
+      arpeggios.insert(arpeggios.end(), tmparpeggios.begin(), tmparpeggios.end());
     }
+  Disposition::placeArpeggios(_midiManager, parameters, arpeggios);
+  ///* ARPEGGIOS */
 
-  Disposition::placeArpeggios(parameters, markovArpeggio);
-
-  parameters.setMidi(parameters._midiManager.createMidi(48));
-  parameters._midiManager.writeToFile("./test.mid");
-
-  return (Midi());
+  std::cout << "END" << std::endl;
+  ///* END */
+  _midiManager.writeToFile("./test.mid");
+	delete markovPattern;
+  return (_midiManager.createMidi(48));
+  /* ED*/
 }

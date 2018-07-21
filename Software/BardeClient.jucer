@@ -2,27 +2,78 @@
 
 <JUCERPROJECT id="n1PVK4" name="BardeClient" projectType="guiapp" version="1.0.0"
               bundleIdentifier="com.yourcompany.BardeClient" includeBinaryInAppConfig="1"
-              jucerVersion="4.3.1" companyName="Barde" companyWebsite="www.barde.io">
+              jucerVersion="5.3.2" companyName="Barde" companyWebsite="www.barde.io"
+              displaySplashScreen="1" reportAppUsage="1" splashScreenColour="Dark"
+              cppLanguageStandard="11" companyCopyright="Barde">
   <MAINGROUP id="r1VLiG" name="BardeClient">
     <GROUP id="{6687DB59-98D3-42FE-E900-5BC523D33DDC}" name="Source">
+      <GROUP id="{8AC2CD38-DB9F-38EE-F442-CF7863417114}" name="GraphicPanels">
+        <FILE id="oAdDpa" name="RegistrationPanel.hh" compile="0" resource="0"
+              file="Source/GraphManager/RegistrationPanel.hh"/>
+        <FILE id="LwkYBO" name="RegistrationPanel.cpp" compile="1" resource="0"
+              file="Source/GraphManager/RegistrationPanel.cpp"/>
+        <FILE id="T2wz1B" name="LoginPanel.hh" compile="0" resource="0" file="Source/GraphManager/LoginPanel.hh"/>
+        <FILE id="hghofU" name="LoginPanel.cpp" compile="1" resource="0" file="Source/GraphManager/LoginPanel.cpp"/>
+        <FILE id="tw1tTU" name="ReportPanel.cpp" compile="1" resource="0" file="Source/GraphManager/ReportPanel.cpp"/>
+        <FILE id="KIFr5g" name="ReportPanel.hh" compile="0" resource="0" file="Source/GraphManager/ReportPanel.hh"/>
+        <FILE id="K4qWej" name="CenterPanel.cpp" compile="1" resource="0" file="Source/GraphManager/CenterPanel.cpp"/>
+        <FILE id="R3WTYS" name="CenterPanel.hh" compile="0" resource="0" file="Source/GraphManager/CenterPanel.hh"/>
+        <FILE id="JKulCT" name="LeftPanel.cpp" compile="1" resource="0" file="Source/GraphManager/LeftPanel.cpp"/>
+        <FILE id="aQDoFC" name="LeftPanel.hh" compile="0" resource="0" file="Source/GraphManager/LeftPanel.hh"/>
+        <FILE id="MrpYCp" name="PlayerFooter.cpp" compile="1" resource="0"
+              file="Source/GraphManager/PlayerFooter.cpp"/>
+        <FILE id="FUaMxD" name="PlayerFooter.hh" compile="0" resource="0" file="Source/GraphManager/PlayerFooter.hh"/>
+        <FILE id="cZ0dYD" name="PlayerPanel.cpp" compile="1" resource="0" file="Source/GraphManager/PlayerPanel.cpp"/>
+        <FILE id="eS257S" name="PlayerPanel.hh" compile="0" resource="0" file="Source/GraphManager/PlayerPanel.hh"/>
+        <FILE id="lmOBXm" name="UserParamsPanel.cpp" compile="1" resource="0"
+              file="Source/GraphManager/UserParamsPanel.cpp"/>
+        <FILE id="SkjqhJ" name="UserParamsPanel.hh" compile="0" resource="0"
+              file="Source/GraphManager/UserParamsPanel.hh"/>
+      </GROUP>
+      <GROUP id="{24E1D38D-B5FC-4280-56B0-A9BD1F18BEB8}" name="Utils">
+        <FILE id="qgBgYy" name="NonCopyable.hpp" compile="0" resource="0" file="Source/Utils/NonCopyable.hpp"/>
+        <FILE id="oK5O92" name="StringChecker.cpp" compile="1" resource="0"
+              file="Source/Utils/StringChecker.cpp"/>
+        <FILE id="dGCkCM" name="StringChecker.hh" compile="0" resource="0"
+              file="Source/Utils/StringChecker.hh"/>
+      </GROUP>
+      <FILE id="oqcD8J" name="CondVariable.cpp" compile="1" resource="0"
+            file="Source/CondVariable.cpp"/>
+      <FILE id="Mp6NGF" name="CondVariable.hh" compile="0" resource="0" file="Source/CondVariable.hh"/>
+      <GROUP id="{FC74AE7E-4016-436E-FC96-5C291546A2E5}" name="ViewManager">
+        <FILE id="InxVPT" name="AView.cpp" compile="1" resource="0" file="Source/ViewManager/AView.cpp"/>
+        <FILE id="MlWh5P" name="AView.hh" compile="0" resource="0" file="Source/ViewManager/AView.hh"/>
+        <FILE id="oYnOTC" name="FlexView.cpp" compile="1" resource="0" file="Source/ViewManager/FlexView.cpp"/>
+        <FILE id="HkOEZn" name="FlexView.hh" compile="0" resource="0" file="Source/ViewManager/FlexView.hh"/>
+        <FILE id="vXmj1f" name="HomePage.cpp" compile="1" resource="0" file="Source/ViewManager/HomePage.cpp"/>
+        <FILE id="NuTtil" name="HomePage.hh" compile="0" resource="0" file="Source/ViewManager/HomePage.hh"/>
+        <FILE id="SiV0lV" name="IView.hpp" compile="0" resource="0" file="Source/ViewManager/IView.hpp"/>
+        <FILE id="V3G2Pu" name="ViewManager.cpp" compile="1" resource="0" file="Source/ViewManager/ViewManager.cpp"/>
+        <FILE id="SvADQ8" name="ViewManager.hh" compile="0" resource="0" file="Source/ViewManager/ViewManager.hh"/>
+      </GROUP>
+      <GROUP id="{FC4962DE-49E3-03E8-DA8B-D356646FA654}" name="Factories">
+        <FILE id="cRJqlx" name="GuiFactory.cpp" compile="1" resource="0" file="Source/Factories/GuiFactory.cpp"/>
+        <FILE id="RSiUam" name="GuiFactory.hh" compile="0" resource="0" file="Source/Factories/GuiFactory.hh"/>
+      </GROUP>
       <FILE id="y0Wt8b" name="ThreadPool.cpp" compile="1" resource="0" file="Source/ThreadPool.cpp"/>
+      <FILE id="A50ma2" name="SynchronizeManager.hh" compile="0" resource="0"
+            file="Source/SynchronizeManager.hh"/>
       <FILE id="DLuudu" name="ThreadPool.hh" compile="0" resource="0" file="Source/ThreadPool.hh"/>
       <FILE id="xeM74q" name="Tools.cpp" compile="1" resource="0" file="Source/Tools.cpp"/>
       <FILE id="vs2D6f" name="Tools.hh" compile="0" resource="0" file="Source/Tools.hh"/>
       <FILE id="ro2yD2" name="SynchronizeManager.cpp" compile="1" resource="0"
             file="Source/SynchronizeManager.cpp"/>
-      <FILE id="A50ma2" name="SynchronizeManager.hh" compile="0" resource="0"
-            file="Source/SynchronizeManager.hh"/>
-      <GROUP id="{232E6AD8-A50D-53BC-2432-D6E48554A0F2}" name="ViewManager">
-        <FILE id="GoWy4d" name="AView.cpp" compile="1" resource="0" file="Source/ViewManager/AView.cpp"/>
-        <FILE id="KSYQp0" name="AView.hh" compile="0" resource="0" file="Source/ViewManager/AView.hh"/>
-        <FILE id="XmgIJi" name="HomePage.cpp" compile="1" resource="0" file="Source/ViewManager/HomePage.cpp"/>
-        <FILE id="G3DUGg" name="HomePage.hh" compile="0" resource="0" file="Source/ViewManager/HomePage.hh"/>
-        <FILE id="zq5a2B" name="IView.hpp" compile="0" resource="0" file="Source/ViewManager/IView.hpp"/>
-        <FILE id="tSDjkr" name="ViewManager.cpp" compile="1" resource="0" file="Source/ViewManager/ViewManager.cpp"/>
-        <FILE id="f11e5w" name="ViewManager.hh" compile="0" resource="0" file="Source/ViewManager/ViewManager.hh"/>
-      </GROUP>
       <GROUP id="{5444B8A4-FB7A-02ED-7754-175A3C60D033}" name="AI">
+        <FILE id="E487my" name="Drums.hh" compile="0" resource="0" file="Source/AI/Drums.hh"/>
+        <FILE id="rpJXui" name="Drums.cpp" compile="1" resource="0" file="Source/AI/Drums.cpp"/>
+        <FILE id="hFYTdl" name="Pattern.cpp" compile="1" resource="0" file="Source/AI/Pattern.cpp"/>
+        <FILE id="VrYzr7" name="Pattern.hh" compile="0" resource="0" file="Source/AI/Pattern.hh"/>
+        <FILE id="m9l2Ul" name="PatternGenerator.cpp" compile="1" resource="0"
+              file="Source/AI/PatternGenerator.cpp"/>
+        <FILE id="N45Vze" name="PatternGenerator.hh" compile="0" resource="0"
+              file="Source/AI/PatternGenerator.hh"/>
+        <FILE id="Y6cQpe" name="AI.hh" compile="0" resource="0" file="Source/AI/AI.hh"/>
+        <FILE id="h00NQQ" name="AI.cpp" compile="1" resource="0" file="Source/AI/AI.cpp"/>
         <FILE id="jqA6BZ" name="Chords.cpp" compile="1" resource="0" file="Source/AI/Chords.cpp"/>
         <FILE id="gRmS1K" name="Chords.hh" compile="0" resource="0" file="Source/AI/Chords.hh"/>
         <FILE id="zdlHC7" name="Disposition.cpp" compile="1" resource="0" file="Source/AI/Disposition.cpp"/>
@@ -78,14 +129,34 @@
         <FILE id="wSJyIx" name="SSLManager.hh" compile="0" resource="0" file="Source/EncryptionManager/SSLManager.hh"/>
       </GROUP>
       <GROUP id="{67A50DD7-6C2C-A059-E512-F0F0D14AB316}" name="GraphManager">
+        <FILE id="dmNefZ" name="LabeledTextBox.cpp" compile="1" resource="0"
+              file="Source/GraphManager/LabeledTextBox.cpp"/>
+        <FILE id="ort6VL" name="LabeledTextBox.hh" compile="0" resource="0"
+              file="Source/GraphManager/LabeledTextBox.hh"/>
+        <FILE id="ILxVWQ" name="SimpleLabel.cpp" compile="1" resource="0" file="Source/GraphManager/SimpleLabel.cpp"/>
+        <FILE id="KrI0We" name="SimpleLabel.hh" compile="0" resource="0" file="Source/GraphManager/SimpleLabel.hh"/>
+        <FILE id="eErgF6" name="AComponent.cpp" compile="1" resource="0" file="Source/GraphManager/AComponent.cpp"/>
+        <FILE id="KUlU1X" name="AComponent.hh" compile="0" resource="0" file="Source/GraphManager/AComponent.hh"/>
         <FILE id="HIx8vh" name="AGraphManager.cpp" compile="1" resource="0"
               file="Source/GraphManager/AGraphManager.cpp"/>
         <FILE id="jmDYIS" name="AGraphManager.hh" compile="0" resource="0"
               file="Source/GraphManager/AGraphManager.hh"/>
+        <FILE id="Fr7ElR" name="BasicButton.cpp" compile="1" resource="0" file="Source/GraphManager/BasicButton.cpp"/>
+        <FILE id="yJoUv8" name="BasicButton.hh" compile="0" resource="0" file="Source/GraphManager/BasicButton.hh"/>
+        <FILE id="RqIcY2" name="FlexGroup.cpp" compile="1" resource="0" file="Source/GraphManager/FlexGroup.cpp"/>
+        <FILE id="lxP3gN" name="FlexGroup.hh" compile="0" resource="0" file="Source/GraphManager/FlexGroup.hh"/>
         <FILE id="Lbi3bj" name="IGraphManager.hpp" compile="0" resource="0"
               file="Source/GraphManager/IGraphManager.hpp"/>
         <FILE id="rCMkmr" name="JuceManager.cpp" compile="1" resource="0" file="Source/GraphManager/JuceManager.cpp"/>
         <FILE id="dnE53f" name="JuceManager.hh" compile="0" resource="0" file="Source/GraphManager/JuceManager.hh"/>
+        <FILE id="vjUgyq" name="ListItemComponent.cpp" compile="1" resource="0"
+              file="ListItemComponent.cpp"/>
+        <FILE id="P3G4EZ" name="ListItemComponent.h" compile="0" resource="0"
+              file="ListItemComponent.h"/>
+        <FILE id="Y4LQnG" name="LoginComponent.cpp" compile="1" resource="0"
+              file="Source/GraphManager/LoginComponent.cpp"/>
+        <FILE id="LTTvBN" name="LoginComponent.h" compile="0" resource="0"
+              file="Source/GraphManager/LoginComponent.h"/>
         <FILE id="IO6KsY" name="MainComponent.cpp" compile="1" resource="0"
               file="Source/GraphManager/MainComponent.cpp"/>
         <FILE id="o7iJhw" name="MainComponent.h" compile="0" resource="0" file="Source/GraphManager/MainComponent.h"/>
@@ -95,6 +166,12 @@
               file="Source/GraphManager/MusicStyleButton.cpp"/>
         <FILE id="COOJPI" name="MusicStyleButton.h" compile="0" resource="0"
               file="Source/GraphManager/MusicStyleButton.h"/>
+        <FILE id="anX9Wi" name="Theme.cpp" compile="1" resource="0" file="Source/GraphManager/Theme.cpp"/>
+        <FILE id="UcsbfQ" name="Theme.h" compile="0" resource="0" file="Source/GraphManager/Theme.h"/>
+        <FILE id="Ps92aY" name="UserRegistration.cpp" compile="1" resource="0"
+              file="Source/GraphManager/UserRegistration.cpp"/>
+        <FILE id="tUPkX0" name="UserRegistration.h" compile="0" resource="0"
+              file="Source/GraphManager/UserRegistration.h"/>
       </GROUP>
       <GROUP id="{52D574CE-B6FD-4ACB-AA76-BC22CA3CBE72}" name="MidiManager">
         <FILE id="aUJmsJ" name="AMidiManager.cpp" compile="1" resource="0"
@@ -108,15 +185,16 @@
         <FILE id="ENA4vp" name="MidiManager.cpp" compile="1" resource="0" file="Source/MidiManager/MidiManager.cpp"/>
         <FILE id="PYjyqB" name="MidiManager.hh" compile="0" resource="0" file="Source/MidiManager/MidiManager.hh"/>
       </GROUP>
-      <GROUP id="{7355C593-7CFA-F1F9-4B6F-55F47B09F159}" name="SocketManager">
-        <FILE id="R4jjJQ" name="ASocketManager.cpp" compile="1" resource="0"
-              file="Source/SocketManager/ASocketManager.cpp"/>
-        <FILE id="mfdzio" name="ASocketManager.hh" compile="0" resource="0"
-              file="Source/SocketManager/ASocketManager.hh"/>
-        <FILE id="Z5AEs6" name="ISockerManager.hpp" compile="0" resource="0"
-              file="Source/SocketManager/ISockerManager.hpp"/>
-        <FILE id="qoeOFI" name="TCPSocket.cpp" compile="1" resource="0" file="Source/SocketManager/TCPSocket.cpp"/>
-        <FILE id="JHOoHI" name="TCPSocket.hh" compile="0" resource="0" file="Source/SocketManager/TCPSocket.hh"/>
+      <GROUP id="{7355C593-7CFA-F1F9-4B6F-55F47B09F159}" name="RestClient">
+        <FILE id="GomWin" name="ARestClient.cpp" compile="1" resource="0" file="Source/RestClient/ARestClient.cpp"/>
+        <FILE id="YkTHkl" name="ARestClient.hh" compile="0" resource="0" file="Source/RestClient/ARestClient.hh"/>
+        <FILE id="V0W6Pw" name="IRestClient.hpp" compile="0" resource="0" file="Source/RestClient/IRestClient.hpp"/>
+        <FILE id="CleUB7" name="RestClient.cpp" compile="1" resource="0" file="Source/RestClient/RestClient.cpp"/>
+        <FILE id="Y8Lxy1" name="RestClient.hh" compile="0" resource="0" file="Source/RestClient/RestClient.hh"/>
+        <FILE id="ZhwAGF" name="RestClientException.cpp" compile="1" resource="0"
+              file="Source/RestClient/RestClientException.cpp"/>
+        <FILE id="FSHzLx" name="RestClientException.hh" compile="0" resource="0"
+              file="Source/RestClient/RestClientException.hh"/>
       </GROUP>
       <GROUP id="{5F7C370B-C39E-F6F2-55F2-8706CAF30B73}" name="SoundManager">
         <FILE id="og9519" name="ASoundManager.cpp" compile="1" resource="0"
@@ -127,6 +205,12 @@
               file="Source/SoundManager/ISoundManager.hpp"/>
         <FILE id="BZshgg" name="JuceSound.cpp" compile="1" resource="0" file="Source/SoundManager/JuceSound.cpp"/>
         <FILE id="gL6Cwn" name="JuceSound.hh" compile="0" resource="0" file="Source/SoundManager/JuceSound.hh"/>
+        <FILE id="a3zTxC" name="Synthesizer.cpp" compile="1" resource="0" file="Source/SoundManager/Synthesizer.cpp"/>
+        <FILE id="DYmEBQ" name="Synthesizer.hh" compile="0" resource="0" file="Source/SoundManager/Synthesizer.hh"/>
+        <FILE id="LRTGRY" name="SynthesizerInstrument.cpp" compile="1" resource="0"
+              file="Source/SoundManager/SynthesizerInstrument.cpp"/>
+        <FILE id="kVqbZ0" name="SynthesizerInstrument.hh" compile="0" resource="0"
+              file="Source/SoundManager/SynthesizerInstrument.hh"/>
       </GROUP>
       <FILE id="tIUj1n" name="Authentification.cpp" compile="1" resource="0"
             file="Source/Authentification.cpp"/>
@@ -162,55 +246,72 @@
       <FILE id="d2qVYx" name="Subscription.hh" compile="0" resource="0" file="Source/Subscription.hh"/>
       <FILE id="nU6q57" name="User.cpp" compile="1" resource="0" file="Source/User.cpp"/>
       <FILE id="d0nW4g" name="User.hh" compile="0" resource="0" file="Source/User.hh"/>
+      <FILE id="L9OKZH" name="UserSettings.cpp" compile="1" resource="0"
+            file="Source/UserSettings.cpp"/>
+      <FILE id="xB0dXM" name="UserSettings.h" compile="0" resource="0" file="Source/UserSettings.h"/>
     </GROUP>
+    <GROUP id="{A4238DDD-1308-CF42-59A1-407DADF2E536}" name="Themes">
+      <FILE id="SzlgVd" name="Dark" compile="0" resource="1" file="Source/Themes/Dark"/>
+    </GROUP>
+    <FILE id="DSddGh" name="DateTime.cpp" compile="1" resource="0" file="Source/DateTime.cpp"/>
+    <FILE id="AE5Ojh" name="DateTime.hh" compile="0" resource="0" file="Source/DateTime.hh"/>
+    <FILE id="WNFnNx" name="Semaphore.cpp" compile="1" resource="0" file="Source/Semaphore.cpp"/>
+    <FILE id="hHWpAV" name="Semaphore.hh" compile="0" resource="0" file="Source/Semaphore.hh"/>
   </MAINGROUP>
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="MacOS" extraDefs="SOURCEMARKOV=\&quot;$(SRCROOT)/../Source/markovSource/\&quot;">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="BardeClient"/>
-        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="BardeClient"/>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="BardeClient"
+                       enablePluginBinaryCopyStep="1"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="BardeClient"
+                       enablePluginBinaryCopyStep="1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_core" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_events" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_graphics" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_data_structures" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_gui_basics" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_gui_extra" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_cryptography" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_video" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_opengl" path="JuceLibraryCode\modules"/>
         <MODULEPATH id="juce_audio_basics" path="JuceLibraryCode\modules"/>
+        <MODULEPATH id="juce_core" path="JuceLibraryCode\modules"/>
+        <MODULEPATH id="juce_graphics" path="JuceLibraryCode\modules"/>
+        <MODULEPATH id="juce_events" path="JuceLibraryCode\modules"/>
         <MODULEPATH id="juce_audio_devices" path="JuceLibraryCode\modules"/>
         <MODULEPATH id="juce_audio_formats" path="JuceLibraryCode\modules"/>
+        <MODULEPATH id="juce_gui_basics" path="JuceLibraryCode\modules"/>
+        <MODULEPATH id="juce_data_structures" path="JuceLibraryCode\modules"/>
         <MODULEPATH id="juce_audio_processors" path="JuceLibraryCode\modules"/>
+        <MODULEPATH id="juce_gui_extra" path="JuceLibraryCode\modules"/>
         <MODULEPATH id="juce_audio_utils" path="JuceLibraryCode\modules"/>
+        <MODULEPATH id="juce_cryptography" path="JuceLibraryCode\modules"/>
+        <MODULEPATH id="juce_video" path="JuceLibraryCode\modules"/>
+        <MODULEPATH id="juce_osc" path="JuceLibraryCode\modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <VS2015 targetFolder="Windows" externalLibraries="..\LuaLibrary\lua53.lib"
-            extraCompilerFlags="-I..\JsoncppLibrary\&#10;-I..\LuaLibrary\include"
-            extraDefs="SOURCEMARKOV=&quot;$(ProjectDir.Replace('\'\,'/'))../Source/markovSource/&quot;">
+            extraCompilerFlags="-I..\JsoncppLibrary\&#10;-I..\LuaLibrary\include&#10;"
+            extraDefs="SOURCEMARKOV=&quot;$(ProjectDir.Replace('\'\,'/'))../Source/markovSource/&quot;"
+            windowsTargetPlatformVersion="8.1" toolset="v140" smallIcon="YTFWvq"
+            bigIcon="YTFWvq">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="1" optimisation="1" targetName="BardeClient" postbuildCommand="xcopy /d /y &quot;$(ProjectDir)..\LuaLibrary\lua53.dll&quot; &quot;$(OutDir)&quot;"/>
+                       isDebug="1" optimisation="1" targetName="BardeClient" postbuildCommand="xcopy /d /y &quot;$(ProjectDir)..\LuaLibrary\lua53.dll&quot; &quot;$(OutDir)&quot;"
+                       debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="0" optimisation="3" targetName="BardeClient" postbuildCommand="xcopy /d /y &quot;$(ProjectDir)..\LuaLibrary\lua53.dll&quot; &quot;$(OutDir)&quot;"/>
+                       isDebug="0" optimisation="3" targetName="BardeClient" postbuildCommand="xcopy /d /y &quot;$(ProjectDir)..\LuaLibrary\lua53.dll&quot; &quot;$(OutDir)&quot;"
+                       debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
+                       linkTimeOptimisation="1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_core" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_events" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_graphics" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_data_structures" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_gui_basics" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_gui_extra" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_cryptography" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_video" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_opengl" path="JuceLibraryCode\modules"/>
         <MODULEPATH id="juce_audio_basics" path="JuceLibraryCode\modules"/>
+        <MODULEPATH id="juce_core" path="JuceLibraryCode\modules"/>
+        <MODULEPATH id="juce_graphics" path="JuceLibraryCode\modules"/>
+        <MODULEPATH id="juce_events" path="JuceLibraryCode\modules"/>
         <MODULEPATH id="juce_audio_devices" path="JuceLibraryCode\modules"/>
         <MODULEPATH id="juce_audio_formats" path="JuceLibraryCode\modules"/>
+        <MODULEPATH id="juce_gui_basics" path="JuceLibraryCode\modules"/>
+        <MODULEPATH id="juce_data_structures" path="JuceLibraryCode\modules"/>
         <MODULEPATH id="juce_audio_processors" path="JuceLibraryCode\modules"/>
+        <MODULEPATH id="juce_gui_extra" path="JuceLibraryCode\modules"/>
         <MODULEPATH id="juce_audio_utils" path="JuceLibraryCode\modules"/>
+        <MODULEPATH id="juce_cryptography" path="JuceLibraryCode\modules"/>
+        <MODULEPATH id="juce_video" path="JuceLibraryCode\modules"/>
+        <MODULEPATH id="juce_osc" path="JuceLibraryCode\modules"/>
       </MODULEPATHS>
     </VS2015>
     <LINUX_MAKE targetFolder="Linux" externalLibraries="lua" extraLinkerFlags="-L../LuaLibrary"
@@ -221,41 +322,43 @@
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="BardeClient"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_core" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_events" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_graphics" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_data_structures" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_gui_basics" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_gui_extra" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_cryptography" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_video" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_opengl" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_audio_basics" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_audio_devices" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_audio_formats" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_audio_processors" path="JuceLibraryCode\modules"/>
-        <MODULEPATH id="juce_audio_utils" path="JuceLibraryCode\modules"/>
+        <MODULEPATH id="juce_audio_basics" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_core" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_graphics" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_events" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_data_structures" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_cryptography" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_video" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_osc" path="JuceLibraryCode/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
   </EXPORTFORMATS>
   <MODULES>
-    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="1"/>
-    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="1"/>
-    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="1"/>
-    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="1"/>
-    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="1"/>
-    <MODULE id="juce_core" showAllCode="1" useLocalCopy="1"/>
-    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="1"/>
-    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="1"/>
-    <MODULE id="juce_events" showAllCode="1" useLocalCopy="1"/>
-    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="1"/>
-    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="1"/>
-    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="1"/>
-    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="1"/>
-    <MODULE id="juce_video" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="1" useGlobalPath="0"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="1" useGlobalPath="0"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="1" useGlobalPath="0"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="1" useGlobalPath="0"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="1" useGlobalPath="0"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="1" useGlobalPath="0"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="1" useGlobalPath="0"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="1" useGlobalPath="0"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="1" useGlobalPath="0"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="1" useGlobalPath="0"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="1" useGlobalPath="0"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="1" useGlobalPath="0"/>
+    <MODULE id="juce_osc" showAllCode="1" useLocalCopy="1" useGlobalPath="0"/>
+    <MODULE id="juce_video" showAllCode="1" useLocalCopy="1" useGlobalPath="0"/>
   </MODULES>
-  <JUCEOPTIONS JUCE_ALSA="enabled"/>
+  <JUCEOPTIONS/>
   <LIVE_SETTINGS>
-    <WINDOWS/>
+    <WINDOWS buildEnabled="0" headerPath=".\JsoncppLibrary\&#10;.\LuaLibrary\include&#10;"
+             defines="SOURCEMARKOV=&quot;$(ProjectDir.Replace('\'\,'/'))../Source/markovSource/&quot;"
+             extraDLLs="..\LuaLibrary\lua53.lib"/>
   </LIVE_SETTINGS>
 </JUCERPROJECT>

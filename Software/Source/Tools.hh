@@ -11,17 +11,19 @@
 #ifndef TOOLS_HH_INCLUDED
 #define TOOLS_HH_INCLUDED
 
+#include <thread>
+#include <mutex>
 #ifdef __linux__
 #include <unistd.h>
 #else
 #include <Windows.h>
 #endif // DEBUG
 
-
 class Tools
 {
 public:
 	static void sleep(const unsigned int time);
+	static void sleepActive(const unsigned int time);
 };
 
 #endif  // TOOLS_HH_INCLUDED

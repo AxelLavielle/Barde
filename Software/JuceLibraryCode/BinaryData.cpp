@@ -5794,9 +5794,17 @@ static const unsigned char temp_binary_data_2[] =
 
 const char* logo_png = (const char*) temp_binary_data_2;
 
+//================== Dark ==================
+static const unsigned char temp_binary_data_3[] =
+"DarkTheme\r\n"
+"#D2005F\r\n"
+"#2c3e50\r\n"
+"#FFFFFF\r\n";
 
-const char* getNamedResource (const char*, int&) throw();
-const char* getNamedResource (const char* resourceNameUTF8, int& numBytes) throw()
+const char* Dark = (const char*) temp_binary_data_3;
+
+
+const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
 {
     unsigned int hash = 0;
     if (resourceNameUTF8 != 0)
@@ -5808,18 +5816,39 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes) throw
         case 0x441eb498:  numBytes = 215; return people_json;
         case 0x7e701ad1:  numBytes = 140671; return back_png;
         case 0x78ded995:  numBytes = 271238; return logo_png;
+        case 0x00206396:  numBytes = 38; return Dark;
         default: break;
     }
 
     numBytes = 0;
-    return 0;
+    return nullptr;
 }
 
 const char* namedResourceList[] =
 {
     "people_json",
     "back_png",
-    "logo_png"
+    "logo_png",
+    "Dark"
 };
+
+const char* originalFilenames[] =
+{
+    "people.json",
+    "back.png",
+    "logo.png",
+    "Dark"
+};
+
+const char* getNamedResourceOriginalFilename (const char* resourceNameUTF8)
+{
+    for (unsigned int i = 0; i < (sizeof (namedResourceList) / sizeof (namedResourceList[0])); ++i)
+    {
+        if (namedResourceList[i] == resourceNameUTF8)
+            return originalFilenames[i];
+    }
+
+    return nullptr;
+}
 
 }

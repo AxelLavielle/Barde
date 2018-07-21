@@ -8,7 +8,7 @@ local probNote = {}
 
 local node = nil
 
-local function initLib(source)
+local function initLib(source) 
   local popen_status, popen_result = pcall(io.popen, "")
   if popen_status then
       popen_result:close()
@@ -62,10 +62,24 @@ local function nextNode(actualScale, actualNote)
   return tmpNode
 end
 
-function generateNote(scale, note, nbNote, sourceMarkov)
-  json = dofile(sourceMarkov .. "dkjson.lua")
+function generateNote(scale, note, nbNote, sourceMarkov) 
+  json = dofile(sourceMarkov .. "dkjson.lua") 
   scale = json.decode(scale)
   note = json.decode(note)
+  probScale = scale
+  probNote = note
+  actualScale = "begin"
+  actualNote = "begin"
+  local i = 0
+  while i < nbNote do
+    actualScale,actualNote = addNode(nextNode(actualScale, actualNote))
+    i = i + 1
+  end
+  return json.encode(node)
+end
+
+function generateNoteWithGlobal(nbNote, sourceMarkov) 
+  json = dofile(sourceMarkov .. "dkjson.lua")
   probScale = scale
   probNote = note
   actualScale = "begin"

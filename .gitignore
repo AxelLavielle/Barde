@@ -189,5 +189,15 @@ ipch/
 *.VC.db
 *.VC.V
 
+####################
+DocBarde/
+
+Software/Windows/test\.mid
+
+Software/Linux/build/BardeClient
+
+Software/Linux/test\.mid
+Software/Windows/enc_temp_folder
+=======
 \.idea/
 Software/Linux/BardeInterface/Builds

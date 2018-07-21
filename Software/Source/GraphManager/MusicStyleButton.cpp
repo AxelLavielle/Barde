@@ -11,15 +11,15 @@
 #include "MusicStyleButton.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
+
 MusicStyleButton::MusicStyleButton(const String & buttonName, const int width, const int height) : Button(buttonName)
 {
-	this->width = width;
-	this->height = height;
+	_width = width;
+	_height = height;
 }
 
 MusicStyleButton::~MusicStyleButton()
 {
-
 }
 
 void MusicStyleButton::paintButton(Graphics& g, const bool isMouseOverButton, const bool isButtonDown)
@@ -27,25 +27,22 @@ void MusicStyleButton::paintButton(Graphics& g, const bool isMouseOverButton, co
 	//Background Color
 	if (isButtonDown)
 	{
-		g.setColour(Colour(0xff4169E1));
-		Player player;
-
-		player.Play();
+		g.setColour(Colour(Theme::getInstance().getButtonColor()));
 	}
 	else if (isMouseOverButton)
 	{
-		g.setColour(Colour(0xff6495ED));
+	  g.setColour(Colour(Theme::getInstance().getButtonColor()));
 	}
 	else
 	{
-		g.setColour(Colour(0xff4682B4));
+	  g.setColour(Colour(Theme::getInstance().getButtonColor()));
 	}
 
 	//Background
-	g.fillRoundedRectangle(0, 0, this->width, this->height, 30);
+	g.fillRoundedRectangle(0.f, 0.f, static_cast<float>(_width), static_cast<float>(_height), 30.f);
 	//Text
-	g.setColour(Colours::white);
+	g.setColour(Colour(Theme::getInstance().getButtonFontColor()));
 	g.setFont(14.0f);
-	g.drawText(this->getName(), 0, 0, this->width, this->height, Justification::centred, true);
+	g.drawText(this->getName(), 0, 0, _width, _height, Justification::centred, true);
 }
 

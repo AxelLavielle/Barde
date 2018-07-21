@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="FTWl71" name="Server" projectType="guiapp" jucerVersion="5.3.2">
+  <MAINGROUP id="sP8lrg" name="Server">
+    <GROUP id="{9760DF16-7C41-F867-BE4A-FBB19FB1835C}" name="AI">
+      <FILE id="JtXuts" name="AI.cpp" compile="1" resource="0" file="../../../Software/Source/AI/AI.cpp"/>
+      <FILE id="wY3Ppk" name="AI.hh" compile="0" resource="0" file="../../../Software/Source/AI/AI.hh"/>
+      <FILE id="jf39My" name="Chords.cpp" compile="1" resource="0" file="../../../Software/Source/AI/Chords.cpp"/>
+      <FILE id="DFYXeu" name="Chords.hh" compile="0" resource="0" file="../../../Software/Source/AI/Chords.hh"/>
+      <FILE id="qgxmaE" name="Disposition.cpp" compile="1" resource="0" file="../../../Software/Source/AI/Disposition.cpp"/>
+      <FILE id="Zijl1z" name="Disposition.hh" compile="0" resource="0" file="../../../Software/Source/AI/Disposition.hh"/>
+      <FILE id="JzyuTU" name="Drums.cpp" compile="1" resource="0" file="../../../Software/Source/AI/Drums.cpp"/>
+      <FILE id="yUOwA2" name="Drums.hh" compile="0" resource="0" file="../../../Software/Source/AI/Drums.hh"/>
+      <FILE id="zexkh7" name="MusicGenerator.cpp" compile="1" resource="0"
+            file="../../../Software/Source/AI/MusicGenerator.cpp"/>
+      <FILE id="yxamsu" name="MusicGenerator.hh" compile="0" resource="0"
+            file="../../../Software/Source/AI/MusicGenerator.hh"/>
+      <FILE id="OQ2cVN" name="ObjectMarkov.cpp" compile="1" resource="0"
+            file="../../../Software/Source/AI/ObjectMarkov.cpp"/>
+      <FILE id="RJToAC" name="ObjectMarkov.hh" compile="0" resource="0" file="../../../Software/Source/AI/ObjectMarkov.hh"/>
+      <FILE id="Rapmf4" name="Pattern.cpp" compile="1" resource="0" file="../../../Software/Source/AI/Pattern.cpp"/>
+      <FILE id="BMSSus" name="Pattern.hh" compile="0" resource="0" file="../../../Software/Source/AI/Pattern.hh"/>
+      <FILE id="DMk69W" name="PatternGenerator.cpp" compile="1" resource="0"
+            file="../../../Software/Source/AI/PatternGenerator.cpp"/>
+      <FILE id="S0oLO0" name="PatternGenerator.hh" compile="0" resource="0"
+            file="../../../Software/Source/AI/PatternGenerator.hh"/>
+      <FILE id="l4VbjX" name="people.json" compile="0" resource="1" file="../../../Software/Source/AI/people.json"/>
+      <FILE id="fBeqTq" name="Resolution.cpp" compile="1" resource="0" file="../../../Software/Source/AI/Resolution.cpp"/>
+      <FILE id="Orzczo" name="Resolution.hh" compile="0" resource="0" file="../../../Software/Source/AI/Resolution.hh"/>
+      <FILE id="KTDFtd" name="StyleSettings.cpp" compile="1" resource="0"
+            file="../../../Software/Source/AI/StyleSettings.cpp"/>
+      <FILE id="mwHGT2" name="StyleSettings.hh" compile="0" resource="0"
+            file="../../../Software/Source/AI/StyleSettings.hh"/>
+    </GROUP>
+    <GROUP id="{194032F9-6A72-396D-6F99-74208156F425}" name="MidiManager">
+      <FILE id="ieakNw" name="AMidiManager.cpp" compile="1" resource="0"
+            file="../../../Software/Source/MidiManager/AMidiManager.cpp"/>
+      <FILE id="ERp9Ht" name="AMidiManager.hh" compile="0" resource="0" file="../../../Software/Source/MidiManager/AMidiManager.hh"/>
+      <FILE id="nAHJBD" name="IMidiManager.hpp" compile="0" resource="0"
+            file="../../../Software/Source/MidiManager/IMidiManager.hpp"/>
+      <FILE id="KzOKR6" name="Instruments.hh" compile="0" resource="0" file="../../../Software/Source/MidiManager/Instruments.hh"/>
+      <FILE id="MZLXg9" name="Midi.cpp" compile="1" resource="0" file="../../../Software/Source/MidiManager/Midi.cpp"/>
+      <FILE id="iAOZVX" name="Midi.hh" compile="0" resource="0" file="../../../Software/Source/MidiManager/Midi.hh"/>
+      <FILE id="xi4mSP" name="MidiManager.cpp" compile="1" resource="0" file="../../../Software/Source/MidiManager/MidiManager.cpp"/>
+      <FILE id="fVZecx" name="MidiManager.hh" compile="0" resource="0" file="../../../Software/Source/MidiManager/MidiManager.hh"/>
+    </GROUP>
+    <GROUP id="{08E2D5DD-B81C-0E02-243D-536998EE28CD}" name="RestClient">
+      <FILE id="xjMhZw" name="ARestClient.cpp" compile="1" resource="0" file="../../../Software/Source/RestClient/ARestClient.cpp"/>
+      <FILE id="L7MFxQ" name="ARestClient.hh" compile="0" resource="0" file="../../../Software/Source/RestClient/ARestClient.hh"/>
+      <FILE id="ciKxxX" name="IRestClient.hpp" compile="0" resource="0" file="../../../Software/Source/RestClient/IRestClient.hpp"/>
+      <FILE id="fxW838" name="RestClient.cpp" compile="1" resource="0" file="../../../Software/Source/RestClient/RestClient.cpp"/>
+      <FILE id="okOpHZ" name="RestClient.hh" compile="0" resource="0" file="../../../Software/Source/RestClient/RestClient.hh"/>
+      <FILE id="KtmHhD" name="RestClientException.cpp" compile="1" resource="0"
+            file="../../../Software/Source/RestClient/RestClientException.cpp"/>
+      <FILE id="dK1n09" name="RestClientException.hh" compile="0" resource="0"
+            file="../../../Software/Source/RestClient/RestClientException.hh"/>
+    </GROUP>
+    <GROUP id="{C23AA503-71F3-2689-25A0-18B72F7D300D}" name="SoundManager">
+      <FILE id="isioi6" name="ASoundManager.cpp" compile="1" resource="0"
+            file="../../../Software/Source/SoundManager/ASoundManager.cpp"/>
+      <FILE id="TiaqrS" name="ASoundManager.hh" compile="0" resource="0"
+            file="../../../Software/Source/SoundManager/ASoundManager.hh"/>
+      <FILE id="tXdymZ" name="ISoundManager.hpp" compile="0" resource="0"
+            file="../../../Software/Source/SoundManager/ISoundManager.hpp"/>
+      <FILE id="is3asP" name="JuceSound.cpp" compile="1" resource="0" file="../../../Software/Source/SoundManager/JuceSound.cpp"/>
+      <FILE id="j4i5OI" name="JuceSound.hh" compile="0" resource="0" file="../../../Software/Source/SoundManager/JuceSound.hh"/>
+      <FILE id="aSaxcG" name="Synthesizer.cpp" compile="1" resource="0" file="../../../Software/Source/SoundManager/Synthesizer.cpp"/>
+      <FILE id="y2Zb2V" name="Synthesizer.hh" compile="0" resource="0" file="../../../Software/Source/SoundManager/Synthesizer.hh"/>
+      <FILE id="A6IoEx" name="SynthesizerInstrument.cpp" compile="1" resource="0"
+            file="../../../Software/Source/SoundManager/SynthesizerInstrument.cpp"/>
+      <FILE id="z7lBlB" name="SynthesizerInstrument.hh" compile="0" resource="0"
+            file="../../../Software/Source/SoundManager/SynthesizerInstrument.hh"/>
+    </GROUP>
+    <GROUP id="{95B0FCE6-F486-6033-197B-D35E96511A4B}" name="Source"/>
+    <FILE id="cjjuBM" name="Client.cpp" compile="1" resource="0" file="../Client.cpp"/>
+    <FILE id="RJpR1a" name="Client.hh" compile="0" resource="0" file="../Client.hh"/>
+    <FILE id="PzzQug" name="CmdManager.cpp" compile="1" resource="0" file="../CmdManager.cpp"/>
+    <FILE id="OP70k0" name="CmdManager.hh" compile="0" resource="0" file="../CmdManager.hh"/>
+    <FILE id="PrCrq4" name="CondVariable.cpp" compile="1" resource="0"
+          file="../../../Software/Source/CondVariable.cpp"/>
+    <FILE id="yDH87L" name="CondVariable.hh" compile="0" resource="0" file="../../../Software/Source/CondVariable.hh"/>
+    <FILE id="vB6Gdo" name="DateTime.cpp" compile="1" resource="0" file="../../../Software/Source/DateTime.cpp"/>
+    <FILE id="EnI1u7" name="DateTime.hh" compile="0" resource="0" file="../../../Software/Source/DateTime.hh"/>
+    <FILE id="DZb2Hp" name="FileManager.cpp" compile="1" resource="0" file="../../../Software/Source/FileManager.cpp"/>
+    <FILE id="iqDApJ" name="FileManager.hh" compile="0" resource="0" file="../../../Software/Source/FileManager.hh"/>
+    <FILE id="cgV3sx" name="Instrument.cpp" compile="1" resource="0" file="../../../Software/Source/Instrument.cpp"/>
+    <FILE id="cQEL23" name="Instrument.hh" compile="0" resource="0" file="../../../Software/Source/Instrument.hh"/>
+    <FILE id="MMtAa6" name="jsoncpp.cpp" compile="1" resource="0" file="JsoncppLibrary/jsoncpp.cpp"/>
+    <FILE id="CnGAUW" name="main.cpp" compile="1" resource="0" file="../main.cpp"/>
+    <FILE id="ELWHPX" name="MusicParameters.cpp" compile="1" resource="0"
+          file="../../../Software/Source/MusicParameters.cpp"/>
+    <FILE id="pdGgqr" name="MusicParameters.hh" compile="0" resource="0"
+          file="../../../Software/Source/MusicParameters.hh"/>
+    <FILE id="zfCbS7" name="MusicStyle.cpp" compile="1" resource="0" file="../../../Software/Source/MusicStyle.cpp"/>
+    <FILE id="pkqYSW" name="MusicStyle.hh" compile="0" resource="0" file="../../../Software/Source/MusicStyle.hh"/>
+    <FILE id="OR9eYU" name="Semaphore.cpp" compile="1" resource="0" file="../../../Software/Source/Semaphore.cpp"/>
+    <FILE id="XpvZdd" name="Semaphore.hh" compile="0" resource="0" file="../../../Software/Source/Semaphore.hh"/>
+    <FILE id="GE2MuI" name="server.cpp" compile="1" resource="0" file="../server.cpp"/>
+    <FILE id="RUxrRV" name="socket.cpp" compile="1" resource="0" file="../socket.cpp"/>
+    <FILE id="Ycd0ge" name="socket.hh" compile="0" resource="0" file="../socket.hh"/>
+    <FILE id="PG1F5I" name="ThreadPoolGenerator.cpp" compile="1" resource="0"
+          file="../ThreadPoolGenerator.cpp"/>
+    <FILE id="QP2xtn" name="ThreadPoolGenerator.hh" compile="0" resource="0"
+          file="../ThreadPoolGenerator.hh"/>
+    <FILE id="o020Av" name="Tools.cpp" compile="1" resource="0" file="../../../Software/Source/Tools.cpp"/>
+    <FILE id="N0hSa5" name="Tools.hh" compile="0" resource="0" file="../../../Software/Source/Tools.hh"/>
+    <FILE id="wTo3Pc" name="User.cpp" compile="1" resource="0" file="../../../Software/Source/User.cpp"/>
+    <FILE id="QSMDtO" name="User.hh" compile="0" resource="0" file="../../../Software/Source/User.hh"/>
+  </MAINGROUP>
+  <EXPORTFORMATS>
+    <VS2017 targetFolder="Builds/VisualStudio2017">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug"/>
+        <CONFIGURATION isDebug="0" name="Release"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../../Software/JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_events" path="../../../Software/JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../Software/JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../../Software/JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../Software/JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../Software/JuceLibraryCode/modules"/>
+      </MODULEPATHS>
+    </VS2017>
+    <LINUX_MAKE targetFolder="Builds/LinuxMakefile" extraDefs="SOURCEMARKOV=\&quot;${CURDIR}/../../../../../SoftwareSource/markovSource/\&quot;"
+                extraCompilerFlags="-I../../../../../Software/JsoncppLibrary/&#10;-I../../../../../Software/LuaLibrary/include&#10;-I../../../../../Software/Source&#10;-W&#10;-Wall&#10;-Wextra"
+                extraLinkerFlags="-L../../../../../Software/LuaLibrary" externalLibraries="lua">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug"/>
+        <CONFIGURATION isDebug="0" name="Release"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../../Software/JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_events" path="../../../Software/JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../Software/JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../../Software/JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../Software/JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../Software/JuceLibraryCode/modules"/>
+      </MODULEPATHS>
+    </LINUX_MAKE>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+  </MODULES>
+  <LIVE_SETTINGS>
+    <WINDOWS/>
+    <LINUX/>
+  </LIVE_SETTINGS>
+  <JUCEOPTIONS/>
+</JUCERPROJECT>

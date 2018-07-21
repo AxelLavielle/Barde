@@ -13,19 +13,18 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "../Player.hh"
-
+#include "Theme.h"
+#include "../UserSettings.h"
 
 /*! \class MusicStyleButton
 * \brief classe representing a button for a specific music style
 *
 *  This class generates a music style button
 */
+
 class MusicStyleButton : public Button
 {
 public:
-	int width; /*!< Button width*/
-	int height; /*!< Button height*/
-
 	/*!
 	*  \brief Constructor
 	*
@@ -34,6 +33,7 @@ public:
 	*  \param buttonName : name of the button / Text to display
 	*  \param w : Button width
 	*  \param h : Button height
+	*  \param theme : Theme
 	*/
 	MusicStyleButton(const String &buttonName, const int w, const int h);
 	/*!
@@ -43,6 +43,7 @@ public:
 	*/
 	~MusicStyleButton();
 	
+private:
 	/*!
 	*  \brief Diplay of the button
 	*
@@ -52,7 +53,13 @@ public:
 	*  \param isMouseOverButton : boolean corresponding to the mouse over button event
 	*  \param isButtonDown :boolean corresponding to the button down event
 	*/
-	void paintButton(Graphics& g, const bool isMouseOverButton, const bool isButtonDown);
+	void paintButton(Graphics& g, const bool isMouseOverButton, const bool isButtonDown) override;
+
+
+	int _width; /*!< Button width*/
+	int _height; /*!< Button height*/
+
+
 };
 
 #endif  // MUSICSTYLEBUTTON_H_INCLUDED

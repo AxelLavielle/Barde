@@ -1,10 +1,16 @@
 #ifndef		__CHORDS__
 # define	__CHORDS__
 
+/*!
+ * \file Chords.hh
+ * \brief File containing the class and enum to simplify the access of all possible chords 
+ */
+
 # include	<iostream>
 # include	<vector>
 # include	<map>
 
+/*! List of all the chords possible with 8 of its variations */
 enum		ChordsName : char
   {
     C,
@@ -106,15 +112,53 @@ enum		ChordsName : char
     END
   };
 
+/*! \class Chords
+ * \brief Simplify the access to a chord
+ *
+ *  This class is here to allow a simple access to a chord even if you don't know which notes are composing it
+ */
+
 class		Chords
 {
 public:
+  /*!
+   *  \brief Constructor
+   *
+   *  Initialises all the chords
+   *
+   */
   Chords();
+
+  /*!
+   *  \brief Destructor
+   *
+   *  Empty
+   *
+   */
   ~Chords();
+
+  /*!
+   *  \brief Returns the good chord from name
+   *
+   *  This method returns the chord according to the name
+   *
+   *  \param Name : Name of the chord
+   *  \return The vector of notes composing the chord
+   */
   std::vector<char>	getChordFromName(const char name) const;
 
+  /*!
+   *  \brief Returns the good chord from name
+   *
+   *  This method returns the chord according to the name
+   *
+   *  \param Name : Name of the chord
+   *  \return The vector of notes composing the chord
+   */
+  std::vector<std::pair<char, char> >	getChordPairFromName(const char name) const;
+
 private:
-  std::map<char, std::vector<char> >	_chords;
+  std::map<char, std::vector<char> >	_chords; /*!< List of all chords */
 };
 
 #endif	//	__CHORDS__
