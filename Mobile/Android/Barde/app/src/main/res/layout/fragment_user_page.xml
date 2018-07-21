@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="@color/colorPrimary">
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp">
+                <TextView
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    tools:text="Michae volvic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ffffff"
+                    android:id="@+id/activity_main_full_name"
+                    android:layout_gravity=""/>
+                <TextView
+                    tools:text="email@email.com"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ffffff"
+                    android:id="@+id/activity_main_email" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/user_page_button_settings"
+                    android:src="@drawable/ic_settings_white_24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <Button
+            android:visibility="gone"
+            android:gravity="start"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/str_setting"
+            android:textColor="#000000"
+            android:background="@drawable/button_rounded_corners_white"
+            android:id="@+id/update_setting" />
+        <LinearLayout
+            android:padding="10dp"
+            style="?android:attr/buttonBarButtonStyle"
+            android:id="@+id/update_profile"
+            android:background="@drawable/button_rounded_corners_white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+            <TextView
+                android:gravity="start"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:text="@string/str_update_profile" />
+            <TextView
+                android:textColor="#000000"
+                android:text=">"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <!--<Button
+            android:textAllCaps="false"
+            android:gravity="start"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/str_update_profile"
+            android:textColor="#000000"
+            android:background="@drawable/button_rounded_corners_white"
+            android:id="@+id/update_profile" />-->
+        <TextView
+            android:visibility="gone"
+            android:paddingLeft="10dp"
+            android:text="My subscription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:visibility="gone"
+            android:gravity="start"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/str_subscription"
+            android:textColor="#000000"
+            android:background="@drawable/button_rounded_corners_white"
+            android:id="@+id/update_subscribe" />
+
+        <Button
+            android:visibility="gone"
+            android:gravity="start"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="promot code"
+            android:textColor="#000000"
+            android:background="@drawable/button_rounded_corners_white"
+            android:id="@+id/update_promot_code" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/str_logout"
+            android:textColor="#ffffff"
+            android:background="@drawable/button_rounded_corners"
+            android:id="@+id/user_page_logout" />
+    </LinearLayout>
+</LinearLayout>

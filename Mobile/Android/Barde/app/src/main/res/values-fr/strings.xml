@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="str_to_register">S\'inscrire</string>
+    <string name="str_register">Inscription</string>
+    <string name="str_login">Se connecter</string>
+    <string name="str_email">Email</string>
+    <string name="str_password">Mot de passe</string>
+    <string name="str_confirm_password">Comfirmer votre mot de passe</string>
+    <string name="str_firstname">Prénom</string>
+    <string name="str_lastname">Nom de famille</string>
+    <string name="str_username">Nom utilisateur</string>
+    <string name="str_setting">Parametre</string>
+    <string name="str_settings">Parametres</string>
+    <string name="str_dateofbirthday">Date de naissance</string>
+    <string name="str_update">Metre à jour</string>
+    <string name="str_successuful_update">Mis à jour réussie</string>
+    <string name="str_missing_firstname">manque votre prenom</string>
+    <string name="str_missing_lastname">manque votre nom</string>
+    <string name="str_missing_username">manque votre pseaudo</string>
+    <string name="str_missing_email">manque votre email</string>
+    <string name="str_missing_passowrd">manque votre mot de passe</string>
+    <string name="str_logout">déconnexion</string>
+    <string name="str_welcome_text">Bienvenue sur Barde</string>
+    <string name="str_first_page_main_text">Créez un compte pour profiter de toutes les fonctionilités de Barde</string>
+    <string name="str_profile">profile</string>
+    <string name="str_my_lists">mes listes</string>
+    <string name="str_update_profile">changer le profile</string>
+    <string name="str_my_account">Mon compte</string>
+    <string name="str_back">Retour</string>
+    <string name="str_cancel">Annuler</string>
+    <string name="str_ok">Ok</string>
+    <string name="str_playlist">Playlist</string>
+    <string name="str_generation">Géneration</string>
+    <string name="str_subscription">Inscription</string>
+    <string name="str_already_registred">Déjà inscrit ?</string>
+    <string name="str_notification">Notification</string>
+    <string name="str_theme">Theme</string>
+    <string name="str_Report">Ticket</string>
+    <string name="str_enter_your_issue">Entrer votre problem</string>
+    <string name="str_your_message">votre message</string>
+    <string name="str_submit">Envoyer</string>
+</resources>

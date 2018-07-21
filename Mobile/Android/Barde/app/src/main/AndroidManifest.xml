@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.project.barde.barde">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/barde"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/barde"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ui.activities.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.activities.LoginActivity" />
+        <activity android:name=".ui.activities.RegisterActivity" />
+        <activity android:name=".ui.activities.UserProfileActivity" />
+        <activity android:name=".ui.activities.FirstPage" />
+        <activity android:name=".ui.activities.PlaylistActivity" />
+        <activity android:name=".ui.activities.SettingsActivity" />
+        <activity android:name=".ui.activities.SubscriptionActivity" />
+        <activity android:name=".ui.activities.MainActivity" />
+        <activity android:name=".ui.activities.SettingActivity"></activity>
+    </application>
+
+</manifest>

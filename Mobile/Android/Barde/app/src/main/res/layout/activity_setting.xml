@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.project.barde.barde.ui.activities.SettingActivity">
+    <LinearLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/setting_back"
+                android:textSize="16dp"
+                android:textColor="#ffffff"
+                android:text="@string/str_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <TextView
+            android:textSize="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#ffffff"
+            android:text="@string/str_settings"
+            android:layout_weight="2"
+            android:gravity="center"/>
+        <LinearLayout
+            android:id="@+id/profile_user_header_button_end"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:gravity="end">
+        </LinearLayout>
+    </LinearLayout>
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:visibility="gone"
+                android:textAllCaps="false"
+                android:gravity="start"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_notification"
+                android:textColor="#000000"
+                android:background="@drawable/button_rounded_corners_white"
+                android:id="@+id/setting_notification" />
+            <Button
+                android:visibility="gone"
+                android:textAllCaps="false"
+                android:gravity="start"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_theme"
+                android:textColor="#000000"
+                android:background="@drawable/button_rounded_corners_white"
+                android:id="@+id/setting_theme" />
+            <LinearLayout
+                android:padding="10dp"
+                style="?android:attr/buttonBarButtonStyle"
+                android:id="@+id/setting_report"
+                android:background="@drawable/button_rounded_corners_white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+                <TextView
+                    android:gravity="start"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:text="@string/str_Report" />
+                <TextView
+                    android:textColor="#000000"
+                    android:text=">"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+           <!-- <Button
+                android:textAllCaps="false"
+                android:gravity="start"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_Report"
+                android:textColor="#000000"
+                android:background="@drawable/button_rounded_corners_white"
+                android:id="@+id/setting_report" />-->
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
