@@ -23,7 +23,7 @@ Vue.use(require('@websanova/vue-auth'), {
 
 Vue.http.options.emulateJSON = true;
 
-Vue.http.options.root = 'http://api-dev.barde.io/';
+Vue.http.options.root = process.env.NODE_ENV === 'development' ? 'http://api-dev.barde.io' : 'http://api.barde.io';
 
 /* eslint-disable no-new */
 var vm = new Vue({

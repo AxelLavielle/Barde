@@ -10,6 +10,8 @@ Vue.config.productionTip = false
 Vue.use(VueRouter);
 Vue.use(VueResource);
 
+console.log(process.env.NODE_ENV)
+
 const routes = [
     {
         path: '/',
@@ -32,7 +34,7 @@ const routes = [
     }
 ];
 
-Vue.http.options.root = 'http://api-dev.barde.io';
+Vue.http.options.root = process.env.NODE_ENV === 'development' ? 'http://api-dev.barde.io' : 'http://api.barde.io';
 
 var router = new VueRouter({
     mode: 'history',
