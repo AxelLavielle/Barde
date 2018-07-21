@@ -38,7 +38,7 @@ void ThreadPoolGenerator::addClient(const Client & client)
   _clients.push_back(client);
   _sem.notify();
   _clientsMutex.unlock();
-  CmdManager::sendResponseMessage(OK_REQUEST, client, "OK : playing.\r\n");
+  CmdManager::sendResponseMessage(OK_REQUEST, PLAY_REQUEST, 0, client, "OK : playing.\r\n");
 }
 
 void ThreadPoolGenerator::removeClient(const Client & client)
@@ -46,7 +46,7 @@ void ThreadPoolGenerator::removeClient(const Client & client)
   _clientsMutex.lock();
   _clients.remove(client);
   _clientsMutex.unlock();
-  CmdManager::sendResponseMessage(OK_REQUEST, client, "OK : stop playing.\r\n");
+  CmdManager::sendResponseMessage(OK_REQUEST, STOP_REQUEST, 0, client, "OK : stop playing.\r\n");
 }
 
 void ThreadPoolGenerator::generationManager()
@@ -108,5 +108,5 @@ void ThreadPoolGenerator::refreshClient(const Client & client)
     *it = client;
   }
   _clientsMutex.unlock();
-  CmdManager::sendResponseMessage(OK_REQUEST, client, "OK : playing with music parameters supported.\r\n");
+  CmdManager::sendResponseMessage(OK_REQUEST, REFRESH_REQUEST, 0, client, "OK : playing with music parameters updated.\r\n");
 }

@@ -13,6 +13,16 @@
 #define BAD_REQUEST 0xC8
 #define OK_REQUEST 0xC8
 
+#define ADDCHORD_REQUEST 0x21
+#define ADDAEPEGES_REQUEST 0x31
+#define REMOVECHORD_REQUEST 0x61
+#define REMOVEAEPEGES_REQUEST 0x71
+#define DRUMS_REQUEST 0x41
+#define STYLE_REQUEST 0x11
+#define BPM_REQUEST 0x51
+#define DISCONNECTION_REQUEST 0x3
+
+#define UNKNOW_REQUEST 0x0
 
 class CmdManager
 {
@@ -21,7 +31,8 @@ public:
   ~CmdManager();
   void	parseMessage(int *buffer, Client &client, size_t bufferSize);
   void  disconnectClient(const Client & client);
-  static void sendResponseMessage(const int responseCode, const Client & client, const std::string & message);
+//  static void sendResponseMessage(const int responseCode, const int responseType, const Client & client, const std::string & message);
+  static void sendResponseMessage(const int responseCode, const int responseType, const int data, const Client & client, const std::string & message);
 
 private:
   void manageMusicParameter(int *buffer, Client &client, size_t bufferSize);

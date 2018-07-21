@@ -17,6 +17,8 @@
 #include "MidiManager/Midi.hh"
 #include "MidiManager/MidiManager.hh"
 
+#define NB_OF_CHANNEL 128 //Need to check the number of channel in Juce documentation
+
 class MusicParameters
 {
 public:
@@ -40,15 +42,20 @@ public:
 	void setInstrumentsDrums(const bool instruments);
 	void setStyleName(const std::string &name);
 	std::string	getStyleName() const;
+	int getFreeChannel() const;
+	const short *getFreeChannels() const;
 
 
 private:
+	void initFreeChannels();
+
 	unsigned int						_seed;
 	int									_bpm;
 	std::vector<Instrument>				_instrumentsChords;
 	std::vector<Instrument>				_instrumentsArpeggios;
 	bool								_instrumentsDrums;
 	std::string							_styleName;
+	short											_freeChannels[NB_OF_CHANNEL];
 };
 
 

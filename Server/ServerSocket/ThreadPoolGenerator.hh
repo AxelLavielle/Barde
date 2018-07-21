@@ -21,6 +21,11 @@
 #include "Client.hh"
 #include "AI/MusicGenerator.hh"
 
+#define PLAY_REQUEST 0x12
+#define STOP_REQUEST 0x22
+#define PAUSE_REQUEST 0x32
+#define REFRESH_REQUEST 0x42
+
 #ifndef __CMDMANAGER__HH__
 
 #define BAD_REQUEST 0xC8
@@ -33,7 +38,7 @@ public:
   ~CmdManager();
   void	parseMessage(char *buffer, Client &client, size_t bufferSize);
   void  disconnectClient(const Client & client);
-  static void sendResponseMessage(const int responseCode, const Client & client, const std::string & message);
+  static void sendResponseMessage(const int responseCode, const int responseType, const int data, const Client & client, const std::string & message);
 };
 #endif
 
