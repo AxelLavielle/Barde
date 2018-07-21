@@ -13,10 +13,10 @@
 PlayerFooter::PlayerFooter(Player & player, MusicParameters &musicParameters) : _player(player), _musicParameters(musicParameters),
 				_controlGroup(FlexBox::JustifyContent::flexStart, FlexBox::AlignContent::center, FlexBox::AlignItems::center, FlexBox::Direction::row)
 {
-	_playButton = new MusicStyleButton("Play", 100, 50);
+	_playButton = new PlayingCtrlButton("Play", BUTTON_PLAYING_TYPE::PLAY);
 	_playButton->addListener(this);
 
-	_stopButton = new MusicStyleButton("Stop", 100, 50);
+	_stopButton = new PlayingCtrlButton("Stop", BUTTON_PLAYING_TYPE::STOP);
 	_stopButton->addListener(this);
 
 	GuiFactory::initSlider(0, 100, 100, _volumeSlider);

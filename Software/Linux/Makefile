@@ -102,6 +102,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/SQLiteManager_99d2bf74.o \
   $(JUCE_OBJDIR)/AEncryptionManager_13e06cc8.o \
   $(JUCE_OBJDIR)/SSLManager_f25fe680.o \
+  $(JUCE_OBJDIR)/PlayingCtrlButton_7e312eb5.o \
   $(JUCE_OBJDIR)/LabeledTextBox_e19ff76b.o \
   $(JUCE_OBJDIR)/SimpleLabel_d8204f0c.o \
   $(JUCE_OBJDIR)/AComponent_b1bc9abc.o \
@@ -337,6 +338,11 @@ $(JUCE_OBJDIR)/AEncryptionManager_13e06cc8.o: ../Source/EncryptionManager/AEncry
 $(JUCE_OBJDIR)/SSLManager_f25fe680.o: ../Source/EncryptionManager/SSLManager.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling SSLManager.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/PlayingCtrlButton_7e312eb5.o: ../Source/GraphManager/PlayingCtrlButton.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling PlayingCtrlButton.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/LabeledTextBox_e19ff76b.o: ../Source/GraphManager/LabeledTextBox.cpp

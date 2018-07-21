@@ -12,6 +12,8 @@
 
 LoginPanel::LoginPanel()
 {
+	GuiFactory::initLittleTitle("Bienvenue sur Barde\n\nCréer un compte ou connectez vous pour profiter de toutes les fonctionalités de Barde", _introductionLabel);
+	addFlexItem(_introductionLabel, 600, 200, FlexItem::AlignSelf::stretch, 1);
 
 	GuiFactory::initLabeledTextBox("Login", "", _userNameTextBox);
 	addFlexItem(_userNameTextBox, 400, 50, FlexItem::AlignSelf::stretch, 1);

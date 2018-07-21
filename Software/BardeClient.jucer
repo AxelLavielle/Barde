@@ -129,6 +129,10 @@
         <FILE id="wSJyIx" name="SSLManager.hh" compile="0" resource="0" file="Source/EncryptionManager/SSLManager.hh"/>
       </GROUP>
       <GROUP id="{67A50DD7-6C2C-A059-E512-F0F0D14AB316}" name="GraphManager">
+        <FILE id="xL2OBR" name="PlayingCtrlButton.hh" compile="0" resource="0"
+              file="Source/GraphManager/PlayingCtrlButton.hh"/>
+        <FILE id="egcVzG" name="PlayingCtrlButton.cpp" compile="1" resource="0"
+              file="Source/GraphManager/PlayingCtrlButton.cpp"/>
         <FILE id="dmNefZ" name="LabeledTextBox.cpp" compile="1" resource="0"
               file="Source/GraphManager/LabeledTextBox.cpp"/>
         <FILE id="ort6VL" name="LabeledTextBox.hh" compile="0" resource="0"

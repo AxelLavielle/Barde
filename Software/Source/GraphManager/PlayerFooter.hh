@@ -12,6 +12,7 @@
 
 #include "AComponent.hh"
 #include "MusicStyleButton.h"
+#include "PlayingCtrlButton.hh"
 #include "../MusicParameters.hh"
 #include "FlexGroup.hh"
 #include "../Factories/GuiFactory.hh"
@@ -35,8 +36,8 @@ private:
 
 	//FlexBox					_flexBox;
 	FlexGroup				_controlGroup;
-	MusicStyleButton		*_playButton;
-	MusicStyleButton		*_stopButton;
+	PlayingCtrlButton		*_playButton;
+	PlayingCtrlButton		*_stopButton;
 	Slider					_volumeSlider;
 	Theme					*_currentTheme; /*!< Theme defining the colors of the elements*/
 

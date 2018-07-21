@@ -21,7 +21,7 @@ public:
 	void buttonClicked(Button * button) override;
 
 private:
+	SimpleLabel			_introductionLabel;
 	LabeledTextBox		_userNameTextBox;
 	LabeledTextBox		_passwordTextBox;
-
 };
