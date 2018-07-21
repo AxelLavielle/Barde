@@ -1,37 +1,46 @@
 {
-  "name": "www.barde.io",
-  "version": "1.0.0",
-  "description": "Barde est une application multiplateforme de génération de musiques d'ambiance procédurales. Notre service s'adresse aux professionnels du secteur tertiaire mais l'application sera également disponible au grand public. L'utilisateur de Barde pourra en quelques clics créer son ambiance musicale dans le style de son choix et Barde se chargera de la générer indéfiniment.",
-  "main": "gulpfile.js",
-  "dependencies": {
-    "angular-google-analytics": "^1.1.8",
-    "angular-materialize": "^0.2.2",
-    "angular-md5": "^0.1.10",
-    "angular-recaptcha": "^4.0.3",
-    "gulp": "^3.9.1",
-    "gulp-clean": "^0.3.2",
-    "gulp-concat": "^2.6.1",
-    "gulp-connect": "^5.0.0",
-    "gulp-uglify": "^2.0.1",
-    "jquery": "^3.1.1",
-    "material-design-icons": "^3.0.1",
-    "materialize-css": "^0.98.0"
-  },
-  "devDependencies": {},
+  "name": "barde-www",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "dev"
+    "serve": "vue-cli-service serve --open",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AxelLavielle/Barde.git"
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "materialize-css": "^0.100.2",
+    "vue": "^2.5.13",
+    "vue-recaptcha": "^1.1.0",
+    "vue-resource": "^1.3.6",
+    "vue-router": "^3.0.1"
   },
-  "keywords": [
-    "Barde"
-  ],
-  "author": "Valérian Polizzi",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/AxelLavielle/Barde/"
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.0-beta.1",
+    "@vue/cli-plugin-eslint": "^3.0.0-beta.1",
+    "@vue/cli-service": "^3.0.0-beta.1",
+    "vue-template-compiler": "^2.5.13"
   },
-  "homepage": "https://github.com/AxelLavielle/Barde#readme"
+  "babel": {
+    "presets": [
+      "@vue/app"
+    ]
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ]
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }

@@ -1,0 +1,17 @@
+.player{
+  height: 50px;
+  border-top: 2px black;
+}
+
+.player.player-controls{
+  height: 50px;
+}
+
+.player .player-controls span{
+  line-height: 50px !important;
+  min-height: 50px;
+}
+
+.player .player-controls span i{
+  padding: 25px;
+}

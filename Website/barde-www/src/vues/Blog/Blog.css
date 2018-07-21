@@ -1,0 +1,14 @@
+@import '../../../node_modules/materialize-css/dist/css/materialize.css';
+@import '../../assets/css/barde.css';
+.nav-wrapper{
+    padding-left: 30px;
+}
+
+.card-post{
+    margin-bottom: -5px;
+    margin-top: -3px;
+}
+
+#blog{
+    min-height: 90vh;
+}

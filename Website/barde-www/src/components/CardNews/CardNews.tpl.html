@@ -1,0 +1,14 @@
+<div class="card-news card white hoverable">
+    <div class="row">
+        <div class="col s12">
+            <img :src="image" class="responsive-img" :title="title" :alt="title">
+        </div>
+        <div class="card-content">
+            <h5>{{title}}</h5>
+            <span class="date">{{date}} - {{author}} </span>
+            <hr class="barde-hr">
+            <p>{{headline}}</p>
+            <a :href="link" class="btn barde-btn">Read more</a>
+        </div>
+    </div>
+</div>

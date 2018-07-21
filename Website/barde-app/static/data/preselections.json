@@ -1,0 +1,15 @@
+[
+  {
+    "name" : "Skyrock",
+    "style" : "Rap",
+    "data" : {
+    "feedUrl" : ["http://icecast.skyrock.net/s/natio_mp3_128k"],
+    "instruments" : {
+      "arpeges" : ["piano"],
+      "accords" : ["strings"],
+      "drums" : true
+    },
+    "bpm" : "140"
+    }
+  }
+]
