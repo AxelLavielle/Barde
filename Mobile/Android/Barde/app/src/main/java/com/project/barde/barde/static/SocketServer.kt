@@ -1,5 +1,7 @@
 package com.project.barde.barde.static
 
+import android.widget.Toast
+import org.jetbrains.anko.doAsync
 import java.io.*
 import java.net.Socket
 import java.net.UnknownHostException
@@ -8,27 +10,28 @@ import java.nio.ByteBuffer
 /**
  * Created by michael on 08/06/2018.
  */
-class SocketServer(val listenerSocket: ListenerSocket) : Runnable {
+class SocketServer(val listenerSocket: ListenerSocket, val ip: String) : Runnable {
     private lateinit var rec: PrintWriter
     private lateinit var get: BufferedReader
     private lateinit var client: Socket
     private lateinit var buffer: String
     private lateinit var reb: DataOutputStream
     var message: MutableList<Byte> = arrayListOf()
+    var connectionIsSet = false
     var j = 0
     override fun run() {
         try {
-            client = Socket("192.168.1.36", 23)
-            //client = Socket("163.172.128.43", 23)
+            println("---------------------- ip = $ip")
+            //client = Socket("129.12.131.98", 23)
+            client = Socket(ip, 23)
             //client = Socket("192.168.2.1", 23)
-
             if (client.isConnected) {
                 println("connected")
                 message.clear()
                 get = BufferedReader(InputStreamReader(client.getInputStream()))
                 rec = PrintWriter(client.getOutputStream(), true)
                 reb = DataOutputStream(client.getOutputStream())
-                while (true) {
+                while (client.isConnected) {
                     var bytebuffer: ByteArray
                     bytebuffer = ByteArray(200)
                     var rn = 0;
@@ -38,7 +41,7 @@ class SocketServer(val listenerSocket: ListenerSocket) : Runnable {
                         return
                     }
                     for (i in 1..rn) {
-                        if (rn > 1 && bytebuffer.get(i - 1).toChar() == '\n' && bytebuffer.get(i - 2).toChar() == '\r') {
+                        if (rn >= 2 && bytebuffer.get(i - 1).toChar() == '\n' && bytebuffer.get(i - 2).toChar() == '\r') {
                             var messageByte = ByteArray(message.size)
                             for (t in 1..message.size) {
                                 messageByte.set(t - 1, message.get(t - 1))
@@ -59,23 +62,16 @@ class SocketServer(val listenerSocket: ListenerSocket) : Runnable {
 
             // client.close()
         } catch (e: UnknownHostException) {
-            e.printStackTrace()
+            listenerSocket.failedBindSocket(e.message)
+            println("---------------------------------------1" + e.message)
         } catch (e: IOException) {
-            e.printStackTrace()
+            listenerSocket.failedBindSocket(e.message)
+            println("---------------------------------------2" + e.message)
+
         }
     }
 
-    companion object {
-        val MUSIQUEPARAM: Int = 0x1
-        val STYLE: Int = 0x11
-        val JAZZ: Int = 0x111
-        val BLUES: Int = 0x211
-        val CHORD: Int = 0x21
-        val ARPEGE: Int = 0x31
-        val DRUM: Int = 0x41
-        val BPM: Int = 0x51
 
-    }
 
     public fun rec(): PrintWriter {
         return rec
@@ -87,20 +83,43 @@ class SocketServer(val listenerSocket: ListenerSocket) : Runnable {
     public fun reb() : DataOutputStream {
         return reb
     }
-    fun sendToServer(array: IntArray){
-        var byteArray = ByteArray((array.size * 4))
-        var index = 0
-        for (i in 1..array.size){
-            var byteBuffer = ByteBuffer.allocate(4).putInt(array[i - 1]).array()
-            for (j in 1..byteBuffer.size){
-                byteArray.set(index, byteBuffer.get(byteBuffer.size - j))
-                index++
-            }
+    fun close() {
+        try{
+            client.close()
+        }catch (e : Exception){
+            e.printStackTrace()
         }
-        reb.write(byteArray)
+    }
+    fun sendToServer(array: IntArray) : Boolean{
+        try{
+            if (client.isConnected){
+                var byteArray = ByteArray((array.size * 4))
+                var index = 0
+                for (i in 1..array.size){
+                    var byteBuffer = ByteBuffer.allocate(4).putInt(array[i - 1]).array()
+                    for (j in 1..byteBuffer.size){
+                        byteArray.set(index, byteBuffer.get(byteBuffer.size - j))
+                        index++
+                    }
+                }
+                doAsync {
+                    reb.write(byteArray)
+                }
+
+                return true
+            }else{
+                return false
+            }
+        }catch (e : Exception){
+            println("message = " + e.message)
+
+            return false
+        }
+
     }
 }
 
 interface ListenerSocket {
     fun getListenerSocket(buffer: ByteArray)
+    fun failedBindSocket(message : String?)
 }

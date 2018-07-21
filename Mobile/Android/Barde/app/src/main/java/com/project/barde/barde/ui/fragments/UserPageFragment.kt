@@ -14,6 +14,7 @@ import com.project.barde.barde.R
 import com.project.barde.barde.db.UserDbHelper
 import com.project.barde.barde.db.UserTable
 import com.project.barde.barde.db.database
+import com.project.barde.barde.static.AudioBardeManager
 import com.project.barde.barde.ui.activities.*
 import kotlinx.android.synthetic.main.fragment_user_page.*
 
@@ -22,6 +23,7 @@ import kotlinx.android.synthetic.main.fragment_user_page.*
  */
 class UserPageFragment : Fragment(), UserDbHelper.dataListener {
     private lateinit var v : View
+    var audioBardeManager = AudioBardeManager()
 
     override fun updateUser() {
         activity.database.use {
@@ -39,9 +41,11 @@ class UserPageFragment : Fragment(), UserDbHelper.dataListener {
         activity.database.listener.add(this)
         updateUser()
         v.findViewById<Button>(R.id.user_page_logout).setOnClickListener {
+            AudioBardeManager.reset()
             FuelManager.instance.baseHeaders = mapOf("Authorization" to "")
             Toast.makeText(activity, "disconnected", Toast.LENGTH_SHORT).show()
             startActivity(Intent(activity, FirstPage::class.java))
+            //activity.finish()
         }
         v.findViewById<LinearLayout>(R.id.update_profile).setOnClickListener {
             startActivity(Intent(activity, UserProfileActivity::class.java))

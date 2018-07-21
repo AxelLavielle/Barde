@@ -22,6 +22,7 @@ import org.jetbrains.anko.startActivity
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        database.api = getString(R.string.api)
         val user: User
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
