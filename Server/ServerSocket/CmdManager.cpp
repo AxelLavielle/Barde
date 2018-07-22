@@ -34,13 +34,13 @@ CmdManager::~CmdManager()
 
 void CmdManager::sendResponseMessage(const int responseCode, const int responseType, const int data, const Client & client, const std::string & message)
 {
-  int *msg = new int[4 + message.length() / sizeof(int)];
+  int *msg = new int[4 + (message.length() / sizeof(int)) + 1];
 
   msg[0] = responseCode;
   msg[1] = responseType;
   msg[2] = data;
   std::memcpy(&msg[3], message.c_str(), message.length());
-  send(client.getFd(), msg, sizeof(int) + message.length(), MSG_NOSIGNAL);
+  send(client.getFd(), msg, (sizeof(int) * 3) + message.length(), MSG_NOSIGNAL);
   delete[] msg;
 }
 
