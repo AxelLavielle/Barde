@@ -12,6 +12,10 @@ import UIKit
 class InstrumentArpegesViewController: UIViewController {
     
     @IBOutlet weak var instrumentScrollView: UIScrollView!
+   
+    var arpegiosSelected: String! = ""
+    
+    var arpegiosArray: [String] = []
     
     override func viewDidLoad() {
         
@@ -38,9 +42,23 @@ class InstrumentArpegesViewController: UIViewController {
             button.trailingAnchor.constraint(equalTo: instrumentScrollView.trailingAnchor, constant: 0).isActive = true
             button.centerXAnchor.constraint(equalTo: instrumentScrollView.centerXAnchor, constant: 0).isActive = true
             
+            button.addTarget(self, action: #selector(buttonAction(_:)), for: .touchUpInside)
+
         }
-        //button.addTarget(self, action: #selector(buttonAction), forControlEvents: .TouchUpInside)
         
+    }
+    
+    @objc func buttonAction(_ button: CheckButton) {
+        
+        arpegiosSelected = button.titleLabel!.text
+        
+        if (arpegiosArray.contains(arpegiosSelected)) {
+            arpegiosArray = arpegiosArray.filter{$0 != arpegiosSelected}
+        } else {
+            arpegiosArray.append(arpegiosSelected)
+        }
+        
+        UserDefaults.standard.set(arpegiosArray, forKey: "arpegiosArray")
     }
     
 }

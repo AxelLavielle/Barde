@@ -79,17 +79,4 @@ class LoginViewController: UIViewController {
             }
         }
     }
-    
-    func test() {
-        
-        let profil = Profil(context: context)
-        profil.email = "test@outlook.fr"
-        profil.firstname = "Test1"
-        profil.lastname = "Test2"
-        
-        ad.saveContext()
-    }
-    
-    
-    
 }

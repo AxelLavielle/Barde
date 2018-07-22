@@ -9,5 +9,8 @@ target 'Barde' do
   pod 'Alamofire', '~> 4.5'
   pod 'SwiftyJSON'
   pod 'ReachabilitySwift'
+  pod 'Starscream', '~> 3.0.2'
+  pod 'RxStarscream'
+  pod 'SwiftSocket'
 
 end

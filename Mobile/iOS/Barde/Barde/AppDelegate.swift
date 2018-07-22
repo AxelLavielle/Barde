@@ -33,14 +33,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         StyleService().initData()
         InstrumentService().initData()
         
+        UserDefaults.standard.removeObject(forKey: "styleArray")
+        UserDefaults.standard.removeObject(forKey: "chordsArray")
+        UserDefaults.standard.removeObject(forKey: "arpegiosArray")
+        UserDefaults.standard.removeObject(forKey: "tempoValue")
+
         //Check return of initData() - If false, error message asking for realoading data and if continue, restart app
         
         //        UserDefaults.standard.removeObject(forKey: "Token")
         
-       
-        
+
+     
         return true
     }
+    
+    private func showOfflinePage() -> Void {
+        DispatchQueue.main.async {
+            self.window?.rootViewController?.performSegue(withIdentifier: "NetworkUnavailable", sender: self)
+        }
+    }
+
     
     
 //    @objc func reachabilityChanged(notification: NSNotification) {
@@ -64,11 +76,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-    }
+}
     
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        SocketManager.sharedInstance.closeConnection()
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -77,6 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        SocketManager.sharedInstance.establishConnection()
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
@@ -135,5 +149,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 // declare a shared access to the AppDelegate
 let ad = UIApplication.shared.delegate as! AppDelegate
 let context = ad.persistentContainer.viewContext
-
 

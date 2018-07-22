@@ -24,6 +24,13 @@
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
+		<key>NSAllowsArbitraryLoadsInWebContent</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>aplt</key>
+			<string>163.172.128.43</string>
+		</dict>
 	</dict>
 	<key>UILaunchImageFile</key>
 	<string>LaunchImage.png</string>

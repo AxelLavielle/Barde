@@ -13,7 +13,9 @@ class StyleViewController: UIViewController {
     
     @IBOutlet weak var styleScrollView: UIScrollView!
 
-    var styleSelected: String! = "ok"
+    var styleSelected: String! = ""
+    
+    var styleArray: [String] = []
 
     override func viewDidLoad() {
 
@@ -22,7 +24,6 @@ class StyleViewController: UIViewController {
         let styles = StyleService().getAll()
         var x = 8
         var y = 0
-        
         
         
         styles?.forEach{style in
@@ -48,8 +49,14 @@ class StyleViewController: UIViewController {
     @objc func buttonAction(_ button: CheckButton) {
         
         styleSelected = button.titleLabel!.text
-        print("1", styleSelected)
+        
+        if (styleArray.contains(styleSelected)) {
+            styleArray = styleArray.filter{$0 != styleSelected}
+        } else {
+            styleArray.append(styleSelected)
+        }
 
+        UserDefaults.standard.set(styleArray, forKey: "styleArray")
         
     }
     

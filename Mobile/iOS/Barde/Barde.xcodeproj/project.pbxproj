@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D0249C220E935A8007579C5 /* GeneralUser GS MuseScore v1.442.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 1D0249C020E935A6007579C5 /* GeneralUser GS MuseScore v1.442.sf2 */; };
+		1D0249C320E935A8007579C5 /* ntbldmtn.mid in Resources */ = {isa = PBXBuildFile; fileRef = 1D0249C120E935A7007579C5 /* ntbldmtn.mid */; };
+		1D0249C620E935AE007579C5 /* sibeliusGMajor.mid in Resources */ = {isa = PBXBuildFile; fileRef = 1D0249C420E935AD007579C5 /* sibeliusGMajor.mid */; };
+		1D0249C720E935AE007579C5 /* gs_instruments.dls in Resources */ = {isa = PBXBuildFile; fileRef = 1D0249C520E935AD007579C5 /* gs_instruments.dls */; };
+		1D0AA9CF20E7BF33007FB5EE /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0AA9CE20E7BF33007FB5EE /* SocketManager.swift */; };
 		1D10139C1FE9871900913E43 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D10139B1FE9871900913E43 /* RoundedButton.swift */; };
 		1D10139E1FE9936400913E43 /* FirstPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D10139D1FE9936400913E43 /* FirstPageViewController.swift */; };
 		1D1013A01FE9AC6E00913E43 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D10139F1FE9AC6E00913E43 /* LoginViewController.swift */; };
@@ -47,6 +52,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D0249C020E935A6007579C5 /* GeneralUser GS MuseScore v1.442.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GeneralUser GS MuseScore v1.442.sf2"; sourceTree = "<group>"; };
+		1D0249C120E935A7007579C5 /* ntbldmtn.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = ntbldmtn.mid; sourceTree = "<group>"; };
+		1D0249C420E935AD007579C5 /* sibeliusGMajor.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = sibeliusGMajor.mid; sourceTree = "<group>"; };
+		1D0249C520E935AD007579C5 /* gs_instruments.dls */ = {isa = PBXFileReference; lastKnownFileType = file; path = gs_instruments.dls; sourceTree = "<group>"; };
+		1D0AA9CE20E7BF33007FB5EE /* SocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
 		1D10139B1FE9871900913E43 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		1D10139D1FE9936400913E43 /* FirstPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPageViewController.swift; sourceTree = "<group>"; };
 		1D10139F1FE9AC6E00913E43 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -131,11 +141,16 @@
 				1DDCA6971F8D52DE009F1E1C /* Controllers */,
 				1D6E40541F8D4E8D006522C8 /* AppDelegate.swift */,
 				1D6E40581F8D4E8D006522C8 /* Main.storyboard */,
+				1D0249C520E935AD007579C5 /* gs_instruments.dls */,
+				1D0249C420E935AD007579C5 /* sibeliusGMajor.mid */,
+				1D0249C020E935A6007579C5 /* GeneralUser GS MuseScore v1.442.sf2 */,
+				1D0249C120E935A7007579C5 /* ntbldmtn.mid */,
 				1D6E405E1F8D4E8D006522C8 /* Assets.xcassets */,
 				1D6E40601F8D4E8D006522C8 /* LaunchScreen.storyboard */,
 				1D6E40631F8D4E8D006522C8 /* Info.plist */,
 				1D6E405B1F8D4E8D006522C8 /* Barde.xcdatamodeld */,
 				1DD7B1D9203CD5AB0038E838 /* NetworkManager.swift */,
+				1D0AA9CE20E7BF33007FB5EE /* SocketManager.swift */,
 			);
 			path = Barde;
 			sourceTree = "<group>";
@@ -242,7 +257,6 @@
 				1D6E404E1F8D4E8D006522C8 /* Frameworks */,
 				1D6E404F1F8D4E8D006522C8 /* Resources */,
 				D09CD37A6A9DCFC5FB715BF2 /* [CP] Embed Pods Frameworks */,
-				2A1E4743C493F69FA753A915 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -292,31 +306,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D0249C720E935AE007579C5 /* gs_instruments.dls in Resources */,
 				1D6E40621F8D4E8D006522C8 /* LaunchScreen.storyboard in Resources */,
+				1D0249C320E935A8007579C5 /* ntbldmtn.mid in Resources */,
 				1DCD58471F913D29005F85C5 /* SettingMenuButton.xib in Resources */,
 				1D6E405F1F8D4E8D006522C8 /* Assets.xcassets in Resources */,
+				1D0249C220E935A8007579C5 /* GeneralUser GS MuseScore v1.442.sf2 in Resources */,
 				1D6E405A1F8D4E8D006522C8 /* Main.storyboard in Resources */,
+				1D0249C620E935AE007579C5 /* sibeliusGMajor.mid in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2A1E4743C493F69FA753A915 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Barde/Pods-Barde-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		628D0DF77E9D1447370E9C0D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -344,12 +347,22 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Barde/Pods-Barde-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxStarscream/RxStarscream.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSocket/SwiftSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxStarscream.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,6 +395,7 @@
 				1D4D266B1F8D65C800383255 /* SettingsViewController.swift in Sources */,
 				1DBE1BD420B9925C00978BA8 /* GeneratorViewController.swift in Sources */,
 				1DB53CE9207AB933007149E5 /* GeneratorPageViewController.swift in Sources */,
+				1D0AA9CF20E7BF33007FB5EE /* SocketManager.swift in Sources */,
 				1DD7B1E1203F63CE0038E838 /* Profil+CoreDataClass.swift in Sources */,
 				1D21C97E207D6DDB00F12FB6 /* Instrument+CoreDataProperties.swift in Sources */,
 				1D1013A41FE9F4E800913E43 /* SignupViewController.swift in Sources */,

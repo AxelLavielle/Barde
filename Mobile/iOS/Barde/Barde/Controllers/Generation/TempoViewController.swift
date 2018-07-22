@@ -17,6 +17,10 @@ class TempoViewController: UIViewController {
     @IBAction func tempoSliderAction(_ sender: Any) {
         let currentValue = Int(tempoSlider.value)
         currentTempoLabel.text =  "\(currentValue) BPM"
+        
+        
+        UserDefaults.standard.set(currentValue, forKey: "tempoValue")
+        
     }
     
     

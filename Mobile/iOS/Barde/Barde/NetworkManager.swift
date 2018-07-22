@@ -22,6 +22,8 @@ class NetworkManager: NSObject {
         // Initialise reachability
         reachability = Reachability()
         
+        print("Network manager")
+        
         // Register an observer for the network status
         NotificationCenter.default.addObserver(
             self,
