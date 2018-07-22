@@ -13,7 +13,7 @@ Client::Client(int fd)
   // instru.velocity = 100; //Need change
   // _mp.addInstrumentChords(instru);
   //_mp.addInstrumentArpeggios(instru);
-   _mp.setStyleName("Blues");
+  // _mp.setStyleName("Blues");
   srand(_mp.getSeed()); //Need to change that
 
   _nbGeneration = 0;

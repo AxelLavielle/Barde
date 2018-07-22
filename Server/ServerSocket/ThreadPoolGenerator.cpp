@@ -76,10 +76,10 @@ void ThreadPoolGenerator::generationManager()
 
         char *tmp = new char[midiData.getMidiSize() + 2 + sizeof(int)];
 
-        tmp[0] = 0x0;
+        tmp[0] = 0x4;
         tmp[1] = 0x0;
         tmp[2] = 0x0;
-        tmp[3] = 0x4; //This depends of the endieness !!
+        tmp[3] = 0x0; //This depends of the endieness !!
 
         std::memcpy(&tmp[4], midiData.getMidiArray(), midiData.getMidiSize());
         tmp[midiData.getMidiSize() + 4] = '\r';
