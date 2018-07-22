@@ -16,6 +16,8 @@ LabeledTextBox::LabeledTextBox()
 
 	_labelItem = GuiFactory::createFlexItem(_label, 100, 20, FlexItem::AlignSelf::autoAlign, 1);
 
+	GuiFactory::initTextEditor(_textBox);
+
 	_textItem = GuiFactory::createFlexItem(_textBox, 200, 17, FlexItem::AlignSelf::autoAlign, 1);
 
 	GuiFactory::initVerticalFlexGroup({ _labelItem, _textItem }, *this);
@@ -41,4 +43,9 @@ void LabeledTextBox::setText(const std::string & text)
 void LabeledTextBox::setPasswordCharacter(juce::juce_wchar passwordCharacter)
 {
 	_textBox.setPasswordCharacter(passwordCharacter);
+}
+
+void LabeledTextBox::setTextBoxColour(int colourID, Colour color)
+{
+	_textBox.setColour(colourID, color);
 }

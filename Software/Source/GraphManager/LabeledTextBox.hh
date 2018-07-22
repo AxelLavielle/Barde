@@ -21,6 +21,7 @@ public:
 	static FlexItem createFlexItem(Component & component, const float minWidth = 0.f, const float minHeight = 0.f,
 		const FlexItem::AlignSelf & alignSelf = FlexItem::AlignSelf::autoAlign, const float flexGrow = 0.f);
 	static void initLegendLabel(const std::string & text, SimpleLabel & label);
+	static void initTextEditor(TextEditor & textBox);
 };
 #endif
 
@@ -32,6 +33,7 @@ public:
 	std::string	getText() const;
 	void setText(const std::string & text);
 	void setPasswordCharacter(juce::juce_wchar passwordCharacter);
+	void setTextBoxColour(int colourID, Colour color);
 
 private:
 

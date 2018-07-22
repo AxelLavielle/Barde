@@ -216,9 +216,32 @@ void GuiFactory::initLabeledTextBox(const std::string & labelText, const std::st
 	textBox.setText(boxText);
 }
 
+void GuiFactory::initTextEditor(TextEditor & textBox)
+{
+	textBox.setColour(TextEditor::backgroundColourId, Colour(255, 255, 255));
+	textBox.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
+	textBox.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonColor()));
+	textBox.setColour(TextEditor::textColourId, Colour(0, 0, 0));
+	textBox.setColour(TextEditor::outlineColourId, Colour(255, 255, 255));
+}
+
 void GuiFactory::initLabeledTextBoxPassword(const std::string & labelText, const std::string & boxText, const juce_wchar & character, LabeledTextBox & textBox)
 {
+	textBox.setPasswordCharacter(character);
 	textBox.setLabelText(labelText);
 	textBox.setText(boxText);
-	textBox.setPasswordCharacter(character);
+}
+
+void GuiFactory::initButton(const std::string & buttonText, const std::string & buttonName, juce::Button::Listener *listener, Button & button)
+{
+	button.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
+	button.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
+	button.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
+	button.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
+	button.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
+	button.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
+
+	button.setButtonText(buttonText);
+	button.setName(buttonName);
+	button.addListener(listener);
 }

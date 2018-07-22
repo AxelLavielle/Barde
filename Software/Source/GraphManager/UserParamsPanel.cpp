@@ -21,31 +21,24 @@ UserParamsPanel::UserParamsPanel() : _cmdManager(CmdManager::getInstance())
 
 	initTextBoxes();
 
-	_cancelButton.setButtonText("Cancel");
-	_cancelButton.setName("Cancel");
-	_cancelButton.addListener(this);
+	GuiFactory::initButton("Cancel", "Cancel", this, _cancelButton);
 	addFlexItem(_cancelButton, 100, 20, FlexItem::AlignSelf::flexEnd, 1);
 
-	_confirmButton.setButtonText("Confirm");
-	_confirmButton.setName("Confirm");
-	_confirmButton.addListener(this);
+	GuiFactory::initButton("Confirm", "Confirm", this, _confirmButton);
 	addFlexItem(_confirmButton, 100, 20, FlexItem::AlignSelf::flexEnd, 1);
 
 	_flexBox = GuiFactory::createFlexBox(FlexBox::JustifyContent::center, FlexBox::AlignContent::center, FlexBox::AlignItems::stretch, FlexBox::Direction::column, _items, 500, 50);
-
-	applyTheme();
 }
 
 void UserParamsPanel::refresh()
 {
 	initTextBoxes();
-	applyTheme();
+	//applyTheme();
 }
 
 void UserParamsPanel::paint(Graphics & g)
 {
 	g.fillAll(Colour(Theme::getInstance().getBackgroundColor()));
-	applyTheme();
 }
 
 void UserParamsPanel::initTextBoxes()

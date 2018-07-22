@@ -69,7 +69,9 @@ public:
 	static void initSlider(const float min, const float max, const float value, Slider & slider);
 
 	static void initLabeledTextBox(const std::string & labelText, const std::string &boxText, LabeledTextBox & textBox);
+	static void initTextEditor(TextEditor & textBox);
 	static void initLabeledTextBoxPassword(const std::string & labelText, const std::string & boxText, const juce_wchar &character, LabeledTextBox & textBox);
+	static void initButton(const std::string & buttonText, const std::string & buttonName, juce::Button::Listener * listener, Button & button);
 };
 
 #endif
