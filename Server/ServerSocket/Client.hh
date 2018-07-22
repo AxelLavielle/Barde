@@ -17,6 +17,14 @@ public:
   Client(const Client & client);
   const int		getFd() const;
   MusicParameters	getMp() const;
+  MusicParameters changeMusiqueParameter();
+  void addInstrumentArpeggios(Instrument instru);
+  void addInstrumentChords(Instrument instru);
+  void delInstrumentArpeggios(Instrument instru);
+  void delInstrumentChords(Instrument instru);
+  void setInstrumentsDrums(bool drum);
+  void setStyleName(std::string style);
+  void setBpm(int value);
   bool operator==(const Client & lv);
   Client &operator=(const Client & client);
   void addGeneration();

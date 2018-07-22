@@ -44,7 +44,7 @@ void CmdManager::sendResponseMessage(const int responseCode, const int responseT
   delete[] msg;
 }
 
-void CmdManager::manageInstruments(const bool & add, const Client & client, const bool & arpeggios, const NbInstrument instruNb)
+void CmdManager::manageInstruments(const bool & add, Client & client, const bool & arpeggios, const NbInstrument instruNb)
 {
   Instrument instru;
   std::string msg = "OK : instrument ";
@@ -67,13 +67,14 @@ void CmdManager::manageInstruments(const bool & add, const Client & client, cons
     {
       msg += "added in arpeggios.";
       responseType = ADDAEPEGES_REQUEST;
-      client.getMp().addInstrumentArpeggios(instru);
+      client.addInstrumentArpeggios(instru);
     }
     else
     {
-      client.getMp().addInstrumentChords(instru);
+      client.addInstrumentChords(instru);
       responseType = ADDCHORD_REQUEST;
       msg += "added in chords.";
+
     }
   }
   else
@@ -82,11 +83,11 @@ void CmdManager::manageInstruments(const bool & add, const Client & client, cons
     {
       msg += "removed from arpeggios.";
       responseType = REMOVEAEPEGES_REQUEST;
-      client.getMp().delInstrumentArpeggios(instru);
+      client.delInstrumentArpeggios(instru);
     }
     else
     {
-      client.getMp().delInstrumentChords(instru);
+      client.delInstrumentChords(instru);
       responseType = REMOVECHORD_REQUEST;
       msg += "removed from chords.";
     }
@@ -106,12 +107,12 @@ void CmdManager::manageMusicParameter(int *buffer, Client &client, size_t buffer
   {
     if (buffer[2] == 0x111)
     {
-      client.getMp().setStyleName("JAZZ");
+      client.setStyleName("JAZZ");
       sendResponseMessage(OK_REQUEST, STYLE_REQUEST, 0x111, client, "OK : style setted.\r\n");
     }
     else if (buffer[2] == 0x211)
     {
-      client.getMp().setStyleName("BLUES");
+      client.setStyleName("BLUES");
       sendResponseMessage(OK_REQUEST, STYLE_REQUEST, 0x211, client, "OK : style setted.\r\n");
     }
     else
@@ -129,12 +130,12 @@ void CmdManager::manageMusicParameter(int *buffer, Client &client, size_t buffer
   {
     if (buffer[2] == 0x141)
     {
-      client.getMp().setInstrumentsDrums(true);
+      client.setInstrumentsDrums(true);
       sendResponseMessage(OK_REQUEST, DRUMS_REQUEST, 0x141, client, "OK : drums enabled.\r\n");
     }
     else if (buffer[2] == 0x241)
     {
-      client.getMp().setInstrumentsDrums(false);
+      client.setInstrumentsDrums(false);
       sendResponseMessage(OK_REQUEST, DRUMS_REQUEST, 0x241, client, "OK : drums disabled.\r\n");
     }
     else
@@ -142,7 +143,7 @@ void CmdManager::manageMusicParameter(int *buffer, Client &client, size_t buffer
   }
   else if (buffer[1] == BPM_REQUEST)
   {
-    client.getMp().setBpm(buffer[2]);
+    client.setBpm(buffer[2]);
     sendResponseMessage(OK_REQUEST, BPM_REQUEST, buffer[2], client, "OK : bpm modified.\r\n");
   }
   else

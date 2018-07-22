@@ -38,7 +38,7 @@ private:
   void manageMusicParameter(int *buffer, Client &client, size_t bufferSize);
   void managePlayerCtrl(int *buffer, Client &client, size_t bufferSize);
   void manageDisconnection(int *buffer, Client &client, size_t bufferSize);
-  void manageInstruments(const bool & add, const Client & client, const bool & arpeggios, const NbInstrument instruNb);
+  void manageInstruments(const bool & add, Client & client, const bool & arpeggios, const NbInstrument instruNb);
   std::map<int, std::function<void(int *buffer, Client &client, size_t bufferSize) > > _cmdFunctions;
   std::map<int, std::function<void(Client &client) > > _playerCtrlFunctions;
 
