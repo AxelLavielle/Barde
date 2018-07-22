@@ -33,7 +33,6 @@ UserParamsPanel::UserParamsPanel() : _cmdManager(CmdManager::getInstance())
 void UserParamsPanel::refresh()
 {
 	initTextBoxes();
-	//applyTheme();
 }
 
 void UserParamsPanel::paint(Graphics & g)
@@ -56,6 +55,7 @@ void UserParamsPanel::initTextBoxes()
 
 	GuiFactory::initLabeledTextBox("Firstname", _user.getFirstName(), _firstNameTextBox);
 	addFlexItem(_firstNameTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
+
 
 	GuiFactory::initLabeledTextBox("Lastname", _user.getLastName(), _lastNameTextBox);
 	addFlexItem(_lastNameTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
@@ -103,12 +103,13 @@ void UserParamsPanel::applyTheme()
 	_confirmButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
 	_confirmButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
 	_confirmButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
+	
 	_cancelButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
 	_cancelButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
 	_cancelButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
 
 
-	_firstNameTextBox.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	_firstNameTextBox.setColour(TextEditor::backgroundColourId, Colour(Colours::red));
 	_firstNameTextBox.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
 	_firstNameTextBox.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonColor()));
 	_firstNameTextBox.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getFontColor()));

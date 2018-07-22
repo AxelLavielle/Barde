@@ -38,6 +38,23 @@ LeftPanel::LeftPanel()
    addAndMakeVisible(_disconnectButton);
 
 
+   _homeButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
+   _homeButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
+   _homeButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
+
+   _userButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
+   _userButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
+   _userButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
+
+   _reportButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
+   _reportButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
+   _reportButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
+
+   _disconnectButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
+   _disconnectButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
+   _disconnectButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
+
+
    _flexBox = GuiFactory::createFlexBox(FlexBox::JustifyContent::flexStart, FlexBox::AlignContent::stretch, FlexBox::AlignItems::stretch, FlexBox::Direction::column,
 	   { GuiFactory::createFlexItem(_logoImage, LOGO_WIDTH + 50, LOGO_HEIGHT, 0, 0, FlexItem::AlignSelf::stretch, 1), GuiFactory::createFlexItem(_homeButton, 80, 20), GuiFactory::createFlexItem(_userButton, 80, 20), GuiFactory::createFlexItem(_reportButton, 80, 20), GuiFactory::createFlexItem(_disconnectButton, 80, 20) });
 }
@@ -52,7 +69,8 @@ void LeftPanel::setUser(const User & user)
 
 void LeftPanel::paint(Graphics & g)
 {
-	g.fillAll(Colours::grey);
+	//g.fillAll(Colours::grey);
+	g.fillAll(Colour(0xFF6C7A89));
 }
 
 void LeftPanel::buttonClicked(Button * button)
