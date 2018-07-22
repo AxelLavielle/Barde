@@ -1,1 +1,1 @@
-g++ jsonCreator.cpp ../Chords.cpp ../StyleSettings.cpp -std=c++11 && ./a.out
+g++ jsonCreator.cpp ../Chords.cpp ../StyleSettings.cpp -std=c++11 && ./a.out && rm ./a.out

@@ -11,13 +11,21 @@
 #ifndef AVIEW_HH_INCLUDED
 #define AVIEW_HH_INCLUDED
 
+#include <functional>
+#include "../JuceHeader.h"
 #include "IView.hpp"
 
-class AView : public IView
+class AView : public IView, public Component
 {
 public:
 	virtual ~AView();
-	virtual bool init() = 0;
+	void setChangeViewCallback(std::function<void(std::string)> changeView);
+	void changeView(std::string viewName);
+
+	virtual void refresh() = 0;
+
+private:
+	std::function<void(std::string)>	_viewChanger;
 };
 
 #endif  // AVIEW_HH_INCLUDED

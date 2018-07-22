@@ -11,10 +11,14 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "MusicStyleButton.h"
+#include "../UserSettings.h"
+#include "../MusicParameters.hh"
+#include "../Instrument.hh"
+#include "AComponent.hh"
+#include "PlayerFooter.hh"
+#include "CenterPanel.hh"
+#include "LoginPanel.hh"
 
-
-#define LOGO_WIDTH 1024 / 2
-#define LOGO_HEIGHT 927 / 2
 //==============================================================================
 /*
     This component lives inside our window, and this is where you should put all
@@ -27,11 +31,10 @@
 * The class is containing all the component needed for the client
 */
 
-class MainContentComponent   : public Component
+class MainContentComponent : public AComponent
 {
 public:
     //==============================================================================
-	MusicStyleButton *blues;  /*!< button for generating blues*/
 
 	/*!
 	*  \brief Constructor
@@ -62,9 +65,24 @@ public:
 	*/
     void resized() override;
 
+	void refresh() override;
+
+	void changeViewCallback(std::string viewName);
+
 private:
-    //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
+
+    //=============================================================================
+	CmdManager				& _cmdManager;
+	Player					_player; /*!< player >*/
+
+	MusicParameters			_musicParameters;
+	std::vector<AView * >	_currentsPanel;
+
+	PlayerFooter			_playerFooter;
+	CenterPanel				_centerPanel;
+	LoginPanel				_loginPanel;
+
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };
 
 

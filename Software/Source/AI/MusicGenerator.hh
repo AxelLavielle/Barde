@@ -11,33 +11,60 @@
 #ifndef MUSICGENERATOR_HH_INCLUDED
 # define MUSICGENERATOR_HH_INCLUDED
 
-# define ABS(x) ((x) > 0 ? (x) : (-(x)))
-# define DISTIMPACT	1
+/*!
+ * \file MusicGenerator.hh
+ * \brief File containing the class that connects all part of our artificial intelligence
+ */
 
+# include <mutex>
+# include "../Tools.hh"
 # include "Resolution.hh"
 # include "../MidiManager/Midi.hh"
 # include "../MusicParameters.hh"
 # include "ObjectMarkov.hh"
 # include "Disposition.hh"
+# include "Drums.hh"
 # include "Chords.hh"
+# include "Pattern.hh"
+# include "AI.hh"
+
+/*! \class MusicGenerator
+ * \brief Generator handling all the creation process
+ *
+ *  This class allows to create music, connecting the different part of the artificial intelligence
+ */
 
 class			MusicGenerator
 {
 public:
+  /*!
+   *  \brief Constructor
+   *
+   *  Empty
+   *
+   */
   MusicGenerator();
+
+  /*!
+   *  \brief Destructor
+   *
+   *  Empty
+   *
+   */
   ~MusicGenerator();
-  Midi			createMusic(MusicParameters &parameters);
+
+  /*!
+   *  \brief Launches and merges all the artificial intelligence part
+   *
+   *  This method connects all the different part of the artificial intelligence
+   *
+   *  \param Settings : Settings of the music as MusicParameters
+   *  \return Midi file containing the music
+   */
+  void			launch(std::vector<MusicParameters> &graph2genQ, std::vector<std::pair<Midi, int> > &gen2playQ, std::mutex &_graph2genM, std::mutex &_gen2playM, bool &stop);
+  Midi			createMusic(const MusicParameters &parameters);
 
 private:
-  void			calculateProbaToScaleFromNote(StyleSettings *proba, const std::vector<char> &strong, const std::vector<char> &medium, const std::vector<char> &weak);
-  void			calculateProbaToNoteFromNote(const char note, StyleSettings *proba, const std::vector<char> &listNote, const char probaNote);
-  void			calculateProbaToNote(StyleSettings *proba, const std::vector<char> &listNote, const char probaNote);
-  void			classifyNotes(const std::vector<char> &chord, std::vector<char> *strong, std::vector<char> *medium, std::vector<char> *weak);
-
-  char			searchNoteFromDist(char note, char dist);
-  char			calculateDist(const char currNote, const char testNote);
-  char			calculateSumDist(const char currNote, const std::vector<char> &listNote);
-  char			calculateDistChords(const std::vector<char> chord, const char note);
 };
 
 #endif  // MUSICGENERATOR_HH_INCLUDED

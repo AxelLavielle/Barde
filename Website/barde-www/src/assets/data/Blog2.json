@@ -1,0 +1,25 @@
+{
+  "posts" : [
+    {
+      "image" : "/blog/1/team.jpg",
+      "title" : "First steps",
+      "date" : "22nd February 2017",
+      "author" : "Axel Lavielle",
+      "headline" : "Since today we are going to start to leave you informed of everything pertaining our project Barde !"
+    },
+     {
+          "image" : "/blog/1/team.jpg",
+          "title" : "First steps",
+          "date" : "22nd February 2017",
+          "author" : "Axel Lavielle",
+          "headline" : "Since today we are going to start to leave you informed of everything pertaining our project Barde !"
+        },
+         {
+              "image" : "/blog/1/team.jpg",
+              "title" : "First steps",
+              "date" : "22nd February 2017",
+              "author" : "Axel Lavielle",
+              "headline" : "Since today we are going to start to leave you informed of everything pertaining our project Barde !"
+            }
+  ]
+}

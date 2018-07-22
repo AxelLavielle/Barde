@@ -12,6 +12,7 @@
 
 MidiManager::MidiManager() : AMidiManager()
 {
+	changeInstrument(1, ACOUSTICGRANDPIANO, 1);
 }
 
 MidiManager::~MidiManager()
@@ -22,8 +23,7 @@ void MidiManager::noteOn(const int channel, const int noteNumber, const float ve
 {
 	MidiMessage message = MidiMessage::noteOn(channel, noteNumber, (uint8)velocity);
 
-	message.setTimeStamp(time);
-	//addMessageToList(message);
+	message.setTimeStamp(time * 1000);
 	_midiSequence.addEvent(message);
 	_midiSequence.updateMatchedPairs();
 }
@@ -32,9 +32,7 @@ void MidiManager::noteOn(const Instrument & instrument, const int noteNumber, co
 {
 	MidiMessage message = MidiMessage::noteOn(instrument.channel, noteNumber, (uint8)velocity);
 
-	changeInstrument(instrument, time);
-	message.setTimeStamp(time);
-	//addMessageToList(message);
+	message.setTimeStamp(time * 1000);
 	_midiSequence.addEvent(message);
 	_midiSequence.updateMatchedPairs();
 }
@@ -43,8 +41,7 @@ void MidiManager::noteOff(const int channel, const int noteNumber, const float v
 {
 	MidiMessage message = MidiMessage::noteOff(channel, noteNumber, (uint8)velocity);
 
-	message.setTimeStamp(time);
-	//addMessageToList(message);
+	message.setTimeStamp(time * 1000);
 	_midiSequence.addEvent(message);
 	//_midiSequence.updateMatchedPairs();
 }
@@ -53,9 +50,7 @@ void MidiManager::noteOff(const Instrument & instrument, const int noteNumber, c
 {
 	MidiMessage message = MidiMessage::noteOff(instrument.channel, noteNumber, (uint8)velocity);
 
-	changeInstrument(instrument, time);
-	message.setTimeStamp(time);
-	//addMessageToList(message);
+	message.setTimeStamp(time * 1000);
 	_midiSequence.addEvent(message);
 	//_midiSequence.updateMatchedPairs();
 }
@@ -67,11 +62,10 @@ Midi MidiManager::createMidi(const double time)
 	Midi				midi;
 
 	message = MidiMessage::endOfTrack();
-	message.setTimeStamp(time);
-	//addMessageToList(message);
+	message.setTimeStamp(time * 1000);
 	_midiSequence.addEvent(message);
 	_midiBuff.addTrack(_midiSequence);
-	//_midiBuff.setTicksPerQuarterNote(4); // 80 tick dans une minute
+	_midiBuff.setTicksPerQuarterNote(96); // 80 tick dans une minute
 
 	//MidiOutput *midiOutput;
 	//midiOutput = MidiOutput::openDevice(0);
@@ -85,9 +79,12 @@ Midi MidiManager::createMidi(const double time)
 	//_midiBuff.convertTimestampTicksToSeconds();
 	_midiBuff.writeTo(_midiStream, 1);
 	midi.setMidiSize(_midiStream.getDataSize());
-	midi.setMidiArray((char *)_midiStream.getData());
-	//midi.setMidiArray((char *)std::memcpy(midi.getMidiArray(), midiStream.getData(), midiStream.getDataSize()));
+	//midi.setMidiArray((char *)_midiStream.getData());
+	midi.setMidiArray(new char[_midiStream.getDataSize()]);
+	midi.setMidiArray((char *)std::memcpy(midi.getMidiArray(), _midiStream.getData(), _midiStream.getDataSize()));
 	_midiSequence.clear();
+	_midiBuff.clear();
+//	_midiStream.reset();
 
 
 	//MidiFile			midiBuff;
@@ -95,10 +92,6 @@ Midi MidiManager::createMidi(const double time)
 
 	//midiBuff.readFrom(stream);
 	//if (midiBuff.getNumTracks() > 0)
-	//	exit(1);
-
-
-	//std::cout << "LALALALA = " << Time::getHighResolutionTicksPerSecond() << std::endl;
 	return (midi);
 }
 

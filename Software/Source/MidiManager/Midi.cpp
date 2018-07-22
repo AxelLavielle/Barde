@@ -9,7 +9,7 @@
 */
 
 #include "Midi.hh"
-
+#include <iostream>
 Midi::Midi()
 {
 }

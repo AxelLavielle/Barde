@@ -1,0 +1,222 @@
+.card-barde{
+    padding: 30px;
+    padding-top: 10px;
+
+    max-height: 160px;
+    border-left: #FA0067 5px solid;
+}
+
+.card-barde h3{
+    color: #374464;
+    font-weight: bold;
+}
+
+.card-news .card-content{
+    padding: 30px;
+}
+
+.card-news .card-content h5{
+    color: #374464;
+}
+
+@media (max-width: 640px) {
+    .features{
+        text-align: center;
+    }
+}
+
+input[type=text],
+input[type=email]
+{
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+}
+
+
+.contact-form input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.contact-form a .submit{
+    text-align: center !important;
+}
+
+.submit{
+    margin-bottom: 40px;
+}
+
+#sub_btn{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+textarea{
+    background: white;
+    border-radius: 5px;
+    height: 100px;
+    padding: 10px;
+
+}
+
+.card-news .card-content .date{
+    font-size: 14px;
+    color: #374464;
+    font-weight: lighter;
+    margin-bottom: 30px !important;
+}
+
+.card-news .card-content hr{
+    margin-top: 20px;
+}
+
+.card-news .card-content a{
+    margin-top: 20px;
+}
+
+
+.card-news .card-content p{
+    font-size: 14px;
+    font-weight: medium;
+    padding-top: 20px;
+}
+
+.team-card img{
+    border-radius: 15px;
+}
+
+.team-card p{
+    font-family: "Work Sans";
+}
+
+.card-barde p{
+    font-size: 14px;
+    color: #9B9B9B;
+}
+
+.cards{
+    margin-top: 80px;
+    padding-bottom: 40px;
+}
+
+.barde-main-background{
+    background: #EEEEEE;
+}
+
+.barde-pink-text{
+    color: #FA0067;
+}
+
+.barde-pink{
+    background: #FA0067;
+}
+
+.section{
+    margin-bottom: -20px;
+}
+
+.content{
+    margin-top: 50px;
+}
+
+h3{
+    font-family: "Work Sans";
+    font-weight: 400;
+    color: #374464;
+}
+
+h5.subtitle{
+    margin-top: 40px;
+}
+
+.barde-hr{
+    height: 5px;
+    background: #FA0067;
+    margin-top: 5px;
+    box-shadow: none;
+    width: 120px;
+    border: none;
+}
+
+.barde-blue-text{
+    color: #374464;
+}
+
+.barde-blue{
+    background: #374464;
+}
+.barde-btn{
+    border-radius: 25px;
+    background: #FA0067;
+}
+.barde-btn-secondary{
+    border-radius: 25px;
+    background: #374464 !important;
+}
+
+.download-label{
+    font-size: 24px;
+    color: #374464;
+    font-family: "Work Sans";
+    font-size: medium;
+}
+
+.barde-btn:active,
+.barde-btn:focus,
+.barde-btn:hover{
+    background: #ce0057;
+}
+
+.phone{
+    margin-top: 100px;
+}
+
+.features{
+    margin-top: 40px;
+}
+
+.feature{
+    font-size: 24px;
+    color: white;
+    padding-top: 80px !important;
+}
+
+.icon{
+    height: 24px;
+    width: 24px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+
+.page-footer{
+    padding-top: 0;
+}
+
+.page-footer li a{
+    font-weight: 500;
+    font-size: 16px;
+}
+
+@font-face {
+    font-family: 'Work Sans';
+    src: url('../fonts/WorkSans/WorkSans-Regular.otf') format("opentype");
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto Light';
+    src: url('../fonts/Roboto/Roboto-Light.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto Thin';
+    src: url('../fonts/Roboto/Roboto-Thin.ttf');
+}

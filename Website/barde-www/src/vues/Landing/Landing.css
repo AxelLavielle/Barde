@@ -1,0 +1,22 @@
+@import '../../assets/css/barde.css';
+
+.section{
+    padding-top: 0;
+}
+
+.parallax-container{
+    height: 100vh;
+}
+
+#barde-logo{
+    max-width: 300px;
+    margin-bottom: 40px;
+}
+
+a{
+ margin-top: 80px;
+}
+
+h5{
+    color: white;
+}
