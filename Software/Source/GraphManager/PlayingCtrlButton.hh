@@ -20,6 +20,9 @@ enum BUTTON_PLAYING_TYPE
 	STOP
 };
 
+#define PLAYING_BUTTON_HEIGHT 50
+#define PLAYING_BUTTON_WIDTH 50
+
 class PlayingCtrlButton : public Button
 {
 public:

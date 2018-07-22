@@ -30,8 +30,8 @@ PlayerFooter::PlayerFooter(Player & player, MusicParameters &musicParameters) : 
 	item.margin.left = 10;
 	item.margin.right = 10;
 	item2.alignSelf = FlexItem::AlignSelf::flexStart;
-	_controlGroup.addItem(item.withMinWidth(100.0f).withMinHeight(50.0f));
-	_controlGroup.addItem(item2.withMinWidth(100.0f).withMinHeight(50.0f));
+	_controlGroup.addItem(item.withMinWidth(PLAYING_BUTTON_WIDTH).withMinHeight(PLAYING_BUTTON_HEIGHT));
+	_controlGroup.addItem(item2.withMinWidth(PLAYING_BUTTON_WIDTH).withMinHeight(PLAYING_BUTTON_HEIGHT));
 
 	initFlexBox();
 }

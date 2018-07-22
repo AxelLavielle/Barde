@@ -196,6 +196,7 @@
     <ClCompile Include="..\Source\DatabaseManager\SQLiteManager.cpp"/>
     <ClCompile Include="..\Source\EncryptionManager\AEncryptionManager.cpp"/>
     <ClCompile Include="..\Source\EncryptionManager\SSLManager.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\BpmSlider.cpp"/>
     <ClCompile Include="..\Source\GraphManager\PlayingCtrlButton.cpp"/>
     <ClCompile Include="..\Source\GraphManager\LabeledTextBox.cpp"/>
     <ClCompile Include="..\Source\GraphManager\SimpleLabel.cpp"/>
@@ -1937,6 +1938,7 @@
     <ClInclude Include="..\Source\EncryptionManager\AEncryptionManager.hh"/>
     <ClInclude Include="..\Source\EncryptionManager\IEncryptionManager.hpp"/>
     <ClInclude Include="..\Source\EncryptionManager\SSLManager.hh"/>
+    <ClInclude Include="..\Source\GraphManager\BpmSlider.hh"/>
     <ClInclude Include="..\Source\GraphManager\PlayingCtrlButton.hh"/>
     <ClInclude Include="..\Source\GraphManager\LabeledTextBox.hh"/>
     <ClInclude Include="..\Source\GraphManager\SimpleLabel.hh"/>

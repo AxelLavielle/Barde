@@ -16,9 +16,6 @@ PlayerPanel::PlayerPanel(MusicParameters & musicParameters) : _musicParameters(m
 	//TO DO remove this list after the beta and use full instrumentList from instrument.hh
 	_instrusChoice = { "ACOUSTICGRANDPIANO", "TRUMPET", "SOPRANOSAX" };
 
-	_bpmLabel.setFontSize(13);
-	_bpmLabel.setLabelText("Bpm : " + std::to_string(_musicParameters.getBpm()));
-	_bpmLabel.setColour(Label::textColourId, Colour(Theme::getInstance().getFontColor()));
 	GuiFactory::initBigTitle("Edit your music", _titleLabel);
 	addFlexItem(_titleLabel, GuiFactory::getBoxLabelWidth(_titleLabel), GuiFactory::getBoxLabelHeight(_titleLabel));
 	GuiFactory::initLittleTitle("Choose your style", _styleLabel);
@@ -48,11 +45,9 @@ PlayerPanel::PlayerPanel(MusicParameters & musicParameters) : _musicParameters(m
 	GuiFactory::initLittleTitle("Modify the BPM", _bpmTitleLabel);
 	addFlexItem(_bpmTitleLabel, GuiFactory::getBoxLabelWidth(_bpmTitleLabel), GuiFactory::getBoxLabelHeight(_bpmTitleLabel));
 
-	GuiFactory::initSlider(70.f, 200.f, _musicParameters.getBpm(), _bpmSlider);
-	_bpmSlider.addListener(this);
-	GuiFactory::initHoryzontalFlexGroup( { GuiFactory::createFlexItem(_bpmSlider, 300, 30, FlexItem::AlignSelf::autoAlign, 1),
-											GuiFactory::createFlexItem(_bpmLabel, 100, GuiFactory::getBoxLabelHeight(_bpmLabel)) }, _bpmGroup );
-	addFlexItem(_bpmGroup, 400, 30);
+	_bpmSlider.init(_musicParameters.getBpm(), std::bind(&PlayerPanel::sliderValueChanged, this, std::placeholders::_1));
+	addAndMakeVisible(_bpmSlider);
+	_items.push_back(GuiFactory::createFlexItem(_bpmSlider, 500, 50, FlexItem::AlignSelf::center).withMaxWidth(700));
 
 	_flexBox = GuiFactory::createFlexBox(FlexBox::JustifyContent::spaceAround, FlexBox::AlignContent::stretch, FlexBox::AlignItems::stretch, FlexBox::Direction::column, _items);
 }
@@ -132,7 +127,6 @@ void PlayerPanel::paint(Graphics & g)
 
 void PlayerPanel::sliderValueChanged(Slider * slider)
 {
-	_bpmLabel.setText("Bpm : " + std::to_string(static_cast<int>(slider->getValue())), NotificationType::dontSendNotification);
 	_musicParameters.setBpm(static_cast<int>(slider->getValue()));
 }
 

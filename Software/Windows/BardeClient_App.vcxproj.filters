@@ -511,6 +511,9 @@
     <ClCompile Include="..\Source\EncryptionManager\SSLManager.cpp">
       <Filter>BardeClient\Source\EncryptionManager</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\GraphManager\BpmSlider.cpp">
+      <Filter>BardeClient\Source\GraphManager</Filter>
+    </ClCompile>
     <ClCompile Include="..\Source\GraphManager\PlayingCtrlButton.cpp">
       <Filter>BardeClient\Source\GraphManager</Filter>
     </ClCompile>
@@ -2558,6 +2561,9 @@
     </ClInclude>
     <ClInclude Include="..\Source\EncryptionManager\SSLManager.hh">
       <Filter>BardeClient\Source\EncryptionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\GraphManager\BpmSlider.hh">
+      <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\GraphManager\PlayingCtrlButton.hh">
       <Filter>BardeClient\Source\GraphManager</Filter>

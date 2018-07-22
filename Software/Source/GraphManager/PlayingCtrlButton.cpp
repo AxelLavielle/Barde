@@ -35,7 +35,8 @@ void PlayingCtrlButton::paintButton(Graphics & g, const bool isMouseOverButton, 
 	}
 
 	//Background
-	g.fillRoundedRectangle(0.f, 0.f, static_cast<float>(50), static_cast<float>(50), 90.f);
+	g.fillEllipse(0.f, 0.f, PLAYING_BUTTON_WIDTH, PLAYING_BUTTON_HEIGHT);
+	//g.fillRoundedRectangle(0.f, 0.f, static_cast<float>(50), static_cast<float>(50), 90.f);
 
 	g.setColour(Colour(Theme::getInstance().getButtonFontColor()));
 	if (_type == BUTTON_PLAYING_TYPE::PLAY)

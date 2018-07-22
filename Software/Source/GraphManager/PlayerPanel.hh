@@ -18,6 +18,7 @@
 #include "../MusicParameters.hh"
 #include "../GraphManager/Theme.h"
 #include "../ViewManager/FlexView.hh"
+#include "BpmSlider.hh"
 
 class PlayerPanel : public FlexView, private Slider::Listener, private ToggleButton::Listener
 {
@@ -35,10 +36,8 @@ private:
 
 	MusicParameters			&_musicParameters;
 
-	Slider					_bpmSlider;
 	SimpleLabel				_titleLabel;
-	SimpleLabel				_bpmLabel;
-	FlexGroup				_bpmGroup;
+	BpmSlider				_bpmSlider;
 	SimpleLabel				_bpmTitleLabel;
 
 	FlexGroup				_instrumentsGroup;
