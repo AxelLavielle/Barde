@@ -219,11 +219,11 @@ void GuiFactory::initLabeledTextBox(const std::string & labelText, const std::st
 
 void GuiFactory::initTextEditor(TextEditor & textBox)
 {
-	textBox.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	textBox.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getButtonColor()));
 	textBox.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
-	textBox.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonColor()));
-	textBox.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getFontColor()));
-	textBox.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getFontColor()));
+	textBox.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonFontColor()));
+	textBox.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getButtonFontColor()));
+	textBox.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getButtonFontColor()));
 }
 
 void GuiFactory::initLabeledTextBoxPassword(const std::string & labelText, const std::string & boxText, const juce_wchar & character, LabeledTextBox & textBox)

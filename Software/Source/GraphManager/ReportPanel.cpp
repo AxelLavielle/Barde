@@ -48,11 +48,12 @@ ReportPanel::ReportPanel() : _cmdManager(CmdManager::getInstance())
 	_cancelButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
 
 
-	_commentTextEditor.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	_commentTextEditor.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getButtonColor()));
 	_commentTextEditor.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
-	_commentTextEditor.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonColor()));
-	_commentTextEditor.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getFontColor()));
-	_commentTextEditor.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getFontColor()));
+	_commentTextEditor.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonFontColor()));
+	_commentTextEditor.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getButtonFontColor()));
+	_commentTextEditor.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getButtonFontColor()));
+	
 
 
 

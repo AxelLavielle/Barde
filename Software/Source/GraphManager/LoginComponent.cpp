@@ -149,7 +149,7 @@ void LoginComponent::paint(Graphics& g)
 	g.fillAll(Colour(Theme::getInstance().getBackgroundColor()));
 	Image logo = ImageCache::getFromMemory(BinaryData::logo_png,
 		BinaryData::logo_pngSize);
-	g.drawImage(logo, imgX, imgY, (int)imgW, (int)imgH, 0, 0, 1024, 927, false);
+	g.drawImage(logo, imgX, imgY, (int)imgW, (int)imgH, 0, 0, 950, 1050, false);
 
 }
 
@@ -158,20 +158,20 @@ void LoginComponent::ThemeChanged()
 	_errorText.setColour(Label::textColourId, Colour(Theme::getInstance().getErrorTextColor()));
 	
 	String tmp = _textEditor1.getText();
-	_textEditor1.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	_textEditor1.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getButtonColor()));
 	_textEditor1.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
-	_textEditor1.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonColor()));
-	_textEditor1.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getFontColor()));
-	_textEditor1.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getFontColor()));
+	_textEditor1.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonFontColor()));
+	_textEditor1.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getButtonFontColor()));
+	_textEditor1.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getButtonFontColor()));
 	_textEditor1.clear();
 	_textEditor1.setText(tmp);
 
 	tmp = _textEditor2.getText();
-	_textEditor2.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	_textEditor2.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getButtonColor()));
 	_textEditor2.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
-	_textEditor2.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonColor()));
-	_textEditor2.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getFontColor()));
-	_textEditor2.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getFontColor()));
+	_textEditor2.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonFontColor()));
+	_textEditor2.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getButtonFontColor()));
+	_textEditor2.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getButtonFontColor()));
 	_textEditor2.clear();
 	_textEditor2.setText(tmp);
 
