@@ -70,6 +70,7 @@ int Socket::readClient(int client_fd)
   int len = 0;
   int i = 0;
   int j = 0;
+  _sizeOfMessage = 0;
   if (_message != NULL)
     {
       free(_message);
