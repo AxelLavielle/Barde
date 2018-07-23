@@ -21,6 +21,7 @@ void		Disposition::placeChords(MidiManager &_midiManager, const MusicParameters 
   std::vector<char> notesFromChord;
 
   beats = 0;
+  int startTime = Time::getMillisecondCounterHiRes() * 0.001;
   instruments = parameters.getInstrumentsChords();
   _midiManager.setTempo(parameters.getBpm());
   for (unsigned char i = 0; i < instruments.size(); i++){
@@ -33,7 +34,8 @@ void		Disposition::placeChords(MidiManager &_midiManager, const MusicParameters 
       	if (y != 0)
       	  scaleAdjust = (notesFromChord[y] < notesFromChord[y-1] ? 0 : 1);
       	note = (notesFromChord[y] / 8) + ((chordsGrid[x].second + scaleAdjust) * 12);
-      	_midiManager.noteOn(instruments[i].channel, note, instruments[i].velocity, beats + 1);
+		_midiManager.noteOn(instruments[i].channel, note, instruments[i].velocity, beats + 1);
+	//	_midiManager.noteOn(instruments[i].channel, note, instruments[i].velocity, Time::getMillisecondCounterHiRes() * 0.001 - startTime);
       	_midiManager.noteOff(instruments[i].channel, note, instruments[i].velocity, beats + 1 + TIMES_PER_BAR);
           }
 	  beats += TIMES_PER_BAR;

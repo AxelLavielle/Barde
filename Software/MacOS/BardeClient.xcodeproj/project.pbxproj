@@ -96,6 +96,7 @@
 		894DF16485ED5783CE04EE0D = {isa = PBXBuildFile; fileRef = 3ED6B1A173C6A6AE78B6CC73; };
 		945D47B5171051D1B031AB8D = {isa = PBXBuildFile; fileRef = 6ABC9BB8DC942DB3BC0AC6F6; };
 		8A984B3B87B471D2911D0AE7 = {isa = PBXBuildFile; fileRef = 6A0CC25D3238A26FB0F3A948; };
+		029A3247290111E9F60DFB03 = {isa = PBXBuildFile; fileRef = 877358EE1FB0C1447B69730C; };
 		10114665BD7BE90F4677E47E = {isa = PBXBuildFile; fileRef = 358A9BF25A69CEFFA265507D; };
 		F97812A7FA8E97FB0218BC23 = {isa = PBXBuildFile; fileRef = DE51185F9B39CBA3092ED5C8; };
 		14512ADAD818BD4A17DDBB49 = {isa = PBXBuildFile; fileRef = C0F018E8E683AA367764472C; };
@@ -187,6 +188,7 @@
 		4E648992CC5A86BD86828234 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Player.cpp; path = ../Source/Player.cpp; sourceTree = "SOURCE_ROOT"; };
 		50A8352D63F6139F5CF2ABA3 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_video.mm"; path = "../JuceLibraryCode/include_juce_video.mm"; sourceTree = "SOURCE_ROOT"; };
 		50FCAA69C1252E2D1B7F1A5B = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		52DBCEE7A4CCAFA5F7781803 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = icons.h; path = ../Source/icons.h; sourceTree = "SOURCE_ROOT"; };
 		5394AFFA7E5D64A2CDB718D1 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ADatabasManager.cpp; path = ../Source/DatabaseManager/ADatabasManager.cpp; sourceTree = "SOURCE_ROOT"; };
 		56A2745C11346001EE3F8737 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HomePage.cpp; path = ../Source/ViewManager/HomePage.cpp; sourceTree = "SOURCE_ROOT"; };
 		56D7F8AAB182FA355289AF68 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_cryptography.mm"; path = "../JuceLibraryCode/include_juce_cryptography.mm"; sourceTree = "SOURCE_ROOT"; };
@@ -234,6 +236,7 @@
 		83FDD2639B1FFA7E69CA9323 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AView.hh; path = ../Source/ViewManager/AView.hh; sourceTree = "SOURCE_ROOT"; };
 		84601D50D9D57E3396CF903A = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BardeClient.app; sourceTree = "BUILT_PRODUCTS_DIR"; };
 		86714B581F6EBAA26145F4E9 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = StyleSettings.hh; path = ../Source/AI/StyleSettings.hh; sourceTree = "SOURCE_ROOT"; };
+		877358EE1FB0C1447B69730C = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = icons.cpp; path = ../Source/icons.cpp; sourceTree = "SOURCE_ROOT"; };
 		89AA9B4C887ADBA26CD05467 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ISoundManager.hpp; path = ../Source/SoundManager/ISoundManager.hpp; sourceTree = "SOURCE_ROOT"; };
 		8BC6453EF1DA1B36F2440108 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SSLManager.cpp; path = ../Source/EncryptionManager/SSLManager.cpp; sourceTree = "SOURCE_ROOT"; };
 		8BFF7E7C3570E8CA74ECCE39 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -523,6 +526,8 @@
 					FD0E83BFCADC134A0F16C824,
 					6A0CC25D3238A26FB0F3A948,
 					21250A858E269715B6B10676,
+					877358EE1FB0C1447B69730C,
+					52DBCEE7A4CCAFA5F7781803,
 					358A9BF25A69CEFFA265507D,
 					80263D653472179EABD2A1C7, ); name = BardeClient; sourceTree = "<group>"; };
 		FCCFE6BB99730C96152837F1 = {isa = PBXGroup; children = (
@@ -812,6 +817,7 @@
 					894DF16485ED5783CE04EE0D,
 					945D47B5171051D1B031AB8D,
 					8A984B3B87B471D2911D0AE7,
+					029A3247290111E9F60DFB03,
 					10114665BD7BE90F4677E47E,
 					F97812A7FA8E97FB0218BC23,
 					14512ADAD818BD4A17DDBB49,

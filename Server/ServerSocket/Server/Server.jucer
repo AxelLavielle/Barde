@@ -33,6 +33,10 @@
             file="../../../Software/Source/AI/StyleSettings.hh"/>
     </GROUP>
     <GROUP id="{194032F9-6A72-396D-6F99-74208156F425}" name="MidiManager">
+      <FILE id="PG1F5I" name="ThreadPoolGenerator.cpp" compile="1" resource="0"
+            file="../ThreadPoolGenerator.cpp"/>
+      <FILE id="QP2xtn" name="ThreadPoolGenerator.hh" compile="0" resource="0"
+            file="../ThreadPoolGenerator.hh"/>
       <FILE id="ieakNw" name="AMidiManager.cpp" compile="1" resource="0"
             file="../../../Software/Source/MidiManager/AMidiManager.cpp"/>
       <FILE id="ERp9Ht" name="AMidiManager.hh" compile="0" resource="0" file="../../../Software/Source/MidiManager/AMidiManager.hh"/>
@@ -41,8 +45,6 @@
       <FILE id="KzOKR6" name="Instruments.hh" compile="0" resource="0" file="../../../Software/Source/MidiManager/Instruments.hh"/>
       <FILE id="MZLXg9" name="Midi.cpp" compile="1" resource="0" file="../../../Software/Source/MidiManager/Midi.cpp"/>
       <FILE id="iAOZVX" name="Midi.hh" compile="0" resource="0" file="../../../Software/Source/MidiManager/Midi.hh"/>
-      <FILE id="xi4mSP" name="MidiManager.cpp" compile="1" resource="0" file="../../../Software/Source/MidiManager/MidiManager.cpp"/>
-      <FILE id="fVZecx" name="MidiManager.hh" compile="0" resource="0" file="../../../Software/Source/MidiManager/MidiManager.hh"/>
     </GROUP>
     <GROUP id="{08E2D5DD-B81C-0E02-243D-536998EE28CD}" name="RestClient">
       <FILE id="xjMhZw" name="ARestClient.cpp" compile="1" resource="0" file="../../../Software/Source/RestClient/ARestClient.cpp"/>
@@ -87,6 +89,8 @@
     <FILE id="cQEL23" name="Instrument.hh" compile="0" resource="0" file="../../../Software/Source/Instrument.hh"/>
     <FILE id="MMtAa6" name="jsoncpp.cpp" compile="1" resource="0" file="JsoncppLibrary/jsoncpp.cpp"/>
     <FILE id="CnGAUW" name="main.cpp" compile="1" resource="0" file="../main.cpp"/>
+    <FILE id="aYEJZx" name="MidiManager.cpp" compile="1" resource="0" file="../MidiManager.cpp"/>
+    <FILE id="JpX2Ri" name="MidiManager.hh" compile="0" resource="0" file="../MidiManager.hh"/>
     <FILE id="ELWHPX" name="MusicParameters.cpp" compile="1" resource="0"
           file="../../../Software/Source/MusicParameters.cpp"/>
     <FILE id="pdGgqr" name="MusicParameters.hh" compile="0" resource="0"
@@ -98,10 +102,6 @@
     <FILE id="GE2MuI" name="server.cpp" compile="1" resource="0" file="../server.cpp"/>
     <FILE id="RUxrRV" name="socket.cpp" compile="1" resource="0" file="../socket.cpp"/>
     <FILE id="Ycd0ge" name="socket.hh" compile="0" resource="0" file="../socket.hh"/>
-    <FILE id="PG1F5I" name="ThreadPoolGenerator.cpp" compile="1" resource="0"
-          file="../ThreadPoolGenerator.cpp"/>
-    <FILE id="QP2xtn" name="ThreadPoolGenerator.hh" compile="0" resource="0"
-          file="../ThreadPoolGenerator.hh"/>
     <FILE id="o020Av" name="Tools.cpp" compile="1" resource="0" file="../../../Software/Source/Tools.cpp"/>
     <FILE id="N0hSa5" name="Tools.hh" compile="0" resource="0" file="../../../Software/Source/Tools.hh"/>
     <FILE id="wTo3Pc" name="User.cpp" compile="1" resource="0" file="../../../Software/Source/User.cpp"/>

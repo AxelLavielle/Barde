@@ -235,13 +235,13 @@
     <ClCompile Include="..\..\..\..\..\Software\Source\AI\StyleSettings.cpp">
       <Filter>Server\AI</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\ThreadPoolGenerator.cpp">
+      <Filter>Server\MidiManager</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\Software\Source\MidiManager\AMidiManager.cpp">
       <Filter>Server\MidiManager</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\Software\Source\MidiManager\Midi.cpp">
-      <Filter>Server\MidiManager</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Software\Source\MidiManager\MidiManager.cpp">
       <Filter>Server\MidiManager</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\Software\Source\RestClient\ARestClient.cpp">
@@ -289,6 +289,9 @@
     <ClCompile Include="..\..\..\main.cpp">
       <Filter>Server</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\MidiManager.cpp">
+      <Filter>Server</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\Software\Source\MusicParameters.cpp">
       <Filter>Server</Filter>
     </ClCompile>
@@ -302,9 +305,6 @@
       <Filter>Server</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\socket.cpp">
-      <Filter>Server</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\ThreadPoolGenerator.cpp">
       <Filter>Server</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\Software\Source\Tools.cpp">
@@ -1098,6 +1098,9 @@
     <ClInclude Include="..\..\..\..\..\Software\Source\AI\StyleSettings.hh">
       <Filter>Server\AI</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\ThreadPoolGenerator.hh">
+      <Filter>Server\MidiManager</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\Software\Source\MidiManager\AMidiManager.hh">
       <Filter>Server\MidiManager</Filter>
     </ClInclude>
@@ -1108,9 +1111,6 @@
       <Filter>Server\MidiManager</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Software\Source\MidiManager\Midi.hh">
-      <Filter>Server\MidiManager</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Software\Source\MidiManager\MidiManager.hh">
       <Filter>Server\MidiManager</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Software\Source\RestClient\ARestClient.hh">
@@ -1158,6 +1158,9 @@
     <ClInclude Include="..\..\..\..\..\Software\Source\Instrument.hh">
       <Filter>Server</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\MidiManager.hh">
+      <Filter>Server</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\Software\Source\MusicParameters.hh">
       <Filter>Server</Filter>
     </ClInclude>
@@ -1168,9 +1171,6 @@
       <Filter>Server</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\socket.hh">
-      <Filter>Server</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\ThreadPoolGenerator.hh">
       <Filter>Server</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Software\Source\Tools.hh">

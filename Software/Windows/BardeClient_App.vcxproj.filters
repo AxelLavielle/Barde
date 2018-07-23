@@ -634,6 +634,9 @@
     <ClCompile Include="..\Source\DateTime.cpp">
       <Filter>BardeClient</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\icons.cpp">
+      <Filter>BardeClient</Filter>
+    </ClCompile>
     <ClCompile Include="..\Source\Semaphore.cpp">
       <Filter>BardeClient</Filter>
     </ClCompile>
@@ -2698,6 +2701,9 @@
       <Filter>BardeClient\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\DateTime.hh">
+      <Filter>BardeClient</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\icons.h">
       <Filter>BardeClient</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\Semaphore.hh">

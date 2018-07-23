@@ -12,6 +12,7 @@
 
 MidiManager::MidiManager() : AMidiManager()
 {
+	_bpm = 96;
 	changeInstrument(1, ACOUSTICGRANDPIANO, 1);
 }
 
@@ -65,7 +66,11 @@ Midi MidiManager::createMidi(const double time)
 	message.setTimeStamp(time * 1000);
 	_midiSequence.addEvent(message);
 	_midiBuff.addTrack(_midiSequence);
-	_midiBuff.setTicksPerQuarterNote(96); // 80 tick dans une minute
+
+	_midiBuff.setTicksPerQuarterNote(_bpm); // 80 tick dans une minute
+
+	writeToFile("./testMidi.mid");
+
 
 	//MidiOutput *midiOutput;
 	//midiOutput = MidiOutput::openDevice(0);
@@ -115,9 +120,11 @@ void MidiManager::setSignature(const unsigned int numerator, const unsigned int 
 	_midiSequence.addEvent(message);
 }
 
-void MidiManager::setTempo(const unsigned int, const double)
+void MidiManager::setTempo(const unsigned int bpm, const double)
 {
 	//MidiMessage message = MidiMessage::tempoMetaEvent(1000000);// On dit que 1 quarterNote dure 1 min
+
+	_bpm = bpm;
 
 	//message.setTimeStamp(time);
 	//setSignature(4, 4, 0);

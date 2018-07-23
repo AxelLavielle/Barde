@@ -10,7 +10,7 @@
 
 #include "LeftPanel.hh"
 
-LeftPanel::LeftPanel()
+LeftPanel::LeftPanel()// : _reportButton("Bug_report", DrawableButton::ButtonStyle::ImageAboveTextLabel)
 {
    Image logo = ImageCache::getFromMemory (BinaryData::logo_png,    
 										      BinaryData::logo_pngSize);
@@ -26,6 +26,15 @@ LeftPanel::LeftPanel()
    _userButton.setName("User");
    _userButton.addListener(this);
    addAndMakeVisible(_userButton);
+
+   Image logo2 = ImageCache::getFromMemory(icons::baselinebug_report24px_svg,
+	   icons::baselinebug_report24px_svgSize);
+
+   DrawableImage convert;
+
+   convert.setImage(logo2);
+
+   //_reportButton.setImages(&convert);
 
    _reportButton.setButtonText("Report a bug / Write a comment");
    _reportButton.setName("Report");

@@ -261,6 +261,8 @@
     </GROUP>
     <FILE id="DSddGh" name="DateTime.cpp" compile="1" resource="0" file="Source/DateTime.cpp"/>
     <FILE id="AE5Ojh" name="DateTime.hh" compile="0" resource="0" file="Source/DateTime.hh"/>
+    <FILE id="JC72Pz" name="icons.cpp" compile="1" resource="0" file="Source/icons.cpp"/>
+    <FILE id="oJNoSB" name="icons.h" compile="0" resource="0" file="Source/icons.h"/>
     <FILE id="WNFnNx" name="Semaphore.cpp" compile="1" resource="0" file="Source/Semaphore.cpp"/>
     <FILE id="hHWpAV" name="Semaphore.hh" compile="0" resource="0" file="Source/Semaphore.hh"/>
   </MAINGROUP>

@@ -78,9 +78,9 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/PatternGenerator_7735cf64.o \
   $(JUCE_OBJDIR)/Resolution_30d8436d.o \
   $(JUCE_OBJDIR)/StyleSettings_7583ec1d.o \
+  $(JUCE_OBJDIR)/ThreadPoolGenerator_8cb91693.o \
   $(JUCE_OBJDIR)/AMidiManager_7940abbe.o \
   $(JUCE_OBJDIR)/Midi_372863b4.o \
-  $(JUCE_OBJDIR)/MidiManager_e6423de3.o \
   $(JUCE_OBJDIR)/ARestClient_2aca21e0.o \
   $(JUCE_OBJDIR)/RestClient_ff5b69.o \
   $(JUCE_OBJDIR)/RestClientException_61bf4530.o \
@@ -96,12 +96,12 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/Instrument_5dba4437.o \
   $(JUCE_OBJDIR)/jsoncpp_d54fdfa1.o \
   $(JUCE_OBJDIR)/main_3f4fc5bd.o \
+  $(JUCE_OBJDIR)/MidiManager_92ccd932.o \
   $(JUCE_OBJDIR)/MusicParameters_73d74e9.o \
   $(JUCE_OBJDIR)/MusicStyle_f876545c.o \
   $(JUCE_OBJDIR)/Semaphore_d30ff67e.o \
   $(JUCE_OBJDIR)/server_61ebe287.o \
   $(JUCE_OBJDIR)/socket_d09e3ab7.o \
-  $(JUCE_OBJDIR)/ThreadPoolGenerator_8cb91693.o \
   $(JUCE_OBJDIR)/Tools_9ad28915.o \
   $(JUCE_OBJDIR)/User_92b6ea5b.o \
   $(JUCE_OBJDIR)/BinaryData_ce4232d4.o \
@@ -173,6 +173,11 @@ $(JUCE_OBJDIR)/StyleSettings_7583ec1d.o: ../../../../../Software/Source/AI/Style
 	@echo "Compiling StyleSettings.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/ThreadPoolGenerator_8cb91693.o: ../../../ThreadPoolGenerator.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ThreadPoolGenerator.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/AMidiManager_7940abbe.o: ../../../../../Software/Source/MidiManager/AMidiManager.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling AMidiManager.cpp"
@@ -181,11 +186,6 @@ $(JUCE_OBJDIR)/AMidiManager_7940abbe.o: ../../../../../Software/Source/MidiManag
 $(JUCE_OBJDIR)/Midi_372863b4.o: ../../../../../Software/Source/MidiManager/Midi.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling Midi.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/MidiManager_e6423de3.o: ../../../../../Software/Source/MidiManager/MidiManager.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling MidiManager.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/ARestClient_2aca21e0.o: ../../../../../Software/Source/RestClient/ARestClient.cpp
@@ -263,6 +263,11 @@ $(JUCE_OBJDIR)/main_3f4fc5bd.o: ../../../main.cpp
 	@echo "Compiling main.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/MidiManager_92ccd932.o: ../../../MidiManager.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling MidiManager.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/MusicParameters_73d74e9.o: ../../../../../Software/Source/MusicParameters.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling MusicParameters.cpp"
@@ -286,11 +291,6 @@ $(JUCE_OBJDIR)/server_61ebe287.o: ../../../server.cpp
 $(JUCE_OBJDIR)/socket_d09e3ab7.o: ../../../socket.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling socket.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/ThreadPoolGenerator_8cb91693.o: ../../../ThreadPoolGenerator.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling ThreadPoolGenerator.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/Tools_9ad28915.o: ../../../../../Software/Source/Tools.cpp

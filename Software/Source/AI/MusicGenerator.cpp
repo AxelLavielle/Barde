@@ -64,6 +64,7 @@ Midi			MusicGenerator::createMusic(const MusicParameters &parameters)
 {
   MidiManager	_midiManager;
 
+  _midiManager.setTempo(parameters.getBpm());
   std::cout << "INITIALISATION" << std::endl;
   /* INITIALISATION */
   ObjectMarkov						markovObj(SOURCEMARKOV + std::string("blues.json"), 1, parameters.getSeed());

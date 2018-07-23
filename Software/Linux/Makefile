@@ -143,6 +143,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/User_dcb1be25.o \
   $(JUCE_OBJDIR)/UserSettings_491c94e8.o \
   $(JUCE_OBJDIR)/DateTime_4ce7f75.o \
+  $(JUCE_OBJDIR)/icons_deaae06a.o \
   $(JUCE_OBJDIR)/Semaphore_1c93f0f4.o \
   $(JUCE_OBJDIR)/BinaryData_371e9b63.o \
   $(JUCE_OBJDIR)/include_juce_audio_basics_10901fdb.o \
@@ -544,6 +545,11 @@ $(JUCE_OBJDIR)/UserSettings_491c94e8.o: ../Source/UserSettings.cpp
 $(JUCE_OBJDIR)/DateTime_4ce7f75.o: ../Source/DateTime.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling DateTime.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/icons_deaae06a.o: ../Source/icons.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling icons.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/Semaphore_1c93f0f4.o: ../Source/Semaphore.cpp

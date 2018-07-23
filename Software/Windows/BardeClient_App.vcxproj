@@ -237,6 +237,7 @@
     <ClCompile Include="..\Source\User.cpp"/>
     <ClCompile Include="..\Source\UserSettings.cpp"/>
     <ClCompile Include="..\Source\DateTime.cpp"/>
+    <ClCompile Include="..\Source\icons.cpp"/>
     <ClCompile Include="..\Source\Semaphore.cpp"/>
     <ClCompile Include="..\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
@@ -1984,6 +1985,7 @@
     <ClInclude Include="..\Source\User.hh"/>
     <ClInclude Include="..\Source\UserSettings.h"/>
     <ClInclude Include="..\Source\DateTime.hh"/>
+    <ClInclude Include="..\Source\icons.h"/>
     <ClInclude Include="..\Source\Semaphore.hh"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h"/>
     <ClInclude Include="..\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioChannelSet.h"/>
