@@ -99,7 +99,7 @@ int Socket::readClient(int client_fd)
 	  j++;
 	}
     }
-  if (_sizeOfMessage == 0 && len  == 0)
+  if (_sizeOfMessage <= 0 && len  <= 0)
     return (0);
   else
     {
