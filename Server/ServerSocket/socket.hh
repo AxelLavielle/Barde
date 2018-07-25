@@ -33,7 +33,7 @@ private:
 public:
   Socket();
   int			StartSocket();
-  int     stopSocket();
+  int			stopSocket();
   int			handleEntries(std::list<Client> *clients, char *msg);
   void			initFd();
   int			fdIsSet(int fd);
@@ -42,6 +42,7 @@ public:
   int			readClient(int client_fd);
   int			*getLastMessage();
   unsigned long		getLastSizeOfMessage();
+  void			setPort(int port);
 };
 
 #endif /* __SOCKET__HH__*/

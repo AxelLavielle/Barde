@@ -13,8 +13,9 @@ private:
   CmdManager		_cm;
 public:
   Server();
+  void			setPort(int port);
   int			runServer();
-  void signalHandler(int signal);
+  void			signalHandler(int signal);
 };
 
 #endif /* __SERVER__HH__ */

@@ -12,6 +12,11 @@ void Server::signalHandler(int signal)
   exit(1); //Need to change that
 }
 
+void	Server::setPort(int port)
+{
+  _so.setPort(port);
+}
+
 int	Server::runServer()
 {
   if (_so.StartSocket() == 1)

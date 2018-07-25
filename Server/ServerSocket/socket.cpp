@@ -11,6 +11,12 @@ Socket::Socket()
   _sizeOfMessage = 0;
 }
 
+void			Socket::setPort(int port)
+{
+  _port = port;
+  _server.sin_port = htons(_port);
+}
+
 int Socket::StartSocket()
 {
   int option = 1;
@@ -49,7 +55,7 @@ int Socket::StartSocket()
 	}
       return (1);
     }
-  std::cout << "listen on port 23" << std::endl;
+  std::cout << "listen on port " << _port << std::endl;
 
   return (0);
 }
