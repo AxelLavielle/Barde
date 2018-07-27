@@ -111,6 +111,8 @@
           }
       },
       logout(){
+
+
         this.$auth.logout();
       },
       getUser(){

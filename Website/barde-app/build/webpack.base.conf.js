@@ -9,9 +9,18 @@ function resolve (dir) {
 }
 
 module.exports = {
+
   context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js'
+  },
+  node: {
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
+  },
+  externals: {
+    uws: "uws"
   },
   output: {
     path: config.build.assetsRoot,

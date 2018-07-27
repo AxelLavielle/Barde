@@ -40,11 +40,11 @@
               </div>
               <div class="row">
                 <div class="input-field col s4">
-                  <input v-model="user.dayOfBirth" id="dayOfBirth" min="01" max="31" value=1 type="number" class="validate">
+                  <input v-model="user.dayOfBirth" id="dayOfBirth" min="01" max="31" value=1 type="number" class="validate active">
                   <label for="firstname">Day of birth</label>
                 </div>
                 <div class="input-field col s4">
-                  <input v-model="user.monthOfBirth" id="monthOfBirth" type="number" class="validate">
+                  <input v-model="user.monthOfBirth" id="monthOfBirth" min="01" max="12" type="number" class="validate">
                   <label for="monthOfBirth">Month of birth</label>
                 </div>
                 <div class="input-field col s4">
@@ -53,7 +53,19 @@
                 </div>
               </div>
               <div class="row">
-                <input type="submit" class="waves-effect waves-light btn pink" value="register">
+                <div v-if="isFetching" class="preloader-wrapper small active">
+                  <div class="spinner-layer spinner-green-only">
+                    <div class="circle-clipper left">
+                      <div class="circle"></div>
+                    </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                  </div>
+                </div>
+
+                <input v-if="!isFetching" type="submit" class="waves-effect waves-light btn pink" value="register">
               </div>
             </form>
 
@@ -89,7 +101,8 @@
           "dayOfBirth": "01",
           "monthOfBirth" : "01",
           "yearOfBirth": "1900"
-        }
+        },
+        isFetching: false
       }
     },
     methods: {
@@ -97,10 +110,11 @@
         this.$auth.register({
           body: this.user, // Vue-resoruce
           success: function (res) {
-
+            this.isFetching = false
             Materialize.toast(res.data.message, 4000, 'green');
           },
           error: function (res) {
+            this.isFetching = false
             Materialize.toast(jQuery.parseJSON(res.bodyText).data.message, 4000, 'red');
             this.error = res.data;
           }

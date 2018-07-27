@@ -7,6 +7,7 @@ import Router from 'vue-router'
 import router from './router'
 import JWT from 'jwt-decode'
 
+
 Vue.use(Router);
 Vue.use(VueResource);
 

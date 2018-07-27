@@ -23,12 +23,27 @@
                 </div>
               </div>
               <div class="row">
-                <input type="submit">
+
+
+                <div v-if="isFetching" class="preloader-wrapper small active">
+                  <div class="spinner-layer spinner-green-only">
+                    <div class="circle-clipper left">
+                      <div class="circle"></div>
+                    </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                  </div>
+                </div>
+
+                <input v-if="!isFetching" type="submit">
 
                 <!--
                 <a href="#/home" class="waves-effect waves-light btn pink"><i class="material-icons right">exit_to_app</i>Login</a>
               -->
               </div>
+
             </form>
 
             <p class="left-align">Not registred ? <a href="#/register">Register now.</a>
@@ -60,7 +75,8 @@
       return {
         user: {
 
-        }
+        },
+        isFetching: false
       }
     },
     methods: {
@@ -71,14 +87,13 @@
         });
       },
       login() {
+        this.isFetching = true;
         this.$auth.login({
-          body: this.user, // Vue-resoruce
+          body: this.user,
           success: function (res) {
-
+            this.isFetching = false;
 
             this.$auth.token('default', res.body.data.token);
-
-
             this.$auth.fetch({
               params: {
                 email : this.user.email
@@ -92,16 +107,18 @@
                 this.error = res.data;
               },
             }).catch(function( err){
+              Materialize.toast("err", 4000, 'red');
+
               Materialize.toast(jQuery.parseJSON(error.bodyText).data.message, 4000, 'red');
               this.error = res.data;
             });
 
           },
           error: function (res) {
-            Materialize.toast(jQuery.parseJSON(res.bodyText).data.message, 4000, 'red');
-            this.error = res.data;
+            Materialize.toast("Service not available", 4000, 'red');
+            this.isFetching = false;
           }
-        });
+        })
       }
     }
   }
