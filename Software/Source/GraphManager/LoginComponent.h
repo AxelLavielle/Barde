@@ -53,6 +53,7 @@ private:
 	Label		_errorText;
 	TextButton	_loginButton;
 	TextButton	_signinButton;
+	ImageComponent _logo;
 	//static Theme		_currentTheme;
 	ComboBox	_themeChoice;
 	//==============================================================================

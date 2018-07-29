@@ -12,6 +12,7 @@
 
 #include "FlexGroup.hh"
 #include "SimpleLabel.hh"
+#include "../GraphManager/Theme.h"
 
 #ifndef __GUIFACTORY__
 class GuiFactory
@@ -34,6 +35,7 @@ public:
 	void setText(const std::string & text);
 	void setPasswordCharacter(juce::juce_wchar passwordCharacter);
 	void setTextBoxColour(int colourID, Colour color);
+	void paint(Graphics &g) override;
 
 private:
 

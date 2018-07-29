@@ -49,3 +49,14 @@ void LabeledTextBox::setTextBoxColour(int colourID, Colour color)
 {
 	_textBox.setColour(colourID, color);
 }
+
+
+void LabeledTextBox::paint(Graphics &g)
+{
+	//g.setColour(Colour(Theme::getInstance().getButtonColor()));
+	//g.fillRoundedRectangle(0.f, 0.f, this->getWidth(), this->getHeight(), 10.f);
+	//Text
+	//g.setColour(Colour(Theme::getInstance().getButtonFontColor()));
+	//g.setFont(14.0f);
+	//g.drawText(this->getName(), 0, 0, this->getWidth(), this->getHeight(), Justification::centredLeft, true);
+}

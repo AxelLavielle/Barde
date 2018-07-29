@@ -16,8 +16,10 @@ MainWindow::MainWindow(const std::string &name) : _cmdManager(CmdManager::getIns
 {
 	setUsingNativeTitleBar(true);
 	setResizable(true, false);
+	//setResizable(false, false);
 	setFullScreen(true);
-	setSize(getWidth(), getHeight());
+	setSize(getWidth(), getHeight()-10);
+
 
 	_cmdManager.connectToServer();
 

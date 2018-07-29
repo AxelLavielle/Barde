@@ -13,24 +13,32 @@
 #include "LoginComponent.h"
 #include "MainComponent.h"
 
+
 //==============================================================================
 LoginComponent::LoginComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager)
 {
-	int x = getParentWidth();
-	int y = getParentHeight();
+	//int x = getParentWidth();
+	//int y = getParentHeight();
 
-	setSize(getParentWidth(), getParentHeight() - 10);
+	int x = 900;
+	int y = 600;
+
+	
+	juce::Rectangle<int> r = Desktop::getInstance().getDisplays().getMainDisplay().userArea;
+	int w = r.getWidth();
+	int h = r.getHeight();
+	//setBounds(w / 2 - x / 2, h / 2 - y / 2, x, y);
+	setBounds(0, 0, x, y);
+
 	Theme::getInstance().parseTheme("../Themes/Dark");
 
 
 	addAndMakeVisible(_textEditor1);
-	_textEditor1.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT, BOX_WIDTH, BOX_HEIGHT);
 	_textEditor1.setText("");
 	
 
 
 	addAndMakeVisible(_textEditor2);
-	_textEditor2.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN + 200, BOX_WIDTH, BOX_HEIGHT);
 	_textEditor2.setText("");
 	_textEditor2.setPasswordCharacter((juce_wchar)0x2022);//To replace chars with rounds
 
@@ -50,19 +58,27 @@ LoginComponent::LoginComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager)
 
 	addAndMakeVisible(_errorText);
 	_errorText.setText("", juce::NotificationType::dontSendNotification);
-	_errorText.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 - SPACE_BETWEEN - SPACE_BETWEEN, BOX_WIDTH, BOX_HEIGHT);
 
 	addAndMakeVisible(_loginButton);
 	_loginButton.setButtonText("Login");
 	_loginButton.setName("Login");
-	_loginButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN + SPACE_BETWEEN, BOX_WIDTH, BOX_HEIGHT);
 	_loginButton.addListener(this);
 
 	addAndMakeVisible(_signinButton);
 	_signinButton.setButtonText("Sign up");
 	_signinButton.setName("signup");
-	_signinButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN + SPACE_BETWEEN + 100, BOX_WIDTH, BOX_HEIGHT);
 	_signinButton.addListener(this);
+
+
+	_textEditor1.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN, BOX_WIDTH, BOX_HEIGHT);
+	_textEditor2.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN * 2, BOX_WIDTH, BOX_HEIGHT);
+	_loginButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN * 3, BOX_WIDTH, BOX_HEIGHT);
+	_signinButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN * 4, BOX_WIDTH, BOX_HEIGHT);
+	_errorText.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN/2, BOX_WIDTH, BOX_HEIGHT);
+
+
+
+
 
 	//TODO Add a file and read theme list
 	_themeChoice.setBounds(10, 85, 200, 24);
@@ -138,18 +154,18 @@ void LoginComponent::paint(Graphics& g)
 	//	int rectY;
 
 	imgH = (LOGO_HEIGHT_LOGIN);
-	imgW = (LOGO_WIDTH);
+	imgW = (LOGO_WIDTH) + 50;
 
 	imgX = (getWidth() / 2) - (imgW / 2);
 	imgY = (getHeight() / 15);
 	//	rectX = (getWidth() / 2) - (400 / 2);
-	//	rectY = (getHeight() / 15) + (LOGO_HEIGHT)+50;
+	//rectY = (getHeight() / 15) + (LOGO_HEIGHT)+50;
 
 	//g.setColour(Colours::white);
 	g.fillAll(Colour(Theme::getInstance().getBackgroundColor()));
 	Image logo = ImageCache::getFromMemory(BinaryData::logo_png,
 		BinaryData::logo_pngSize);
-	g.drawImage(logo, imgX, imgY, (int)imgW, (int)imgH, 0, 0, 950, 1050, false);
+	g.drawImage(logo, imgX, imgY, (int)imgW, (int)imgH, 0, 0, 1200, 1200, false);
 
 }
 
@@ -192,6 +208,13 @@ void LoginComponent::resized()
 	int x = (getParentWidth());
 	int y = (getParentHeight());
 
+	x = 900;
+	y = 600;
+
+	juce::Rectangle<int> r = Desktop::getInstance().getDisplays().getMainDisplay().userArea;
+	int w = r.getWidth();
+	int h = r.getHeight();
+	setBounds(w / 2 - x / 2, h / 2 - y / 2, x, y);
 
 
 	//rectY = (getHeight() / 15) + (LOGO_HEIGHT)+50;
