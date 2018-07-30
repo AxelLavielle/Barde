@@ -38,6 +38,7 @@ class SettingActivity : AppCompatActivity() {
                 if (msg != null){
                     StringBuilder(getString(R.string.api)).append("/report").toString()
                             .httpPost(listOf("description" to msg.text)).responseString{ request, response, result ->
+                                println(response.data)
                         val login: Login = Gson().fromJson(String(response.data), Login::class.java)
                         Toast.makeText(this, login.data.message, Toast.LENGTH_SHORT).show()
                         if (response.statusCode == 200){

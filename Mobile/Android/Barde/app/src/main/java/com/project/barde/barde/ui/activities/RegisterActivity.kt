@@ -44,15 +44,15 @@ class RegisterActivity : AppCompatActivity(){
         }
         toRegister.setOnClickListener{
             if (register_firstname.text.isEmpty()){
-                Toast.makeText(this@RegisterActivity, "FIrstname cannot be empty", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@RegisterActivity, getString(R.string.str_firstname_cannont_be_empy  ), Toast.LENGTH_SHORT).show()
             }else if (register_lastname.text.isEmpty()){
-                Toast.makeText(this@RegisterActivity, "Lastname cannot be empty", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@RegisterActivity, getString(R.string.str_lastname_cannont_be_empy), Toast.LENGTH_SHORT).show()
             }else if (register_dateofbirthday.text.isEmpty()){
-                Toast.makeText(this@RegisterActivity, "Birthday cannot be empty", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@RegisterActivity, getString(R.string.str_birthday_cannont_be_empy), Toast.LENGTH_SHORT).show()
             }else if (register_username.text.isEmpty()){
-                Toast.makeText(this@RegisterActivity, "Username cannot be empty", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@RegisterActivity, getString(R.string.str_username_cannont_be_empy), Toast.LENGTH_SHORT).show()
             }else if (register_email.text.isEmpty()){
-                Toast.makeText(this@RegisterActivity, "Email cannot be empty", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@RegisterActivity, getString(R.string.str_email_cannont_be_empy), Toast.LENGTH_SHORT).show()
             }else if (Pattern.compile(
                             "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]|[\\w-]{2,}))@"
                                     + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
@@ -61,15 +61,15 @@ class RegisterActivity : AppCompatActivity(){
                                     + "[0-9]{1,2}|25[0-5]|2[0-4][0-9]))|"
                                     + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$"
                     ).matcher(register_email.text).matches() == false){
-                Toast.makeText(this@RegisterActivity, "The email format is wrong.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@RegisterActivity, getString(R.string.str_email_format_wrong), Toast.LENGTH_SHORT).show()
             }else if (register_password.text.isEmpty()){
-                Toast.makeText(this@RegisterActivity, "Password cannot be empty", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@RegisterActivity, getString(R.string.str_password_cannont_be_empy), Toast.LENGTH_SHORT).show()
 
             }else if (register_confirm_password.text.isEmpty()){
-                Toast.makeText(this@RegisterActivity, "Please confirm your password", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@RegisterActivity, getString(R.string.str_please_confirm_your_password), Toast.LENGTH_SHORT).show()
 
             }else if (register_password.text.toString() != register_confirm_password.text.toString()){
-                Toast.makeText(this@RegisterActivity, "Password differ", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@RegisterActivity, getString(R.string.str_password_dont_match), Toast.LENGTH_SHORT).show()
             }else{
                 doAsync {
                     StringBuilder(getString(R.string.api)).append("/auth/register").toString()

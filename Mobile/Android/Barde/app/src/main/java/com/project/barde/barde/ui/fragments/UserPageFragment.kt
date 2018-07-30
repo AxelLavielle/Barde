@@ -58,7 +58,7 @@ class UserPageFragment : Fragment(), UserDbHelper.dataListener {
         v.findViewById<Button>(R.id.user_page_logout).setOnClickListener {
             AudioBardeManager.reset()
             FuelManager.instance.baseHeaders = mapOf("Authorization" to "")
-            Toast.makeText(activity, "disconnected", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.str_disconected), Toast.LENGTH_SHORT).show()
             startActivity(Intent(activity, FirstPage::class.java))
             activity.finish()
         }

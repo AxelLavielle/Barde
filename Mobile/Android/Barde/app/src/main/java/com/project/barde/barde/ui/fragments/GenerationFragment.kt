@@ -44,11 +44,9 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerS
             return _button
         }
     }
-    val listOfInstruementChords = listOf<Instrument>(Instrument("Trumpet", false, 57, false), Instrument("Piano", false, 1, false),
-            Instrument("Saxophone", false, 65,false))
-    val listOfInstruementArpeges = listOf<Instrument>(Instrument("Trumpet", false, 57, false), Instrument("Piano", false, 1, false),
-            Instrument("Saxophone", false, 65, false))
-    val listOfInstruement = listOf<Instrument>(Instrument("Enabled drums", false,DRUM, true))
+    lateinit var listOfInstruementChords : List<Instrument>
+    lateinit var listOfInstruementArpeges : List<Instrument>
+    lateinit var listOfInstruement : List<Instrument>
     var index = 0
     var lastindex = 0
     var handler = Handler()
@@ -389,6 +387,11 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerS
 
     fun setConnectionToServer(){
         if (!AudioBardeManager.serverIsConnected){
+            listOfInstruementChords = listOf<Instrument>(Instrument(getString(R.string.str_trumpet), false, 57, false), Instrument(getString(R.string.str_piano), false, 1, false),
+                    Instrument(getString(R.string.str_saxophone), false, 65,false))
+            listOfInstruementArpeges = listOf<Instrument>(Instrument(getString(R.string.str_trumpet), false, 57, false), Instrument(getString(R.string.str_piano), false, 1, false),
+                    Instrument(getString(R.string.str_saxophone), false, 65, false))
+            listOfInstruement = listOf<Instrument>(Instrument(getString(R.string.str_enable_drum), false,DRUM, true))
             loadingServer.setVisibility(View.VISIBLE);
             geneartionView.setVisibility(View.GONE)
             AudioBardeManager.serverSocket = SocketServer(this, getString(R.string.serverIp), getString(R.string.serverPort).toInt())
@@ -565,36 +568,29 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerS
             if (ContextCompat.checkSelfPermission(context,
                             Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     != PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(context, "before playing music please accept permission from barde setings", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.msg_active_folder_permission), Toast.LENGTH_SHORT).show()
 
             }else if(ContextCompat.checkSelfPermission(context,
                             Manifest.permission.READ_EXTERNAL_STORAGE)
                     != PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(context, "before playing music please accept permission from barde setings", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.msg_active_folder_permission), Toast.LENGTH_SHORT).show()
 
 
 
             }else {
                 if (AudioBardeManager.firstPlay) {
-                    //AudioBardeManager.firstPlay = false
-                    println("le premier play bouttton")
                     if (playerManager._mediaPlayer.isPlaying) {
-                        println("c'est en train de play")
-                        //AudioBardeManager.serverSocket.sendToServer(intArrayOf(PLAYERCTRL, PAUSE))
                         button_generation.setImageResource(R.drawable.ic_play_circle_filled_white_white_48dp)
                         playerManager._mediaPlayer.pause()
                         if (runnable != null){
                             handler.removeCallbacks(runnable)
                         }
-
-                        //AudioBardeManager.startingPreparing = false
                     } else {
                         button_generation.setImageResource(R.drawable.ic_pause_circle_filled_white_48dp)
                         playerManager._mediaPlayer.start()
                         if (runnable != null) {
                             handler.postDelayed(runnable, 1000)
                         }
-                        println("ce n'est pas entrein de play")
                     }
                 } else {
                     if (!AudioBardeManager.startingPreparing && !AudioBardeManager.firstPlay) {
