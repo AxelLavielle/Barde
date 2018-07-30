@@ -36,6 +36,7 @@ module.exports = function (apiRoutes, passport) {
         .delete("/user", methodAuth.authenticate(), methodAuth.admin(), del)
         .patch("/user", methodAuth.authenticate(), updatePatch)
         .put("/user", methodAuth.authenticate(), updatePut)
+        .put("/user/password", methodAuth.authenticate(), password)
 };
 
 
@@ -155,11 +156,9 @@ function getByPage(req, res, next) {
     var perPage = Math.max(0, req.param('perPage'));
     var page    = Math.max(0, req.param('page'));
 
-    console.log(typeof(perPage), typeof(page))
 
     User.find()
         .limit(perPage).skip(perPage * page).sort({email: "asc"}).exec(function (err, users) {
-        console.log(users);
         User.count().exec(function (err, count) {
             res.status(200).json({msg: "Success", data: {users: users, page: page + 1, count: count / perPage}});
         })
@@ -276,9 +275,6 @@ function updatePatch(req, res, next) {
     if (req.body.userName) {
       updateVal["name.userName"] = req.body.userName
     }
-    if (req.body.password) {
-      updateVal["password"] = req.body.password
-    }
     if (req.body.firstName) {
       updateVal["name.firstName"] = req.body.firstName
     }
@@ -373,9 +369,6 @@ function updatePut(req, res, next) {
     updateVal["name.userName"] = req.body.userName
     updateVal["name.firstName"] = req.body.firstName
     updateVal["name.lastName"] = req.body.lastName
-    if (req.body.password) {
-      updateVal["password"] = req.body.password
-    }
     if (req.body.role && req.user.role === "Admin") {
       updateVal["role"] = req.body.role
     }
@@ -441,4 +434,112 @@ function del(req, res, next) {
       res.status(200).send({msg: "Success", data: {message: "User deleted."}});
     });
 
+}
+
+
+/**
+ * @api {put} /user/password Update user's password
+ * @apiGroup User
+ *
+ * @apiParamExample {json} Request-Example:
+ *     {
+ *       "email": "",
+ *       "password": "",
+ *       "newPassword": ""
+ *     }
+ *
+ *  @apiSuccessExample 200 - Success
+ *     {
+ *       "msg": "Content updated"
+ *     }
+ *
+ * @apiErrorExample 400 - One param is empty
+ *     {
+ *       "msg": "No content"
+ *       "data": {
+ *          "message": param + " cannot be empty."
+ *       }
+ *     }
+ *
+ * @apiErrorExample 404 - Not found
+ *     {
+ *       "msg": "Can't find item."
+ *       "data": {
+ *          "message": "User not exists."
+ *       }
+ *     }
+ *
+ * @apiErrorExample 401 - Wrong password
+ *     {
+ *       "msg": "Unauthorized"
+ *       "data": {
+ *          "message": "Wrong password."
+ *       }
+ *     }
+ *
+ * @apiErrorExample 401 - Unauthorized
+ *     {
+ *       "Unauthorized"
+ *     }
+ *
+ */
+function password(req, res, next) {
+  if (!req.body.email) {
+    res.status(400).send({msg: "No content", data: {message: "Email cannot be empty."}});
+  } else if (!req.body.password || (req.body.email != req.user.email && req.user.role === "Admin")) {
+    res.status(400).send({msg: "No content", data: {message: "Password cannot be empty."}});
+  } else if (!req.body.newPassword) {
+    res.status(400).send({msg: "No content", data: {message: "NewPassword cannot be empty."}});
+  } else if (req.body.email === req.user.email || req.user.role === "Admin") {
+    var updateVal = {
+        password: req.body.newPassword,
+    }
+    User.findOne({
+        email: req.body.email.toLowerCase()
+    }, function (err, response) {
+        if (err) {
+            return next(err);
+        }
+        if (!response) {
+            res.status(404).json({msg: "Can't find item.", message: {users: "User not exists."}});
+            return next(err);
+        }
+        if (req.body.email != req.user.email && req.user.role === "Admin") {
+          User.update({email: req.body.email.toLowerCase()}, {$set: updateVal}, function (err, response) {
+            if (err) {
+              return next(err);
+            } else {
+              if (response.n == 0) {
+                res.status(404).json({msg: "Can't find item.", message: {users: "User not exists."}});
+              } else {
+                res.status(200).send({msg: "Content updated"});
+              }
+            }
+          });
+        } else {
+          response.comparePassword(req.body.password, function (err, isMatch) {
+              if (isMatch && !err) {
+                User.update({email: req.body.email.toLowerCase()}, {$set: updateVal}, function (err, response) {
+                  if (err) {
+                    return next(err);
+                  } else {
+                    if (response.n == 0) {
+                      res.status(404).json({msg: "Can't find item.", message: {users: "User not exists."}});
+                    } else {
+                      res.status(200).send({msg: "Content updated"});
+                    }
+                  }
+                });
+              } else {
+                  res.status(401).send({
+                      msg: "Unauthorized",
+                      data: {message: "Wrong password."}
+                  });
+              }
+          });
+        }
+    });
+  } else {
+    res.status(401).send('Unauthorized');
+  }
 }

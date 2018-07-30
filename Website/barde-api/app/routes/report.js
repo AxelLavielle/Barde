@@ -120,11 +120,9 @@ function getByPage(req, res, next) {
     var perPage = Math.max(0, req.param('perPage'));
     var page    = Math.max(0, req.param('page'));
 
-    console.log(typeof(perPage), typeof(page))
 
     Report.find()
         .populate('user', 'email').limit(perPage).skip(perPage * page).exec(function (err, reports) {
-        console.log(reports);
         Report.count().exec(function (err, count) {
             res.status(200).json({msg: "Success", data: {reports: reports, page: page + 1, count: count / perPage}});
         })
@@ -173,7 +171,6 @@ function post(req, res, next) {
 
         newReport.save(function (err) {
             if (err) {
-              console.log(err);
               next(err);
             } else {
               res.status(200).send({

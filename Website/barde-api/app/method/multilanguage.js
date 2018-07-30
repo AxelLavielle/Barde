@@ -106,7 +106,6 @@ exports.getTraduction = function (languageCode, contentID, callback) {
             callback(200, {data: success.content_value[0].content});
           else
           {
-            console.log(success);
             callback(200, {data: Default});
           }
         });
