@@ -18,7 +18,8 @@ MainWindow::MainWindow(const std::string &name) : _cmdManager(CmdManager::getIns
 	setResizable(true, false);
 	//setResizable(false, false);
 	setFullScreen(true);
-	setSize(getWidth(), getHeight()-10);
+	//setSize(getWidth(), getHeight() - 100);
+	//setSize(getWidth(), getHeight()-10);
 
 
 	_cmdManager.connectToServer();
