@@ -33,7 +33,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-;Source: "C:\Users\Oreo\Documents\GitHub\Barde\Software\Windows\Win32\Release\App\Barde.ico"; DestDir: "{app}\app"; Flags: ignoreversion
+Source: "C:\Users\Oreo\Documents\GitHub\Barde\Software\Windows\Win32\Release\App\Barde.ico"; DestDir: "{app}\app"; Flags: ignoreversion
 Source: "C:\Users\Oreo\Documents\GitHub\Barde\Software\Windows\Win32\Release\App\BardeClient.exe"; DestDir: "{app}\app"; Flags: ignoreversion
 Source: "C:\Users\Oreo\Documents\GitHub\Barde\Software\Windows\Win32\Debug\App\lua53.dll"; DestDir: "{app}\app"; Flags: ignoreversion
 ; Source: "C:\Users\Oreo\Documents\GitHub\Barde\Software\Windows\Win32\Debug\Themes\Dark"; DestDir: "{app}\Themes"; Flags: ignoreversion
@@ -47,8 +47,8 @@ Source: "C:\Users\Oreo\Documents\GitHub\Barde\Software\Samples\Drums\*"; DestDir
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-;Name: "{commonprograms}\{#MyAppName}"; Filename: "{app}\app\{#MyAppExeName}"; IconFilename: "{app}\app\{#MyAppIcoName}"; Tasks: desktopicon
-;Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\app\{#MyAppExeName}"; IconFilename: "{app}\app\{#MyAppIcoName}"; Tasks: desktopicon
+Name: "{commonprograms}\{#MyAppName}"; Filename: "{app}\app\{#MyAppExeName}"; IconFilename: "{app}\app\{#MyAppIcoName}"; Tasks: desktopicon
+Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\app\{#MyAppExeName}"; IconFilename: "{app}\app\{#MyAppIcoName}"; Tasks: desktopicon
 
 [Run]
 Filename: "{app}\app\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
