@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         val profile = UserPageFragment()
         val playlist = PlaylistFragment()
         val generation = GenerationFragment()
-        startActivity(Intent(this, FirstPage::class.java))
+        //startActivity(Intent(this, FirstPage::class.java))
         supportFragmentManager.beginTransaction()
                 .add(R.id.container, generation as Fragment)
                 .commit()

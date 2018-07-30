@@ -10,20 +10,22 @@ import java.nio.ByteBuffer
 /**
  * Created by michael on 08/06/2018.
  */
-class SocketServer(val listenerSocket: ListenerSocket, val ip: String) : Runnable {
+class SocketServer(val listenerSocket: ListenerSocket, val ip: String, val port: Int) : Runnable {
     private lateinit var rec: PrintWriter
     private lateinit var get: BufferedReader
     private lateinit var client: Socket
     private lateinit var buffer: String
     private lateinit var reb: DataOutputStream
     var message: MutableList<Byte> = arrayListOf()
-    var connectionIsSet = false
+    var messageByte = ByteArray(0)
+        var connectionIsSet = false
     var j = 0
     override fun run() {
         try {
             println("---------------------- ip = $ip")
+            client  = Socket(ip, port)
             //client = Socket("129.12.131.98", 23)
-            client = Socket(ip, 23)
+            //client = Socket("163.172.128.43", 23)
             //client = Socket("192.168.2.1", 23)
             if (client.isConnected) {
                 println("connected")
@@ -31,18 +33,23 @@ class SocketServer(val listenerSocket: ListenerSocket, val ip: String) : Runnabl
                 get = BufferedReader(InputStreamReader(client.getInputStream()))
                 rec = PrintWriter(client.getOutputStream(), true)
                 reb = DataOutputStream(client.getOutputStream())
-                while (client.isConnected) {
+                listenerSocket.isConnected(client.isConnected)
+
+                while (client.isConnected && !client.isClosed) {
+                    connectionIsSet = true
                     var bytebuffer: ByteArray
-                    bytebuffer = ByteArray(200)
+                    bytebuffer = ByteArray(100)
                     var rn = 0;
                     rn = client.getInputStream().read(bytebuffer)
+                    println("rn = " + rn)
                     if (rn == -1) {
                         client.close()
-                        return
+                        break
                     }
+
                     for (i in 1..rn) {
-                        if (rn >= 2 && bytebuffer.get(i - 1).toChar() == '\n' && bytebuffer.get(i - 2).toChar() == '\r') {
-                            var messageByte = ByteArray(message.size)
+                        if ((i - 2) >= 0 && bytebuffer.get(i - 1).toChar() == '\n' && bytebuffer.get(i - 2).toChar() == '\r') {
+                            messageByte = ByteArray(message.size)
                             for (t in 1..message.size) {
                                 messageByte.set(t - 1, message.get(t - 1))
                             }
@@ -54,35 +61,34 @@ class SocketServer(val listenerSocket: ListenerSocket, val ip: String) : Runnabl
 
                         }
                     }
+                    /*messageByte = ByteArray(message.size)
+                    for (t in 1..message.size) {
+                        messageByte.set(t - 1, message.get(t - 1))
+                    }
+                    listenerSocket.getListenerSocket(messageByte)
+                    message.clear()*/
+
                 }
             } else {
-                println("isNotConnexted")
+                listenerSocket.isConnected(false)
             }
 
 
             // client.close()
         } catch (e: UnknownHostException) {
             listenerSocket.failedBindSocket(e.message)
+
             println("---------------------------------------1" + e.message)
         } catch (e: IOException) {
             listenerSocket.failedBindSocket(e.message)
+
             println("---------------------------------------2" + e.message)
 
         }
+        listenerSocket.isConnected(false)
+
     }
 
-
-
-    public fun rec(): PrintWriter {
-        return rec
-    }
-
-    public fun client(): Socket {
-        return client
-    }
-    public fun reb() : DataOutputStream {
-        return reb
-    }
     fun close() {
         try{
             client.close()
@@ -122,4 +128,5 @@ class SocketServer(val listenerSocket: ListenerSocket, val ip: String) : Runnabl
 interface ListenerSocket {
     fun getListenerSocket(buffer: ByteArray)
     fun failedBindSocket(message : String?)
+    fun isConnected(boolean: Boolean)
 }

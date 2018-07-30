@@ -5,9 +5,7 @@ import android.content.pm.PackageManager
 import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.os.Environment
 import android.os.Handler
-import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
@@ -23,10 +21,10 @@ import com.project.barde.barde.R
 import com.project.barde.barde.adapter.PlaylistChoiceAdapter
 import com.project.barde.barde.static.AudioBardeManager
 import com.project.barde.barde.static.ListenerSocket
+import com.project.barde.barde.static.PlayerManager
 import com.project.barde.barde.static.SocketServer
 import kotlinx.android.synthetic.main.fragment_generation.*
-import org.jetbrains.anko.doAsync
-import java.io.*
+import java.nio.ByteBuffer
 import java.util.concurrent.TimeUnit
 
 
@@ -36,20 +34,34 @@ import java.util.concurrent.TimeUnit
 class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerSocket {
 
 
-    data class Instrument(val name: String, var isSelected: Boolean, var code: Int)
-    val listOfInstruementChords = listOf<Instrument>(Instrument("Trumpet", false, 57), Instrument("Piano", false, 1),
-            Instrument("Saxophone", false, 65))
-    val listOfInstruementArpeges = listOf<Instrument>(Instrument("Trumpet", false, 57), Instrument("Piano", false, 1),
-            Instrument("Saxophone", false, 65))
-    val listOfInstruement = listOf<Instrument>(Instrument("Enabled drums", false,0x41))
-    var  mediaPlayer = MediaPlayer()
+
+    data class Instrument(val name: String, var isSelected: Boolean, var code: Int, var drum: Boolean){
+        lateinit var _button : Button
+        fun setButton(button: Button){
+            _button = button
+        }
+        fun getButton() : Button{
+            return _button
+        }
+    }
+    val listOfInstruementChords = listOf<Instrument>(Instrument("Trumpet", false, 57, false), Instrument("Piano", false, 1, false),
+            Instrument("Saxophone", false, 65,false))
+    val listOfInstruementArpeges = listOf<Instrument>(Instrument("Trumpet", false, 57, false), Instrument("Piano", false, 1, false),
+            Instrument("Saxophone", false, 65, false))
+    val listOfInstruement = listOf<Instrument>(Instrument("Enabled drums", false,DRUM, true))
     var index = 0
     var lastindex = 0
-    var serverSocket = SocketServer(this, "163.172.128.43")
-    var thread = Thread(serverSocket)
     var handler = Handler()
     lateinit var runnable: Runnable
+    var serverIsConnected = false
     private lateinit var textViewTotalDuration :TextView
+    var max = 200.0f
+    var min  = 70.0f
+    var m : Float = (max - min) / 100.0f
+    var p = 0.0f
+    private lateinit var toast : Toast
+    lateinit var playerManager: PlayerManager
+
 
     companion object {
         val MUSIQUEPARAM: Int = 0x1
@@ -70,25 +82,90 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerS
 
     }
 
+    override fun isConnected(boolean: Boolean) {
+        try {
+            activity.runOnUiThread {
+                AudioBardeManager.serverIsConnected = boolean
+                if (AudioBardeManager.serverIsConnected){
+                    loadingServer.setVisibility(View.GONE)
+                    geneartionView.setVisibility(View.VISIBLE)
+                    AudioBardeManager.serverSocket.sendToServer(intArrayOf(MUSIQUEPARAM, STYLE, JAZZ))
 
+                }else{
+                    loadingServer.setVisibility(View.GONE)
+                    geneartionView.visibility = View.GONE
+                    try_again_button.setVisibility(View.VISIBLE)
+                }
+            }
 
-
-    fun manageFluxAudio(message : String){
+        }catch (e : Exception){
+            e.printStackTrace()
+        }
 
     }
 
     override fun failedBindSocket(message: String?) {
 
     }
+
+    fun showToast(msg : String){
+        try{
+            toast.cancel()
+        }catch (e : UninitializedPropertyAccessException){
+            e.printStackTrace()
+        }
+        toast = Toast.makeText(context, msg, Toast.LENGTH_SHORT)
+        toast.show()
+    }
+
     override fun getListenerSocket(buffer: ByteArray){
         var codeStatus = 0
+        var typeRequest = 0
+        var nbInstrument = 0
+        var msg = ""
+        var mult = 1
+        var byteArray = ByteArray(4)
+        var j = 3
+
         if (buffer.size > 4){
             for (i in 0..3){
-                codeStatus +=(buffer.get(i).toInt() and 0xFF)
+                byteArray.set(i, buffer.get(j))
+                j--
+                //codeStatus +=((buffer.get(i).toInt() and 0xFF) * mult)
+                //mult *= 10
+            }
+            codeStatus = ByteBuffer.wrap(byteArray).int
+        }
+        if (buffer.size > 8 && codeStatus == 0xC8){
+            mult = 1
+            j = 3
+            for (i in 4..7){
+                byteArray.set(i - 4, buffer.get(j + 4))
+                j--
+                //typeRequest += ((buffer.get(i).toInt() and 0xFF) * mult)
+            }
+            typeRequest = ByteBuffer.wrap(byteArray).int
+        }
+        if (buffer.size > 12  && codeStatus == 0xC8){
+            mult = 1
+            j = 3
+
+            for (i in 8..11){
+                byteArray.set(i - 8, buffer.get(j + 8))
+                j--
+                //nbInstrument += ((buffer.get(i).toInt() and 0xFF) * mult)
+            }
+            nbInstrument= ByteBuffer.wrap(byteArray).int
+            msg = ""
+            for (i in 12..(buffer.size - 1)){
+                msg += buffer.get(i).toChar()
             }
         }
         println("code recieve = " + codeStatus)
-        print("messssage : ")
+        println("typeRequest = " + typeRequest)
+        println("nbInstrument = " + nbInstrument)
+        println("messssage : " + msg)
+
         for (i in 1..buffer.size){
             print(buffer.get(i-1).toChar())
         }
@@ -99,90 +176,206 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerS
 
         if (buffer.size > 4 && codeStatus == 0x4){
             var message = buffer.copyOfRange(4, buffer.size)
-            try {
+            var file = AudioBardeManager.createNewMidiFile(message)
+            if (!AudioBardeManager.firstPlay && !AudioBardeManager.startingPreparing) {
+                AudioBardeManager.firstPlay = true
+                AudioBardeManager.startingPreparing = true
+                playerManager = PlayerManager(file, this)
 
-                    var path = Environment.getExternalStorageDirectory().toString();
-                    var directory = File(path  + "/bardeMusique");
-                    directory.mkdir()
-                    var file = File(directory, "bbbbarde.mid")
-                    var modeAppend = false
-                    if (file.exists()){
-                        if (!AudioBardeManager.firstPlay && !AudioBardeManager.startingPreparing){
-                            file.delete()
-                            modeAppend = false
+            }else{
+                playerManager.addNewTrack(file, AudioBardeManager.indexFile)
+
+            }
+            AudioBardeManager.indexFile++
+
+        }else if (buffer.size > 12 && codeStatus == 0xC8){
+            try {
+                activity.runOnUiThread {
+                    var pass = false
+                    when(typeRequest){
+                        ADDCHORD -> {
+                            for (chord in listOfInstruementChords){
+                                if (chord.code == nbInstrument){
+                                    chord.isSelected = true
+                                    chord._button.setBackgroundResource(R.drawable.button_selection_generation_selected)
+                                    chord._button.setTextColor(Color.parseColor("#CA5E85"))
+                                    showToast(msg)
+                                    pass = true
+                                    break
+                                }
+                            }
+                        }
+                        ADDARPEGE -> {
+                            for (arpege in listOfInstruementArpeges){
+                                if (arpege.code == nbInstrument){
+                                    arpege.isSelected = true
+                                    arpege._button.setBackgroundResource(R.drawable.button_selection_generation_selected)
+                                    arpege._button.setTextColor(Color.parseColor("#CA5E85"))
+                                    showToast(msg)
+                                    pass = true
+
+                                    break
+                                }
+                            }
+
+                        }
+                        REMOVEARPEGE -> {
+                            for (arpege in listOfInstruementArpeges){
+                                if (arpege.code == nbInstrument){
+                                    arpege.isSelected = false
+                                    arpege._button.setBackgroundResource(R.drawable.button_selection_generation)
+                                    arpege._button.setTextColor(Color.WHITE)
+                                    showToast(msg)
+                                    pass = true
+
+                                    break
+                                }
+                            }
+
+                        }
+                        REMOVECHORD -> {
+                            for (chord in listOfInstruementChords){
+                                if (chord.code == nbInstrument){
+                                    chord.isSelected = false
+                                    chord._button.setBackgroundResource(R.drawable.button_selection_generation)
+                                    chord._button.setTextColor(Color.WHITE)
+                                    showToast(msg)
+                                    pass = true
+
+                                    break
+                                }
+                            }
+                        }
+                        DRUM -> {
+                            for (list in listOfInstruement){
+                                if (list.code == DRUM){
+                                    if (nbInstrument == DRUMTRUE){
+                                        list.isSelected = true
+                                        list._button.setBackgroundResource(R.drawable.button_selection_generation_selected)
+                                        list._button.setTextColor(Color.parseColor("#CA5E85"))
+                                        showToast(msg)
+                                        pass = true
+                                        break
+                                    }else if (nbInstrument == DRUMFALSE){
+                                        list.isSelected = false
+                                        list._button.setBackgroundResource(R.drawable.button_selection_generation)
+                                        list._button.setTextColor(Color.WHITE)
+                                        showToast(msg)
+                                        pass = true
+                                        break
+                                    }
+                                }
+                            }
+
+                        }
+                        BMP -> {
+                            showToast(msg)
+                            pass = true
+                        }
+                        STYLE -> {
+                            jazz_style_radio.setBackgroundResource(R.drawable.button_selection_generation)
+                            jazz_style_radio.setTextColor(Color.WHITE)
+                            blues_style_radio.setBackgroundResource(R.drawable.button_selection_generation)
+                            blues_style_radio.setTextColor(Color.WHITE)
+                            if (nbInstrument == JAZZ){
+                                jazz_style_radio.setBackgroundResource(R.drawable.button_selection_generation_selected)
+                                jazz_style_radio.setTextColor(Color.parseColor("#CA5E85"))
+                                showToast(msg)
+                                pass = true
+                            }else if (nbInstrument == BLUES){
+                                blues_style_radio.setBackgroundResource(R.drawable.button_selection_generation_selected)
+                                blues_style_radio.setTextColor(Color.parseColor("#CA5E85"))
+                                showToast(msg)
+                                pass = true
+
+                            }
+                        } else -> {
+                        println("-------------------------------------------------------")
+
+                    }
+                    }
+                    if (AudioBardeManager.firstPlay && pass) {
+                        AudioBardeManager.firstPlay = false
+                        AudioBardeManager.startingPreparing = false
+                        AudioBardeManager.indexFile = 0
+                        AudioBardeManager.init()
+                        if (playerManager._mediaPlayer.isPlaying){
+                            println("je revoic our playeing")
+                            handler.removeCallbacks(runnable)
+                            button_generation.setImageResource(R.drawable.ic_play_circle_filled_white_white_48dp)
+                            playerManager._mediaPlayer.release()
+                            AudioBardeManager.serverSocket.sendToServer(intArrayOf(PLAYERCTRL, PLAY))
+
                         }else{
-                            modeAppend = true
+                            total_duration?.text = "00:00"
+                            current_position.text = "00:00"
+                            seek_bar_duration.max = 0
+                            seek_bar_duration.setProgress(0)
+                            playerManager._mediaPlayer.release()
+
                         }
                     }
-                    var fos  = FileOutputStream(file, modeAppend)
-                    fos.write(message)
-                    fos.close()
-
-                    if (!AudioBardeManager.firstPlay && !AudioBardeManager.startingPreparing){
-                        AudioBardeManager.firstPlay = true
-                        AudioBardeManager.mediaPlayer = MediaPlayer()
-                        println("on reset player")
-                        var fis = FileInputStream(file)
-                        var fd = fis.getFD()
-                        AudioBardeManager.startingPreparing = true;
-
-                        AudioBardeManager.mediaPlayer.setDataSource(fd)
-                        fis.close()
-
-                        AudioBardeManager.mediaPlayer.setOnPreparedListener(this);
-                        AudioBardeManager.mediaPlayer.prepareAsync()
-                        //mediaPlayer.start()
-                    }
-
-
+                }
 
             }catch (e : Exception){
-                println("error = "+ e.message)
+                e.printStackTrace()
             }
-
-        }else if (buffer.size > 4 && codeStatus == 0xC8){
-            /*if (mediaPlayer.isPlaying){
-                mediaPlayer.stop()
-                AudioBardeManager.firstPlay = true
-                AudioBardeManager.startingPreparing = false
-                serverSocket.sendToServer(intArrayOf(0x2, 0x42))
-
-            }*/
-            println("le message recu est positive")
         }
+
     }
+    var t : Long = 0
 
     override fun onPrepared(p0: MediaPlayer) {
+        loadingGeneration.visibility = View.GONE
+        button_generation.visibility = View.VISIBLE
         button_generation.setImageResource(R.drawable.ic_pause_circle_filled_white_48dp)
-        AudioBardeManager.mediaPlayer.start()
-        playerCtrl()
+        try {
+            handler.removeCallbacks(runnable)
+
+        }catch (e : Exception){
+
+        }
+        playerManager.lengthTrack = p0.duration
+        p0.seekTo(playerManager.seekTo)
+        p0.start()
+        AudioBardeManager.mediaPlayer = p0
+
+        playerCtrl(p0, playerManager.getTotalLength().toLong() - p0.duration.toLong(), -1)
         button_generation.isEnabled = true
+
+
     }
 
-    fun playerCtrl(){
-        println(" caeoceifnaeiofnaeiofnzeiofnzeio--------------")
+    fun playerCtrl(mediaPlayer: MediaPlayer, old : Long, lastCurrentValue : Int){
         try {
+            var t = playerManager.getTotalLength().toLong()
+            println("size = " + t)
             total_duration?.text = String.format("%02d:%02d",
-                    TimeUnit.MILLISECONDS.toMinutes(AudioBardeManager.mediaPlayer.duration.toLong()),
-                    TimeUnit.MILLISECONDS.toSeconds(AudioBardeManager.mediaPlayer.duration.toLong()) -
-                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(AudioBardeManager.mediaPlayer.duration.toLong()))
+                    TimeUnit.MILLISECONDS.toMinutes(t),
+                    TimeUnit.MILLISECONDS.toSeconds(t) -
+                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(t))
             )
+            var currentPos = mediaPlayer.currentPosition + playerManager.addToCurrentPos()
+
             current_position?.text = String.format("%02d:%02d",
-                    TimeUnit.MILLISECONDS.toMinutes(AudioBardeManager.mediaPlayer.currentPosition.toLong()),
-                    TimeUnit.MILLISECONDS.toSeconds(AudioBardeManager.mediaPlayer.currentPosition.toLong()) -
-                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(AudioBardeManager.mediaPlayer.currentPosition.toLong()))
-            )
-            seek_bar_duration?.max = AudioBardeManager.mediaPlayer.duration
-            seek_bar_duration?.setProgress(AudioBardeManager.mediaPlayer.currentPosition)
-            println("la duration total est de = " + AudioBardeManager.mediaPlayer.duration)
-            if (AudioBardeManager.mediaPlayer.isPlaying){
-                //serverSocket.sendToServer(intArrayOf(PLAYERCTRL, PLAY))
-                runnable = Runnable {
-                    playerCtrl()
-                }
-                handler.postDelayed(runnable, 1000)
+                    TimeUnit.MILLISECONDS.toMinutes(currentPos.toLong()),
+                    TimeUnit.MILLISECONDS.toSeconds(currentPos.toLong()) -
+                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(currentPos.toLong())))
+            seek_bar_duration?.max = t.toInt()
+            seek_bar_duration?.progress = currentPos
+            if (playerManager.isLastIndex()){
+                AudioBardeManager.serverSocket.sendToServer(intArrayOf(PLAYERCTRL, PLAY))
 
             }
+            if (currentPos != lastCurrentValue){
+                runnable = Runnable {
+                    playerCtrl(mediaPlayer, old, currentPos)
+                }
+                handler.postDelayed(runnable, 100)
+            }else{
+            }
+
+
         }catch (e : Exception){
             e.printStackTrace()
         }
@@ -190,10 +383,30 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerS
 
     }
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View?  {
-        println("coucoucoucoucoucoucou----------------------------")
+
         return inflater!!.inflate(R.layout.fragment_generation, container, false)
     }
+
+    fun setConnectionToServer(){
+        if (!AudioBardeManager.serverIsConnected){
+            loadingServer.setVisibility(View.VISIBLE);
+            geneartionView.setVisibility(View.GONE)
+            AudioBardeManager.serverSocket = SocketServer(this, getString(R.string.serverIp), getString(R.string.serverPort).toInt())
+            AudioBardeManager.thread = Thread(AudioBardeManager.serverSocket)
+            AudioBardeManager.thread.start()
+        }else{
+            loadingServer.setVisibility(View.GONE);
+
+        }
+    }
+
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        setConnectionToServer()
+        try_again_button.setOnClickListener {
+            try_again_button.visibility = View.GONE
+            setConnectionToServer()
+        }
+
         textViewTotalDuration = view!!.findViewById<TextView>(R.id.total_duration)
         var listOfChoice = listOf<LinearLayout>(style_choice_genearation, instrument_choice_generation_chords,
                 instrument_choice_generation_arpeges, instrument_choice_generation, rythme_choice_genaration)
@@ -203,9 +416,9 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerS
             add_to_playlist()
 
         }*/
-        if (thread.state == Thread.State.NEW){
-            thread.start()
-        }
+        /*if (AudioBardeManager.thread.state == Thread.State.NEW){
+            AudioBardeManager.thread.start()
+        }*/
         for (choice in listOfChoice){
             choice.visibility = View.GONE
         }
@@ -261,37 +474,47 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerS
         }
 
 
+        jazz_style_radio.setOnClickListener {
+            if (jazz_style_radio.isChecked){
+                AudioBardeManager.serverSocket.sendToServer(intArrayOf(MUSIQUEPARAM, STYLE, JAZZ))
+            }
+        }
+        blues_style_radio.setOnClickListener{
+            if (blues_style_radio.isChecked){
+                AudioBardeManager.serverSocket.sendToServer(intArrayOf(MUSIQUEPARAM, STYLE, BLUES))
 
+            }
+        }
         style_button_radio.setOnCheckedChangeListener { radioGroup, i ->
+            println("event click radio ----------------------------")
+
             /*jazz_style_radio.setBackgroundResource(R.drawable.button_selection_generation)
             jazz_style_radio.setTextColor(Color.WHITE)
             blues_style_radio.setBackgroundResource(R.drawable.button_selection_generation)
             blues_style_radio.setTextColor(Color.WHITE)
             if (jazz_style_radio.isChecked){
-                //serverSocket.rec().println("MUSIQUEPARAM;STYLE;BLUE")
+                //AudioBardeManager.serverSocket.rec().println("MUSIQUEPARAM;STYLE;BLUE")
                 jazz_style_radio.setBackgroundResource(R.drawable.button_selection_generation_selected)
                 jazz_style_radio.setTextColor(Color.parseColor("#CA5E85"))
             }else if (blues_style_radio.isChecked){
-                //serverSocket.rec().println("MUSIQUEPARAM;STYLE;JAZZ")
+                //AudioBardeManager.serverSocket.rec().println("MUSIQUEPARAM;STYLE;JAZZ")
                 blues_style_radio.setBackgroundResource(R.drawable.button_selection_generation_selected)
                 blues_style_radio.setTextColor(Color.parseColor("#CA5E85"))
 
             }*/
         }
         seek_bar_bpm.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            var max = 200.0f
-            var min  = 70.0f
-            var m : Float = (max - min) / 100.0f
+
             override fun onStartTrackingTouch(p0: SeekBar?) {
             }
 
             override fun onStopTrackingTouch(p0: SeekBar?) {
+                AudioBardeManager.serverSocket.sendToServer(intArrayOf(MUSIQUEPARAM, BMP, p.toInt()))
             }
 
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-                var p = (m * progress) + min
+                p = (m * progress) + min
 
-                serverSocket.sendToServer(intArrayOf(MUSIQUEPARAM, BMP, p.toInt()))
                 value_bpm.text = (p.toInt().toString() + " BPM")
             }
         })
@@ -305,7 +528,14 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerS
 
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 if (fromUser){
-                    AudioBardeManager.mediaPlayer.seekTo(progress)
+                    try {
+                        handler.removeCallbacks(runnable)
+                    }catch (e : Exception){
+
+                    }
+                    playerManager.playAtThisTrackAtThisTime(progress)
+                    t = 0
+                    //AudioBardeManager.mediaPlayer.seekTo(progress)
 
                 }
             }
@@ -321,13 +551,13 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerS
         }
 
         connexionNewServer.setOnClickListener {
-            serverSocket.close()
-            serverSocket = SocketServer(this, newIp.text.toString())
-            if (thread.state != Thread.State.TERMINATED){
-                thread.interrupt()
+            AudioBardeManager.serverSocket.close()
+            AudioBardeManager.serverSocket = SocketServer(this, newIp.text.toString(), 23)
+            if (AudioBardeManager.thread.state != Thread.State.TERMINATED){
+                AudioBardeManager.thread.interrupt()
             }
-            thread = Thread(serverSocket)
-            thread.start()
+            AudioBardeManager.thread = Thread(AudioBardeManager.serverSocket)
+            AudioBardeManager.thread.start()
         }
 
 
@@ -348,24 +578,29 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerS
                 if (AudioBardeManager.firstPlay) {
                     //AudioBardeManager.firstPlay = false
                     println("le premier play bouttton")
-                    if (AudioBardeManager.mediaPlayer.isPlaying) {
+                    if (playerManager._mediaPlayer.isPlaying) {
                         println("c'est en train de play")
-                        serverSocket.sendToServer(intArrayOf(PLAYERCTRL, PAUSE))
+                        //AudioBardeManager.serverSocket.sendToServer(intArrayOf(PLAYERCTRL, PAUSE))
                         button_generation.setImageResource(R.drawable.ic_play_circle_filled_white_white_48dp)
-                        AudioBardeManager.mediaPlayer.pause()
-                        handler.removeCallbacks(runnable)
+                        playerManager._mediaPlayer.pause()
+                        if (runnable != null){
+                            handler.removeCallbacks(runnable)
+                        }
 
                         //AudioBardeManager.startingPreparing = false
                     } else {
                         button_generation.setImageResource(R.drawable.ic_pause_circle_filled_white_48dp)
-                        AudioBardeManager.mediaPlayer.start()
-                        handler.postDelayed(runnable, 1000)
-
+                        playerManager._mediaPlayer.start()
+                        if (runnable != null) {
+                            handler.postDelayed(runnable, 1000)
+                        }
                         println("ce n'est pas entrein de play")
                     }
                 } else {
                     if (!AudioBardeManager.startingPreparing && !AudioBardeManager.firstPlay) {
-                        serverSocket.sendToServer(intArrayOf(PLAYERCTRL, PLAY))
+                        AudioBardeManager.indexFile = 0
+                        AudioBardeManager.init()
+                        AudioBardeManager.serverSocket.sendToServer(intArrayOf(PLAYERCTRL, PLAY))
                     }
                 }
 
@@ -408,46 +643,26 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerS
             button.setOnClickListener{
                 println("le code est = " + MUSIQUEPARAM + " "  + instrument.code + " " + codeRm)
                 if (instrument.isSelected){
-                    if (instrument.code == DRUM){
-                        serverSocket.sendToServer(intArrayOf(MUSIQUEPARAM, instrument.code, codeRm))
+                    if (instrument.drum){
+                        AudioBardeManager.serverSocket.sendToServer(intArrayOf(MUSIQUEPARAM, instrument.code, codeRm))
                     }else{
-                        serverSocket.sendToServer(intArrayOf(MUSIQUEPARAM, codeRm, instrument.code))
+                        AudioBardeManager.serverSocket.sendToServer(intArrayOf(MUSIQUEPARAM, codeRm, instrument.code))
                     }
-                    instrument.isSelected = false
-                    button.setBackgroundResource(R.drawable.button_selection_generation)
-                    button.setTextColor(Color.WHITE)
+
                 }else{
-                    if (instrument.code == DRUM){
-                        serverSocket.sendToServer(intArrayOf(MUSIQUEPARAM, instrument.code, codeAdd))
+                    if (instrument.drum){
+                        AudioBardeManager.serverSocket.sendToServer(intArrayOf(MUSIQUEPARAM, instrument.code, codeAdd))
                     }else{
-                        serverSocket.sendToServer(intArrayOf(MUSIQUEPARAM, codeAdd, instrument.code))
+                        AudioBardeManager.serverSocket.sendToServer(intArrayOf(MUSIQUEPARAM, codeAdd, instrument.code))
                     }
-                    instrument.isSelected = true
-                    button.setBackgroundResource(R.drawable.button_selection_generation_selected)
-                    button.setTextColor(Color.parseColor("#CA5E85"))
+
                 }
+                instrument.setButton(button)
+
                 /* to remove */
                 //println("isplayer = " + mediaPlayer?.isPlaying)
 
-                AudioBardeManager.firstPlay = false
-                AudioBardeManager.startingPreparing = false
-                try {
-                    if (AudioBardeManager.mediaPlayer?.isPlaying){
-                        println("je revoic our playeing")
-                        handler.removeCallbacks(runnable)
-                        button_generation.setImageResource(R.drawable.ic_play_circle_filled_white_white_48dp)
-                        serverSocket.sendToServer(intArrayOf(PLAYERCTRL, PLAY))
 
-                    }else{
-                        total_duration?.text = "00:00"
-                        current_position.text = "00:00"
-                        seek_bar_duration.max = 0
-                        seek_bar_duration.setProgress(0)
-                    }
-                    AudioBardeManager.mediaPlayer.release()
-                }catch (e : Exception){
-                    e.printStackTrace()
-                }
 
 
                 /* -------- */

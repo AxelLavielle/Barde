@@ -16,18 +16,25 @@ import com.project.barde.barde.db.UserDbHelper
 import com.project.barde.barde.db.database
 import com.project.barde.barde.model.User
 import com.project.barde.barde.model.Login
+import com.project.barde.barde.static.AudioBardeManager
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.startActivity
 
+/**
+ * Cette class lance l'activité qui va permetre de proposer à l'utilisateur de se connecter
+ */
 class LoginActivity : AppCompatActivity() {
+    /**
+     *
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         database.api = getString(R.string.api)
         val user: User
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-      email.setText("micha@barde.io")
-        password.setText("titiletutu")
+     /*email.setText("micha@barde.io")
+        password.setText("titiletutu")*/
         /*email.setText("toto")
         password.setText("toto")*/
         connexion.setOnClickListener {
@@ -42,6 +49,7 @@ class LoginActivity : AppCompatActivity() {
                             is Result.Success -> {
                                 FuelManager.instance.baseHeaders = mapOf("Authorization" to login.data.token!!)
                                 database.updateUser()
+                                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                                 finish()
                             }
                         }

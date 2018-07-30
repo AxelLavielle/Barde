@@ -26,9 +26,24 @@ class UserPageFragment : Fragment(), UserDbHelper.dataListener {
     var audioBardeManager = AudioBardeManager()
 
     override fun updateUser() {
+        try{
+            /*activity.database.use {
+                val c = rawQuery("SELECT * FROM user LIMIT 1", null)
+                if(c.count >= 1){
+                    c.moveToFirst()
+                    v.findViewById<TextView>(R.id.activity_main_email).setText(c.getString(c.getColumnIndex(UserTable.EMAIL)))
+                    v.findViewById<TextView>(R.id.activity_main_full_name).setText(c.getString(c.getColumnIndex(UserTable.FIRSTNAME)) + " " + c.getString(c.getColumnIndex(UserTable.LASTNAME)))
+                }
+            }*/
+        }catch (e : Exception){
+            e.printStackTrace()
+        }
+
+    }
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         activity.database.use {
             val c = rawQuery("SELECT * FROM user LIMIT 1", null)
-            if(c.count >= 1){
+            if (c.count >= 1) {
                 c.moveToFirst()
                 v.findViewById<TextView>(R.id.activity_main_email).setText(c.getString(c.getColumnIndex(UserTable.EMAIL)))
                 v.findViewById<TextView>(R.id.activity_main_full_name).setText(c.getString(c.getColumnIndex(UserTable.FIRSTNAME)) + " " + c.getString(c.getColumnIndex(UserTable.LASTNAME)))
@@ -45,7 +60,7 @@ class UserPageFragment : Fragment(), UserDbHelper.dataListener {
             FuelManager.instance.baseHeaders = mapOf("Authorization" to "")
             Toast.makeText(activity, "disconnected", Toast.LENGTH_SHORT).show()
             startActivity(Intent(activity, FirstPage::class.java))
-            //activity.finish()
+            activity.finish()
         }
         v.findViewById<LinearLayout>(R.id.update_profile).setOnClickListener {
             startActivity(Intent(activity, UserProfileActivity::class.java))
