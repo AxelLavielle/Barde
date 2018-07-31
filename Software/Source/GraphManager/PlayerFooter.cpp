@@ -42,6 +42,7 @@ PlayerFooter::~PlayerFooter()
 
 void PlayerFooter::paint(Graphics & g)
 {
+	g.fillAll(Colour(0xFF304B69));
 }
 
 void PlayerFooter::resized()

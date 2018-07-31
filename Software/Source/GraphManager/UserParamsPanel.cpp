@@ -16,7 +16,7 @@ UserParamsPanel::UserParamsPanel() : _cmdManager(CmdManager::getInstance())
 	addFlexItem(_titleLabel, 200, 30, FlexItem::AlignSelf::stretch, 1);
 
 	GuiFactory::initLittleTitle("", _errorLabel);
-	_errorLabel.setColour(Label::textColourId, Colours::red);
+	_errorLabel.setColour(Label::textColourId, Colour(Theme::getInstance().getErrorTextColor()));
 	addFlexItem(_errorLabel, 500, 30, FlexItem::AlignSelf::center, 1);
 
 	initTextBoxes();
@@ -158,7 +158,7 @@ void UserParamsPanel::applyTheme()
 
 bool UserParamsPanel::updateUser()
 {
-
+	_errorLabel.setColour(Label::textColourId, Colour(Theme::getInstance().getErrorTextColor()));
 	if (!(StringChecker::isNameValid(_firstNameTextBox.getText())))
 	{
 		_errorLabel.setLabelText("Invalid firstName.");
