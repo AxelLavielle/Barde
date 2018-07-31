@@ -10,7 +10,7 @@ var mongoose   = require('mongoose');
 var bodyParser = require('body-parser');
 var morgan     = require('morgan');
 var passport   = require('passport');
-var bcrypt     = require('bcrypt-nodejs');
+var bcrypt     = require('bcrypt');
 var config     = require('./config/db');
 var app        = express();
 

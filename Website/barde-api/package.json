@@ -6,7 +6,7 @@
     "start": "nodemon app.js || node app.js"
   },
   "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
+    "bcrypt": "^3.0.0",
     "nodemon": "^1.12.1"
   },
   "devDependencies": {
