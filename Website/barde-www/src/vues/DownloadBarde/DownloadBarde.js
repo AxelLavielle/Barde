@@ -8,6 +8,7 @@ export default {
 	components : {
 	},
 	mounted: function () {
+		$('.tooltipped').tooltip();
 
 	},
 	methods: {}

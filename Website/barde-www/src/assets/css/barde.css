@@ -164,6 +164,16 @@ h5.subtitle{
     font-size: medium;
 }
 
+.google-play img{
+    max-width: 200px;
+}
+
+.appStore{
+    margin-top: 10px;
+    max-width: 200px;
+
+}
+
 .barde-btn:active,
 .barde-btn:focus,
 .barde-btn:hover{
