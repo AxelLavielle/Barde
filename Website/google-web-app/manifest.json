@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+  "name": "Barde",
+  "version": "1",
+  "icons": {
+    "128": "icon_128.png"
+  },
+  "app": {
+    "background": {
+      "scripts": ["js/log.js", "main.js"]
+    }
+  },
+    "sockets": {
+      "tcp" : {
+        "connect": ["163.172.191.206:8080"]
+      }
+    },
+  "minimum_chrome_version": "28"
+}
