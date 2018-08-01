@@ -168,6 +168,7 @@ void CmdManager::managePlayerCtrl(int *buffer, Client &client, size_t bufferSize
   {
     std::cerr << "Error Player control command unknow." << std::endl;
     sendResponseMessage(BAD_REQUEST, UNKNOW_REQUEST, 0, client, "Bad Request : Player control command unknow.\r\n");
+    std::cout << "After sendResponseMessage" << std::endl;
   }
 }
 
