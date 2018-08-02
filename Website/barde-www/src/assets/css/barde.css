@@ -145,6 +145,12 @@ h5.subtitle{
     color: #374464;
 }
 
+#log{
+    background-color: red;
+    width: 200px;
+    height: 200px;
+}
+
 .barde-blue{
     background: #374464;
 }
