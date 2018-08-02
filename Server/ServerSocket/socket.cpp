@@ -77,8 +77,10 @@ int Socket::readClient(int client_fd)
   int i = 0;
   int j = 0;
   _sizeOfMessage = 0;
+  std::cout << "LA 15 " << std::endl;
   if (_message != NULL)
     {
+      std::cout << "LA 16 " << std::endl;
       free(_message);
       _sizeOfMessage = 0;
     }
@@ -88,24 +90,28 @@ int Socket::readClient(int client_fd)
       return (1);
     }
   memset(buffer, '\0', sizeof(buffer));
-  while ((len = read(client_fd, buffer, sizeof(int) * 30)) >= 30)
-    {
-      j = 0;
-      _sizeOfMessage += len;
-      if ((_message = (int *)realloc(_message, _sizeOfMessage * sizeof(int))) == NULL)
-	{
-	  std::cerr << "failed to realloc message with " << _sizeOfMessage << "as size" << std::endl;
-	  return (1);
-	}
+  len = read(client_fd, buffer, 30);
+  // while ((len = read(client_fd, buffer, 30)) == 30)
+  //   {
+  //     std::cout << "LA 17  : " << len << std::endl;
+  //     j = 0;
+  //     _sizeOfMessage += len;
+  //     if ((_message = (int *)realloc(_message, _sizeOfMessage * sizeof(int))) == NULL)
+  // 	{
+  // 	  std::cerr << "failed to realloc message with " << _sizeOfMessage << "as size" << std::endl;
+  // 	  return (1);
+  // 	}
 
-      while (len > 0)
-	{
-	  _message[i] = buffer[j];
-	  len--;
-	  i++;
-	  j++;
-	}
-    }
+  //     while (len >= 0)
+  // 	{
+  // 	  std::cout << "LA 18  : " << len << std::endl;
+  // 	  _message[i] = buffer[j];
+  // 	  len--;
+  // 	  i++;
+  // 	  j++;
+  // 	}
+  //   }
+  std::cout << "LA 19  : " << len << std::endl;
   if (_sizeOfMessage <= 0 && len  <= 0)
     return (0);
   else
@@ -119,6 +125,7 @@ int Socket::readClient(int client_fd)
       j = 0;
       while (len > 0)
 	{
+	  std::cout << "LA 20  : " << len << std::endl;
 	  _message[i] = buffer[j];
 	  i++;
 	  j++;
