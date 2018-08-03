@@ -44,7 +44,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/str_firstname"
+                        android:hint="@string/str_firstname_required"
                         android:id="@+id/register_firstname"
                         android:background="@android:color/transparent"  />
                 </LinearLayout>
@@ -57,7 +57,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/str_lastname"
+                        android:hint="@string/str_lastname_required"
                         android:id="@+id/register_lastname"
                         android:background="@android:color/transparent" />
                 </LinearLayout>
@@ -92,7 +92,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/str_dateofbirthday"
+                        android:hint="@string/str_dateofbirthday_required"
                         android:id="@+id/register_dateofbirthday"
                         android:inputType="date"
                         android:focusable="false"
@@ -109,7 +109,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/str_username"
+                        android:hint="@string/str_username_required"
                         android:id="@+id/register_username"
                         android:background="@android:color/transparent"  />
                 </LinearLayout>
@@ -123,7 +123,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/str_email"
+                        android:hint="@string/str_email_required"
                         android:id="@+id/register_email"
                         android:background="@android:color/transparent"  />
                 </LinearLayout>
@@ -137,7 +137,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/str_password"
+                        android:hint="@string/str_password_required"
                         android:inputType="textPassword"
                         android:id="@+id/register_password"
                         android:background="@android:color/transparent"  />
@@ -151,7 +151,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/str_confirm_password"
+                        android:hint="@string/str_confirm_password_required"
                         android:inputType="textPassword"
                         android:id="@+id/register_confirm_password"
                         android:background="@android:color/transparent"  />

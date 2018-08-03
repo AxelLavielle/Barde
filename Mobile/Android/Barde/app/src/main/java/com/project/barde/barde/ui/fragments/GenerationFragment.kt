@@ -107,13 +107,13 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerS
     }
 
     fun showToast(msg : String){
-        try{
+       /* try{
             toast.cancel()
         }catch (e : UninitializedPropertyAccessException){
             e.printStackTrace()
         }
         toast = Toast.makeText(context, msg, Toast.LENGTH_SHORT)
-        toast.show()
+        toast.show()*/
     }
 
     override fun getListenerSocket(buffer: ByteArray){
@@ -530,17 +530,22 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerS
             }
 
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-                if (fromUser){
-                    try {
-                        handler.removeCallbacks(runnable)
-                    }catch (e : Exception){
+                try {
+                    if (fromUser){
+                        try {
+                            handler.removeCallbacks(runnable)
+                        }catch (e : Exception){
+
+                        }
+                        playerManager.playAtThisTrackAtThisTime(progress)
+                        t = 0
+                        //AudioBardeManager.mediaPlayer.seekTo(progress)
 
                     }
-                    playerManager.playAtThisTrackAtThisTime(progress)
-                    t = 0
-                    //AudioBardeManager.mediaPlayer.seekTo(progress)
-
+                }catch (e : Exception){
+                    e.printStackTrace()
                 }
+
             }
         })
         try {

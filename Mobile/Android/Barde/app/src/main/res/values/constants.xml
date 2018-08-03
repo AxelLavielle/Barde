@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-     <string name="api">http://api-dev.barde.io</string>
+     <string name="api">http://163.172.191.206:2100</string>
     <string name="serverIp">163.172.191.206</string>
     <string name="serverPort">8080</string>
  </resources>

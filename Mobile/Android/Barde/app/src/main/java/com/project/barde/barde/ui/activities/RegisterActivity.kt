@@ -1,14 +1,18 @@
 package com.project.barde.barde.ui.activities
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
+import com.github.kittinunf.fuel.core.FuelManager
 import com.github.kittinunf.fuel.httpPost
 import com.github.kittinunf.result.Result
 import com.google.gson.Gson
 import com.project.barde.barde.R
+import com.project.barde.barde.db.database
 import com.project.barde.barde.model.Login
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
 import org.jetbrains.anko.doAsync
 import java.util.*
@@ -23,6 +27,7 @@ class RegisterActivity : AppCompatActivity(){
     private var dayOfMonth = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        database.api = getString(R.string.api)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         val calendarInstance = Calendar.getInstance()
@@ -72,20 +77,50 @@ class RegisterActivity : AppCompatActivity(){
                 Toast.makeText(this@RegisterActivity, getString(R.string.str_password_dont_match), Toast.LENGTH_SHORT).show()
             }else{
                 doAsync {
-                    StringBuilder(getString(R.string.api)).append("/auth/register").toString()
-                            .httpPost(listOf("email" to register_email.text, "password" to register_password.text, "firstName" to register_firstname.text,
-                                    "lastName" to register_lastname.text, "userName" to register_username.text, "yearOfBirth" to year, "monthOfBirth" to month,
-                                    "dayOfBirth" to dayOfMonth)).responseString{ request, response, result ->
-                        val register: Login = Gson().fromJson(String(response.data), Login::class.java)
-                        Toast.makeText(this@RegisterActivity, register.data.message, Toast.LENGTH_SHORT).show()
-                        when (result) {
-                            is Result.Success -> {
-                                finish()
-                            }
-                        }
+                    try{
+                        StringBuilder(getString(R.string.api)).append("/auth/register").toString()
+                                .httpPost(listOf("email" to register_email.text, "password" to register_password.text, "firstName" to register_firstname.text,
+                                        "lastName" to register_lastname.text, "userName" to register_username.text, "yearOfBirth" to year, "monthOfBirth" to month,
+                                        "dayOfBirth" to dayOfMonth)).responseString{ request, response, result ->
+                                    println("tto = ")
+                                    println(response)
+                                    println("1------------")
+                                    println(request)
+                                    println("2------------")
+                                    println(result)
+                                    val register: Login = Gson().fromJson(String(response.data), Login::class.java)
+                                    Toast.makeText(this@RegisterActivity, register.data.message, Toast.LENGTH_SHORT).show()
+                                    when (result) {
+                                        is Result.Success -> {
+                                            StringBuilder(getString(R.string.api)).append("/auth/login").toString()
+                                                    .httpPost(listOf("email" to register_email.text, "password" to register_password.text)).responseString{ request, response, result ->
+                                                        if (!response.data.isEmpty()){
+                                                            val login: Login = Gson().fromJson(String(response.data), Login::class.java)
+                                                            Toast.makeText(this@RegisterActivity, login.data.message, Toast.LENGTH_SHORT).show()
+                                                            when (result) {
+                                                                is Result.Success -> {
+                                                                    FuelManager.instance.baseHeaders = mapOf("Authorization" to login.data.token!!)
+                                                                    database.updateUser()
+                                                                    startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
+                                                                }
+                                                            }
+                                                        }
+                                                        finish()
+
+                                                    }
+                                        }
+                                    }
+                                }
+                    }catch (e : Exception){
+
                     }
+
                 }
             }
         }
+    }
+    override fun onBackPressed() {
+        startActivity(Intent(this, FirstPage::class.java))
+        finish()
     }
 }

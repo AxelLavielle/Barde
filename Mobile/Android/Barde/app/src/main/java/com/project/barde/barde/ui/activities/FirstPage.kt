@@ -15,10 +15,10 @@ class FirstPage : AppCompatActivity() {
         setContentView(R.layout.activity_first_page)
         first_page_register.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
+            finish()
         }
         first_page_login.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
-            finish()
         }
     }
 

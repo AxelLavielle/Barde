@@ -40,22 +40,27 @@ class LoginActivity : AppCompatActivity() {
         connexion.setOnClickListener {
            // finish()//to remove
             doAsync {
-                StringBuilder(getString(R.string.api)).append("/auth/login").toString()
-                        .httpPost(listOf("email" to email.text, "password" to password.text)).responseString{ request, response, result ->
-                    if (!response.data.isEmpty()){
-                        val login: Login = Gson().fromJson(String(response.data), Login::class.java)
-                        Toast.makeText(this@LoginActivity, login.data.message, Toast.LENGTH_SHORT).show()
-                        when (result) {
-                            is Result.Success -> {
-                                FuelManager.instance.baseHeaders = mapOf("Authorization" to login.data.token!!)
-                                database.updateUser()
-                                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                                finish()
+                try {
+                    StringBuilder(getString(R.string.api)).append("/auth/login").toString()
+                            .httpPost(listOf("email" to email.text, "password" to password.text)).responseString{ request, response, result ->
+                                if (!response.data.isEmpty()){
+                                    val login: Login = Gson().fromJson(String(response.data), Login::class.java)
+                                    Toast.makeText(this@LoginActivity, login.data.message, Toast.LENGTH_SHORT).show()
+                                    when (result) {
+                                        is Result.Success -> {
+                                            FuelManager.instance.baseHeaders = mapOf("Authorization" to login.data.token!!)
+                                            database.updateUser()
+                                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                                            finish()
+                                        }
+                                    }
+                                }
+
                             }
-                        }
-                    }
+                }catch (e : Exception){
 
                 }
+
             }
         }
     }
