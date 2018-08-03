@@ -2,6 +2,7 @@ package com.project.barde.barde.db
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import com.github.kittinunf.fuel.core.FuelManager
 import com.github.kittinunf.fuel.httpGet
 import com.google.gson.Gson
 import com.project.barde.barde.R
@@ -31,7 +32,8 @@ class UserDbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "user.db", null,
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        db.createTable("user", true,
+        println("createing me table")
+        db.createTable("me", true,
                 UserTable.ID to INTEGER + PRIMARY_KEY,
                 UserTable.PASSWORD to TEXT,
                 UserTable.FIRSTNAME to TEXT,
@@ -41,6 +43,7 @@ class UserDbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "user.db", null,
                 UserTable.MONTHOFBIRTHDAY to INTEGER,
                 UserTable.YEAROFBIRTHDAY to INTEGER,
                 UserTable.ROLE to TEXT,
+                UserTable.TOKEN to TEXT,
                 UserTable.EMAIL to TEXT)
     }
 
@@ -56,12 +59,12 @@ class UserDbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "user.db", null,
                 val requestMe: RequestMe
                 requestMe = Gson().fromJson(String(response.data), RequestMe::class.java)
                 val user = requestMe.data.user
-                val c = this.readableDatabase.rawQuery("SELECT * FROM user LIMIT 1", null)
+                val c = this.readableDatabase.rawQuery("SELECT * FROM me LIMIT 1", null)
 
                 val cal = Calendar.getInstance()
                 cal.setTime(user.dateOfBirth)
                 if (c.count >= 1){
-                    this.writableDatabase.update("user",
+                    this.writableDatabase.update("me",
                             UserTable.EMAIL to user.email,
                             /*UserTable.PASSWORD to "toto",*/
                             UserTable.FIRSTNAME to user.name.firstName,
@@ -69,9 +72,10 @@ class UserDbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "user.db", null,
                             UserTable.DAYOFBIRTHDAY to cal.get(Calendar.DAY_OF_MONTH),
                             UserTable.MONTHOFBIRTHDAY to cal.get(Calendar.MONTH),
                             UserTable.YEAROFBIRTHDAY to cal.get(Calendar.YEAR),
+                            UserTable.TOKEN to FuelManager.instance.baseHeaders!!.get("Authorization"),
                             UserTable.USERNAME to user.name.userName).whereSimple("_id = 1 OR 1").exec()
                 }else {
-                    this.writableDatabase.insert("user",
+                    this.writableDatabase.insert("me",
                             UserTable.EMAIL to user.email,
                             /*UserTable.PASSWORD to "toto",*/
                             UserTable.FIRSTNAME to user.name.firstName,
@@ -79,6 +83,7 @@ class UserDbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "user.db", null,
                             UserTable.DAYOFBIRTHDAY to cal.get(Calendar.DAY_OF_MONTH),
                             UserTable.MONTHOFBIRTHDAY to cal.get(Calendar.MONTH),
                             UserTable.YEAROFBIRTHDAY to cal.get(Calendar.YEAR),
+                            UserTable.TOKEN to FuelManager.instance.baseHeaders!!.get("Authorization"),
                             UserTable.USERNAME to user.name.userName)
                 }
                 if (!listener.isEmpty()){
@@ -89,6 +94,13 @@ class UserDbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "user.db", null,
             }
         }
     }
+
+    fun removeUser(){
+        this.writableDatabase.execSQL("DROP TABLE IF EXISTS user")
+        this.writableDatabase.execSQL("DROP TABLE IF EXISTS me")
+    }
+
+
 }
 
 val Context.database: UserDbHelper

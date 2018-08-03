@@ -14,4 +14,5 @@ object UserTable {
     val MONTHOFBIRTHDAY = "monthOfBirth"
     val YEAROFBIRTHDAY = "yearOfBirth"
     val ROLE = "role"
+    val TOKEN = "token"
 }

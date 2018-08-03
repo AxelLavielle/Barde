@@ -1,11 +1,14 @@
 package com.project.barde.barde.ui.fragments
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
+import android.provider.Settings
+import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
@@ -573,13 +576,15 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerS
             if (ContextCompat.checkSelfPermission(context,
                             Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     != PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(context, getString(R.string.msg_active_folder_permission), Toast.LENGTH_SHORT).show()
+                requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE), 1)
+
+
 
             }else if(ContextCompat.checkSelfPermission(context,
                             Manifest.permission.READ_EXTERNAL_STORAGE)
                     != PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(context, getString(R.string.msg_active_folder_permission), Toast.LENGTH_SHORT).show()
-
+                requestPermissions(arrayOf(Manifest.permission.READ_CONTACTS, Manifest.permission.READ_EXTERNAL_STORAGE),1
+                        )
 
 
             }else {
@@ -611,6 +616,42 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerS
 
         seek_bar_bpm.setProgress(0)
 
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        println("requestCode = " + requestCode)
+        println("empty = " + grantResults.isNotEmpty())
+        println("requestCode = " + grantResults)
+        when (requestCode){
+            1 -> {
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    if (AudioBardeManager.firstPlay) {
+                        if (playerManager._mediaPlayer.isPlaying) {
+                            button_generation.setImageResource(R.drawable.ic_play_circle_filled_white_white_48dp)
+                            playerManager._mediaPlayer.pause()
+                            if (runnable != null){
+                                handler.removeCallbacks(runnable)
+                            }
+                        } else {
+                            button_generation.setImageResource(R.drawable.ic_pause_circle_filled_white_48dp)
+                            playerManager._mediaPlayer.start()
+                            if (runnable != null) {
+                                handler.postDelayed(runnable, 1000)
+                            }
+                        }
+                    } else {
+                        if (!AudioBardeManager.startingPreparing && !AudioBardeManager.firstPlay) {
+                            AudioBardeManager.indexFile = 0
+                            AudioBardeManager.init()
+                            AudioBardeManager.serverSocket.sendToServer(intArrayOf(PLAYERCTRL, PLAY))
+                        }
+                    }
+                } else {
+                }
+                return
+
+            }
+        }
     }
 
     fun viewSelectButtonGeneration(list: List<Instrument>, id : Int, type: String, codeAdd : Int, codeRm: Int){

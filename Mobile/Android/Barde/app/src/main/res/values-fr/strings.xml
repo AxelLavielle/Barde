@@ -13,7 +13,7 @@
     <string name="str_settings">Parametres</string>
     <string name="str_dateofbirthday">Date de naissance</string>
 
-    <string name="str_email_required">Prénom requis</string>
+    <string name="str_email_required">Email requis</string>
     <string name="str_password_required">Mot de passe requis</string>
     <string name="str_confirm_password_required">Comfirmer votre mot de passe requis</string>
     <string name="str_firstname_required">Prénom requis</string>
