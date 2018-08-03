@@ -33,7 +33,7 @@ class ReportProblemViewController: UIViewController, UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if (tvDescription.text == "Write your message...")
+        if (tvDescription.text != "")
         {
             tvDescription.text = ""
             tvDescription.textColor = .black
@@ -57,31 +57,21 @@ class ReportProblemViewController: UIViewController, UITextViewDelegate {
 
     
     @objc func validChange(_ sender: Any) {
-        self.navigationItem.setHidesBackButton(false, animated: true)
-        self.navigationItem.rightBarButtonItem = nil;
-        self.navigationItem.leftBarButtonItem = buttonBack;
-        
-        tvDescription.resignFirstResponder()
-        self.view.endEditing(true)
-        
         if let description = tvDescription.text{
             if (!description.isEmpty)
             {
                 userService?.reportProblem(data: description)
-                let refreshAlert = UIAlertController(title: "Message sent.", message: "Your message has been sent.", preferredStyle: UIAlertControllerStyle.alert)
                 
-                refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
-                }))
-                
-                present(refreshAlert, animated: true, completion: nil)
+                Alert.showBasic(on: self, with: "Message sent", message: "Your message has been sent.")
+           
+                self.navigationItem.setHidesBackButton(false, animated: true)
+                self.navigationItem.rightBarButtonItem = nil;
+                self.navigationItem.leftBarButtonItem = buttonBack;
+                tvDescription.resignFirstResponder()
+                self.view.endEditing(true)
 
             } else {
-                let refreshAlert = UIAlertController(title: "Empty message.", message: "Field \"Message\" can't be empty.", preferredStyle: UIAlertControllerStyle.alert)
-                
-                refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
-                }))
-                
-                present(refreshAlert, animated: true, completion: nil)
+                Alert.showIncompleteForm(on: self)
             }
         }
       

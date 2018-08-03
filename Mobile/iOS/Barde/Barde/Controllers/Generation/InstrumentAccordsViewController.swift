@@ -54,11 +54,52 @@ class InstrumentChordsViewController: UIViewController {
         
         if (chordsArray.contains(chordsSelected)) {
             chordsArray = chordsArray.filter{$0 != chordsSelected}
+            
+            switch (chordsSelected) {
+            case "Trumpet":
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x061, 0x0, 0x0, 0x0, 0x57, 0x0, 0x0, 0x0])
+                break;
+            case "Piano":
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x061, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0])
+                break;
+            case "Saxophone":
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x061, 0x0, 0x0, 0x0, 0x65, 0x0, 0x0, 0x0])
+                break;
+            case .none:
+                break;
+            case .some(_):
+                break;
+            }
+            
         } else {
             chordsArray.append(chordsSelected)
+            
+            switch (chordsSelected) {
+            case "Trumpet":
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x021, 0x0, 0x0, 0x0, 0x57, 0x0, 0x0, 0x0])
+                break;
+            case "Piano":
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x021, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0])
+                break;
+            case "Saxophone":
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x021, 0x0, 0x0, 0x0, 0x65, 0x0, 0x0, 0x0])
+                break;
+            case .none:
+                break;
+            case .some(_):
+                break;
+            }
         }
         
-        UserDefaults.standard.set(chordsArray, forKey: "chordsArray")
+//        chordsSelected = button.titleLabel!.text
+//
+//        if (chordsArray.contains(chordsSelected)) {
+//            chordsArray = chordsArray.filter{$0 != chordsSelected}
+//        } else {
+//            chordsArray.append(chordsSelected)
+//        }
+//
+//        UserDefaults.standard.set(chordsArray, forKey: "chordsArray")
     }
     
 }

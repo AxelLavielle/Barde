@@ -31,13 +31,12 @@ class GeneratorViewController: UIViewController {
     
     var styleViewController: StyleViewController?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         createAVMIDIPlayerFromMIDIFIle()
         
-        let url = URL(string: "http://cdn.nrjaudio.fm/audio1/fr/30001/mp3_128.mp3?origine=fluxradios")
+        let url = URL(string: "http://localhost")
         
         player = AVPlayer.init(url: url!)
         
@@ -49,23 +48,14 @@ class GeneratorViewController: UIViewController {
         controlButton.setImage(btnImage , for: UIControlState.normal)
         controlButton.addTarget(self, action: #selector(GeneratorViewController.playButtonTapped(_:)), for: .touchUpInside)
         labelCurrentTime.text = "00:00:00"
-    
-    
     }
     
     @objc func playButtonTapped(_ sender:UIButton)
     {
-        
-        //
-        
-        let result =  SocketManager.sharedInstance.client.send(data: Data(bytes: [0x50]))
-        
-        print("AAAA", result)
-       
-        print(">>>", UserDefaults.standard.array(forKey: "styleArray"))
-        print(">>>", UserDefaults.standard.array(forKey: "chordsArray"))
-        print(">>>", UserDefaults.standard.array(forKey: "arpegiosArray"))
-        print(">>>", UserDefaults.standard.integer(forKey: "tempoValue"))
+        print(">>>", UserDefaults.standard.array(forKey: "styleArray") as Any)
+        print(">>>", UserDefaults.standard.array(forKey: "chordsArray") as Any)
+        print(">>>", UserDefaults.standard.array(forKey: "arpegiosArray") as Any)
+        print(">>>", UserDefaults.standard.integer(forKey: "tempoValue") as Any)
         
         if player?.rate == 0
         {
@@ -74,17 +64,18 @@ class GeneratorViewController: UIViewController {
                 print("finished")
                 self.midiPlayer?.currentPosition = 0
             })
-            
+        
+            setSessionPlayer()
             
             player!.play()
-            //playButton!.setImage(UIImage(named: "player_control_pause_50px.png"), forState: UIControlState.Normal)
-            //playButton!.setTitle("Pause", for: UIControlState.normal)
-            
             let btnImage = UIImage(named: "icon-pause")
             controlButton.setImage(btnImage , for: UIControlState.normal)
             
             timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCountdown), userInfo: nil, repeats: true)
             hasBeenPaused = false
+            
+            GeneratorManager.sharedInstance.sendData(arr: [0x2, 0x0, 0x0, 0x0, 0x12, 0x0, 0x0, 0x0])
+        
         } else {
             
             if let player = self.midiPlayer {
@@ -93,20 +84,15 @@ class GeneratorViewController: UIViewController {
                 }
             }
         
-            
             player!.pause()
-            //playButton!.setImage(UIImage(named: "player_control_play_50px.png"), forState: UIControlState.Normal)
-            //playButton!.setTitle("Play", for: UIControlState.normal)
             let btnImage = UIImage(named: "icon-play")
             controlButton.setImage(btnImage , for: UIControlState.normal)
             
             timer.invalidate()
             hasBeenPaused = true
+            
+             GeneratorManager.sharedInstance.sendData(arr: [0x2, 0x0, 0x0, 0x0, 0x22, 0x0, 0x0, 0x0])
         }
-    }
-    
-    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
-        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
     
     @objc func updateCountdown() {
@@ -117,14 +103,25 @@ class GeneratorViewController: UIViewController {
         }
     }
     
+    func setSessionPlayer() {
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, with: .mixWithOthers)
+            try audioSession.setActive(true)
+        } catch {
+            print("couldn't set category \(error)")
+        }
+    }
+    
     func createAVMIDIPlayerFromMIDIFIle() {
         
-        guard let midiFileURL = Bundle.main.url(forResource: nightBaldMountain, withExtension: "mid") else {
-            fatalError("\"nightBaldMountain.mid\" file not found.")
-        }
-        //        guard let midiFileURL = Bundle.main.url(forResource: "sibeliusGMajor", withExtension: "mid") else {
-        //            fatalError("\"sibeliusGMajor.mid\" file not found.")
-        //        }
+//        guard let midiFileURL = Bundle.main.url(forResource: nightBaldMountain, withExtension: "mid") else {
+//            fatalError("\"nightBaldMountain.mid\" file not found.")
+//        }
+//
+        let midiFileURL = GeneratorManager.sharedInstance.getDocumentsDirectory().appendingPathComponent("test.mid")
+        
+        print(">>B", midiFileURL)
         
         guard let bankURL = Bundle.main.url(forResource: "GeneralUser GS MuseScore v1.442", withExtension: "sf2") else {
             fatalError("\"GeneralUser GS MuseScore v1.442.sf2\" file not found.")

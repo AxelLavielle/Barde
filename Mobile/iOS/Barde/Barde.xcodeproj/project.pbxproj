@@ -28,6 +28,7 @@
 		1D4C6A851FBF5C410052922E /* SettingsEditAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4C6A841FBF5C410052922E /* SettingsEditAccountView.swift */; };
 		1D4D266B1F8D65C800383255 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4D266A1F8D65C800383255 /* SettingsViewController.swift */; };
 		1D5C188C207C10E300393DFC /* CheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5C188B207C10E300393DFC /* CheckButton.swift */; };
+		1D5EADAF210B966700721A3D /* GeneratorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EADAE210B966700721A3D /* GeneratorManager.swift */; };
 		1D6E40551F8D4E8D006522C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E40541F8D4E8D006522C8 /* AppDelegate.swift */; };
 		1D6E405A1F8D4E8D006522C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D6E40581F8D4E8D006522C8 /* Main.storyboard */; };
 		1D6E405D1F8D4E8D006522C8 /* Barde.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E405B1F8D4E8D006522C8 /* Barde.xcdatamodeld */; };
@@ -48,6 +49,7 @@
 		1DD7B1E1203F63CE0038E838 /* Profil+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7B1DF203F63CE0038E838 /* Profil+CoreDataClass.swift */; };
 		1DD7B1E2203F63CE0038E838 /* Profil+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7B1E0203F63CE0038E838 /* Profil+CoreDataProperties.swift */; };
 		1DD7B1E5204277450038E838 /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7B1E4204277450038E838 /* UserServices.swift */; };
+		1DFDD10F210D124700B8ECC2 /* AlertServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFDD10E210D124700B8ECC2 /* AlertServices.swift */; };
 		5153432B12B35C53A3111D17 /* Pods_Barde.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C60B6F2CE394949EDAB0D46 /* Pods_Barde.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +75,7 @@
 		1D4C6A841FBF5C410052922E /* SettingsEditAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEditAccountView.swift; sourceTree = "<group>"; };
 		1D4D266A1F8D65C800383255 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1D5C188B207C10E300393DFC /* CheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckButton.swift; sourceTree = "<group>"; };
+		1D5EADAE210B966700721A3D /* GeneratorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorManager.swift; sourceTree = "<group>"; };
 		1D6E40511F8D4E8D006522C8 /* Barde.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Barde.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D6E40541F8D4E8D006522C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D6E40591F8D4E8D006522C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -95,6 +98,7 @@
 		1DD7B1DF203F63CE0038E838 /* Profil+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profil+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1DD7B1E0203F63CE0038E838 /* Profil+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profil+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1DD7B1E4204277450038E838 /* UserServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServices.swift; sourceTree = "<group>"; };
+		1DFDD10E210D124700B8ECC2 /* AlertServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertServices.swift; sourceTree = "<group>"; };
 		548C4468B491C65C570A70ED /* Pods-Barde.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Barde.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Barde/Pods-Barde.debug.xcconfig"; sourceTree = "<group>"; };
 		8C60B6F2CE394949EDAB0D46 /* Pods_Barde.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Barde.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDB2D9436B3DD60264D5AEA9 /* Pods-Barde.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Barde.release.xcconfig"; path = "Pods/Target Support Files/Pods-Barde/Pods-Barde.release.xcconfig"; sourceTree = "<group>"; };
@@ -113,6 +117,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D5EADAB210B964700721A3D /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				1DD7B1D9203CD5AB0038E838 /* NetworkManager.swift */,
+				1D0AA9CE20E7BF33007FB5EE /* SocketManager.swift */,
+				1D5EADAE210B966700721A3D /* GeneratorManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		1D6E40481F8D4E8D006522C8 = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +148,7 @@
 		1D6E40531F8D4E8D006522C8 /* Barde */ = {
 			isa = PBXGroup;
 			children = (
+				1D5EADAB210B964700721A3D /* Manager */,
 				1DD7B1E3204277330038E838 /* Services */,
 				1D37175A1FC74042000C682B /* UtilsController.swift */,
 				1DDCA6991F8D52E8009F1E1C /* Models */,
@@ -149,8 +164,6 @@
 				1D6E40601F8D4E8D006522C8 /* LaunchScreen.storyboard */,
 				1D6E40631F8D4E8D006522C8 /* Info.plist */,
 				1D6E405B1F8D4E8D006522C8 /* Barde.xcdatamodeld */,
-				1DD7B1D9203CD5AB0038E838 /* NetworkManager.swift */,
-				1D0AA9CE20E7BF33007FB5EE /* SocketManager.swift */,
 			);
 			path = Barde;
 			sourceTree = "<group>";
@@ -182,6 +195,7 @@
 				1DD7B1E4204277450038E838 /* UserServices.swift */,
 				1D21C966207D5B0500F12FB6 /* StyleServices.swift */,
 				1D21C968207D5B2400F12FB6 /* InstrumentServices.swift */,
+				1DFDD10E210D124700B8ECC2 /* AlertServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -274,7 +288,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Arnaud Perrault";
 				TargetAttributes = {
 					1D6E40501F8D4E8D006522C8 = {
@@ -393,6 +407,7 @@
 				1D21C965207C23C100F12FB6 /* TempoViewController.swift in Sources */,
 				1DD7B1DA203CD5AB0038E838 /* NetworkManager.swift in Sources */,
 				1D4D266B1F8D65C800383255 /* SettingsViewController.swift in Sources */,
+				1DFDD10F210D124700B8ECC2 /* AlertServices.swift in Sources */,
 				1DBE1BD420B9925C00978BA8 /* GeneratorViewController.swift in Sources */,
 				1DB53CE9207AB933007149E5 /* GeneratorPageViewController.swift in Sources */,
 				1D0AA9CF20E7BF33007FB5EE /* SocketManager.swift in Sources */,
@@ -402,6 +417,7 @@
 				1D10139E1FE9936400913E43 /* FirstPageViewController.swift in Sources */,
 				1D21C967207D5B0500F12FB6 /* StyleServices.swift in Sources */,
 				1D6E40551F8D4E8D006522C8 /* AppDelegate.swift in Sources */,
+				1D5EADAF210B966700721A3D /* GeneratorManager.swift in Sources */,
 				1DA1C5AA20B9C53900D38E50 /* ReportProblemViewController.swift in Sources */,
 				1DBE1BD020B98F3C00978BA8 /* InstrumentAccordsViewController.swift in Sources */,
 				1DBE1BD220B98F4500978BA8 /* InstrumentArpegesViewController.swift in Sources */,
@@ -448,6 +464,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -455,6 +472,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -505,6 +523,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -512,6 +531,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

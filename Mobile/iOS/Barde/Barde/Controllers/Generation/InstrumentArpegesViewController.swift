@@ -54,11 +54,50 @@ class InstrumentArpegesViewController: UIViewController {
         
         if (arpegiosArray.contains(arpegiosSelected)) {
             arpegiosArray = arpegiosArray.filter{$0 != arpegiosSelected}
+
+            switch (arpegiosSelected) {
+            case "Trumpet":
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x071, 0x0, 0x0, 0x0, 0x57, 0x0, 0x0, 0x0])
+                break;
+            case "Piano":
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x071, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0])
+                break;
+            case "Saxophone":
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x071, 0x0, 0x0, 0x0, 0x65, 0x0, 0x0, 0x0])
+                break;
+            case .none:
+                break;
+            case .some(_):
+                break;
+            }
+
         } else {
             arpegiosArray.append(arpegiosSelected)
+
+            switch (arpegiosSelected) {
+            case "Trumpet":
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x031, 0x0, 0x0, 0x0, 0x57, 0x0, 0x0, 0x0])
+                break;
+            case "Piano":
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x031, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0])
+                break;
+            case "Saxophone":
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x031, 0x0, 0x0, 0x0, 0x65, 0x0, 0x0, 0x0])
+                break;
+            case .none:
+                break;
+            case .some(_):
+                break;
+            }
         }
         
-        UserDefaults.standard.set(arpegiosArray, forKey: "arpegiosArray")
+//        if (arpegiosArray.contains(arpegiosSelected)) {
+//            arpegiosArray = arpegiosArray.filter{$0 != arpegiosSelected}
+//        } else {
+//            arpegiosArray.append(arpegiosSelected)
+//        }
+//
+//        UserDefaults.standard.set(arpegiosArray, forKey: "arpegiosArray")
     }
     
 }

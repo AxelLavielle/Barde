@@ -52,11 +52,46 @@ class StyleViewController: UIViewController {
         
         if (styleArray.contains(styleSelected)) {
             styleArray = styleArray.filter{$0 != styleSelected}
+            
+            switch (styleSelected) {
+            case "Jazz":
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x11, 0x0, 0x0, 0x0, 0x57, 0x0, 0x0, 0x0])
+                break;
+            case "Blues":
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x11, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0])
+                break;
+            case .none:
+                break;
+            case .some(_):
+                break;
+            }
+            
         } else {
             styleArray.append(styleSelected)
+            
+            switch (styleSelected) {
+            case "Jazz":
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x11, 0x0, 0x0, 0x0, 111, 0x0, 0x0, 0x0])
+                break;
+            case "Blues":
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x11, 0x0, 0x0, 0x0, 211, 0x0, 0x0, 0x0])
+                break;
+            case .none:
+                break;
+            case .some(_):
+                break;
+            }
         }
-
-        UserDefaults.standard.set(styleArray, forKey: "styleArray")
+        
+//        styleSelected = button.titleLabel!.text
+//
+//        if (styleArray.contains(styleSelected)) {
+//            styleArray = styleArray.filter{$0 != styleSelected}
+//        } else {
+//            styleArray.append(styleSelected)
+//        }
+//
+//        UserDefaults.standard.set(styleArray, forKey: "styleArray")
         
     }
     
