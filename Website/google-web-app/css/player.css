@@ -6,6 +6,10 @@
   bottom: 0;
 }
 
+.hidden{
+  display: none;
+}
+
 .player.player-controls{
 }
 

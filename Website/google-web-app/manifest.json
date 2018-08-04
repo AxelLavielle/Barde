@@ -7,7 +7,7 @@
   },
   "app": {
     "background": {
-      "scripts": ["js/log.js", "main.js"]
+      "scripts": ["js/materialize.min.js", "js/log.js", "js/socket.js", "js/console.js", "main.js"]
     }
   },
     "sockets": {

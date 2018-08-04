@@ -6,10 +6,12 @@
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="css/barde.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="css/player.css"  media="screen,projection"/>
+    <link href="css/icon.css" rel="stylesheet">
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script src="js/socket.js"></script>
+    <script src="js/console.js"></script>
 
 </head>
 
@@ -17,92 +19,140 @@
 
 <div class="barde">
     <div class="row">
-        <div class="col s12 barde-main">
-            <div class="barde-main-dashboard">
+        <div class="col s12">
+            <div class="">
                 <div class="container">
-                    <div class="">
-                        <div class="row">
-                            <div class="col s4">
-                                <h4 class="left-align">Accords</h4>
-                                <div class=" col s4 left-align">
+                    <div class="row">
+                        <div class="card darken-1">
+                            <div class="card-content">
+                                <span class="card-title">Barde Console</span>
+                                <div class="row">
+                                    <div class="col s6">
+                                        <div class="input-field col s4">
+                                            <input disabled id="ip" placeholder="127.0.0.1" id="first_name" type="text" class="validate">
+                                            <label for="first_name">IP</label>
+                                        </div>
+                                        <div class="input-field col s4">
+                                            <input disabled id="port" placeholder="8080" id="last_name" type="number" class="validate">
+                                            <label for="last_name">Port</label>
+                                        </div>
+                                        <div class="input-field col s4 center-align">
+                                            <button id="connect" class="waves-effect waves-light btn connect">connect</button>
+                                            <button style="display: none" id="disconnect" class="waves-effect waves-light btn connect">disconnect</button>
 
-                                    <label>
-                                        <input type="checkbox" class="filled-in" value="test" checked="checked" />
-                                        <span>Piano</span>
-                                    </label>
-
-
-                                    <input  type="checkbox" id="Piano-accord" value="piano">
-                                    <label  for="Piano-accord">Piano</label>
+                                        </div>
+                                    </div>
+                                    <div style="max-height: 200px; height: 200px; overflow: scroll;" id="log" class="col s6 card"></div>
                                 </div>
 
-                                <div class=" col s12 left-align">
-                                    <input  type="checkbox" id="trumpet-accord" value="trumpet-accord">
-                                    <label  for="trumpet-accord">trumpet</label>
-                                </div>
-                                <div class=" col s12 left-align">
-                                    <input disabled type="checkbox" id="saxophone-accord" value="saxophone-accord" v-model="Player.instruments.arpeges">
-                                    <label disabled for="saxophone-accord">saxophone</label>
-                                </div>
-
-                            </div>
-
-                            <div class="col s4">
-                                <h4 class="left-align">Apreges</h4>
-
-                                <div class=" col s12 left-align">
-                                    <input disabled type="checkbox" id="piano-arpege" value="piano" v-model="Player.instruments.arpeges">
-                                    <label for="piano-arpege">Piano</label>
-                                </div>
-                                <div class=" col s12 left-align">
-                                    <input disabled type="checkbox" id="trumpet-arpege" value="trumpet" v-model="Player.instruments.arpeges">
-                                    <label for="trumpet-arpege">trumpet</label>
-                                </div>
-                                <div class=" col s12 left-align">
-                                    <input disabled type="checkbox" id="saxophone-arpege" value="saxophone" v-model="Player.instruments.arpeges">
-                                    <label for="saxophone-arpege">saxophone</label>
-                                </div>
-                            </div>
-
-                            <div class="col s4">
-                                <h4 class="left-align">Drums</h4>
-                                <div class="switch left-align">
-                                    <label>
-                                        Off
-                                        <input type="checkbox">
-                                        <span class="lever"></span>
-                                        On
-                                    </label>
-                                </div>
-                            </div>
 
 
-                        </div>
-
-
-                        <div class="row">
-                            <div class="col s8 offset-s1">
-                                <input  type="range" id="test5" min="60" max="150" />
-                            </div>
-                            <div class="col s2">
-                                <span>BPM : {{Player.bpm}}</span>
+                                </>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=" col s3 input-field  left-align">
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="">
+                    <div class="container">
                         <div class="row">
-                            <div class="input-field col  s8 offset-s1">
-                                <textarea id="log" class="materialize-textarea"></textarea>
-                                <label for="log">Textarea</label>
+                            <div class="card darken-1">
+                                <div class="card-content">
+                                    <span class="card-title">Barde Music Settings</span>
+                                    <div class="row">
+                                        <div class="col s3">
+                                            <h4 class="left-align">Styles</h4>
+                                            <div class=" col s12 input-field  left-align">
+                                                <select class="browser-default">
+                                                <option value="0x111">JAZZ</option>
+                                                <option value="0x211">Blues</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col s3">
+                                            <h4 class="left-align">Accords</h4>
+                                            <div class=" col s12 left-align">
+                                                <label>
+                                                    <input type="checkbox" class="filled-in" value="test" checked="checked" />
+                                                    <span>Piano</span>
+                                                </label>
+
+                                                <input  type="checkbox" id="Piano-accord" value="piano">
+                                                <label  for="Piano-accord">Piano</label>
+                                            </div>
+
+                                            <div class=" col s12 left-align">
+                                                <input  type="checkbox" id="trumpet-accord" value="trumpet-accord">
+                                                <label  for="trumpet-accord">trumpet</label>
+                                            </div>
+                                            <div class=" col s12 left-align">
+                                                <input disabled type="checkbox" id="saxophone-accord" value="saxophone-accord" v-model="Player.instruments.arpeges">
+                                                <label disabled for="saxophone-accord">saxophone</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col s3">
+                                            <h4 class="left-align">Apreges</h4>
+
+                                            <div class=" col s12 left-align">
+                                                <input disabled type="checkbox" id="piano-arpege" value="piano" v-model="Player.instruments.arpeges">
+                                                <label for="piano-arpege">Piano</label>
+                                            </div>
+                                            <div class=" col s12 left-align">
+                                                <input disabled type="checkbox" id="trumpet-arpege" value="trumpet" v-model="Player.instruments.arpeges">
+                                                <label for="trumpet-arpege">trumpet</label>
+                                            </div>
+                                            <div class=" col s12 left-align">
+                                                <input disabled type="checkbox" id="saxophone-arpege" value="saxophone" v-model="Player.instruments.arpeges">
+                                                <label for="saxophone-arpege">saxophone</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col s3">
+                                            <h4 class="left-align">Drums</h4>
+                                            <div class="switch left-align">
+                                                <label>
+                                                    Off
+                                                    <input type="checkbox">
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s10">
+                                            <p class="range-field">
+                                                <input type="range" id="test5" min="60" max="150" />
+                                            </p>
+                                        </div>
+
+                                        <div class="col s2">
+                                            <span>BPM : {{Player.bpm}}</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
+        </div>
             <div class="player">
                 <div class="row">
                     <div class="col s4 offset-s2">
                         <p class="range-field">
-                            <button :disabled="!socket.connected" @click="playSocket()" class="btn-floating waves-effect waves-light pink"><i class="material-icons">play_arrow</i></button>
+                            <button disabled id="control-button-play" class="btn-floating waves-effect waves-light pink"><i class="material-icons">play_arrow</i></button>
+                            <button disabled id="control-button-pause" class="btn-floating waves-effect waves-light pink"><i id="control-icon" class="material-icons">pause</i></button>
+
                             <a @click="toggleMute()" class="btn-floating waves-effect waves-light pink"><i class="material-icons">volume_up</i></a>
                         </p>
                     </div>
@@ -111,7 +161,6 @@
                             <a class="btn-flat disabled">
                                 <span>BARDE</span>
                                 <span>Not connected</span>
-
                             </a>
                         </p>
                     </div>
@@ -124,7 +173,6 @@
 
 <!--JavaScript at end of body for optimized loading-->
 <script type="text/javascript" src="js/materialize.min.js"></script>
-
 
 </body>
 </html>
