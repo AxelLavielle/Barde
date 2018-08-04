@@ -117,7 +117,10 @@ void LoginComponent::login(const std::string & login, const std::string & passwo
 		}
 		else
 		{
-			errorMessage = "There was an error during the login process";
+			if (_cmdManager.getResponseCode() == 400)
+				errorMessage = "The email or password is incorrect";
+			else 
+				errorMessage = "There was an error during the login process";
 		}
 	}
 	catch (RestClientException &e)

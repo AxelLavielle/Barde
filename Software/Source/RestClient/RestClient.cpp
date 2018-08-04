@@ -78,7 +78,7 @@ bool RestClient::authentificate(const std::string & email, const std::string & p
 
 	response = getResponse(ss.str(), code, responseMessage);
 	if (code != 200)
-		return false;
+		throw RestClientException(response.c_str(), code);
 	_isAuthenticated = true;
 	getToken(response);
 	return true;

@@ -25,7 +25,8 @@ void CmdManager::clearResponses()
 bool CmdManager::connectToServer()
 {
 	//api.barde.io
-	_socket.setAddr("163.172.128.43", 3000, 5000);
+	_socket.setAddr("163.172.191.206", 2100, 5000);
+	//_socket.setAddr("163.172.128.43", 3000, 5000);
 	//_socket.setAddr("163.172.191.206", 2010, 5000);
 	//api-dev.barde.io
 	//_socket.setAddr("163.172.128.43", 2110, 5000);
@@ -76,6 +77,8 @@ bool CmdManager::login(const std::string &email, const std::string &password)
 	catch (RestClientException &e)
 	{
 		std::cerr << "Error on request authentificate : " << e.what() << std::endl;
+		_responseMsg = e.getMessage();
+		_responseCode = e.getCode();
 		return false;
 	}
 }
