@@ -1,11 +1,20 @@
 {
   "posts" : [
     {
+      "image" : "/Facebook.png",
+      "title" : "Try Barde beta",
+      "date" : "1st August 2018",
+      "author" : "Michael Temem",
+      "headline" : "Here we are, Barde beta is finally available on windows and Android! Be the first to enjoy it!",
+      "link" : "/blog/try-barde"
+    },
+    {
       "image" : "/blog/1/team.jpg",
       "title" : "First steps",
       "date" : "22nd February 2017",
       "author" : "Axel Lavielle",
-      "headline" : "Since today we are going to start to leave you informed of everything pertaining our project Barde !"
+      "headline" : "Since today we are going to start to leave you informed of everything pertaining our project Barde !",
+      "link" : "/blog/last-steps"
     }
   ]
 }

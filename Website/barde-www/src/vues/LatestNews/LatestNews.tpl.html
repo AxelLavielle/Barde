@@ -8,7 +8,7 @@
         </div>
           <div class="row center">
               <div v-for="post in posts" class="col s12 m4  center content">
-                  <CardNews link="/blog/last-steps" :image="post.image" :title="post.title" :date="post.date" :author="post.author" :headline="post.headline"></CardNews>
+                  <CardNews :link="post.link" :image="post.image" :title="post.title" :date="post.date" :author="post.author" :headline="post.headline"></CardNews>
               </div>
               <a v-if="posts.length >= 3" href="/blog" class="barde-btn btn center-align">SEE ALL POSTS</a>
 

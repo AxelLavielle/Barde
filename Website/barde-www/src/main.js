@@ -28,6 +28,11 @@ const routes = [
         component: require('./vues/SinglePost/SinglePost.vue').default,
         name: 'last-steps'
     },
+	{
+		path: '/blog/try-barde',
+		component: require('./vues/BlogBetaPost/BlogBetaPost.vue').default,
+		name: 'try-barde'
+	},
     {
         path: '*',
         redirect: '/'
