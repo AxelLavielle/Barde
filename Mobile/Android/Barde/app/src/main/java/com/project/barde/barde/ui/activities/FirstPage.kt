@@ -17,7 +17,6 @@ class FirstPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_first_page)
-        database.api = getString(R.string.api)
 
         first_page_register.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
@@ -25,28 +24,9 @@ class FirstPage : AppCompatActivity() {
         }
         first_page_login.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
+            finish()
         }
-        database.use {
-            try {
-                val c = rawQuery("SELECT * FROM me LIMIT 1", null)
-                if (c.count >= 1) {
-                    c.moveToFirst()
-                    FuelManager.instance.baseHeaders = mapOf("Authorization" to c.getString(c.getColumnIndex(UserTable.TOKEN)))
-                    StringBuilder(getString(R.string.api)).append("/user/me").toString()
-                            .httpGet().responseString { request, response, result ->
-                                if (response.statusCode == 200) {
-                                    database.updateUser()
-                                    startActivity(Intent(this@FirstPage, MainActivity::class.java))
-                                    finish()
-                                }
-                            }
-                }
-            }catch (e : Exception){
-                e.printStackTrace()
-            }
 
-
-        }
     }
 
     override fun onBackPressed() {

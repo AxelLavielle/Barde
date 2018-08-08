@@ -88,14 +88,36 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerS
             activity.runOnUiThread {
                 AudioBardeManager.serverIsConnected = boolean
                 if (AudioBardeManager.serverIsConnected){
+                    listOfInstruementChords = listOf<Instrument>(Instrument(getString(R.string.str_trumpet), false, 57, false), Instrument(getString(R.string.str_piano), false, 1, false),
+                            Instrument(getString(R.string.str_saxophone), false, 65,false))
+                    listOfInstruementArpeges = listOf<Instrument>(Instrument(getString(R.string.str_trumpet), false, 57, false), Instrument(getString(R.string.str_piano), false, 1, false),
+                            Instrument(getString(R.string.str_saxophone), false, 65, false))
+                    listOfInstruement = listOf<Instrument>(Instrument(getString(R.string.str_enable_drum), false,DRUM, true))
+                    viewSelectButtonGeneration(listOfInstruementChords, R.id.list_instrument_generation_chords, "CHORDS", ADDCHORD, REMOVECHORD)
+                    viewSelectButtonGeneration(listOfInstruementArpeges, R.id.list_instrument_generation_arpeges, "ARPEGES", ADDARPEGE, REMOVEARPEGE)
+                    viewSelectButtonGeneration(listOfInstruement, R.id.list_instrument_generation, "BPM", DRUMTRUE, DRUMFALSE)
                     loadingServer.setVisibility(View.GONE)
                     geneartionView.setVisibility(View.VISIBLE)
                     AudioBardeManager.serverSocket.sendToServer(intArrayOf(MUSIQUEPARAM, STYLE, JAZZ))
 
                 }else{
-                    loadingServer.setVisibility(View.GONE)
-                    geneartionView.visibility = View.GONE
-                    try_again_button.setVisibility(View.VISIBLE)
+                    try{
+                        button_generation.setImageResource(R.drawable.ic_play_circle_filled_white_white_48dp)
+                        total_duration?.text = "00:00"
+                        current_position.text = "00:00"
+                        seek_bar_duration.max = 0
+                        seek_bar_duration.setProgress(0)
+                        loadingServer.setVisibility(View.GONE)
+                        geneartionView.visibility = View.GONE
+                        try_again_button.setVisibility(View.VISIBLE)
+                        AudioBardeManager.reset()
+                        AudioBardeManager.init()
+                        handler.removeCallbacks(runnable)
+
+                    }catch (e : Exception){
+
+                    }
+
                 }
             }
 
@@ -388,7 +410,7 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerS
         return inflater!!.inflate(R.layout.fragment_generation, container, false)
     }
 
-    fun setConnectionToServer(){
+    private fun setConnectionToServer(): Boolean {
         if (!AudioBardeManager.serverIsConnected){
             listOfInstruementChords = listOf<Instrument>(Instrument(getString(R.string.str_trumpet), false, 57, false), Instrument(getString(R.string.str_piano), false, 1, false),
                     Instrument(getString(R.string.str_saxophone), false, 65,false))
@@ -400,13 +422,15 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerS
             AudioBardeManager.serverSocket = SocketServer(this, getString(R.string.serverIp), getString(R.string.serverPort).toInt())
             AudioBardeManager.thread = Thread(AudioBardeManager.serverSocket)
             AudioBardeManager.thread.start()
+            return true
         }else{
             loadingServer.setVisibility(View.GONE);
-
+            return false
         }
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        println("coucou je suis la")
         setConnectionToServer()
         try_again_button.setOnClickListener {
             try_again_button.visibility = View.GONE
@@ -431,10 +455,14 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerS
 
         next_button_generation.visibility = View.VISIBLE
         previous_button_generation.visibility = View.VISIBLE
+        try {
+            viewSelectButtonGeneration(listOfInstruementChords, R.id.list_instrument_generation_chords, "CHORDS", ADDCHORD, REMOVECHORD)
+            viewSelectButtonGeneration(listOfInstruementArpeges, R.id.list_instrument_generation_arpeges, "ARPEGES", ADDARPEGE, REMOVEARPEGE)
+            viewSelectButtonGeneration(listOfInstruement, R.id.list_instrument_generation, "BPM", DRUMTRUE, DRUMFALSE)
+        }catch (e : Exception){
+            e.printStackTrace()
+        }
 
-        viewSelectButtonGeneration(listOfInstruementChords, R.id.list_instrument_generation_chords, "CHORDS", ADDCHORD, REMOVECHORD)
-        viewSelectButtonGeneration(listOfInstruementArpeges, R.id.list_instrument_generation_arpeges, "ARPEGES", ADDARPEGE, REMOVEARPEGE)
-        viewSelectButtonGeneration(listOfInstruement, R.id.list_instrument_generation, "BPM", DRUMTRUE, DRUMFALSE)
 
         if (index == 0){
             listOfPanination.get(0).setImageResource(R.drawable.circle_full_pink)
@@ -656,6 +684,8 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerS
 
     fun viewSelectButtonGeneration(list: List<Instrument>, id : Int, type: String, codeAdd : Int, codeRm: Int){
         var ln = view?.findViewById<LinearLayout>(id)
+        ln?.removeAllViews()
+
         val margin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, 10.toFloat(), getResources().getDisplayMetrics()).toInt()
 
         val params = LinearLayout.LayoutParams(

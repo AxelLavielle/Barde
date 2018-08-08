@@ -8,7 +8,7 @@
     <string name="str_confirm_password">Comfirmer votre mot de passe</string>
     <string name="str_firstname">Prénom</string>
     <string name="str_lastname">Nom de famille</string>
-    <string name="str_username">Pseaudo utilisateur</string>
+    <string name="str_username">Nom utilisateur</string>
     <string name="str_setting">Parametre</string>
     <string name="str_settings">Parametres</string>
     <string name="str_dateofbirthday">Date de naissance</string>
@@ -18,14 +18,14 @@
     <string name="str_confirm_password_required">Comfirmer votre mot de passe requis</string>
     <string name="str_firstname_required">Prénom requis</string>
     <string name="str_lastname_required">Nom de famille requis</string>
-    <string name="str_username_required">Pseaudo utilisateur requis</string>
+    <string name="str_username_required">Nom utilisateur requis</string>
     <string name="str_dateofbirthday_required">Date de naissance requis</string>
 
     <string name="str_update">Metre à jour</string>
     <string name="str_successuful_update">Mise à jour réussie</string>
     <string name="str_missing_firstname">Il manque votre prenom</string>
     <string name="str_missing_lastname">Il manque votre nom</string>
-    <string name="str_missing_username">Il manque votre pseaudo</string>
+    <string name="str_missing_username">Il manque votre nom utilisateur</string>
     <string name="str_missing_email">Il manque votre email</string>
     <string name="str_missing_passowrd">Il manque votre mot de passe</string>
     <string name="str_logout">Déconnexion</string>
@@ -44,7 +44,7 @@
     <string name="str_already_registred">Déjà inscrit ?</string>
     <string name="str_notification">Notification</string>
     <string name="str_theme">Theme</string>
-    <string name="str_Report">Ticket</string>
+    <string name="str_Report">Envoyer un commentaire</string>
     <string name="str_your_message">votre message</string>
     <string name="str_submit">Envoyer</string>
     <string name="str_enter_your_issue">Entrer votre commentaire</string>
@@ -53,10 +53,10 @@
     <string name="str_birthday_cannont_be_empy">Date d\'anniverssaire ne peut pas être vide</string>
     <string name="str_username_cannont_be_empy">Nom de l\'utilisateur ne peut pas être vide</string>
     <string name="str_email_cannont_be_empy">Email ne peut pas être vide</string>
-    <string name="str_email_format_wrong">l\'email est du mauvais format</string>
+    <string name="str_email_format_wrong">L\'email est du mauvais format</string>
     <string name="str_password_cannont_be_empy">Mot de passe ne peut pas être vide</string>
     <string name="str_please_confirm_your_password">Confimer votre mot de passe s\'il vous plait</string>
-    <string name="str_password_dont_match">les deux mots de passe ne correspondent pas</string>
+    <string name="str_password_dont_match">Les deux mots de passe ne correspondent pas</string>
     <string name="str_trumpet">Trompette</string>
     <string name="str_piano">Piano</string>
     <string name="str_saxophone">Saxophone</string>
@@ -69,9 +69,11 @@
     <string name="str_choose_your_instrument">Choisir votre instrument</string>
     <string name="str_chords">Accord</string>
     <string name="str_arpege">Arpège</string>
-    <string name="str_choose_your_tempo">Choisir votre tempo</string>
+    <string name="str_choose_your_tempo">Choisir votre rytme</string>
     <string name="str_70_bpm">70 BPM</string>
     <string name="str_style">Style</string>
     <string name="str_instruments">Instrument</string>
     <string name="str_BPM">BPM</string>
+    <string name="str_show">VOIR</string>
+    <string name="str_hide">CACHER</string>
 </resources>

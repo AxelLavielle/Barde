@@ -5,7 +5,7 @@
     <string name="str_login">Log in</string>
     <string name="str_email">Email</string>
     <string name="str_password">Password</string>
-    <string name="str_confirm_password">Comfirm your password</string>
+    <string name="str_confirm_password">Confirm your password</string>
     <string name="str_firstname">FirstName</string>
     <string name="str_lastname">LastName</string>
     <string name="str_username">UserName</string>
@@ -31,9 +31,9 @@
     <string name="str_logout">log out</string>
     <string name="str_welcome_text">Welcome on Barde</string>
     <string name="str_first_page_main_text">Create an account to enjoy all Barde\'s features</string>
-    <string name="str_profile">profile</string>
+    <string name="str_profile">profil</string>
     <string name="str_my_lists">my lists</string>
-    <string name="str_update_profile">Edit profile</string>
+    <string name="str_update_profile">Edit profil</string>
     <string name="str_my_account">My acccount</string>
     <string name="str_back">Back</string>
     <string name="str_cancel">Cancel</string>
@@ -75,4 +75,6 @@
     <string name="str_style">Style</string>
     <string name="str_instruments">Instrument</string>
     <string name="str_BPM">BPM</string>
+    <string name="str_show">SHOW</string>
+    <string name="str_hide">HIDE</string>
 </resources>

@@ -97,8 +97,10 @@ class UserDbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "user.db", null,
 
     fun removeUser(){
         this.writableDatabase.execSQL("DROP TABLE IF EXISTS user")
-        this.writableDatabase.execSQL("DROP TABLE IF EXISTS me")
+        this.writableDatabase.execSQL("DELETE FROM me")
     }
+
+
 
 
 }

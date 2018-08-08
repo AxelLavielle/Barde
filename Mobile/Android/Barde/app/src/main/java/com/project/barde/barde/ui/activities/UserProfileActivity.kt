@@ -52,7 +52,7 @@ class UserProfileActivity : AppCompatActivity(), UserDbHelper.dataListener, Text
 
     override fun updateUser() {
         database.use {
-            val c = rawQuery("SELECT * FROM user LIMIT 1", null)
+            val c = rawQuery("SELECT * FROM me LIMIT 1", null)
             if(c.count >= 1){
                 edit = true
                 c.moveToFirst()

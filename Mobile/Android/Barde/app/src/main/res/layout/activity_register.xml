@@ -129,32 +129,47 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:background="#ffffff"
                     android:layout_marginBottom="2dp">
                     <EditText
-                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="@string/str_password_required"
                         android:inputType="textPassword"
                         android:id="@+id/register_password"
                         android:background="@android:color/transparent"  />
+                    <TextView
+                        android:id="@+id/changeShowFirstPassword"
+                        android:text="@string/str_show"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
                 <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:background="#ffffff"
                     android:layout_marginBottom="2dp">
                     <EditText
-                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="@string/str_confirm_password_required"
                         android:inputType="textPassword"
                         android:id="@+id/register_confirm_password"
                         android:background="@android:color/transparent"  />
+
+                    <TextView
+                        android:id="@+id/changeShowSecondPassword"
+                        android:text="@string/str_show"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
             </LinearLayout>
             <Button

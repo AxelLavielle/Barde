@@ -4,6 +4,8 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.text.InputType
+import android.view.View
 import android.widget.Toast
 import com.github.kittinunf.fuel.core.FuelManager
 import com.github.kittinunf.fuel.httpPost
@@ -25,6 +27,8 @@ class RegisterActivity : AppCompatActivity(){
     private var year = 0
     private var month = 0
     private var dayOfMonth = 0
+    private var firstPasswordShowed = false
+    private var secondPasswordShowed = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         database.api = getString(R.string.api)
@@ -47,6 +51,30 @@ class RegisterActivity : AppCompatActivity(){
             datepicker.datePicker.maxDate = Date().time
             datepicker.show()
         }
+        changeShowFirstPassword.setOnClickListener {
+            firstPasswordShowed = !firstPasswordShowed
+            if (firstPasswordShowed){
+                register_password.inputType =  InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                changeShowFirstPassword.text = getString(R.string.str_hide)
+            }else{
+                register_password.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                changeShowFirstPassword.text = getString(R.string.str_show)
+
+            }
+        }
+        changeShowSecondPassword.setOnClickListener {
+            secondPasswordShowed = !secondPasswordShowed
+            if (secondPasswordShowed){
+                register_confirm_password.inputType =  InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                changeShowSecondPassword.text = getString(R.string.str_hide)
+
+            }else{
+                register_confirm_password.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                changeShowSecondPassword.text = getString(R.string.str_show)
+
+            }
+        }
+
         toRegister.setOnClickListener{
             if (register_firstname.text.isEmpty()){
                 Toast.makeText(this@RegisterActivity, getString(R.string.str_firstname_cannont_be_empy  ), Toast.LENGTH_SHORT).show()

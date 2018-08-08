@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                 }*/
                /* R.id.menu_playlist -> {
                     supportFragmentManager.beginTransaction()
-                            .replace(R.id.container, playlist as Fragment)
+                            .replace(R.id.container, playlist as Fragment)s
                             .commit()
                 }*/
                 R.id.menu_generation -> {
@@ -51,6 +51,13 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             return@setOnNavigationItemSelectedListener true
+        }
+    }
+
+    override fun onBackPressed() {
+        val b = false
+        if (b){
+            super.onBackPressed()
         }
     }
 
