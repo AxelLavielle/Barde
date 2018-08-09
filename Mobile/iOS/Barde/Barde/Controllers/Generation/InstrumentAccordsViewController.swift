@@ -31,16 +31,21 @@ class InstrumentChordsViewController: UIViewController {
         instruments?.forEach{instrument in
             y += 50
             
-            let button = CheckButton(frame: CGRect(x: Int(x), y: y, width: 343, height: 30))
+            let button = CheckButton(frame: CGRect(x: Int(x), y: y, width: 300, height: 30))
             button.layer.borderColor = UIColor.white.cgColor
             button.setTitle(instrument.name, for: [])
+
+            button.layer.cornerRadius = 6
+            button.layer.borderWidth = 2.0
+            
+            button.center.x = self.view.center.x;
             
             self.instrumentScrollView.addSubview(button)
             
-            button.topAnchor.constraint(equalTo: instrumentScrollView.topAnchor, constant: 50).isActive = true
-            button.bottomAnchor.constraint(equalTo: instrumentScrollView.bottomAnchor, constant:410).isActive = true
-            button.trailingAnchor.constraint(equalTo: instrumentScrollView.trailingAnchor, constant: 0).isActive = true
-            button.centerXAnchor.constraint(equalTo: instrumentScrollView.centerXAnchor, constant: 0).isActive = true
+            
+            button.widthAnchor.constraint(equalTo: instrumentScrollView.widthAnchor, constant: 0).isActive = true
+            button.trailingAnchor.constraint(equalTo: instrumentScrollView.trailingAnchor, constant: 20).isActive = true
+            button.leadingAnchor.constraint(equalTo: instrumentScrollView.leadingAnchor, constant: 20).isActive = true
             
             button.addTarget(self, action: #selector(buttonAction(_:)), for: .touchUpInside)
 
@@ -57,13 +62,13 @@ class InstrumentChordsViewController: UIViewController {
             
             switch (chordsSelected) {
             case "Trumpet":
-                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x061, 0x0, 0x0, 0x0, 0x57, 0x0, 0x0, 0x0])
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x061, 0x0, 0x0, 0x0, 0x57, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
                 break;
             case "Piano":
-                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x061, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0])
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x061, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
                 break;
             case "Saxophone":
-                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x061, 0x0, 0x0, 0x0, 0x65, 0x0, 0x0, 0x0])
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x061, 0x0, 0x0, 0x0, 0x65, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
                 break;
             case .none:
                 break;
@@ -76,13 +81,13 @@ class InstrumentChordsViewController: UIViewController {
             
             switch (chordsSelected) {
             case "Trumpet":
-                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x021, 0x0, 0x0, 0x0, 0x57, 0x0, 0x0, 0x0])
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x021, 0x0, 0x0, 0x0, 0x57, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
                 break;
             case "Piano":
-                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x021, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0])
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x021, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
                 break;
             case "Saxophone":
-                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x021, 0x0, 0x0, 0x0, 0x65, 0x0, 0x0, 0x0])
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x021, 0x0, 0x0, 0x0, 0x65, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
                 break;
             case .none:
                 break;

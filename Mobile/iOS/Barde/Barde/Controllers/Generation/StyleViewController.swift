@@ -29,17 +29,22 @@ class StyleViewController: UIViewController {
         styles?.forEach{style in
             y += 50
             
-            let button = CheckButton(frame: CGRect(x: Int(x), y: y, width: 343, height: 30))
+            let button = CheckButton(frame: CGRect(x: Int(x), y: y, width: 300, height: 30))
             button.layer.borderColor = UIColor.white.cgColor
             button.setTitle(style.name, for: [])
             
+            button.layer.cornerRadius = 6
+            button.layer.borderWidth = 2.0
+            
+            button.center.x = self.view.center.x;
+
             self.styleScrollView.addSubview(button)
             
-            button.topAnchor.constraint(equalTo: styleScrollView.topAnchor, constant: 50).isActive = true
-            button.bottomAnchor.constraint(equalTo: styleScrollView.bottomAnchor, constant:410).isActive = true
-            button.trailingAnchor.constraint(equalTo: styleScrollView.trailingAnchor, constant: 0).isActive = true
-            button.centerXAnchor.constraint(equalTo: styleScrollView.centerXAnchor, constant: 0).isActive = true
             
+            button.widthAnchor.constraint(equalTo: styleScrollView.widthAnchor, constant: 0).isActive = true
+            button.trailingAnchor.constraint(equalTo: styleScrollView.trailingAnchor, constant: 20).isActive = true
+            button.leadingAnchor.constraint(equalTo: styleScrollView.leadingAnchor, constant: 20).isActive = true
+        
             button.addTarget(self, action: #selector(buttonAction(_:)), for: .touchUpInside)
             
             }
@@ -55,10 +60,10 @@ class StyleViewController: UIViewController {
             
             switch (styleSelected) {
             case "Jazz":
-                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x11, 0x0, 0x0, 0x0, 0x57, 0x0, 0x0, 0x0])
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x11, 0x0, 0x0, 0x0, 0x57, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
                 break;
             case "Blues":
-                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x11, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0])
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x11, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
                 break;
             case .none:
                 break;
@@ -71,10 +76,10 @@ class StyleViewController: UIViewController {
             
             switch (styleSelected) {
             case "Jazz":
-                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x11, 0x0, 0x0, 0x0, 111, 0x0, 0x0, 0x0])
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x11, 0x0, 0x0, 0x0, 111, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
                 break;
             case "Blues":
-                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x11, 0x0, 0x0, 0x0, 211, 0x0, 0x0, 0x0])
+                GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x11, 0x0, 0x0, 0x0, 211, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
                 break;
             case .none:
                 break;

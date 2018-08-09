@@ -49,21 +49,38 @@ class SocketManager: NSObject {
     }
     
     func closeConnection() {
-        
-        let paths = FileManager.default
-        
-        let filename = paths.urls(for: .documentDirectory, in: .userDomainMask).last?.appendingPathComponent("test.mid")
-        
-        if paths.fileExists(atPath: (filename?.path)!) {
-            print("create")
-            
-            do {
-                try paths.removeItem(atPath: (filename?.path)!)
-            } catch {
-                print("error removing file")
-            }
-        }
-        
+       
+//        let fileManager = FileManager.default
+//
+//        guard let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).last else {
+//            fatalError("No document directory found in application bundle.")
+//        }
+////
+////        let midFile = documentsDirectory.appendingPathComponent("file.mid")
+////
+////        if fileManager.fileExists(atPath: midFile.path) {
+////            do {
+////                print("remove midFile")
+////                try fileManager.removeItem(atPath: midFile.path)
+////            } catch {
+////                print("error removing file")
+////            }
+////        }
+//        
+//        
+//        GeneratorManager.sharedInstance.writeDataToFile(arr: [])
+//    
+//       let soundFont = documentsDirectory.appendingPathComponent("SoundFont.sf2")
+//        
+//        if fileManager.fileExists(atPath: soundFont.path) {
+//            do {
+//                print("remove SoundFont.sf2")
+//                try fileManager.removeItem(atPath: soundFont.path)
+//            } catch {
+//                print("error removing file")
+//            }
+//        }
+//        
        client.close()
     }
 }

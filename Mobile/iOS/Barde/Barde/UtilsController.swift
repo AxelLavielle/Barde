@@ -13,8 +13,8 @@ import CoreData
 class Utils {
     
     func getApiUrl() -> String {
-        return "http://163.172.128.43:3000"
-        //return "http://163.172.191.206:2100"
+        //return "http://163.172.128.43:3000"
+        return "http://163.172.191.206:2100"
     }
     
     func isValid(_ email: String) -> Bool {
@@ -58,3 +58,31 @@ extension UserDefaults {
 }
 
 
+extension TimeInterval {
+    func toHHMMSSString() -> String {
+        let hours = Int(self / 3600)
+        let minutes =
+            String(format: "%02d", Int(self) % 3600 / 60)
+        let seconds = String(format: "%02d", Int(self) % 60)
+        if hours != 0 {
+            return "\(hours):\(minutes):\(seconds)"
+        } else {
+            return "\(minutes):\(seconds)"
+        }
+    }
+}
+
+extension Data {
+    func append(fileURL: URL) throws {
+        if let fileHandle = FileHandle(forWritingAtPath: fileURL.path) {
+            defer {
+                fileHandle.closeFile()
+            }
+            fileHandle.seekToEndOfFile()
+            fileHandle.write(self)
+        }
+        else {
+            try write(to: fileURL, options: .atomic)
+        }
+    }
+}

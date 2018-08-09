@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D0249C220E935A8007579C5 /* GeneralUser GS MuseScore v1.442.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 1D0249C020E935A6007579C5 /* GeneralUser GS MuseScore v1.442.sf2 */; };
-		1D0249C320E935A8007579C5 /* ntbldmtn.mid in Resources */ = {isa = PBXBuildFile; fileRef = 1D0249C120E935A7007579C5 /* ntbldmtn.mid */; };
-		1D0249C620E935AE007579C5 /* sibeliusGMajor.mid in Resources */ = {isa = PBXBuildFile; fileRef = 1D0249C420E935AD007579C5 /* sibeliusGMajor.mid */; };
-		1D0249C720E935AE007579C5 /* gs_instruments.dls in Resources */ = {isa = PBXBuildFile; fileRef = 1D0249C520E935AD007579C5 /* gs_instruments.dls */; };
 		1D0AA9CF20E7BF33007FB5EE /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0AA9CE20E7BF33007FB5EE /* SocketManager.swift */; };
 		1D10139C1FE9871900913E43 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D10139B1FE9871900913E43 /* RoundedButton.swift */; };
 		1D10139E1FE9936400913E43 /* FirstPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D10139D1FE9936400913E43 /* FirstPageViewController.swift */; };
@@ -38,7 +34,12 @@
 		1D8EF3FF207E96FF0017CE8C /* InstrumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8EF3FE207E96FE0017CE8C /* InstrumentViewController.swift */; };
 		1DA1C5A820B99C7E00D38E50 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DA1C5A720B99C7E00D38E50 /* AVFoundation.framework */; };
 		1DA1C5AA20B9C53900D38E50 /* ReportProblemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA1C5A920B9C53900D38E50 /* ReportProblemViewController.swift */; };
+		1DB1D103211A187F0058E0D7 /* sibeliusGMajor.mid in Resources */ = {isa = PBXBuildFile; fileRef = 1DB1D102211A187F0058E0D7 /* sibeliusGMajor.mid */; };
 		1DB53CE9207AB933007149E5 /* GeneratorPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB53CE8207AB933007149E5 /* GeneratorPageViewController.swift */; };
+		1DB6E798211A36C200E337E1 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB6E797211A36C200E337E1 /* FileManager.swift */; };
+		1DB6E79D211A553500E337E1 /* gs_instruments.dls in Resources */ = {isa = PBXBuildFile; fileRef = 1DB6E79C211A553500E337E1 /* gs_instruments.dls */; };
+		1DB6E79F211A558900E337E1 /* GeneralUser GS MuseScore v1.442.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 1DB6E79E211A558900E337E1 /* GeneralUser GS MuseScore v1.442.sf2 */; };
+		1DB6E7A1211A56DE00E337E1 /* FluidR3_GS.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 1DB6E7A0211A56DD00E337E1 /* FluidR3_GS.sf2 */; };
 		1DBE1BD020B98F3C00978BA8 /* InstrumentAccordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBE1BCF20B98F3C00978BA8 /* InstrumentAccordsViewController.swift */; };
 		1DBE1BD220B98F4500978BA8 /* InstrumentArpegesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBE1BD120B98F4500978BA8 /* InstrumentArpegesViewController.swift */; };
 		1DBE1BD420B9925C00978BA8 /* GeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBE1BD320B9925C00978BA8 /* GeneratorViewController.swift */; };
@@ -54,10 +55,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1D0249C020E935A6007579C5 /* GeneralUser GS MuseScore v1.442.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GeneralUser GS MuseScore v1.442.sf2"; sourceTree = "<group>"; };
-		1D0249C120E935A7007579C5 /* ntbldmtn.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = ntbldmtn.mid; sourceTree = "<group>"; };
-		1D0249C420E935AD007579C5 /* sibeliusGMajor.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = sibeliusGMajor.mid; sourceTree = "<group>"; };
-		1D0249C520E935AD007579C5 /* gs_instruments.dls */ = {isa = PBXFileReference; lastKnownFileType = file; path = gs_instruments.dls; sourceTree = "<group>"; };
 		1D0AA9CE20E7BF33007FB5EE /* SocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
 		1D10139B1FE9871900913E43 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		1D10139D1FE9936400913E43 /* FirstPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPageViewController.swift; sourceTree = "<group>"; };
@@ -87,7 +84,13 @@
 		1D8EF3FE207E96FE0017CE8C /* InstrumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentViewController.swift; sourceTree = "<group>"; };
 		1DA1C5A720B99C7E00D38E50 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		1DA1C5A920B9C53900D38E50 /* ReportProblemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportProblemViewController.swift; sourceTree = "<group>"; };
+		1DB1D102211A187F0058E0D7 /* sibeliusGMajor.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; name = sibeliusGMajor.mid; path = ../../../../../../../Tests/MIDIPlayer/sibeliusGMajor.mid; sourceTree = "<group>"; };
+		1DB1D107211A1EB90058E0D7 /* Barde-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Barde-Bridging-Header.h"; sourceTree = "<group>"; };
 		1DB53CE8207AB933007149E5 /* GeneratorPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorPageViewController.swift; sourceTree = "<group>"; };
+		1DB6E797211A36C200E337E1 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		1DB6E79C211A553500E337E1 /* gs_instruments.dls */ = {isa = PBXFileReference; lastKnownFileType = file; path = gs_instruments.dls; sourceTree = "<group>"; };
+		1DB6E79E211A558900E337E1 /* GeneralUser GS MuseScore v1.442.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GeneralUser GS MuseScore v1.442.sf2"; sourceTree = "<group>"; };
+		1DB6E7A0211A56DD00E337E1 /* FluidR3_GS.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = FluidR3_GS.sf2; sourceTree = "<group>"; };
 		1DBE1BCF20B98F3C00978BA8 /* InstrumentAccordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentAccordsViewController.swift; sourceTree = "<group>"; };
 		1DBE1BD120B98F4500978BA8 /* InstrumentArpegesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentArpegesViewController.swift; sourceTree = "<group>"; };
 		1DBE1BD320B9925C00978BA8 /* GeneratorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +126,7 @@
 				1DD7B1D9203CD5AB0038E838 /* NetworkManager.swift */,
 				1D0AA9CE20E7BF33007FB5EE /* SocketManager.swift */,
 				1D5EADAE210B966700721A3D /* GeneratorManager.swift */,
+				1DB6E797211A36C200E337E1 /* FileManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -148,6 +152,10 @@
 		1D6E40531F8D4E8D006522C8 /* Barde */ = {
 			isa = PBXGroup;
 			children = (
+				1DB6E7A0211A56DD00E337E1 /* FluidR3_GS.sf2 */,
+				1DB6E79E211A558900E337E1 /* GeneralUser GS MuseScore v1.442.sf2 */,
+				1DB6E79C211A553500E337E1 /* gs_instruments.dls */,
+				1DB1D102211A187F0058E0D7 /* sibeliusGMajor.mid */,
 				1D5EADAB210B964700721A3D /* Manager */,
 				1DD7B1E3204277330038E838 /* Services */,
 				1D37175A1FC74042000C682B /* UtilsController.swift */,
@@ -156,14 +164,11 @@
 				1DDCA6971F8D52DE009F1E1C /* Controllers */,
 				1D6E40541F8D4E8D006522C8 /* AppDelegate.swift */,
 				1D6E40581F8D4E8D006522C8 /* Main.storyboard */,
-				1D0249C520E935AD007579C5 /* gs_instruments.dls */,
-				1D0249C420E935AD007579C5 /* sibeliusGMajor.mid */,
-				1D0249C020E935A6007579C5 /* GeneralUser GS MuseScore v1.442.sf2 */,
-				1D0249C120E935A7007579C5 /* ntbldmtn.mid */,
 				1D6E405E1F8D4E8D006522C8 /* Assets.xcassets */,
 				1D6E40601F8D4E8D006522C8 /* LaunchScreen.storyboard */,
 				1D6E40631F8D4E8D006522C8 /* Info.plist */,
 				1D6E405B1F8D4E8D006522C8 /* Barde.xcdatamodeld */,
+				1DB1D107211A1EB90058E0D7 /* Barde-Bridging-Header.h */,
 			);
 			path = Barde;
 			sourceTree = "<group>";
@@ -271,6 +276,7 @@
 				1D6E404E1F8D4E8D006522C8 /* Frameworks */,
 				1D6E404F1F8D4E8D006522C8 /* Resources */,
 				D09CD37A6A9DCFC5FB715BF2 /* [CP] Embed Pods Frameworks */,
+				1DB19EAF21199E5D0069CBE0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -293,6 +299,7 @@
 				TargetAttributes = {
 					1D6E40501F8D4E8D006522C8 = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -320,20 +327,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D0249C720E935AE007579C5 /* gs_instruments.dls in Resources */,
 				1D6E40621F8D4E8D006522C8 /* LaunchScreen.storyboard in Resources */,
-				1D0249C320E935A8007579C5 /* ntbldmtn.mid in Resources */,
+				1DB6E7A1211A56DE00E337E1 /* FluidR3_GS.sf2 in Resources */,
 				1DCD58471F913D29005F85C5 /* SettingMenuButton.xib in Resources */,
 				1D6E405F1F8D4E8D006522C8 /* Assets.xcassets in Resources */,
-				1D0249C220E935A8007579C5 /* GeneralUser GS MuseScore v1.442.sf2 in Resources */,
 				1D6E405A1F8D4E8D006522C8 /* Main.storyboard in Resources */,
-				1D0249C620E935AE007579C5 /* sibeliusGMajor.mid in Resources */,
+				1DB6E79D211A553500E337E1 /* gs_instruments.dls in Resources */,
+				1DB6E79F211A558900E337E1 /* GeneralUser GS MuseScore v1.442.sf2 in Resources */,
+				1DB1D103211A187F0058E0D7 /* sibeliusGMajor.mid in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1DB19EAF21199E5D0069CBE0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
 		628D0DF77E9D1447370E9C0D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -361,10 +381,6 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Barde/Pods-Barde-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxStarscream/RxStarscream.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftSocket/SwiftSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
@@ -372,10 +388,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxStarscream.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
@@ -401,6 +413,7 @@
 				1D37175B1FC74042000C682B /* UtilsController.swift in Sources */,
 				1DD7B1E2203F63CE0038E838 /* Profil+CoreDataProperties.swift in Sources */,
 				1DCD58491F913D36005F85C5 /* SettingMenuButton.swift in Sources */,
+				1DB6E798211A36C200E337E1 /* FileManager.swift in Sources */,
 				1DC8525A1FCD0DAD009E9886 /* ProfileViewController.swift in Sources */,
 				1D8EF3FF207E96FF0017CE8C /* InstrumentViewController.swift in Sources */,
 				1D4C6A851FBF5C410052922E /* SettingsEditAccountView.swift in Sources */,
@@ -567,12 +580,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X6YK84629N;
 				INFOPLIST_FILE = Barde/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = barde.Barde;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aplt.io.Barde;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Barde/Barde-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -584,12 +602,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X6YK84629N;
 				INFOPLIST_FILE = Barde/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = barde.Barde;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aplt.io.Barde;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Barde/Barde-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -42,8 +42,8 @@ class GeneratorPageViewController: UIPageViewController
     
     func configurePageControl() {
         
-        pageControl = UIPageControl(frame: CGRect(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY - 380, width: 0, height: 100))
-        
+        pageControl = UIPageControl(frame: CGRect(x: 0, y: UIScreen.main.bounds.minX + 50, width: UIScreen.main.bounds.width, height: 50))
+
         self.pageControl.numberOfPages = pages.count
         self.pageControl.currentPage = 0
         self.pageControl.tintColor = Utils().uicolorFromHex(rgbValue: 0xFFFFFF)

@@ -15,6 +15,12 @@ class CheckButton: UIButton {
         super.init(frame: frame)
         
         unSelectedState()
+        
+        self.layer.cornerRadius = 6
+        self.layer.borderWidth = 0.0
+        self.layer.masksToBounds = true
+        self.layer.borderColor = UIColor.black.cgColor
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -26,7 +32,7 @@ class CheckButton: UIButton {
     
     override func awakeFromNib() {
         self.layer.cornerRadius = 6
-        self.layer.borderWidth = 0.0
+        self.layer.borderWidth = 2.0
         self.layer.masksToBounds = true
     }
     
@@ -62,17 +68,17 @@ class CheckButton: UIButton {
     }
     
     func selectedState() {
-        //self.layer.borderColor = Utils().uicolorFromHex(rgbValue: 0xD53972).cgColor
+        self.layer.cornerRadius = 6
+        self.layer.borderWidth = 2.0
         self.layer.backgroundColor = Utils().uicolorFromHex(rgbValue: 0xFFFFFF).cgColor
         self.setTitleColor(Utils().uicolorFromHex(rgbValue: 0xCA5E85), for: [])
-        self.layer.cornerRadius = 6
     }
     
     func unSelectedState() {
-        self.layer.backgroundColor = Utils().uicolorFromHex(rgbValue: 0xCA5E85).cgColor
-        //self.layer.borderColor = UIColor.white.cgColor
-        self.setTitleColor(Utils().uicolorFromHex(rgbValue: 0xFFFFFF), for: [])
         self.layer.cornerRadius = 6
-
+        self.layer.borderWidth = 2.0
+        self.layer.backgroundColor = Utils().uicolorFromHex(rgbValue: 0xCA5E85).cgColor
+        self.layer.borderColor = UIColor.white.cgColor
+        self.setTitleColor(Utils().uicolorFromHex(rgbValue: 0xFFFFFF), for: [])
     }
 }

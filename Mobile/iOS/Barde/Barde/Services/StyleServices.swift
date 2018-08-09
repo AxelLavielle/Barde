@@ -13,8 +13,7 @@ import Alamofire
 class StyleService {
     
     var styleData = [
-        "Blues",
-        "Jazz"
+        "Blues"
     ]
     
     func initData() -> Bool {

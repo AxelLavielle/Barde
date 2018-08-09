@@ -27,16 +27,22 @@ class InstrumentAccordsViewController: UIViewController {
         instruments?.forEach{instrument in
             y += 50
             
-            let button = CheckButton(frame: CGRect(x: Int(x), y: y, width: 343, height: 30))
+            let button = CheckButton(frame: CGRect(x: Int(x), y: y, width: 300, height: 30))
             button.layer.borderColor = UIColor.white.cgColor
             button.setTitle(instrument.name, for: [])
+
+            button.layer.cornerRadius = 6
+            button.layer.borderWidth = 2.0
+            
+            button.center.x = self.view.center.x;
             
             self.instrumentScrollView.addSubview(button)
             
-            button.topAnchor.constraint(equalTo: instrumentScrollView.topAnchor, constant: 50).isActive = true
-            button.bottomAnchor.constraint(equalTo: instrumentScrollView.bottomAnchor, constant:410).isActive = true
-            button.trailingAnchor.constraint(equalTo: instrumentScrollView.trailingAnchor, constant: 0).isActive = true
-            button.centerXAnchor.constraint(equalTo: instrumentScrollView.centerXAnchor, constant: 0).isActive = true
+            
+            button.widthAnchor.constraint(equalTo: instrumentScrollView.widthAnchor, constant: 0).isActive = true
+            button.trailingAnchor.constraint(equalTo: instrumentScrollView.trailingAnchor, constant: 20).isActive = true
+            button.leadingAnchor.constraint(equalTo: instrumentScrollView.leadingAnchor, constant: 20).isActive = true
+            
             
         }
         //button.addTarget(self, action: #selector(buttonAction), forControlEvents: .TouchUpInside)
