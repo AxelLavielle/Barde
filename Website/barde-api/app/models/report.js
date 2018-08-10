@@ -16,6 +16,11 @@ var ReportSchema = new Schema({
     description: {
         type: String,
         required: true
+    },
+    device: {
+        type: String,
+        enum: ['Android', 'iOS', 'Windows'],
+        required: true
     }
 });
 

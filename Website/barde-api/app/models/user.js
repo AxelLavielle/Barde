@@ -35,8 +35,7 @@ var UserSchema = new Schema({
         }
     },
     dateOfBirth: {
-      type: Date,
-      required: true
+      type: Date
     },
     role: {
         type: String,

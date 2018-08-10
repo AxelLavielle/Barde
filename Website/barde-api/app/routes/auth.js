@@ -86,9 +86,11 @@ function register(req, res, next) {
         res.status(400).send({msg: "No content", data: {message: "UserName cannot be empty."}});
     } else if (!req.body.firstName || !req.body.lastName) {
         res.status(400).send({msg: "No content", data: {message: "FirstName and/or lastName cannot be empty."}});
-    } else if (!req.body.yearOfBirth || !req.body.monthOfBirth || !req.body.dayOfBirth) {
-        res.status(400).send({msg: "No content", data: {message: "DateOfBirth cannot be empty."}});
     } else {
+        var dateOfBirth = null
+        if (req.body.yearOfBirth && req.body.monthOfBirth && req.body.dayOfBirth) {
+            dateOfBirth = new Date(req.body.yearOfBirth, req.body.monthOfBirth, req.body.dayOfBirth);
+        }
         var newUser = new User({
             email: req.body.email,
             password: req.body.password,
@@ -97,7 +99,7 @@ function register(req, res, next) {
               lastName: req.body.lastName,
               userName: req.body.userName,
             },
-            dateOfBirth: new Date(req.body.yearOfBirth, req.body.monthOfBirth, req.body.dayOfBirth),
+            dateOfBirth: dateOfBirth,
         });
 
         newUser.policyPassword(function (error) {

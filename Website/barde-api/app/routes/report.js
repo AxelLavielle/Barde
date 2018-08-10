@@ -154,6 +154,14 @@ function getByPage(req, res, next) {
  *       }
  *     }
  *
+ *  @apiErrorExample 400 - Device param is wrong
+ *     {
+ *       "msg": "Content validation"
+ *       "data": {
+ *          "message": "The device is wrong."
+ *       }
+ *     }
+ *
  * @apiErrorExample 401 - Unauthorized
  *     {
  *       "Unauthorized"
@@ -163,10 +171,15 @@ function getByPage(req, res, next) {
 function post(req, res, next) {
     if (!req.body.description) {
         res.status(400).send({msg: "No content", data: {message: "Description cannot be empty."}});
+    } else if (!req.body.device) {
+        res.status(400).send({msg: "No content", data: {message: "Device cannot be empty."}});
+    } else if (req.body.device != 'Android' && req.body.device != 'Windows' && req.body.device != 'iOS') {
+        res.status(400).send({msg: "Content validation", data: {message: "The device is wrong."}});
     } else {
         var newReport = new Report({
             user: req.user,
             description: req.body.description,
+            device: req.body.device
         });
 
         newReport.save(function (err) {
