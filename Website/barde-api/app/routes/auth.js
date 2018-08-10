@@ -84,19 +84,25 @@ function register(req, res, next) {
         res.status(400).send({msg: "No content", data: {message: "Password cannot be empty."}});
     } else if (!req.body.userName) {
         res.status(400).send({msg: "No content", data: {message: "UserName cannot be empty."}});
-    } else if (!req.body.firstName || !req.body.lastName) {
-        res.status(400).send({msg: "No content", data: {message: "FirstName and/or lastName cannot be empty."}});
     } else {
-        var dateOfBirth = null
+        var dateOfBirth = null;
+        var firstName = null;
+        var lastName = null;
         if (req.body.yearOfBirth && req.body.monthOfBirth && req.body.dayOfBirth) {
             dateOfBirth = new Date(req.body.yearOfBirth, req.body.monthOfBirth, req.body.dayOfBirth);
+        }
+        if (req.body.firstName) {
+            firstName = req.body.firstName;
+        }
+        if (req.body.lastName) {
+            lastName = req.body.lastName;
         }
         var newUser = new User({
             email: req.body.email,
             password: req.body.password,
             name: {
-              firstName: req.body.firstName,
-              lastName: req.body.lastName,
+              firstName: firstName,
+              lastName: lastName,
               userName: req.body.userName,
             },
             dateOfBirth: dateOfBirth,

@@ -21,12 +21,10 @@ var UserSchema = new Schema({
     },
     name: {
         firstName: {
-            type: String,
-            required: true
+            type: String
         },
         lastName: {
-            type: String,
-            required: true
+            type: String
         },
         userName: {
             type: String,
