@@ -17,12 +17,18 @@ class CustomFileManager: NSObject {
     let fileManager = FileManager.default
     
     func createFile(file: URL) {
-        
-//        let pointer = UnsafeBufferPointer(start: [0x0], count: [0x0].count)
-//        let data = Data(buffer:pointer)
-//
-//        fileManager.createFile(atPath: (file.path), contents: data, attributes: nil)
-//        print("create to:", file.path)
+        do {
+            if (!fileExist(file: file.path)) {
+                let data = Data(bytes: [0x0])
+                fileManager.createFile(atPath: (file.path), contents: data, attributes: nil)
+                print("create to:", file.path)
+            }
+            
+            try "".write(to: file, atomically: true, encoding: .utf8)
+            print("remove content")
+        } catch let error {
+            print(error)
+        }
 
     }
     
@@ -50,6 +56,12 @@ class CustomFileManager: NSObject {
         {
             fileManager.createFile(atPath: (url.path), contents: data, attributes: nil)
             print("create to:", url.path)
+        } else {
+            do {
+                try "".write(to: url, atomically: true, encoding: .utf8)
+            } catch {
+                print(error)
+            }
         }
         
         do {
@@ -57,7 +69,7 @@ class CustomFileManager: NSObject {
         
             if fileHandle == nil {
                 print("File open failed")
-                
+                 
                 
             } else {
                 print("write to:", url.path)

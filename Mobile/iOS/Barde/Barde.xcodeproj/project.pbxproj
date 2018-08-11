@@ -21,6 +21,7 @@
 		1D21C980207D6DDB00F12FB6 /* Style+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D21C97C207D6DDB00F12FB6 /* Style+CoreDataProperties.swift */; };
 		1D21C981207D6DDB00F12FB6 /* Instrument+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D21C97D207D6DDB00F12FB6 /* Instrument+CoreDataClass.swift */; };
 		1D37175B1FC74042000C682B /* UtilsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D37175A1FC74042000C682B /* UtilsController.swift */; };
+		1D48BC13211C5E5F00523A00 /* TextFieldManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D48BC12211C5E5F00523A00 /* TextFieldManager.swift */; };
 		1D4C6A851FBF5C410052922E /* SettingsEditAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4C6A841FBF5C410052922E /* SettingsEditAccountView.swift */; };
 		1D4D266B1F8D65C800383255 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4D266A1F8D65C800383255 /* SettingsViewController.swift */; };
 		1D5C188C207C10E300393DFC /* CheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5C188B207C10E300393DFC /* CheckButton.swift */; };
@@ -30,6 +31,7 @@
 		1D6E405D1F8D4E8D006522C8 /* Barde.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E405B1F8D4E8D006522C8 /* Barde.xcdatamodeld */; };
 		1D6E405F1F8D4E8D006522C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D6E405E1F8D4E8D006522C8 /* Assets.xcassets */; };
 		1D6E40621F8D4E8D006522C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D6E40601F8D4E8D006522C8 /* LaunchScreen.storyboard */; };
+		1D7AA83F211E2A7100FA1D67 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7AA83E211E2A7100FA1D67 /* AboutUsViewController.swift */; };
 		1D8EF3FD207D7D880017CE8C /* StyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8EF3FC207D7D880017CE8C /* StyleViewController.swift */; };
 		1D8EF3FF207E96FF0017CE8C /* InstrumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8EF3FE207E96FE0017CE8C /* InstrumentViewController.swift */; };
 		1DA1C5A820B99C7E00D38E50 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DA1C5A720B99C7E00D38E50 /* AVFoundation.framework */; };
@@ -39,7 +41,6 @@
 		1DB6E798211A36C200E337E1 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB6E797211A36C200E337E1 /* FileManager.swift */; };
 		1DB6E79D211A553500E337E1 /* gs_instruments.dls in Resources */ = {isa = PBXBuildFile; fileRef = 1DB6E79C211A553500E337E1 /* gs_instruments.dls */; };
 		1DB6E79F211A558900E337E1 /* GeneralUser GS MuseScore v1.442.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 1DB6E79E211A558900E337E1 /* GeneralUser GS MuseScore v1.442.sf2 */; };
-		1DB6E7A1211A56DE00E337E1 /* FluidR3_GS.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 1DB6E7A0211A56DD00E337E1 /* FluidR3_GS.sf2 */; };
 		1DBE1BD020B98F3C00978BA8 /* InstrumentAccordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBE1BCF20B98F3C00978BA8 /* InstrumentAccordsViewController.swift */; };
 		1DBE1BD220B98F4500978BA8 /* InstrumentArpegesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBE1BD120B98F4500978BA8 /* InstrumentArpegesViewController.swift */; };
 		1DBE1BD420B9925C00978BA8 /* GeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBE1BD320B9925C00978BA8 /* GeneratorViewController.swift */; };
@@ -69,6 +70,7 @@
 		1D21C97C207D6DDB00F12FB6 /* Style+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Style+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1D21C97D207D6DDB00F12FB6 /* Instrument+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Instrument+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1D37175A1FC74042000C682B /* UtilsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsController.swift; sourceTree = "<group>"; };
+		1D48BC12211C5E5F00523A00 /* TextFieldManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldManager.swift; sourceTree = "<group>"; };
 		1D4C6A841FBF5C410052922E /* SettingsEditAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEditAccountView.swift; sourceTree = "<group>"; };
 		1D4D266A1F8D65C800383255 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1D5C188B207C10E300393DFC /* CheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckButton.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 		1D6E405E1F8D4E8D006522C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D6E40611F8D4E8D006522C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D6E40631F8D4E8D006522C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1D7AA83E211E2A7100FA1D67 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		1D8EF3FC207D7D880017CE8C /* StyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleViewController.swift; sourceTree = "<group>"; };
 		1D8EF3FE207E96FE0017CE8C /* InstrumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentViewController.swift; sourceTree = "<group>"; };
 		1DA1C5A720B99C7E00D38E50 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -90,7 +93,6 @@
 		1DB6E797211A36C200E337E1 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		1DB6E79C211A553500E337E1 /* gs_instruments.dls */ = {isa = PBXFileReference; lastKnownFileType = file; path = gs_instruments.dls; sourceTree = "<group>"; };
 		1DB6E79E211A558900E337E1 /* GeneralUser GS MuseScore v1.442.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GeneralUser GS MuseScore v1.442.sf2"; sourceTree = "<group>"; };
-		1DB6E7A0211A56DD00E337E1 /* FluidR3_GS.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = FluidR3_GS.sf2; sourceTree = "<group>"; };
 		1DBE1BCF20B98F3C00978BA8 /* InstrumentAccordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentAccordsViewController.swift; sourceTree = "<group>"; };
 		1DBE1BD120B98F4500978BA8 /* InstrumentArpegesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentArpegesViewController.swift; sourceTree = "<group>"; };
 		1DBE1BD320B9925C00978BA8 /* GeneratorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				1D0AA9CE20E7BF33007FB5EE /* SocketManager.swift */,
 				1D5EADAE210B966700721A3D /* GeneratorManager.swift */,
 				1DB6E797211A36C200E337E1 /* FileManager.swift */,
+				1D48BC12211C5E5F00523A00 /* TextFieldManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -152,7 +155,6 @@
 		1D6E40531F8D4E8D006522C8 /* Barde */ = {
 			isa = PBXGroup;
 			children = (
-				1DB6E7A0211A56DD00E337E1 /* FluidR3_GS.sf2 */,
 				1DB6E79E211A558900E337E1 /* GeneralUser GS MuseScore v1.442.sf2 */,
 				1DB6E79C211A553500E337E1 /* gs_instruments.dls */,
 				1DB1D102211A187F0058E0D7 /* sibeliusGMajor.mid */,
@@ -219,6 +221,7 @@
 				1DB53CE8207AB933007149E5 /* GeneratorPageViewController.swift */,
 				1DBE1BD320B9925C00978BA8 /* GeneratorViewController.swift */,
 				1DA1C5A920B9C53900D38E50 /* ReportProblemViewController.swift */,
+				1D7AA83E211E2A7100FA1D67 /* AboutUsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -301,6 +304,11 @@
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -328,7 +336,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D6E40621F8D4E8D006522C8 /* LaunchScreen.storyboard in Resources */,
-				1DB6E7A1211A56DE00E337E1 /* FluidR3_GS.sf2 in Resources */,
 				1DCD58471F913D29005F85C5 /* SettingMenuButton.xib in Resources */,
 				1D6E405F1F8D4E8D006522C8 /* Assets.xcassets in Resources */,
 				1D6E405A1F8D4E8D006522C8 /* Main.storyboard in Resources */,
@@ -432,6 +439,8 @@
 				1D6E40551F8D4E8D006522C8 /* AppDelegate.swift in Sources */,
 				1D5EADAF210B966700721A3D /* GeneratorManager.swift in Sources */,
 				1DA1C5AA20B9C53900D38E50 /* ReportProblemViewController.swift in Sources */,
+				1D7AA83F211E2A7100FA1D67 /* AboutUsViewController.swift in Sources */,
+				1D48BC13211C5E5F00523A00 /* TextFieldManager.swift in Sources */,
 				1DBE1BD020B98F3C00978BA8 /* InstrumentAccordsViewController.swift in Sources */,
 				1DBE1BD220B98F4500978BA8 /* InstrumentArpegesViewController.swift in Sources */,
 				1D10139C1FE9871900913E43 /* RoundedButton.swift in Sources */,

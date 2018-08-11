@@ -12,21 +12,27 @@ import Alamofire
 
 class SettingsViewController: UIViewController, SettingMenuButtonDelegate, NSFetchedResultsControllerDelegate {
     
+    @IBOutlet weak var aboutUsButton: SettingMenuButton!
     @IBOutlet weak var reportButton: SettingMenuButton!
     @IBOutlet weak var imageRefresh: UIImageView!
     
     var userService: UserService?
     
     func buttonClicked(button: SettingMenuButton, sender: UIButton) {
-        performSegue(withIdentifier: "ReportProblemView", sender: nil)
+        
+        print("button", button.tag)
         
         switch button.tag {
         case 1:
             performSegue(withIdentifier: "ReportProblemView", sender: nil)
+        case 2:
+            performSegue(withIdentifier: "AboutUsView", sender: nil)
         default:
             print("lol")
         }
+
     }
+
     
     @IBAction func buttonBack(_ sender: Any) {
         navigationController?.popViewController(animated: true)
@@ -40,6 +46,7 @@ class SettingsViewController: UIViewController, SettingMenuButtonDelegate, NSFet
         imageRefresh.addGestureRecognizer(tap)
         imageRefresh.isUserInteractionEnabled = true
         
+        
         userService = UserService()
         reportButton.delegate = self
     }
@@ -49,7 +56,6 @@ class SettingsViewController: UIViewController, SettingMenuButtonDelegate, NSFet
         
         let userData: NSManagedObject = (userService?.getLocalData())!
         userService?.updateUserData(data: userData)
-        
     }
     
     

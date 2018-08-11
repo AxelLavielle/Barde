@@ -16,8 +16,8 @@ class GeneratorManager: NSObject {
         super.init()
     }
     
-    func sendData(arr: [UInt8]) {
-       SocketManager.sharedInstance.sendRequest(data: Data(bytes: arr), using: SocketManager.sharedInstance.client)
+    func sendData(arr: [UInt8]) -> Bool {
+       return SocketManager.sharedInstance.sendRequest(data: Data(bytes: arr), using: SocketManager.sharedInstance.client)
     }
 //
 //    func writeDataToFile(arr: [UInt8]) {
@@ -70,17 +70,18 @@ class GeneratorManager: NSObject {
                         print(mid2.count, mid2.count-2)
                         
 
-                        if let index = mid2.index(of: 0x13) {
-                            mid2.remove(at: index)
-                        }
-                        
-                        if let index = mid2.index(of: 0x10) {
-                            mid2.remove(at: index)
-                        }
+//                        if let index = mid2.index(of: 0x13) {
+//                            mid2.remove(at: index)
+//                        }
+//
+//                        if let index = mid2.index(of: 0x10) {
+//                            mid2.remove(at: index)
+//                        }
                         
                         
                         print("MIDI", Array<UInt8>(mid2))
                         CustomFileManager.sharedInstance.writeToFile(file: "file.mid", arr: Array<UInt8>(mid2))
+                        //GeneratorViewController.sharedInstance.startPlaying()
                         break;
                     default:
                         print("NA");

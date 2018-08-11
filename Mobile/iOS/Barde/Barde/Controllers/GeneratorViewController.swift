@@ -42,33 +42,39 @@ class GeneratorViewController: UIViewController {
     {
         print(isPlaying)
         if (isPlaying) {
-            isPlaying = false
             stopPlaying()
         } else {
-            GeneratorManager.sharedInstance.sendData(arr: [0x2, 0x0, 0x0, 0x0, 0x12, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
+            let isOk = GeneratorManager.sharedInstance.sendData(arr: [0x2, 0x0, 0x0, 0x0, 0x12, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
 
-            let btnImage = UIImage(named: "ic_stop")
-            controlButton.setImage(btnImage , for: UIControlState.normal)
-            
-            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCountdown), userInfo: nil, repeats: true)
-
-            
-            createAVMIDIPlayerFromMIDIFIle()
-            //            setSessionPlayer()
-            
-            self.midiPlayer?.play({ () -> Void in
-                print("finished")
-                self.midiPlayer?.currentPosition = 0
-            })
-            isPlaying = true
-          
+            if (isOk) {
+                startPlaying()
+            }
         }
+    }
+    
+    func startPlaying() {
+        
+        let btnImage = UIImage(named: "ic_stop")
+        self.controlButton.setImage(btnImage , for: UIControlState.normal)
+        
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCountdown), userInfo: nil, repeats: true)
+        
+        setSessionPlayer()
+        createAVMIDIPlayerFromMIDIFIle()
+        
+        self.midiPlayer?.play({ () -> Void in
+            print("finished")
+            self.midiPlayer?.currentPosition = 0
+        })
+        
+        isPlaying = true
     }
     
     func stopPlaying() {
         
         stopMidiPlayer()
-        
+        isPlaying = false
+
         let btnImage = UIImage(named: "icon-play")
         controlButton.setImage(btnImage , for: UIControlState.normal)
         
@@ -93,6 +99,7 @@ class GeneratorViewController: UIViewController {
             
             labelCurrentTime.text! = String(format: "%02d:%02d", (intCounter % 3600) / 60, (intCounter % 3600) % 60)
         }
+        // print(">>>", self.midiPlayer?.duration.toHHMMSSString())
         labelFullTime.text = self.midiPlayer?.duration.toHHMMSSString()
         if (labelCurrentTime.text == labelFullTime.text)
         {
@@ -125,7 +132,10 @@ class GeneratorViewController: UIViewController {
             print("DATA:", Array<UInt8>(data))
             try self.midiPlayer = AVMIDIPlayer(data: data, soundBankURL: bankURL)
             print("created midi player with sound bank url \(bankURL)")
+            self.midiPlayer.prepareToPlay()
         } catch let error {
+            Alert.showBasic(on: self, with: "Error generating music", message: "An error is occured. Please try again")
+            stopPlaying()
             print("Error --- \(error.localizedDescription)")
         }
 

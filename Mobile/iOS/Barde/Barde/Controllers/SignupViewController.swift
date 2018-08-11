@@ -21,6 +21,8 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
+    @IBOutlet weak var passwordImageView: UIImageView!
+    @IBOutlet weak var confirmPasswordImageView: UIImageView!
     
     let datePicker = UIDatePicker()
     
@@ -53,7 +55,7 @@ class SignupViewController: UIViewController {
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
         
-        setTextFieldPaddingProperty()
+        configureView()
         createDatePicker()
     }
     
@@ -80,12 +82,7 @@ class SignupViewController: UIViewController {
         if (checkIfEmpty(str: confirmPasswordTextField.text!) || checkIfEmpty(str: emailTextField.text!) || checkIfEmpty(str: passwordTextField.text!) || checkIfEmpty(str: firstnameTextField.text!) || checkIfEmpty(str: lastnameTextField.text!) || checkIfEmpty(str: lastnameTextField.text!)
             || checkIfEmpty(str: usernameTextField.text!) || checkIfEmpty(str: birthdateTextField.text!))
         {
-            let refreshAlert = UIAlertController(title: "Invalid field.", message: "Field cannot be empty.", preferredStyle: UIAlertControllerStyle.alert)
-            
-            refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-            }))
-            
-            present(refreshAlert, animated: true, completion: nil)
+            Alert.showRequiredField(on: self)
         }
         else
         {
@@ -97,12 +94,7 @@ class SignupViewController: UIViewController {
                     
                     if (password != confirmPassword)
                     {
-                        let refreshAlert = UIAlertController(title: "Invalid password.", message: "Passwords are not the same.", preferredStyle: UIAlertControllerStyle.alert)
-                        
-                        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-                        }))
-                        
-                        present(refreshAlert, animated: true, completion: nil)
+                        Alert.showBasic(on: self, with: "Invalid password", message: "Passwords are not the same")
                     }
                     else
                     {
@@ -207,7 +199,7 @@ class SignupViewController: UIViewController {
         return String(str[range])
     }
     
-    func setTextFieldPaddingProperty()
+    func configureView()
     {
         let firstNamePaddingView: UIView = UIView.init(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
         firstnameTextField.leftView = firstNamePaddingView
@@ -236,6 +228,28 @@ class SignupViewController: UIViewController {
         let confirmPasswordPaddingView: UIView = UIView.init(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
         confirmPasswordTextField.leftView = confirmPasswordPaddingView
         confirmPasswordTextField.leftViewMode = .always
+        
+        let passwordTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(passwordIvAction(tapGestureRecognizer:)))
+        passwordImageView.isUserInteractionEnabled = true
+        passwordImageView.addGestureRecognizer(passwordTapGestureRecognizer)
+        
+        let confirmPasswordTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(confirmPasswordIvAction(tapGestureRecognizer:)))
+        confirmPasswordImageView.isUserInteractionEnabled = true
+        confirmPasswordImageView.addGestureRecognizer(confirmPasswordTapGestureRecognizer)
+    }
+    
+    @IBAction func textFieldTouchDown(_ sender: UITextField) {
+        TextFieldManager.sharedInstance.highlightSelected(textfield: sender)
+    }
+    
+    @IBAction func textFieldEditingDidEnd(_ sender: UITextField) {
+        
+        if(sender.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""){
+            TextFieldManager.sharedInstance.errorHighlight(textField: sender)
+        }
+        else {
+            TextFieldManager.sharedInstance.removeErrorHighlight(textField: sender)
+        }
     }
     
     
@@ -248,4 +262,17 @@ class SignupViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @objc func passwordIvAction(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        
+        passwordTextField.isSecureTextEntry = !passwordTextField.isSecureTextEntry
+    }
+    
+    @objc func confirmPasswordIvAction(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        
+        confirmPasswordTextField.isSecureTextEntry = !confirmPasswordTextField.isSecureTextEntry
+    }
 }

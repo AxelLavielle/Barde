@@ -41,9 +41,9 @@ class Utils {
         
         do {
             try context.execute(batchDeleteRequest)
-            
         } catch {
             // Error Handling
+            print(error)
         }
 
     }

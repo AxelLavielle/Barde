@@ -145,7 +145,8 @@ class UserService {
             ]
         
         let parameters: Parameters = [
-            "description":  data
+            "description":  data,
+            "device": "iOS"
         ]
         
         Alamofire.request(Utils().getApiUrl() + "/report/", method:.post, parameters: parameters, headers: headers).responseJSON { response in
