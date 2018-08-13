@@ -13,13 +13,13 @@
     <string name="str_settings">Settings</string>
     <string name="str_dateofbirthday">Birthday</string>
 
-    <string name="str_email_required">Email required</string>
-    <string name="str_password_required">Password required</string>
-    <string name="str_confirm_password_required">Comfirm your password required</string>
-    <string name="str_firstname_required">FirstName required</string>
-    <string name="str_lastname_required">LastName required</string>
-    <string name="str_username_required">UserName required</string>
-    <string name="str_dateofbirthday_required">Birthday required</string>
+    <string name="str_email_required">Email*</string>
+    <string name="str_password_required">Password*</string>
+    <string name="str_confirm_password_required">Comfirm your password*</string>
+    <string name="str_firstname_required">FirstName*</string>
+    <string name="str_lastname_required">LastName*</string>
+    <string name="str_username_required">UserName*</string>
+    <string name="str_dateofbirthday_required">Birthday*</string>
 
     <string name="str_update">Update</string>
     <string name="str_successuful_update">update successful</string>
@@ -77,4 +77,5 @@
     <string name="str_BPM">BPM</string>
     <string name="str_show">SHOW</string>
     <string name="str_hide">HIDE</string>
+    <string name="str_optional_information">Optional information</string>
 </resources>

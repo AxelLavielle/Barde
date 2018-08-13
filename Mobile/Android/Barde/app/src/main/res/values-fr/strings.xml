@@ -13,13 +13,13 @@
     <string name="str_settings">Parametres</string>
     <string name="str_dateofbirthday">Date de naissance</string>
 
-    <string name="str_email_required">Email requis</string>
-    <string name="str_password_required">Mot de passe requis</string>
-    <string name="str_confirm_password_required">Comfirmer votre mot de passe requis</string>
-    <string name="str_firstname_required">Prénom requis</string>
-    <string name="str_lastname_required">Nom de famille requis</string>
-    <string name="str_username_required">Nom utilisateur requis</string>
-    <string name="str_dateofbirthday_required">Date de naissance requis</string>
+    <string name="str_email_required">Email*</string>
+    <string name="str_password_required">Mot de passe*</string>
+    <string name="str_confirm_password_required">Comfirmer votre mot de passe*</string>
+    <string name="str_firstname_required">Prénom*</string>
+    <string name="str_lastname_required">Nom de famille*</string>
+    <string name="str_username_required">Nom utilisateur*</string>
+    <string name="str_dateofbirthday_required">Date de naissance*</string>
 
     <string name="str_update">Metre à jour</string>
     <string name="str_successuful_update">Mise à jour réussie</string>
@@ -76,4 +76,5 @@
     <string name="str_BPM">BPM</string>
     <string name="str_show">VOIR</string>
     <string name="str_hide">CACHER</string>
+    <string name="str_optional_information">Information optionelle</string>
 </resources>

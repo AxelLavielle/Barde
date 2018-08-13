@@ -2,6 +2,7 @@ package com.project.barde.barde.ui.activities
 
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.InputType
@@ -29,6 +30,10 @@ class RegisterActivity : AppCompatActivity(){
     private var dayOfMonth = 0
     private var firstPasswordShowed = false
     private var secondPasswordShowed = false
+    private var emailClicked = false
+    private var usernameClicked = false
+    private var passwordClicked = false
+    private var comfirmpasswordClicked = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         database.api = getString(R.string.api)
@@ -41,6 +46,31 @@ class RegisterActivity : AppCompatActivity(){
         year = yearOfBirth
         month = monthOfBirth
         dayOfMonth = dayOfBirth
+
+
+        //change color to red if clicked
+
+        register_email.setOnFocusChangeListener { view, b ->
+            if (!b){
+                register_email.setHintTextColor(Color.RED)
+            }
+        }
+        register_username.setOnFocusChangeListener { view, b ->
+            if (!b){
+                register_username.setHintTextColor(Color.RED)
+            }
+        }
+        register_password.setOnFocusChangeListener { view, b ->
+            if (!b){
+                register_password.setHintTextColor(Color.RED)
+            }
+        }
+        register_confirm_password.setOnFocusChangeListener { view, b ->
+            if (!b){
+                register_confirm_password.setHintTextColor(Color.RED)
+            }
+        }
+
         register_dateofbirthday.setOnClickListener {
             var datepicker = DatePickerDialog(this, android.R.style.Theme_DeviceDefault_Dialog, DatePickerDialog.OnDateSetListener { datePicker, yearOfBirth, monthOfBirth, dayOfBirth ->
                 register_dateofbirthday.setText("${dayOfBirth}/${monthOfBirth + 1}/${yearOfBirth}")
@@ -76,13 +106,7 @@ class RegisterActivity : AppCompatActivity(){
         }
 
         toRegister.setOnClickListener{
-            if (register_firstname.text.isEmpty()){
-                Toast.makeText(this@RegisterActivity, getString(R.string.str_firstname_cannont_be_empy  ), Toast.LENGTH_SHORT).show()
-            }else if (register_lastname.text.isEmpty()){
-                Toast.makeText(this@RegisterActivity, getString(R.string.str_lastname_cannont_be_empy), Toast.LENGTH_SHORT).show()
-            }else if (register_dateofbirthday.text.isEmpty()){
-                Toast.makeText(this@RegisterActivity, getString(R.string.str_birthday_cannont_be_empy), Toast.LENGTH_SHORT).show()
-            }else if (register_username.text.isEmpty()){
+            if (register_username.text.isEmpty()){
                 Toast.makeText(this@RegisterActivity, getString(R.string.str_username_cannont_be_empy), Toast.LENGTH_SHORT).show()
             }else if (register_email.text.isEmpty()){
                 Toast.makeText(this@RegisterActivity, getString(R.string.str_email_cannont_be_empy), Toast.LENGTH_SHORT).show()
@@ -110,12 +134,6 @@ class RegisterActivity : AppCompatActivity(){
                                 .httpPost(listOf("email" to register_email.text, "password" to register_password.text, "firstName" to register_firstname.text,
                                         "lastName" to register_lastname.text, "userName" to register_username.text, "yearOfBirth" to year, "monthOfBirth" to month,
                                         "dayOfBirth" to dayOfMonth)).responseString{ request, response, result ->
-                                    println("tto = ")
-                                    println(response)
-                                    println("1------------")
-                                    println(request)
-                                    println("2------------")
-                                    println(result)
                                     val register: Login = Gson().fromJson(String(response.data), Login::class.java)
                                     Toast.makeText(this@RegisterActivity, register.data.message, Toast.LENGTH_SHORT).show()
                                     when (result) {
