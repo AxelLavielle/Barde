@@ -76,5 +76,9 @@ struct Alert {
             vc.performSegue(withIdentifier: "ToRootView", sender: vc)
         }
     }
+    
+    static func showUnableToInitializeData(on vc: UIViewController) -> Void {
+        showBasic(on: vc, with: "Unable to intialize data", message: "Data initialization failed. Please reload application.")
+    }
 }
 

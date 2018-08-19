@@ -28,8 +28,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Utils().deleteAllRecord(entity: "Style")
         Utils().deleteAllRecord(entity: "Instrument")
         
-        StyleService().initData()
-        InstrumentService().initData()
+        let styleInit = StyleService().initData()
+        let instruInit = InstrumentService().initData()
+        
+        if (!styleInit || !instruInit) {
+            Alert.showUnableToInitializeData(on: (self.window?.rootViewController)!)
+        }
         
         UserDefaults.standard.removeObject(forKey: "styleArray")
         UserDefaults.standard.removeObject(forKey: "chordsArray")
@@ -63,7 +67,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        // CustomFileManager.sharedInstance.createBankFile()
         CustomFileManager.sharedInstance.createFile(file: CustomFileManager.sharedInstance.getFileUrl(file: "file.mid"))
         // GeneratorViewController.sharedInstance.createAVMIDIPlayerFromMIDIFIle()
         SocketManager.sharedInstance.establishConnection()

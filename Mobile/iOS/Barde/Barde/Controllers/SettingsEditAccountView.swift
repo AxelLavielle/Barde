@@ -47,7 +47,7 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
         
         createDatePicker()
         
-        self.navigationItem.title = "My account"
+        self.navigationItem.title = NSLocalizedString("MyAccount.text", comment: "")
         
         tfFirstName.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
         tfLastName.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)

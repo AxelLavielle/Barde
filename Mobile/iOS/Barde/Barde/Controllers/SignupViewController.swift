@@ -79,8 +79,7 @@ class SignupViewController: UIViewController {
     
     func signUp() {
         
-        if (checkIfEmpty(str: confirmPasswordTextField.text!) || checkIfEmpty(str: emailTextField.text!) || checkIfEmpty(str: passwordTextField.text!) || checkIfEmpty(str: firstnameTextField.text!) || checkIfEmpty(str: lastnameTextField.text!) || checkIfEmpty(str: lastnameTextField.text!)
-            || checkIfEmpty(str: usernameTextField.text!) || checkIfEmpty(str: birthdateTextField.text!))
+        if (checkIfEmpty(str: confirmPasswordTextField.text!) || checkIfEmpty(str: emailTextField.text!) || checkIfEmpty(str: passwordTextField.text!))
         {
             Alert.showRequiredField(on: self)
         }
@@ -89,12 +88,10 @@ class SignupViewController: UIViewController {
             
             if let password = passwordTextField.text {
                 if let confirmPassword = confirmPasswordTextField.text {
-                   
-                    print(password, confirmPassword)
                     
                     if (password != confirmPassword)
                     {
-                        Alert.showBasic(on: self, with: "Invalid password", message: "Passwords are not the same")
+                        Alert.showBasic(on: self, with: NSLocalizedString("WrongContent.text", comment: ""), message: NSLocalizedString("WrongContentDescription.text", comment: ""))
                     }
                     else
                     {
@@ -104,9 +101,9 @@ class SignupViewController: UIViewController {
                             "firstName": firstnameTextField.text ?? "",
                             "lastName": lastnameTextField.text ?? "",
                             "userName": usernameTextField.text ?? "",
-                            "yearOfBirth": getSubstr(str: birthdateTextField.text!, indexStart: 6, indexEnd: 0),
-                            "monthOfBirth": getSubstr(str: birthdateTextField.text!, indexStart: 0, indexEnd: -8),
-                            "dayOfBirth": getSubstr(str: birthdateTextField.text!, indexStart: 3, indexEnd: -5),
+                            "yearOfBirth": (birthdateTextField.text != "" ? getSubstr(str: birthdateTextField.text!, indexStart: 6, indexEnd: 0) : ""),
+                            "monthOfBirth": (birthdateTextField.text != "" ? getSubstr(str: birthdateTextField.text!, indexStart: 0, indexEnd: -8) : ""),
+                            "dayOfBirth": (birthdateTextField.text != "" ? getSubstr(str: birthdateTextField.text!, indexStart: 3, indexEnd: -5) : ""),
                             ]
                         
                         
@@ -140,7 +137,7 @@ class SignupViewController: UIViewController {
                                             case 400:
                                                 let refreshAlert = UIAlertController(title: data["msg"].stringValue, message: data["data"]["message"].stringValue, preferredStyle: UIAlertControllerStyle.alert)
                                                 
-                                                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                                                refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
                                                 }))
                                                 
                                                 self.present(refreshAlert, animated: true, completion: nil)
@@ -155,7 +152,7 @@ class SignupViewController: UIViewController {
                                 case 400:
                                     let refreshAlert = UIAlertController(title: data["msg"].stringValue, message: data["data"]["message"].stringValue, preferredStyle: UIAlertControllerStyle.alert)
                                     
-                                    refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                                    refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
                                     }))
                                     
                                     self.present(refreshAlert, animated: true, completion: nil)
@@ -163,7 +160,7 @@ class SignupViewController: UIViewController {
                                 case 409:
                                     let refreshAlert = UIAlertController(title: data["msg"].stringValue, message: data["data"]["message"].stringValue, preferredStyle: UIAlertControllerStyle.alert)
                                     
-                                    refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                                    refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
                                     }))
                                     
                                     self.present(refreshAlert, animated: true, completion: nil)
@@ -264,14 +261,14 @@ class SignupViewController: UIViewController {
     
     @objc func passwordIvAction(tapGestureRecognizer: UITapGestureRecognizer)
     {
-        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        _ = tapGestureRecognizer.view as! UIImageView
         
         passwordTextField.isSecureTextEntry = !passwordTextField.isSecureTextEntry
     }
     
     @objc func confirmPasswordIvAction(tapGestureRecognizer: UITapGestureRecognizer)
     {
-        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        _ = tapGestureRecognizer.view as! UIImageView
         
         confirmPasswordTextField.isSecureTextEntry = !confirmPasswordTextField.isSecureTextEntry
     }

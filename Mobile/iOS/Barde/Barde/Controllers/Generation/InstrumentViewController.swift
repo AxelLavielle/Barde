@@ -20,10 +20,7 @@ class InstrumentAccordsViewController: UIViewController {
         let instruments = InstrumentService().getAll()
         let x = 8
         var y = 0
-        
-        print("////")
-        print(instruments)
-        
+  
         instruments?.forEach{instrument in
             y += 50
             
@@ -38,15 +35,10 @@ class InstrumentAccordsViewController: UIViewController {
             
             self.instrumentScrollView.addSubview(button)
             
-            
             button.widthAnchor.constraint(equalTo: instrumentScrollView.widthAnchor, constant: 0).isActive = true
             button.trailingAnchor.constraint(equalTo: instrumentScrollView.trailingAnchor, constant: 20).isActive = true
             button.leadingAnchor.constraint(equalTo: instrumentScrollView.leadingAnchor, constant: 20).isActive = true
-            
-            
         }
-        //button.addTarget(self, action: #selector(buttonAction), forControlEvents: .TouchUpInside)
-        
     }
     
 }

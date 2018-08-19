@@ -1,0 +1,203 @@
+
+/* Class = "UILabel"; text = "Arpeggios"; ObjectID = "0JH-L2-H5P"; */
+"0JH-L2-H5P.text" = "Arpéges";
+
+/* Class = "UILabel"; text = "1.0"; ObjectID = "0NI-0F-yyH"; */
+"0NI-0F-yyH.text" = "1.0";
+
+/* Class = "UILabel"; text = "Welcome on Barde"; ObjectID = "0Xn-TO-srq"; */
+"0Xn-TO-srq.text" = "Bievenue sur Barde";
+
+/* Class = "UILabel"; text = "Create an account to enjoy all the features of Barde."; ObjectID = "1Ab-qh-0Yq"; */
+"1Ab-qh-0Yq.text" = "Créer votre compte et profitez de toutes les fonctionnalités que vous offre Barde.";
+
+/* Class = "UIButton"; normalTitle = "LOG IN"; ObjectID = "1Gu-pm-u0p"; */
+"1Gu-pm-u0p.normalTitle" = "SE CONNECTER";
+
+/* Class = "UILabel"; text = "1.0"; ObjectID = "1j9-D6-v4R"; */
+"1j9-D6-v4R.text" = "1.0";
+
+/* Class = "UITabBarItem"; title = "Generator"; ObjectID = "1z3-kL-09T"; */
+"1z3-kL-09T.title" = "Génération";
+
+/* Class = "UITabBarItem"; title = "Profile"; ObjectID = "28z-yQ-xQx"; */
+"28z-yQ-xQx.title" = "Profil";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "2Mp-71-grf"; */
+"2Mp-71-grf.title" = "Retour";
+
+/* Class = "UITabBarItem"; title = "Generator"; ObjectID = "59F-6N-wbx"; */
+"59F-6N-wbx.title" = "Générateur";
+
+/* Class = "UIButton"; normalTitle = "X"; ObjectID = "5kD-Zd-ADf"; */
+"5kD-Zd-ADf.normalTitle" = "X";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "5xC-Id-Vq2"; */
+"5xC-Id-Vq2.text" = "Email";
+
+/* Class = "UILabel"; text = "You are offline. Please verify your connection"; ObjectID = "62v-aV-Lsc"; */
+"62v-aV-Lsc.text" = "Vous êtes hors-ligne. Vérifier votre connexion.";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "6bc-6i-APP"; */
+"6bc-6i-APP.title" = "Retour";
+
+/* Class = "UILabel"; text = "Choose your tempo"; ObjectID = "9JX-WV-BsW"; */
+"9JX-WV-BsW.text" = "Choisissez votre rythme";
+
+/* Class = "UILabel"; text = "200"; ObjectID = "9Ql-W0-cnX"; */
+"9Ql-W0-cnX.text" = "200";
+
+/* Class = "UIButton"; normalTitle = "REGISTER"; ObjectID = "AkG-La-3m4"; */
+"AkG-La-3m4.normalTitle" = "S'INSCRIRE";
+
+/* Class = "UIButton"; normalTitle = "REGISTER"; ObjectID = "Cd8-Ml-n3O"; */
+"Cd8-Ml-n3O.normalTitle" = "S'INSCRIRE";
+
+/* Class = "UITextField"; placeholder = "Birthdate"; ObjectID = "E9R-P7-TAj"; */
+"E9R-P7-TAj.placeholder" = "Date de naissance";
+
+/* Class = "UILabel"; text = "00:00:00"; ObjectID = "Etq-6Z-D4P"; */
+"Etq-6Z-D4P.text" = "00:00:00";
+
+/* Class = "UITextField"; placeholder = "Email*"; ObjectID = "FKp-Sc-uDc"; */
+"FKp-Sc-uDc.placeholder" = "Email*";
+
+/* Class = "UITextField"; placeholder = "Firstname"; ObjectID = "G7d-ez-8UO"; */
+"G7d-ez-8UO.placeholder" = "Prénom";
+
+/* Class = "UIButton"; normalTitle = "X"; ObjectID = "GRe-JE-c5J"; */
+"GRe-JE-c5J.normalTitle" = "X";
+
+/* Class = "UIButton"; normalTitle = "LOG IN"; ObjectID = "J0r-7P-hXE"; */
+"J0r-7P-hXE.normalTitle" = "SE CONNECTER";
+
+/* Class = "UILabel"; text = "Optional information"; ObjectID = "JmO-AN-2eL"; */
+"JmO-AN-2eL.text" = "Informations optionnels";
+
+/* Class = "UIViewController"; title = "Style"; ObjectID = "LUa-jO-tvr"; */
+"LUa-jO-tvr.title" = "Style";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "M2L-j6-VWS"; */
+"M2L-j6-VWS.title" = "Retour";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "PZH-Tv-3wM"; */
+"PZH-Tv-3wM.title" = "Retour";
+
+/* Class = "UIViewController"; title = "StyleArpeges"; ObjectID = "Qyr-e2-YM5"; */
+"Qyr-e2-YM5.title" = "StyleArpeges";
+
+/* Class = "UILabel"; text = "Username"; ObjectID = "Sww-Ar-Eos"; */
+"Sww-Ar-Eos.text" = "Pseudonyme";
+
+/* Class = "UILabel"; text = "Birthdate"; ObjectID = "TC9-uP-93a"; */
+"TC9-uP-93a.text" = "Date de naissance";
+
+/* Class = "UILabel"; text = "Barde is a multiplatform application for instrumental audio streaming. Our service is aimed at professionals in the tertiary sector but the application will also be available to the general public. The user of Barde will be able in a few clicks to create his musical atmosphere in the style of his choice and Barde will be responsible for generating it indefinitely."; ObjectID = "UYA-oc-Zjs"; */
+"UYA-oc-Zjs.text" = "Avec Barde vous créez, en quelques clics et avec un large choix de réglages, votre ambiance musicale pour votre repas entre amis, votre séance de sport ou votre moment de détente. Blues, Reggae ou encore House, vous choisissez le style qui vous correspond le mieux pour générer une ambiance adaptée à votre humeur.";
+
+/* Class = "UILabel"; text = "Choose your instrument"; ObjectID = "VfK-oK-Bq9"; */
+"VfK-oK-Bq9.text" = "Choisissez votre instrument";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "WY0-hC-0ba"; */
+"WY0-hC-0ba.title" = "Paramétres";
+
+/* Class = "UILabel"; text = "Choose your instrument"; ObjectID = "XRv-9a-jyy"; */
+"XRv-9a-jyy.text" = "Choisissez votre instrument";
+
+/* Class = "UITextField"; placeholder = "Lastname"; ObjectID = "XXl-fO-pxL"; */
+"XXl-fO-pxL.placeholder" = "Nom";
+
+/* Class = "UILabel"; text = "You are offline, connect to the internet"; ObjectID = "Z5n-PN-LuE"; */
+"Z5n-PN-LuE.text" = "Vous êtes hors-ligne, connectez-vous";
+
+/* Class = "UIViewController"; title = "About us"; ObjectID = "adI-Bi-v0y"; */
+"adI-Bi-v0y.title" = "À propos";
+
+/* Class = "UITextField"; placeholder = "Confirm your password*"; ObjectID = "bTf-FL-wlP"; */
+"bTf-FL-wlP.placeholder" = "Confirmez votre mot de passe*";
+
+/* Class = "UITextField"; placeholder = "Password*"; ObjectID = "cQ3-nB-3tP"; */
+"cQ3-nB-3tP.placeholder" = "Mot de passe*";
+
+/* Class = "UILabel"; text = "Choose your syle"; ObjectID = "d95-4l-KaR"; */
+"d95-4l-KaR.text" = "Choisissez votre style";
+
+/* Class = "UIPageViewController"; title = "Generator"; ObjectID = "dY9-BA-8Ar"; */
+"dY9-BA-8Ar.title" = "Générateur";
+
+/* Class = "UILabel"; text = "contact@barde.io"; ObjectID = "eiY-V6-dTj"; */
+"eiY-V6-dTj.text" = "contact@barde.io";
+
+/* Class = "UILabel"; text = "70"; ObjectID = "euU-Te-CYC"; */
+"euU-Te-CYC.text" = "70";
+
+/* Class = "UILabel"; text = "Chords"; ObjectID = "fp2-5j-JIm"; */
+"fp2-5j-JIm.text" = "Accords";
+
+/* Class = "UIViewController"; title = "Tempo"; ObjectID = "hHC-Ev-5El"; */
+"hHC-Ev-5El.title" = "Rythme";
+
+/* Class = "UIBarButtonItem"; title = "aaa"; ObjectID = "heQ-al-CNN"; */
+"heQ-al-CNN.title" = "aaa";
+
+/* Class = "UILabel"; text = "Current"; ObjectID = "hjx-jP-HZQ"; */
+"hjx-jP-HZQ.text" = "Current";
+
+/* Class = "UILabel"; text = "2018 © Barde - All rights reserved"; ObjectID = "iXw-L3-JI8"; */
+"iXw-L3-JI8.text" = "2018 © Barde - Tous droits réservés";
+
+/* Class = "UITextField"; placeholder = "Password*"; ObjectID = "kjT-Xt-gLq"; */
+"kjT-Xt-gLq.placeholder" = "Mot de passe*";
+
+/* Class = "UILabel"; text = "Contact"; ObjectID = "kkr-rM-GBY"; */
+"kkr-rM-GBY.text" = "Contact";
+
+/* Class = "UIButton"; normalTitle = "LOG OUT"; ObjectID = "klj-4F-L8D"; */
+"klj-4F-L8D.normalTitle" = "SE DÉCONNECTER";
+
+/* Class = "UILabel"; text = "Firstname Lastname"; ObjectID = "kux-mi-axL"; */
+"kux-mi-axL.text" = "Prénom Nom";
+
+/* Class = "UITextField"; placeholder = "E-mail*"; ObjectID = "mM8-wS-Vrs"; */
+"mM8-wS-Vrs.placeholder" = "Email*";
+
+/* Class = "UILabel"; text = "Refresh data"; ObjectID = "nRR-yx-WT1"; */
+"nRR-yx-WT1.text" = "Rafraichir les données";
+
+/* Class = "UIViewController"; title = "StyleAccords"; ObjectID = "nYJ-dD-XVo"; */
+"nYJ-dD-XVo.title" = "StyleAccords";
+
+/* Class = "UILabel"; text = "An Epitech Innovative Project\n"; ObjectID = "pS6-Hv-4hr"; */
+"pS6-Hv-4hr.text" = "Un \"Epitech Innovative Project\"\n";
+
+/* Class = "UITabBarItem"; title = "Playlists"; ObjectID = "pvO-tc-jV8"; */
+"pvO-tc-jV8.title" = "Listes de lecture";
+
+/* Class = "UITextField"; placeholder = "Username*"; ObjectID = "q9N-iu-omh"; */
+"q9N-iu-omh.placeholder" = "Pseudonyme*";
+
+/* Class = "UILabel"; text = "Playlists"; ObjectID = "qPx-ER-0bf"; */
+"qPx-ER-0bf.text" = "Listes de lecture";
+
+/* Class = "UIViewController"; title = "Mon profil"; ObjectID = "tjl-98-PcY"; */
+"tjl-98-PcY.title" = "Mon profil";
+
+/* Class = "UILabel"; text = "Firstname"; ObjectID = "viV-tO-SbW"; */
+"viV-tO-SbW.text" = "Prénom";
+
+/* Class = "UILabel"; text = "Lastname"; ObjectID = "wdi-sj-zeN"; */
+"wdi-sj-zeN.text" = "Nom";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "wqf-IZ-ApV"; */
+"wqf-IZ-ApV.text" = "00:00";
+
+/* Class = "UILabel"; text = "Version"; ObjectID = "z8n-GM-V2B"; */
+"z8n-GM-V2B.text" = "Version";
+
+
+/* Class = "UILabel"; text = "An Epitech Innovative Project\n"; ObjectID = "zxv-Nt-bFW"; */
+"zxv-Nt-bFW.text" = "Un \"Epitech Innovative Project\"\n";
+
+
+/* Class = "UILabel"; text = "2018 © Barde - All rights reserved"; ObjectID = "GAS-hB-6mi"; */
+"GAS-hB-6mi.text" = "2018 © Barde - Tous droits réservés";

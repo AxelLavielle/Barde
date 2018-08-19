@@ -17,7 +17,8 @@ class AboutUsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "About us"
+        self.navigationItem.title = NSLocalizedString("AboutUs.text", comment: "")
+
 
         configureView()
     }
@@ -25,7 +26,7 @@ class AboutUsViewController: UIViewController {
     func configureView() {
         let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject
     
-        versionNumber.text = nsObject as! String
+        versionNumber.text = nsObject as? String
         
     }
     

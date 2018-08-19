@@ -48,7 +48,7 @@ class CustomFileManager: NSObject {
     func writeToFile(file: String, arr: [UInt8]) {
         let pointer = UnsafeBufferPointer(start: arr, count: arr.count)
         let data = Data(buffer:pointer)
-        var url = getFileUrl(file: file)
+        let url = getFileUrl(file: file)
         
         let isExist = fileExist(file: file)
         
@@ -92,15 +92,6 @@ class CustomFileManager: NSObject {
     
     func getFileUrl(file: String) -> URL {
         return getDirectory().appendingPathComponent(file)
-    }
-    
-    func createBankFile() {
-        do {
-            try makeWritableCopy(named: "FluidR3_GS.sf2", ofResourceFile: "FluidR3_GS.sf2")
-        } catch let error {
-            // errorLabel.text = "\(error)"
-            print("Error \(error)")
-        }
     }
     
     func makeWritableCopy(named destFileName: String, ofResourceFile originalFileName: String) throws -> URL {

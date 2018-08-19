@@ -30,10 +30,10 @@ class GeneratorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupView()
+        configureView()
     }
     
-    func setupView() {
+    func configureView() {
         navSlider.value = 0.0
         navSlider.setThumbImage(UIImage(named: "ic_circle"), for: UIControlState.normal)
         let btnImage = UIImage(named: "icon-play")
@@ -41,6 +41,8 @@ class GeneratorViewController: UIViewController {
         controlButton.addTarget(self, action: #selector(GeneratorViewController.playButtonTapped(_:)), for: .touchUpInside)
         labelCurrentTime.text = "00:00"
         labelFullTime.text = "00:00"
+        
+        
     }
     
     var isPlaying: Bool = false
@@ -50,11 +52,10 @@ class GeneratorViewController: UIViewController {
         if (isPlaying) {
             stopPlaying()
         } else {
-            let isOk = GeneratorManager.sharedInstance.sendData(arr: [0x2, 0x0, 0x0, 0x0, 0x12, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
+            GeneratorManager.sharedInstance.sendData(arr: [0x2, 0x0, 0x0, 0x0, 0x12, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
 
-            if (isOk) {
-                startPlaying()
-            }
+            startPlaying()
+            
         }
     }
     
@@ -148,7 +149,7 @@ class GeneratorViewController: UIViewController {
             self.midiPlayer.prepareToPlay()
             setupSlider()
         } catch let error {
-            Alert.showBasic(on: self, with: "Error generating music", message: "An error is occured. Please try again")
+            Alert.showBasic(on: self, with: NSLocalizedString("ErrorGenerating.text", comment: ""), message: NSLocalizedString("ErrorGeneratingDescription.text", comment: ""))
             stopPlaying()
             print("Error --- \(error.localizedDescription)")
         }

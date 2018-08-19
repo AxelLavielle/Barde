@@ -21,9 +21,10 @@ class ReportProblemViewController: UIViewController, UITextViewDelegate {
         
         userService = UserService()
 
-        self.navigationItem.title = "Comment"
-        tvDescription.text = "Write your message..."
+        self.navigationItem.title = NSLocalizedString("Comment.text", comment: "")
+        tvDescription.text = NSLocalizedString("WriteAMessage.text", comment: "")
         tvDescription.textColor = .lightGray
+        
     }
     
     @IBAction func backButtonAction(_ sender: Any) {
@@ -41,15 +42,15 @@ class ReportProblemViewController: UIViewController, UITextViewDelegate {
         
         self.navigationItem.setHidesBackButton(true, animated: false)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(validChange(_:)))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(dismissChange(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Send.text", comment: ""), style: .plain, target: self, action: #selector(validChange(_:)))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel.text", comment: ""), style: .plain, target: self, action: #selector(dismissChange(_:)))
     }
     
     func textViewDidEndEditing(_ textView: UITextView)
     {
         if (tvDescription.text == "")
         {
-            tvDescription.text = "Write your message..."
+            tvDescription.text = NSLocalizedString("WriteAMessage.text", comment: "")
             tvDescription.textColor = .lightGray
         }
         tvDescription.resignFirstResponder()
@@ -62,7 +63,7 @@ class ReportProblemViewController: UIViewController, UITextViewDelegate {
             {
                 userService?.reportProblem(data: description)
                 
-                Alert.showBasic(on: self, with: "Message sent", message: "Your message has been sent.")
+                Alert.showBasic(on: self, with: NSLocalizedString("MessageSent.text", comment: ""), message: NSLocalizedString("MessageSentDescription.text", comment: ""))
            
                 self.navigationItem.setHidesBackButton(false, animated: true)
                 self.navigationItem.rightBarButtonItem = nil;

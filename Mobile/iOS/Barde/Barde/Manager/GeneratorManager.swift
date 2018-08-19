@@ -16,8 +16,12 @@ class GeneratorManager: NSObject {
         super.init()
     }
     
-    func sendData(arr: [UInt8]) -> Bool {
-       return SocketManager.sharedInstance.sendRequest(data: Data(bytes: arr), using: SocketManager.sharedInstance.client)
+    func sendData(arr: [UInt8]) {
+       let res = SocketManager.sharedInstance.sendRequest(data: Data(bytes: arr), using: SocketManager.sharedInstance.client)
+        
+        if res {
+            print("request ok")
+        }
     }
 //
 //    func writeDataToFile(arr: [UInt8]) {
@@ -62,26 +66,14 @@ class GeneratorManager: NSObject {
                 let res = SocketManager.sharedInstance.readResponse(from: SocketManager.sharedInstance.client)
                 
                 if (res != nil) {
-                    print("RES:", res, "RES0>", res![0])
+                    print("RES:", res as Any, "RES0>", res![0])
                     switch (res![0])
                     {
                     case 4:
-                        var mid2 = res![4..<res!.count]
-                        print(mid2.count, mid2.count-2)
-                        
-
-//                        if let index = mid2.index(of: 0x13) {
-//                            mid2.remove(at: index)
-//                        }
-//
-//                        if let index = mid2.index(of: 0x10) {
-//                            mid2.remove(at: index)
-//                        }
-                        
+                        let mid2 = res![4..<res!.count]
                         
                         print("MIDI", Array<UInt8>(mid2))
                         CustomFileManager.sharedInstance.writeToFile(file: "file.mid", arr: Array<UInt8>(mid2))
-                        //GeneratorViewController.sharedInstance.startPlaying()
                         break;
                     default:
                         print("NA");

@@ -31,12 +31,7 @@ class FirstPageViewController: UIViewController {
         }
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let ivc = storyboard.instantiateViewController(withIdentifier: "FirstPageViewController")
-//        ivc.modalTransitionStyle = .crossDissolve
-//        self.present(ivc, animated: true)
-        
+    override func viewDidAppear(_ animated: Bool) {    
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
         let tokenExist = UserDefaults.exists(key: "Token")

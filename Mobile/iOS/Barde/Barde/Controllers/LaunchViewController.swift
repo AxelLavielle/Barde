@@ -30,7 +30,7 @@ class LaunchViewController: UIViewController {
     func configureView() {
         let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject
         
-        versionNumberLabel.text = nsObject as! String
+        versionNumberLabel.text = nsObject as? String
     }
     
     private func showOfflinePage() -> Void {

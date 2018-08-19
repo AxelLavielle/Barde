@@ -88,7 +88,7 @@ class LoginViewController: UIViewController {
     
     @objc func passwordIvAction(tapGestureRecognizer: UITapGestureRecognizer)
     {
-        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        _ = tapGestureRecognizer.view as! UIImageView
         
         passwordTextField.isSecureTextEntry = !passwordTextField.isSecureTextEntry
     }
@@ -125,7 +125,7 @@ class LoginViewController: UIViewController {
                         }
                         break
                     case 400:
-                        let refreshAlert = UIAlertController(title: "Wrong content", message: "The email or password is incorrect.", preferredStyle: UIAlertControllerStyle.alert)
+                        let refreshAlert = UIAlertController(title: NSLocalizedString("WrongContent.text", comment: ""), message: NSLocalizedString("WrongContentDescription.text", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
                         
                         refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
                         }))

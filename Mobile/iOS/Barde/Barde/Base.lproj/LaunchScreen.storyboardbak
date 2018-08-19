@@ -18,12 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018 © Barde - All rights reserved" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBD-yf-7HG">
-                                <rect key="frame" x="0.0" y="498" width="375" height="14"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="0.79215686269999996" green="0.36862745099999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="UOc-w6-2Pp">
                                 <rect key="frame" x="62.5" y="208.5" width="250" height="250"/>
                                 <constraints>
@@ -31,15 +25,7 @@
                                     <constraint firstAttribute="height" constant="250" id="R26-hx-Eof"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IUF-qq-now">
-                                <rect key="frame" x="0.0" y="478.5" width="375" height="14.5"/>
-                                <string key="text">An Epitech Innovative Project
-</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="0.79215686269999996" green="0.36862745099999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.0.3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htC-tP-SuS" userLabel="APP_VERSION">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.0.4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htC-tP-SuS" userLabel="APP_VERSION">
                                 <rect key="frame" x="170" y="626" width="35.5" height="21"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -49,13 +35,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="htC-tP-SuS" secondAttribute="bottom" constant="20" id="6Ee-bm-YNi"/>
-                            <constraint firstAttribute="trailing" secondItem="fBD-yf-7HG" secondAttribute="trailing" id="9sd-RP-qPp"/>
-                            <constraint firstItem="fBD-yf-7HG" firstAttribute="top" secondItem="IUF-qq-now" secondAttribute="bottom" constant="5" id="F86-jU-7Dq"/>
-                            <constraint firstItem="IUF-qq-now" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Jbr-0O-nCC"/>
-                            <constraint firstItem="IUF-qq-now" firstAttribute="top" secondItem="UOc-w6-2Pp" secondAttribute="bottom" constant="20" id="bz7-z2-eYp"/>
                             <constraint firstItem="htC-tP-SuS" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="jFC-EB-7zb"/>
-                            <constraint firstItem="fBD-yf-7HG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="oLP-Or-N8r"/>
-                            <constraint firstItem="IUF-qq-now" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ob8-V1-IEF"/>
                             <constraint firstItem="UOc-w6-2Pp" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="tMz-0v-pt4"/>
                             <constraint firstItem="UOc-w6-2Pp" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="z0P-E8-mu2"/>
                         </constraints>

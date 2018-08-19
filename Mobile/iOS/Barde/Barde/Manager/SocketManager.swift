@@ -22,7 +22,8 @@ class SocketManager: NSObject {
     func establishConnection() {
         switch client.connect(timeout: 10) {
         case .success:
-            readResponse(from: client)
+            let ret = readResponse(from: client)
+            print(ret as Any);
             GeneratorManager.sharedInstance.listeningServer()
             print("SUCCESS SOCKET")
         case .failure(let error):

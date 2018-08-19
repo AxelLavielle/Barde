@@ -50,6 +50,13 @@ class SettingsViewController: UIViewController, SettingMenuButtonDelegate, NSFet
         userService = UserService()
         reportButton.delegate = self
         aboutUsButton.delegate = self
+        
+        configureView()
+    }
+    
+    func configureView() {
+        reportButton.titleLabel.text = NSLocalizedString("MakeAComment.text", comment: "")
+        aboutUsButton.titleLabel.text = NSLocalizedString("AboutUs.text", comment: "")
     }
     
     

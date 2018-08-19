@@ -23,10 +23,7 @@ class ProfileViewController: UIViewController, SettingMenuButtonDelegate, NSFetc
         
         switch button.tag {
         case 1:
-//            let indexPath = NSIndexPath(row: 0, section: 0)
-//            let profil = controller.object(at: indexPath as IndexPath)
-//
-            
+           
             let profil: NSManagedObject
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Profil")
             //request.predicate = NSPredicate(format: "age = %@", "12")
@@ -39,7 +36,6 @@ class ProfileViewController: UIViewController, SettingMenuButtonDelegate, NSFetc
                 for data in result as! [NSManagedObject] {
                     
                     profil = data
-                    print("AAAAA", profil)
                     performSegue(withIdentifier: "SettingsEditAccountView", sender: profil)
                     return
                 }
@@ -70,8 +66,6 @@ class ProfileViewController: UIViewController, SettingMenuButtonDelegate, NSFetc
         do {
             let result = try context.fetch(request)
             
-            print("okkkkkk")
-            
             for data in result as! [NSManagedObject] {
                 
                 print(data)
@@ -87,36 +81,27 @@ class ProfileViewController: UIViewController, SettingMenuButtonDelegate, NSFetc
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        configureView()
+    }
+    
+    func configureView() {
+    
+        accountButton.titleLabel.text = NSLocalizedString("EditProfile.text", comment: "")
+        
+    }
+    
     @IBAction func logoutButtonAction(_ sender: Any) {
-        
-//        let alertController = UIAlertController(title: "Log out", message: "Would you like to log out ?", preferredStyle: .actionSheet)
-//
-//        alertController.addAction(UIAlertAction(title: "Log out", style: .destructive, handler: { (action) -> Void in
-//            print("Delete button tapped")
-//            Utils().deleteAllRecord(entity: "Profil")
-//            UserDefaults.standard.removeObject(forKey: "Token")
-//
-//            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//            let newViewController = storyBoard.instantiateViewController(withIdentifier: "FirstPageViewController") as! FirstPageViewController
-//            self.present(newViewController, animated: true, completion: nil)
-//        }))
-//
-//        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
-//            print("Cancel button tapped")
-//        }))
-//
-//        self.present(alertController, animated: true, completion: nil)
-
         Alert.showLogoutAction(on: self)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         attemptFetch()
     }
     
-    @objc func imageSettingsAction()
-    {
+    @objc func imageSettingsAction() {
         performSegue(withIdentifier: "segueGoToSettings", sender: nil)
     }
     

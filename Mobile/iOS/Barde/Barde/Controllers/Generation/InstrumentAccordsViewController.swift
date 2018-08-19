@@ -25,9 +25,6 @@ class InstrumentChordsViewController: UIViewController {
         let x = 8
         var y = 0
         
-        print("////")
-        print(instruments)
-        
         instruments?.forEach{instrument in
             y += 50
             

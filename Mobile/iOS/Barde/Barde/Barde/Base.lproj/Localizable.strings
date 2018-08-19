@@ -1,0 +1,47 @@
+/* 
+  Localizable.strings
+  Barde
+
+  Created by Arnaud Perrault on 19/08/2018.
+  Copyright © 2018 Arnaud Perrault. All rights reserved.
+*/
+
+"EditProfile.text" = "Edit profil";
+
+"MakeAComment.text" = "Make a comment";
+
+"AboutUs.text" = "About us";
+
+"Comment.text" = "Comment";
+
+"WriteAMessage.text" = "Write your comment...";
+
+"MyAccount.text" = "My account";
+
+"AnEIP.text" = "An Epitech Innovative Project";
+
+"AllRightReserved" = "All rights reserved";
+
+"LogOut.text" = "Log out";
+
+"LogOutDescription.text" = "Would you like to log out ?";
+
+"Cancel.text" = "Cancel";
+
+"MessageSent.text" = "Message sent";
+
+"MessageSentDescription.text" = "Your message has been sent.";
+
+"Send.text" = "Send";
+
+"EmptyUsername.text" = "Field \"Username\" can't be empty.";
+
+"WrongContent.text" = "Wrong content";
+
+"EmailPasswordIncorrect.text" = "The email or password is incorrect.";
+
+"NotSamePassword.text" = "Passwords are not the same";
+
+"ErrorGenerating.text" = "Error generating music";
+
+"ErrorGeneratingDescription.text" = "An error is occured. Please try again";

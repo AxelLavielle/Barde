@@ -1,0 +1,47 @@
+/* 
+  Localizable.strings
+  Barde
+
+  Created by Arnaud Perrault on 19/08/2018.
+  Copyright © 2018 Arnaud Perrault. All rights reserved.
+*/
+
+"EditProfile.text" = "Editer votre profil";
+
+"MakeAComment.text" = "Soumettre un commentaire";
+
+"AboutUs.text" = "À propos";
+
+"Comment.text" = "Commentaire";
+
+"WriteAMessage.text" = "Écrivez votre commentaire...";
+
+"MyAccount.text" = "Mon compte";
+
+"AnEIP.text" = "Un \"Epitech Innovative Project\"";
+
+"AllRightReserved" = "Tous droits réservés";
+
+"LogOut.text" = "Se déconnecter";
+
+"LogOutDescription.text" = "Voulez-vous vous déconnecter ?";
+
+"Cancel.text" = "Annuler";
+
+"MessageSent.text" = "Message envoyé";
+
+"MessageSentDescription.text" = "Votre message a bien été envoyé.";
+
+"Send.text" = "Envoyer";
+
+"EmptyUsername.text" = "Le champs \"Pseudonyme\" est requis.";
+
+"WrongContent.text" = "Mauvais contenu";
+
+"EmailPasswordIncorrect.text" = "L'email ou le mot de passe est incorrecte.";
+
+"NotSamePassword.text" = "Les mots de passe sont différents.";
+
+"ErrorGenerating.text" = "Erreur lors de la génération";
+
+"ErrorGeneratingDescription.text" = "Une erreur est survenue. Merci de réessayer.";
