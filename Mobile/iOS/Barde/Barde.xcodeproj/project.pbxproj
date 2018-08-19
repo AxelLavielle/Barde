@@ -31,6 +31,8 @@
 		1D6E405D1F8D4E8D006522C8 /* Barde.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E405B1F8D4E8D006522C8 /* Barde.xcdatamodeld */; };
 		1D6E405F1F8D4E8D006522C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D6E405E1F8D4E8D006522C8 /* Assets.xcassets */; };
 		1D6E40621F8D4E8D006522C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D6E40601F8D4E8D006522C8 /* LaunchScreen.storyboard */; };
+		1D79C4E12121A2E9005E531D /* OfflinePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D79C4E02121A2E9005E531D /* OfflinePageViewController.swift */; };
+		1D79C4E32121FDCC005E531D /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D79C4E22121FDCC005E531D /* LaunchViewController.swift */; };
 		1D7AA83F211E2A7100FA1D67 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7AA83E211E2A7100FA1D67 /* AboutUsViewController.swift */; };
 		1D8EF3FD207D7D880017CE8C /* StyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8EF3FC207D7D880017CE8C /* StyleViewController.swift */; };
 		1D8EF3FF207E96FF0017CE8C /* InstrumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8EF3FE207E96FE0017CE8C /* InstrumentViewController.swift */; };
@@ -82,6 +84,8 @@
 		1D6E405E1F8D4E8D006522C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D6E40611F8D4E8D006522C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D6E40631F8D4E8D006522C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1D79C4E02121A2E9005E531D /* OfflinePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflinePageViewController.swift; sourceTree = "<group>"; };
+		1D79C4E22121FDCC005E531D /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		1D7AA83E211E2A7100FA1D67 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		1D8EF3FC207D7D880017CE8C /* StyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleViewController.swift; sourceTree = "<group>"; };
 		1D8EF3FE207E96FE0017CE8C /* InstrumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +226,8 @@
 				1DBE1BD320B9925C00978BA8 /* GeneratorViewController.swift */,
 				1DA1C5A920B9C53900D38E50 /* ReportProblemViewController.swift */,
 				1D7AA83E211E2A7100FA1D67 /* AboutUsViewController.swift */,
+				1D79C4E02121A2E9005E531D /* OfflinePageViewController.swift */,
+				1D79C4E22121FDCC005E531D /* LaunchViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -277,9 +283,9 @@
 				628D0DF77E9D1447370E9C0D /* [CP] Check Pods Manifest.lock */,
 				1D6E404D1F8D4E8D006522C8 /* Sources */,
 				1D6E404E1F8D4E8D006522C8 /* Frameworks */,
+				1DE7F3FE2128FDCD00C1123F /* ShellScript */,
 				1D6E404F1F8D4E8D006522C8 /* Resources */,
 				D09CD37A6A9DCFC5FB715BF2 /* [CP] Embed Pods Frameworks */,
-				1DB19EAF21199E5D0069CBE0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -348,18 +354,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1DB19EAF21199E5D0069CBE0 /* ShellScript */ = {
+		1DE7F3FE2128FDCD00C1123F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
+			);
+			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
+			shellScript = "#   ON/OFF Script Toggle (script ON with #, script OFF without #)\n#exit 0\n\n#   App vesion / Build version constants\nversionNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$INFOPLIST_FILE\")\n\n#   Output version & build numbers into a label on LaunchScreen.storyboard\nsed -i bak -e \"/userLabel=\\\"APP_VERSION\\\"/s/text=\\\"[^\\\"]*\\\"/text=\\\"$versionNumber\\\"/\" \"$PROJECT_DIR/$PROJECT_NAME/Base.lproj/LaunchScreen.storyboard\"\n";
 		};
 		628D0DF77E9D1447370E9C0D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -421,9 +431,11 @@
 				1DD7B1E2203F63CE0038E838 /* Profil+CoreDataProperties.swift in Sources */,
 				1DCD58491F913D36005F85C5 /* SettingMenuButton.swift in Sources */,
 				1DB6E798211A36C200E337E1 /* FileManager.swift in Sources */,
+				1D79C4E12121A2E9005E531D /* OfflinePageViewController.swift in Sources */,
 				1DC8525A1FCD0DAD009E9886 /* ProfileViewController.swift in Sources */,
 				1D8EF3FF207E96FF0017CE8C /* InstrumentViewController.swift in Sources */,
 				1D4C6A851FBF5C410052922E /* SettingsEditAccountView.swift in Sources */,
+				1D79C4E32121FDCC005E531D /* LaunchViewController.swift in Sources */,
 				1D21C965207C23C100F12FB6 /* TempoViewController.swift in Sources */,
 				1DD7B1DA203CD5AB0038E838 /* NetworkManager.swift in Sources */,
 				1D4D266B1F8D65C800383255 /* SettingsViewController.swift in Sources */,

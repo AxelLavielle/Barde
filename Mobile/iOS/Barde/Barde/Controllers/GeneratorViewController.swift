@@ -16,6 +16,7 @@ class GeneratorViewController: UIViewController {
     // this one is from a midi file
     var midiPlayer: AVMIDIPlayer!
     
+    @IBOutlet weak var navSlider: UISlider!
     @IBOutlet weak var errorLabel: UILabel!
     var playButton:UIButton?
     @IBOutlet weak var controlButton: UIButton!
@@ -28,7 +29,13 @@ class GeneratorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupView()
+    }
     
+    func setupView() {
+        navSlider.value = 0.0
+        navSlider.setThumbImage(UIImage(named: "ic_circle"), for: UIControlState.normal)
         let btnImage = UIImage(named: "icon-play")
         controlButton.setImage(btnImage , for: UIControlState.normal)
         controlButton.addTarget(self, action: #selector(GeneratorViewController.playButtonTapped(_:)), for: .touchUpInside)
@@ -40,7 +47,6 @@ class GeneratorViewController: UIViewController {
     
     @objc func playButtonTapped(_ sender:UIButton)
     {
-        print(isPlaying)
         if (isPlaying) {
             stopPlaying()
         } else {
@@ -54,16 +60,22 @@ class GeneratorViewController: UIViewController {
     
     func startPlaying() {
         
-        let btnImage = UIImage(named: "ic_stop")
-        self.controlButton.setImage(btnImage , for: UIControlState.normal)
+       
         
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCountdown), userInfo: nil, repeats: true)
+        // timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCountdown), userInfo: nil, repeats: true)
         
         setSessionPlayer()
         createAVMIDIPlayerFromMIDIFIle()
         
+        let btnImage = UIImage(named: "ic_stop")
+        self.controlButton.setImage(btnImage , for: UIControlState.normal)
         self.midiPlayer?.play({ () -> Void in
             print("finished")
+            
+            DispatchQueue.main.async {
+                self.stopPlaying()
+            }
+            
             self.midiPlayer?.currentPosition = 0
         })
         
@@ -77,11 +89,11 @@ class GeneratorViewController: UIViewController {
 
         let btnImage = UIImage(named: "icon-play")
         controlButton.setImage(btnImage , for: UIControlState.normal)
-        
-        timer.invalidate()
+
+        // timer.invalidate()
         labelCurrentTime.text = "00:00"
         labelFullTime.text = "00:00"
-        intCounter = 0
+        // intCounter = 0
         GeneratorManager.sharedInstance.sendData(arr: [0x2, 0x0, 0x0, 0x0, 0x22, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
     }
     
@@ -89,6 +101,7 @@ class GeneratorViewController: UIViewController {
         if let player = self.midiPlayer {
             if player.isPlaying {
                 player.stop()
+                self.stopPlaying()
             }
         }
     }
@@ -133,6 +146,7 @@ class GeneratorViewController: UIViewController {
             try self.midiPlayer = AVMIDIPlayer(data: data, soundBankURL: bankURL)
             print("created midi player with sound bank url \(bankURL)")
             self.midiPlayer.prepareToPlay()
+            setupSlider()
         } catch let error {
             Alert.showBasic(on: self, with: "Error generating music", message: "An error is occured. Please try again")
             stopPlaying()
@@ -140,5 +154,53 @@ class GeneratorViewController: UIViewController {
         }
 
         self.midiPlayer?.prepareToPlay()
+    }
+    
+    var sliderTimer: Timer?
+    
+    func setupSlider() {
+        sliderTimer = Timer.scheduledTimer(timeInterval: 0.1,
+                                           target: self,
+                                           selector: #selector(updateSlider),
+                                           userInfo: nil,
+                                           repeats: true)
+        
+        if let duration = midiPlayer?.duration {
+            navSlider.maximumValue = Float(duration)
+            navSlider.value = 0.0
+            print("duration \(duration)")
+        }
+        navSlider.addTarget(self, action: #selector(sliderChanged(sender:)), for: .valueChanged)
+    }
+    
+    @objc func updateSlider() {
+        if let player = self.midiPlayer {
+            navSlider.value = Float(player.currentPosition)
+            labelCurrentTime.text = player.currentPosition.toHHMMSSString()
+            labelFullTime.text = player.duration.toHHMMSSString()
+        }
+    }
+    
+    
+    @IBAction func sliderChanged(sender: UISlider) {
+        sliderTimer?.invalidate()
+        
+        if let player = self.midiPlayer {
+            player.stop()
+            player.currentPosition = TimeInterval(sender.value)
+            player.prepareToPlay()
+            setupSlider()
+            let btnImage = UIImage(named: "ic_stop")
+            self.controlButton.setImage(btnImage , for: UIControlState.normal)
+            player.play({ () -> Void in
+                
+                DispatchQueue.main.async {
+                    self.stopPlaying()
+                }
+                
+            })
+            
+            isPlaying = true
+        }
     }
 }

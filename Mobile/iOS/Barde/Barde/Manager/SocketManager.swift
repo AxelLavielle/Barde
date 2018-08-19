@@ -20,7 +20,7 @@ class SocketManager: NSObject {
     }
 
     func establishConnection() {
-        switch client.connect(timeout: 1000) {
+        switch client.connect(timeout: 10) {
         case .success:
             readResponse(from: client)
             GeneratorManager.sharedInstance.listeningServer()

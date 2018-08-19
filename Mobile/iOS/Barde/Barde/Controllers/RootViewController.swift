@@ -13,10 +13,16 @@ import SwiftyJSON
 import CoreData
 
 class RootViewController: UITabBarController, NSFetchedResultsControllerDelegate {
-    
+
     var controller: NSFetchedResultsController <Profil>!
-    
+    let network = NetworkManager.sharedInstance
+
     override func viewDidLoad() {
+        
+        network.reachability.whenUnreachable = { reachability in
+            self.showOfflinePage()
+        }
+
         let headers: HTTPHeaders = [
             "Authorization": UserDefaults.standard.string(forKey: "Token")!,
             ]
@@ -75,4 +81,12 @@ class RootViewController: UITabBarController, NSFetchedResultsControllerDelegate
             }
         }
     }
+    
+    
+    private func showOfflinePage() -> Void {
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "NetworkUnavailable", sender: self)
+        }
+    }
+    
 }

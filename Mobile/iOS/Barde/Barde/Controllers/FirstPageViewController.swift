@@ -13,7 +13,24 @@ class FirstPageViewController: UIViewController {
     
     @IBOutlet weak var buttonRegister: RoundButton!
     @IBOutlet weak var buttonLogin: RoundButton!
+    let network = NetworkManager.sharedInstance
+
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        network.reachability.whenUnreachable = { reachability in
+            self.showOfflinePage()
+        }
+    
+    }
+    
+    private func showOfflinePage() -> Void {
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "NetworkUnavailable", sender: self)
+        }
+    }
+
     override func viewDidAppear(_ animated: Bool) {
 //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
 //        let ivc = storyboard.instantiateViewController(withIdentifier: "FirstPageViewController")
@@ -30,28 +47,7 @@ class FirstPageViewController: UIViewController {
             buttonLogin.isEnabled = true
             buttonRegister.isEnabled = true
         }
-        
-        NetworkManager.sharedInstance.reachability?.whenUnreachable = { reachability in
-            
-            self.showOfflinePage()
-            
-            let refreshAlert = UIAlertController(title: "No internet connection", message: "Make sure you device is connected to the internet", preferredStyle: UIAlertControllerStyle.alert)
-            
-            refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-            }))
-            
-            let alertWindow = UIWindow(frame: UIScreen.main.bounds)
-            alertWindow.rootViewController = UIViewController()
-            alertWindow.windowLevel = UIWindowLevelAlert + 1;
-            alertWindow.makeKeyAndVisible()
-            
-            alertWindow.rootViewController?.present(refreshAlert, animated: true, completion: nil)
-        }
+     
     }
     
-    private func showOfflinePage() -> Void {
-        DispatchQueue.main.async {
-            self.performSegue(withIdentifier: "NetworkUnavailable", sender: self)
-        }
-    }
 }

@@ -49,6 +49,7 @@ class SettingsViewController: UIViewController, SettingMenuButtonDelegate, NSFet
         
         userService = UserService()
         reportButton.delegate = self
+        aboutUsButton.delegate = self
     }
     
     

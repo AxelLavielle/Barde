@@ -63,5 +63,18 @@ struct Alert {
         //alert.popoverPresentationController?.sourceView = vc.view
         vc.present(alert, animated: true, completion: nil)
     }
+    
+    
+    static func showOfflinePage(on vc: UIViewController) -> Void {
+        DispatchQueue.main.async {
+            vc.performSegue(withIdentifier: "NetworkUnavailable", sender: vc)
+        }
+    }
+    
+    static func showMainPage(on vc: UIViewController) -> Void {
+        DispatchQueue.main.async {
+            vc.performSegue(withIdentifier: "ToRootView", sender: vc)
+        }
+    }
 }
 
