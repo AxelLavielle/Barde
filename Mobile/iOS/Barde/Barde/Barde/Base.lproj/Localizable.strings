@@ -30,18 +30,34 @@
 
 "MessageSent.text" = "Message sent";
 
-"MessageSentDescription.text" = "Your message has been sent.";
+"MessageSentDescription.text" = "Your message has been sent";
 
 "Send.text" = "Send";
 
-"EmptyUsername.text" = "Field \"Username\" can't be empty.";
+"EmptyUsername.text" = "Field \"Username\" can't be empty";
 
 "WrongContent.text" = "Wrong content";
+"WrongContentDescription.text" = "The email or password is incorrect";
 
-"EmailPasswordIncorrect.text" = "The email or password is incorrect.";
+"EmailPasswordIncorrect.text" = "The email or password is incorrect";
 
 "NotSamePassword.text" = "Passwords are not the same";
 
 "ErrorGenerating.text" = "Error generating music";
 
 "ErrorGeneratingDescription.text" = "An error is occured. Please try again";
+
+"IncompleteForm.text" = "Incomplete form";
+"IncompleteFormDescription.text" = "Please fill out all fields in the form";
+
+"UnableToRetrieveData.text" = "Unable to retrieve data";
+"UnableToRetrieveDataDescription.text" = "Data can't be get. Please try again later";
+
+"UnableToConnectToGeneratorServer.text" = "Unable to connect to generator server";
+"UnableToConnectToGeneratorServerDescription.text" = "Generator server is unreachable. Please try again later";
+
+"UnableToConnectToDataServer.text" = "Unable to connect to data server";
+"UnableToConnectToDataServerDescription.text" = "Data server is unreachable. Please try again later";
+
+"UnableToInitializeData.text" = "Unable to intialize data";
+"UnableToInitializeDataDescription.text" = "Data initialization failed. Please restart application.";

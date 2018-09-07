@@ -37,6 +37,7 @@
 "EmptyUsername.text" = "Le champs \"Pseudonyme\" est requis.";
 
 "WrongContent.text" = "Mauvais contenu";
+"WrongContentDescription.text" = "Identifiant ou mot de passe incorrect.";
 
 "EmailPasswordIncorrect.text" = "L'email ou le mot de passe est incorrecte.";
 
@@ -45,3 +46,18 @@
 "ErrorGenerating.text" = "Erreur lors de la génération";
 
 "ErrorGeneratingDescription.text" = "Une erreur est survenue. Merci de réessayer.";
+
+"IncompleteForm.text" = "Formulaire incomplet";
+"IncompleteFormDescription.text" = "Veuillez remplir tous les champs obligatoire";
+
+"UnableToRetrieveData.text" = "Impossible de récupérer les données";
+"UnableToRetrieveDataDescription.text" = "Les données ne peuvent pas être récupérées. Merci de réessayer plus tard.";
+
+"UnableToConnectToGeneratorServer.text" = "Impossible de se connecter au serveur de génération";
+"UnableToConnectToGeneratorServerDescription.text" = "Le serveur de génération n'est pas joignable. Veuillez réessayer.";
+
+"UnableToConnectToDataServer.text" = "Impossible de se connecter au serveur de données";
+"UnableToConnectToDataServerDescription.text" = "Impossible de se connecter au serveur de donnée. Veuillez réessayer.";
+
+"UnableToInitializeData.text" = "Impossible d'initialiser les données";
+"UnableToInitializeDataDescription.text" = "L'initialisation a échoué. Veuillez redémarrer l'application.";

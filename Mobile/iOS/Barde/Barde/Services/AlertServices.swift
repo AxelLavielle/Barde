@@ -18,23 +18,23 @@ struct Alert {
     }
     
     static func showIncompleteForm(on vc:UIViewController) {
-        showBasic(on: vc, with: "Incomplete form", message: "Please fill out all fields in the form")
+        showBasic(on: vc, with: NSLocalizedString("IncompleteForm.text", comment: ""), message: NSLocalizedString("IncompleteFormDescription.text", comment: ""))
     }
     
     static func showRequiredField (on vc:UIViewController) {
-        showBasic(on: vc, with: "Incomplete form", message: "Please fill out all required fields in the form")
+        showBasic(on: vc, with: NSLocalizedString("IncompleteForm.text", comment: ""), message: NSLocalizedString("IncompleteForm.text", comment: ""))
     }
     
     static func showUnableToRetrieveData(on vc: UIViewController) {
-        showBasic(on: vc, with: "Unable to retrieve data", message: "Network error")
+        showBasic(on: vc, with: NSLocalizedString("UnableToRetrieveData.text", comment: ""), message: NSLocalizedString("UnableToRetrieveDataDescription.text", comment: ""))
     }
     
     static func showUnableToConnectToGeneratorServer(on vc:UIViewController) {
-        showBasic(on: vc, with: "Unable to connect to generator server", message: "Network error")
+        showBasic(on: vc, with: NSLocalizedString("UnableToConnectToGeneratorServer.text", comment: ""), message: NSLocalizedString("UnableToConnectToGeneratorServerDescription.text", comment: ""))
     }
     
     static func showUnableToConnectToDataServer(on vc:UIViewController) {
-        showBasic(on: vc, with: "Unable to connect to data server", message: "Network error")
+        showBasic(on: vc, with:  NSLocalizedString("UnableToConnectToDataServer.text", comment: ""), message:  NSLocalizedString("UnableToConnectToDataServerDescription.text", comment: ""))
     }
     
     static func showAction (on vc: UIViewController, with title:String, message: String) -> UIAlertController {
@@ -44,9 +44,9 @@ struct Alert {
     }
     
     static func showLogoutAction(on vc: UIViewController) {
-        let alert = showAction(on: vc, with: "Log out", message: "Would you like to log out ?")
+        let alert = showAction(on: vc, with: NSLocalizedString("LogOut.text", comment: ""), message: NSLocalizedString("LogOutDescription.text", comment: ""))
       
-        alert.addAction(UIAlertAction(title: "Log out", style: .destructive, handler: { (action) -> Void in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("LogOut.text", comment: ""), style: .destructive, handler: { (action) -> Void in
             print("Delete button tapped")
             Utils().deleteAllRecord(entity: "Profil")
             UserDefaults.standard.removeObject(forKey: "Token")
@@ -56,7 +56,7 @@ struct Alert {
             vc.present(newViewController, animated: true, completion: nil)
         }))
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel.text", comment: ""), style: .cancel, handler: { (action) -> Void in
             print("Cancel button tapped")
         }))
         
@@ -78,7 +78,7 @@ struct Alert {
     }
     
     static func showUnableToInitializeData(on vc: UIViewController) -> Void {
-        showBasic(on: vc, with: "Unable to intialize data", message: "Data initialization failed. Please reload application.")
+        showBasic(on: vc, with: NSLocalizedString("UnableToInitializeData.text", comment: ""), message: NSLocalizedString("UnableToInitializeDataDescription.text", comment: ""))
     }
 }
 

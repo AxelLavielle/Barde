@@ -100,19 +100,19 @@ Avec son aspect social, vous pouvez partager vos musiques et écouter celles de 
 Tout cela est possible grâce à une intelligence artificielle qui vous génère en temps réel une musique simple, infinie et modulable !";
 
 /* Class = "UILabel"; text = "Choose your instrument"; ObjectID = "VfK-oK-Bq9"; */
-"VfK-oK-Bq9.text" = "Choisissez votre instrument";
+"VfK-oK-Bq9.text" = "Choisissez vos instruments";
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "WY0-hC-0ba"; */
 "WY0-hC-0ba.title" = "Paramétres";
 
 /* Class = "UILabel"; text = "Choose your instrument"; ObjectID = "XRv-9a-jyy"; */
-"XRv-9a-jyy.text" = "Choisissez votre instrument";
+"XRv-9a-jyy.text" = "Choisissez vos instruments";
 
 /* Class = "UITextField"; placeholder = "Lastname"; ObjectID = "XXl-fO-pxL"; */
 "XXl-fO-pxL.placeholder" = "Nom";
 
 /* Class = "UILabel"; text = "You are offline, connect to the internet"; ObjectID = "Z5n-PN-LuE"; */
-"Z5n-PN-LuE.text" = "Vous êtes hors-ligne, connectez-vous";
+"Z5n-PN-LuE.text" = "Vous êtes hors-ligne, veuillez vous connecter";
 
 /* Class = "UIViewController"; title = "About us"; ObjectID = "adI-Bi-v0y"; */
 "adI-Bi-v0y.title" = "À propos";
@@ -205,3 +205,4 @@ Tout cela est possible grâce à une intelligence artificielle qui vous génère
 
 /* Class = "UILabel"; text = "2018 © Barde - All rights reserved"; ObjectID = "GAS-hB-6mi"; */
 "GAS-hB-6mi.text" = "2018 © Barde - Tous droits réservés";
+

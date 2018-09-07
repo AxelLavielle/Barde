@@ -113,11 +113,11 @@ class LoginViewController: UIViewController {
                 // response serialization result
                 
                 if let httpStatusCode = response.response?.statusCode {
+                    let data = JSON(response.result.value!)
                     switch(httpStatusCode) {
                     case 200:
                         
                         if ((response.result.value) != nil) {
-                            let data = JSON(response.result.value!)
                             
                             UserDefaults.standard.set(data["data"]["token"].stringValue, forKey: "Token")
                             UserDefaults.standard.set(self.emailTextField.text, forKey: "Email")
