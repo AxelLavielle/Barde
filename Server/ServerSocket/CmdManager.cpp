@@ -168,7 +168,6 @@ void CmdManager::managePlayerCtrl(int *buffer, Client &client, size_t bufferSize
   {
     std::cerr << "Error Player control command unknow." << std::endl;
     sendResponseMessage(BAD_REQUEST, UNKNOW_REQUEST, 0, client, "Bad Request : Player control command unknow.\r\n");
-    std::cout << "After sendResponseMessage" << std::endl;
   }
 }
 
@@ -201,19 +200,6 @@ void CmdManager::parseMessage(int *buffer, Client &client, size_t bufferSize)
     sendResponseMessage(0x1F4, UNKNOW_REQUEST, 0, client, "Bad Request : command unknow.\r\n");
     return;
   }
-
-  //For Debug
-  // if (bufferSize > 0 && buffer[0] == 'P')
-  // {
-  //   std::cout << "The client want to play something" << std::endl;
-  //   _threadPool.addClient(client);
-  // }
-  // else if (bufferSize > 0 && buffer[0] == 'S')
-  // {
-  //   std::cout << "The client want to stop playing" << std::endl;
-  //   _threadPool.removeClient(client);
-  // }
-  //END debug
 }
 
 void CmdManager::disconnectClient(const Client & client)

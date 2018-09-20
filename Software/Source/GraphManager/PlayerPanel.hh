@@ -57,7 +57,7 @@ private:
 	FlexGroup				_styleGroup;
 	SimpleLabel				_styleLabel;
 	ToggleButton			_bluesButton;
-	ToggleButton			_raggaeButton;
+	ToggleButton			_reggaeButton;
 	ToggleButton			_houseButton;
 
 	StringArray				_instrusChoice;

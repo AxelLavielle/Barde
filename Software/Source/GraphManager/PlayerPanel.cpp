@@ -26,11 +26,11 @@ PlayerPanel::PlayerPanel(MusicParameters & musicParameters) : _musicParameters(m
 
 	GuiFactory::initToggleButton("Blues", "Blues", _bluesButton, true);
 	_bluesButton.addListener(this);
-	GuiFactory::initToggleButton("Reggae (Comming soon !)", "Reggae", _raggaeButton);
-	_raggaeButton.addListener(this);
+	GuiFactory::initToggleButton("Reggae", "Reggae", _reggaeButton);
+	_reggaeButton.addListener(this);
 	GuiFactory::initToggleButton("House (Coming soon !)", "House", _houseButton);
 	_houseButton.addListener(this);
-	GuiFactory::initHoryzontalFlexGroup({ GuiFactory::createFlexItem(_bluesButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_raggaeButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_houseButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1) }, _styleGroup);
+	GuiFactory::initHoryzontalFlexGroup({ GuiFactory::createFlexItem(_bluesButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_reggaeButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_houseButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1) }, _styleGroup);
 	addFlexItem(_styleGroup, 300, 100);
 
 	initMusicParameters();
@@ -172,7 +172,10 @@ void PlayerPanel::buttonClicked(Button * button)
 		else if (button->getName() == "Blues" || button->getName() == "Reggae" || button->getName() == "House")
 		{
 			if (button->getToggleState())
+			{
 				_styleGroup.refreshExclusiveToggleItems(button->getButtonText().toStdString());
+				_musicParameters.setStyleName(button->getButtonText().toStdString());
+			}
 		}
 }
 
