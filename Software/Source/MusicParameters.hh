@@ -45,7 +45,6 @@ public:
 	int getFreeChannel() const;
 	const short *getFreeChannels() const;
 
-
 private:
 	void initFreeChannels();
 

@@ -62,6 +62,8 @@ public:
    *  \return Midi file containing the music
    */
   void			launch(std::vector<MusicParameters> &graph2genQ, std::vector<std::pair<Midi, int> > &gen2playQ, std::mutex &_graph2genM, std::mutex &_gen2playM, bool &stop);
+  Midi			createMusic_blues(const MusicParameters &parameters);
+  Midi			createMusic_reggae(const MusicParameters &parameters);
   Midi			createMusic(const MusicParameters &parameters);
 
 private:

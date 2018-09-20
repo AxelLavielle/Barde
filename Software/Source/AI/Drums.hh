@@ -16,10 +16,12 @@ public:
 	static void					initialize(MidiManager &_midiManager, std::vector<Instrument> &drumInstruments);
 
 private:
-	static	void				createPattern(std::array<std::array<int, 12>, 3> &drumPattern);
+	static	void				createPatternBlues(std::array<std::vector<bool>, 3> &drumPattern, int size);
+	static	void				createPatternReggae(std::array<std::vector<bool>, 3> &drumPattern, int size);
 	static	t_note				createNote(char instru, int bar_pos);
-	static	std::vector<t_note>	createBar(std::array<std::array<int, 12>, 3> drumPattern);
-	static void					blues(std::vector<std::vector<t_note>> &pattern, int total_bar);
+	static	std::vector<t_note>	createBar(std::array<std::vector<bool>, 3> drumPattern, int size);
+	static void					blues(std::vector<std::vector<t_note>> &pattern);
+	static void					reggae(std::vector<std::vector<t_note>> &pattern);
 };
 
 #endif // DRUMS_HH_

@@ -49,7 +49,7 @@ class Disposition {
      *  \param chordsGrid : Chords to play
      *  \return Modifies the MidiManager contained into the MusicParameters object
      */
-   static void	placeChords(MidiManager	&_midiManager, const MusicParameters &parameters, std::vector<std::pair<char, char> > chordsGrid);
+   static void	placeChords(MidiManager	&_midiManager, const MusicParameters &parameters, std::vector<std::pair<char, char> > chordsGrid, double time);
 
    /*!
      *  \brief Places chords into a MidiManager object stored into a MusicParameters object

@@ -11,7 +11,7 @@ Disposition::~Disposition()
 
 }
 
-void		Disposition::placeChords(MidiManager &_midiManager, const MusicParameters &parameters, std::vector<std::pair<char, char> > chordsGrid)
+void		Disposition::placeChords(MidiManager &_midiManager, const MusicParameters &parameters, std::vector<std::pair<char, char> > chordsGrid, double time)
 {
   Chords chords;
   std::vector<Instrument> instruments;
@@ -34,9 +34,8 @@ void		Disposition::placeChords(MidiManager &_midiManager, const MusicParameters 
       	if (y != 0)
       	  scaleAdjust = (notesFromChord[y] < notesFromChord[y-1] ? 0 : 1);
       	note = (notesFromChord[y] / 8) + ((chordsGrid[x].second + scaleAdjust) * 12);
-		_midiManager.noteOn(instruments[i].channel, note, instruments[i].velocity, beats + 1);
-	//	_midiManager.noteOn(instruments[i].channel, note, instruments[i].velocity, Time::getMillisecondCounterHiRes() * 0.001 - startTime);
-      	_midiManager.noteOff(instruments[i].channel, note, instruments[i].velocity, beats + 1 + TIMES_PER_BAR);
+		_midiManager.noteOn(instruments[i].channel, note, instruments[i].velocity, beats + 1 + time);
+      	_midiManager.noteOff(instruments[i].channel, note, instruments[i].velocity, beats + 1 + time + TIMES_PER_BAR);
           }
 	  beats += TIMES_PER_BAR;
     }
