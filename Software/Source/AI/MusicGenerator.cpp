@@ -48,9 +48,9 @@ void			MusicGenerator::launch(std::vector<MusicParameters> &_graph2genQ, std::ve
 
 Midi			MusicGenerator::createMusic(const MusicParameters &parameters)
 {
-	if (parameters.getStyleName().compare("Blues"))
+	if (!parameters.getStyleName().compare("Blues"))
 		return (createMusic_blues(parameters));
-	else if (parameters.getStyleName().compare("Raggae"))
+	else if (!parameters.getStyleName().compare("Reggae"))
 		return (createMusic_reggae(parameters));
 	return (*(new Midi()));
 }
