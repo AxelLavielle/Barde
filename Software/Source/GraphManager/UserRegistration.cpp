@@ -70,12 +70,12 @@ UserRegistration::UserRegistration(CmdManager & cmdManager) : _cmdManager(cmdMan
 	_lastNameLabel.setJustificationType(Justification::right);
 
 	addAndMakeVisible(_userNameLabel);
-	_userNameLabel.setText("UserName:", dontSendNotification);
+	_userNameLabel.setText("*UserName:", dontSendNotification);
 	_userNameLabel.attachToComponent(&_userNameTextEditor, true);
 	_userNameLabel.setJustificationType(Justification::right);
 
 	addAndMakeVisible(_emailLabel);
-	_emailLabel.setText("Email:", dontSendNotification);
+	_emailLabel.setText("*Email:", dontSendNotification);
 	_emailLabel.attachToComponent(&_emailTextEditor, true);
 	_emailLabel.setJustificationType(Justification::right);
 
@@ -85,14 +85,50 @@ UserRegistration::UserRegistration(CmdManager & cmdManager) : _cmdManager(cmdMan
 	_emailLabel.setJustificationType(Justification::right);
 
 	addAndMakeVisible(_passwordLabel);
-	_passwordLabel.setText("Password:", dontSendNotification);
+	_passwordLabel.setText("*Password:", dontSendNotification);
 	_passwordLabel.attachToComponent(&_passwordTextEditor, true);
 	_passwordLabel.setJustificationType(Justification::right);
 
 	addAndMakeVisible(_passwordConfirmationLabel);
-	_passwordConfirmationLabel.setText("Confirm password:", dontSendNotification);
+	_passwordConfirmationLabel.setText("*Confirm password:", dontSendNotification);
 	_passwordConfirmationLabel.attachToComponent(&_passwordConfirmationTextEditor, true);
 	_passwordConfirmationLabel.setJustificationType(Justification::right);
+
+
+	addAndMakeVisible(_firstNameError);
+	_firstNameError.setText("", dontSendNotification);
+	_firstNameError.attachToComponent(&_firstNameTextEditor, false);
+	_firstNameError.setJustificationType(Justification::centredLeft);
+
+	addAndMakeVisible(_lastNameError);
+	_lastNameError.setText("", dontSendNotification);
+	_lastNameError.attachToComponent(&_lastNameTextEditor, false);
+	_lastNameError.setJustificationType(Justification::centredLeft);
+
+	addAndMakeVisible(_userNameError);
+	_userNameError.setText("", dontSendNotification);
+	_userNameError.attachToComponent(&_userNameTextEditor, false);
+	_userNameError.setJustificationType(Justification::centredLeft);
+
+	addAndMakeVisible(_emailError);
+	_emailError.setText("", dontSendNotification);
+	_emailError.attachToComponent(&_emailTextEditor, false);
+	_emailError.setJustificationType(Justification::centredLeft);
+
+	addAndMakeVisible(_dateOfBirthError);
+	_dateOfBirthError.setText("", dontSendNotification);
+	_dateOfBirthError.attachToComponent(&_dateOfBirthTextEditor, false);
+	_dateOfBirthError.setJustificationType(Justification::centredLeft);
+
+	addAndMakeVisible(_passwordError);
+	_passwordError.setText("", dontSendNotification);
+	_passwordError.attachToComponent(&_passwordTextEditor, false);
+	_passwordError.setJustificationType(Justification::centredLeft);
+
+	addAndMakeVisible(_passwordConfirmationError);
+	_passwordConfirmationError.setText("", dontSendNotification);
+	_passwordConfirmationError.attachToComponent(&_passwordConfirmationTextEditor, false);
+	_passwordConfirmationError.setJustificationType(Justification::centredLeft);
 
 
 	addAndMakeVisible(_saveButton);
@@ -207,6 +243,14 @@ void UserRegistration::ThemeChanged()
 	_passwordLabel.setColour(Label::textColourId, Colour(Theme::getInstance().getButtonColor()));
 	_passwordConfirmationLabel.setColour(Label::textColourId, Colour(Theme::getInstance().getButtonColor()));
 
+	_firstNameError.setColour(Label::textColourId, Colour(Theme::getInstance().getErrorTextColor()));
+	_lastNameError.setColour(Label::textColourId, Colour(Theme::getInstance().getErrorTextColor()));
+	_userNameError.setColour(Label::textColourId, Colour(Theme::getInstance().getErrorTextColor()));
+	_emailError.setColour(Label::textColourId, Colour(Theme::getInstance().getErrorTextColor()));
+	_dateOfBirthError.setColour(Label::textColourId, Colour(Theme::getInstance().getErrorTextColor()));
+	_passwordError.setColour(Label::textColourId, Colour(Theme::getInstance().getErrorTextColor()));
+	_passwordConfirmationError.setColour(Label::textColourId, Colour(Theme::getInstance().getErrorTextColor()));
+
 	_saveButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
 	_saveButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
 	_saveButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
@@ -220,58 +264,67 @@ void UserRegistration::signin(const User & user)
 {
 	String password;
 	String confirmPassword;
+	bool noError = true;
 
 	_errorText.setText("", dontSendNotification);
+	_firstNameError.setText("", dontSendNotification);
+	_lastNameError.setText("", dontSendNotification);
+	_userNameError.setText("", dontSendNotification);
+	_emailError.setText("", dontSendNotification);
+	_dateOfBirthError.setText("", dontSendNotification);
+	_passwordError.setText("", dontSendNotification);
+	_passwordConfirmationError.setText("", dontSendNotification);
 
-	if (!(StringChecker::isNameValid(user.getFirstName())))
+
+	if (!(StringChecker::isNameValid(user.getFirstName())) && user.getFirstName() != "")
 	{
-		_errorText.setText("Error: FirstName is not valid", dontSendNotification);
-		return;
+		_firstNameError.setText("Error: FirstName is not valid", dontSendNotification);
+		noError = false;
 	}
 
-	if (!(StringChecker::isNameValid(user.getLastName())))
+	if (!(StringChecker::isNameValid(user.getLastName())) && user.getLastName() != "")
 	{
-		_errorText.setText("Error: LastName is not valid", dontSendNotification);
-		return;
+		_lastNameError.setText("Error: LastName is not valid", dontSendNotification);
+		noError = false;
 	}
 
  
 	if (!(StringChecker::isUserNameValid(user.getUserName())))
 	{
-		_errorText.setText("Error: UserName is not valid", dontSendNotification);
-		return;
+		_userNameError.setText("Error: UserName is not valid", dontSendNotification);
+		noError = false;
 	}
 
 	if (!(StringChecker::isEmailValid(user.getEmail())))
 	{
-		_errorText.setText("Error: Email is not valid", dontSendNotification);
-		return;
+		_emailError.setText("Error: Email is not valid", dontSendNotification);
+		noError = false;
 	}
 	
-	if (!(StringChecker::isDateValid(user.getDateOfBirth())))
+	if (user.getDateOfBirth() != "" && !(StringChecker::isDateValid(user.getDateOfBirth())))
 	{
-		_errorText.setText("Error: Date is not valid", dontSendNotification);
-		return;
+		_dateOfBirthError.setText("Error: Date is not valid", dontSendNotification);
+		noError = false;
 	}
 
-	if (!(StringChecker::isDateInPast(user.getDateOfBirth())))
+	if (user.getDateOfBirth() != "" && !(StringChecker::isDateInPast(user.getDateOfBirth())))
 	{
 		_errorText.setText("Error: Date should not be in the future", dontSendNotification);
-		return;
+		noError = false;
 	}
 
 	password = _passwordTextEditor.getText();
 	confirmPassword = _passwordConfirmationTextEditor.getText();
 	if (password != confirmPassword)
 	{
-		_errorText.setText("Error passwords don't match", dontSendNotification);
-		return;
+		_passwordConfirmationError.setText("Error passwords don't match", dontSendNotification);
+		noError = false;
 	}
 
 	if (password == "")
 	{
-		_errorText.setText("Password can't be empty", dontSendNotification);
-		return;
+		_passwordError.setText("Password can't be empty", dontSendNotification);
+		noError = false;
 	}
 
 	/*if (!(StringChecker::isPasswordValid(password.toStdString())))
@@ -282,45 +335,48 @@ void UserRegistration::signin(const User & user)
 
 	if (!(StringChecker::isPasswordLongEnough(password.toStdString())))
 	{
-		_errorText.setText("Password should be at least 8 characters long", dontSendNotification);
-		return;
+		_passwordError.setText("Password should be at least 8 characters long", dontSendNotification);
+		noError = false;
 	}
 
 	if (!(StringChecker::containsLowercase(password.toStdString())))
 	{
-		_errorText.setText("Password should contain at least one lowercase letter", dontSendNotification);
-		return;
+		_passwordError.setText("Password should contain at least one lowercase letter", dontSendNotification);
+		noError = false;
 	}
 
 	if (!(StringChecker::containsUppercase(password.toStdString())))
 	{
-		_errorText.setText("Password should contain at least one uppercase letter", dontSendNotification);
-		return;
+		_passwordError.setText("Password should contain at least one uppercase letter", dontSendNotification);
+		noError = false;
 	}
 
 	if (!(StringChecker::containsNumber(password.toStdString())))
 	{
-		_errorText.setText("Password should contain at least one number", dontSendNotification);
-		return;
+		_passwordError.setText("Password should contain at least one number", dontSendNotification);
+		noError = false;
 	}
 
 	if (!(StringChecker::containsSpecialChar(password.toStdString())))
 	{
-		_errorText.setText("Password should contain at least one special character", dontSendNotification);
-		return;
+		_passwordError.setText("Password should contain at least one special character", dontSendNotification);
+		noError = false;
 	}
 
-	if (_cmdManager.signUp(user, password.toStdString()) == false)
+	if (noError)
 	{
-		if (_cmdManager.getResponseMsg() != "")
-			_errorText.setText("Error : " + _cmdManager.getResponseMsg(), dontSendNotification);
+		if (_cmdManager.signUp(user, password.toStdString()) == false)
+		{
+			if (_cmdManager.getResponseMsg() != "")
+				_errorText.setText("Error : " + _cmdManager.getResponseMsg(), dontSendNotification);
+			else
+				_errorText.setText("Connexion error", dontSendNotification);
+		}
 		else
-			_errorText.setText("Connexion error", dontSendNotification);
-	}
-	else
-	{
-		_errorText.setText("", dontSendNotification);
-		changeView("Player");
+		{
+			_errorText.setText("", dontSendNotification);
+			changeView("Player");
+		}
 	}
 }
 

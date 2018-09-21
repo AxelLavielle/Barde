@@ -201,3 +201,5 @@ Software/Windows/enc_temp_folder
 =======
 \.idea/
 Software/Linux/BardeInterface/Builds
+
+Software/Windows/testMidi\.mid

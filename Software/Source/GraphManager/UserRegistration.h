@@ -49,6 +49,7 @@ private:
 
 	TextEditor _firstNameTextEditor, _lastNameTextEditor, _userNameTextEditor, _emailTextEditor, _dateOfBirthTextEditor, _passwordTextEditor, _passwordConfirmationTextEditor;
 	Label _firstNameLabel, _lastNameLabel, _userNameLabel, _emailLabel, _dateOfBirthLabel, _passwordLabel, _passwordConfirmationLabel;
+	Label _firstNameError, _lastNameError, _userNameError, _emailError, _dateOfBirthError, _passwordError, _passwordConfirmationError;
 	ComboBox _languageComboBox;
 	Label _errorText;
 	TextButton _saveButton;
