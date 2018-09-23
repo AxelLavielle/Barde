@@ -5,6 +5,7 @@ CmdManager::CmdManager()
   _cmdFunctions[0x1] = std::bind(&CmdManager::manageMusicParameter, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
   _cmdFunctions[0x2] = std::bind(&CmdManager::managePlayerCtrl, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
   _cmdFunctions[0x3] = std::bind(&CmdManager::manageDisconnection, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+  _cmdFunctions[0x5] = std::bind(&CmdManager::manageSave, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
 
   _threadPool.init();
 
@@ -42,6 +43,16 @@ void CmdManager::sendResponseMessage(const int responseCode, const int responseT
   std::memcpy(&msg[3], message.c_str(), message.length());
   send(client.getFd(), msg, (sizeof(int) * 3) + message.length(), MSG_NOSIGNAL);
   delete[] msg;
+}
+
+void CmdManager::manageSave(int *buffer, Client &client, size_t bufferSize)
+{
+  if (bufferSize < 2)
+  {
+    sendResponseMessage(BAD_REQUEST, SEED_REQUEST, 0, client, "Bad Request : invalid seed.\r\n");
+    return;
+  }
+  client.setSeed(buffer[1]);
 }
 
 void CmdManager::manageInstruments(const bool & add, Client & client, const bool & arpeggios, const NbInstrument instruNb)
@@ -163,6 +174,7 @@ void CmdManager::managePlayerCtrl(int *buffer, Client &client, size_t bufferSize
   {
     (_playerCtrlFunctions.at(buffer[1]))(client);
     //Need to send ok or not
+    //Need to send the seed
   }
   catch (const std::out_of_range & e)
   {

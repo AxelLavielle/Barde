@@ -20,6 +20,8 @@
 #define DRUMS_REQUEST 0x41
 #define STYLE_REQUEST 0x11
 #define BPM_REQUEST 0x51
+
+#define SEED_REQUEST 0x5
 #define DISCONNECTION_REQUEST 0x3
 
 #define UNKNOW_REQUEST 0x0
@@ -37,6 +39,7 @@ public:
 private:
   void manageMusicParameter(int *buffer, Client &client, size_t bufferSize);
   void managePlayerCtrl(int *buffer, Client &client, size_t bufferSize);
+  void manageSave(int *buffer, Client &client, size_t bufferSize);
   void manageDisconnection(int *buffer, Client &client, size_t bufferSize);
   void manageInstruments(const bool & add, Client & client, const bool & arpeggios, const NbInstrument instruNb);
   std::map<int, std::function<void(int *buffer, Client &client, size_t bufferSize) > > _cmdFunctions;

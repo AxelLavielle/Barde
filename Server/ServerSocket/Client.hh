@@ -25,6 +25,7 @@ public:
   void setInstrumentsDrums(bool drum);
   void setStyleName(std::string style);
   void setBpm(int value);
+  void setSeed(int seed);
   bool operator==(const Client & lv);
   Client &operator=(const Client & client);
   void addGeneration();

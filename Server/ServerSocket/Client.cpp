@@ -50,6 +50,12 @@ Client &Client::operator=(const Client & client)
   _nbGeneration = client.getNbGeneration();
 }
 
+void Client::setSeed(int seed)
+{
+  srand(seed); //Need to change that
+  _mp.setSeed(seed);
+}
+
 unsigned short Client::getNbGeneration() const
 {
   return (_nbGeneration);
