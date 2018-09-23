@@ -53,6 +53,7 @@ void CmdManager::manageSave(int *buffer, Client &client, size_t bufferSize)
     return;
   }
   client.setSeed(buffer[1]);
+  std::cout << "SEED received !!" << std::endl;
 }
 
 void CmdManager::manageInstruments(const bool & add, Client & client, const bool & arpeggios, const NbInstrument instruNb)
@@ -173,8 +174,6 @@ void CmdManager::managePlayerCtrl(int *buffer, Client &client, size_t bufferSize
   try
   {
     (_playerCtrlFunctions.at(buffer[1]))(client);
-    //Need to send ok or not
-    //Need to send the seed
   }
   catch (const std::out_of_range & e)
   {

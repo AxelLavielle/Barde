@@ -15,7 +15,7 @@ public:
   Client();
   Client(int fd);
   Client(const Client & client);
-  const int		getFd() const;
+  int		getFd() const;
   MusicParameters	getMp() const;
   MusicParameters changeMusiqueParameter();
   void addInstrumentArpeggios(Instrument instru);

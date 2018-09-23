@@ -61,7 +61,7 @@ unsigned short Client::getNbGeneration() const
   return (_nbGeneration);
 }
 
-const int	Client::getFd() const
+int	Client::getFd() const
 {
   return _fd;
 }

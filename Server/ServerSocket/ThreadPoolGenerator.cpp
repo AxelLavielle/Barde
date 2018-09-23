@@ -38,7 +38,8 @@ void ThreadPoolGenerator::addClient(const Client & client)
   _clients.push_back(client);
   _sem.notify();
   _clientsMutex.unlock();
-  CmdManager::sendResponseMessage(OK_REQUEST, PLAY_REQUEST, 0, client, "OK : playing.\r\n");
+  CmdManager::sendResponseMessage(OK_REQUEST, PLAY_REQUEST, client.getMp().getSeed(), client, "OK : playing.\r\n");
+
 }
 
 void ThreadPoolGenerator::removeClient(const Client & client)
