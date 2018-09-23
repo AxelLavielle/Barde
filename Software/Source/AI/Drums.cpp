@@ -170,7 +170,7 @@ void		Drums::initialize(MidiManager &_midiManager, std::vector<Instrument> &drum
 	drumInstruments.push_back(bass);
 	drumInstruments.push_back(snare);
 
-/*	_midiManager.changeInstrument(hihat, 1.0);
+	_midiManager.changeInstrument(hihat, 1.0);
 	_midiManager.changeInstrument(bass, 1.0);
-	_midiManager.changeInstrument(snare, 1.0);*/
+	_midiManager.changeInstrument(snare, 1.0);
 }
