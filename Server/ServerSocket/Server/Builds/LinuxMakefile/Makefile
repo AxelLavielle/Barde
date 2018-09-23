@@ -104,6 +104,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/socket_d09e3ab7.o \
   $(JUCE_OBJDIR)/Tools_9ad28915.o \
   $(JUCE_OBJDIR)/User_92b6ea5b.o \
+  $(JUCE_OBJDIR)/WebSocketServer_8766b670.o \
   $(JUCE_OBJDIR)/BinaryData_ce4232d4.o \
   $(JUCE_OBJDIR)/include_juce_audio_basics_8a4e984a.o \
   $(JUCE_OBJDIR)/include_juce_audio_devices_63111d02.o \
@@ -301,6 +302,11 @@ $(JUCE_OBJDIR)/Tools_9ad28915.o: ../../../../../Software/Source/Tools.cpp
 $(JUCE_OBJDIR)/User_92b6ea5b.o: ../../../../../Software/Source/User.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling User.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/WebSocketServer_8766b670.o: ../../../WebSocketServer.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling WebSocketServer.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/BinaryData_ce4232d4.o: ../../JuceLibraryCode/BinaryData.cpp

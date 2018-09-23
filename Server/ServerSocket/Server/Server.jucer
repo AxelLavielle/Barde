@@ -106,6 +106,10 @@
     <FILE id="N0hSa5" name="Tools.hh" compile="0" resource="0" file="../../../Software/Source/Tools.hh"/>
     <FILE id="wTo3Pc" name="User.cpp" compile="1" resource="0" file="../../../Software/Source/User.cpp"/>
     <FILE id="QSMDtO" name="User.hh" compile="0" resource="0" file="../../../Software/Source/User.hh"/>
+    <FILE id="kuUrXd" name="WebSocketServer.cpp" compile="1" resource="0"
+          file="../WebSocketServer.cpp"/>
+    <FILE id="JSWNlL" name="WebSocketServer.hh" compile="0" resource="0"
+          file="../WebSocketServer.hh"/>
   </MAINGROUP>
   <EXPORTFORMATS>
     <VS2017 targetFolder="Builds/VisualStudio2017">

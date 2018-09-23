@@ -313,6 +313,9 @@
     <ClCompile Include="..\..\..\..\..\Software\Source\User.cpp">
       <Filter>Server</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\WebSocketServer.cpp">
+      <Filter>Server</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\Software\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <Filter>JUCE Modules\juce_audio_basics\buffers</Filter>
     </ClCompile>
@@ -1177,6 +1180,9 @@
       <Filter>Server</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Software\Source\User.hh">
+      <Filter>Server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\WebSocketServer.hh">
       <Filter>Server</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Software\JuceLibraryCode\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h">

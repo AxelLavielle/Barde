@@ -184,6 +184,7 @@
     <ClCompile Include="..\..\..\socket.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\Source\Tools.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\Source\User.cpp"/>
+    <ClCompile Include="..\..\..\WebSocketServer.cpp"/>
     <ClCompile Include="..\..\..\..\..\Software\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -923,6 +924,7 @@
     <ClInclude Include="..\..\..\socket.hh"/>
     <ClInclude Include="..\..\..\..\..\Software\Source\Tools.hh"/>
     <ClInclude Include="..\..\..\..\..\Software\Source\User.hh"/>
+    <ClInclude Include="..\..\..\WebSocketServer.hh"/>
     <ClInclude Include="..\..\..\..\..\Software\JuceLibraryCode\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h"/>
     <ClInclude Include="..\..\..\..\..\Software\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioChannelSet.h"/>
     <ClInclude Include="..\..\..\..\..\Software\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h"/>
