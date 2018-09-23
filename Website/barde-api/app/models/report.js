@@ -1,9 +1,3 @@
-/**
- * APLT
- * < arnaud perrault />
- * barde-api - Created on 19/02/2017
- */
-
 var mongoose = require('mongoose');
 var Schema   = mongoose.Schema;
 

@@ -22,6 +22,8 @@
 
 var config     = require('../../config/var');
 var methodAuth = require('../method/auth')();
+var mailer  = require("../method/email");
+var crypto = require("crypto");
 
 var User = require('../models/user');
 
@@ -31,13 +33,14 @@ module.exports = function (apiRoutes, passport) {
         .get('/user', methodAuth.authenticate(), methodAuth.admin(), get)
         .get('/user/me', methodAuth.authenticate(), getMe)
         .get('/user/count', methodAuth.authenticate(), methodAuth.admin(), getNumber)
-        .get('/user/:email', methodAuth.authenticate(), methodAuth.admin(), getOne)
-        .get('/user/:perPage/:page', methodAuth.authenticate(), methodAuth.admin(), getByPage)
         .delete("/user", methodAuth.authenticate(), methodAuth.admin(), del)
         .patch("/user", methodAuth.authenticate(), updatePatch)
         .put("/user", methodAuth.authenticate(), updatePut)
         .put("/user/password", methodAuth.authenticate(), password)
-};
+        .get("/user/password/reset", methodAuth.authenticate(), passwordResetGet)
+        .post("/user/password/reset", methodAuth.authenticate(), passwordResetPost)
+        .get('/user/:email', methodAuth.authenticate(), methodAuth.admin(), getOne)
+        .get('/user/:perPage/:page', methodAuth.authenticate(), methodAuth.admin(), getByPage)};
 
 
 /**
@@ -98,6 +101,9 @@ function getMe(req, res, next) {
     //
     // });
     delete req.user._id;
+    if (req.user.reset) {
+      delete req.user.reset
+    }
     res.status(200).json({msg: "Success", data: {user: req.user}});
 }
 
@@ -542,4 +548,206 @@ function password(req, res, next) {
   } else {
     res.status(401).send('Unauthorized');
   }
+}
+
+/**
+ * @api {get} /user/password/reset Ask password reset
+ * @apiGroup User
+ *
+ * @apiParamExample {json} Request-Example:
+ *     {
+ *     }
+ *
+ *  @apiSuccessExample 200 - Success
+ *     {
+ *       "msg": "Success"
+ *       "data": {
+ *          "message": "Email sent."
+ *       }
+ *     }
+ *
+ * @apiErrorExample 400 - One param is empty
+ *     {
+ *       "msg": "No content"
+ *       "data": {
+ *          "message": param + " cannot be empty."
+ *       }
+ *     }
+ *
+ * @apiErrorExample 400 - Email error
+ *     {
+ *       "msg": "Error"
+ *       "data": {
+ *          "message": "Email error."
+ *       }
+ *     }
+ *
+ * @apiErrorExample 404 - Not found
+ *     {
+ *       "msg": "Can't find item."
+ *       "data": {
+ *          "message": "User not exists."
+ *       }
+ *     }
+ *
+ * @apiErrorExample 401 - Wait 2hour
+ *     {
+ *       "msg": "Wait"
+ *       "data": {
+ *          "message": "You need to wait before send a new email."
+ *       }
+ *     }
+ *
+ * @apiErrorExample 401 - Unauthorized
+ *     {
+ *       "Unauthorized"
+ *     }
+ *
+ */
+function passwordResetGet(req, res, next) {
+  User.findOne({
+      email: req.user.email
+  }, function (err, response) {
+      if (err) {
+          return next(err);
+      }
+      if (!response) {
+          res.status(404).send({msg: "Can't find item.", message: {users: "User not exists."}});
+          return next(err);
+      }
+      if (response.reset && response.reset.date) {
+        var now = new Date();
+        if ((now - response.reset.date) / (1000 * 60 * 60) >= 2) {
+          res.status(401).send({msg: "Wait", data: {message: "You need to wait before send a new email."}});
+          return ;
+        }
+      }
+      var token = crypto.randomBytes(3*4).toString('base64');
+      var updateVal = {
+        reset: {
+          date: new Date(),
+          token: token,
+          used: false
+        }
+      }
+      User.update({email: req.user.email}, {$set: updateVal}, function (err, response) {
+        if (err) {
+          return next(err);
+        } else {
+          if (response.n == 0) {
+            res.status(404).send({msg: "Can't find item.", message: {users: "User not exists."}});
+          } else {
+            mailer.sendEmailResetPassword("Barde.io", "noreply@barde.io", req.user.email, "This is your token available 2hours to reset your password: " + token, function (rtn) {
+                if (rtn.success)
+                    res.status(200).send({msg: "Success", data: {message: "Email sent."}});
+                else
+                    res.status(400).send({msg: "Error", data: {message: "Email error."}});
+
+            });
+          }
+        }
+      });
+  });
+}
+
+/**
+ * @api {post} /user/password/reset Reset password
+ * @apiGroup User
+ *
+ * @apiParamExample {json} Request-Example:
+ *     {
+ *       "token": "",
+ *       "password": "",
+ *     }
+ *
+ *  @apiSuccessExample 200 - Success
+ *     {
+ *       "msg": "Success"
+ *       "data": {
+ *          "message": "Email sent."
+ *       }
+ *     }
+ *
+ * @apiErrorExample 400 - One param is empty
+ *     {
+ *       "msg": "No content"
+ *       "data": {
+ *          "message": param + " cannot be empty."
+ *       }
+ *     }
+ *
+ * @apiErrorExample 400 - No token
+ *     {
+ *       "msg": "Error"
+ *       "data": {
+ *          "message": "You need to ask for a token."
+ *       }
+ *     }
+ *
+ * @apiErrorExample 404 - Not found
+ *     {
+ *       "msg": "Can't find item."
+ *       "data": {
+ *          "message": "User not exists."
+ *       }
+ *     }
+ *
+ * @apiErrorExample 401 - Expired or already used
+ *     {
+ *       "msg": "Error"
+ *       "data": {
+ *          "message": "Token expired or already used."
+ *       }
+ *     }
+ *
+ * @apiErrorExample 401 - Unauthorized
+ *     {
+ *       "Unauthorized"
+ *     }
+ *
+ */
+function passwordResetPost(req, res, next) {
+  if (!req.body.token) {
+    res.status(400).send({msg: "No content", data: {message: "Token cannot be empty."}});
+  } else if (!req.body.password) {
+    res.status(400).send({msg: "No content", data: {message: "Password cannot be empty."}});
+  } else {
+    User.findOne({
+        email: req.user.email
+    }, function (err, response) {
+        if (err) {
+            return next(err);
+        }
+        if (!response) {
+            res.status(404).json({msg: "Can't find item.", message: {users: "User not exists."}});
+            return next(err);
+        }
+        if (response.reset && response.reset.date && response.reset.token) {
+          var now = new Date();
+          if ((now - response.reset.date) / (1000 * 60 * 60) > 2 || response.reset.used || req.body.token != response.reset.token) {
+            res.status(401).send({msg: "Error", data: {message: "Token expired or already used."}});
+            return next(err);
+          }
+          var updateVal = {
+              password: req.body.password,
+              reset: {
+                used: true
+              }
+          }
+          User.update({email: req.user.email}, {$set: updateVal}, function (err, response) {
+            if (err) {
+              return next(err);
+            } else {
+              if (response.n == 0) {
+                res.status(404).json({msg: "Can't find item.", message: {users: "User not exists."}});
+              } else {
+                res.status(200).send({msg: "Content updated"});
+              }
+            }
+          });
+        } else {
+          res.status(400).send({msg: "Error", data: {message: "You need to ask for a token."}});
+        }
+      });
+    }
 }

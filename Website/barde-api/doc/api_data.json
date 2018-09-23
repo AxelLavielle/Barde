@@ -11,9 +11,50 @@
   },
   {
     "type": "post",
+    "url": "/auth/login",
+    "title": "Login user",
+    "group": "Auth",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"email\": \"\",\n  \"password\": \"\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "200 - Success",
+          "content": "{\n  \"msg\": \"Content created\"\n  \"data\": {\n     \"token\": \"JWT \" + token,\n     \"message\": \"You are connected.\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "400 - User not exist",
+          "content": "{\n  \"msg\": \"No content\"\n  \"data\": {\n     \"message\": \"The email or password is incorrect.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "400 - Wrong content",
+          "content": "{\n  \"msg\": \"Wrong content\"\n  \"data\": {\n     \"message\": \"The email or password is incorrect.\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/auth.js",
+    "groupTitle": "Auth",
+    "name": "PostAuthLogin"
+  },
+  {
+    "type": "post",
     "url": "/auth/register",
     "title": "Register user",
-    "name": "Login",
     "group": "Auth",
     "parameter": {
       "examples": [
@@ -44,54 +85,23 @@
           "title": "409 - User already exists",
           "content": "{\n  \"msg\": \"Content already exists\"\n  \"data\": {\n     \"message\": \"The email address or the username you have used is already registered.\"\n  }\n}",
           "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "app/routes/auth.js",
-    "groupTitle": "Auth"
-  },
-  {
-    "type": "post",
-    "url": "/auth/login",
-    "title": "Login user",
-    "name": "Login",
-    "group": "Auth",
-    "parameter": {
-      "examples": [
+        },
         {
-          "title": "Request-Example:",
-          "content": "{\n  \"email\": \"\",\n  \"password\": \"\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "200 - Success",
-          "content": "{\n  \"msg\": \"Content created\"\n  \"data\": {\n     \"token\": \"JWT \" + token\n     \"message\": \"You are connected.\"\n  }\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "examples": [
-        {
-          "title": "400 - User not exist",
-          "content": "{\n  \"msg\": \"No content\"\n  \"data\": {\n     \"message\": \"The email or password is incorrect.\"\n  }\n}",
+          "title": "400 - Email validation failed",
+          "content": "{\n  \"msg\": \"Content validation\"\n  \"data\": {\n     \"message\": \"The email format is wrong.\"\n  }\n}",
           "type": "json"
         },
         {
-          "title": "400 - Wrong content",
-          "content": "{\n  \"msg\": \"Wrong content\"\n  \"data\": {\n     \"message\": \"The email or password is incorrect.\"\n  }\n}",
+          "title": "400 - DateOfBirth validation failed",
+          "content": "{\n  \"msg\": \"Content validation\"\n  \"data\": {\n     \"message\": \"The date of birth is wrong.\"\n  }\n}",
           "type": "json"
         }
       ]
     },
     "version": "0.0.0",
     "filename": "app/routes/auth.js",
-    "groupTitle": "Auth"
+    "groupTitle": "Auth",
+    "name": "PostAuthRegister"
   },
   {
     "type": "get",
@@ -347,6 +357,400 @@
     "groupDescription": "<p>All routes for email</p>"
   },
   {
+    "type": "delete",
+    "url": "/playlist",
+    "title": "Delete playlist",
+    "group": "Playlist",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"idPlaylist\": \"\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "200 - Success",
+          "content": "{\n  \"msg\": \"Success\"\n  \"data\": {\n     \"message\": \"Playlist deleted.\"\n   }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "404 - Not found",
+          "content": "{\n  \"msg\": \"Can't find item\"\n  \"data\": {\n     \"message\": \"Playlist not exists.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "401 - Unauthorized",
+          "content": "{\n  \"Unauthorized\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/playlist.js",
+    "groupTitle": "Playlists",
+    "groupDescription": "<p>All routes for playlists</p>",
+    "name": "DeletePlaylist"
+  },
+  {
+    "type": "delete",
+    "url": "/playlist/music",
+    "title": "Delete music in playlist",
+    "group": "Playlist",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"idPlaylist\": \"\"\n  \"idMusic\": \"\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "200 - Success",
+          "content": "{\n  \"msg\": \"Success\"\n  \"data\": {\n     \"message\": \"Music deleted.\"\n   }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "404 - Not found",
+          "content": "{\n  \"msg\": \"Can't find item\"\n  \"data\": {\n     \"message\": \"Playlist not exists.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "404 - Not found",
+          "content": "{\n  \"msg\": \"Can't find item\"\n  \"data\": {\n     \"message\": \"Music not exists.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "401 - Unauthorized",
+          "content": "{\n  \"Unauthorized\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/playlist.js",
+    "groupTitle": "Playlists",
+    "groupDescription": "<p>All routes for playlists</p>",
+    "name": "DeletePlaylistMusic"
+  },
+  {
+    "type": "get",
+    "url": "/playlist",
+    "title": "Get all playlists",
+    "group": "Playlist",
+    "success": {
+      "examples": [
+        {
+          "title": "200 - Success",
+          "content": "{\n  \"msg\": \"Success\"\n  \"data\": {\n     \"playlists\": []\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "401 - Unauthorized",
+          "content": "{\n  \"Unauthorized\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/playlist.js",
+    "groupTitle": "Playlists",
+    "groupDescription": "<p>All routes for playlists</p>",
+    "name": "GetPlaylist"
+  },
+  {
+    "type": "get",
+    "url": "/playlist/count",
+    "title": "Get number of playlists",
+    "group": "Playlist",
+    "success": {
+      "examples": [
+        {
+          "title": "200 - Success",
+          "content": "{\n  \"msg\": \"Success\"\n  \"data\": {\n     \"count\": Number\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "401 - Unauthorized",
+          "content": "{\n  \"Unauthorized\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/playlist.js",
+    "groupTitle": "Playlists",
+    "groupDescription": "<p>All routes for playlists</p>",
+    "name": "GetPlaylistCount"
+  },
+  {
+    "type": "get",
+    "url": "/playlist/:id",
+    "title": "Get one playlist",
+    "group": "Playlist",
+    "success": {
+      "examples": [
+        {
+          "title": "200 - Success",
+          "content": "{\n  \"msg\": \"Success\"\n  \"data\": {\n     \"playlist\": {}\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "401 - Unauthorized",
+          "content": "{\n  \"Unauthorized\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/playlist.js",
+    "groupTitle": "Playlists",
+    "groupDescription": "<p>All routes for playlists</p>",
+    "name": "GetPlaylistId"
+  },
+  {
+    "type": "get",
+    "url": "/playlist/:perPage/:page",
+    "title": "Get playlists by page",
+    "group": "Playlist",
+    "success": {
+      "examples": [
+        {
+          "title": "200 - Success",
+          "content": "{\n  \"msg\": \"Success\"\n  \"data\": {\n     \"playlists\": [],\n     \"page\": Number,\n     \"count\": Number\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "401 - Unauthorized",
+          "content": "{\n  \"Unauthorized\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/playlist.js",
+    "groupTitle": "Playlists",
+    "groupDescription": "<p>All routes for playlists</p>",
+    "name": "GetPlaylistPerpagePage"
+  },
+  {
+    "type": "post",
+    "url": "/playlist",
+    "title": "New playlist",
+    "group": "Playlist",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"name\": \"\",\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "200 - Success",
+          "content": "{\n  \"msg\": \"Content created\"\n  \"data\": {\n     \"message\": \"Playlist saved.\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "400 - One param is empty",
+          "content": "{\n  \"msg\": \"No content\"\n  \"data\": {\n     \"message\": param + \" cannot be empty.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "401 - Unauthorized",
+          "content": "{\n  \"Unauthorized\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/playlist.js",
+    "groupTitle": "Playlists",
+    "groupDescription": "<p>All routes for playlists</p>",
+    "name": "PostPlaylist"
+  },
+  {
+    "type": "post",
+    "url": "/playlist/music",
+    "title": "Add music to playlist",
+    "group": "Playlist",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"idPlaylist\": \"\",\n  \"name\": \"\",\n  \"bpm\": \"\",\n  \"seed\": \"\",\n  \"chords\": [],\n  \"arpege\": [],\n  \"instruments\": [],\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "200 - Success",
+          "content": "{\n  \"msg\": \"Content created\"\n  \"data\": {\n     \"message\": \"Playlist saved.\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "400 - One param is empty",
+          "content": "{\n  \"msg\": \"No content\"\n  \"data\": {\n     \"message\": param + \" cannot be empty.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "401 - Unauthorized",
+          "content": "{\n  \"Unauthorized\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/playlist.js",
+    "groupTitle": "Playlists",
+    "groupDescription": "<p>All routes for playlists</p>",
+    "name": "PostPlaylistMusic"
+  },
+  {
+    "type": "put",
+    "url": "/playlist",
+    "title": "Update playlist",
+    "group": "Playlist",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"name\": \"\",\n  \"idPlaylist\": \"\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "200 - Success",
+          "content": "{\n  \"msg\": \"Content updated\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "400 - One param is empty",
+          "content": "{\n  \"msg\": \"No content\"\n  \"data\": {\n     \"message\": param + \" cannot be empty.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "404 - Not found",
+          "content": "{\n  \"msg\": \"Can't find item.\"\n  \"data\": {\n     \"message\": \"Playlist not exists.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "401 - Unauthorized",
+          "content": "{\n  \"Unauthorized\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/playlist.js",
+    "groupTitle": "Playlists",
+    "groupDescription": "<p>All routes for playlists</p>",
+    "name": "PutPlaylist"
+  },
+  {
+    "type": "put",
+    "url": "/playlist/music",
+    "title": "Update music in playlist",
+    "group": "Playlist",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"idPlaylist\": \"\",\n  \"idMusic\": \"\",\n  \"name\": \"\",\n  \"bpm\": \"\",\n  \"seed\": \"\",\n  \"chords\": [],\n  \"arpege\": [],\n  \"instruments\": [],\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "200 - Success",
+          "content": "{\n  \"msg\": \"Content created\"\n  \"data\": {\n     \"message\": \"Playlist saved.\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "400 - One param is empty",
+          "content": "{\n  \"msg\": \"No content\"\n  \"data\": {\n     \"message\": param + \" cannot be empty.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "404 - Not found",
+          "content": "{\n  \"msg\": \"Can't find item.\"\n  \"data\": {\n     \"message\": \"Playlist not exists.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "404 - Not found",
+          "content": "{\n  \"msg\": \"Can't find item.\"\n  \"data\": {\n     \"message\": \"Music not exists.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "401 - Unauthorized",
+          "content": "{\n  \"Unauthorized\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/playlist.js",
+    "groupTitle": "Playlists",
+    "groupDescription": "<p>All routes for playlists</p>",
+    "name": "PutPlaylistMusic"
+  },
+  {
     "type": "get",
     "url": "/report",
     "title": "Get all reports",
@@ -461,6 +865,11 @@
         {
           "title": "400 - One param is empty",
           "content": "{\n  \"msg\": \"No content\"\n  \"data\": {\n     \"message\": param + \" cannot be empty.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "400 - Device param is wrong",
+          "content": "{\n  \"msg\": \"Content validation\"\n  \"data\": {\n     \"message\": \"The device is wrong.\"\n  }\n}",
           "type": "json"
         },
         {
@@ -722,6 +1131,64 @@
   },
   {
     "type": "get",
+    "url": "/user/password/reset",
+    "title": "Ask password reset",
+    "group": "User",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "200 - Success",
+          "content": "{\n  \"msg\": \"Success\"\n  \"data\": {\n     \"message\": \"Email sent.\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "400 - One param is empty",
+          "content": "{\n  \"msg\": \"No content\"\n  \"data\": {\n     \"message\": param + \" cannot be empty.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "400 - Email error",
+          "content": "{\n  \"msg\": \"Error\"\n  \"data\": {\n     \"message\": \"Email error.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "404 - Not found",
+          "content": "{\n  \"msg\": \"Can't find item.\"\n  \"data\": {\n     \"message\": \"User not exists.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "401 - Wait 2hour",
+          "content": "{\n  \"msg\": \"Wait\"\n  \"data\": {\n     \"message\": \"You need to wait before send a new email.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "401 - Unauthorized",
+          "content": "{\n  \"Unauthorized\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/user.js",
+    "groupTitle": "Users",
+    "groupDescription": "<p>All routes for users</p>",
+    "name": "GetUserPasswordReset"
+  },
+  {
+    "type": "get",
     "url": "/user/:perPage/:page",
     "title": "Get users by page",
     "group": "User",
@@ -803,6 +1270,64 @@
     "name": "PatchUser"
   },
   {
+    "type": "post",
+    "url": "/user/password/reset",
+    "title": "Reset password",
+    "group": "User",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"token\": \"\",\n  \"password\": \"\",\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "200 - Success",
+          "content": "{\n  \"msg\": \"Success\"\n  \"data\": {\n     \"message\": \"Email sent.\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "400 - One param is empty",
+          "content": "{\n  \"msg\": \"No content\"\n  \"data\": {\n     \"message\": param + \" cannot be empty.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "400 - No token",
+          "content": "{\n  \"msg\": \"Error\"\n  \"data\": {\n     \"message\": \"You need to ask for a token.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "404 - Not found",
+          "content": "{\n  \"msg\": \"Can't find item.\"\n  \"data\": {\n     \"message\": \"User not exists.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "401 - Expired or already used",
+          "content": "{\n  \"msg\": \"Error\"\n  \"data\": {\n     \"message\": \"Token expired or already used.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "401 - Unauthorized",
+          "content": "{\n  \"Unauthorized\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/user.js",
+    "groupTitle": "Users",
+    "groupDescription": "<p>All routes for users</p>",
+    "name": "PostUserPasswordReset"
+  },
+  {
     "type": "put",
     "url": "/user/",
     "title": "Update user (Fully)",
@@ -854,5 +1379,58 @@
     "groupTitle": "Users",
     "groupDescription": "<p>All routes for users</p>",
     "name": "PutUser"
+  },
+  {
+    "type": "put",
+    "url": "/user/password",
+    "title": "Update user's password",
+    "group": "User",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"email\": \"\",\n  \"password\": \"\",\n  \"newPassword\": \"\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "200 - Success",
+          "content": "{\n  \"msg\": \"Content updated\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "400 - One param is empty",
+          "content": "{\n  \"msg\": \"No content\"\n  \"data\": {\n     \"message\": param + \" cannot be empty.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "404 - Not found",
+          "content": "{\n  \"msg\": \"Can't find item.\"\n  \"data\": {\n     \"message\": \"User not exists.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "401 - Wrong password",
+          "content": "{\n  \"msg\": \"Unauthorized\"\n  \"data\": {\n     \"message\": \"Wrong password.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "401 - Unauthorized",
+          "content": "{\n  \"Unauthorized\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/user.js",
+    "groupTitle": "Users",
+    "groupDescription": "<p>All routes for users</p>",
+    "name": "PutUserPassword"
   }
 ]

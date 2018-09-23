@@ -39,6 +39,18 @@ var UserSchema = new Schema({
         type: String,
         enum: ['Client', 'Admin'],
         default: 'Client'
+    },
+    reset: {
+      date: {
+        type: Date
+      },
+      token: {
+        type: String
+      },
+      used: {
+        type: Boolean,
+        default: false
+      }
     }
 });
 

@@ -28,3 +28,25 @@ exports.sendEmail = function (name, email, message, callback) {
     });
 
 }
+
+exports.sendEmailResetPassword = function (name, email, emailTo, message, callback) {
+    var transporter = nodemailer.createTransport(config.smtps);
+
+    var mailOptions = {
+
+      from: name + ' <' + email + '>', // sender address
+      to: emailTo, // list of receivers
+      subject: 'Reset password', // Subject line
+      text: message, // plaintext body
+      html: '<p>' + message + '</p>' // html body
+
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            callback({'success': false});
+        }
+        callback({'success': true});
+    });
+
+}

@@ -22,7 +22,6 @@ module.exports = function (apiRoutes, passport) {
 
 /**
  * @api {post} /auth/register Register user
- * @apiName Login
  * @apiGroup Auth
  *
  * @apiParamExample {json} Request-Example:
@@ -135,7 +134,6 @@ function register(req, res, next) {
 
 /**
  * @api {post} /auth/login Login user
- * @apiName Login
  * @apiGroup Auth
  *
  * @apiParamExample {json} Request-Example:
@@ -148,7 +146,7 @@ function register(req, res, next) {
  *     {
  *       "msg": "Content created"
  *       "data": {
- *          "token": "JWT " + token
+ *          "token": "JWT " + token,
  *          "message": "You are connected."
  *       }
  *     }
