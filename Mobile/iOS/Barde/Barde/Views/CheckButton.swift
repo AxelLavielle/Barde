@@ -71,7 +71,7 @@ class CheckButton: UIButton {
         self.layer.cornerRadius = 6
         self.layer.borderWidth = 2.0
         self.layer.backgroundColor = Utils().uicolorFromHex(rgbValue: 0xFFFFFF).cgColor
-        self.setTitleColor(Utils().uicolorFromHex(rgbValue: 0xCA5E85), for: [])
+        self.setTitleColor(Utils().uicolorFromHex(rgbValue: 0xD53A72), for: [])
     }
     
     func unSelectedState() {

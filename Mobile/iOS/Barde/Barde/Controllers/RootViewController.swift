@@ -67,7 +67,7 @@ class RootViewController: UITabBarController, NSFetchedResultsControllerDelegate
                     }
                     break
                 case 400:
-                    let refreshAlert = UIAlertController(title:  NSLocalizedString("WrongContent.text", comment: ""), message: NSLocalizedString("IncorrectEmailPassword.text", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+                    let refreshAlert = UIAlertController(title:  NSLocalizedString("WrongContent.text", comment: ""), message: NSLocalizedString("IncorrectEmailPassword.text", comment: ""), preferredStyle: UIAlertController.Style.alert)
                     
                     refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
                     }))

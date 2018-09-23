@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="udn-gv-LT6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="udn-gv-LT6">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -128,17 +128,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xjP-xu-mSr">
                                 <rect key="frame" x="10" y="34" width="300" height="500"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="UEd-YQ-qmr">
-                                        <rect key="frame" x="25" y="10" width="250" height="250"/>
-                                        <accessibility key="accessibilityConfiguration">
-                                            <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
-                                        </accessibility>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="UEd-YQ-qmr" secondAttribute="height" multiplier="1:1" id="9vJ-q4-omh"/>
-                                            <constraint firstAttribute="width" constant="250" id="bSG-d4-cBM"/>
-                                            <constraint firstAttribute="height" constant="250" id="klp-qd-A8i"/>
-                                        </constraints>
-                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome on Barde" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Xn-TO-srq">
                                         <rect key="frame" x="74" y="280" width="152" height="21"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -195,6 +184,17 @@
                                             <segue destination="Vdx-ax-iOh" kind="show" id="oxH-re-BC6"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="UEd-YQ-qmr">
+                                        <rect key="frame" x="25" y="8" width="250" height="250"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                        </accessibility>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="UEd-YQ-qmr" secondAttribute="height" multiplier="1:1" id="9vJ-q4-omh"/>
+                                            <constraint firstAttribute="width" constant="250" id="bSG-d4-cBM"/>
+                                            <constraint firstAttribute="height" constant="250" id="klp-qd-A8i"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -1637,7 +1637,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.83529411764705885" green="0.22745098039215686" blue="0.44705882352941173" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="DWu-Qd-so5" firstAttribute="centerY" secondItem="ESy-fC-RRB" secondAttribute="centerY" id="Hat-Ow-f44"/>
                             <constraint firstItem="1j9-D6-v4R" firstAttribute="centerX" secondItem="ESy-fC-RRB" secondAttribute="centerX" id="Mrh-E3-k20"/>
@@ -1672,8 +1672,8 @@
         <image name="offline" width="150" height="145"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ll6-jj-Z9E"/>
-        <segue reference="Ah1-M7-5Vz"/>
+        <segue reference="t6N-5m-OU1"/>
+        <segue reference="b6m-OS-8ex"/>
         <segue reference="Soz-Q8-L90"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -35,9 +35,9 @@ class GeneratorViewController: UIViewController {
     
     func configureView() {
         navSlider.value = 0.0
-        navSlider.setThumbImage(UIImage(named: "ic_circle"), for: UIControlState.normal)
+        navSlider.setThumbImage(UIImage(named: "ic_circle"), for: UIControl.State.normal)
         let btnImage = UIImage(named: "icon-play")
-        controlButton.setImage(btnImage , for: UIControlState.normal)
+        controlButton.setImage(btnImage , for: UIControl.State.normal)
         controlButton.addTarget(self, action: #selector(GeneratorViewController.playButtonTapped(_:)), for: .touchUpInside)
         labelCurrentTime.text = "00:00"
         labelFullTime.text = "00:00"
@@ -69,7 +69,7 @@ class GeneratorViewController: UIViewController {
         createAVMIDIPlayerFromMIDIFIle()
         
         let btnImage = UIImage(named: "ic_stop")
-        self.controlButton.setImage(btnImage , for: UIControlState.normal)
+        self.controlButton.setImage(btnImage , for: UIControl.State.normal)
         self.midiPlayer?.play({ () -> Void in
             print("finished")
             
@@ -89,7 +89,7 @@ class GeneratorViewController: UIViewController {
         isPlaying = false
 
         let btnImage = UIImage(named: "icon-play")
-        controlButton.setImage(btnImage , for: UIControlState.normal)
+        controlButton.setImage(btnImage , for: UIControl.State.normal)
 
         // timer.invalidate()
         labelCurrentTime.text = "00:00"
@@ -124,8 +124,8 @@ class GeneratorViewController: UIViewController {
     func setSessionPlayer() {
         let audioSession = AVAudioSession.sharedInstance()
         do {
-            try audioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.speaker)
-            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, with: .mixWithOthers)
+            try audioSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
+            try audioSession.setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.playAndRecord)), mode: .spokenAudio)
             try audioSession.setActive(true)
         } catch {
             print("couldn't set category \(error)")
@@ -192,7 +192,7 @@ class GeneratorViewController: UIViewController {
             player.prepareToPlay()
             setupSlider()
             let btnImage = UIImage(named: "ic_stop")
-            self.controlButton.setImage(btnImage , for: UIControlState.normal)
+            self.controlButton.setImage(btnImage , for: UIControl.State.normal)
             player.play({ () -> Void in
                 
                 DispatchQueue.main.async {
@@ -204,4 +204,9 @@ class GeneratorViewController: UIViewController {
             isPlaying = true
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
+	return input.rawValue
 }

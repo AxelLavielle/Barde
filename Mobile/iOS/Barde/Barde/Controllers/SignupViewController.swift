@@ -48,8 +48,8 @@ class SignupViewController: UIViewController {
     override func viewDidLoad() {
         
         let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -66,10 +66,10 @@ class SignupViewController: UIViewController {
     @objc func adjustForKeyboard(notification: Notification) {
         let userInfo = notification.userInfo!
         
-        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let keyboardScreenEndFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
         
-        if notification.name == Notification.Name.UIKeyboardWillHide {
+        if notification.name == UIResponder.keyboardWillHideNotification {
             scrollView.contentInset = UIEdgeInsets.zero
         } else {
             scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
@@ -135,7 +135,7 @@ class SignupViewController: UIViewController {
                                                 }
                                                 break
                                             case 400:
-                                                let refreshAlert = UIAlertController(title: data["msg"].stringValue, message: data["data"]["message"].stringValue, preferredStyle: UIAlertControllerStyle.alert)
+                                                let refreshAlert = UIAlertController(title: data["msg"].stringValue, message: data["data"]["message"].stringValue, preferredStyle: UIAlertController.Style.alert)
                                                 
                                                 refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
                                                 }))
@@ -150,7 +150,7 @@ class SignupViewController: UIViewController {
                                     }
                                     break
                                 case 400:
-                                    let refreshAlert = UIAlertController(title: data["msg"].stringValue, message: data["data"]["message"].stringValue, preferredStyle: UIAlertControllerStyle.alert)
+                                    let refreshAlert = UIAlertController(title: data["msg"].stringValue, message: data["data"]["message"].stringValue, preferredStyle: UIAlertController.Style.alert)
                                     
                                     refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
                                     }))
@@ -158,7 +158,7 @@ class SignupViewController: UIViewController {
                                     self.present(refreshAlert, animated: true, completion: nil)
                                     break
                                 case 409:
-                                    let refreshAlert = UIAlertController(title: data["msg"].stringValue, message: data["data"]["message"].stringValue, preferredStyle: UIAlertControllerStyle.alert)
+                                    let refreshAlert = UIAlertController(title: data["msg"].stringValue, message: data["data"]["message"].stringValue, preferredStyle: UIAlertController.Style.alert)
                                     
                                     refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
                                     }))

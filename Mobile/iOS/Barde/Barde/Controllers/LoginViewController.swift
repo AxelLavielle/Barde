@@ -25,8 +25,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         
         let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -72,10 +72,10 @@ class LoginViewController: UIViewController {
     @objc func adjustForKeyboard(notification: Notification) {
         let userInfo = notification.userInfo!
         
-        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let keyboardScreenEndFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
         
-        if notification.name == Notification.Name.UIKeyboardWillHide {
+        if notification.name == UIResponder.keyboardWillHideNotification {
             scrollView.contentInset = UIEdgeInsets.zero
         } else {
             scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
@@ -125,7 +125,7 @@ class LoginViewController: UIViewController {
                         }
                         break
                     case 400:
-                        let refreshAlert = UIAlertController(title: NSLocalizedString("WrongContent.text", comment: ""), message: NSLocalizedString("WrongContentDescription.text", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+                        let refreshAlert = UIAlertController(title: NSLocalizedString("WrongContent.text", comment: ""), message: NSLocalizedString("WrongContentDescription.text", comment: ""), preferredStyle: UIAlertController.Style.alert)
                         
                         refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
                         }))

@@ -16,19 +16,19 @@ class TextFieldManager: NSObject {
     func highlightSelected(textfield: UITextField){
        
         textfield.attributedPlaceholder = NSAttributedString(string: textfield.placeholder!,
-                                                          attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
+                                                          attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
 
     }
     
     func removeErrorHighlight(textField: UITextField){
         
         textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!,
-                                                             attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
+                                                             attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
     }
     
     func errorHighlight(textField: UITextField){
         
         textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!,
-                                                             attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+                                                             attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
     }
 }

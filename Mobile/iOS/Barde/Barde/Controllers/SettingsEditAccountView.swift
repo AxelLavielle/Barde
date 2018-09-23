@@ -43,18 +43,35 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureView()
+        
         userService = UserService()
+        loadUserData()
+    }
+    
+    func configureView() {
         
         createDatePicker()
         
         self.navigationItem.title = NSLocalizedString("MyAccount.text", comment: "")
         
+    
+        tfFirstName.leftView =  UIView.init(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
+        tfFirstName.leftViewMode = .always
+        
+        tfLastName.leftView = UIView.init(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
+        tfLastName.leftViewMode = .always
+
+        tfUserName.leftView = UIView.init(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
+        tfUserName.leftViewMode = .always
+
+        tfBirthDate.leftView = UIView.init(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
+        tfBirthDate.leftViewMode = .always
+        
         tfFirstName.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
         tfLastName.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
         tfUserName.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
         tfBirthDate.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
-
-        loadUserData()
     }
   
     @IBAction func saveButton(_ sender: Any) {
@@ -77,7 +94,7 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
             {
                 profil.firstname = firstname
             } else {
-                let refreshAlert = UIAlertController(title: "Invalid \"Firstname\" field.", message: "Field \"Firstname\" can't be empty.", preferredStyle: UIAlertControllerStyle.alert)
+                let refreshAlert = UIAlertController(title: "Invalid \"Firstname\" field.", message: "Field \"Firstname\" can't be empty.", preferredStyle: UIAlertController.Style.alert)
                 
                 refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
                 }))
@@ -90,7 +107,7 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
             {
                 profil.lastname = lastname
             } else {
-                let refreshAlert = UIAlertController(title: "Invalid \"Lastname\" field.", message: "Field \"Lastname\" can't be empty.", preferredStyle: UIAlertControllerStyle.alert)
+                let refreshAlert = UIAlertController(title: "Invalid \"Lastname\" field.", message: "Field \"Lastname\" can't be empty.", preferredStyle: UIAlertController.Style.alert)
                 
                 refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
                 }))
@@ -103,7 +120,7 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
             {
                 profil.username = userName
             } else {
-                let refreshAlert = UIAlertController(title: "Invalid \"Username\" field.", message: "Field \"Username\" can't be empty.", preferredStyle: UIAlertControllerStyle.alert)
+                let refreshAlert = UIAlertController(title: "Invalid \"Username\" field.", message: "Field \"Username\" can't be empty.", preferredStyle: UIAlertController.Style.alert)
                 
                 refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
                 }))
@@ -116,7 +133,7 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
             {
                 profil.birthdate = birthdate
             } else {
-                let refreshAlert = UIAlertController(title: "Invalid \"Birthdate\" field.", message: "Field \"Birthdate\" can't be empty.", preferredStyle: UIAlertControllerStyle.alert)
+                let refreshAlert = UIAlertController(title: "Invalid \"Birthdate\" field.", message: "Field \"Birthdate\" can't be empty.", preferredStyle: UIAlertController.Style.alert)
                 
                 refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
                 }))

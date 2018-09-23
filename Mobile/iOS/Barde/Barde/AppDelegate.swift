@@ -15,14 +15,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         let navigationBarAppearace = UINavigationBar.appearance()
         
-        navigationBarAppearace.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
+        navigationBarAppearace.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationBarAppearace.tintColor = Utils().uicolorFromHex(rgbValue: 0xFFFFFF)
-        navigationBarAppearace.barTintColor = Utils().uicolorFromHex(rgbValue: 0xD53972)
+        navigationBarAppearace.barTintColor = Utils().uicolorFromHex(rgbValue: 0xD53A72)
         
         
         Utils().deleteAllRecord(entity: "Style")
