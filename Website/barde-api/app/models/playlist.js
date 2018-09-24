@@ -13,10 +13,6 @@ var PlaylistSchema = new Schema({
     },
     musics: [
       {
-        id : {
-          type : String,
-          required: true
-        },
         name: {
           type: String,
           required: true
