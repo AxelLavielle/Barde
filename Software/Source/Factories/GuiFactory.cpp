@@ -214,7 +214,6 @@ void GuiFactory::initLabeledTextBox(const std::string & labelText, const std::st
 {
 	textBox.setLabelText(labelText);
 	textBox.setText(boxText);
-
 }
 
 void GuiFactory::initTextEditor(TextEditor & textBox)

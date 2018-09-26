@@ -41,6 +41,7 @@ MainWindow::MainWindow(const std::string &name) : _cmdManager(CmdManager::getIns
 	_mainComponent = new MainContentComponent();
 	_loginComponent = new LoginComponent(_cmdManager);
 	_userRegistration = new UserRegistration(_cmdManager);
+	_forgotComponent = new ForgotComponent(_cmdManager);
 	_mainComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 	_loginComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 	_userRegistration->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
@@ -87,6 +88,12 @@ void MainWindow::changeViewCallback(std::string viewName)
 		clearContentComponent();
 		_userRegistration->refresh();
 		setContentNonOwned(_userRegistration, true);
+	}
+	else if (viewName == "Forgot")
+	{
+		clearContentComponent();
+		_forgotComponent->refresh();
+		setContentNonOwned(_forgotComponent, true);
 	}
 	else if (viewName == "Logout")
 	{

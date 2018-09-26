@@ -24,4 +24,5 @@ private:
 	SimpleLabel			_introductionLabel;
 	LabeledTextBox		_userNameTextBox;
 	LabeledTextBox		_passwordTextBox;
+
 };

@@ -31,6 +31,7 @@ class LabeledTextBox : public FlexGroup
 public:
 	LabeledTextBox();
 	void setLabelText(const std::string & text);
+	void setErrorText(const std::string & text);
 	std::string	getText() const;
 	void setText(const std::string & text);
 	void setPasswordCharacter(juce::juce_wchar passwordCharacter);
@@ -41,6 +42,8 @@ private:
 
 	TextEditor		_textBox;
 	SimpleLabel		_label;
+	SimpleLabel		_error;
 	FlexItem		_textItem;
 	FlexItem		_labelItem;
+	FlexItem		_errorItem;
 };

@@ -129,6 +129,10 @@
         <FILE id="wSJyIx" name="SSLManager.hh" compile="0" resource="0" file="Source/EncryptionManager/SSLManager.hh"/>
       </GROUP>
       <GROUP id="{67A50DD7-6C2C-A059-E512-F0F0D14AB316}" name="GraphManager">
+        <FILE id="uYLlSK" name="ForgotComponent.cpp" compile="1" resource="0"
+              file="Source/GraphManager/ForgotComponent.cpp"/>
+        <FILE id="tlz6ux" name="ForgotComponent.h" compile="0" resource="0"
+              file="Source/GraphManager/ForgotComponent.h"/>
         <FILE id="x0OPrr" name="BpmSlider.hh" compile="0" resource="0" file="Source/GraphManager/BpmSlider.hh"/>
         <FILE id="Qqc7oI" name="BpmSlider.cpp" compile="1" resource="0" file="Source/GraphManager/BpmSlider.cpp"/>
         <FILE id="xL2OBR" name="PlayingCtrlButton.hh" compile="0" resource="0"

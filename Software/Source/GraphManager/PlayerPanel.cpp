@@ -26,10 +26,14 @@ PlayerPanel::PlayerPanel(MusicParameters & musicParameters) : _musicParameters(m
 
 	GuiFactory::initToggleButton("Blues", "Blues", _bluesButton, true);
 	_bluesButton.addListener(this);
+	_bluesButton.setRadioGroupId(42, dontSendNotification);
 	GuiFactory::initToggleButton("Reggae", "Reggae", _reggaeButton);
 	_reggaeButton.addListener(this);
+	_reggaeButton.setRadioGroupId(42, dontSendNotification);
 	GuiFactory::initToggleButton("House (Coming soon !)", "House", _houseButton);
 	_houseButton.addListener(this);
+	_houseButton.setRadioGroupId(42, dontSendNotification);
+	_houseButton.setEnabled(false); //remove this
 	GuiFactory::initHoryzontalFlexGroup({ GuiFactory::createFlexItem(_bluesButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_reggaeButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_houseButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1) }, _styleGroup);
 	addFlexItem(_styleGroup, 300, 100);
 

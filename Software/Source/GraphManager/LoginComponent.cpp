@@ -59,6 +59,7 @@ LoginComponent::LoginComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager)
 	addAndMakeVisible(_errorText);
 	_errorText.setText("", juce::NotificationType::dontSendNotification);
 
+
 	addAndMakeVisible(_loginButton);
 	_loginButton.setButtonText("Login");
 	_loginButton.setName("Login");
@@ -70,10 +71,16 @@ LoginComponent::LoginComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager)
 	_signinButton.addListener(this);
 
 
+	addAndMakeVisible(_forgotPasswordButton);
+	_forgotPasswordButton.setButtonText("Forgot Password ?");
+	_forgotPasswordButton.setName("Forgot");
+	_forgotPasswordButton.addListener(this);
+
 	_textEditor1.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN, BOX_WIDTH, BOX_HEIGHT);
 	_textEditor2.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN * 2, BOX_WIDTH, BOX_HEIGHT);
 	_loginButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN * 3, BOX_WIDTH, BOX_HEIGHT);
 	_signinButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN * 4, BOX_WIDTH, BOX_HEIGHT);
+	_forgotPasswordButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN * 5, BOX_WIDTH, BOX_HEIGHT);
 	_errorText.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN/2, BOX_WIDTH, BOX_HEIGHT);
 
 
@@ -140,6 +147,10 @@ void LoginComponent::buttonClicked(Button* button)
 	{
 		changeView("Signup");
 	}
+	else if (button->getName() == "Forgot")
+	{
+		changeView("Forgot");
+	}
 }
 
 
@@ -203,6 +214,11 @@ void LoginComponent::ThemeChanged()
 	_signinButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
 	_signinButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
 	_signinButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
+	_forgotPasswordButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	_forgotPasswordButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getFontColor()));
+	_forgotPasswordButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getFontColor()));
+	_forgotPasswordButton.setColour(TextButton::buttonOnColourId, Colour(Theme::getInstance().getBackgroundColor()));
+
 	this->repaint();
 }
 
@@ -225,6 +241,7 @@ void LoginComponent::resized()
 	_textEditor2.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN * 2, BOX_WIDTH, BOX_HEIGHT);
 	_loginButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN * 3, BOX_WIDTH, BOX_HEIGHT);
 	_signinButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN * 4, BOX_WIDTH, BOX_HEIGHT);
+	_forgotPasswordButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN * 5, BOX_WIDTH, BOX_HEIGHT);
 	_errorText.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 - SPACE_BETWEEN, BOX_WIDTH, BOX_HEIGHT);
 
 	// This is called when the MainContentComponent is resized.

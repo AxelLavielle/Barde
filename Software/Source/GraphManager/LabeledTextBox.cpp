@@ -20,7 +20,16 @@ LabeledTextBox::LabeledTextBox()
 
 	_textItem = GuiFactory::createFlexItem(_textBox, 200, 17, FlexItem::AlignSelf::autoAlign, 1);
 
-	GuiFactory::initVerticalFlexGroup({ _labelItem, _textItem }, *this);
+
+	GuiFactory::initLegendLabel("", _error);
+	_error.setJustificationType(Justification::centredLeft);
+
+	_errorItem = GuiFactory::createFlexItem(_error, 100, 20, FlexItem::AlignSelf::autoAlign, 1);
+
+
+	GuiFactory::initVerticalFlexGroup({ _labelItem, _textItem, _errorItem }, *this);
+
+
 }
 
 void LabeledTextBox::setLabelText(const std::string & text)
@@ -29,6 +38,14 @@ void LabeledTextBox::setLabelText(const std::string & text)
 	_labelItem = GuiFactory::createFlexItem(_label, 100, 20);
 	refreshItems( { _labelItem, _textItem } );
 }
+
+void LabeledTextBox::setErrorText(const std::string & text)
+{
+	_error.setLabelText(text);
+	_errorItem = GuiFactory::createFlexItem(_label, 100, 20);
+	refreshItems({ _labelItem, _textItem, _errorItem });
+}
+
 
 std::string LabeledTextBox::getText() const
 {

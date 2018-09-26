@@ -15,7 +15,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D65039C7-FEC2-478D-B242-6D8148618858}</ProjectGuid>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
@@ -24,7 +24,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"
@@ -32,7 +32,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props"/>
@@ -43,7 +43,7 @@
             Label="LocalAppDataPlatform"/>
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <PropertyGroup>
@@ -57,7 +57,7 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\App\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">BardeClient</TargetName>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -196,6 +196,7 @@
     <ClCompile Include="..\Source\DatabaseManager\SQLiteManager.cpp"/>
     <ClCompile Include="..\Source\EncryptionManager\AEncryptionManager.cpp"/>
     <ClCompile Include="..\Source\EncryptionManager\SSLManager.cpp"/>
+    <ClCompile Include="..\Source\GraphManager\ForgotComponent.cpp"/>
     <ClCompile Include="..\Source\GraphManager\BpmSlider.cpp"/>
     <ClCompile Include="..\Source\GraphManager\PlayingCtrlButton.cpp"/>
     <ClCompile Include="..\Source\GraphManager\LabeledTextBox.cpp"/>
@@ -1939,6 +1940,7 @@
     <ClInclude Include="..\Source\EncryptionManager\AEncryptionManager.hh"/>
     <ClInclude Include="..\Source\EncryptionManager\IEncryptionManager.hpp"/>
     <ClInclude Include="..\Source\EncryptionManager\SSLManager.hh"/>
+    <ClInclude Include="..\Source\GraphManager\ForgotComponent.h"/>
     <ClInclude Include="..\Source\GraphManager\BpmSlider.hh"/>
     <ClInclude Include="..\Source\GraphManager\PlayingCtrlButton.hh"/>
     <ClInclude Include="..\Source\GraphManager\LabeledTextBox.hh"/>
