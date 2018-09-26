@@ -76,8 +76,8 @@ Midi			MusicGenerator::createMusic_reggae(const MusicParameters &parameters)
 	style = markovObj.getStyleFromJson();
 	Resolution::parsingMarkov(style, &markovChords);
 
-	std::pair<char, char> noteA = markovChords[0];
-	std::pair<char, char> noteB = std::make_pair(static_cast<char>(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 5) + markovChords[0].first % 8), static_cast<char>(4));
+	std::pair<char, char> noteA = std::make_pair(markovChords[0].first, 6);
+	std::pair<char, char> noteB = std::make_pair(static_cast<char>(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 5) + markovChords[0].first % 8), static_cast<char>(6));
 	if (noteB.first > noteA.first)
 		noteB.second--;
 	markovChords.push_back(noteA);
@@ -123,7 +123,7 @@ Midi			MusicGenerator::createMusic_reggae(const MusicParameters &parameters)
 
 	std::cout << "ARPEGGIOS" << std::endl;
 	/* ARPEGGIOS */
-	int arpN = rand() % 2 + 1;
+	int arpN = rand() % 2 + 3;
 	Pattern					*markovPattern = new Pattern(chord);
 	ObjectMarkov				       	markovObj2(proba, arpN++, parameters.getSeed());
 	markovObj2.callLua();
@@ -180,9 +180,9 @@ Midi			MusicGenerator::createMusic_blues(const MusicParameters &parameters)
   style = markovObj.getStyleFromJson();
   Resolution::parsingMarkov(style, &markovChords);
 
-  std::pair<char, char> noteA = markovChords[0];
-  std::pair<char, char> noteB = std::make_pair(static_cast<char>(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 5) + markovChords[0].first % 8), static_cast<char>(4));
-  std::pair<char, char> noteC = std::make_pair(static_cast<char>(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 7) + markovChords[0].first % 8), static_cast<char>(4));
+  std::pair<char, char> noteA = std::make_pair(markovChords[0].first, 6);
+  std::pair<char, char> noteB = std::make_pair(static_cast<char>(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 5) + markovChords[0].first % 8), static_cast<char>(6));
+  std::pair<char, char> noteC = std::make_pair(static_cast<char>(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 7) + markovChords[0].first % 8), static_cast<char>(6));
   if (noteB.first < noteA.first)
     noteB.second++;
   if (noteC.first < noteA.first)

@@ -30,7 +30,8 @@ void					Drums::createPatternReggae(std::array<std::vector<bool>, 3> &drumPatter
 	int hihat = rand() % 2;
 	for (int i = 0; i < size; i++)
 	{
-		drumPattern[0].push_back((hihat || (i % 4 != 2 && !(i % 2))) ? 1 : 0);
+//		drumPattern[0].push_back((hihat || (i % 4 != 2 && !(i % 2))) ? 1 : 0);
+		drumPattern[0].push_back(1);
 		drumPattern[1].push_back((i % 2) ? 0 : 1);
 		drumPattern[2].push_back((i % 4 == 2) ? 1 : 0);
 	}
