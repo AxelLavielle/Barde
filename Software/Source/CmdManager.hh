@@ -25,7 +25,7 @@ public:
 	bool login(const std::string &email, const std::string & password);
 	bool logout();
 	bool editUserInfo(const User &user, const std::string & password);
-	bool forgetPassword();
+	bool forgetPassword(const std::string & email);
 	bool createUser(const User & user, const std::string & password);
 	bool signUp(const User & user, const std::string & password);
 	bool sendComment(const std::string & comment);

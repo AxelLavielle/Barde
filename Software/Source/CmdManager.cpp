@@ -130,10 +130,27 @@ bool CmdManager::editUserInfo(const User & user, const std::string & password)
 	return true;
 }
 
-bool CmdManager::forgetPassword()
+/*bool CmdManager::forgetPassword(const std::string & password)
 {
-	return false;
-}
+	Json::Value				root;
+	std::stringstream		ssJson;
+
+
+	root["email"] = password;
+	ssJson << root;
+
+	try
+	{
+		clearResponses();
+		_socket.get("/user/password/reset", ssJson.str(), _responseCode, _responseMsg);
+	}
+	catch (RestClientException &e)
+	{
+		std::cerr << "Error on request resetUserPassword : " << e.what() << std::endl;
+		return false;
+	}
+	return true;
+}*/
 
 bool CmdManager::createUser(const User & user, const std::string & password)
 {

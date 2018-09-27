@@ -26,7 +26,7 @@
 This component lives inside our window, and this is where you should put all
 your controls and content.
 */
-class ForgotComponent : public AComponent, private TextEditor::Listener, private Button::Listener, private ComboBox::Listener
+class ForgotComponent : public AComponent, private TextEditor::Listener, private Button::Listener
 {
 public:
 	//==============================================================================
@@ -37,21 +37,19 @@ private:
 	void paint(Graphics&) override;
 	void resized() override;
 	void buttonClicked(Button* button) override;
-	void comboBoxChanged(ComboBox * comboBoxThatHasChanged) override;
+
 	void ThemeChanged();
 	void forgot(const std::string & login, const std::string & password);
 
 	CmdManager	&_cmdManager;
-	TextEditor	_textEditor1, _textEditor2;
-	Label		_inputLabel1, _inputLabel2;
+	TextEditor	_emailEditor, _tokenEditor, _passwordEditor, _confirmPasswordEditor;
+	Label		_emailLabel, _tokenLabel, _passwordLabel, _confirmPasswordLabel;
 	ComboBox	_comboBox;
 	Label		_errorText;
-	TextButton	_loginButton;
-	TextButton	_signinButton;
-	TextButton	_forgotPasswordButton;
+	TextButton	_sendEmailButton;
+	TextButton	_resetPasswordButton;
 	ImageComponent _logo;
-	//static Theme		_currentTheme;
-	ComboBox	_themeChoice;
+
 	//==============================================================================
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ForgotComponent)
 };
