@@ -252,7 +252,7 @@ function isAdmin(req, res, next) {
  *
  */
 function isAuthenticate(req, res, next) {
-    if (req.user && (req.user.role === "Admin" || req.user.role === "Client"))
+    if (req.user && (req.user.role === "Admin" || req.user.role === "Client" || req.user.role === "Premium"))
         res.status(200).send({msg: "Success", data: {"isAuthenticate": true}});
     else
         res.status(403).send({msg: "Error", data: {"isAuthenticate": false}})
