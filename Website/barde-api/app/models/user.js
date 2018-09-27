@@ -37,7 +37,7 @@ var UserSchema = new Schema({
     },
     role: {
         type: String,
-        enum: ['Client', 'Admin'],
+        enum: ['Client', 'Premium', 'Admin'],
         default: 'Client'
     },
     reset: {
