@@ -17,6 +17,7 @@
 #include "FlexGroup.hh"
 #include "../Factories/GuiFactory.hh"
 #include "../ViewManager/FlexView.hh"
+#include "../CmdManager.hh"
 
 class PlayerFooter : public FlexView, private Button::Listener, private Slider::Listener
 {

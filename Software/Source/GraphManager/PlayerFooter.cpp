@@ -35,6 +35,9 @@ PlayerFooter::PlayerFooter(Player & player, MusicParameters &musicParameters) : 
 	_controlGroup.addItem(item2.withMinWidth(PLAYING_BUTTON_WIDTH).withMinHeight(PLAYING_BUTTON_HEIGHT));
 
 	initFlexBox();
+
+	auto test = CmdManager::getInstance().getUserInfo().getRole();
+
 }
 
 PlayerFooter::~PlayerFooter()

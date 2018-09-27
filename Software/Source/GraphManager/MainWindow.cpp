@@ -25,7 +25,7 @@ MainWindow::MainWindow(const std::string &name) : _cmdManager(CmdManager::getIns
 	_cmdManager.connectToServer();
 
 #ifdef DEBUG
-	_cmdManager.login("anthony.vogelweid@epitech.eu", "test");
+	_cmdManager.login("micha@barde.io", "Micha@barde.io1");
 
 	//Init all the components
 	_mainComponent = new MainContentComponent();

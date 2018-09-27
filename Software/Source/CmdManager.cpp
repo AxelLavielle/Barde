@@ -25,9 +25,9 @@ void CmdManager::clearResponses()
 bool CmdManager::connectToServer()
 {
 	//api.barde.io prod
-	//_socket.setAddr("163.172.191.206", 2100, 5000);
+	_socket.setAddr("163.172.191.206", 2100, 5000);
 	//api.barder.io dev -> test
-	_socket.setAddr("163.172.128.43", 3000, 5000);
+	//_socket.setAddr("163.172.128.43", 3000, 5000);
 	return true;
 }
 

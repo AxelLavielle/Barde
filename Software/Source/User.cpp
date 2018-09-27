@@ -33,6 +33,7 @@ User & User::operator=(const User & user)
 	_lastName = user.getLastName();
 	_userName = user.getUserName();
 	_email = user.getEmail();
+	_role = user.getRole();
 	_dateOfBirth = user.getDateOfBirthObject();
 	return *this;
 }
