@@ -27,7 +27,7 @@ public:
 	bool logout();
 	bool authentificate(const std::string & email, const std::string & password);
 	virtual std::string get(const std::string &uri, int & responseCode, std::string & responseMsg);
-	std::string post(const std::string & uri, int & responseCode, std::string & responseMsg);
+	virtual std::string get(const std::string & uri, const std::string & body, int & responseCode, std::string & responseMsg);
 	virtual std::string receive(int & responseCode, std::string & responseMsg);
 	virtual std::string post(const std::string & uri, const std::string & body, int & responseCode, std::string & responseMsg);
 	virtual std::string put(const std::string & uri, const std::string & body, int & responseCode, std::string & responseMsg);
