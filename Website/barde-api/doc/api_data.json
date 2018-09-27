@@ -1138,7 +1138,7 @@
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n}",
+          "content": "{\n  \"email\": \"\"\n}",
           "type": "json"
         }
       ]
@@ -1278,7 +1278,7 @@
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n  \"token\": \"\",\n  \"password\": \"\",\n}",
+          "content": "{\n  \"token\": \"\",\n  \"password\": \"\",\n  \"email\": \"\"\n}",
           "type": "json"
         }
       ]
