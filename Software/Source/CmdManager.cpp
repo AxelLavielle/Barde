@@ -25,9 +25,9 @@ void CmdManager::clearResponses()
 bool CmdManager::connectToServer()
 {
 	//api.barde.io prod
-	_socket.setAddr("163.172.191.206", 2100, 5000);
+	//_socket.setAddr("163.172.191.206", 2100, 5000);
 	//api.barder.io dev -> test
-	//_socket.setAddr("163.172.128.43", 3000, 5000);
+	_socket.setAddr("163.172.128.43", 3000, 5000);
 	return true;
 }
 
@@ -63,6 +63,7 @@ User CmdManager::getUserInfo()
 	_currentUser.setLastName(user["name"]["lastName"].asString());
 	_currentUser.setUserName(user["name"]["userName"].asString());
 	_currentUser.setDateOfBirth(user["dateOfBirth"].asString());
+	_currentUser.setRole(user["role"].asString());
 	return _currentUser;
 }
 
@@ -80,6 +81,18 @@ bool CmdManager::login(const std::string &email, const std::string &password)
 		return false;
 	}
 }
+
+
+
+//bool CmdManager::forgotPassword(const std::string & email)
+//{
+	//TODO
+//}
+
+
+
+
+
 
 bool CmdManager::logout()
 {

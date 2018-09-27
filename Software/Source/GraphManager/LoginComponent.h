@@ -48,7 +48,7 @@ private:
 
 	CmdManager	&_cmdManager;
 	TextEditor	_textEditor1, _textEditor2;
-	Label		_inputLabel1, _inputLabel2;
+	Label		_inputLabel1, _inputLabel2, _forgotLabel;
 	ComboBox	_comboBox;
 	Label		_errorText;
 	TextButton	_loginButton;

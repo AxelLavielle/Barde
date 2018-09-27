@@ -13,6 +13,7 @@
 PlayerFooter::PlayerFooter(Player & player, MusicParameters &musicParameters) : _player(player), _musicParameters(musicParameters),
 				_controlGroup(FlexBox::JustifyContent::flexStart, FlexBox::AlignContent::center, FlexBox::AlignItems::center, FlexBox::Direction::row)
 {
+	
 	_playButton = new PlayingCtrlButton("Play", BUTTON_PLAYING_TYPE::PLAY);
 	_playButton->addListener(this);
 

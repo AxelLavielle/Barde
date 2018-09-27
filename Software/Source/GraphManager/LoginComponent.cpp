@@ -71,6 +71,8 @@ LoginComponent::LoginComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager)
 	_signinButton.addListener(this);
 
 
+	//_forgotLabel.setText("LDKSLKDLSAKDLSKDSLKDALSDLk", juce::);
+
 	addAndMakeVisible(_forgotPasswordButton);
 	_forgotPasswordButton.setButtonText("Forgot Password ?");
 	_forgotPasswordButton.setName("Forgot");
@@ -214,10 +216,16 @@ void LoginComponent::ThemeChanged()
 	_signinButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
 	_signinButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
 	_signinButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
+	
+	_forgotLabel.setColour(Label::textColourId, Colour(Theme::getInstance().getButtonColor()));
 	_forgotPasswordButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getBackgroundColor()));
 	_forgotPasswordButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getFontColor()));
 	_forgotPasswordButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getFontColor()));
 	_forgotPasswordButton.setColour(TextButton::buttonOnColourId, Colour(Theme::getInstance().getBackgroundColor()));
+	_forgotPasswordButton.setAlpha(0);
+
+
+	
 
 	this->repaint();
 }

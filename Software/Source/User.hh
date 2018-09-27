@@ -31,6 +31,8 @@ public:
 	void setYearOfBirth(const std::string &yearOfBirth);
 	void setEmail(const std::string &email);
 	void setDateOfBirth(const std::string &dateOfBirth);
+	void setRole(const std::string &role);
+
 	std::string getFirstName() const;
 	std::string getLastName() const;
 	std::string getUserName() const;
@@ -39,6 +41,7 @@ public:
 	std::string getYearOfBirth() const;
 	std::string getMonthOfBirth() const;
 	std::string getDayOfBirth() const;
+	std::string getRole() const;
 	DateTime getDateOfBirthObject() const;
 
 private:
@@ -46,6 +49,7 @@ private:
 	std::string _lastName;
 	std::string _userName;
 	std::string _email;
+	std::string _role;
 	DateTime	_dateOfBirth;
 };
 

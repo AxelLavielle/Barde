@@ -82,6 +82,11 @@ void User::setDateOfBirth(const std::string & dateOfBirth)
 	_dateOfBirth.setISODate(dateOfBirth);
 }
 
+void User::setRole(const std::string & role)
+{
+	_role = role;
+}
+
 std::string User::getFirstName() const
 {
 	return _firstName;
@@ -125,4 +130,9 @@ std::string User::getDayOfBirth() const
 DateTime User::getDateOfBirthObject() const
 {
 	return _dateOfBirth;
+}
+
+std::string User::getRole() const
+{
+	return _role;
 }
