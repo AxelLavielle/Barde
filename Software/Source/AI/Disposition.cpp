@@ -125,8 +125,8 @@ void	Disposition::placeDrums(MidiManager &_midiManager, const MusicParameters &p
 		current = pattern[y][k];
 		instru = drumInstruments[current.note.second];
 		note = (current.note.first / 8) + (6 * 12);
-		_midiManager.noteOn(instru.channel, note, instru.velocity, current.position + 1 + (y * TIMES_PER_BAR));
-		_midiManager.noteOff(instru.channel, note, instru.velocity, current.position + 1 + (y * TIMES_PER_BAR) + current.duration);
+		_midiManager.noteOn(instru.channel, note, instru.velocity, current.position + (y * TIMES_PER_BAR));
+		_midiManager.noteOff(instru.channel, note, instru.velocity, current.position + (y * TIMES_PER_BAR) + current.duration);
     }
   }
 }

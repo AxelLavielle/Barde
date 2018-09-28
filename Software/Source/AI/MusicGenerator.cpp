@@ -137,7 +137,7 @@ Midi			MusicGenerator::createMusic_reggae(const MusicParameters &parameters)
 		int scale = lastScale;
 		if (n != 0 && ABS(markovTmp[n].first - markovTmp[n - 1].first) / 8 > 6)
 			scale = (markovTmp[n].first > markovTmp[n - 1].first) ? (lastScale - 1) : (lastScale + 1);
-		markovPattern->addNote(std::make_pair(markovTmp[n].first, static_cast<char>(scale)), n*3.0f / arpN + 1, 3.0f / arpN, 0);
+		markovPattern->addNote(std::make_pair(markovTmp[n].first, static_cast<char>(scale)), n*4.0f / arpN, 4.0f / arpN, 0);
 		lastScale = scale;
 	}
 	std::vector<std::vector<t_note> >		arpeggios;
