@@ -35,49 +35,6 @@ void					Drums::createPatternReggae(std::array<std::vector<bool>, 3> &drumPatter
 		drumPattern[1].push_back((i % 2) ? 0 : 1);
 		drumPattern[2].push_back((i % 4 == 2) ? 1 : 0);
 	}
-
-/*	int					hihat_shuffle;
-	int					type;
-
-	hihat_shuffle = rand() % 100;
-	if (hihat_shuffle >= 40)
-	{
-		drumPattern[0] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
-		type = rand() % 5;
-		switch (type)
-		{
-		case 0 : drumPattern[1] = { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0 };
-				 break;
-		case 1 : drumPattern[1] = { 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0 };
-				 break;
-		case 2 : drumPattern[1] = { 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1 };
-				 break;
-		case 3 : drumPattern[1] = { 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1 };
-				 break;
-		case 4 : drumPattern[1] = { 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1 };
-				 break;
-		}
-	}
-	else
-	{
-		drumPattern[0] = { 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1 };
-		type = rand() % 4;
-		switch (type)
-		{
-		case 0: drumPattern[1] = { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0 };
-				break;
-		case 1: drumPattern[1] = { 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1 };
-				break;
-		case 2: drumPattern[1] = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1 };
-				break;
-		case 3: drumPattern[1] = { 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1 };
-				break;
-		}
-	}
-
-	drumPattern[2] = { 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0 };
-	return;*/
-
 }
 
 t_note					Drums::createNote(char instru, int bar_pos)
