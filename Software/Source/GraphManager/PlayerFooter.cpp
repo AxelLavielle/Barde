@@ -40,10 +40,10 @@ PlayerFooter::PlayerFooter(Player & player, MusicParameters &musicParameters) : 
 	auto test = CmdManager::getInstance().getUserInfo().getRole();
 	if (test != "Premium")
 	{
-		_playButton->setEnabled(false);
-		_stopButton->setEnabled(false);
-		_playButton->setAlpha(0.5);
-		_stopButton->setAlpha(0.5);
+		//_playButton->setEnabled(false);
+		//_stopButton->setEnabled(false);
+	//	_playButton->setAlpha(0.5);
+//		_stopButton->setAlpha(0.5);
 		//ToggleButton t;
 		//t.setTooltip()
 	}

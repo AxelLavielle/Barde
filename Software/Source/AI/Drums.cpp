@@ -87,10 +87,10 @@ void		Drums::reggae(std::vector<std::vector<t_note>> &pattern)
 	std::array<std::vector<bool>, 3> patternBar;
 
 	bar_nb = 0;
-	createPatternReggae(patternBar, 8);
-	while (bar_nb < 8)
+	createPatternReggae(patternBar, 12);
+	while (bar_nb < 12)
 	{
-		pattern.push_back(createBar(patternBar, 8));
+		pattern.push_back(createBar(patternBar, 12));
 		bar_nb++;
 	}
 }
