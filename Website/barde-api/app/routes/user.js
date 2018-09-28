@@ -37,8 +37,8 @@ module.exports = function (apiRoutes, passport) {
         .patch("/user", methodAuth.authenticate(), updatePatch)
         .put("/user", methodAuth.authenticate(), updatePut)
         .put("/user/password", methodAuth.authenticate(), password)
-        .get("/user/password/reset", methodAuth.authenticate(), passwordResetGet)
-        .post("/user/password/reset", methodAuth.authenticate(), passwordResetPost)
+        .get("/user/password/reset", passwordResetGet)
+        .post("/user/password/reset", passwordResetPost)
         .get('/user/:email', methodAuth.authenticate(), methodAuth.admin(), getOne)
         .get('/user/:perPage/:page', methodAuth.authenticate(), methodAuth.admin(), getByPage)};
 
