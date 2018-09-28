@@ -9,6 +9,7 @@
 */
 
 #include "PlayerFooter.hh"
+#include "../CmdManager.hh"
 
 PlayerFooter::PlayerFooter(Player & player, MusicParameters &musicParameters) : _player(player), _musicParameters(musicParameters),
 				_controlGroup(FlexBox::JustifyContent::flexStart, FlexBox::AlignContent::center, FlexBox::AlignItems::center, FlexBox::Direction::row)
@@ -36,8 +37,16 @@ PlayerFooter::PlayerFooter(Player & player, MusicParameters &musicParameters) : 
 
 	initFlexBox();
 
-	auto test = CmdManager::getInstance().getUserInfo().getRole();
-
+	//auto test = CmdManager::getInstance().getUserInfo().getRole();
+	//if (test != "Premium")
+	//{
+	//	_playButton->setEnabled(false);
+	//	_stopButton->setEnabled(false);
+	//	_playButton->setAlpha(0.5);
+	//	_stopButton->setAlpha(0.5);
+	//	//ToggleButton t;
+	//	//t.setTooltip()
+	//}
 }
 
 PlayerFooter::~PlayerFooter()
