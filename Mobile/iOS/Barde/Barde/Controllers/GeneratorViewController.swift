@@ -63,7 +63,7 @@ class GeneratorViewController: UIViewController {
         
        
         
-        // timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCountdown), userInfo: nil, repeats: true)
+        // timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCountdown), userInfo: nil, repeats: true)f
         
         setSessionPlayer()
         createAVMIDIPlayerFromMIDIFIle()

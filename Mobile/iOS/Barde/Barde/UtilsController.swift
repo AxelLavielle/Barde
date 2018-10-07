@@ -14,6 +14,7 @@ class Utils {
     
     func getApiUrl() -> String {
         // return "http://163.172.128.43:3000"
+        // return "http://163.172.191.206:2101"
         return "http://163.172.191.206:2100"
     }
     

@@ -13,7 +13,7 @@ class SocketManager: NSObject {
 
     static let sharedInstance = SocketManager()
 
-    let client = TCPClient(address: "163.172.191.206", port: 8080)
+    let client = TCPClient(address: "163.172.191.206", port: 23333)
 
     override init() {
         super.init()
@@ -25,7 +25,6 @@ class SocketManager: NSObject {
             let ret = readResponse(from: client)
             print(ret as Any);
             GeneratorManager.sharedInstance.listeningServer()
-            print("SUCCESS SOCKET")
         case .failure(let error):
             print("ERROR", error)
         }
@@ -34,6 +33,9 @@ class SocketManager: NSObject {
     func sendRequest(data: Data, using client: TCPClient) -> Bool {
         switch client.send(data: data) {
         case .success:
+            let ret = readResponse(from: client)
+            
+            print(ret)
             return true
         case .failure(let error):
             print("ERROR REQUEST", error)

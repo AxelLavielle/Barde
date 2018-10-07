@@ -20,7 +20,7 @@ class GeneratorManager: NSObject {
        let res = SocketManager.sharedInstance.sendRequest(data: Data(bytes: arr), using: SocketManager.sharedInstance.client)
         
         if res {
-            print("request ok")
+            print("request ok", res)
         }
     }
 //

@@ -55,15 +55,18 @@ class UserService {
                         profil.setValue(data["user"]["name"]["lastName"].stringValue, forKey: "lastname")
                         profil.setValue(data["user"]["name"]["userName"].stringValue, forKey: "username")
                         
-                        let dateFormatter = DateFormatter()
-                        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // edited
-                        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                        let date = dateFormatter.date(from: data["user"]["dateOfBirth"].stringValue)!
-                        dateFormatter.dateFormat = "MM/dd/YYYY"
-                        let dateString = dateFormatter.string(from: date)
+                       
                         
+                        if let userName = data["user"]["dateOfBirth"].string {
+                            let dateFormatter = DateFormatter()
+                            dateFormatter.locale = Locale(identifier: "en_US_POSIX") // edited
+                            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                            let date = dateFormatter.date(from: data["user"]["dateOfBirth"].stringValue)!
+                            dateFormatter.dateFormat = "MM/dd/YYYY"
+                            let dateString = dateFormatter.string(from: date)
+                            profil.setValue(dateString, forKey: "birthdate")
+                        }
                         
-                        profil.setValue(dateString, forKey: "birthdate")
                         
                         do {
                             try context.save()
@@ -91,17 +94,25 @@ class UserService {
             "Authorization": UserDefaults.standard.string(forKey: "Token")!,
             ]
         
-        print("birtdate", data.value(forKey:"birthdate") as! String)
+        var strMonth = ""
+        var strYear = ""
+        var strDay = ""
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        let date = dateFormatter.date(from: data.value(forKey:"birthdate") as! String)
-        dateFormatter.dateFormat = "MM"
-        let strMonth = dateFormatter.string(from: date!)
-        dateFormatter.dateFormat = "yyyy"
-        let strYear = dateFormatter.string(from: date!)
-        dateFormatter.dateFormat = "dd"
-        let strDay = dateFormatter.string(from: date!)
+        if let date = data.value(forKey:"birthdate") as? String {
+            if (!date.isEmpty) {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "MM/dd/yyyy"
+                let date = dateFormatter.date(from: data.value(forKey:"birthdate") as! String)
+                dateFormatter.dateFormat = "MM"
+                strMonth = dateFormatter.string(from: date!)
+                dateFormatter.dateFormat = "yyyy"
+                strYear = dateFormatter.string(from: date!)
+                dateFormatter.dateFormat = "dd"
+                strDay = dateFormatter.string(from: date!)
+            }
+        }
+        
+       
         
         let parameters: Parameters = [
             "email":  data.value(forKey:"email") as! String,

@@ -67,7 +67,9 @@ class ReportProblemViewController: UIViewController, UITextViewDelegate {
            
                 self.navigationItem.setHidesBackButton(false, animated: true)
                 self.navigationItem.rightBarButtonItem = nil;
-                self.navigationItem.leftBarButtonItem = buttonBack;
+                let back = UIBarButtonItem(title: NSLocalizedString("Back.text", comment: ""), style: .plain, target: self, action: #selector(backButtonAction))
+                
+                self.navigationItem.leftBarButtonItem = back;
                 tvDescription.resignFirstResponder()
                 self.view.endEditing(true)
 
@@ -83,7 +85,9 @@ class ReportProblemViewController: UIViewController, UITextViewDelegate {
     @objc func dismissChange(_ sender: Any) {
         self.navigationItem.setHidesBackButton(false, animated: true)
         self.navigationItem.rightBarButtonItem = nil;
-        self.navigationItem.leftBarButtonItem = buttonBack;
+        let back = UIBarButtonItem(title: NSLocalizedString("Back.text", comment: ""), style: .plain, target: self, action: #selector(backButtonAction))
+        
+        self.navigationItem.leftBarButtonItem = back;
         tvDescription.resignFirstResponder()
         navigationController?.popViewController(animated: true)
         

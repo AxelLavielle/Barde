@@ -89,57 +89,63 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
         profil = profilFromLocal
         
         if let firstname = tfFirstName.text{
+            profil.firstname = firstname
+
             
             if (!firstname.isEmpty)
             {
                 profil.firstname = firstname
-            } else {
-                let refreshAlert = UIAlertController(title: "Invalid \"Firstname\" field.", message: "Field \"Firstname\" can't be empty.", preferredStyle: UIAlertController.Style.alert)
-                
-                refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
-                }))
-                
-                present(refreshAlert, animated: true, completion: nil)
             }
+//            else {
+//                let refreshAlert = UIAlertController(title: "Invalid \"Firstname\" field.", message: "Field \"Firstname\" can't be empty.", preferredStyle: UIAlertController.Style.alert)
+//
+//                refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
+//                }))
+//
+//                present(refreshAlert, animated: true, completion: nil)
+//            }
         }
         if let lastname = tfLastName.text{
             if (!lastname.isEmpty)
             {
                 profil.lastname = lastname
-            } else {
-                let refreshAlert = UIAlertController(title: "Invalid \"Lastname\" field.", message: "Field \"Lastname\" can't be empty.", preferredStyle: UIAlertController.Style.alert)
-                
-                refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
-                }))
-                
-                present(refreshAlert, animated: true, completion: nil)
             }
+//            else {
+//                let refreshAlert = UIAlertController(title: "Invalid \"Lastname\" field.", message: "Field \"Lastname\" can't be empty.", preferredStyle: UIAlertController.Style.alert)
+//
+//                refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
+//                }))
+//
+//                present(refreshAlert, animated: true, completion: nil)
+//            }
         }
         if let userName = tfUserName.text{
             if (!userName.isEmpty)
             {
                 profil.username = userName
-            } else {
-                let refreshAlert = UIAlertController(title: "Invalid \"Username\" field.", message: "Field \"Username\" can't be empty.", preferredStyle: UIAlertController.Style.alert)
-                
-                refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
-                }))
-                
-                present(refreshAlert, animated: true, completion: nil)
             }
+//            else {
+//                let refreshAlert = UIAlertController(title: "Invalid \"Username\" field.", message: "Field \"Username\" can't be empty.", preferredStyle: UIAlertController.Style.alert)
+//
+//                refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
+//                }))
+//
+//                present(refreshAlert, animated: true, completion: nil)
+//            }
         }
         if let birthdate = tfBirthDate.text{
             if (!birthdate.isEmpty)
             {
                 profil.birthdate = birthdate
-            } else {
-                let refreshAlert = UIAlertController(title: "Invalid \"Birthdate\" field.", message: "Field \"Birthdate\" can't be empty.", preferredStyle: UIAlertController.Style.alert)
-                
-                refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
-                }))
-                
-                present(refreshAlert, animated: true, completion: nil)
             }
+//            else {
+//                let refreshAlert = UIAlertController(title: "Invalid \"Birthdate\" field.", message: "Field \"Birthdate\" can't be empty.", preferredStyle: UIAlertController.Style.alert)
+//                
+//                refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
+//                }))
+//                
+//                present(refreshAlert, animated: true, completion: nil)
+//            }
         }
         
     }
@@ -154,16 +160,19 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.navigationItem.setHidesBackButton(true, animated: false)
+        self.navigationItem.setHidesBackButton(true, animated: true)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "OK", style: .plain, target: self, action: #selector(validChange(_:)))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(dismissChange(_:)))
     }
     
     @objc func validChange(_ sender: Any) {
-        self.navigationItem.setHidesBackButton(false, animated: true)
+        self.navigationItem.setHidesBackButton(false, animated: false)
         self.navigationItem.rightBarButtonItem = nil;
-        self.navigationItem.leftBarButtonItem = buttonBack;
+
+        let back = UIBarButtonItem(title: NSLocalizedString("Back.text", comment: ""), style: .plain, target: self, action: #selector(backButtonAction))
+        self.navigationItem.leftBarButtonItem = back;
+        
         tfFirstName.resignFirstResponder()
         tfLastName.resignFirstResponder()
         tfUserName.resignFirstResponder()
@@ -176,9 +185,11 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
     }
     
     @objc func dismissChange(_ sender: Any) {
-        self.navigationItem.setHidesBackButton(false, animated: true)
+        self.navigationItem.setHidesBackButton(false, animated: false)
         self.navigationItem.rightBarButtonItem = nil;
-        self.navigationItem.leftBarButtonItem = buttonBack;
+        let back = UIBarButtonItem(title: NSLocalizedString("Back.text", comment: ""), style: .plain, target: self, action: #selector(backButtonAction))
+
+        self.navigationItem.leftBarButtonItem = back;
         loadUserData()
         tfFirstName.resignFirstResponder()
         tfLastName.resignFirstResponder()
