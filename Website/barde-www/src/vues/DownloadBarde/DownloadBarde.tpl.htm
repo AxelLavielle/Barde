@@ -11,7 +11,6 @@
             <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/578274732&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
             <br><br>
             <br><br>
-
         </div>
     </div>
 
@@ -21,56 +20,51 @@
                 <div class="col s12 m6">
                     <div class="row">
                         <div class="col s12">
-                            <span class="download-label">
-                                For Windows
-                            </span>
+                            <span class="download-label">For Windows</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col s12">
-                            <a href="https://drive.google.com/open?id=164PtdvGT43uClq3GWUjKuF3Zh4t0cJRJ" target="_blank" class="barde-btn waves-light btn"><i class="material-icons left">get_app</i>Download</a>
+                            <a
+                                    :href="links.windows.latest"
+                                    :disabled="!links.windows.available"
+                                    target="_blank" class="barde-btn waves-light btn"><i class="material-icons left">get_app</i>Download
+                            </a>
                         </div>
                     </div>
                 </div>
                 <div class="col s12 m6">
                     <div class="row">
                         <div class="col s12">
-                            <span class="download-label">
-                                Web version (Google Chrome only)
-                            </span>
+                            <span class="download-label">Web version</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col s12">
-                            <a class="barde-btn-secondary btn tooltipped" data-position="top" data-tooltip="Coming Soon"><i class="material-icons left">link</i>Google Chrome Web App</a>
+                            <a class="barde-btn-secondary btn tooltipped"
+                               :disabled="!links.web.available"
+                               data-position="top"
+                               data-tooltip="Coming Soon"><i class="material-icons left">link</i>Web Player</a>
                         </div>
                     </div>
                 </div>
-                <div class="col s12 m6">
-                    <div class="col s12">
-                        <div class="col s12">
-                            <span class="download-label">
-                                For Android
-                            </span>
-                        </div>
-                        <a class="google-play" href='https://play.google.com/store/apps/details?id=com.project.barde.barde&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
-                    </div>
-                    </div>
                 <div class="col s12 m6">
                     <div class="col s12">
                         <div class="col s12">
-                            <span class="download-label">
-                                For iOS
-                            </span>
+                            <span class="download-label">For Android</span>
                         </div>
-                        <a href="https://goo.gl/forms/LONH2xWSDCndVY9o1" target="_blank">
-                            <img class="appStore"  src="https://i.stack.imgur.com/xHgSL.png" alt="on AppStore">
-                        </a>
+                        <a class="google-play"
+                           :disabled="!links.android.available"
+                           :href='links.android.latest'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
+                    </div>
+                    </div>
+                <div class="col s12 m6">
+                    <div class="col s12">
+                        <div class="col s12">
+                            <span class="download-label">For iOS</span></div>
+                        <a :href="links.ios.latest" target="_blank"><img class="appStore"  src="https://i.stack.imgur.com/xHgSL.png" alt="on AppStore"></a>
                     </div>
                 </div>
-            </div>
-                </div>
-
             </div>
         </div>
     </div>

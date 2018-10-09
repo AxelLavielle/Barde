@@ -1,0 +1,20 @@
+{
+  "links" : {
+      "ios" : {
+        "available" : true,
+        "latest" : "https://itunes.apple.com/us/app/barde-io/id1423538096?l=fr&ls=1&mt=8$"
+      },
+      "android" : {
+        "available" : true,
+        "latest": "https://play.google.com/store/apps/details?id=com.project.barde.barde&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
+      },
+      "windows" : {
+        "available" : true,
+        "latest" : "https://drive.google.com/open?id=164PtdvGT43uClq3GWUjKuF3Zh4t0cJRJ"
+      },
+      "web" : {
+        "available" : false,
+        "latest": "http://app.barde.io"
+      }
+  }
+}
