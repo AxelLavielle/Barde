@@ -5,6 +5,8 @@
 
 #include "MusicParameters.hh"
 
+#define NB_GENERATION_PER_PACKET 5 //5 is arbritary
+
 class			Client
 {
 private:

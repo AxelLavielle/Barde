@@ -116,6 +116,7 @@ bool Client::operator==(const Client & lv)
 void Client::addGeneration()
 {
   _nbGeneration += 1;
+   setSeed(std::time(NULL)); //Refresh seed for the next generation
 }
 
 void Client::refreshGeneration()
@@ -125,5 +126,5 @@ void Client::refreshGeneration()
 
 bool Client::needGeneration() const
 {
-  return (_nbGeneration < 5); //5 is arbritary
+  return (_nbGeneration < NB_GENERATION_PER_PACKET);
 }
