@@ -55,7 +55,12 @@ class UserService {
                         profil.setValue(data["user"]["name"]["lastName"].stringValue, forKey: "lastname")
                         profil.setValue(data["user"]["name"]["userName"].stringValue, forKey: "username")
                         
-                       
+                        UserDefaults.standard.set(data["user"]["name"]["firstName"].stringValue, forKey: "firstname")
+                        UserDefaults.standard.set(data["user"]["name"]["lastName"].stringValue, forKey: "lastname")
+                        UserDefaults.standard.set(data["user"]["name"]["userName"].stringValue, forKey: "username")
+                        UserDefaults.standard.set(data["user"]["email"].stringValue, forKey: "email")
+                        
+                    
                         
                         if let userName = data["user"]["dateOfBirth"].string {
                             let dateFormatter = DateFormatter()
@@ -65,6 +70,8 @@ class UserService {
                             dateFormatter.dateFormat = "MM/dd/YYYY"
                             let dateString = dateFormatter.string(from: date)
                             profil.setValue(dateString, forKey: "birthdate")
+                            UserDefaults.standard.set(dateString, forKey: "birthdate")
+
                         }
                         
                         
@@ -89,7 +96,7 @@ class UserService {
         }
     }
     
-    func updateUserData(data: NSManagedObject) {
+    func updateUserData(tfFirstName: String, tfLastName: String, tfUserName: String, tfBirthDate: String, email: String) {
         let headers: HTTPHeaders = [
             "Authorization": UserDefaults.standard.string(forKey: "Token")!,
             ]
@@ -98,30 +105,49 @@ class UserService {
         var strYear = ""
         var strDay = ""
         
-        if let date = data.value(forKey:"birthdate") as? String {
-            if (!date.isEmpty) {
+//        if let date = data.value(forKey:"birthdate") as? String {
+//            if (!date.isEmpty) {
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.dateFormat = "MM/dd/yyyy"
+//                let date = dateFormatter.date(from: data.value(forKey:"birthdate") as! String)
+//                dateFormatter.dateFormat = "MM"
+//                strMonth = dateFormatter.string(from: date!)
+//                dateFormatter.dateFormat = "yyyy"
+//                strYear = dateFormatter.string(from: date!)
+//                dateFormatter.dateFormat = "dd"
+//                strDay = dateFormatter.string(from: date!)
+//            }
+//        }
+        
+//        let parameters: Parameters = [
+//            "email":  data.value(forKey:"email") as! String,
+//            "yearOfBirth": strYear,
+//            "monthOfBirth": strMonth,
+//            "dayOfBirth": strDay,
+//            "firstName": data.value(forKey:"firstname") as! String,
+//            "lastName": data.value(forKey:"lastname") as! String,
+//            "userName": data.value(forKey:"username") as! String,
+//            ]
+        
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "MM/dd/yyyy"
-                let date = dateFormatter.date(from: data.value(forKey:"birthdate") as! String)
+                let date = dateFormatter.date(from: tfBirthDate as! String)
                 dateFormatter.dateFormat = "MM"
                 strMonth = dateFormatter.string(from: date!)
                 dateFormatter.dateFormat = "yyyy"
                 strYear = dateFormatter.string(from: date!)
                 dateFormatter.dateFormat = "dd"
                 strDay = dateFormatter.string(from: date!)
-            }
-        }
-        
-       
+ 
         
         let parameters: Parameters = [
-            "email":  data.value(forKey:"email") as! String,
+            "email": email,
             "yearOfBirth": strYear,
             "monthOfBirth": strMonth,
             "dayOfBirth": strDay,
-            "firstName": data.value(forKey:"firstname") as! String,
-            "lastName": data.value(forKey:"lastname") as! String,
-            "userName": data.value(forKey:"username") as! String,
+            "firstName":tfFirstName,
+            "lastName": tfLastName,
+            "userName": tfUserName
             ]
         
         print(headers);
@@ -136,7 +162,7 @@ class UserService {
                 switch(httpStatusCode) {
                 case 200:
                     if ((response.result.value) != nil) {
-                        
+                        self.getUserData()
                     }
                     break
                 case 400:

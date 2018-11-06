@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import SwiftSpinner
 
 class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
 
@@ -75,12 +76,12 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
     }
   
     @IBAction func saveButton(_ sender: Any) {
-        
+
         saveUserData()
         
         
         ad.saveContext()
-        
+
     }
     
     func saveUserData() {
@@ -95,6 +96,7 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
             if (!firstname.isEmpty)
             {
                 profil.firstname = firstname
+                UserDefaults.standard.set(firstname, forKey:  "firstname")
             }
 //            else {
 //                let refreshAlert = UIAlertController(title: "Invalid \"Firstname\" field.", message: "Field \"Firstname\" can't be empty.", preferredStyle: UIAlertController.Style.alert)
@@ -109,6 +111,7 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
             if (!lastname.isEmpty)
             {
                 profil.lastname = lastname
+                UserDefaults.standard.set(lastname,  forKey: "lastname")
             }
 //            else {
 //                let refreshAlert = UIAlertController(title: "Invalid \"Lastname\" field.", message: "Field \"Lastname\" can't be empty.", preferredStyle: UIAlertController.Style.alert)
@@ -123,6 +126,8 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
             if (!userName.isEmpty)
             {
                 profil.username = userName
+                UserDefaults.standard.set(userName, forKey: "username")
+
             }
 //            else {
 //                let refreshAlert = UIAlertController(title: "Invalid \"Username\" field.", message: "Field \"Username\" can't be empty.", preferredStyle: UIAlertController.Style.alert)
@@ -137,6 +142,8 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
             if (!birthdate.isEmpty)
             {
                 profil.birthdate = birthdate
+                UserDefaults.standard.set(birthdate,  forKey: "birthdate")
+
             }
 //            else {
 //                let refreshAlert = UIAlertController(title: "Invalid \"Birthdate\" field.", message: "Field \"Birthdate\" can't be empty.", preferredStyle: UIAlertController.Style.alert)
@@ -151,12 +158,17 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
     }
     
     func loadUserData(){
-        if let profil = profilFromLocal{
-            tfFirstName.text = profil.firstname
-            tfLastName.text = profil.lastname
-            tfUserName.text = profil.username
-            tfBirthDate.text = profil.birthdate
-        }
+        tfFirstName.text = UserDefaults.standard.string(forKey: "firstname")
+        tfLastName.text = UserDefaults.standard.string(forKey: "lastname")
+        tfUserName.text = UserDefaults.standard.string(forKey: "username")
+        tfBirthDate.text = UserDefaults.standard.string(forKey: "birthdate")
+        
+//        if let profil = profilFromLocal{
+//            tfFirstName.text = profil.firstname
+//            tfLastName.text = profil.lastname
+//            tfUserName.text = profil.username
+//            tfBirthDate.text = profil.birthdate
+//        }
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -167,6 +179,8 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
     }
     
     @objc func validChange(_ sender: Any) {
+        SwiftSpinner.show(NSLocalizedString("Loading.text", comment: ""))
+
         self.navigationItem.setHidesBackButton(false, animated: false)
         self.navigationItem.rightBarButtonItem = nil;
 
@@ -178,10 +192,14 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
         tfUserName.resignFirstResponder()
         tfBirthDate.resignFirstResponder()
         self.view.endEditing(true)
-        saveUserData()
-        userService?.getUserData()
-        let userData: NSManagedObject = (userService?.getLocalData())!
-        userService?.updateUserData(data: userData)
+        // saveUserData()
+        
+        // let userData: NSManagedObject = (userService?.getLocalData())!
+        
+        userService?.updateUserData(tfFirstName: tfFirstName.text!, tfLastName: tfLastName.text!, tfUserName: tfUserName.text!, tfBirthDate: tfBirthDate.text!, email: UserDefaults.standard.string(forKey: "email")!)
+
+        SwiftSpinner.hide()
+
     }
     
     @objc func dismissChange(_ sender: Any) {

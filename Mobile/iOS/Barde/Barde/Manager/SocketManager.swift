@@ -44,46 +44,15 @@ class SocketManager: NSObject {
     }
     
     func readResponse(from client: TCPClient) -> [Byte]? {
-        
         let response = client.read(1024*10)
         
+        if (response != nil) {         print("response in readResponse", response) }
+
 
         return response
     }
     
     func closeConnection() {
-       
-//        let fileManager = FileManager.default
-//
-//        guard let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).last else {
-//            fatalError("No document directory found in application bundle.")
-//        }
-////
-////        let midFile = documentsDirectory.appendingPathComponent("file.mid")
-////
-////        if fileManager.fileExists(atPath: midFile.path) {
-////            do {
-////                print("remove midFile")
-////                try fileManager.removeItem(atPath: midFile.path)
-////            } catch {
-////                print("error removing file")
-////            }
-////        }
-//        
-//        
-//        GeneratorManager.sharedInstance.writeDataToFile(arr: [])
-//    
-//       let soundFont = documentsDirectory.appendingPathComponent("SoundFont.sf2")
-//        
-//        if fileManager.fileExists(atPath: soundFont.path) {
-//            do {
-//                print("remove SoundFont.sf2")
-//                try fileManager.removeItem(atPath: soundFont.path)
-//            } catch {
-//                print("error removing file")
-//            }
-//        }
-//        
        client.close()
     }
 }

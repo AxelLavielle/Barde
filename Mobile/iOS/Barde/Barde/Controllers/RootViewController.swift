@@ -46,6 +46,11 @@ class RootViewController: UITabBarController, NSFetchedResultsControllerDelegate
                         profil.setValue(data["user"]["name"]["lastName"].stringValue, forKey: "lastname")
                         profil.setValue(data["user"]["name"]["userName"].stringValue, forKey: "username")
                         
+                        UserDefaults.standard.set(data["user"]["name"]["firstName"].stringValue, forKey: "firstname")
+                        UserDefaults.standard.set(data["user"]["name"]["lastName"].stringValue, forKey: "lastname")
+                        UserDefaults.standard.set(data["user"]["name"]["userName"].stringValue, forKey: "username")
+                        UserDefaults.standard.set(data["user"]["email"].stringValue, forKey: "email")
+                        
                         
                         if let userName = data["user"]["dateOfBirth"].string {
                             let dateFormatter = DateFormatter()
@@ -55,10 +60,11 @@ class RootViewController: UITabBarController, NSFetchedResultsControllerDelegate
                             dateFormatter.dateFormat = "MM/dd/YYYY"
                             let dateString = dateFormatter.string(from: date)
                             profil.setValue(dateString, forKey: "birthdate")
+                            
+                             UserDefaults.standard.set(dateString, forKey: "birthdate")
                         }
                         
-                        
-
+                
                         
                         do {
                             try context.save()

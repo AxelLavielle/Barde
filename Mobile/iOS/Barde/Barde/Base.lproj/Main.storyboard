@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="udn-gv-LT6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="udn-gv-LT6">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -52,14 +52,14 @@
                                 </constraints>
                                 <items/>
                             </tabBar>
-                            <imageView clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-sync" translatesAutoresizingMaskIntoConstraints="NO" id="vep-kJ-PMS">
+                            <imageView hidden="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-sync" translatesAutoresizingMaskIntoConstraints="NO" id="vep-kJ-PMS">
                                 <rect key="frame" x="286" y="509" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="WWs-ga-RPV"/>
                                     <constraint firstAttribute="width" constant="24" id="eAb-it-x0g"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Refresh data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRR-yx-WT1">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Refresh data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRR-yx-WT1">
                                 <rect key="frame" x="10" y="513.5" width="72" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
@@ -875,23 +875,23 @@
                                 </connections>
                             </containerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wqf-IZ-ApV">
-                                <rect key="frame" x="10" y="478" width="215" height="21"/>
+                                <rect key="frame" x="10" y="478" width="210" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z3j-EE-rQG">
-                                <rect key="frame" x="135" y="464" width="50" height="50"/>
+                                <rect key="frame" x="140" y="474" width="40" height="40"/>
                                 <state key="normal" image="icon-play"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Etq-6Z-D4P">
-                                <rect key="frame" x="235" y="478" width="75" height="21"/>
+                                <rect key="frame" x="230" y="478" width="80" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="FCg-8i-Ipu">
-                                <rect key="frame" x="8" y="424" width="304" height="31"/>
+                                <rect key="frame" x="8" y="434" width="304" height="31"/>
                                 <color key="minimumTrackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="maximumTrackTintColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="0.30631051936619719" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -899,6 +899,14 @@
                                     <action selector="sliderChangedWithSender:" destination="vvz-D7-RZt" eventType="valueChanged" id="QHU-qJ-cOc"/>
                                 </connections>
                             </slider>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3TX-wE-oST">
+                                <rect key="frame" x="264" y="416" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="stopButtonTapped:" destination="vvz-D7-RZt" eventType="touchUpInside" id="BbF-EK-y9i"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -1133,7 +1141,7 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5G0-NP-tXP">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5G0-NP-tXP">
                                         <rect key="frame" x="0.0" y="145" width="375" height="490"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="490" id="4Lc-GV-QUJ"/>
@@ -1272,7 +1280,7 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Anl-xU-ckF">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Anl-xU-ckF">
                                         <rect key="frame" x="0.0" y="174" width="375" height="460"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="460" id="1TI-lQ-mFx"/>
@@ -1338,7 +1346,7 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2fN-GJ-gOg">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2fN-GJ-gOg">
                                         <rect key="frame" x="0.0" y="174" width="375" height="462"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="462" id="uEe-Nq-CpI"/>
@@ -1658,17 +1666,17 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchImage" width="5507" height="4986"/>
-        <image name="ic_eye" width="30" height="30"/>
-        <image name="ic_facebook" width="50" height="50"/>
+        <image name="LaunchImage" width="1321.6800537109375" height="1196.6400146484375"/>
+        <image name="ic_eye" width="22.5" height="22.5"/>
+        <image name="ic_facebook" width="37.5" height="37.5"/>
         <image name="ic_setttings" width="36" height="36"/>
-        <image name="ic_soundcloud" width="50" height="50"/>
-        <image name="ic_twitter" width="50" height="50"/>
-        <image name="icon-list" width="22" height="22"/>
-        <image name="icon-music" width="30" height="30"/>
-        <image name="icon-play" width="50" height="50"/>
-        <image name="icon-profil" width="22" height="22"/>
-        <image name="icon-sync" width="48" height="48"/>
+        <image name="ic_soundcloud" width="37.5" height="37.5"/>
+        <image name="ic_twitter" width="37.5" height="37.5"/>
+        <image name="icon-list" width="25.54838752746582" height="25.54838752746582"/>
+        <image name="icon-music" width="22.5" height="22.5"/>
+        <image name="icon-play" width="40" height="40"/>
+        <image name="icon-profil" width="39.599998474121094" height="39.599998474121094"/>
+        <image name="icon-sync" width="19.200000762939453" height="19.200000762939453"/>
         <image name="offline" width="150" height="145"/>
     </resources>
     <inferredMetricsTieBreakers>

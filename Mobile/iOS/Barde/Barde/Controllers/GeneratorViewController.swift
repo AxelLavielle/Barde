@@ -9,8 +9,10 @@
 import Foundation
 import UIKit
 import AVKit
+import SwiftSpinner
 
 class GeneratorViewController: UIViewController {
+    
     static let sharedInstance = GeneratorViewController()
     
     // this one is from a midi file
@@ -27,10 +29,17 @@ class GeneratorViewController: UIViewController {
     @IBOutlet weak var labelFullTime: UILabel!
     var styleViewController: StyleViewController?
     
+    var sv: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureView()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        setSessionPlayer()
     }
     
     func configureView() {
@@ -41,92 +50,213 @@ class GeneratorViewController: UIViewController {
         controlButton.addTarget(self, action: #selector(GeneratorViewController.playButtonTapped(_:)), for: .touchUpInside)
         labelCurrentTime.text = "00:00"
         labelFullTime.text = "00:00"
-        
-        
     }
     
     var isPlaying: Bool = false
     
     @objc func playButtonTapped(_ sender:UIButton)
     {
-        if (isPlaying) {
-            stopPlaying()
-        } else {
-            GeneratorManager.sharedInstance.sendData(arr: [0x2, 0x0, 0x0, 0x0, 0x12, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
 
-            startPlaying()
-            
+        self.showSpinner { error in
+            if error != nil {
+                print("Oops! Something went wrong...")
+            } else {
+                print("It has finished show spinner")
+                
+                if (!self.isPlaying) {
+                    GeneratorManager.sharedInstance.sendData(arr: [0x2, 0x0, 0x0, 0x0, 0x12, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
+                    
+                    sleep(1)
+                    
+                    self.playMidi { error in
+                        if error != nil {
+                            print("Oops! Something went wrong...")
+                        } else {
+                            print("It has finished init")
+                            
+                            self.waitStopPlayerMidi { error in
+                                if error != nil {
+                                    print("Oops! Something went wrong...")
+                                } else {
+                                    print("It has finished")
+                                    self.startMidiPlayer()
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    self.stopMidi { error in
+                        if error != nil {
+                            print("Oops! Something went wrong...")
+                        } else {
+                            self.stopMidiPlayer()
+                            
+                        }
+                    }
+                    
+                }
+                
+            }
         }
+        
+        
+    }
+
+    @IBAction func stopButtonTapped(_ sender: Any) {
+        stopMidiPlayer()
     }
     
-    func startPlaying() {
+    private func stopMidiPlayer() {
+        if let player = self.midiPlayer {
+            if player.isPlaying {
+                isPlaying = false
+                player.stop()
+            }
+        }
         
-       
-        
-        // timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCountdown), userInfo: nil, repeats: true)f
-        
-        setSessionPlayer()
-        createAVMIDIPlayerFromMIDIFIle()
-        
+        DispatchQueue.main.async {
+
+            let btnImage = UIImage(named: "icon-play")
+            self.controlButton.setImage(btnImage , for: UIControl.State.normal)
+            
+            // timer.invalidate()
+            self.labelCurrentTime.text = "00:00"
+            self.labelFullTime.text = "00:00"
+            // intCounter = 0
+            
+        }
+        SwiftSpinner.hide()
+
+
+    }
+    
+    private func startMidiPlayer() {
+        self.isPlaying = true
         let btnImage = UIImage(named: "ic_stop")
         self.controlButton.setImage(btnImage , for: UIControl.State.normal)
+        
         self.midiPlayer?.play({ () -> Void in
             print("finished")
+            self.isPlaying = false
             
             DispatchQueue.main.async {
-                self.stopPlaying()
+                
+         
+                let btnImage = UIImage(named: "icon-play")
+                self.controlButton.setImage(btnImage , for: UIControl.State.normal)
+                
             }
-            
             self.midiPlayer?.currentPosition = 0
         })
         
-        isPlaying = true
+        SwiftSpinner.hide()
     }
     
-    func stopPlaying() {
-        
-        stopMidiPlayer()
-        isPlaying = false
+    func waitStopPlayerMidi(completion: @escaping (Error?) -> Void) {
+        if (isPlaying) {
+            self.stopMidiPlayer()
+        }
+        completion(nil)
+    }
+   
+    func playMidi(completion: @escaping (Error?) -> Void) {
+        createAVMIDIPlayerFromMIDIFIle()
 
-        let btnImage = UIImage(named: "icon-play")
-        controlButton.setImage(btnImage , for: UIControl.State.normal)
-
-        // timer.invalidate()
-        labelCurrentTime.text = "00:00"
-        labelFullTime.text = "00:00"
-        // intCounter = 0
+        completion(nil)
+    }
+    
+    func showSpinner(completion: @escaping (Error?) -> Void) {
+        SwiftSpinner.show(NSLocalizedString("Loading.text", comment: ""))
+        print("showSpinner")
+        completion(nil)
+    }
+    
+    
+    func stopMidi(completion: @escaping (Error?) -> Void) {
         GeneratorManager.sharedInstance.sendData(arr: [0x2, 0x0, 0x0, 0x0, 0x22, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
+
+        completion(nil)
     }
     
-    func stopMidiPlayer() {
-        if let player = self.midiPlayer {
-            if player.isPlaying {
-                player.stop()
-                self.stopPlaying()
-            }
-        }
-    }
     
-    @objc func updateCountdown() {
-        if (isPlaying){
-            intCounter += 1
-            
-            labelCurrentTime.text! = String(format: "%02d:%02d", (intCounter % 3600) / 60, (intCounter % 3600) % 60)
-        }
-        // print(">>>", self.midiPlayer?.duration.toHHMMSSString())
-        labelFullTime.text = self.midiPlayer?.duration.toHHMMSSString()
-        if (labelCurrentTime.text == labelFullTime.text)
-        {
-           stopPlaying()
-        }
-    }
+//
+//    func startPlaying() {
+//
+//        // timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCountdown), userInfo: nil, repeats: true)f
+//
+//
+//        initMidiPlayer { error in
+//            if let error = error {
+//                print("Oops! Something went wrong...")
+//            } else {
+//                print("It has finished")
+//
+//            }
+//        }
+//
+//        let btnImage = UIImage(named: "ic_stop")
+//        self.controlButton.setImage(btnImage , for: UIControl.State.normal)
+//        self.midiPlayer?.play({ () -> Void in
+//            print("finished")
+//
+//            DispatchQueue.main.async {
+//                self.stopPlaying()
+//            }
+//
+//            self.midiPlayer?.currentPosition = 0
+//        })
+//
+//        isPlaying = true
+//    }
+    
+//    func stopPlaying() {
+//
+//        stopMidiPlayer()
+//        isPlaying = false
+//
+//        let btnImage = UIImage(named: "icon-play")
+//        controlButton.setImage(btnImage , for: UIControl.State.normal)
+//
+//        // timer.invalidate()
+//        labelCurrentTime.text = "00:00"
+//        labelFullTime.text = "00:00"
+//        // intCounter = 0
+//        GeneratorManager.sharedInstance.sendData(arr: [0x2, 0x0, 0x0, 0x0, 0x22, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
+//
+//        CustomFileManager.sharedInstance.deleteFile(file: CustomFileManager.sharedInstance.getFileUrl(file: "file.mid"))
+//        CustomFileManager.sharedInstance.createFile(file: CustomFileManager.sharedInstance.getFileUrl(file: "file.mid"))
+//
+//    }
+    
+//    func stopMidiPlayer() {
+//        if let player = self.midiPlayer {
+//            if player.isPlaying {
+//                player.stop()
+//                self.stopPlaying()
+//            }
+//        }
+//    }
+    
+//    @objc func updateCountdown() {
+//        if (isPlaying){
+//            intCounter += 1
+//
+//            labelCurrentTime.text! = String(format: "%02d:%02d", (intCounter % 3600) / 60, (intCounter % 3600) % 60)
+//        }
+//        // print(">>>", self.midiPlayer?.duration.toHHMMSSString())
+//        labelFullTime.text = self.midiPlayer?.duration.toHHMMSSString()
+//        if (labelCurrentTime.text == labelFullTime.text)
+//        {
+//           stopPlaying()
+//        }
+//    }
     
     func setSessionPlayer() {
         let audioSession = AVAudioSession.sharedInstance()
         do {
-            try audioSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
-            try audioSession.setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.playAndRecord)), mode: .spokenAudio)
-            try audioSession.setActive(true)
+            let test = try audioSession.setCategory(AVAudioSession.Category.playback, mode: .default, options: [.mixWithOthers])
+            print("tessss", test)
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
         } catch {
             print("couldn't set category \(error)")
         }
@@ -134,27 +264,33 @@ class GeneratorViewController: UIViewController {
     
     func createAVMIDIPlayerFromMIDIFIle() {
         let midiFileURL = CustomFileManager.sharedInstance.getFileUrl(file: "file.mid")
+
+        print("\(midiFileURL.path)")
         
         guard let bankURL = Bundle.main.url(forResource: "GeneralUser GS MuseScore v1.442", withExtension: "sf2") else {
             fatalError("\"GeneralUser GS MuseScore v1.442.sf2\" file not found.")
         }
-
+        
+        
         do {
-            print("\(midiFileURL.path)")
-            let data = try Data(contentsOf: midiFileURL)
-            //errorLabel.text = Array<UInt8>(data)
-            print("DATA:", Array<UInt8>(data))
-            try self.midiPlayer = AVMIDIPlayer(data: data, soundBankURL: bankURL)
+            let midiData = try Data(contentsOf: midiFileURL)
+            print("DATA:", Array<UInt8>(midiData))
+            try self.midiPlayer = AVMIDIPlayer(data: midiData as Data, soundBankURL: bankURL)
+            if (self.midiPlayer === nil) {
+                createAVMIDIPlayerFromMIDIFIle()
+            }
             print("created midi player with sound bank url \(bankURL)")
-            self.midiPlayer.prepareToPlay()
-            setupSlider()
         } catch let error {
-            Alert.showBasic(on: self, with: NSLocalizedString("ErrorGenerating.text", comment: ""), message: NSLocalizedString("ErrorGeneratingDescription.text", comment: ""))
-            stopPlaying()
-            print("Error --- \(error.localizedDescription)")
+            print("Error \(error)")
+        }
+        
+        if (self.midiPlayer !== nil) {
+            self.midiPlayer?.prepareToPlay()
+            setupSlider()
         }
 
-        self.midiPlayer?.prepareToPlay()
+
+        
     }
     
     var sliderTimer: Timer?
@@ -186,23 +322,23 @@ class GeneratorViewController: UIViewController {
     @IBAction func sliderChanged(sender: UISlider) {
         sliderTimer?.invalidate()
         
-        if let player = self.midiPlayer {
-            player.stop()
-            player.currentPosition = TimeInterval(sender.value)
-            player.prepareToPlay()
-            setupSlider()
-            let btnImage = UIImage(named: "ic_stop")
-            self.controlButton.setImage(btnImage , for: UIControl.State.normal)
-            player.play({ () -> Void in
-                
-                DispatchQueue.main.async {
-                    self.stopPlaying()
-                }
-                
-            })
-            
-            isPlaying = true
-        }
+//        if let player = self.midiPlayer {
+//            player.stop()
+//            player.currentPosition = TimeInterval(sender.value)
+//            player.prepareToPlay()
+//            setupSlider()
+//            let btnImage = UIImage(named: "ic_stop")
+//            self.controlButton.setImage(btnImage , for: UIControl.State.normal)
+//            player.play({ () -> Void in
+//
+//                DispatchQueue.main.async {
+//                    self.stopPlaying()
+//                }
+//
+//            })
+//
+//            isPlaying = true
+//        }
     }
 }
 

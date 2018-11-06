@@ -16,6 +16,16 @@ class CustomFileManager: NSObject {
     let soundBank: String = "SoundFont.sf2"
     let fileManager = FileManager.default
     
+    func deleteFile(file: URL) {
+        do {
+            try fileManager.removeItem(atPath: (file.path))
+            print("remove to:", file.path)
+
+        } catch let error as NSError {
+            print("Error: \(error.domain)")
+        }
+    }
+    
     func createFile(file: URL) {
         do {
             if (!fileExist(file: file.path)) {
@@ -58,7 +68,7 @@ class CustomFileManager: NSObject {
             print("create to:", url.path)
         } else {
             do {
-                try "".write(to: url, atomically: true, encoding: .utf8)
+                try "".write(to: url, atomically: false, encoding: .utf8)
             } catch {
                 print(error)
             }
@@ -74,7 +84,17 @@ class CustomFileManager: NSObject {
             } else {
                 print("write to:", url.path)
                 fileHandle?.seekToEndOfFile()
-                fileHandle?.write(data)
+                
+                print("Data in write function :", Array<UInt8>(data))
+                let array = data.withUnsafeBytes {
+                    [UInt8](UnsafeBufferPointer(start: $0, count: data.count - 2))
+                }
+                let data2 = Data(array)
+                
+                print("Data2 in write function :", Array<UInt8>(data2))
+
+
+                fileHandle?.write(data2)
                 fileHandle?.closeFile()
             }
         } catch {

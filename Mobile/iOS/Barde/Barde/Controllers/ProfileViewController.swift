@@ -58,27 +58,32 @@ class ProfileViewController: UIViewController, SettingMenuButtonDelegate, NSFetc
         imageSettings.isUserInteractionEnabled = true
         
         
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Profil")
-        //request.predicate = NSPredicate(format: "age = %@", "12")
-        request.returnsObjectsAsFaults = false
-        request.fetchLimit = 1
+        let firstName = UserDefaults.standard.string(forKey: "firstname")
+        let lastName = UserDefaults.standard.string(forKey: "lastname")
+        tfName.text = firstName! + " " + lastName!
+        tfEmail.text = UserDefaults.standard.string(forKey: "email")
         
-        do {
-            let result = try context.fetch(request)
-            
-            for data in result as! [NSManagedObject] {
-                
-                print(data)
-                
-                let firstName = data.value(forKey:"firstname") as! String
-                let lastName = data.value(forKey:"lastname") as! String
-                tfName.text = firstName + " " + lastName
-                tfEmail.text = data.value(forKey:"email") as? String
-                return
-            }
-        } catch {
-            print("Failed")
-        }
+//        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Profil")
+//        //request.predicate = NSPredicate(format: "age = %@", "12")
+//        request.returnsObjectsAsFaults = false
+//        request.fetchLimit = 1
+//
+//        do {
+//            let result = try context.fetch(request)
+//
+//            for data in result as! [NSManagedObject] {
+//
+//                print(data)
+//
+//                let firstName = data.value(forKey:"firstname") as! String
+//                let lastName = data.value(forKey:"lastname") as! String
+//                tfName.text = firstName + " " + lastName
+//                tfEmail.text = data.value(forKey:"email") as? String
+//                return
+//            }
+//        } catch {
+//            print("Failed")
+//        }
     }
     
     override func viewDidLoad() {

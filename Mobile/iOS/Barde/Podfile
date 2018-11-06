@@ -10,5 +10,7 @@ target 'Barde' do
   pod 'SwiftyJSON'
   pod 'ReachabilitySwift'
   pod 'SwiftSocket'
+  pod 'NVActivityIndicatorView'
+  pod 'SwiftSpinner'
 
 end

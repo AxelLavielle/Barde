@@ -61,9 +61,9 @@ class SettingsViewController: UIViewController, SettingMenuButtonDelegate, NSFet
     
     
     @objc func imageRefreshAction() {
-        
-        let userData: NSManagedObject = (userService?.getLocalData())!
-        userService?.updateUserData(data: userData)
+
+//        let userData: NSManagedObject = (userService?.getLocalData())!
+//        userService?.updateUserData(data: userData)
     }
     
     

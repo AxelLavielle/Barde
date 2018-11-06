@@ -63,3 +63,5 @@
 "UnableToInitializeDataDescription.text" = "L'initialisation a échoué. Veuillez redémarrer l'application.";
 
 "Back.text" = "Retour";
+
+"Loading.text" = "Chargement";
