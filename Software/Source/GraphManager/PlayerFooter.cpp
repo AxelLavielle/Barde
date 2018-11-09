@@ -36,30 +36,6 @@ PlayerFooter::PlayerFooter(Player & player, MusicParameters &musicParameters) : 
 	_controlGroup.addItem(item2.withMinWidth(PLAYING_BUTTON_WIDTH).withMinHeight(PLAYING_BUTTON_HEIGHT));
 
 	initFlexBox();
-
-<<<<<<< HEAD
-	//auto test = CmdManager::getInstance().getUserInfo().getRole();
-	//if (test != "Premium")
-	//{
-	//	_playButton->setEnabled(false);
-	//	_stopButton->setEnabled(false);
-	//	_playButton->setAlpha(0.5);
-	//	_stopButton->setAlpha(0.5);
-	//	//ToggleButton t;
-	//	//t.setTooltip()
-	//}
-=======
-	auto test = CmdManager::getInstance().getUserInfo().getRole();
-	if (test != "Premium")
-	{
-		//_playButton->setEnabled(false);
-		//_stopButton->setEnabled(false);
-	//	_playButton->setAlpha(0.5);
-//		_stopButton->setAlpha(0.5);
-		//ToggleButton t;
-		//t.setTooltip()
-	}
->>>>>>> e98fb5e15d4dd9c697a67c6e299c17d5e599fd33
 }
 
 PlayerFooter::~PlayerFooter()
