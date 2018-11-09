@@ -119,12 +119,12 @@ void CmdManager::manageMusicParameter(int *buffer, Client &client, size_t buffer
   {
     if (buffer[2] == 0x111)
     {
-      client.setStyleName("JAZZ");
+      client.setStyleName("Reggae");
       sendResponseMessage(OK_REQUEST, STYLE_REQUEST, 0x111, client, "OK : style setted.\r\n");
     }
     else if (buffer[2] == 0x211)
     {
-      client.setStyleName("BLUES");
+      client.setStyleName("Blues");
       sendResponseMessage(OK_REQUEST, STYLE_REQUEST, 0x211, client, "OK : style setted.\r\n");
     }
     else
