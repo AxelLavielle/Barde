@@ -123,7 +123,7 @@ Midi			MusicGenerator::createMusic_reggae(const MusicParameters &parameters)
 
 	std::cout << "ARPEGGIOS" << std::endl;
 	/* ARPEGGIOS */
-	int arpN = rand() % 2 + 3;
+	int arpN = (rand() % 6 + 4)/2;
 	Pattern					*markovPattern = new Pattern(chord);
 	ObjectMarkov				       	markovObj2(proba, arpN++, parameters.getSeed());
 	markovObj2.callLua();
