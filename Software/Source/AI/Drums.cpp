@@ -43,12 +43,12 @@ t_note					Drums::createNote(char instru, int bar_pos)
 
 	ret.note.first = 0;
 	ret.note.second = instru;
-	ret.position = bar_pos / 3;
+	ret.position = bar_pos;
 	ret.duration = 0.2;
 	return (ret);
 }
 
-std::vector<t_note>		Drums::createBar(std::array<std::vector<bool>, 3> drumPattern, int size)
+std::vector<t_note>		Drums::createBar(std::array<std::vector<bool>, 3> drumPattern, int size, int bar_nb)
 {
 	std::vector<t_note>	bar;
 	char				i;
@@ -60,7 +60,7 @@ std::vector<t_note>		Drums::createBar(std::array<std::vector<bool>, 3> drumPatte
 		while (i < 3)
 		{
 			if (drumPattern[i][j] == 1)
-				bar.push_back(createNote(i, j));
+				bar.push_back(createNote(i, bar_nb * 4 + j));
 			i++;
 		}
 	}
@@ -76,7 +76,7 @@ void		Drums::blues(std::vector<std::vector<t_note>> &pattern)
 	createPatternBlues(patternBar, 12);
 	while (bar_nb < 12)
 	{
-		pattern.push_back(createBar(patternBar, 12));
+		pattern.push_back(createBar(patternBar, 12, bar_nb));
 		bar_nb++;
 	}
 }
@@ -87,10 +87,10 @@ void		Drums::reggae(std::vector<std::vector<t_note>> &pattern)
 	std::array<std::vector<bool>, 3> patternBar;
 
 	bar_nb = 0;
-	createPatternReggae(patternBar, 12);
-	while (bar_nb < 12)
+	createPatternReggae(patternBar, 8);
+	while (bar_nb < 8)
 	{
-		pattern.push_back(createBar(patternBar, 12));
+		pattern.push_back(createBar(patternBar, 8, bar_nb));
 		bar_nb++;
 	}
 }

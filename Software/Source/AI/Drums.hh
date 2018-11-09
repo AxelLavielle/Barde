@@ -19,7 +19,7 @@ private:
 	static	void				createPatternBlues(std::array<std::vector<bool>, 3> &drumPattern, int size);
 	static	void				createPatternReggae(std::array<std::vector<bool>, 3> &drumPattern, int size);
 	static	t_note				createNote(char instru, int bar_pos);
-	static	std::vector<t_note>	createBar(std::array<std::vector<bool>, 3> drumPattern, int size);
+	static	std::vector<t_note>	createBar(std::array<std::vector<bool>, 3> drumPattern, int size, int bar_nb);
 	static void					blues(std::vector<std::vector<t_note>> &pattern);
 	static void					reggae(std::vector<std::vector<t_note>> &pattern);
 };
