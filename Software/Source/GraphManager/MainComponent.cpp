@@ -33,7 +33,7 @@ MainContentComponent::MainContentComponent() : _cmdManager(CmdManager::getInstan
 	Theme::getInstance().parseTheme("../Theme/Dark");
 	_player.Init();
 
-	auto test =  CmdManager::getInstance().getUserInfo().getEmail();
+	//auto test =  CmdManager::getInstance().getUserInfo().getEmail();
 }
 
 MainContentComponent::~MainContentComponent()
