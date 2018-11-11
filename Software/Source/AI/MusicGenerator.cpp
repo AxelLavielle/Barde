@@ -52,7 +52,6 @@ Midi			MusicGenerator::createMusic(const MusicParameters &parameters)
 		return (createMusic_blues(parameters));
 	else if (!parameters.getStyleName().compare("Reggae"))
 		return (createMusic_reggae(parameters));
-	std::cout << "Vie de merde !! : " << parameters.getStyleName() << std::endl;
 	return (*(new Midi()));
 }
 
