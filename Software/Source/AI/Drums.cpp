@@ -30,7 +30,6 @@ void					Drums::createPatternReggae(std::array<std::vector<bool>, 3> &drumPatter
 	int hihat = rand() % 2;
 	for (int i = 0; i < size; i++)
 	{
-//		drumPattern[0].push_back((hihat || (i % 4 != 2 && !(i % 2))) ? 1 : 0);
 		drumPattern[0].push_back(1);
 		drumPattern[1].push_back((i % 2) ? 0 : 1);
 		drumPattern[2].push_back((i % 4 == 2) ? 1 : 0);
@@ -52,18 +51,11 @@ std::vector<t_note>		Drums::createBar(std::array<std::vector<bool>, 3> drumPatte
 {
 	std::vector<t_note>	bar;
 	char				i;
-	int					j;
 
-	for (j = 0; j < size; j++)
-	{
-		i = 0;
-		while (i < 3)
-		{
+	for (int i = 0; i < 3; i++)
+		for (int j = 0; j < size; j++)
 			if (drumPattern[i][j] == 1)
 				bar.push_back(createNote(i, bar_nb * 4 + j));
-			i++;
-		}
-	}
 	return (bar);
 }
 
@@ -73,10 +65,10 @@ void		Drums::blues(std::vector<std::vector<t_note>> &pattern)
 	std::array<std::vector<bool>, 3> patternBar;
 
 	bar_nb = 0;
-	createPatternBlues(patternBar, 12);
-	while (bar_nb < 12)
+	createPatternBlues(patternBar, 4);
+	while (bar_nb < 11)
 	{
-		pattern.push_back(createBar(patternBar, 12, bar_nb));
+		pattern.push_back(createBar(patternBar, 4, bar_nb));
 		bar_nb++;
 	}
 }
@@ -87,10 +79,10 @@ void		Drums::reggae(std::vector<std::vector<t_note>> &pattern)
 	std::array<std::vector<bool>, 3> patternBar;
 
 	bar_nb = 0;
-	createPatternReggae(patternBar, 8);
-	while (bar_nb < 8)
+	createPatternReggae(patternBar, 4);
+	while (bar_nb < 7)
 	{
-		pattern.push_back(createBar(patternBar, 8, bar_nb));
+		pattern.push_back(createBar(patternBar, 4, bar_nb));
 		bar_nb++;
 	}
 }

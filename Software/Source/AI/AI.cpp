@@ -97,10 +97,10 @@ void			AI::calculateProbaToNote(StyleSettings *proba, const std::vector<char> &l
     {
       i = 255;
       while (sumProba != probaNote && ++i != listNote.size())
-  	{
-  	  proba->addNote(listNote[i], proba->getProba(listNote[i]) + 1);
-  	  sumProba++;
-  	}
+	  {
+    	  proba->addNote(listNote[i], proba->getProba(listNote[i]) + 1);
+    	  sumProba++;
+  	  }
     }
 }
 
@@ -132,4 +132,25 @@ char			AI::searchNoteFromDist(char note, char dist)
   if (noteret >= END)
     noteret -= END;
   return ((char)noteret);
+}
+
+std::vector<std::pair<char, char>> AI::MarkovAlgorithm(StyleSettings field, int n)
+{
+	std::vector<std::pair<char, char>> ret;
+	char prec_note = END;
+	for (int i = 0; i < n; i++)
+	{
+		int curr_note_prob = rand() % 100;
+		int max_prob = 0;
+		unsigned char note = C;
+
+		while (note != END && curr_note_prob > max_prob)
+		{
+			max_prob += (prec_note == END) ? (field.getProba(note)) : (field.getProbaFromNote(prec_note, note));
+			note += 8;
+		}
+		prec_note -= 8;
+		ret.push_back(std::make_pair(prec_note, 5));
+	}
+	return (ret);
 }

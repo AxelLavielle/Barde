@@ -62,22 +62,30 @@ Midi			MusicGenerator::createMusic_reggae(const MusicParameters &parameters)
 	_midiManager.setTempo(parameters.getBpm());
 	std::cout << "INITIALISATION" << std::endl;
 	/* INITIALISATION */
-	ObjectMarkov						markovObj(SOURCEMARKOV + std::string("reggae.json"), 1, parameters.getSeed());
 	std::vector<std::pair<char, char> >			markovChords;
 	std::vector<std::pair<char, char> >			markovTmp;
-	StyleSettings						style;
 	std::vector<std::pair<char, char> >			chord;
 	Chords						allChords;
 	/* INITIALISATION */
 	std::cout << "CHORDS" << std::endl;
 	/* CHORDS */
-	markovObj.callLua();
-	markovChords = markovObj.getVectorFromJson();
-	style = markovObj.getStyleFromJson();
-	Resolution::parsingMarkov(style, &markovChords);
 
-	std::pair<char, char> noteA = std::make_pair(markovChords[0].first, 6);
-	std::pair<char, char> noteB = std::make_pair(static_cast<char>(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 5) + markovChords[0].first % 8), static_cast<char>(6));
+	char randomchord;
+	switch (rand() % 3)
+	{
+	case 0:
+		randomchord = 0;
+		break;
+	case 1:
+		randomchord = 32;
+		break;
+	case 2:
+		randomchord = 72;
+		break;
+	}
+
+	std::pair<char, char> noteA = std::make_pair(randomchord, 6);
+	std::pair<char, char> noteB = std::make_pair(static_cast<char>(AI::searchNoteFromDist((randomchord / 8 * 8), 5) + randomchord % 8), static_cast<char>(6));
 	if (noteB.first > noteA.first)
 		noteB.second--;
 	markovChords.push_back(noteA);
@@ -125,9 +133,7 @@ Midi			MusicGenerator::createMusic_reggae(const MusicParameters &parameters)
 	/* ARPEGGIOS */
 	int arpN = (rand() % 6 + 4)/2;
 	Pattern					*markovPattern = new Pattern(chord);
-	ObjectMarkov				       	markovObj2(proba, arpN++, parameters.getSeed());
-	markovObj2.callLua();
-	markovTmp = markovObj2.getVectorFromJson();
+	markovTmp = AI::MarkovAlgorithm(proba, arpN++);
 	Resolution::parsingMarkov(&markovTmp, strong, medium, weak);
 	char						n;
 	n = -1;
@@ -139,6 +145,10 @@ Midi			MusicGenerator::createMusic_reggae(const MusicParameters &parameters)
 			scale = (markovTmp[n].first > markovTmp[n - 1].first) ? (lastScale - 1) : (lastScale + 1);
 		markovPattern->addNote(std::make_pair(markovTmp[n].first, static_cast<char>(scale)), n*4.0f / arpN, 4.0f / arpN, 0);
 		lastScale = scale;
+		if (lastScale > 6)
+			lastScale = 6;
+		else if (lastScale < 4)
+			lastScale = 4;
 	}
 	std::vector<std::vector<t_note> >		arpeggios;
 	std::vector<std::vector<t_note> >		tmparpeggios;
@@ -156,7 +166,7 @@ Midi			MusicGenerator::createMusic_reggae(const MusicParameters &parameters)
 	_midiManager.writeToFile("./test.mid");
 	delete markovPattern;
 	return (_midiManager.createMidi(48));
-	/* END */
+	///* END */
 }
 
 Midi			MusicGenerator::createMusic_blues(const MusicParameters &parameters)
@@ -166,23 +176,32 @@ Midi			MusicGenerator::createMusic_blues(const MusicParameters &parameters)
   _midiManager.setTempo(parameters.getBpm());
   std::cout << "INITIALISATION" << std::endl;
   /* INITIALISATION */
-  ObjectMarkov						markovObj(SOURCEMARKOV + std::string("blues.json"), 1, parameters.getSeed());
   std::vector<std::pair<char, char> >			markovChords;
   std::vector<std::pair<char, char> >			markovTmp;
-  StyleSettings						style;
   std::vector<std::pair<char, char> >			chord;
   Chords						allChords;
   /* INITIALISATION */
-  std::cout << "CHORDS" << std::endl;
-  /* CHORDS */
-  markovObj.callLua();
-  markovChords = markovObj.getVectorFromJson();
-  style = markovObj.getStyleFromJson();
-  Resolution::parsingMarkov(style, &markovChords);
 
-  std::pair<char, char> noteA = std::make_pair(markovChords[0].first, 6);
-  std::pair<char, char> noteB = std::make_pair(static_cast<char>(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 5) + markovChords[0].first % 8), static_cast<char>(6));
-  std::pair<char, char> noteC = std::make_pair(static_cast<char>(AI::searchNoteFromDist((markovChords[0].first / 8 * 8), 7) + markovChords[0].first % 8), static_cast<char>(6));
+  std::cout << "CHORDS" << std::endl;
+
+  /* CHORDS */
+  char randomchord;
+  switch (rand() % 3)
+  {
+  case 0:
+	  randomchord = 0;
+	  break;
+  case 1:
+	  randomchord = 32;
+	  break;
+  case 2:
+	  randomchord = 72;
+	  break;
+  }
+
+  std::pair<char, char> noteA = std::make_pair(randomchord, 6);
+  std::pair<char, char> noteB = std::make_pair(static_cast<char>(AI::searchNoteFromDist((randomchord / 8 * 8), 5) + randomchord % 8), static_cast<char>(6));
+  std::pair<char, char> noteC = std::make_pair(static_cast<char>(AI::searchNoteFromDist((randomchord / 8 * 8), 7) + randomchord % 8), static_cast<char>(6));
   if (noteB.first < noteA.first)
     noteB.second++;
   if (noteC.first < noteA.first)
@@ -235,9 +254,7 @@ Midi			MusicGenerator::createMusic_blues(const MusicParameters &parameters)
   /* ARPEGGIOS */
   int arpN = rand() % 3 + 4;
   Pattern					*markovPattern = new Pattern(chord);
-  ObjectMarkov				       	markovObj2(proba, arpN++, parameters.getSeed());
-  markovObj2.callLua();
-  markovTmp = markovObj2.getVectorFromJson();
+  markovTmp = AI::MarkovAlgorithm(proba, arpN++);
   Resolution::parsingMarkov(&markovTmp, strong, medium, weak);
   char						n;
   n = -1;
@@ -249,6 +266,10 @@ Midi			MusicGenerator::createMusic_blues(const MusicParameters &parameters)
 	      scale = (markovTmp[n].first > markovTmp[n - 1].first) ? (lastScale - 1) : (lastScale + 1);
       markovPattern->addNote(std::make_pair(markovTmp[n].first, static_cast<char>(scale)), n*3.0f/arpN + 1, 3.0f/arpN, 0);
 	  lastScale = scale;
+	  if (lastScale > 6)
+		  lastScale = 6;
+	  else if (lastScale < 4)
+		  lastScale = 4;
   }
   std::vector<std::vector<t_note> >		arpeggios;
   std::vector<std::vector<t_note> >		tmparpeggios;

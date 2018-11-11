@@ -120,6 +120,8 @@ public:
    *  \return The minimum of distance between the note and every note of the list
    */
   static char		calculateDistChords(const std::vector<std::pair<char, char> > chord, const char note);
+  static std::vector<std::pair<char, char>> MarkovAlgorithm(StyleSettings field, int n);
+
 private:
 };
 
