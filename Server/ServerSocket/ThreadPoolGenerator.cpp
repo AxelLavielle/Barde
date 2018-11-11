@@ -88,7 +88,10 @@ void ThreadPoolGenerator::generationManager()
 
         //Need to check the return of send
         if (send(client.getFd(), tmp, midiData.getMidiSize() + 2 + sizeof(int), MSG_NOSIGNAL) == -1)
+        {
           break; //If the client is disconnected or other error, he don't need generation
+        }
+
 
         delete[] midiData.getMidiArray();
 

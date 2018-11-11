@@ -1,11 +1,11 @@
 /*
-  ==============================================================================
+==============================================================================
 
-    ForgotComponent.h
-    Created: 26 Sep 2018 11:48:34pm
-    Author:  Oreo
+ForgotComponent.h
+Created: 26 Sep 2018 11:48:34pm
+Author:  Oreo
 
-  ==============================================================================
+==============================================================================
 */
 
 
@@ -26,7 +26,7 @@
 This component lives inside our window, and this is where you should put all
 your controls and content.
 */
-class ForgotComponent : public AComponent, private TextEditor::Listener, private Button::Listener, private ComboBox::Listener
+class ForgotComponent : public AComponent, private TextEditor::Listener, private Button::Listener
 {
 public:
 	//==============================================================================
@@ -37,21 +37,20 @@ private:
 	void paint(Graphics&) override;
 	void resized() override;
 	void buttonClicked(Button* button) override;
-	void comboBoxChanged(ComboBox * comboBoxThatHasChanged) override;
 	void ThemeChanged();
-	void forgot(const std::string & login, const std::string & password);
+	void forgot(const std::string & login);
 
 	CmdManager	&_cmdManager;
-	TextEditor	_textEditor1, _textEditor2;
-	Label		_inputLabel1, _inputLabel2;
-	ComboBox	_comboBox;
+	TextEditor	_emailTextBox, _tokenTextBox, _passwordTextBox, _passwordConfirmationTextBox;
+	Label		_emailLabel, _tokenLabel, _passwordLabel, _passwordConfirmationLabel;
+	//ComboBox	_comboBox;
 	Label		_errorText;
-	TextButton	_loginButton;
-	TextButton	_signinButton;
-	TextButton	_forgotPasswordButton;
-	ImageComponent _logo;
+	TextButton	_sendTokenButton, _changePasswordButton, _cancelButton;
+	//TextButton	_signinButton;
+	//TextButton	_forgotPasswordButton;
+	//ImageComponent _logo;
 	//static Theme		_currentTheme;
-	ComboBox	_themeChoice;
+
 	//==============================================================================
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ForgotComponent)
 };

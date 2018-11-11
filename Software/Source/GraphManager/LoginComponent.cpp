@@ -1,11 +1,11 @@
 /*
-  ==============================================================================
+==============================================================================
 
-    LoginComponent.cpp
-    Created: 13 Jan 2018 2:36:43pm
-    Author:  Oreo
+LoginComponent.cpp
+Created: 13 Jan 2018 2:36:43pm
+Author:  Oreo
 
-  ==============================================================================
+==============================================================================
 */
 
 #include <sstream> 
@@ -23,7 +23,7 @@ LoginComponent::LoginComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager)
 	int x = 900;
 	int y = 600;
 
-	
+
 	juce::Rectangle<int> r = Desktop::getInstance().getDisplays().getMainDisplay().userArea;
 	int w = r.getWidth();
 	int h = r.getHeight();
@@ -35,7 +35,7 @@ LoginComponent::LoginComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager)
 
 	addAndMakeVisible(_textEditor1);
 	_textEditor1.setText("");
-	
+
 
 
 	addAndMakeVisible(_textEditor2);
@@ -71,7 +71,7 @@ LoginComponent::LoginComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager)
 	_signinButton.addListener(this);
 
 
-	//_forgotLabel.setText("LDKSLKDLSAKDLSKDSLKDALSDLk", juce::);
+	//_forgotLabel.setText("LDKSLKDLSAKDLSKDSLKDALSDLk", juce::NotificationType::dontSendNotification);
 
 	addAndMakeVisible(_forgotPasswordButton);
 	_forgotPasswordButton.setButtonText("Forgot Password ?");
@@ -83,7 +83,7 @@ LoginComponent::LoginComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager)
 	_loginButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN * 3, BOX_WIDTH, BOX_HEIGHT);
 	_signinButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN * 4, BOX_WIDTH, BOX_HEIGHT);
 	_forgotPasswordButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN * 5, BOX_WIDTH, BOX_HEIGHT);
-	_errorText.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN/2, BOX_WIDTH, BOX_HEIGHT);
+	_errorText.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN / 2, BOX_WIDTH, BOX_HEIGHT);
 
 
 
@@ -128,7 +128,7 @@ void LoginComponent::login(const std::string & login, const std::string & passwo
 		{
 			if (_cmdManager.getResponseCode() == 400)
 				errorMessage = "The email or password is incorrect";
-			else 
+			else
 				errorMessage = "There was an error during the login process";
 		}
 	}
@@ -170,7 +170,7 @@ void LoginComponent::paint(Graphics& g)
 	//	int rectY;
 
 	imgH = (LOGO_HEIGHT_LOGIN);
-	imgW = (LOGO_WIDTH) + 50;
+	imgW = (LOGO_WIDTH)+50;
 
 	imgX = (getWidth() / 2) - (imgW / 2);
 	imgY = (getHeight() / 15);
@@ -188,7 +188,7 @@ void LoginComponent::paint(Graphics& g)
 void LoginComponent::ThemeChanged()
 {
 	_errorText.setColour(Label::textColourId, Colour(Theme::getInstance().getErrorTextColor()));
-	
+
 	String tmp = _textEditor1.getText();
 	_textEditor1.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getButtonColor()));
 	_textEditor1.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
@@ -209,6 +209,7 @@ void LoginComponent::ThemeChanged()
 
 	_inputLabel1.setColour(Label::textColourId, Colour(Theme::getInstance().getButtonColor()));
 	_inputLabel2.setColour(Label::textColourId, Colour(Theme::getInstance().getButtonColor()));
+	_forgotLabel.setColour(Label::textColourId, Colour(Theme::getInstance().getButtonColor()));
 
 	_loginButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
 	_loginButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
@@ -216,16 +217,16 @@ void LoginComponent::ThemeChanged()
 	_signinButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
 	_signinButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
 	_signinButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
-	
+
 	_forgotLabel.setColour(Label::textColourId, Colour(Theme::getInstance().getButtonColor()));
 	_forgotPasswordButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getBackgroundColor()));
 	_forgotPasswordButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getFontColor()));
 	_forgotPasswordButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getFontColor()));
 	_forgotPasswordButton.setColour(TextButton::buttonOnColourId, Colour(Theme::getInstance().getBackgroundColor()));
-	_forgotPasswordButton.setAlpha(0);
+	//_forgotPasswordButton.setAlpha(0);
 
 
-	
+
 
 	this->repaint();
 }

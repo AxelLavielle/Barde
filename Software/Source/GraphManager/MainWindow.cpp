@@ -25,17 +25,19 @@ MainWindow::MainWindow(const std::string &name) : _cmdManager(CmdManager::getIns
 	_cmdManager.connectToServer();
 
 #ifdef DEBUG
-	_cmdManager.login("micha@barde.io", "Micha@barde.io1");
-
+	//_cmdManager.login("micha@barde.io", "Micha@barde.io1");
+	//_cmdManager.login("aot@aot.com", "-aMmvqHy42");
 	//Init all the components
 	_mainComponent = new MainContentComponent();
-	//_loginComponent = new LoginComponent(_cmdManager);
+	_loginComponent = new LoginComponent(_cmdManager);
 	_userRegistration = new UserRegistration(_cmdManager);
+	_forgotComponent = new ForgotComponent(_cmdManager);
+	_forgotComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 	_mainComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
-	//_loginComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
+	_loginComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 	_userRegistration->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
-	setContentNonOwned(_mainComponent, true);
-	//setContentNonOwned(_loginComponent, true);
+	//setContentNonOwned(_mainComponent, true);
+	setContentNonOwned(_loginComponent, true);
 #else
 	//Init all the components
 	_mainComponent = new MainContentComponent();
