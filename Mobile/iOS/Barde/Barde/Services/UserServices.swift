@@ -62,7 +62,7 @@ class UserService {
                         
                     
                         
-                        if let userName = data["user"]["dateOfBirth"].string {
+                        if data["user"]["dateOfBirth"].string != nil {
                             let dateFormatter = DateFormatter()
                             dateFormatter.locale = Locale(identifier: "en_US_POSIX") // edited
                             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"

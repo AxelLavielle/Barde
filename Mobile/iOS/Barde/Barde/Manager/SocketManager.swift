@@ -13,7 +13,7 @@ class SocketManager: NSObject {
 
     static let sharedInstance = SocketManager()
 
-    let client = TCPClient(address: "163.172.191.206", port: 23333)
+    let client = TCPClient(address: "163.172.191.206", port: 23334)
 
     override init() {
         super.init()

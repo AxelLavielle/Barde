@@ -22,7 +22,6 @@
 		1D21C981207D6DDB00F12FB6 /* Instrument+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D21C97D207D6DDB00F12FB6 /* Instrument+CoreDataClass.swift */; };
 		1D37175B1FC74042000C682B /* UtilsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D37175A1FC74042000C682B /* UtilsController.swift */; };
 		1D3786332176069100CB561F /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3786322176069100CB561F /* UIViewExtension.swift */; };
-		1D40573F216B5028004F244E /* FluidR3 GM2-2.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 1D40573E216B4DFD004F244E /* FluidR3 GM2-2.sf2 */; };
 		1D48BC13211C5E5F00523A00 /* TextFieldManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D48BC12211C5E5F00523A00 /* TextFieldManager.swift */; };
 		1D4C6A851FBF5C410052922E /* SettingsEditAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4C6A841FBF5C410052922E /* SettingsEditAccountView.swift */; };
 		1D4D266B1F8D65C800383255 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4D266A1F8D65C800383255 /* SettingsViewController.swift */; };
@@ -76,7 +75,6 @@
 		1D21C97D207D6DDB00F12FB6 /* Instrument+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Instrument+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1D37175A1FC74042000C682B /* UtilsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsController.swift; sourceTree = "<group>"; };
 		1D3786322176069100CB561F /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		1D40573E216B4DFD004F244E /* FluidR3 GM2-2.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FluidR3 GM2-2.sf2"; sourceTree = "<group>"; };
 		1D48BC12211C5E5F00523A00 /* TextFieldManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldManager.swift; sourceTree = "<group>"; };
 		1D4C6A841FBF5C410052922E /* SettingsEditAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEditAccountView.swift; sourceTree = "<group>"; };
 		1D4D266A1F8D65C800383255 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -170,7 +168,6 @@
 			isa = PBXGroup;
 			children = (
 				1DE7F4012129087100C1123F /* Localizable.strings */,
-				1D40573E216B4DFD004F244E /* FluidR3 GM2-2.sf2 */,
 				1DB6E79E211A558900E337E1 /* GeneralUser GS MuseScore v1.442.sf2 */,
 				1DB6E79C211A553500E337E1 /* gs_instruments.dls */,
 				1DB1D102211A187F0058E0D7 /* sibeliusGMajor.mid */,
@@ -354,7 +351,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D40573F216B5028004F244E /* FluidR3 GM2-2.sf2 in Resources */,
 				1D6E40621F8D4E8D006522C8 /* LaunchScreen.storyboard in Resources */,
 				1DCD58471F913D29005F85C5 /* SettingMenuButton.xib in Resources */,
 				1D6E405F1F8D4E8D006522C8 /* Assets.xcassets in Resources */,
