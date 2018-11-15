@@ -1,9 +1,9 @@
 var playerModel = {
-  feedUrl : ["http://5.135.160.60:3333/test"],
   instruments : {
     arpeges : [],
     accords : [],
-    drums : true
+    drums : true,
+    style: "",
   },
   bpm : "120"
 };

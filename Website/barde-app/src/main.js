@@ -5,8 +5,6 @@ import App from './App'
 import VueResource from 'vue-resource';
 import Router from 'vue-router'
 import router from './router'
-import JWT from 'jwt-decode'
-
 
 Vue.use(Router);
 Vue.use(VueResource);
@@ -24,7 +22,7 @@ Vue.use(require('@websanova/vue-auth'), {
 
 Vue.http.options.emulateJSON = true;
 
-Vue.http.options.root = process.env.NODE_ENV === 'development' ? 'http://api-dev.barde.io' : 'http://api.barde.io';
+Vue.http.options.root = process.env.NODE_ENV === 'development' ? 'http://163.172.191.206:2101' : 'http://api.barde.io';
 
 /* eslint-disable no-new */
 var vm = new Vue({
