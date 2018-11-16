@@ -1,6 +1,6 @@
 <template>
   <div class="player">
-    <barde-settings ref="settings"></barde-settings>
+    <barde-settings :onStyleChange="onStyleChange" ref="settings"></barde-settings>
     <barde-console ref="console"></barde-console>
       <div class="player-controls">
         <div class="col s4">
@@ -34,12 +34,22 @@
   import BardeConsole from "@/components/player/BardeConsole"
   import BardeSettings from "@/components/player/BardeSettings"
   import HolwerPlayer from "@/components/HowlerPlayer"
+  import blobToArrayBuffer from "blob-to-arraybuffer";
 
   const CMD_PLAYER_PLAY     = [0x2, 0, 0, 0, 0x12, 0, 0, 0, 0x0D, 0, 0, 0, 0x0A, 0, 0, 0];
   const CMD_PLAYER_PAUSE    = [0x2, 0, 0, 0, 0x22, 0, 0, 0, 0x0D, 0, 0, 0, 0x0A, 0, 0, 0]
 
-  const CMD_MUSICPARAM_STYLE_BLUES = [0x1, 0, 0, 0, 0x11, 0, 0, 0, 0x111, 0, 0, 0, 0x0D, 0, 0, 0, 0x0A, 0, 0, 0]
-  const CMD_MUSICPARAM_ADDCHORD_PIANO = [0x1, 0, 0, 0, 0x11, 0, 0, 0, 0x1, 0, 0, 0, 0x0D, 0, 0, 0, 0x0A, 0, 0, 0]
+  const BACKSLASHR = [0x0D, 0, 0, 0]
+  const BACKSLASHN = [0x0A, 0, 0, 0]
+
+  const MUSIQUEPARAM = 0x1;
+  const STYLE = 0x11;
+  const JAZZ =  0x111;
+
+
+  const CMD_MUSICPARAM_STYLE_BLUES = [0x1, 0, 0, 0, 0x11, 0, 0, 0, 0x11, 0x2, 0, 0, 0x0D, 0, 0, 0, 0x0A, 0, 0, 0]
+  const CMD_MUSICPARAM_STYLE_RAGGEA = [0x1, 0, 0, 0, 0x11, 0, 0, 0, 0x11, 0x1, 0, 0, 0x0D, 0, 0, 0, 0x0A, 0, 0, 0]
+  const CMD_MUSICPARAM_ADDCHORD_PIANO = [0x1, 0, 0, 0, 0x11, 0, 0, 0, 0x111, 0, 0, 0, 0x0D, 0, 0, 0, 0x0A, 0, 0, 0]
   const CMD_MUSICPARAM_ADDCHORD_SAXO = [0x1, 0, 0, 0, 0x11, 0, 0, 0, 0x41, 0, 0, 0, 0x0D, 0, 0, 0, 0x0A, 0, 0, 0]
 
   const CMD_PLAYER_PLAY_RESPONSE = "OK : playing.";
@@ -70,6 +80,14 @@
       this.initWebSocket(process.env.NODE_ENV === 'development' ? "ws://163.172.191.206:23344" : "ws://163.172.191.206:23345");
     },
     methods: {
+      formatStyle(styleValue){
+        let style = [0x1, 0, 0, 0, 0x11, 0, 0, 0, 0x11, parseInt(styleValue), 0, 0, 0x0D, 0, 0, 0, 0x0A, 0, 0, 0]
+        return style
+      },
+      onStyleChange(value){
+        let style = value.toString().split(":");
+        this.sendCommand(this.formatStyle(style[0]), "USE " + style[1]);
+      },
       initWebSocket(wsUri){
         this.websocket = new WebSocket(wsUri, ['binary', 'base64', 'arrayBuffer']);
         this.websocket.onopen = this.onConnect;
@@ -100,6 +118,14 @@
         this.status = "Connected";
 
       } ,
+      blobToArrayBuffer(b){
+        var arrayBuffer;
+        var fileReader = new FileReader();
+        fileReader.onload = function(event) {
+          arrayBuffer = event.target.result;
+        };
+        fileReader.readAsArrayBuffer(blob);
+      },
       blobToString(b) {
         var u, x;
         u = URL.createObjectURL(b);
@@ -111,18 +137,14 @@
   },
       onMessage(e){
         //let message = this.arrayBufferToString(e.data);
-      let message = this.blobToString(e.data);
-        console.log(this.blobToString(e.data))
+      let message = this.blobToString(e.data.slice(1));
+      if (message !== "ello\r\n")
+      this.$refs.console.log(message, "server", message.includes("OK :") ? "ok" : "ko");
 
-        if (message.includes("OK :")){
-          this.$refs.console.log("SUCCESS" + message)
-        }
-        else if (message.includes("Bad Request")){
-          this.$refs.console.log("WARNING " + message)
-
-        }
-
-        this.checkAction(e.data, message);
+      blobToArrayBuffer(e.data).then(buffer => {
+          this.checkAction(buffer.srcElement.result, message);
+        })
+      //
       },
       debutMessage(){
 
@@ -190,8 +212,8 @@
     return base64;
   },
       checkAction(buffer, message){
-        var index = this.inResponseArray(String(message));
 
+        var index = this.inResponseArray(message);
         if (index){
           this.data = [];
           this.actions[index - 1]();
@@ -209,7 +231,8 @@
 
       },
       inResponseArray(response){
-        return this.responses.includes(this.epurString(String(response)))
+        console.log("response: ", this.epurString(response), " responses ", this.responses, this.responses.includes(response))
+        return this.responses.includes(response)
       },
       sendCommand(cmd, name){
         this.$refs.console.log(name, "me")
@@ -238,7 +261,6 @@
         return str
       },
       playFile(){
-
         this.player.loadArrayBuffer(this.file.buffer)
       },
       getUser(){

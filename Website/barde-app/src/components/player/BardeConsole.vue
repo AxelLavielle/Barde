@@ -31,14 +31,19 @@
     },
     mounted() {},
     methods : {
-      log(message, sender = "server") {
-        document.getElementById("log").innerHTML +=
+      log(message, sender = "server", state) {
+
+        var log = document.getElementById("log");
+
+        log.innerHTML +=
           `<li class="${sender}">
-            <div class="messages">
+            <div class="messages ${state}">
           <p>${message}</p>
         </div>
         </li>`
+        document.getElementById("console").scrollTop = document.getElementById("console").scrollHeight;
       }
+
     }
   }
 </script>
@@ -187,6 +192,9 @@
     font-size: 0.8rem;
     margin: 0 0 0.2rem 0;
   }
+  .messages.ko{
+    color: red
+  },
   .messages time {
     font-size: 0.7rem;
     color: #ccc;

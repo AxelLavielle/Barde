@@ -7,11 +7,11 @@
               <h4 class="left-align">Style</h4>
               <p>
               <label>
-                <input class="with-gap" value="blues" name="style"  v-model="Player.style"  type="radio"  />
+                <input class="with-gap" value="0x1:Blues" name="style"  v-model="style"  type="radio"  />
                 <span>Blues</span>
               </label>
                 <label>
-                  <input class="with-gap" value="blues" name="style" v-model="Player.style"  type="radio"  />
+                  <input class="with-gap" value="0x2:Raggea" name="style" v-model="style"  type="radio"  />
                   <span>Raggea</span>
                 </label>
             </p>
@@ -86,16 +86,21 @@
 
   export default {
     name: 'BardeSettings',
+    props: ['onStyleChange'],
     data () {
       return {
         instruments: instruments,
-        Player : playerModel
+        Player : playerModel,
+        style: null
+      }
+    },
+    watch: {
+      style: function (val) {
+        this.onStyleChange(val);
       }
     },
     methods : {
-      log(message){
-        document.getElementById("log").innerHTML += '<span>' + text + '</span></br>'
-      }
+      styleChanged : this.onStyleChange
     }
   }
 </script>
