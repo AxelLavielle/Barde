@@ -52,7 +52,7 @@
   const CMD_MUSICPARAM_ADDCHORD_PIANO = [0x1, 0, 0, 0, 0x11, 0, 0, 0, 0x111, 0, 0, 0, 0x0D, 0, 0, 0, 0x0A, 0, 0, 0]
   const CMD_MUSICPARAM_ADDCHORD_SAXO = [0x1, 0, 0, 0, 0x11, 0, 0, 0, 0x41, 0, 0, 0, 0x0D, 0, 0, 0, 0x0A, 0, 0, 0]
 
-  const CMD_PLAYER_PLAY_RESPONSE = "OK : playing.";
+  const CMD_PLAYER_PLAY_RESPONSE = "OKplaying";
 
   export default {
     components:{
@@ -137,9 +137,10 @@
   },
       onMessage(e){
         //let message = this.arrayBufferToString(e.data);
-      let message = this.blobToString(e.data.slice(1));
-      if (message !== "ello\r\n")
+      let message = (this.blobToString(e.data).replace(/^[a-z\d\-_\s]+$/i, ''));
+      if (message !== "hello\r\n")
       this.$refs.console.log(message, "server", message.includes("OK :") ? "ok" : "ko");
+
 
       blobToArrayBuffer(e.data).then(buffer => {
           this.checkAction(buffer.srcElement.result, message);
@@ -148,6 +149,14 @@
       },
       debutMessage(){
 
+
+      },
+       arrayContains(needle, arrhaystack) {
+        console.log(needle.substr(3), "in ", arrhaystack, arrhaystack.indexOf(needle.substr(3)))
+        return (arrhaystack.indexOf(needle) > -1);
+      },
+      removeNonPrintableChar(str){
+       return str.replace(/[^ -~]+/g, "");
 
       },
       onDisconnect(){
@@ -166,6 +175,7 @@
         return buffer
       },
       onPlayResponse(){
+        console.log("play response")
         this.data = [];
         this.lastResponse = CMD_PLAYER_PLAY_RESPONSE;
       },
@@ -211,27 +221,67 @@
     }
     return base64;
   },
-      checkAction(buffer, message){
+      isMidi(str){
+        if (str.indexOf("MTh") !== -1)
+          return true;
+        return false
+      },
 
-        var index = this.inResponseArray(message);
-        if (index){
+      createMidi(buffer, message){
+        console.log(buffer, message)
+      },
+      checkAction(buffer, message){
+        if (message.indexOf("MTh") >= 0){
+          this.createMidi(message, buffer);
+        }
+        /*
+        var index = this.strInArray(message, this.responses);
+        console.log(message, " index: ", index)
+        if (index !== -1){
           this.data = [];
-          this.actions[index - 1]();
+          console.log("calling ", index)
+          this.actions[index]();
         }
         else {
           this.data.push(buffer);
+          //this.createFile(buffer)
+       console.log(this.lastResponse, CMD_PLAYER_PLAY_RESPONSE, this.data.length === 4 && this.lastResponse === CMD_PLAYER_PLAY_RESPONSE)
           if (this.data.length === 4 && this.lastResponse === CMD_PLAYER_PLAY_RESPONSE) {
             this.$refs.console.log("GENERATING MUSIC")
           }
         }
-
+        */
+      },
+      saveData (data, filename){
+        var a = document.createElement("a");
+        document.body.appendChild(a);
+        a.style = "display: none";
+        return function (data, fileName) {
+          var json = JSON.stringify(data),
+            blob = new Blob([json], {type: "octet/stream"}),
+            url = window.URL.createObjectURL(blob);
+          a.href = url;
+          a.download = fileName;
+          a.click();
+          window.URL.revokeObjectURL(url);
+        };
       },
       createFile(buffer){
-        const blob = new Blob( [ buffer ], { type: 'audio/midi' } );
+        consike
+        /*
+           BUFFER -> BARDE.MID / .MIDI
+      */
 
       },
+      strInArray(str, array){
+        for (var i = 0; i < array.length; i++){
+          if (array[i].indexOf(str) !== -1){
+            return i
+          }
+        }
+        return -1
+      },
       inResponseArray(response){
-        console.log("response: ", this.epurString(response), " responses ", this.responses, this.responses.includes(response))
         return this.responses.includes(response)
       },
       sendCommand(cmd, name){
