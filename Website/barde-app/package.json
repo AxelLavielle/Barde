@@ -23,6 +23,7 @@
     "midi-player-js": "^2.0.4",
     "socket.io": "^2.1.1",
     "socket.io-client": "^2.1.1",
+    "timidity": "^1.0.1",
     "utf-8-validate": "^5.0.1",
     "uws": "^10.148.2",
     "vue": "^2.5.2",
