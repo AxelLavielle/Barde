@@ -35,6 +35,7 @@
   import BardeSettings from "@/components/player/BardeSettings"
   import HolwerPlayer from "@/components/HowlerPlayer"
   import blobToArrayBuffer from "blob-to-arraybuffer";
+  import FileSaver from 'file-saver';
 
   const CMD_PLAYER_PLAY     = [0x2, 0, 0, 0, 0x12, 0, 0, 0, 0x0D, 0, 0, 0, 0x0A, 0, 0, 0];
   const CMD_PLAYER_PAUSE    = [0x2, 0, 0, 0, 0x22, 0, 0, 0, 0x0D, 0, 0, 0, 0x0A, 0, 0, 0]
@@ -141,12 +142,19 @@
       if (message !== "hello\r\n")
       this.$refs.console.log(message, "server", message.includes("OK :") ? "ok" : "ko");
 
+      if (this.isMidi(message)){
+        const blob = new Blob( [ e.data ], { type: 'audio/mid' } );
+        FileSaver.saveAs(blob, "./hello world.mid");
 
+      }
+    /*
       blobToArrayBuffer(e.data).then(buffer => {
-          this.checkAction(buffer.srcElement.result, message);
+          this.checkAction(buffer.srcElement.result, message, e);
         })
       //
-      },
+
+     */
+    },
       debutMessage(){
 
 
@@ -227,12 +235,14 @@
         return false
       },
 
-      createMidi(buffer, message){
-        console.log(buffer, message)
+      createMidi(blob){
+        console.log(blob)
+        FileSaver.saveAs(blob, "./hello world.mid");
+
       },
-      checkAction(buffer, message){
+      checkAction(buffer, message, blob){
         if (message.indexOf("MTh") >= 0){
-          this.createMidi(message, buffer);
+          this.createMidi(blob.data);
         }
         /*
         var index = this.strInArray(message, this.responses);
