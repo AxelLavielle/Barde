@@ -54,7 +54,7 @@
               <div class="switch left-align">
                 <label>
                   Off
-                  <input  v-model="Player.instruments.drums" type="checkbox">
+                  <input  v-model="drums" type="checkbox">
                   <span class="lever"></span>
                   On
                 </label>
@@ -86,17 +86,21 @@
 
   export default {
     name: 'BardeSettings',
-    props: ['onStyleChange'],
+    props: ['onStyleChange', 'onDrumsChange'],
     data () {
       return {
         instruments: instruments,
         Player : playerModel,
-        style: null
+        style: null,
+        drums: false
       }
     },
     watch: {
       style: function (val) {
         this.onStyleChange(val);
+      },
+      drums: function (val) {
+        this.onDrumsChange(val)
       }
     },
     methods : {

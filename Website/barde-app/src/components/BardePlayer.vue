@@ -1,6 +1,11 @@
 <template>
   <div class="player">
-    <barde-settings :onStyleChange="onStyleChange" ref="settings"></barde-settings>
+    <barde-settings
+      :onStyleChange="onStyleChange"
+      :onChordsChange="onChordsChange"
+      :onDrumsChange="onDrumsChange"
+
+      ref="settings"></barde-settings>
     <barde-console ref="console"></barde-console>
       <div class="player-controls">
         <div class="col s4">
@@ -227,9 +232,67 @@ export default {
       ];
       return style;
     },
+    formatChords(chordsValue){
+      let style = [
+        0x1,
+        0,
+        0,
+        0,
+        0x11,
+        0,
+        0,
+        0,
+        0x11,
+        parseInt(styleValue),
+        0,
+        0,
+        0x0d,
+        0,
+        0,
+        0,
+        0x0a,
+        0,
+        0,
+        0
+      ];
+      return style;
+    },
+    formatDrums(drumValue){
+      let drum = [
+        0x1,
+        0,
+        0,
+        0,
+        0x41,
+        0,
+        0,
+        0,
+        0x41,
+        drumValue ? 0x1 : 0x2,
+        0,
+        0,
+        0x0d,
+        0,
+        0,
+        0,
+        0x0a,
+        0,
+        0,
+        0
+      ];
+      console.log(drum)
+      return drum;
+    },
     onStyleChange(value) {
       let style = value.toString().split(":");
       this.sendCommand(this.formatStyle(style[0]), "USE " + style[1]);
+    },
+    onChordsChange(value) {
+      let chord = value.toString().split(":");
+      this.sendCommand(this.formatChords(chord[0]), "USE " + chord[1]);
+    },
+    onDrumsChange(value) {
+      this.sendCommand(this.formatDrums(value), "USE DRUMS" + value ? " ON " : " OFF");
     },
     initWebSocket(wsUri) {
       this.websocket = new WebSocket(wsUri, [
@@ -282,19 +345,18 @@ export default {
         res.arrayBuffer()
       );
       arrayBuffer = arrayBuffer.slice(4);
-      let message = this.blobToString(e.data).replace(/^[a-z\d\-_\s]+$/i, "");
-      if (message !== "hello\r\n")
+      let message = this.arrayBufferToString(arrayBuffer);
+      if (this.isMidi(message)) {
+        const player = new MidiPlayer.Player();
+        player.loadArrayBuffer(arrayBuffer);
+        player.play();
+      }
         this.$refs.console.log(
           message,
           "server",
           message.includes("OK :") ? "ok" : "ko"
         );
 
-      if (this.isMidi(message)) {
-        const player = new MidiPlayer.Player();
-        player.loadArrayBuffer(arrayBuffer);
-        player.play();
-      }
       /*
       blobToArrayBuffer(e.data).then(buffer => {
           this.checkAction(buffer.srcElement.result, message, e);
