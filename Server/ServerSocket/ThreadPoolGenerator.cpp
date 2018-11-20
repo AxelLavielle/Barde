@@ -69,7 +69,6 @@ void ThreadPoolGenerator::generationManager()
       }
       client = _clients.front();
       _clients.pop_front();
-      _clientsMutex.unlock();
 
       while (client.needGeneration())
       {
@@ -99,6 +98,7 @@ void ThreadPoolGenerator::generationManager()
 
         delete[] tmp;
       }
+      _clientsMutex.unlock();
   }
 }
 
