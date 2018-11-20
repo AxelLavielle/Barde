@@ -4,7 +4,7 @@
       :onStyleChange="onStyleChange"
       :onChordsChange="onChordsChange"
       :onDrumsChange="onDrumsChange"
-
+      :onBPMChange="onBPMChange"
       ref="settings"></barde-settings>
     <barde-console ref="console"></barde-console>
       <div class="player-controls">
@@ -282,6 +282,37 @@ export default {
       ];
       console.log(drum)
       return drum;
+    },
+    formatBPM(value){
+      let bpm = [
+        0x1,
+        0,
+        0,
+        0,
+        0x051,
+        0,
+        0,
+        0,
+        0x051,
+        parseInt(value),
+        0,
+        0,
+        0x0d,
+        0,
+        0,
+        0,
+        0x0a,
+        0,
+        0,
+        0
+      ];
+      console.log(bpm)
+      return bpm;
+    },
+    onBPMChange(value){
+      console.log("BPM ", value)
+      this.sendCommand(this.formatBPM(value), "USE " + value + " BPM");
+
     },
     onStyleChange(value) {
       let style = value.toString().split(":");

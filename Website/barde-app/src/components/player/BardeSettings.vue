@@ -67,10 +67,10 @@
 
           <div class="row">
             <div class="col s8 offset-s1">
-              <input  v-model="Player.bpm" type="range" id="test5" min="60" max="150" />
+              <input  v-model="bpm" type="range" id="test5" min="60" max="150" />
             </div>
             <div class="col s2">
-              <span>BPM : {{Player.bpm}}</span>
+              <span>BPM : {{bpm}}</span>
             </div>
           </div>
         </div>
@@ -86,13 +86,14 @@
 
   export default {
     name: 'BardeSettings',
-    props: ['onStyleChange', 'onDrumsChange'],
+    props: ['onStyleChange', 'onDrumsChange', 'onBPMChange'],
     data () {
       return {
         instruments: instruments,
         Player : playerModel,
         style: null,
-        drums: false
+        drums: false,
+        bpm: 120
       }
     },
     watch: {
@@ -101,6 +102,9 @@
       },
       drums: function (val) {
         this.onDrumsChange(val)
+      },
+      bpm: function (val){
+        this.onBPMChange(val)
       }
     },
     methods : {
