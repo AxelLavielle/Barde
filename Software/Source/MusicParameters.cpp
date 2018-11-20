@@ -13,6 +13,7 @@
 MusicParameters::MusicParameters()
 {
 	_bpm = 105;
+	_instrumentsDrums = false;
 	initFreeChannels();
 }
 
