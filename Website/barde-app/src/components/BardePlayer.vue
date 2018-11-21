@@ -202,7 +202,7 @@ export default {
     this.initWebSocket(
       process.env.NODE_ENV === "development"
         ? "ws://163.172.191.206:23344"
-        : "ws://163.172.191.206:23345"
+        : "ws://163.172.191.206:23343"
     );
     this.initPlayer();
   },
