@@ -88,8 +88,8 @@ std::string RestClient::get(const std::string & uri, int & responseCode, std::st
 {
 	std::stringstream	ss;
 
-	if (_isAuthenticated == false)
-		throw RestClientException("Unauthorized", 401);
+	//if (_isAuthenticated == false)
+	//	throw RestClientException("Unauthorized", 401);
 	ss << "GET " << uri << " HTTP/1.1\r\n";
 	ss << "User-Agent: BardeClient/1.0\r\n";
 	ss << "Accept: */*\r\n";
@@ -105,15 +105,18 @@ std::string RestClient::get(const std::string & uri, const std::string & body, i
 {
 	std::stringstream	ss;
 
-	if (_isAuthenticated == false)
-		throw RestClientException("Unauthorized", 401);
+	//if (_isAuthenticated == false)
+	//	throw RestClientException("Unauthorized", 401);
 	ss << "GET " << uri << " HTTP/1.1\r\n";
 	ss << "User-Agent: BardeClient/1.0\r\n";
 	ss << "Accept: */*\r\n";
 	ss << "Host: localhost:8080\r\n";
 	ss << "Connection: close\r\n";
-	ss << "Authorization: " << _token;
+	//ss << "Authorization: " << _token;
 	ss << "\r\n";
+	ss << "\r\n";
+	ss << "Content-Type: application/json\r\n";
+	ss << "Content-Length: " << body.length() << "\r\n";
 	ss << "\r\n";
 	ss << body;
 	return getResponse(ss.str(), responseCode, responseMsg);
