@@ -13,6 +13,8 @@
 MusicParameters::MusicParameters()
 {
 	_bpm = 105;
+	_styleName = "Blues";
+	_seed = 0;
 	_instrumentsDrums = false;
 	initFreeChannels();
 }
