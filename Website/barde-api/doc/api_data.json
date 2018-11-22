@@ -358,6 +358,174 @@
   },
   {
     "type": "delete",
+    "url": "/link",
+    "title": "Delete link",
+    "group": "Link",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"device\": \"\",\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "200 - Success",
+          "content": "{\n  \"msg\": \"Success\"\n  \"data\": {\n     \"message\": \"Link deleted.\"\n   }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "404 - Not found",
+          "content": "{\n  \"msg\": \"Can't find item\"\n  \"data\": {\n     \"message\": \"Link not exists.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "401 - Unauthorized",
+          "content": "{\n  \"Unauthorized\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/link.js",
+    "groupTitle": "Links",
+    "groupDescription": "<p>All routes for links</p>",
+    "name": "DeleteLink"
+  },
+  {
+    "type": "get",
+    "url": "/link",
+    "title": "Get all links",
+    "group": "Link",
+    "success": {
+      "examples": [
+        {
+          "title": "200 - Success",
+          "content": "{\n  \"msg\": \"Success\"\n  \"data\": {\n     \"link\": []\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "401 - Unauthorized",
+          "content": "{\n  \"Unauthorized\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/link.js",
+    "groupTitle": "Links",
+    "groupDescription": "<p>All routes for links</p>",
+    "name": "GetLink"
+  },
+  {
+    "type": "post",
+    "url": "/link",
+    "title": "New link",
+    "group": "Link",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"link\": \"\",\n  \"device\": \"\",\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "200 - Success",
+          "content": "{\n  \"msg\": \"Content created\"\n  \"data\": {\n     \"message\": \"Link saved.\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "400 - One param is empty",
+          "content": "{\n  \"msg\": \"No content\"\n  \"data\": {\n     \"message\": param + \" cannot be empty.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "400 - Device param is wrong",
+          "content": "{\n  \"msg\": \"Content validation\"\n  \"data\": {\n     \"message\": \"The device is wrong.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "401 - Unauthorized",
+          "content": "{\n  \"Unauthorized\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/link.js",
+    "groupTitle": "Links",
+    "groupDescription": "<p>All routes for links</p>",
+    "name": "PostLink"
+  },
+  {
+    "type": "put",
+    "url": "/link",
+    "title": "Update link",
+    "group": "Link",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"link\": \"\",\n  \"device\": \"\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "200 - Success",
+          "content": "{\n  \"msg\": \"Content updated\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "400 - One param is empty",
+          "content": "{\n  \"msg\": \"No content\"\n  \"data\": {\n     \"message\": param + \" cannot be empty.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "404 - Not found",
+          "content": "{\n  \"msg\": \"Can't find item.\"\n  \"data\": {\n     \"message\": \"Link not exists.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "401 - Unauthorized",
+          "content": "{\n  \"Unauthorized\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/link.js",
+    "groupTitle": "Links",
+    "groupDescription": "<p>All routes for links</p>",
+    "name": "PutLink"
+  },
+  {
+    "type": "delete",
     "url": "/playlist",
     "title": "Delete playlist",
     "group": "Playlist",

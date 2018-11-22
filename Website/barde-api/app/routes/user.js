@@ -360,21 +360,22 @@ function updatePatch(req, res, next) {
  *
  */
 function updatePut(req, res, next) {
+  console.log(req.body);
   if (!req.body.email) {
     res.status(400).send({msg: "No content", data: {message: "Email cannot be empty."}});
   } else if (!req.body.userName) {
     res.status(400).send({msg: "No content", data: {message: "UserName cannot be empty."}});
-  } else if (!req.body.firstName || !req.body.lastName) {
+  } else if (typeof req.body.firstName === "undefined" || typeof !req.body.lastName === "undefined") {
     res.status(400).send({msg: "No content", data: {message: "FirstName and/or lastName cannot be empty."}});
-  } else if (!req.body.yearOfBirth || !req.body.monthOfBirth || !req.body.dayOfBirth) {
+  } else if (typeof req.body.yearOfBirth === "undefined" || typeof req.body.monthOfBirth === "undefined" || typeof req.body.dayOfBirth === "undefined") {
     res.status(400).send({msg: "No content", data: {message: "DateOfBirth cannot be empty."}});
   } else if (req.body.email === req.user.email || req.user.role === "Admin") {
     var updateVal = {
-        dateOfBirth: new Date(req.body.yearOfBirth, req.body.monthOfBirth, req.body.dayOfBirth),
+        dateOfBirth: (req.body.yearOfBirth && req.body.monthOfBirth && req.body.dayOfBirth) ? new Date(req.body.yearOfBirth, req.body.monthOfBirth, req.body.dayOfBirth) : null,
     }
-    updateVal["name.userName"] = req.body.userName
-    updateVal["name.firstName"] = req.body.firstName
-    updateVal["name.lastName"] = req.body.lastName
+    updateVal["name.userName"] = req.body.userName ? req.body.userName : null
+    updateVal["name.firstName"] = req.body.firstName ? req.body.firstName : null
+    updateVal["name.lastName"] = req.body.lastName ? req.body.lastName : null
     if (req.body.role && req.user.role === "Admin") {
       updateVal["role"] = req.body.role
     }
