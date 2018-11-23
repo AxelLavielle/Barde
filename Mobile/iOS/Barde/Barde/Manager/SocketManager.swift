@@ -20,6 +20,7 @@ class SocketManager: NSObject {
     }
 
     func establishConnection() {
+        
         switch client.connect(timeout: 10) {
         case .success:
             let ret = readResponse(from: client)

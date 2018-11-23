@@ -32,17 +32,24 @@ class FirstPageViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {    
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
         let tokenExist = UserDefaults.exists(key: "Token")
         
         if tokenExist == true {
-            let newViewController = storyBoard.instantiateViewController(withIdentifier: "RootViewController") as! RootViewController
-            self.present(newViewController, animated: true, completion: nil)
-            buttonLogin.isEnabled = true
-            buttonRegister.isEnabled = true
+           openTutorial()
         }
      
+    }
+    
+    func openTutorial() {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+
+        if (!UserDefaults.standard.bool(forKey: "tutorial")) {
+            self.performSegue(withIdentifier: "Tutorial", sender: self)
+        } else {
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "RootViewController") as! RootViewController
+            self.present(newViewController, animated: true, completion: nil)
+        }
     }
     
 }

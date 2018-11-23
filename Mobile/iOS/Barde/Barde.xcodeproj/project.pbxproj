@@ -32,6 +32,8 @@
 		1D6E405D1F8D4E8D006522C8 /* Barde.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1D6E405B1F8D4E8D006522C8 /* Barde.xcdatamodeld */; };
 		1D6E405F1F8D4E8D006522C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D6E405E1F8D4E8D006522C8 /* Assets.xcassets */; };
 		1D6E40621F8D4E8D006522C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D6E40601F8D4E8D006522C8 /* LaunchScreen.storyboard */; };
+		1D707B7321A8707E009B2FB2 /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D707B7221A8707E009B2FB2 /* Tutorial.storyboard */; };
+		1D707B7521A870B4009B2FB2 /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D707B7421A870B4009B2FB2 /* TutorialPageViewController.swift */; };
 		1D79C4E12121A2E9005E531D /* OfflinePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D79C4E02121A2E9005E531D /* OfflinePageViewController.swift */; };
 		1D79C4E32121FDCC005E531D /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D79C4E22121FDCC005E531D /* LaunchViewController.swift */; };
 		1D7AA83F211E2A7100FA1D67 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7AA83E211E2A7100FA1D67 /* AboutUsViewController.swift */; };
@@ -47,6 +49,7 @@
 		1DBE1BD020B98F3C00978BA8 /* InstrumentAccordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBE1BCF20B98F3C00978BA8 /* InstrumentAccordsViewController.swift */; };
 		1DBE1BD220B98F4500978BA8 /* InstrumentArpegesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBE1BD120B98F4500978BA8 /* InstrumentArpegesViewController.swift */; };
 		1DBE1BD420B9925C00978BA8 /* GeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBE1BD320B9925C00978BA8 /* GeneratorViewController.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1DC33A5321A87CD800CA4738 /* Page1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC33A5221A87CD800CA4738 /* Page1ViewController.swift */; };
 		1DC8525A1FCD0DAD009E9886 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC852591FCD0DAD009E9886 /* ProfileViewController.swift */; };
 		1DCD58471F913D29005F85C5 /* SettingMenuButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DCD58461F913D29005F85C5 /* SettingMenuButton.xib */; };
 		1DCD58491F913D36005F85C5 /* SettingMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCD58481F913D36005F85C5 /* SettingMenuButton.swift */; };
@@ -87,6 +90,8 @@
 		1D6E405E1F8D4E8D006522C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D6E40611F8D4E8D006522C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D6E40631F8D4E8D006522C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1D707B7221A8707E009B2FB2 /* Tutorial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tutorial.storyboard; sourceTree = "<group>"; };
+		1D707B7421A870B4009B2FB2 /* TutorialPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
 		1D79C4E02121A2E9005E531D /* OfflinePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflinePageViewController.swift; sourceTree = "<group>"; };
 		1D79C4E22121FDCC005E531D /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		1D7AA83E211E2A7100FA1D67 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +108,7 @@
 		1DBE1BCF20B98F3C00978BA8 /* InstrumentAccordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentAccordsViewController.swift; sourceTree = "<group>"; };
 		1DBE1BD120B98F4500978BA8 /* InstrumentArpegesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentArpegesViewController.swift; sourceTree = "<group>"; };
 		1DBE1BD320B9925C00978BA8 /* GeneratorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorViewController.swift; sourceTree = "<group>"; };
+		1DC33A5221A87CD800CA4738 /* Page1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page1ViewController.swift; sourceTree = "<group>"; };
 		1DC852591FCD0DAD009E9886 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1DCD58461F913D29005F85C5 /* SettingMenuButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingMenuButton.xib; sourceTree = "<group>"; };
 		1DCD58481F913D36005F85C5 /* SettingMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMenuButton.swift; sourceTree = "<group>"; };
@@ -179,6 +185,7 @@
 				1DDCA6971F8D52DE009F1E1C /* Controllers */,
 				1D6E40541F8D4E8D006522C8 /* AppDelegate.swift */,
 				1D6E40581F8D4E8D006522C8 /* Main.storyboard */,
+				1D707B7221A8707E009B2FB2 /* Tutorial.storyboard */,
 				1D6E405E1F8D4E8D006522C8 /* Assets.xcassets */,
 				1D6E40601F8D4E8D006522C8 /* LaunchScreen.storyboard */,
 				1D6E40631F8D4E8D006522C8 /* Info.plist */,
@@ -198,6 +205,14 @@
 				1DBE1BD120B98F4500978BA8 /* InstrumentArpegesViewController.swift */,
 			);
 			path = Generation;
+			sourceTree = "<group>";
+		};
+		1DC33A5121A87CC000CA4738 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				1DC33A5221A87CD800CA4738 /* Page1ViewController.swift */,
+			);
+			path = Tutorial;
 			sourceTree = "<group>";
 		};
 		1DCD58451F913D19005F85C5 /* SettingMenuButton */ = {
@@ -223,6 +238,7 @@
 		1DDCA6971F8D52DE009F1E1C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1DC33A5121A87CC000CA4738 /* Tutorial */,
 				1D8EF3FB207D7D7B0017CE8C /* Generation */,
 				1D4D266A1F8D65C800383255 /* SettingsViewController.swift */,
 				1D4C6A841FBF5C410052922E /* SettingsEditAccountView.swift */,
@@ -237,6 +253,7 @@
 				1D7AA83E211E2A7100FA1D67 /* AboutUsViewController.swift */,
 				1D79C4E02121A2E9005E531D /* OfflinePageViewController.swift */,
 				1D79C4E22121FDCC005E531D /* LaunchViewController.swift */,
+				1D707B7421A870B4009B2FB2 /* TutorialPageViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -352,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D6E40621F8D4E8D006522C8 /* LaunchScreen.storyboard in Resources */,
+				1D707B7321A8707E009B2FB2 /* Tutorial.storyboard in Resources */,
 				1DCD58471F913D29005F85C5 /* SettingMenuButton.xib in Resources */,
 				1D6E405F1F8D4E8D006522C8 /* Assets.xcassets in Resources */,
 				1D6E405A1F8D4E8D006522C8 /* Main.storyboard in Resources */,
@@ -461,6 +479,7 @@
 				1D21C967207D5B0500F12FB6 /* StyleServices.swift in Sources */,
 				1D6E40551F8D4E8D006522C8 /* AppDelegate.swift in Sources */,
 				1D5EADAF210B966700721A3D /* GeneratorManager.swift in Sources */,
+				1D707B7521A870B4009B2FB2 /* TutorialPageViewController.swift in Sources */,
 				1D3786332176069100CB561F /* UIViewExtension.swift in Sources */,
 				1DA1C5AA20B9C53900D38E50 /* ReportProblemViewController.swift in Sources */,
 				1D7AA83F211E2A7100FA1D67 /* AboutUsViewController.swift in Sources */,
@@ -469,6 +488,7 @@
 				1DBE1BD220B98F4500978BA8 /* InstrumentArpegesViewController.swift in Sources */,
 				1D10139C1FE9871900913E43 /* RoundedButton.swift in Sources */,
 				1D8EF3FD207D7D880017CE8C /* StyleViewController.swift in Sources */,
+				1DC33A5321A87CD800CA4738 /* Page1ViewController.swift in Sources */,
 				1D5C188C207C10E300393DFC /* CheckButton.swift in Sources */,
 				1DD7B1E5204277450038E838 /* UserServices.swift in Sources */,
 			);
