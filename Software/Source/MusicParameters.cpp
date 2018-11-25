@@ -165,7 +165,7 @@ std::string MusicParameters::getStyleName() const
 
 int MusicParameters::getFreeChannel() const
 {
-	for (size_t i = 0; i < 128; i++)
+	for (size_t i = 0; i < NB_OF_CHANNEL; i++)
 	{
 		if (_freeChannels[i] == 0)
 		{
