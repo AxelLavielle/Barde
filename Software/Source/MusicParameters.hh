@@ -17,7 +17,7 @@
 #include "MidiManager/Midi.hh"
 #include "MidiManager/MidiManager.hh"
 
-#define NB_OF_CHANNEL 128 //Need to check the number of channel in Juce documentation
+#define NB_OF_CHANNEL 16 //Need to check the number of channel in Juce documentation
 
 class MusicParameters
 {
