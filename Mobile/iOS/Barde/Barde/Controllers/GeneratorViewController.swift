@@ -53,7 +53,8 @@ class GeneratorViewController: UIViewController {
     }
     
     var isPlaying: Bool = false
-    
+    var continuePlaying: Bool = true
+
     @objc func playButtonTapped(_ sender:UIButton)
     {
 
@@ -79,6 +80,7 @@ class GeneratorViewController: UIViewController {
                                     print("Oops! Something went wrong...")
                                 } else {
                                     print("It has finished")
+                                    self.continuePlaying = true;
                                     self.startMidiPlayer()
                                 }
                             }
@@ -89,6 +91,7 @@ class GeneratorViewController: UIViewController {
                         if error != nil {
                             print("Oops! Something went wrong...")
                         } else {
+                            self.continuePlaying = false;
                             self.stopMidiPlayer()
                             
                         }
@@ -132,21 +135,25 @@ class GeneratorViewController: UIViewController {
     
     private func startMidiPlayer() {
         self.isPlaying = true
-        let btnImage = UIImage(named: "ic_stop")
-        self.controlButton.setImage(btnImage , for: UIControl.State.normal)
+        DispatchQueue.main.async {
+            
+            let btnImage = UIImage(named: "ic_stop")
+            self.controlButton.setImage(btnImage , for: UIControl.State.normal)
+        }
         
         self.midiPlayer?.play({ () -> Void in
             print("finished")
             self.isPlaying = false
             
             DispatchQueue.main.async {
-                
-         
                 let btnImage = UIImage(named: "icon-play")
                 self.controlButton.setImage(btnImage , for: UIControl.State.normal)
-                
             }
-            self.midiPlayer?.currentPosition = 0
+            
+            if (self.continuePlaying) {
+                self.midiPlayer?.currentPosition = 0
+                self.startMidiPlayer()
+            }
         })
         
         SwiftSpinner.hide()

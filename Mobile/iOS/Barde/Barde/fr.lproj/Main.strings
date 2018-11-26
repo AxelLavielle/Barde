@@ -48,7 +48,7 @@
 "9Ql-W0-cnX.text" = "200";
 
 /* Class = "UIButton"; normalTitle = "REGISTER"; ObjectID = "AkG-La-3m4"; */
-"AkG-La-3m4.normalTitle" = "S'INSCRIRE";
+"AkG-La-3m4.normalTitle" = "VALIDER";
 
 /* Class = "UIButton"; normalTitle = "REGISTER"; ObjectID = "Cd8-Ml-n3O"; */
 "Cd8-Ml-n3O.normalTitle" = "S'INSCRIRE";
@@ -69,7 +69,7 @@
 "GRe-JE-c5J.normalTitle" = "X";
 
 /* Class = "UIButton"; normalTitle = "LOG IN"; ObjectID = "J0r-7P-hXE"; */
-"J0r-7P-hXE.normalTitle" = "SE CONNECTER";
+"J0r-7P-hXE.normalTitle" = "VALIDER";
 
 /* Class = "UILabel"; text = "Optional information"; ObjectID = "JmO-AN-2eL"; */
 "JmO-AN-2eL.text" = "Informations optionnels";

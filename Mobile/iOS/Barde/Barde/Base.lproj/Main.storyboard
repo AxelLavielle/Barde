@@ -341,7 +341,7 @@
                                                     <constraint firstAttribute="height" constant="50" id="Arw-6V-n2f"/>
                                                 </constraints>
                                                 <color key="tintColor" red="0.97149579939999997" green="0.99618417889999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <state key="normal" title="REGISTER"/>
+                                                <state key="normal" title="VALIDATE"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="6"/>
@@ -602,7 +602,7 @@
                                                     <constraint firstAttribute="height" constant="50" id="Ody-2h-LcH"/>
                                                 </constraints>
                                                 <color key="tintColor" red="0.9714957993969765" green="0.99618417890013022" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <state key="normal" title="LOG IN"/>
+                                                <state key="normal" title="VALIDATE"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="6"/>
@@ -907,7 +907,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="FCg-8i-Ipu">
+                            <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="FCg-8i-Ipu">
                                 <rect key="frame" x="8" y="434" width="304" height="31"/>
                                 <color key="minimumTrackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="maximumTrackTintColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="0.30631051936619719" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1714,9 +1714,9 @@
         <image name="offline" width="150" height="145"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mQW-FK-Bg7"/>
-        <segue reference="t6N-5m-OU1"/>
-        <segue reference="euF-wN-dZc"/>
+        <segue reference="xxl-6F-as6"/>
+        <segue reference="ll6-jj-Z9E"/>
+        <segue reference="Ah1-M7-5Vz"/>
         <segue reference="Soz-Q8-L90"/>
     </inferredMetricsTieBreakers>
 </document>
