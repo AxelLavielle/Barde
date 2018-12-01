@@ -119,7 +119,7 @@ function post(req, res, next) {
         newLink.save(function (err) {
             if (err) {
               res.status(400).send({msg: "Content validation", data: {message: "The device is wrong."}});
-              next(err);
+              //next(err);
             } else {
               res.status(200).send({
                   msg: "Content created",
