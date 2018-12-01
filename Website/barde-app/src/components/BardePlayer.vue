@@ -5,29 +5,37 @@
       :onChordsChange="onChordsChange"
       :onDrumsChange="onDrumsChange"
       :onBPMChange="onBPMChange"
-      ref="settings"></barde-settings>
+      :onInstrumentChange="onInstrumentChange"
+      ref="settings"
+    ></barde-settings>
     <barde-console ref="console"></barde-console>
-      <div class="player-controls">
-        <div class="col s4">
-          <div class="volume">
-            <div class="row">
-              <div class="col s10">
-                  <p class="range-field">
-                    <button   @click="playing ? CommandPause() : CommandPlay()" class="btn-floating waves-effect waves-light pink"><i class="material-icons">{{ playing ? 'pause' : 'play_arrow' }}</i></button>
-                    <a @click="toggleMute()" class="btn-floating waves-effect waves-light pink"><i class="material-icons">volume_up</i></a>
-                  </p>
-              </div>
+    <div class="player-controls">
+      <div class="col s4">
+        <div class="volume">
+          <div class="row">
+            <div class="col s10">
+              <p class="range-field">
+                <button
+                  @click="playing ? CommandPause() : CommandPlay()"
+                  class="btn-floating waves-effect waves-light pink"
+                >
+                  <i class="material-icons">{{ playing ? 'pause' : 'play_arrow' }}</i>
+                </button>
+                <a @click="toggleMute()" class="btn-floating waves-effect waves-light pink">
+                  <i class="material-icons">volume_up</i>
+                </a>
+              </p>
             </div>
           </div>
         </div>
-        <div class="col s6">
-          <p>
-            <a class="btn-flat disabled">
-              <span v-if="!playing">{{status}}</span>
-
-            </a>
-          </p>
-        </div>
+      </div>
+      <div class="col s6">
+        <p>
+          <a class="btn-flat disabled">
+            <span v-if="!playing">{{status}}</span>
+          </a>
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -192,7 +200,8 @@ export default {
       lastResponse: null,
       responses: [CMD_PLAYER_PLAY_RESPONSE],
       actions: [this.onPlayResponse],
-      data: []
+      data: [],
+      downloaded: false
     };
   },
   beforeMount() {
@@ -232,18 +241,18 @@ export default {
       ];
       return style;
     },
-    formatChords(chordsValue){
+    formatChords(chordsValue, add) {
       let style = [
         0x1,
         0,
         0,
         0,
-        0x11,
+        add ? 0x021 : 0x061,
         0,
         0,
         0,
-        0x11,
-        parseInt(styleValue),
+        add ? 0x021 : 0x061,
+        parseInt(chordsValue),
         0,
         0,
         0x0d,
@@ -257,7 +266,32 @@ export default {
       ];
       return style;
     },
-    formatDrums(drumValue){
+    formatArpege(chordsValue, add) {
+      let style = [
+        0x1,
+        0,
+        0,
+        0,
+        add ? 0x031 : 0x071,
+        0,
+        0,
+        0,
+        add ? 0x031 : 0x071,
+        parseInt(chordsValue),
+        0,
+        0,
+        0x0d,
+        0,
+        0,
+        0,
+        0x0a,
+        0,
+        0,
+        0
+      ];
+      return style;
+    },
+    formatDrums(drumValue) {
       let drum = [
         0x1,
         0,
@@ -280,10 +314,9 @@ export default {
         0,
         0
       ];
-      console.log(drum)
       return drum;
     },
-    formatBPM(value){
+    formatBPM(value) {
       let bpm = [
         0x1,
         0,
@@ -306,24 +339,44 @@ export default {
         0,
         0
       ];
-      console.log(bpm)
       return bpm;
     },
-    onBPMChange(value){
-      console.log("BPM ", value)
+    onBPMChange(value) {
       this.sendCommand(this.formatBPM(value), "USE " + value + " BPM");
-
     },
     onStyleChange(value) {
       let style = value.toString().split(":");
-      this.sendCommand(this.formatStyle(style[0]), "USE " + style[1]);
+      this.sendCommand(
+        this.formatStyle(style[0]),
+        "USE " + style[1] + " " + style[0]
+      );
+    },
+    onInstrumentChange(value, state) {
+      let str = value.split(":");
+      if (str[1] === "accord") {
+        this.sendCommand(
+          this.formatChords(str[2], state),
+          (state ? "USE " : "REMOVE ") + str[1] + " " + str[0]
+        );
+      } else if (str[1] === "arpege") {
+        this.sendCommand(
+          this.formatArpege(str[2], state),
+          (state ? "USE " : "REMOVE ") + str[1] + " " + str[0]
+        );
+      }
     },
     onChordsChange(value) {
       let chord = value.toString().split(":");
-      this.sendCommand(this.formatChords(chord[0]), "USE " + chord[1]);
+      this.sendCommand(
+        this.formatChords(chord[0]),
+        state ? "USE " : "REMOVE " + chord[1]
+      );
     },
     onDrumsChange(value) {
-      this.sendCommand(this.formatDrums(value), "USE DRUMS" + value ? " ON " : " OFF");
+      this.sendCommand(
+        this.formatDrums(value),
+        "USE DRUMS" + value ? " ON " : " OFF"
+      );
     },
     initWebSocket(wsUri) {
       this.websocket = new WebSocket(wsUri, [
@@ -378,15 +431,17 @@ export default {
       arrayBuffer = arrayBuffer.slice(4);
       let message = this.arrayBufferToString(arrayBuffer);
       if (this.isMidi(message)) {
-        const player = new MidiPlayer.Player();
-        player.loadArrayBuffer(arrayBuffer);
-        player.play();
+        //   const player = new MidiPlayer.Player();
+        //   player.loadArrayBuffer(arrayBuffer);
+        //   player.play();
+        const blob = new Blob([arrayBuffer], { type: "audio/mid" });
+        FileSaver.saveAs(blob, "barde.mid");
       }
-        this.$refs.console.log(
-          message,
-          "server",
-          message.includes("OK :") ? "ok" : "ko"
-        );
+      this.$refs.console.log(
+        message,
+        "server",
+        message.includes("OK :") ? "ok" : "ko"
+      );
 
       /*
       blobToArrayBuffer(e.data).then(buffer => {
@@ -469,6 +524,7 @@ export default {
       return base64;
     },
     isMidi(str) {
+      console.log(str, " ", str.indexOf("MTh") !== -1);
       if (str.indexOf("MTh") !== -1) return true;
       return false;
     },
