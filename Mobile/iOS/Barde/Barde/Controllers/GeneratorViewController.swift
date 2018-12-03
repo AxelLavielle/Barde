@@ -42,6 +42,14 @@ class GeneratorViewController: UIViewController {
         setSessionPlayer()
     }
     
+    @IBAction func viewTutorialAction(_ sender: Any) {
+        let storyB = UIStoryboard(name: "Tutorial", bundle: nil)
+        let secondViewController =
+            storyB.instantiateViewController(withIdentifier:
+                "TutorialRootViewController") as! TutorialRootViewController
+        self.present(secondViewController, animated: true, completion: nil)
+    }
+    
     func configureView() {
         navSlider.value = 0.0
         navSlider.setThumbImage(UIImage(named: "ic_circle"), for: UIControl.State.normal)

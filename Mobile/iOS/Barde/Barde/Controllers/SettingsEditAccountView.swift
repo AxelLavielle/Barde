@@ -175,7 +175,7 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
         self.navigationItem.setHidesBackButton(true, animated: true)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "OK", style: .plain, target: self, action: #selector(validChange(_:)))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(dismissChange(_:)))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel.text", comment: ""), style: .plain, target: self, action: #selector(dismissChange(_:)))
     }
     
     @objc func validChange(_ sender: Any) {

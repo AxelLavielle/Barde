@@ -10,12 +10,21 @@
 import Foundation
 import UIKit
 
-class TutorialPageViewController: UIPageViewController
+class TutorialPageViewController: UIPageViewController, AppWalkThroughDelegate
 {
-    fileprivate lazy var pages: [UIViewController] = {
+    lazy var pages: [UIViewController] = {
+        let first = Page1ViewController()
+        
+        first.delegate = self
         return [
             self.getViewController(withIdentifier: "Page1"),
-            self.getViewController(withIdentifier: "Page2")
+            self.getViewController(withIdentifier: "TutorialStyleView"),
+            self.getViewController(withIdentifier: "TutorialAAView"),
+            self.getViewController(withIdentifier: "TutorialBatteryView"),
+            self.getViewController(withIdentifier: "TutorialBPMView"),
+            
+            self.getViewController(withIdentifier: "TutorialListenView"),
+            self.getViewController(withIdentifier: "TutorialEndView")
         ]
     }()
     
@@ -33,15 +42,17 @@ class TutorialPageViewController: UIPageViewController
         self.delegate   = self
         
         configurePageControl()
+        print("ok")
         if let firstVC = pages.first
         {
+//            goNextPage(forwardTo: 1)
             setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
     }
     
     func configurePageControl() {
         
-        pageControl = UIPageControl(frame: CGRect(x: 0, y: UIScreen.main.bounds.minX + 50, width: UIScreen.main.bounds.width, height: 50))
+        pageControl = UIPageControl(frame: CGRect(x: 0, y: UIScreen.main.bounds.maxY - 180, width: UIScreen.main.bounds.width, height: 50))
         
         self.pageControl.numberOfPages = pages.count
         self.pageControl.currentPage = 0
@@ -50,6 +61,14 @@ class TutorialPageViewController: UIPageViewController
         self.pageControl.currentPageIndicatorTintColor = Utils().uicolorFromHex(rgbValue: 0xD53972)
         self.view.addSubview(pageControl)
     }
+    
+    func goNextPage(forwardTo position: Int) {
+
+        setViewControllers([pages.first!], direction:
+            UIPageViewController.NavigationDirection.forward, animated: false, completion: nil)
+        
+    }
+    
 }
 
 extension TutorialPageViewController: UIPageViewControllerDataSource
@@ -87,3 +106,7 @@ extension TutorialPageViewController: UIPageViewControllerDataSource
 }
 
 extension TutorialPageViewController: UIPageViewControllerDelegate { }
+
+@objc protocol AppWalkThroughDelegate {
+    @objc optional func goNextPage(forwardTo position: Int)
+}

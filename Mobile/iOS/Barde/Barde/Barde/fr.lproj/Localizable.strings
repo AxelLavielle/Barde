@@ -30,7 +30,7 @@
 
 "MessageSent.text" = "Message envoyé";
 
-"MessageSentDescription.text" = "Votre message a bien été envoyé.";
+"MessageSentDescription.text" = "Merci pour ton message ! Il a bien été envoyé.";
 
 "Send.text" = "Envoyer";
 

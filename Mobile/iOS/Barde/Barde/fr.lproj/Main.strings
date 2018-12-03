@@ -42,7 +42,7 @@
 "6bc-6i-APP.title" = "Retour";
 
 /* Class = "UILabel"; text = "Choose your tempo"; ObjectID = "9JX-WV-BsW"; */
-"9JX-WV-BsW.text" = "Choisissez votre rythme";
+"9JX-WV-BsW.text" = "Choisis ton rythme";
 
 /* Class = "UILabel"; text = "200"; ObjectID = "9Ql-W0-cnX"; */
 "9Ql-W0-cnX.text" = "200";
@@ -95,18 +95,17 @@
 /* Class = "UILabel"; text = "Barde is a multiplatform application for instrumental audio streaming. Our service is aimed at professionals in the tertiary sector but the application will also be available to the general public. The user of Barde will be able in a few clicks to create his musical atmosphere in the style of his choice and Barde will be responsible for generating it indefinitely."; ObjectID = "UYA-oc-Zjs"; */
 "UYA-oc-Zjs.text" = "Les membres de Barde ont créé une solution multiplateforme permettant de générer des musiques d'ambiance. \
 Avec Barde vous créez, en quelques clics et avec un large choix de réglages, votre ambiance musicale pour votre repas entre amis, votre séance de sport ou votre moment de détente. \
-Le large choix de style tel que le Blues, le Reggae ou encore le House vous permet de choisir ce qui vous correspond le mieux pour générer une musique adaptée à votre humeur. \
-Avec son aspect social, vous pouvez partager vos musiques et écouter celles de vos amis, simplement. \
+Le large choix de style tel que le Bluesou le Reggae vous permet de choisir ce qui vous correspond le mieux pour générer une musique adaptée à votre humeur. \
 Tout cela est possible grâce à une intelligence artificielle qui vous génère en temps réel une musique simple, infinie et modulable !";
 
 /* Class = "UILabel"; text = "Choose your instrument"; ObjectID = "VfK-oK-Bq9"; */
-"VfK-oK-Bq9.text" = "Choisissez vos instruments";
+"VfK-oK-Bq9.text" = "Choisis tes instruments";
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "WY0-hC-0ba"; */
 "WY0-hC-0ba.title" = "Paramétres";
 
 /* Class = "UILabel"; text = "Choose your instrument"; ObjectID = "XRv-9a-jyy"; */
-"XRv-9a-jyy.text" = "Choisissez vos instruments";
+"XRv-9a-jyy.text" = "Choisis tes instruments";
 
 /* Class = "UITextField"; placeholder = "Lastname"; ObjectID = "XXl-fO-pxL"; */
 "XXl-fO-pxL.placeholder" = "Nom";
@@ -124,7 +123,7 @@ Tout cela est possible grâce à une intelligence artificielle qui vous génère
 "cQ3-nB-3tP.placeholder" = "Mot de passe*";
 
 /* Class = "UILabel"; text = "Choose your syle"; ObjectID = "d95-4l-KaR"; */
-"d95-4l-KaR.text" = "Choisissez votre style";
+"d95-4l-KaR.text" = "Choisis ton style";
 
 /* Class = "UIPageViewController"; title = "Generator"; ObjectID = "dY9-BA-8Ar"; */
 "dY9-BA-8Ar.title" = "Générateur";

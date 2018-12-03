@@ -16,6 +16,7 @@ class GeneratorPageViewController: UIPageViewController
             self.getViewController(withIdentifier: "StyleViewId"),
             self.getViewController(withIdentifier: "InstrumentAccordsViewId"),
             self.getViewController(withIdentifier: "InstrumentArpegesViewId"),
+            self.getViewController(withIdentifier: "BatteryViewId"),
             self.getViewController(withIdentifier: "TempoViewId")
         ]
     }()

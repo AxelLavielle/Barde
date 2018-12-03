@@ -14,7 +14,8 @@ class StyleViewController: UIViewController {
     @IBOutlet weak var styleScrollView: UIScrollView!
 
     var styleSelected: String! = ""
-    
+
+    var buttons: [CheckButton] = []
     var styleArray: [String] = []
 
     override func viewDidLoad() {
@@ -51,9 +52,24 @@ class StyleViewController: UIViewController {
         
     }
     
-    @objc func buttonAction(_ button: CheckButton) {
+    @objc func buttonAction(_ sender: CheckButton) {
+        buttons.append(sender)
+
+        print(buttons)
+        buttons.forEach { (button) in
+            if (button.titleLabel!.text != sender.titleLabel!.text)
+            {
+                button.unSelectedState()
+            } else {
+                button.selectedState()
+            }
+            buttons.filter{$0 != button}
+
+        }
         
-        styleSelected = button.titleLabel!.text
+
+        
+        styleSelected = sender.titleLabel!.text
         
         if (styleArray.contains(styleSelected)) {
             styleArray = styleArray.filter{$0 != styleSelected}

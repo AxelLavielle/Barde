@@ -12,5 +12,6 @@ target 'Barde' do
   pod 'SwiftSocket'
   pod 'NVActivityIndicatorView'
   pod 'SwiftSpinner'
+  pod 'SwiftGifOrigin', '~> 1.6.1'
 
 end
