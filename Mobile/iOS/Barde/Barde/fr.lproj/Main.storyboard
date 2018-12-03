@@ -226,6 +226,7 @@
                         <outlet property="buttonLogin" destination="1Gu-pm-u0p" id="NLN-zF-7Mn"/>
                         <outlet property="buttonRegister" destination="Cd8-Ml-n3O" id="eUd-2I-IYX"/>
                         <segue destination="7qB-oy-3oU" kind="showDetail" identifier="NetworkUnavailable" id="Ah1-M7-5Vz"/>
+                        <segue destination="eGs-TI-cRh" kind="show" identifier="Tutorial" id="xxl-6F-as6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ihk-k4-fFL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -567,7 +568,7 @@
                                                     <constraint firstAttribute="width" constant="150" id="xam-0O-DLu"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="E-mail*" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FKp-Sc-uDc">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email*" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FKp-Sc-uDc">
                                                 <rect key="frame" x="0.0" y="180" width="320" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -679,7 +680,6 @@
                         <outlet property="passwordTextField" destination="kjT-Xt-gLq" id="rjb-A3-raj"/>
                         <outlet property="scrollView" destination="0WU-yF-Brf" id="aL0-yt-wz0"/>
                         <segue destination="KB7-Qf-SqI" kind="show" identifier="ToMainView" id="ll6-jj-Z9E"/>
-                        <segue destination="eGs-TI-cRh" kind="show" identifier="Tutorial" id="Zx9-gt-0Mh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ye8-ix-0Or" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -867,6 +867,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qi2-sB-ZNg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1974" y="2185"/>
+        </scene>
+        <!--Tutorial-->
+        <scene sceneID="N3S-4q-2Ty">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Tutorial" id="Dcd-cO-nRz" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RP0-qb-UNf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-753" y="2363"/>
         </scene>
         <!--Generator-->
         <scene sceneID="myS-Sy-mg8">
@@ -1651,7 +1659,7 @@
                 <viewControllerPlaceholder storyboardName="Tutorial" id="eGs-TI-cRh" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QGv-rv-aJG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1197" y="2661"/>
+            <point key="canvasLocation" x="-2834" y="26"/>
         </scene>
         <!--Launch View Controller-->
         <scene sceneID="GEX-Mq-umR">
@@ -1767,7 +1775,7 @@
         <image name="offline" width="150" height="145"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mQW-FK-Bg7"/>
+        <segue reference="xxl-6F-as6"/>
         <segue reference="ll6-jj-Z9E"/>
         <segue reference="Ah1-M7-5Vz"/>
         <segue reference="Soz-Q8-L90"/>

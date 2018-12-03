@@ -39,7 +39,7 @@ class SignupViewController: UIViewController {
         
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .none
-        dateFormatter.dateFormat = "MM/dd/YYYY"
+        dateFormatter.dateFormat = NSLocalizedString("Date.format", comment: "")
         
         birthdateTextField.text = dateFormatter.string(from: datePicker.date)
     }
@@ -95,15 +95,33 @@ class SignupViewController: UIViewController {
                     }
                     else
                     {
+                        
+                        let inputFormatter = DateFormatter()
+                        inputFormatter.dateFormat = "dd/MM/yyyy"
+                        let showDate = inputFormatter.date(from: birthdateTextField.text as! String)
+                        
+                        inputFormatter.dateFormat = "yyyy-MM-dd"
+                        let myString = inputFormatter.string(from: showDate!) // string purpose I add here
+
+                        let date = inputFormatter.date(from: myString )
+                        
+                        inputFormatter.dateFormat = "MM"
+                        let strMonth = inputFormatter.string(from: date!)
+                        inputFormatter.dateFormat = "YYYY"
+                        let strYear = inputFormatter.string(from: date!)
+                        inputFormatter.dateFormat = "dd"
+                        let strDay = inputFormatter.string(from: date!)
+                        
+                        
                         let parameters: Parameters = [
                             "email":  emailTextField.text ?? "",
                             "password": passwordTextField.text ?? "",
                             "firstName": firstnameTextField.text ?? "",
                             "lastName": lastnameTextField.text ?? "",
                             "userName": usernameTextField.text ?? "",
-                            "yearOfBirth": (birthdateTextField.text != "" ? getSubstr(str: birthdateTextField.text!, indexStart: 6, indexEnd: 0) : ""),
-                            "monthOfBirth": (birthdateTextField.text != "" ? getSubstr(str: birthdateTextField.text!, indexStart: 0, indexEnd: -8) : ""),
-                            "dayOfBirth": (birthdateTextField.text != "" ? getSubstr(str: birthdateTextField.text!, indexStart: 3, indexEnd: -5) : ""),
+                            "yearOfBirth": strYear,
+                            "monthOfBirth": strMonth,
+                            "dayOfBirth": strDay
                             ]
                         
                         

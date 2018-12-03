@@ -21,7 +21,7 @@ class BatteryViewController: UIViewController {
         
         super.viewDidLoad()
         
-        let styles = ["Activer"]
+        let styles = [NSLocalizedString("Add.text", comment: "")]
         let x = 8
         var y = 0
         
@@ -73,7 +73,7 @@ class BatteryViewController: UIViewController {
             styleArray = styleArray.filter{$0 != styleSelected}
             
             switch (styleSelected) {
-            case "Add":
+            case ("Add"), ("Ajouter"):
                 GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x41, 0x0, 0x0, 0x0, 0x24, 0x1, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
                 break;
             case .none:
@@ -86,7 +86,7 @@ class BatteryViewController: UIViewController {
             styleArray.append(styleSelected)
             
             switch (styleSelected) {
-            case "Add":
+            case ("Add"), ("Ajouter"):
                 GeneratorManager.sharedInstance.sendData(arr:
                     [0x1, 0x0, 0x0, 0x0, 0x41, 0x0, 0x0, 0x0, 0x14, 0x1, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0]
                 )

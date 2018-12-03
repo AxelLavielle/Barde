@@ -13,7 +13,7 @@ class InstrumentService {
     
     var instrumentData = [
         "Piano",
-        "Trumpet",
+        NSLocalizedString("Trumpet.text", comment: ""),
         "Saxophone"
     ]
     

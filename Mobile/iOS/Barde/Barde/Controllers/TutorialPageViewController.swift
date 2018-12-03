@@ -59,7 +59,18 @@ class TutorialPageViewController: UIPageViewController, AppWalkThroughDelegate
         self.pageControl.tintColor = Utils().uicolorFromHex(rgbValue: 0xFFFFFF)
         self.pageControl.pageIndicatorTintColor = Utils().uicolorFromHex(rgbValue: 0xFFFFFF)
         self.pageControl.currentPageIndicatorTintColor = Utils().uicolorFromHex(rgbValue: 0xD53972)
+        self.pageControl.addTarget(self, action: #selector(pageControlAction(_:)), for: .touchUpInside)
+
         self.view.addSubview(pageControl)
+    }
+    
+    @objc func pageControlAction(_ sender: AnyObject) {
+        //setViewControllers comes from the pageviewcontroller
+        
+        setViewControllers([pages[self.pageControl.currentPage]],
+                           direction: .forward,
+                           animated: true,
+                           completion: nil)
     }
     
     func goNextPage(forwardTo position: Int) {

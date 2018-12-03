@@ -67,7 +67,7 @@ class UserService {
                             dateFormatter.locale = Locale(identifier: "en_US_POSIX") // edited
                             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
                             let date = dateFormatter.date(from: data["user"]["dateOfBirth"].stringValue)!
-                            dateFormatter.dateFormat = "MM/dd/YYYY"
+                            dateFormatter.dateFormat = NSLocalizedString("Date.format", comment: "")
                             let dateString = dateFormatter.string(from: date)
                             profil.setValue(dateString, forKey: "birthdate")
                             UserDefaults.standard.set(dateString, forKey: "birthdate")
@@ -129,12 +129,14 @@ class UserService {
 //            "userName": data.value(forKey:"username") as! String,
 //            ]
         
+        
                 let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "MM/dd/yyyy"
+//                dateFormatter.locale = Locale(identifier: "en_US_POSIX") // edited
+                dateFormatter.dateFormat = "yyyy-MM-dd"
                 let date = dateFormatter.date(from: tfBirthDate as! String)
                 dateFormatter.dateFormat = "MM"
                 strMonth = dateFormatter.string(from: date!)
-                dateFormatter.dateFormat = "yyyy"
+                dateFormatter.dateFormat = "YYYY"
                 strYear = dateFormatter.string(from: date!)
                 dateFormatter.dateFormat = "dd"
                 strDay = dateFormatter.string(from: date!)

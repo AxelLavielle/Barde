@@ -57,7 +57,7 @@ class RootViewController: UITabBarController, NSFetchedResultsControllerDelegate
                             dateFormatter.locale = Locale(identifier: "en_US_POSIX") // edited
                             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
                             let date = dateFormatter.date(from: data["user"]["dateOfBirth"].stringValue)!
-                            dateFormatter.dateFormat = "MM/dd/YYYY"
+                            dateFormatter.dateFormat = NSLocalizedString("Date.format", comment: "")
                             let dateString = dateFormatter.string(from: date)
                             profil.setValue(dateString, forKey: "birthdate")
                             
@@ -92,6 +92,7 @@ class RootViewController: UITabBarController, NSFetchedResultsControllerDelegate
         }
     }
     
+  
     
     private func showOfflinePage() -> Void {
         DispatchQueue.main.async {

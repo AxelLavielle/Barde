@@ -58,7 +58,8 @@ class InstrumentChordsViewController: UIViewController {
             chordsArray = chordsArray.filter{$0 != chordsSelected}
             
             switch (chordsSelected) {
-            case "Trumpet":
+            case ("Trumpet"), ("Trompette"):
+
                 GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x061, 0x0, 0x0, 0x0, 0x57, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
                 break;
             case "Piano":
@@ -77,7 +78,7 @@ class InstrumentChordsViewController: UIViewController {
             chordsArray.append(chordsSelected)
             
             switch (chordsSelected) {
-            case "Trumpet":
+            case ("Trumpet"), ("Trompette"):
                 GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x021, 0x0, 0x0, 0x0, 0x57, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
                 break;
             case "Piano":

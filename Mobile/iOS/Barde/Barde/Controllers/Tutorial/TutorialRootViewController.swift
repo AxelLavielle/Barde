@@ -19,7 +19,16 @@ class TutorialRootViewController: UIViewController {
 //        let newViewController = storyBoard.instantiateViewController(withIdentifier: "RootViewController") as! RootViewController
 //        self.present(newViewController, animated: true, completion: nil)
         
-        dismiss(animated: true, completion: nil)
+        if (UserDefaults.standard.bool(forKey: "fromLogin")) {
+            UserDefaults.standard.set(false, forKey: "fromLogin")
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "RootViewController") as! RootViewController
+            self.present(newViewController, animated: true, completion: nil)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
+        
     }
     
 }

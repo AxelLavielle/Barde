@@ -12,6 +12,8 @@ import SwiftGifOrigin
 
 class Page1ViewController: UIViewController {
     
+    @IBOutlet weak var bottomText: UITextView!
+    @IBOutlet weak var textTop: UITextView!
     var delegate: AppWalkThroughDelegate!
 
     @IBOutlet weak var gifImage: UIImageView!
@@ -21,6 +23,8 @@ class Page1ViewController: UIViewController {
     }
     
     func initView() {
+        self.bottomText.text = NSLocalizedString("k9M-uP-yfO.text", comment: "")
+        self.textTop.text = NSLocalizedString("gx2-ux-t9K.text", comment: "")
         gifImage.loadGif(name: "hm")
     }
     

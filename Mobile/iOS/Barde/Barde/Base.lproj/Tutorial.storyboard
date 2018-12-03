@@ -68,28 +68,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bienvenue sur Barde" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="oAP-OJ-fDO">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome on Barde" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="oAP-OJ-fDO">
                                 <rect key="frame" x="20" y="70" width="335" height="35"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="29"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gx2-ux-t9K">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gx2-ux-t9K">
                                 <rect key="frame" x="20" y="115" width="335" height="116"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="116" id="lwm-zG-Li3"/>
                                 </constraints>
-                                <string key="text">Barde est une solution de génération de musique d’ambiance. Mais ça tu le sais probablement déjà .. ;- ) 
-
-Mais sais-tu comment cela fonctionne ?</string>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Barde is a multiplatform application for generating music. But you probably already know that … ;-)
+</string>
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <font key="NSFont" size="14" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <font key="NSFont" size="14" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="But, do you know how it works ?">
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <font key="NSFont" size="14" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cAb-o6-s6q">
                                 <rect key="frame" x="20" y="241" width="335" height="288"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Appuie sur &quot;Suivant&quot; pour le découvrir !" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k9M-uP-yfO">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Swipe left to discover !" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k9M-uP-yfO">
                                 <rect key="frame" x="20" y="551" width="335" height="116"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="116" id="Sbq-n3-MV1"/>
@@ -118,36 +141,29 @@ Mais sais-tu comment cela fonctionne ?</string>
                         <viewLayoutGuide key="safeArea" id="5wj-m2-Gwh"/>
                     </view>
                     <connections>
+                        <outlet property="bottomText" destination="k9M-uP-yfO" id="UQ8-Kj-I0S"/>
                         <outlet property="gifImage" destination="cAb-o6-s6q" id="9KI-SZ-evE"/>
+                        <outlet property="textTop" destination="gx2-ux-t9K" id="uXC-WE-ivw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yvk-8e-fM0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="854" y="80"/>
         </scene>
-        <!--View Controller-->
+        <!--Page Style View Controller-->
         <scene sceneID="rHb-oH-RrR">
             <objects>
-                <viewController storyboardIdentifier="TutorialStyleView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mRf-oK-33W" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TutorialStyleView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mRf-oK-33W" customClass="PageStyleViewController" customModule="Barde" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cor-bC-Njr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Le style" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="C0z-zk-BQI">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Style" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="C0z-zk-BQI">
                                 <rect key="frame" x="20" y="70" width="335" height="35"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="29"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Tu as le choix entre plusieurs styles qui te permettent de générer de la musique adaptée à tes goûts." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="izt-oB-kfJ">
-                                <rect key="frame" x="20" y="406" width="335" height="116"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="116" id="Af0-ug-0Qf"/>
-                                </constraints>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="style" translatesAutoresizingMaskIntoConstraints="NO" id="mLu-5H-U5b">
                                 <rect key="frame" x="82" y="155" width="211" height="241"/>
                                 <constraints>
@@ -162,6 +178,15 @@ Mais sais-tu comment cela fonctionne ?</string>
                                     <constraint firstAttribute="height" constant="2" id="oQr-VN-KQY"/>
                                 </constraints>
                             </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="You have the choice of several styles that allow you to generate music adapted to your tastes." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="izt-oB-kfJ">
+                                <rect key="frame" x="20" y="406" width="335" height="116"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="116" id="Af0-ug-0Qf"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.83529411760000005" green="0.2274509804" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -182,26 +207,29 @@ Mais sais-tu comment cela fonctionne ?</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JNd-LL-LpB"/>
                     </view>
+                    <connections>
+                        <outlet property="text" destination="izt-oB-kfJ" id="NIc-Px-pQj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ov-tZ-nbD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="854" y="749"/>
         </scene>
-        <!--Page2 View Controller-->
+        <!--PageBPM View Controller-->
         <scene sceneID="RSP-M5-Uez">
             <objects>
-                <viewController storyboardIdentifier="TutorialBPMView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JeE-5S-0Yw" customClass="Page2ViewController" customModule="Barde" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TutorialBPMView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JeE-5S-0Yw" customClass="PageBPMViewController" customModule="Barde" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZtC-c9-EHQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Le rythme" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="rKw-GC-Qgp">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BPM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="rKw-GC-Qgp">
                                 <rect key="frame" x="20" y="70" width="335" height="35"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="29"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text=" Le BPM détermine le tempo de ta musique. Plus il est élevé, plus ta musique sera rapide. Détermines celui qui te conviens !" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULv-dD-YGL">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="The BPM determines the tempo of your music. The higher it is, the faster your music will be.   Identify the one who suits you!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULv-dD-YGL">
                                 <rect key="frame" x="20" y="406" width="335" height="116"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="116" id="ixm-x2-FWB"/>
@@ -243,20 +271,23 @@ Mais sais-tu comment cela fonctionne ?</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0GK-cH-i68"/>
                     </view>
+                    <connections>
+                        <outlet property="text" destination="ULv-dD-YGL" id="Rwf-iz-L83"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JBd-yT-iLJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1566" y="1421"/>
         </scene>
-        <!--View Controller-->
+        <!--PageAA View Controller-->
         <scene sceneID="js5-S3-2mP">
             <objects>
-                <viewController storyboardIdentifier="TutorialAAView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tOY-BV-kY5" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TutorialAAView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tOY-BV-kY5" customClass="PageAAViewController" customModule="Barde" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="feA-Kg-0qp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Les arpèges et les accords" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mSZ-Vy-FHT">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arpeggios and chords" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mSZ-Vy-FHT">
                                 <rect key="frame" x="20" y="70" width="335" height="35"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="29"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -264,10 +295,10 @@ Mais sais-tu comment cela fonctionne ?</string>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Dy-5X-ZFQ">
                                 <rect key="frame" x="20" y="406" width="335" height="261"/>
-                                <string key="text">Choisis tes arpèges, instruments qui qui constituent la mélodie principale de ta musique. 
- Maintenant, place aux accords ! Les accords créent l'ambiance principale de ta musique.
+                                <string key="text">Choose your arpeggios, instruments that constitute the main melody of your music. 
+Now, place to chords! The chords create the main atmosphere of your music.
 
-Fais ton choix !</string>
+Make your choice!</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -306,26 +337,29 @@ Fais ton choix !</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BKX-Z8-Ay5"/>
                     </view>
+                    <connections>
+                        <outlet property="text" destination="1Dy-5X-ZFQ" id="ttS-s7-FKB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cEP-m9-O8m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1543" y="749"/>
         </scene>
-        <!--View Controller-->
+        <!--Page Battery View Controller-->
         <scene sceneID="538-xw-J0a">
             <objects>
-                <viewController storyboardIdentifier="TutorialBatteryView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wSU-5y-QXY" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TutorialBatteryView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wSU-5y-QXY" customClass="PageBatteryViewController" customModule="Barde" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l4i-1i-dVd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="La batterie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ihD-vZ-o24">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Battery" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ihD-vZ-o24">
                                 <rect key="frame" x="20" y="70" width="335" height="35"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="29"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Tu souhaites avoir un peu de batterie dans ton morceau ? Active la !" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCk-kQ-FiP">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="You want some battery in your music ?   Add it !" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCk-kQ-FiP">
                                 <rect key="frame" x="20" y="406" width="335" height="261"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
@@ -365,6 +399,9 @@ Fais ton choix !</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kaS-sR-pqG"/>
                     </view>
+                    <connections>
+                        <outlet property="text" destination="UCk-kQ-FiP" id="9EM-1t-LOr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ijn-nt-Ih9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -378,13 +415,13 @@ Fais ton choix !</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="C'est ton tour" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bhd-XU-Kxz">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It's your turn !" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bhd-XU-Kxz">
                                 <rect key="frame" x="20" y="70" width="335" height="35"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="29"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Tu es maintenant prêt à générer TA musique." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spy-cu-Tp4">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="You are ready to generate YOUR music." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spy-cu-Tp4">
                                 <rect key="frame" x="20" y="115" width="335" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="oYy-5a-8zp"/>
@@ -393,21 +430,21 @@ Fais ton choix !</string>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Tu peux visualiser à nouveau ce tutoriel depuis la page de « Génération » en cliquant sur le bouton d'aide." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sty-yg-um8">
-                                <rect key="frame" x="20" y="456" width="335" height="66.5"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="You can see this tutorial from &quot;Generation&quot; view by clicking on help button." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sty-yg-um8">
+                                <rect key="frame" x="20" y="456" width="335" height="49.5"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgA-5c-e8A" customClass="RoundButton" customModule="Barde" customModuleProvider="target">
-                                <rect key="frame" x="50" y="532.5" width="275" height="50"/>
+                                <rect key="frame" x="50" y="515.5" width="275" height="50"/>
                                 <color key="backgroundColor" red="0.7946570516" green="0.36570879820000002" blue="0.52157801390000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="DfN-wh-edf"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="qt0-M8-ZcO"/>
                                 </constraints>
                                 <color key="tintColor" red="0.97149579939999997" green="0.99618417889999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="C'est parti !"/>
+                                <state key="normal" title="Let's go !"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="6"/>
@@ -462,26 +499,30 @@ Fais ton choix !</string>
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="375" height="1000"/>
                     <size key="freeformSize" width="375" height="667"/>
+                    <connections>
+                        <outlet property="textBottom" destination="sty-yg-um8" id="e7g-kb-D1k"/>
+                        <outlet property="textTop" destination="spy-cu-Tp4" id="FjU-D0-Kpx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WDk-OA-FHR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1541.5999999999999" y="79.610194902548727"/>
         </scene>
-        <!--Page2 View Controller-->
+        <!--Page Play View Controller-->
         <scene sceneID="Clu-X1-jyO">
             <objects>
-                <viewController storyboardIdentifier="TutorialListenView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="N5j-Iq-Av8" customClass="Page2ViewController" customModule="Barde" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TutorialListenView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="N5j-Iq-Av8" customClass="PagePlayViewController" customModule="Barde" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iGd-2Y-wPj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Écoute ta musique" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="w8s-Yb-VU7">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Listen your music" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="w8s-Yb-VU7">
                                 <rect key="frame" x="20" y="70" width="335" height="35"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="29"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="C’est parti ! Démarre ta musique en cliquant sur le bouton de lecture." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NzH-ZM-M2a">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="It's ready ! You can start playing your music by clicking on play button." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NzH-ZM-M2a">
                                 <rect key="frame" x="20" y="406" width="335" height="116"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="116" id="zYB-2b-LxR"/>
@@ -523,6 +564,9 @@ Fais ton choix !</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vJl-7A-Wfe"/>
                     </view>
+                    <connections>
+                        <outlet property="text" destination="NzH-ZM-M2a" id="mgG-Rm-uiF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qHL-8Q-MGB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

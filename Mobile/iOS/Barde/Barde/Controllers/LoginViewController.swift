@@ -118,10 +118,9 @@ class LoginViewController: UIViewController {
                     case 200:
                         
                         if ((response.result.value) != nil) {
-                            
                             UserDefaults.standard.set(data["data"]["token"].stringValue, forKey: "Token")
                             UserDefaults.standard.set(self.emailTextField.text, forKey: "Email")
-                            self.performSegue(withIdentifier: "ToMainView", sender: self)
+                                self.openTutorial()
                         }
                         break
                     case 400:
@@ -140,5 +139,16 @@ class LoginViewController: UIViewController {
             }
         }
         
+    }
+    
+    func openTutorial() {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if (!UserDefaults.standard.bool(forKey: "tutorial")) {
+            UserDefaults.standard.set(true, forKey: "fromLogin")
+            self.performSegue(withIdentifier: "Tutorial", sender: self)
+        } else {
+            self.performSegue(withIdentifier: "ToMainView", sender: self)
+        }
     }
 }

@@ -36,7 +36,7 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
         
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .none
-        dateFormatter.dateFormat = "MM/dd/YYYY"
+        dateFormatter.dateFormat = NSLocalizedString("Date.format", comment: "")
         
         tfBirthDate.text = dateFormatter.string(from: datePicker.date)
     }
@@ -142,8 +142,15 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
             if (!birthdate.isEmpty)
             {
                 profil.birthdate = birthdate
-                UserDefaults.standard.set(birthdate,  forKey: "birthdate")
+                
+                let dateFormatter = DateFormatter()
+                
+                dateFormatter.dateStyle = .short
+                dateFormatter.timeStyle = .none
+                dateFormatter.dateFormat = "YYYY-MM-dd"
+                let date = dateFormatter.date(from: birthdate as! String)
 
+                UserDefaults.standard.set(date,  forKey: "birthdate")
             }
 //            else {
 //                let refreshAlert = UIAlertController(title: "Invalid \"Birthdate\" field.", message: "Field \"Birthdate\" can't be empty.", preferredStyle: UIAlertController.Style.alert)
@@ -195,8 +202,15 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
         // saveUserData()
         
         // let userData: NSManagedObject = (userService?.getLocalData())!
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "dd/MM/yyyy"
+        let showDate = inputFormatter.date(from: tfBirthDate.text!)
+        inputFormatter.dateFormat = "yyyy-MM-dd"
+        let date = inputFormatter.string(from: showDate!)
         
-        userService?.updateUserData(tfFirstName: tfFirstName.text!, tfLastName: tfLastName.text!, tfUserName: tfUserName.text!, tfBirthDate: tfBirthDate.text!, email: UserDefaults.standard.string(forKey: "email")!)
+        UserDefaults.standard.set(date,  forKey: "birthdate")
+        
+        userService?.updateUserData(tfFirstName: tfFirstName.text!, tfLastName: tfLastName.text!, tfUserName: tfUserName.text!, tfBirthDate: date, email: UserDefaults.standard.string(forKey: "email")!)
 
         SwiftSpinner.hide()
 

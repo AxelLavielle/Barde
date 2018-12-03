@@ -65,3 +65,62 @@
 "Back.text" = "Back";
 
 "Loading.text" = "Loading";
+
+
+/* Class = "UITextView"; text = "Choose your arpeggios, instruments that constitute the main melody of your music. \nNow, place to chords! The chords create the main atmosphere of your music.\n\nMake your choice!"; ObjectID = "1Dy-5X-ZFQ"; */
+"1Dy-5X-ZFQ.text" = "Choose your arpeggios, instruments that constitute the main melody of your music. \nNow, place to chords! The chords create the main atmosphere of your music.\n\nMake your choice!";
+
+/* Class = "UILabel"; text = "Style"; ObjectID = "C0z-zk-BQI"; */
+"C0z-zk-BQI.text" = "Style";
+
+/* Class = "UITextView"; text = "It's ready ! You can start playing your music by clicking on play button."; ObjectID = "NzH-ZM-M2a"; */
+"NzH-ZM-M2a.text" = "It's ready ! You can start playing your music by clicking on play button.";
+
+/* Class = "UITextView"; text = "You want some battery in your music ?   Add it !"; ObjectID = "UCk-kQ-FiP"; */
+"UCk-kQ-FiP.text" = "You want some battery in your music ?   Add it !";
+
+/* Class = "UITextView"; text = "The BPM determines the tempo of your music. The higher it is, the faster your music will be.   Identify the one who suits you!"; ObjectID = "ULv-dD-YGL"; */
+"ULv-dD-YGL.text" = "The BPM determines the tempo of your music. The higher it is, the faster your music will be.   Identify the one who suits you!";
+
+/* Class = "UILabel"; text = "It's your turn !"; ObjectID = "bhd-XU-Kxz"; */
+"bhd-XU-Kxz.text" = "It's your turn !";
+
+/* Class = "UILabel"; text = "Battery"; ObjectID = "ihD-vZ-o24"; */
+"ihD-vZ-o24.text" = "Battery";
+
+/* Class = "UITextView"; text = "You have the choice of several styles that allow you to generate music adapted to your tastes."; ObjectID = "izt-oB-kfJ"; */
+"izt-oB-kfJ.text" = "You have the choice of several styles that allow you to generate music adapted to your tastes.";
+
+/* Class = "UITextView"; text = "Swipe left to discover !"; ObjectID = "k9M-uP-yfO"; */
+"k9M-uP-yfO.text" = "Swipe left to discover !";
+
+/* Class = "UILabel"; text = "Arpeggios and chords"; ObjectID = "mSZ-Vy-FHT"; */
+"mSZ-Vy-FHT.text" = "Arpeggios and chords";
+
+/* Class = "UILabel"; text = "Welcome on Barde"; ObjectID = "oAP-OJ-fDO"; */
+"oAP-OJ-fDO.text" = "Welcome on Barde";
+
+/* Class = "UIButton"; normalTitle = "Let's go !"; ObjectID = "pgA-5c-e8A"; */
+"pgA-5c-e8A.normalTitle" = "Let's go !";
+
+/* Class = "UIButton"; normalTitle = "SKIP"; ObjectID = "qnl-Z6-O8B"; */
+"qnl-Z6-O8B.normalTitle" = "SKIP";
+
+/* Class = "UILabel"; text = "BPM"; ObjectID = "rKw-GC-Qgp"; */
+"rKw-GC-Qgp.text" = "BPM";
+
+/* Class = "UITextView"; text = "You are ready to generate YOUR music."; ObjectID = "spy-cu-Tp4"; */
+"spy-cu-Tp4.text" = "You are ready to generate YOUR music.";
+
+/* Class = "UITextView"; text = "You can see this tutorial from \"Generation\" view by clicking on help button."; ObjectID = "sty-yg-um8"; */
+"sty-yg-um8.text" = "You can see this tutorial from \"Generation\" view by clicking on help button.";
+
+/* Class = "UILabel"; text = "Listen your music"; ObjectID = "w8s-Yb-VU7"; */
+"w8s-Yb-VU7.text" = "Listen your music";
+
+"gx2-ux-t9K.text" = "Barde is a multiplatform application for generating music. But you probably already know that … ;-) \nBut, do you know how it works";
+
+"Add.text" = "Add";
+"Trumpet.text" = "Trumpet";
+
+"Date.format" = "YYYY-MM-dd";
