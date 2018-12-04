@@ -29,6 +29,7 @@
 		1D4CB1BD21B5AB7000940C89 /* PageBatteryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4CB1BC21B5AB7000940C89 /* PageBatteryViewController.swift */; };
 		1D4CB1BF21B5AB7900940C89 /* PageBPMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4CB1BE21B5AB7900940C89 /* PageBPMViewController.swift */; };
 		1D4CB1C021B5ACC000940C89 /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DDF89B521B5619700EECCE7 /* Tutorial.storyboard */; };
+		1D4CB1C421B6B58D00940C89 /* UITextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4CB1C321B6B58D00940C89 /* UITextViewExtension.swift */; };
 		1D4D266B1F8D65C800383255 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4D266A1F8D65C800383255 /* SettingsViewController.swift */; };
 		1D5C188C207C10E300393DFC /* CheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5C188B207C10E300393DFC /* CheckButton.swift */; };
 		1D5EADAF210B966700721A3D /* GeneratorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EADAE210B966700721A3D /* GeneratorManager.swift */; };
@@ -95,6 +96,7 @@
 		1D4CB1BC21B5AB7000940C89 /* PageBatteryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageBatteryViewController.swift; sourceTree = "<group>"; };
 		1D4CB1BE21B5AB7900940C89 /* PageBPMViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageBPMViewController.swift; sourceTree = "<group>"; };
 		1D4CB1C221B5AE9F00940C89 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Tutorial.strings; sourceTree = "<group>"; };
+		1D4CB1C321B6B58D00940C89 /* UITextViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewExtension.swift; sourceTree = "<group>"; };
 		1D4D266A1F8D65C800383255 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1D5C188B207C10E300393DFC /* CheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckButton.swift; sourceTree = "<group>"; };
 		1D5EADAE210B966700721A3D /* GeneratorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorManager.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				1DB6E797211A36C200E337E1 /* FileManager.swift */,
 				1D48BC12211C5E5F00523A00 /* TextFieldManager.swift */,
 				1D3786322176069100CB561F /* UIViewExtension.swift */,
+				1D4CB1C321B6B58D00940C89 /* UITextViewExtension.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 				1D1976D920254DD100A390EB /* RootViewController.swift in Sources */,
 				1D6E405D1F8D4E8D006522C8 /* Barde.xcdatamodeld in Sources */,
 				1D1013A01FE9AC6E00913E43 /* LoginViewController.swift in Sources */,
+				1D4CB1C421B6B58D00940C89 /* UITextViewExtension.swift in Sources */,
 				1D4CB1BB21B5AB6800940C89 /* PageAAViewController.swift in Sources */,
 				1D21C97F207D6DDB00F12FB6 /* Style+CoreDataClass.swift in Sources */,
 				1D21C969207D5B2400F12FB6 /* InstrumentServices.swift in Sources */,

@@ -57,10 +57,14 @@ class ProfileViewController: UIViewController, SettingMenuButtonDelegate, NSFetc
         imageSettings.addGestureRecognizer(tap)
         imageSettings.isUserInteractionEnabled = true
         
-        
-        let firstName = UserDefaults.standard.string(forKey: "firstname")
-        let lastName = UserDefaults.standard.string(forKey: "lastname")
-        tfName.text = firstName! + " " + lastName!
+        var text = UserDefaults.standard.string(forKey: "username")
+        if (UserDefaults.standard.string(forKey: "firstname") != nil && UserDefaults.standard.string(forKey: "lastname") != nil) {
+            let firstName = UserDefaults.standard.string(forKey: "firstname")
+            let lastName = UserDefaults.standard.string(forKey: "lastname")
+            text = firstName! + " " + lastName! + " (" + UserDefaults.standard.string(forKey: "username")! + ")"
+        }
+       
+        tfName.text = text
         tfEmail.text = UserDefaults.standard.string(forKey: "email")
         
 //        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Profil")
