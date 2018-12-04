@@ -97,14 +97,23 @@ class SignupViewController: UIViewController {
                     {
                         
                         let inputFormatter = DateFormatter()
-                        inputFormatter.dateFormat = "dd/MM/yyyy"
-                        let showDate = inputFormatter.date(from: birthdateTextField.text as! String)
                         
-                        inputFormatter.dateFormat = "yyyy-MM-dd"
-                        let myString = inputFormatter.string(from: showDate!) // string purpose I add here
+                        var date: Date? = nil
+                        if (Locale.current.languageCode == "fr")
+                        {
+                            inputFormatter.dateFormat = "dd/MM/yyyy"
+                            let showDate = inputFormatter.date(from: birthdateTextField.text!)
+                            inputFormatter.dateFormat = "yyyy-MM-dd"
+                            let myString = inputFormatter.string(from: showDate!) // string purpose I add here
+                            date = inputFormatter.date(from: myString)
+                        } else {
+                            inputFormatter.dateFormat = "yyyy-MM-dd"
+                            let showDate = inputFormatter.date(from: birthdateTextField.text!)
 
-                        let date = inputFormatter.date(from: myString )
-                        
+                            let myString = inputFormatter.string(from: showDate!) // string purpose I add here
+                            date = inputFormatter.date(from: myString)
+                        }
+                    
                         inputFormatter.dateFormat = "MM"
                         let strMonth = inputFormatter.string(from: date!)
                         inputFormatter.dateFormat = "YYYY"

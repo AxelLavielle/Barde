@@ -200,13 +200,23 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
         tfBirthDate.resignFirstResponder()
         self.view.endEditing(true)
         // saveUserData()
-        
+
         // let userData: NSManagedObject = (userService?.getLocalData())!
         let inputFormatter = DateFormatter()
-        inputFormatter.dateFormat = "dd/MM/yyyy"
-        let showDate = inputFormatter.date(from: tfBirthDate.text!)
-        inputFormatter.dateFormat = "yyyy-MM-dd"
-        let date = inputFormatter.string(from: showDate!)
+        
+        var date = ""
+        if (Locale.current.languageCode == "fr")
+        {
+            inputFormatter.dateFormat = "dd/MM/yyyy"
+            let showDate = inputFormatter.date(from: tfBirthDate.text!)
+            inputFormatter.dateFormat = "yyyy-MM-dd"
+            date = inputFormatter.string(from: showDate!)
+        } else {
+            inputFormatter.dateFormat = "yyyy-MM-dd"
+            let showDate = inputFormatter.date(from: tfBirthDate.text!)
+            date = inputFormatter.string(from: showDate!)
+        }
+
         
         UserDefaults.standard.set(date,  forKey: "birthdate")
         
