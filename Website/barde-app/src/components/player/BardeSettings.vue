@@ -112,7 +112,7 @@
 
         <div class="row">
           <div class="col s8 offset-s1">
-            <input v-model="bpm" type="range" id="test5" min="60" max="150">
+            <input v-model="bpm" @change="onBPMChange" type="range" id="test5" min="60" max="150">
           </div>
           <div class="col s2">
             <span>BPM : {{bpm}}</span>
@@ -152,10 +152,12 @@ export default {
     },
     drums: function(val) {
       this.onDrumsChange(val);
-    },
-    bpm: function(val) {
+    }
+    /* bpm: function(val) {
+      console.log(val);
       this.onBPMChange(val);
     }
+ */
   },
   methods: {
     styleChanged: this.onStyleChange,
@@ -174,6 +176,7 @@ export default {
         this.onInstrumentChange(value, false);
       }
     },
+
     handleChangeArpege: function(e) {
       console.log("arpege");
       const name = e.target.name;

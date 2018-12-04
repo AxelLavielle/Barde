@@ -342,7 +342,10 @@ export default {
       return bpm;
     },
     onBPMChange(value) {
-      this.sendCommand(this.formatBPM(value), "USE " + value + " BPM");
+      this.sendCommand(
+        this.formatBPM(value.target.value),
+        "USE " + value.target.value + " BPM"
+      );
     },
     onStyleChange(value) {
       let style = value.toString().split(":");
