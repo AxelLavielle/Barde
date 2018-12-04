@@ -125,3 +125,7 @@
 "Trumpet.text" = "Trompette";
 
 "Date.format" = "dd/MM/YYYY";
+
+"ConnectionLost.text" = "La connexion a été interrompu";
+"ConnectionLostDescription.text" = "La connexion au serveur de génération a été interrompu. :/ \n\nEssaye de te reconnecter à l'aide du bouton ci-dessous ! ";
+"ConnectionLostButton.text" = "Se reconnecter";

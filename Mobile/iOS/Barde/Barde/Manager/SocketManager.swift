@@ -27,6 +27,11 @@ class SocketManager: NSObject {
             print(ret as Any);
             GeneratorManager.sharedInstance.listeningServer()
         case .failure(let error):
+            var topController:UIViewController = UIApplication.shared.keyWindow!.rootViewController!
+            while ((topController.presentedViewController) != nil) {
+                topController = topController.presentedViewController!
+            }
+            Alert.showReconnectAction(on: topController)
             print("ERROR", error)
         }
     }
@@ -35,10 +40,14 @@ class SocketManager: NSObject {
         switch client.send(data: data) {
         case .success:
             let ret = readResponse(from: client)
-            
-            print(ret)
-            return true
+                        return true
         case .failure(let error):
+            var topController:UIViewController = UIApplication.shared.keyWindow!.rootViewController!
+            while ((topController.presentedViewController) != nil) {
+                topController = topController.presentedViewController!
+            }
+            Alert.showReconnectAction(on: topController)
+
             print("ERROR REQUEST", error)
             return false
         }

@@ -64,6 +64,17 @@ struct Alert {
         vc.present(alert, animated: true, completion: nil)
     }
     
+    static func showReconnectAction(on vc: UIViewController) {
+        let alert = showAction(on: vc, with: NSLocalizedString("ConnectionLost.text", comment: ""), message: NSLocalizedString("ConnectionLostDescription.text", comment: ""))
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("ConnectionLostButton.text", comment: ""), style: .default, handler: { (action) -> Void in
+            SocketManager.sharedInstance.establishConnection()
+        }))
+    
+        //alert.popoverPresentationController?.sourceView = vc.view
+        vc.present(alert, animated: true, completion: nil)
+    }
+    
     
     static func showOfflinePage(on vc: UIViewController) -> Void {
         DispatchQueue.main.async {

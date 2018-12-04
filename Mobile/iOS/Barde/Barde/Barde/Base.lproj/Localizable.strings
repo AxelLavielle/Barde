@@ -124,3 +124,7 @@
 "Trumpet.text" = "Trumpet";
 
 "Date.format" = "YYYY-MM-dd";
+
+"ConnectionLost.text" = "The connection was interrupted";
+"ConnectionLostDescription.text" = "The connection to the sound server has been interrupted. :/ \n\nTry to connect again using above button ! ";
+"ConnectionLostButton.text" = "Connection";

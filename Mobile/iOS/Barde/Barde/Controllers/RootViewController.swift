@@ -65,7 +65,8 @@ class RootViewController: UITabBarController, NSFetchedResultsControllerDelegate
                         }
                         
                 
-                        
+                        SocketManager.sharedInstance.establishConnection()
+
                         do {
                             try context.save()
                         } catch {
