@@ -24,7 +24,29 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
     let datePicker = UIDatePicker()
     
     func createDatePicker() {
+        
+        let inputFormatter = DateFormatter()
+        
+        var date: Date = Date.init()
+        if ((UserDefaults.standard.string(forKey: "birthdate")) != nil) {
+            if (Locale.current.languageCode == "fr")
+            {
+                inputFormatter.dateFormat = "dd/MM/yyyy"
+                let showDate = inputFormatter.date(from: UserDefaults.standard.string(forKey: "birthdate")!)
+                inputFormatter.dateFormat = "yyyy-MM-dd"
+                let myString = inputFormatter.string(from: showDate!) // string purpose I add here
+                date = inputFormatter.date(from: myString)!
+            } else {
+                inputFormatter.dateFormat = "yyyy-MM-dd"
+                let showDate = inputFormatter.date(from: UserDefaults.standard.string(forKey: "birthdate")!)
+                
+                let myString = inputFormatter.string(from: showDate!) // string purpose I add here
+                date = inputFormatter.date(from: myString)!
+            }
+        }
+
         datePicker.datePickerMode = .date
+        datePicker.date = date
         datePicker.maximumDate = Date.init()
 
         tfBirthDate.inputView = datePicker
