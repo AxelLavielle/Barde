@@ -128,3 +128,5 @@
 "ConnectionLost.text" = "The connection was interrupted";
 "ConnectionLostDescription.text" = "The connection to the sound server has been interrupted. :/ \n\nTry to connect again using above button ! ";
 "ConnectionLostButton.text" = "Connection";
+
+"Generating.text" = "Generation in progress";

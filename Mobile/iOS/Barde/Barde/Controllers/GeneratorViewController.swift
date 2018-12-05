@@ -65,50 +65,67 @@ class GeneratorViewController: UIViewController {
 
     @objc func playButtonTapped(_ sender:UIButton)
     {
-
+        
         self.showSpinner { error in
             if error != nil {
                 print("Oops! Something went wrong...")
             } else {
                 print("It has finished show spinner")
                 
-                if (!self.isPlaying) {
-                    GeneratorManager.sharedInstance.sendData(arr: [0x2, 0x0, 0x0, 0x0, 0x12, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
-                    
-                    sleep(1)
-                    
-                    self.playMidi { error in
-                        if error != nil {
-                            print("Oops! Something went wrong...")
-                        } else {
-                            print("It has finished init")
-                            
-                            self.waitStopPlayerMidi { error in
-                                if error != nil {
-                                    print("Oops! Something went wrong...")
-                                } else {
-                                    print("It has finished")
-                                    self.continuePlaying = true;
-                                    self.startMidiPlayer()
+                DispatchQueue.main.async() {
+                    if (!self.isPlaying) {
+                        GeneratorManager.sharedInstance.sendData(arr: [0x2, 0x0, 0x0, 0x0, 0x12, 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
+                        
+                        sleep(1)
+                        
+                        self.playMidi { error in
+                            if error != nil {
+                                print("Oops! Something went wrong...")
+                            } else {
+                                print("It has finished init")
+                                
+                                self.waitStopPlayerMidi { error in
+                                    if error != nil {
+                                        print("Oops! Something went wrong...")
+                                    } else {
+                                        print("It has finished")
+                                        self.continuePlaying = true;
+                                        self.startMidiPlayer()
+                                    }
                                 }
                             }
                         }
-                    }
-                } else {
-                    self.stopMidi { error in
-                        if error != nil {
-                            print("Oops! Something went wrong...")
-                        } else {
-                            self.continuePlaying = false;
-                            self.stopMidiPlayer()
-                            
+                    } else {
+                        self.stopMidi { error in
+                            if error != nil {
+                                print("Oops! Something went wrong...")
+                            } else {
+                                self.continuePlaying = false;
+                                self.stopMidiPlayer()
+                                
+                            }
                         }
+                        
                     }
                     
                 }
                 
             }
         }
+       
+        
+       
+        
+//        self.showSpinner { error in
+//            if error != nil {
+//                print("Oops! Something went wrong...")
+//            } else {
+//                print("It has finished show spinner")
+//
+//
+//
+//            }
+//        }
         
         
     }
@@ -181,9 +198,16 @@ class GeneratorViewController: UIViewController {
     }
     
     func showSpinner(completion: @escaping (Error?) -> Void) {
-        SwiftSpinner.show(NSLocalizedString("Loading.text", comment: ""))
-        print("showSpinner")
-        completion(nil)
+        DispatchQueue.main.async() {
+            print(self.isPlaying)
+            var text = NSLocalizedString("Generating.text", comment: "")
+            if (self.isPlaying) {
+                text = NSLocalizedString("Loading.text", comment: "")
+            }
+            SwiftSpinner.show(text)
+            print("showSpinner")
+            completion(nil)
+        }
     }
     
     

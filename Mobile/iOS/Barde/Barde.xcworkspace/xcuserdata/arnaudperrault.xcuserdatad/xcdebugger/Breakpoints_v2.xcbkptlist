@@ -73,102 +73,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Barde/Controllers/GeneratorViewController.swift"
-            timestampString = "565472978.737698"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "293"
-            endingLineNumber = "293"
-            landmarkName = "createAVMIDIPlayerFromMIDIFIle()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Barde/Controllers/GeneratorViewController.swift"
-            timestampString = "565472978.737799"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299"
-            landmarkName = "createAVMIDIPlayerFromMIDIFIle()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Barde/Controllers/GeneratorViewController.swift"
-            timestampString = "565472978.737875"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "302"
-            endingLineNumber = "302"
-            landmarkName = "createAVMIDIPlayerFromMIDIFIle()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Barde/Controllers/GeneratorViewController.swift"
-            timestampString = "565472978.7379529"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "296"
-            endingLineNumber = "296"
-            landmarkName = "createAVMIDIPlayerFromMIDIFIle()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Barde/Controllers/GeneratorViewController.swift"
-            timestampString = "565472978.738027"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "295"
-            endingLineNumber = "295"
-            landmarkName = "createAVMIDIPlayerFromMIDIFIle()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Barde/Controllers/GeneratorViewController.swift"
-            timestampString = "565472978.738095"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
-            landmarkName = "playButtonTapped(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Barde/Manager/UIViewExtension.swift"
             timestampString = "561385893.899226"
             startingColumnNumber = "9223372036854775807"
@@ -182,27 +86,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Barde/Controllers/GeneratorViewController.swift"
-            timestampString = "565472978.738202"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "stopButtonTapped(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Barde/Controllers/LoginViewController.swift"
-            timestampString = "565638274.149088"
+            timestampString = "565703341.5322241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "120"
@@ -218,7 +106,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Barde/Controllers/SettingsEditAccountView.swift"
-            timestampString = "565638274.149202"
+            timestampString = "565703341.532336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "245"
@@ -234,7 +122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Barde/Services/UserServices.swift"
-            timestampString = "565638274.149298"
+            timestampString = "565703341.532409"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
@@ -250,7 +138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Barde/Services/UserServices.swift"
-            timestampString = "565638274.149408"
+            timestampString = "565703341.5325119"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "42"
@@ -266,7 +154,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Barde/Services/UserServices.swift"
-            timestampString = "565638274.149514"
+            timestampString = "565703341.5326051"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "53"
@@ -282,7 +170,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Barde/Services/UserServices.swift"
-            timestampString = "565638274.1496201"
+            timestampString = "565703341.532698"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "166"
@@ -362,7 +250,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Barde/Controllers/LaunchViewController.swift"
-            timestampString = "565638274.149877"
+            timestampString = "565703341.5329109"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
@@ -374,91 +262,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Barde/Controllers/GeneratorViewController.swift"
-            timestampString = "565472978.739426"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "stopMidiPlayer()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Barde/Controllers/GeneratorViewController.swift"
-            timestampString = "565472978.739501"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "playButtonTapped(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Barde.GeneratorViewController.playButtonTapped(__C.UIButton) -&gt; ()"
-                  moduleName = "Barde"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/arnaudperrault/Repositories/Barde/git/barde/Mobile/iOS/Barde/Barde/Controllers/GeneratorViewController.swift"
-                  timestampString = "564945989.38878"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "60"
-                  endingLineNumber = "60"
-                  offsetFromSymbolStart = "84">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Barde.GeneratorViewController.playButtonTapped(__C.UIButton) -&gt; ()"
-                  moduleName = "Barde"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/arnaudperrault/Repositories/Barde/git/barde/Mobile/iOS/Barde/Barde/Controllers/GeneratorViewController.swift"
-                  timestampString = "564945989.390506"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "61"
-                  endingLineNumber = "61"
-                  offsetFromSymbolStart = "37">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Barde/Controllers/GeneratorViewController.swift"
-            timestampString = "565472978.73957"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "viewTutorialAction(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Barde/Controllers/Tutorial/TutorialRootViewController.swift"
-            timestampString = "565638274.150057"
+            timestampString = "565703341.532969"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "15"
@@ -506,7 +314,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Barde/Services/UserServices.swift"
-            timestampString = "565638274.150221"
+            timestampString = "565703341.533074"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "157"
@@ -522,7 +330,7 @@
                   moduleName = "Barde"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/arnaudperrault/CloudStation/Repositories/Barde/git/barde/Mobile/iOS/Barde/Barde/Services/UserServices.swift"
-                  timestampString = "565638274.486937"
+                  timestampString = "565703341.962761"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "157"
@@ -537,7 +345,7 @@
                   moduleName = "Barde"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/arnaudperrault/CloudStation/Repositories/Barde/git/barde/Mobile/iOS/Barde/Barde/Services/UserServices.swift"
-                  timestampString = "565638274.4903899"
+                  timestampString = "565703341.966357"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "158"
@@ -554,7 +362,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Barde/Services/UserServices.swift"
-            timestampString = "565638274.150335"
+            timestampString = "565703341.5331711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "137"
@@ -570,7 +378,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Barde/Services/UserServices.swift"
-            timestampString = "565638274.150435"
+            timestampString = "565703341.533259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
@@ -586,7 +394,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Barde/Controllers/SettingsEditAccountView.swift"
-            timestampString = "565638274.150546"
+            timestampString = "565703341.533349"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "175"
@@ -602,7 +410,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Barde/Controllers/SettingsEditAccountView.swift"
-            timestampString = "565638274.150636"
+            timestampString = "565703341.533416"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "243"
@@ -618,7 +426,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Barde/Controllers/SignupViewController.swift"
-            timestampString = "565638274.150717"
+            timestampString = "565703341.533481"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "118"
@@ -634,7 +442,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Barde/Controllers/SignupViewController.swift"
-            timestampString = "565638274.150785"
+            timestampString = "565703341.533532"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "137"
@@ -650,7 +458,7 @@
                   moduleName = "Barde"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/arnaudperrault/CloudStation/Repositories/Barde/git/barde/Mobile/iOS/Barde/Barde/Controllers/SignupViewController.swift"
-                  timestampString = "565638274.517172"
+                  timestampString = "565703342.0007319"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "137"
@@ -665,7 +473,7 @@
                   moduleName = "Barde"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/arnaudperrault/CloudStation/Repositories/Barde/git/barde/Mobile/iOS/Barde/Barde/Controllers/SignupViewController.swift"
-                  timestampString = "565638274.519732"
+                  timestampString = "565703342.004115"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "139"
@@ -682,7 +490,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Barde/Controllers/RootViewController.swift"
-            timestampString = "565638274.1508501"
+            timestampString = "565703341.533583"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "68"
@@ -698,7 +506,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Barde/AppDelegate.swift"
-            timestampString = "565638274.150916"
+            timestampString = "565703341.533636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "66"
@@ -714,7 +522,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Barde/AppDelegate.swift"
-            timestampString = "565638274.1514111"
+            timestampString = "565703341.5342391"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "64"
@@ -730,7 +538,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Barde/AppDelegate.swift"
-            timestampString = "565638274.151747"
+            timestampString = "565703341.5345449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "65"
@@ -746,12 +554,76 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Barde/AppDelegate.swift"
-            timestampString = "565638274.152076"
+            timestampString = "565703341.534878"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
             endingLineNumber = "67"
             landmarkName = "applicationWillEnterForeground(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Barde/Controllers/GeneratorViewController.swift"
+            timestampString = "565703341.535192"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "playButtonTapped(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Barde.GeneratorViewController.playButtonTapped(__C.UIButton) -&gt; ()"
+                  moduleName = "Barde"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arnaudperrault/CloudStation/Repositories/Barde/git/barde/Mobile/iOS/Barde/Barde/Controllers/GeneratorViewController.swift"
+                  timestampString = "565703202.7280149"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "535">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Barde.GeneratorViewController.playButtonTapped(__C.UIButton) -&gt; ()"
+                  moduleName = "Barde"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arnaudperrault/CloudStation/Repositories/Barde/git/barde/Mobile/iOS/Barde/Barde/Controllers/GeneratorViewController.swift"
+                  timestampString = "565703202.730939"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Barde/Controllers/GeneratorViewController.swift"
+            timestampString = "565703341.535259"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "showSpinner(completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
