@@ -39,12 +39,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.removeObject(forKey: "chordsArray")
         UserDefaults.standard.removeObject(forKey: "arpegiosArray")
         UserDefaults.standard.removeObject(forKey: "tempoValue")
-        UserDefaults.standard.removeObject(forKey: "tutorial")
-UserDefaults.standard.removeObject(forKey: "fromLogin")
+        
         //Check return of initData() - If false, error message asking for realoading data and if continue, restart app
         
         //        UserDefaults.standard.removeObject(forKey: "Token")
-        
+        //UserDefaults.standard.removeObject(forKey: "tutorial")
+        //UserDefaults.standard.removeObject(forKey: "fromLogin")
       
         return true
     }

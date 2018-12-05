@@ -18,12 +18,11 @@ class TempoViewController: UIViewController {
         let currentValue = Int(tempoSlider.value)
         currentTempoLabel.text =  "\(currentValue) BPM"
         
-        
-        UserDefaults.standard.set(currentValue, forKey: "tempoValue")
+            UserDefaults.standard.set(currentValue, forKey: "tempoValue")
         
         let stringValue = String(format: "%02X", currentValue)
-        let hexValue = Array(stringValue.utf8)
-        print(currentValue, stringValue, hexValue, [0x1, 0x0, 0x0, 0x0, 0x51, 0x0, 0x0, 0x0, hexValue[1], 0x0, 0x0, 0x0]);
+        let hexValue = Array(String(currentValue).utf8)
+        
         GeneratorManager.sharedInstance.sendData(arr: [0x1, 0x0, 0x0, 0x0, 0x51, 0x0, 0x0, 0x0, hexValue[1], 0x0, 0x0, 0x0, 0x0D, 0x0, 0x0, 0x0, 0x0A, 0x0, 0x0, 0x0])
     }
     
