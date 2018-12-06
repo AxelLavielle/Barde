@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tutorial_list_item_view_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="30dp"
+        android:textColor="@color/colorWhite"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Le style" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tutorial_list_item_view_subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="20dp"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tutorial_list_item_view_title"
+        tools:text="fezfief fe fefzgrzg rgzrg zG zrgz rgZRGZgzgzg gzrgzRG ZRGzr gzr gzrg zrgzgzgz gr gz gz rgz rgz rgzrg " />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/tutorial_list_item_view_image"
+        android:layout_width="0dp"
+        android:scaleType="centerCrop"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tutorial_list_item_view_subtitle"
+        tools:src="@mipmap/barde" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tutorial_list_item_view_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tutorial_list_item_view_image"
+        tools:text="zefziofnzf zrf zRFZRGZ RGR GrgRG rgR Grg RGzr grg RG rgR Gr gzrg " />
+
+</android.support.constraint.ConstraintLayout>

@@ -21,6 +21,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.project.barde.barde.R
+import com.project.barde.barde.TutorialActivity
 import com.project.barde.barde.adapter.PlaylistChoiceAdapter
 import com.project.barde.barde.static.AudioBardeManager
 import com.project.barde.barde.static.ListenerSocket
@@ -643,6 +644,10 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerS
         }
 
         seek_bar_bpm.setProgress(0)
+
+        help.setOnClickListener {
+            TutorialActivity.startActivity(context)
+        }
 
     }
 

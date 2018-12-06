@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/colorPrimary">
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/geneartionView"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <!-- <LinearLayout
              android:orientation="vertical"
              android:layout_width="match_parent"
@@ -97,88 +97,114 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>-->
-        <LinearLayout
-            android:paddingTop="15dp"
-            android:id="@+id/pagination_generation"
-            android:orientation="horizontal"
-            android:gravity="center"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/pagination_a"
-                android:layout_margin="5dp"
-                android:src="@drawable/circle_full_white"
-                android:layout_width="12dp"
-                android:layout_height="12dp" />
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp">
 
-            <ImageView
-                android:id="@+id/pagination_b"
-                android:layout_margin="5dp"
-                android:src="@drawable/circle_full_white"
-                android:layout_width="12dp"
-                android:layout_height="12dp" />
+            <LinearLayout
+                android:id="@+id/pagination_generation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/pagination_c"
-                android:layout_margin="5dp"
-                android:src="@drawable/circle_full_white"
-                android:layout_width="12dp"
-                android:layout_height="12dp" />
+                <ImageView
+                    android:id="@+id/pagination_a"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/circle_full_white" />
 
-            <ImageView
-                android:id="@+id/pagination_d"
-                android:layout_margin="5dp"
-                android:src="@drawable/circle_full_white"
-                android:layout_width="12dp"
-                android:layout_height="12dp" />
+                <ImageView
+                    android:id="@+id/pagination_b"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/circle_full_white" />
 
-            <ImageView
-                android:id="@+id/pagination_e"
-                android:layout_margin="5dp"
-                android:src="@drawable/circle_full_white"
-                android:layout_width="12dp"
-                android:layout_height="12dp" />
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/pagination_c"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/circle_full_white" />
+
+                <ImageView
+                    android:id="@+id/pagination_d"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/circle_full_white" />
+
+                <ImageView
+                    android:id="@+id/pagination_e"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/circle_full_white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginRight="10dp"
+                android:gravity="end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/help"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_help_outline_white_24dp" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:orientation="horizontal">
+
             <ImageView
+                android:id="@+id/previous_button_generation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@drawable/arrow_circle_white"
-                android:visibility="invisible"
-                android:src="@drawable/ic_keyboard_arrow_left_white_24dp"
-                android:id="@+id/previous_button_generation"
                 android:gravity="center"
+                android:src="@drawable/ic_keyboard_arrow_left_white_24dp"
                 android:textColor="@color/colorWhite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:visibility="invisible" />
+
             <LinearLayout
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="horizontal">
+
                 <LinearLayout
-                    android:gravity="center"
-                    android:visibility="visible"
                     android:id="@+id/style_choice_genearation"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
                     <TextView
-                        android:paddingTop="20dp"
-                        android:textSize="25sp"
-                        android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingTop="20dp"
                         android:text="@string/str_choose_your_style"
-                        android:textColor="#ffffff" />
+                        android:textColor="#ffffff"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
                     <LinearLayout
-                        android:gravity="center"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:gravity="center">
 
                         <RadioGroup
                             android:id="@+id/style_button_radio"
@@ -188,7 +214,6 @@
                             android:orientation="vertical">
 
                             <RadioButton
-                                android:padding="10dp"
                                 android:id="@+id/jazz_style_radio"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -196,12 +221,12 @@
                                 android:layout_weight="1"
                                 android:background="@drawable/button_selection_generation_selected"
                                 android:button="@android:color/transparent"
+                                android:padding="10dp"
                                 android:text="@string/str_jazz"
                                 android:textAlignment="center"
                                 android:textColor="@color/colorPrimary" />
 
                             <RadioButton
-                                android:padding="10dp"
                                 android:id="@+id/blues_style_radio"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -209,134 +234,150 @@
                                 android:layout_weight="1"
                                 android:background="@drawable/button_selection_generation"
                                 android:button="@android:color/transparent"
+                                android:padding="10dp"
                                 android:text="@string/str_blues"
                                 android:textAlignment="center"
                                 android:textColor="#ffffff" />
                         </RadioGroup>
                     </LinearLayout>
                 </LinearLayout>
+
                 <LinearLayout
-                    android:visibility="visible"
                     android:id="@+id/instrument_choice_generation_chords"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
                     <TextView
-                        android:textAlignment="center"
-                        android:paddingTop="20dp"
-                        android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:textColor="#ffffff"
-                        android:text="@string/str_choose_your_instrument"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                    <TextView
-                        android:textAlignment="center"
-                        android:textStyle="bold"
-                        android:textSize="18dp"
-                        android:textColor="@color/colorWhite"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/str_chords"/>
+                        android:paddingTop="20dp"
+                        android:text="@string/str_choose_your_instrument"
+                        android:textAlignment="center"
+                        android:textColor="#ffffff"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_chords"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
                     <LinearLayout
                         android:id="@+id/list_instrument_generation_chords"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                    </LinearLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:visibility="visible"
-                    android:id="@+id/instrument_choice_generation_arpeges"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <TextView
-                        android:textAlignment="center"
-                        android:paddingTop="20dp"
-                        android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:textColor="#ffffff"
-                        android:text="@string/str_choose_your_instrument"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                    <TextView
-                        android:textAlignment="center"
-                        android:textStyle="bold"
-                        android:textSize="18dp"
-                        android:textColor="@color/colorWhite"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/str_arpege"/>
+                        android:orientation="vertical"></LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/instrument_choice_generation_arpeges"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="20dp"
+                        android:text="@string/str_choose_your_instrument"
+                        android:textAlignment="center"
+                        android:textColor="#ffffff"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_arpege"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
                     <LinearLayout
                         android:id="@+id/list_instrument_generation_arpeges"
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                    </LinearLayout>
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"></LinearLayout>
                 </LinearLayout>
+
                 <LinearLayout
-                    android:visibility="visible"
                     android:id="@+id/instrument_choice_generation"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
                     <TextView
-                        android:textAlignment="center"
-                        android:paddingTop="20dp"
-                        android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:textColor="#ffffff"
-                        android:text="@string/str_choose_your_instrument"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:paddingTop="20dp"
+                        android:text="@string/str_choose_your_instrument"
+                        android:textAlignment="center"
+                        android:textColor="#ffffff"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
                     <LinearLayout
                         android:id="@+id/list_instrument_generation"
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                    </LinearLayout>
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"></LinearLayout>
                 </LinearLayout>
+
                 <LinearLayout
-                    android:gravity="center"
-                    android:visibility="visible"
                     android:id="@+id/rythme_choice_genaration"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
                     <TextView
-                        android:paddingTop="20dp"
-                        android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:textColor="#ffffff"
-                        android:text="@string/str_choose_your_tempo"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:paddingTop="20dp"
+                        android:text="@string/str_choose_your_tempo"
+                        android:textColor="#ffffff"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
                     <LinearLayout
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
                         <TextView
-                            android:paddingTop="30dp"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:text="@string/str_70_bpm"
-                            android:textColor="@color/colorWhite"
                             android:id="@+id/value_bpm"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:paddingTop="30dp"
+                            android:text="@string/str_70_bpm"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
                         <LinearLayout
-                            android:gravity="center"
-                            android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
                             <TextView
-                                android:textColor="@color/colorWhite"
-                                android:text="70"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:text="70"
+                                android:textColor="@color/colorWhite" />
+
                             <LinearLayout
                                 android:layout_width="200dp"
                                 android:layout_height="wrap_content">
@@ -346,131 +387,151 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content" />
                             </LinearLayout>
+
                             <TextView
-                                android:textColor="@color/colorWhite"
-                                android:text="200"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:text="200"
+                                android:textColor="@color/colorWhite" />
                         </LinearLayout>
                     </LinearLayout>
 
                 </LinearLayout>
             </LinearLayout>
+
             <ImageView
+                android:id="@+id/next_button_generation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@drawable/arrow_circle_white"
-                android:visibility="invisible"
-                android:src="@drawable/ic_keyboard_arrow_right_white_24dp"
-                android:id="@+id/next_button_generation"
                 android:gravity="center"
+                android:src="@drawable/ic_keyboard_arrow_right_white_24dp"
                 android:textColor="@color/colorWhite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:visibility="invisible" />
         </LinearLayout>
+
         <LinearLayout
-            android:visibility="gone"
-            android:paddingBottom="50dp"
-            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:padding="7dp"
-                android:id="@+id/pagination_style"
-                android:textColor="@color/colorWhite"
-                android:text="@string/str_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <ImageView
-                android:src="@drawable/ic_keyboard_arrow_right_white_24dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:padding="7dp"
-                android:id="@+id/pagination_instruments"
-                android:text="@string/str_instruments"
-                android:textColor="@color/colorWhite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <ImageView
-                android:src="@drawable/ic_keyboard_arrow_right_white_24dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:padding="7dp"
-                android:id="@+id/pagination_bpm"
-                android:text="@string/str_BPM"
-                android:textColor="@color/colorWhite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-        <LinearLayout
-            android:visibility="gone"
+            android:gravity="center"
             android:orientation="horizontal"
+            android:paddingBottom="50dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/pagination_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="7dp"
+                android:text="@string/str_style"
+                android:textColor="@color/colorWhite" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_keyboard_arrow_right_white_24dp" />
+
+            <TextView
+                android:id="@+id/pagination_instruments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="7dp"
+                android:text="@string/str_instruments"
+                android:textColor="@color/colorWhite" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_keyboard_arrow_right_white_24dp" />
+
+            <TextView
+                android:id="@+id/pagination_bpm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="7dp"
+                android:text="@string/str_BPM"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
             <EditText
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:inputType="text"
-                android:hint="new ip"
                 android:id="@+id/newIp"
-                android:background="#ffffff"
-                android:layout_width="wrap_content" />
-            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="change ip"
-                android:textColor="#ffffff"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:hint="new ip"
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/connexionNewServer"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@drawable/button_rounded_corners"
-                android:id="@+id/connexionNewServer"/>
+                android:text="change ip"
+                android:textColor="#ffffff" />
         </LinearLayout>
 
         <SeekBar
             android:id="@+id/seek_bar_duration"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
         <LinearLayout
-            android:layout_margin="10dp"
             android:layout_width="match_parent"
-            android:gravity="center"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center">
+
             <TextView
                 android:id="@+id/current_position"
-                android:textColor="@color/colorWhite"
-                android:text="00:00"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:textColor="@color/colorWhite"
+                android:visibility="gone" />
+
             <LinearLayout
-                android:gravity="center"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
+
                 <ProgressBar
-                    android:visibility="gone"
                     android:id="@+id/loadingGeneration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:visibility="gone" />
+
                 <ImageButton
                     android:id="@+id/button_generation"
-                    android:background="@color/colorPrimary"
-                    android:src="@drawable/ic_play_circle_filled_white_white_48dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:src="@drawable/ic_play_circle_filled_white_white_48dp" />
             </LinearLayout>
 
             <ImageView
-                android:visibility="invisible"
-                android:src="@drawable/ic_linear_scale_black_24dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_linear_scale_black_24dp"
+                android:visibility="invisible" />
+
             <TextView
                 android:id="@+id/total_duration"
-                android:textColor="@color/colorWhite"
-                android:text="00:00"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:textColor="@color/colorWhite"
+                android:visibility="gone" />
             <!--<ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -479,20 +540,22 @@
     </LinearLayout>
 
     <LinearLayout
-        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="center">
+
         <ProgressBar
             android:id="@+id/loadingServer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:progressDrawable="@drawable/custom_progress_bar"/>
+            android:progressDrawable="@drawable/custom_progress_bar" />
+
         <ImageView
-            android:visibility="gone"
             android:id="@+id/try_again_button"
-            android:src="@drawable/ic_autorenew_white_48dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_autorenew_white_48dp"
+            android:visibility="gone" />
     </LinearLayout>
 
 </RelativeLayout>

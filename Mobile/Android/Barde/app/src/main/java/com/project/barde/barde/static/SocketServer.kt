@@ -99,10 +99,21 @@ class SocketServer(val listenerSocket: ListenerSocket, val ip: String, val port:
     fun sendToServer(array: IntArray) : Boolean{
         try{
             if (client.isConnected){
-                var byteArray = ByteArray((array.size * 4))
+                val end =  IntArray(2)
+                end[0] = 0x0D
+                end[1] = 0x0A
                 var index = 0
+                val byteArray = ByteArray((array.size * 4) + end.size * 4)
+
                 for (i in 1..array.size){
-                    var byteBuffer = ByteBuffer.allocate(4).putInt(array[i - 1]).array()
+                    val byteBuffer = ByteBuffer.allocate(4).putInt(array[i - 1]).array()
+                    for (j in 1..byteBuffer.size){
+                        byteArray.set(index, byteBuffer.get(byteBuffer.size - j))
+                        index++
+                    }
+                }
+                for (i in 1..end.size){
+                    val byteBuffer = ByteBuffer.allocate(4).putInt(end[i - 1]).array()
                     for (j in 1..byteBuffer.size){
                         byteArray.set(index, byteBuffer.get(byteBuffer.size - j))
                         index++

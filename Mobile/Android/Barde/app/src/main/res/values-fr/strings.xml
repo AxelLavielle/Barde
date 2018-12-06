@@ -64,7 +64,7 @@
     <string name="msg_active_folder_permission">Avant de jouer la musique, veuillez accepter les permissions dans les parametre de l\'application</string>
     <string name="str_disconected">Déconnecté</string>
     <string name="str_choose_your_style">Choisir votre style</string>
-    <string name="str_jazz">Jazz</string>
+    <string name="str_jazz">Reggae</string>
     <string name="str_blues">blues</string>
     <string name="str_choose_your_instrument">Choisir votre instrument</string>
     <string name="str_chords">Accord</string>

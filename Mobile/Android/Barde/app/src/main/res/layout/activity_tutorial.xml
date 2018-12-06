@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TutorialActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/activity_tutorial_recyckerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/tutorial_list_item_view" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/activity_tutorial_skip"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:padding="10dp"
+        android:text="@string/skip"
+        android:textColor="@color/colorWhite"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+    <LinearLayout
+        android:padding="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/pagination_tutorial"
+        android:layout_width="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/tuto_pagination_a"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/circle_full_white" />
+
+        <ImageView
+            android:id="@+id/tuto_pagination_b"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/circle_full_white" />
+
+        <ImageView
+            android:id="@+id/tuto_pagination_c"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/circle_full_white" />
+
+        <ImageView
+            android:id="@+id/tuto_pagination_d"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/circle_full_white" />
+
+        <ImageView
+            android:id="@+id/tuto_pagination_e"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/circle_full_white" />
+
+        <ImageView
+            android:id="@+id/tuto_pagination_f"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/circle_full_white" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

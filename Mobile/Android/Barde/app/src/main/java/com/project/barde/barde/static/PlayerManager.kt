@@ -71,6 +71,11 @@ class PlayerManager {
         }
         _mediaPlayer.release()
         _mediaPlayer = MediaPlayer()
+        // to remove
+        if (currentIndex - 1 >= 0) {
+            val file = File(_listOfTracks.get(currentIndex - 1).absolutePath)
+            file.delete()
+        }
         _mediaPlayer.setDataSource(_listOfTracks.get(currentIndex).absolutePath)
         _mediaPlayer.setOnPreparedListener(_generationFragment)
         _mediaPlayer.prepareAsync()
