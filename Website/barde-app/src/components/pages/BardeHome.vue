@@ -103,18 +103,21 @@ export default {
     }
   },
   beforeMount() {
+    this.$auth.watch.authenticated = true;
+
     this.getUser();
   },
   mounted() {
     this.$nextTick(function() {
+      console.log(this.$router.currentRoute.name);
       window.setInterval(() => {
         try {
           var jwtDecode = require("jwt-decode");
           let decoded = jwtDecode(this.$auth.token("default")); // valid token format
-          console.log(decoded);
           this.user = decoded;
         } catch (error) {
-          this.$auth.logout();
+          if (this.$router.currentRoute.name === "BardeHome")
+            this.$auth.logout();
         }
       }, 1000);
     });

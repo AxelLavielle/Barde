@@ -43,10 +43,19 @@ export default {
     return {};
   },
   mounted() {
+    try {
+      var jwtDecode = require("jwt-decode");
+      let decoded = jwtDecode(this.$auth.token("default")); // valid token format
+      this.user = decoded;
+      this.$router.push("home");
+    } catch (error) {
+      //      this.$auth.logout();
+    }
+
     var jwtDecode = require("jwt-decode");
     this.user = jwtDecode(this.$auth.token("default"));
     if (this.user) {
-      this.$router.push("home");
+      d;
     }
   }
 };
