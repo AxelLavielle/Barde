@@ -88,7 +88,7 @@ function register(req, res, next) {
         var firstName = null;
         var lastName = null;
         if (req.body.yearOfBirth && req.body.monthOfBirth && req.body.dayOfBirth) {
-            dateOfBirth = new Date(req.body.yearOfBirth, req.body.monthOfBirth, req.body.dayOfBirth);
+            dateOfBirth = new Date(req.body.yearOfBirth, req.body.monthOfBirth - 1, req.body.dayOfBirth);
         }
         if (req.body.firstName) {
             firstName = req.body.firstName;

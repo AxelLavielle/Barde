@@ -288,7 +288,7 @@ function updatePatch(req, res, next) {
       updateVal["name.lastName"] = req.body.lastName
     }
     if (req.body.yearOfBirth && req.body.monthOfBirth && req.body.dayOfBirth) {
-      updateVal["dateOfBirth"] = new Date(req.body.yearOfBirth, req.body.monthOfBirth, req.body.dayOfBirth)
+      updateVal["dateOfBirth"] = new Date(req.body.yearOfBirth, req.body.monthOfBirth - 1, req.body.dayOfBirth)
     }
     User.update({email: req.body.email.toLowerCase()}, {$set: updateVal}, function (err, response) {
       if (err) {
@@ -371,7 +371,7 @@ function updatePut(req, res, next) {
     res.status(400).send({msg: "No content", data: {message: "DateOfBirth cannot be empty."}});
   } else if (req.body.email === req.user.email || req.user.role === "Admin") {
     var updateVal = {
-        dateOfBirth: (req.body.yearOfBirth && req.body.monthOfBirth && req.body.dayOfBirth) ? new Date(req.body.yearOfBirth, req.body.monthOfBirth, req.body.dayOfBirth) : null,
+        dateOfBirth: (req.body.yearOfBirth && req.body.monthOfBirth && req.body.dayOfBirth) ? new Date(req.body.yearOfBirth, req.body.monthOfBirth - 1, req.body.dayOfBirth) : null,
     }
     updateVal["name.userName"] = req.body.userName ? req.body.userName : null
     updateVal["name.firstName"] = req.body.firstName ? req.body.firstName : null
