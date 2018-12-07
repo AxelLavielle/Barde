@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/slide_bar_list_item_view_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="20dp"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="@string/str_choose_your_tempo" />
+
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/slide_bar_list_item_view_min"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="70" />
+
+
+    <SeekBar
+        android:id="@+id/slide_bar_list_item_view_seek_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/slide_bar_list_item_view_min"
+        app:layout_constraintEnd_toStartOf="@id/slide_bar_list_item_view_max"
+        app:layout_constraintStart_toEndOf="@id/slide_bar_list_item_view_min"
+        app:layout_constraintTop_toTopOf="@id/slide_bar_list_item_view_min" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/slide_bar_list_item_view_max"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="200"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintBottom_toBottomOf="@id/slide_bar_list_item_view_min"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/slide_bar_list_item_view_min" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/slide_bar_list_item_view_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/slide_bar_list_item_view_seek_bar"
+        app:layout_constraintStart_toStartOf="@id/slide_bar_list_item_view_seek_bar"
+        app:layout_constraintTop_toBottomOf="@id/slide_bar_list_item_view_seek_bar"
+        tools:text="70" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/slide_bar_list_item_view_unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/slide_bar_list_item_view_value"
+        app:layout_constraintStart_toEndOf="@id/slide_bar_list_item_view_value"
+        app:layout_constraintTop_toTopOf="@id/slide_bar_list_item_view_value"
+        tools:text="BPM" />
+
+
+</android.support.constraint.ConstraintLayout>

@@ -66,6 +66,15 @@ class TutorialActivity : AppCompatActivity() {
 
             }
         })
+        activity_tutorial_overlay.setOnClickListener {
+            activity_tutorial_overlay.visibility = View.GONE
+            activity_tutorial_image.visibility = View.GONE
+        }
+
+        activity_tutorial_image.setOnClickListener {
+            activity_tutorial_overlay.visibility = View.GONE
+            activity_tutorial_image.visibility = View.GONE
+        }
     }
 
     private fun changeDrawable(position: Int, id: Int) {
