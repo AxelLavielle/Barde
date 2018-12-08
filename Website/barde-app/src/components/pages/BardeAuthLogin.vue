@@ -13,6 +13,7 @@
                 <div class="input-field col s12">
                   <input v-model="user.email" id="email" type="email" class="validate">
                   <label for="email">Email</label>
+                  <span class="helper-text" data-error="wrong" data-success="right"></span>
                 </div>
               </div>
               <div class="row">
