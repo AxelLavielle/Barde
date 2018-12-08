@@ -97,7 +97,8 @@
               </div>
             </form>
 
-            <p class="center-align">Already registred ?
+            <p class="center-align">
+              Already registred ?
               <a href="#/login">Login</a>
             </p>
           </div>
@@ -121,6 +122,11 @@ export default {
   data() {
     return {
       user: {
+        email: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+        userName: "",
         dayOfBirth: "01",
         monthOfBirth: "01",
         yearOfBirth: "1900"
@@ -133,13 +139,14 @@ export default {
       this.$auth.register({
         body: this.user, // Vue-resoruce
         autoLogin: true,
-
+        rememberMe: true,
         success: function(res) {
           this.isFetching = false;
           Materialize.toast(res.data.message, 4000, "green");
         },
         error: function(res) {
           this.isFetching = false;
+          console.log(res);
           Materialize.toast(
             jQuery.parseJSON(res.bodyText).data.message,
             4000,

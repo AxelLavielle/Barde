@@ -91,7 +91,8 @@ export default {
           this.$auth
             .fetch({
               params: {
-                email: this.user.email
+                email: this.user.email,
+                password: this.user.password
               },
               success: function(success) {
                 Materialize.toast(
@@ -102,6 +103,7 @@ export default {
                 this.error = res.data;
               },
               error: function(error) {
+                console.log(error);
                 Materialize.toast(
                   jQuery.parseJSON(error.bodyText).data.message,
                   4000,
@@ -112,16 +114,20 @@ export default {
             })
             .catch(function(err) {
               //  Materialize.toast("err", 4000, "red");
-              /*   Materialize.toast(
+              Materialize.toast(
                 jQuery.parseJSON(err.bodyText).data.message,
                 4000,
                 "red"
               );
-              this.error = res.data; */
+              this.error = res.data;
             });
         },
-        error: function(res) {
-          Materialize.toast("Service not available", 4000, "red");
+        error: function(err) {
+          Materialize.toast(
+            jQuery.parseJSON(err.bodyText).data.message,
+            4000,
+            "red"
+          );
           this.isFetching = false;
         }
       });
