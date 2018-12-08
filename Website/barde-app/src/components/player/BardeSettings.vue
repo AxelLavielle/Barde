@@ -58,6 +58,28 @@
               >
               <label for="saxophone-accord">saxophone</label>
             </div>
+            <div class="col s12 left-align">
+              <input
+                @change="handleChangeAccords($event)"
+                type="checkbox"
+                id="guitar-accord"
+                name="guitar"
+                value="guitar:accord:25"
+                v-model="accords.guitar"
+              >
+              <label for="guitar-accord">guitar</label>
+            </div>
+            <div class="col s12 left-align">
+              <input
+                @change="handleChangeAccords($event)"
+                type="checkbox"
+                id="bass-accord"
+                name="bass"
+                value="bass:accord:33"
+                v-model="accords.bass"
+              >
+              <label for="bass-accord">Bass</label>
+            </div>
           </div>
 
           <div class="col s4">
@@ -82,18 +104,40 @@
                 value="trumpet:arpege:57"
                 v-model="arpeges.trumpet"
               >
-              <label for="trumpet-arpege">trumpet</label>
+              <label for="trumpet-arpege">Trumpet</label>
             </div>
             <div class="col s12 left-align">
               <input
                 @change="handleChangeArpege($event)"
                 type="checkbox"
-                name="saxophone"
+                name="saxophone-arpege"
                 id="saxophone-arpege"
                 value="saxophone:arpege:65"
                 v-model="arpeges.saxophone"
               >
-              <label for="saxophone-arpege">saxophone</label>
+              <label for="saxophone-arpege">Saxophone</label>
+            </div>
+            <div class="col s12 left-align">
+              <input
+                @change="handleChangeArpege($event)"
+                type="checkbox"
+                name="guitar-arpege"
+                id="guitar-arpege"
+                value="guitar:arpege:25"
+                v-model="arpeges.guitar"
+              >
+              <label for="guitar-arpege">Guitar</label>
+            </div>
+            <div class="col s12 left-align">
+              <input
+                @change="handleChangeArpege($event)"
+                type="checkbox"
+                name="bass-arpege"
+                id="bass-arpege"
+                value="bass:arpege:33"
+                v-model="arpeges.bass"
+              >
+              <label for="bass-arpege">Bass</label>
             </div>
           </div>
 
@@ -160,7 +204,7 @@ export default {
  */
   },
   methods: {
-    //styleChanged: this.onStyleChange,
+    styleChanged: this.onStyleChange,
     handleChangeAccords: function(e) {
       const name = e.target.name;
       const value = e.target.value;
@@ -189,6 +233,7 @@ export default {
           }
         });
       } else {
+        console.log("no more ", name, " ", value);
         this.onInstrumentChange(value, false);
       }
     }
