@@ -84,51 +84,21 @@ export default {
       this.isFetching = true;
       this.$auth.login({
         body: this.user,
+        fetchUser: false,
 
         success: function(res) {
           this.isFetching = false;
 
           this.$auth.token("default", res.body.data.token);
-          this.$auth
-            .fetch({
-              params: {
-                email: this.user.email,
-                password: this.user.password
-              },
-              success: function(success) {
-                Materialize.toast(
-                  jQuery.parseJSON(success.bodyText).data.message,
-                  4000,
-                  "red"
-                );
-                this.error = res.data;
-              },
-              error: function(error) {
-                console.log(error);
-                Materialize.toast(
-                  jQuery.parseJSON(error.bodyText).data.message,
-                  4000,
-                  "red"
-                );
-                this.error = res.data;
-              }
-            })
-            .catch(function(err) {
-              //  Materialize.toast("err", 4000, "red");
-              Materialize.toast(
-                jQuery.parseJSON(err.bodyText).data.message,
-                4000,
-                "red"
-              );
-              this.error = res.data;
-            });
         },
         error: function(err) {
-          Materialize.toast(
-            jQuery.parseJSON(err.bodyText).data.message,
-            4000,
-            "red"
-          );
+          if (err && err.bodyText && err.bodyText) {
+            Materialize.toast(
+              jQuery.parseJSON(err.bodyText).data.message,
+              4000,
+              "red"
+            );
+          }
           this.isFetching = false;
         }
       });

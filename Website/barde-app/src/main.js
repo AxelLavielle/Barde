@@ -15,7 +15,7 @@ Vue.use(require('@websanova/vue-auth'), {
   router: require('@websanova/vue-auth/drivers/router/vue-router.2.x'),
   auth: require('@websanova/vue-auth/drivers/auth/bearer'),
   http: require('@websanova/vue-auth/drivers/http/vue-resource.1.x'),
-  fetchData: { url: 'user/me', method: 'GET', enabled: false },
+  fetchData: { url: 'user/me', method: 'GET', enabled: true },
   loginData: { url: 'auth/login', method: 'POST', redirect: '/home', fetchUser: false }
 })
 
