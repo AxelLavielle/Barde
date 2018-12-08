@@ -8,7 +8,6 @@
       :onInstrumentChange="onInstrumentChange"
       ref="settings"
     ></barde-settings>
-    <barde-console ref="console"></barde-console>
     <div class="player-controls">
       <div class="col s4">
         <div class="volume">
@@ -394,20 +393,16 @@ export default {
     },
     initPlayer() {
       this.player = new MidiPlayer.Player();
-      this.player.on("fileLoaded", function() {
-        console.log("file loaded");
-      });
+      this.player.on("fileLoaded", function() {});
       this.player.on("playing", function(currentTick) {});
       this.player.on("midiEvent", function(event) {
         // Do something when a MIDI event is fired.
         // (this is the same as passing a function to MidiPlayer.Player() when instantiating.
       });
-      this.player.on("endOfFile", function() {
-        console.log("endOfFile");
-      });
+      this.player.on("endOfFile", function() {});
     },
     onConnect() {
-      this.$refs.console.log("Barde is connected");
+      // this.$refs.console.log("Barde is connected");
       this.status = "Connected";
     },
     blobToArrayBuffer(blob) {
@@ -440,12 +435,12 @@ export default {
         const blob = new Blob([arrayBuffer], { type: "audio/mid" });
         FileSaver.saveAs(blob, "barde.mid");
       }
-      this.$refs.console.log(
+      /*     this.$refs.console.log(
         message,
         "server",
         message.includes("OK :") ? "ok" : "ko"
       );
-
+ */
       /*
       blobToArrayBuffer(e.data).then(buffer => {
           this.checkAction(buffer.srcElement.result, message, e);
@@ -470,11 +465,13 @@ export default {
     onDisconnect() {
       this.status = "Disconnected";
 
-      this.$refs.console.log("disconnected.");
+      /*       this.$refs.console.log("disconnected.");
+       */
     },
     onError(e) {
       console.log(e);
-      this.$refs.console.log("Service not available");
+      /*       this.$refs.console.log("Service not available");
+       */
     },
     commandToBuffer(cmd) {
       var buffer = new Uint8Array(cmd);
@@ -527,13 +524,11 @@ export default {
       return base64;
     },
     isMidi(str) {
-      console.log(str, " ", str.indexOf("MTh") !== -1);
       if (str.indexOf("MTh") !== -1) return true;
       return false;
     },
 
     createMidi(blob) {
-      console.log(blob);
       // FileSaver.saveAs(blob, "./hello world.mid");
     },
     checkAction(buffer, message, blob) {
@@ -590,8 +585,8 @@ export default {
       return this.responses.includes(response);
     },
     sendCommand(cmd, name) {
-      this.$refs.console.log(name, "me");
-      this.websocket.send(this.commandToBuffer(cmd));
+      /*       this.$refs.console.log(name, "me");
+       */ this.websocket.send(this.commandToBuffer(cmd));
     },
     addSlashes(str) {
       str = str.replace(/\\'/g, "'");
@@ -605,8 +600,8 @@ export default {
       this.sendCommand(CMD_PLAYER_PLAY, "PLAY");
     },
     CommandPause() {
-      this.$refs.console.log("PAUSE", "me");
-      this.playing = false;
+      /*       this.$refs.console.log("PAUSE", "me");
+       */ this.playing = false;
       this.sendCommand(CMD_PLAYER_PAUSE);
     },
     epurString(str) {

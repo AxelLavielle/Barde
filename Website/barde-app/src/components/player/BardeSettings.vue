@@ -160,7 +160,7 @@ export default {
  */
   },
   methods: {
-    styleChanged: this.onStyleChange,
+    //styleChanged: this.onStyleChange,
     handleChangeAccords: function(e) {
       const name = e.target.name;
       const value = e.target.value;
@@ -178,21 +178,17 @@ export default {
     },
 
     handleChangeArpege: function(e) {
-      console.log("arpege");
       const name = e.target.name;
       const value = e.target.value;
-      console.log(name, " in ", this.arpeges);
       if (this.arpeges[name]) {
         Object.keys(this.arpeges).map(key => {
           if (key != name) {
             //  this.accords[key] = false;
           } else {
-            console.log("add ", name, " ", value);
             this.onInstrumentChange(value, true);
           }
         });
       } else {
-        console.log("no more ", name, " ", value);
         this.onInstrumentChange(value, false);
       }
     }

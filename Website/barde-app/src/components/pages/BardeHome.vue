@@ -54,11 +54,9 @@ export default {
       this.$auth.logout();
     },
     getUser() {
-      console.log("checking user");
       try {
         var jwtDecode = require("jwt-decode");
         let decoded = jwtDecode(this.$auth.token("default")); // valid token format
-        console.log(decoded);
         this.user = decoded;
       } catch (error) {
         this.$auth.logout();
@@ -109,7 +107,6 @@ export default {
   },
   mounted() {
     this.$nextTick(function() {
-      console.log(this.$router.currentRoute.name);
       window.setInterval(() => {
         try {
           var jwtDecode = require("jwt-decode");
