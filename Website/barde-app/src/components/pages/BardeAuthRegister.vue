@@ -11,19 +11,31 @@
             <form @submit.prevent="register()" class="col s12">
               <div class="row">
                 <div class="input-field col s12">
-                  <input v-model="user.userName" id="username" type="text" class="validate">
+                  <input
+                    required
+                    v-model="user.userName"
+                    id="username"
+                    type="text"
+                    class="validate required"
+                  >
                   <label for="username">Username</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input v-model="user.email" id="email" type="email" class="validate">
+                  <input required v-model="user.email" id="email" type="email" class="validate">
                   <label for="email">Email</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input v-model="user.password" id="password" type="password" class="validate">
+                  <input
+                    required
+                    v-model="user.password"
+                    id="password"
+                    type="password"
+                    class="validate"
+                  >
                   <label for="password">Password</label>
                 </div>
               </div>
@@ -121,6 +133,7 @@ export default {
   name: "HelloWorld",
   data() {
     return {
+      userNameIsValid: false,
       user: {
         email: "",
         password: "",
@@ -134,19 +147,26 @@ export default {
       isFetching: false
     };
   },
+  watch: {
+    "user.userName": function(val) {
+      this.userNameIsValid = this.user.userName.lenght > 0;
+    },
+    lastName: function(val) {
+      this.fullName = this.firstName + " " + val;
+    }
+  },
   methods: {
     register() {
       this.$auth.register({
         body: this.user, // Vue-resoruce
-        autoLogin: true,
-        rememberMe: true,
+
         success: function(res) {
           this.isFetching = false;
           Materialize.toast(res.data.message, 4000, "green");
+          console.log(res);
         },
         error: function(res) {
           this.isFetching = false;
-          console.log(res);
           Materialize.toast(
             jQuery.parseJSON(res.bodyText).data.message,
             4000,
