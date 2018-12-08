@@ -23,7 +23,7 @@
             </p>
           </div>
           <div class="col s4">
-            <h4 class="left-align">Accords</h4>
+            <h4 class="left-align">Chords</h4>
 
             <div class="col s4 left-align">
               <input
@@ -61,7 +61,7 @@
           </div>
 
           <div class="col s4">
-            <h4 class="left-align">Arpeges</h4>
+            <h4 class="left-align">Arpeggio</h4>
             <div class="col s12 left-align">
               <input
                 @change="handleChangeArpege($event)"
