@@ -16,10 +16,10 @@
               <p class="range-field">
                 <button
                   id="play"
-                  @click="player.playing ? CommandPause() : CommandPlay()"
+                  @click="playing ? CommandPause() : CommandPlay()"
                   class="btn-floating waves-effect waves-light pink"
                 >
-                  <i class="material-icons">{{ playing ? 'pause' : 'play_arrow' }}</i>
+                  <i class="material-icons">{{!playing ? 'play_arrow' : 'pause'}}</i>
                 </button>
               </p>
             </div>
@@ -197,6 +197,7 @@ export default {
       context: new AudioContext(),
       file: null,
       player: null,
+      playing: false,
       songs: [],
       lastResponse: null,
       responses: [CMD_PLAYER_PLAY_RESPONSE],
@@ -211,7 +212,6 @@ export default {
   mounted() {
     document.querySelector("#play").addEventListener("click", function() {
       var context = new AudioContext();
-
       context.resume().then(() => {
         console.log("Playback resumed successfully");
       });
@@ -437,7 +437,7 @@ export default {
     },
     midiOnLoadSuccess(success) {
       this.player.start(onStart => {
-        console.log("started");
+        this.playing = true;
       });
     },
     midiOnLoadProgress(progress) {
@@ -633,13 +633,18 @@ export default {
     },
     CommandPlay() {
       //this.playing = true;
-      this.sendCommand(CMD_PLAYER_PLAY, "PLAY");
+      if (this.songs[0]) {
+        this.player.resume();
+        this.playing = true;
+      } else {
+        this.sendCommand(CMD_PLAYER_PLAY, "PLAY");
+      }
       // this.start();
     },
     CommandPause() {
-      /*       this.$refs.console.log("PAUSE", "me");
-       */ this.playing = false;
       this.sendCommand(CMD_PLAYER_PAUSE);
+      this.player.pause();
+      this.playing = false;
     },
     epurString(str) {
       str = str.substr(12);

@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col s12">
             <h4 class="left-align">Style</h4>
-            <p>
+            <div class="col s4 left-align">
               <label>
                 <input class="with-gap" value="0x1:Blues" name="style" v-model="style" type="radio">
                 <span>Blues</span>
@@ -20,7 +20,7 @@
                 >
                 <span>Raggea</span>
               </label>
-            </p>
+            </div>
           </div>
           <div v-if="style" class="col s4">
             <h4 class="left-align">Chords</h4>
