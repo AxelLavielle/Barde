@@ -618,11 +618,11 @@ function passwordResetGet(req, res, next) {
         }
         if (!response) {
             res.status(404).send({msg: "Can't find item.", message: {users: "User not exists."}});
-            return next(err);
+            return ;
         }
         if (response.reset && response.reset.date) {
           var now = new Date();
-          if ((now - response.reset.date) / (1000 * 60 * 60) >= 2) {
+          if ((now - response.reset.date) / (1000 * 60 * 60) <= 2) {
             res.status(401).send({msg: "Wait", data: {message: "You need to wait before send a new email."}});
             return ;
           }
