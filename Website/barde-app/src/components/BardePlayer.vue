@@ -228,16 +228,13 @@ export default {
   },
   methods: {
     start() {
-      console.log(this.songs);
       console.log("loading ", this.songs[1]);
-      if (this.songs[1]) {
-        this.player.loadFile(
-          this.songs[1],
-          this.midiOnLoadSuccess,
-          this.midiOnLoadProgress,
-          this.midiOnLoadError
-        );
-      }
+      this.player.loadFile(
+        this.songs[1],
+        this.midiOnLoadSuccess,
+        this.midiOnLoadProgress,
+        this.midiOnLoadError
+      );
     },
     pause() {},
     formatStyle(styleValue) {
@@ -441,11 +438,8 @@ export default {
       return x.responseText;
     },
     midiOnLoadSuccess(success) {
-      this.context.resume().then(() => {
-        console.log("Playback resumed successfully");
-        this.player.start(onStart => {
-          console.log("started", onStart);
-        });
+      this.player.start(onStart => {
+        console.log("started");
       });
     },
     midiOnLoadProgress(progress) {
@@ -460,7 +454,6 @@ export default {
       );
       arrayBuffer = arrayBuffer.slice(4);
       let message = this.arrayBufferToString(arrayBuffer);
-      console.info(message);
       if (this.isMidi(message)) {
         //   const player = new MidiPlayer.Player();
         //   player.loadArrayBuffer(arrayBuffer);
@@ -472,7 +465,10 @@ export default {
         reader.readAsDataURL(blob);
         reader.onloadend = function() {
           var base64data = reader.result;
-          this.songs.push(base64data);
+          if (this.songs.length == 1) {
+            this.songs.push(base64data);
+            this.start();
+          }
         }.bind(this);
       }
       /*     this.$refs.console.log(
@@ -626,7 +622,9 @@ export default {
     },
     sendCommand(cmd, name) {
       /*       this.$refs.console.log(name, "me");
-       */ this.websocket.send(this.commandToBuffer(cmd));
+       */
+
+      this.websocket.send(this.commandToBuffer(cmd));
     },
     addSlashes(str) {
       str = str.replace(/\\'/g, "'");
@@ -636,9 +634,9 @@ export default {
       return str;
     },
     CommandPlay() {
-      this.playing = true;
+      //this.playing = true;
       this.sendCommand(CMD_PLAYER_PLAY, "PLAY");
-      this.start();
+      // this.start();
     },
     CommandPause() {
       /*       this.$refs.console.log("PAUSE", "me");

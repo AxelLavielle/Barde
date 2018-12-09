@@ -286,17 +286,14 @@ MIDI.Player = MIDI.Player || {};
 
 	root.DEBUG = true;
 	root.USE_XHR = true;
-	root.soundfontUrl = './soundfont/';
+	root.soundfontUrl = './static/soundfont/';
 
-	
 		MIDI.loadPlugin({
 			onsuccess: function() { },
 			onprogress: function(state, percent) { },
-			targetFormat: 'mp3', // optionally can force to use MP3 (for instance on mobile networks)
-			instrument: 'acoustic_grand_piano', // or 1 (default)
-			instruments: [ 'acoustic_grand_piano', 'acoustic_guitar_nylon' ] // or multiple instruments
+			//targetFormat: 'mp3', // optionally can force to use MP3 (for instance on mobile networks)
+			//instruments: [1, 57], // or 1 (default)
 		});
-	
 
 	root.loadPlugin = function(opts) {
 		if (typeof opts === 'function') {
