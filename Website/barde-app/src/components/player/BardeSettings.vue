@@ -22,7 +22,7 @@
               </label>
             </p>
           </div>
-          <div class="col s4">
+          <div v-if="style" class="col s4">
             <h4 class="left-align">Chords</h4>
 
             <div class="col s4 left-align">
@@ -82,7 +82,7 @@
             </div>
           </div>
 
-          <div class="col s4">
+          <div v-if="style" class="col s4">
             <h4 class="left-align">Arpeggio</h4>
             <div class="col s12 left-align">
               <input
@@ -141,7 +141,7 @@
             </div>
           </div>
 
-          <div class="col s4">
+          <div class="col s4" v-if="style">
             <h4 class="left-align">Drums</h4>
             <div class="switch left-align">
               <label>
@@ -154,7 +154,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div v-if="style" class="row">
           <div class="col s8 offset-s1">
             <input v-model="bpm" @change="onBPMChange" type="range" id="test5" min="60" max="150">
           </div>
