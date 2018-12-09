@@ -14,7 +14,7 @@ PlayerPanel::PlayerPanel(MusicParameters & musicParameters) : _musicParameters(m
 {
 	Theme::getInstance().parseTheme("../Themes/Dark");
 	//TO DO remove this list after the beta and use full instrumentList from instrument.hh
-	_instrusChoice = { "ACOUSTICGRANDPIANO", "TRUMPET", "SOPRANOSAX" };
+	_instrusChoice = { "ACOUSTICGRANDPIANO", "TRUMPET", "SOPRANOSAX", "ACOUSTICGUITARNYLON", "ACOUSTICBASS"};
 
 	GuiFactory::initBigTitle("Edit your music", _titleLabel);
 	addFlexItem(_titleLabel, GuiFactory::getBoxLabelWidth(_titleLabel), GuiFactory::getBoxLabelHeight(_titleLabel));
@@ -65,15 +65,31 @@ void PlayerPanel::initMusicParameters()
 	Instrument instru;
 	instru.name = "SOPRANOSAX";
 	instru.nb = SOPRANOSAX;
-	instru.channel = 65 % 15;
+	instru.channel = _musicParameters.getFreeChannel();
 	instru.velocity = 100; //Need change
+	_musicParameters.addInstrumentArpeggios(instru);
+
 	Instrument instru2;
 	instru2.name = "ACOUSTICGRANDPIANO";
 	instru2.nb = ACOUSTICGRANDPIANO;
-	instru2.channel = 1;
+	instru2.channel = _musicParameters.getFreeChannel();
 	instru2.velocity = 100; //Need change
-	_musicParameters.addInstrumentArpeggios(instru);
 	_musicParameters.addInstrumentChords(instru2);
+
+	//Instrument instru3;
+	//instru3.name = "ACOUSTICGUITARNYLON";
+	//instru3.nb = ACOUSTICGUITARNYLON;
+	//instru3.channel = _musicParameters.getFreeChannel();
+	//instru3.velocity = 100; //Need change
+	//_musicParameters.addInstrumentChords(instru3);
+
+	//Instrument instru4;
+	//instru4.name = "ACOUSTICBASS";
+	//instru4.nb = ACOUSTICBASS;
+	//instru4.channel = _musicParameters.getFreeChannel();
+	//instru4.velocity = 100; //Need change
+	//_musicParameters.addInstrumentChords(instru4);
+
 	_musicParameters.setStyleName("Blues");
 	srand(_musicParameters.getSeed());
 	_musicParameters.setInstrumentsDrums(true);
@@ -143,7 +159,7 @@ void PlayerPanel::buttonClicked(Button * button)
 
 			instru.name = button->getButtonText().toStdString();
 			instru.nb = instrumentList.at(instru.name);
-			instru.channel = instru.nb % 15;  //This is bad but i don't know how to fix
+			instru.channel = _musicParameters.getFreeChannel();
 			instru.velocity = 100; //Need change
 			if (button->getToggleState())
 			{
@@ -160,7 +176,7 @@ void PlayerPanel::buttonClicked(Button * button)
 
 			instru.name = button->getButtonText().toStdString();
 			instru.nb = instrumentList.at(instru.name);
-			instru.channel = instru.nb % 15; //This is bad but i don't know how to fix
+			instru.channel = _musicParameters.getFreeChannel();
 			instru.velocity = 100; //Need change
 			if (button->getToggleState())
 			{

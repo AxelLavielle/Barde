@@ -44,11 +44,11 @@ private:
 
 	FlexGroup				_chordsGroup;
 	SimpleLabel				_chordsLabel;
-	ToggleButton			_chordInstrumentButtons[3];
+	ToggleButton			_chordInstrumentButtons[5];
 
 	FlexGroup				_arpegiosGroup;
 	SimpleLabel				_arpegiosLabel;
-	ToggleButton			_arpegiosInstrumentButtons[3];
+	ToggleButton			_arpegiosInstrumentButtons[5];
 
 	FlexGroup				_drumsGroup;
 	SimpleLabel				_drumsLabel;
