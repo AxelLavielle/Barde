@@ -32,7 +32,9 @@ private:
 	void paint(Graphics & g) override;
 	void buttonClicked(Button * button) override;
 	void initTextBoxes();
+	void initTextBoxesPassword();
 	bool updateUser();
+	bool updatePassword();
 	void applyTheme();
 
 	SimpleLabel			_titleLabel;
@@ -42,9 +44,11 @@ private:
 	LabeledTextBox		_userNameTextBox;
 	LabeledTextBox		_emailTextBox;
 	LabeledTextBox		_dateOfBirthTextBox;
+	LabeledTextBox		_oldPasswordTextBox;
 	LabeledTextBox		_passwordTextBox;
 	LabeledTextBox		_passwordConfirmationTextBox;
 	TextButton			_confirmButton;
+	TextButton			_passwordButton;
 	TextButton			_cancelButton;
 
 	CmdManager			&_cmdManager;

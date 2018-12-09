@@ -24,8 +24,10 @@ public:
 	User getUserInfo();
 	bool login(const std::string &email, const std::string & password);
 	bool logout();
-	bool editUserInfo(const User &user, const std::string & password);
+	bool editUserInfo(const User &user);
+	bool editUserPassword(const std::string & oldPassword, const std::string & password);
 	bool forgetPassword(const std::string & email);
+	bool resetPassword(const std::string & email, const std::string & token, const std::string & password);
 	bool createUser(const User & user, const std::string & password);
 	bool signUp(const User & user, const std::string & password);
 	bool sendComment(const std::string & comment);

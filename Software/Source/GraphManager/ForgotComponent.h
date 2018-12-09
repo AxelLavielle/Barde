@@ -38,13 +38,15 @@ private:
 	void resized() override;
 	void buttonClicked(Button* button) override;
 	void ThemeChanged();
-	void forgot(const std::string & login);
+	void forgot();
+	void changePassword();
 
 	CmdManager	&_cmdManager;
 	TextEditor	_emailTextBox, _tokenTextBox, _passwordTextBox, _passwordConfirmationTextBox;
 	Label		_emailLabel, _tokenLabel, _passwordLabel, _passwordConfirmationLabel;
 	//ComboBox	_comboBox;
 	Label		_errorText;
+	Label		_successText;
 	TextButton	_sendTokenButton, _changePasswordButton, _cancelButton;
 	//TextButton	_signinButton;
 	//TextButton	_forgotPasswordButton;

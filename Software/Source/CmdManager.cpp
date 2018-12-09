@@ -100,7 +100,7 @@ bool CmdManager::logout()
 	return true;
 }
 
-bool CmdManager::editUserInfo(const User & user, const std::string & password)
+bool CmdManager::editUserInfo(const User & user)
 {
 	Json::Value				root;
 	std::stringstream		ssJson;
@@ -113,8 +113,6 @@ bool CmdManager::editUserInfo(const User & user, const std::string & password)
 	root["dayOfBirth"] = user.getDayOfBirth();
 	root["monthOfBirth"] = user.getMonthOfBirth();
 	root["yearOfBirth"] = user.getYearOfBirth();
-	if (password != "")
-		root["password"] = password;
 	ssJson << root;
 
 	try
@@ -130,13 +128,36 @@ bool CmdManager::editUserInfo(const User & user, const std::string & password)
 	return true;
 }
 
-bool CmdManager::forgetPassword(const std::string & password)
+bool CmdManager::editUserPassword(const std::string & oldPassword, const std::string & password)
+{
+	Json::Value				root;
+	std::stringstream		ssJson;
+
+	root["email"] = _currentUser.getEmail();
+	root["password"] = oldPassword;
+	root["newPassword"] = password;
+	ssJson << root;
+
+	try
+	{
+		clearResponses();
+		_socket.put("/user/password", ssJson.str(), _responseCode, _responseMsg);
+	}
+	catch (RestClientException &e)
+	{
+		std::cerr << "Error on request editUserPassword : " << e.what() << std::endl;
+		return false;
+	}
+	return _responseCode == 200;
+}
+
+bool CmdManager::forgetPassword(const std::string & email)
 {
 	Json::Value				root;
 	std::stringstream		ssJson;
 
 
-	root["email"] = password;
+	root["email"] = email;
 	ssJson << root;
 
 	try
@@ -149,7 +170,31 @@ bool CmdManager::forgetPassword(const std::string & password)
 		std::cerr << "Error on request resetUserPassword : " << e.what() << std::endl;
 		return false;
 	}
-	return true;
+	return _responseCode == 200;
+}
+
+bool CmdManager::resetPassword(const std::string & email, const std::string & token, const std::string & password)
+{
+	Json::Value				root;
+	std::stringstream		ssJson;
+
+
+	root["email"] = email;
+	root["token"] = token;
+	root["password"] = password;
+	ssJson << root;
+
+	try
+	{
+		clearResponses();
+		_socket.post("/user/password/reset", ssJson.str(), _responseCode, _responseMsg);
+	}
+	catch (RestClientException &e)
+	{
+		std::cerr << "Error on request resetUserPassword : " << e.what() << std::endl;
+		return false;
+	}
+	return _responseCode == 200;
 }
 
 bool CmdManager::createUser(const User & user, const std::string & password)

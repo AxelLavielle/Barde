@@ -387,7 +387,7 @@ void UserRegistration::buttonClicked(Button* button)
 		User user;
 		std::string date = _dateOfBirthTextEditor.getText().toStdString();
 		user.setEmail(_emailTextEditor.getText().toStdString());
-		user.setDateOfBirth(_dateOfBirthTextEditor.getText().toStdString());
+		user.setDateOfBirth(date);
 		if (StringChecker::isDateValid(date) && StringChecker::isDateInPast(date))
 		{
 			user.setDayOfBirth(date.substr(0, 2));
@@ -433,7 +433,7 @@ void UserRegistration::resized()
 	_passwordTextEditor.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 6, BOX_WIDTH, BOX_HEIGHT);
 	_passwordConfirmationTextEditor.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 7, BOX_WIDTH, BOX_HEIGHT);
 	_saveButton.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 8, BOX_WIDTH, BOX_HEIGHT);
-	_cancelButton.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 8 + 100, BOX_WIDTH, BOX_HEIGHT);
+	_cancelButton.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 10, BOX_WIDTH, BOX_HEIGHT);
 	_errorText.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 9, BOX_WIDTH, BOX_HEIGHT);
 
 	// This is called when the MainContentComponent is resized.

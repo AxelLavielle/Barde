@@ -48,13 +48,23 @@ bool DateTime::setISODate(const std::string & date)
 	float		secondes;
 
 	_isoDate = date;
-	sscanf(date.c_str(), "%d-%d-%dT%d:%d:%fZ", &year, &month, &day, &hours, &minutes, &secondes);
-	_day = std::to_string(day);
-	_month = std::to_string(month);
-	_year = std::to_string(year);
-	_hours = std::to_string(hours);
-	_minutes = std::to_string(minutes);
-	_secondes = std::to_string(secondes);
+	if (date == "") {
+		_day = "";
+		_month = "";
+		_year = "";
+		_hours = "";
+		_minutes = "";
+		_secondes = "";
+	}
+	else {
+		sscanf(date.c_str(), "%d-%d-%dT%d:%d:%fZ", &year, &month, &day, &hours, &minutes, &secondes);
+		_day = std::to_string(day);
+		_month = std::to_string(month);
+		_year = std::to_string(year);
+		_hours = std::to_string(hours);
+		_minutes = std::to_string(minutes);
+		_secondes = std::to_string(secondes);
+	}
 	return false;
 }
 

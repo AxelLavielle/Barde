@@ -17,21 +17,31 @@ Author:  Oreo
 //==============================================================================
 ForgotComponent::ForgotComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager)
 {
-	//int x = getParentWidth();
-	//int y = getParentHeight();
 
-	int x = 900;
-	int y = 600;
+	int x = getParentWidth();
+	int y = getParentHeight();
+
+	//int x = 900;
+	//int y = 600;
 
 
 	juce::Rectangle<int> r = Desktop::getInstance().getDisplays().getMainDisplay().userArea;
 	int w = r.getWidth();
 	int h = r.getHeight();
 	//setBounds(w / 2 - x / 2, h / 2 - y / 2, x, y);
-	setBounds(0, 0, x, y);
+	//setBounds(0, 0, x, y);
+	setSize(getParentWidth(), getParentHeight() - 10);
 
-	Theme::getInstance().parseTheme("../Themes/Dark");
+	//Theme::getInstance().parseTheme("../Themes/Dark");
 
+	addAndMakeVisible(_errorText);
+	_errorText.setColour(Label::textColourId, Colour(Theme::getInstance().getErrorTextColor()));
+	_errorText.setText("", juce::NotificationType::dontSendNotification);
+	_errorText.setBounds(x - (BOX_WIDTH / 2), y - BOX_HEIGHT / 2 - SPACE_BETWEEN, BOX_WIDTH, BOX_HEIGHT);
+
+	addAndMakeVisible(_successText);
+	_successText.setText("", juce::NotificationType::dontSendNotification);
+	_successText.setBounds(x - (BOX_WIDTH / 2), y - BOX_HEIGHT / 2 - SPACE_BETWEEN , BOX_WIDTH, BOX_HEIGHT);
 
 	addAndMakeVisible(_emailTextBox);
 	_emailTextBox.setText("");
@@ -40,6 +50,19 @@ ForgotComponent::ForgotComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager
 	_emailLabel.setText("Email:", dontSendNotification);
 	_emailLabel.attachToComponent(&_emailTextBox, true);
 	_emailLabel.setJustificationType(Justification::right);
+
+	addAndMakeVisible(_sendTokenButton);
+	_sendTokenButton.setButtonText("Send token by email");
+	_sendTokenButton.setName("sendToken");
+	_sendTokenButton.addListener(this);
+
+	addAndMakeVisible(_tokenTextBox);
+	_tokenTextBox.setText("");
+
+	addAndMakeVisible(_tokenLabel);
+	_tokenLabel.setText("Token:", dontSendNotification);
+	_tokenLabel.attachToComponent(&_tokenTextBox, true);
+	_tokenLabel.setJustificationType(Justification::right);
 
 	//Passwords
 	addAndMakeVisible(_passwordTextBox);
@@ -67,15 +90,6 @@ ForgotComponent::ForgotComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager
 	_passwordTextBox.addListener(this);
 	_passwordConfirmationTextBox.addListener(this);
 
-	addAndMakeVisible(_errorText);
-	_errorText.setText("", juce::NotificationType::dontSendNotification);
-
-
-	addAndMakeVisible(_sendTokenButton);
-	_sendTokenButton.setButtonText("Send recovery email");
-	_sendTokenButton.setName("sendToken");
-	_sendTokenButton.addListener(this);
-
 	addAndMakeVisible(_changePasswordButton);
 	_changePasswordButton.setButtonText("Reset Password");
 	_changePasswordButton.setName("resetPassword");
@@ -98,19 +112,95 @@ ForgotComponent::ForgotComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager
 }
 
 
+void ForgotComponent::changePassword()
+{
+	bool noError = true;
+	String errorMessage = "";
+	String successMessage = "";
+
+	std::string email = _emailTextBox.getText().toStdString();
+	std::string token = _tokenTextBox.getText().toStdString();
+	std::string password = _passwordTextBox.getText().toStdString();
+	std::string passwordConfirm = _passwordConfirmationTextBox.getText().toStdString();
+
+	if (password == "" || passwordConfirm == "")
+	{
+		errorMessage = "Invalid password.";
+		noError = false;
+	}
+
+	if (password != passwordConfirm)
+	{
+		errorMessage = "Error passwords don't match";
+		noError = false;
+	}
 
 
-void ForgotComponent::forgot(const std::string & login)
+	if (!(StringChecker::isPasswordLongEnough(password)))
+	{
+		errorMessage = "Password should be at least 8 characters long";
+		noError = false;
+	}
+
+	if (!(StringChecker::containsLowercase(password)))
+	{
+		errorMessage = "Password should contain at least one lowercase letter";
+		noError = false;
+	}
+
+	if (!(StringChecker::containsUppercase(password)))
+	{
+		errorMessage = "Password should contain at least one uppercase letter";
+		noError = false;
+	}
+
+	if (!(StringChecker::containsNumber(password)))
+	{
+		errorMessage = "Password should contain at least one number";
+		noError = false;
+	}
+
+	if (!(StringChecker::containsSpecialChar(password)))
+	{
+		errorMessage = "Password should contain at least one special character";
+		noError = false;
+	}
+
+	if (noError) {
+		try
+		{
+			if (_cmdManager.resetPassword(email, token, password)) {
+				errorMessage = "";
+				successMessage = "Password updated.";
+			}
+			else
+			{
+				if (_cmdManager.getResponseCode() == 400)
+					errorMessage = "The params are incorrect";
+				else
+					errorMessage = "There was an error during the process";
+			}
+		}
+		catch (RestClientException &e)
+		{
+			errorMessage = "There was an error during the login process";
+		}
+	}
+	_successText.setText(successMessage, juce::NotificationType::sendNotification);
+	_errorText.setText(errorMessage, juce::NotificationType::sendNotification);
+}
+
+void ForgotComponent::forgot()
 {
 	String errorMessage;
-
+	String successMessage = "";
+	std::string login = _emailTextBox.getText().toStdString();
 
 	try
 	{
 		if (_cmdManager.forgetPassword(login)) {
 			errorMessage = "";
-			//changeView("");
-			//TDO DISPLAY TOKEN INFO
+			successMessage = "Mail sent. Check your mail to get your token.";
 		}
 		else
 		{
@@ -124,6 +214,7 @@ void ForgotComponent::forgot(const std::string & login)
 	{
 		errorMessage = "There was an error during the login process";
 	}
+	_successText.setText(successMessage, juce::NotificationType::sendNotification);
 	_errorText.setText(errorMessage, juce::NotificationType::sendNotification);
 }
 
@@ -132,7 +223,7 @@ void ForgotComponent::buttonClicked(Button* button)
 	if (button->getName() == "sendToken")
 	{
 		//send forgot api
-		forgot(_emailTextBox.getText().toStdString());
+		forgot();
 	}
 
 	if (button->getName() == "cancel")
@@ -143,6 +234,7 @@ void ForgotComponent::buttonClicked(Button* button)
 	if (button->getName() == "resetPassword")
 	{
 		//TODO forgot api
+		changePassword();
 	}
 }
 
@@ -154,7 +246,6 @@ ForgotComponent::~ForgotComponent()
 void ForgotComponent::paint(Graphics& g)
 {
 	g.fillAll(Colour(Theme::getInstance().getBackgroundColor()));
-
 }
 
 void ForgotComponent::ThemeChanged()
@@ -170,6 +261,15 @@ void ForgotComponent::ThemeChanged()
 	_emailTextBox.clear();
 	_emailTextBox.setText(tmp);
 
+	tmp = _tokenTextBox.getText();
+	_tokenTextBox.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getButtonColor()));
+	_tokenTextBox.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
+	_tokenTextBox.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonFontColor()));
+	_tokenTextBox.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getButtonFontColor()));
+	_tokenTextBox.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getButtonFontColor()));
+	_tokenTextBox.clear();
+	_tokenTextBox.setText(tmp);
+
 	tmp = _passwordTextBox.getText();
 	_passwordTextBox.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getButtonColor()));
 	_passwordTextBox.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
@@ -178,6 +278,15 @@ void ForgotComponent::ThemeChanged()
 	_passwordTextBox.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getButtonFontColor()));
 	_passwordTextBox.clear();
 	_passwordTextBox.setText(tmp);
+
+	tmp = _passwordConfirmationTextBox.getText();
+	_passwordConfirmationTextBox.setColour(TextEditor::backgroundColourId, Colour(Theme::getInstance().getButtonColor()));
+	_passwordConfirmationTextBox.setColour(TextEditor::focusedOutlineColourId, Colour(Theme::getInstance().getButtonColor()));
+	_passwordConfirmationTextBox.setColour(TextEditor::highlightColourId, Colour(Theme::getInstance().getButtonFontColor()));
+	_passwordConfirmationTextBox.setColour(TextEditor::textColourId, Colour(Theme::getInstance().getButtonFontColor()));
+	_passwordConfirmationTextBox.setColour(TextEditor::outlineColourId, Colour(Theme::getInstance().getButtonFontColor()));
+	_passwordConfirmationTextBox.clear();
+	_passwordConfirmationTextBox.setText(tmp);
 
 	_emailLabel.setColour(Label::textColourId, Colour(Theme::getInstance().getButtonColor()));
 	_passwordLabel.setColour(Label::textColourId, Colour(Theme::getInstance().getButtonColor()));
@@ -200,7 +309,7 @@ void ForgotComponent::resized()
 	int x = (getParentWidth());
 	int y = (getParentHeight());
 
-	x = 900;
+	/*x = 900;
 	y = 600;
 	int startX = (x / 2);
 	int startY = (y / 4);
@@ -208,16 +317,19 @@ void ForgotComponent::resized()
 	juce::Rectangle<int> r = Desktop::getInstance().getDisplays().getMainDisplay().userArea;
 	int w = r.getWidth();
 	int h = r.getHeight();
-	setBounds(w / 2 - x / 2, h / 2 - y / 2, x, y);
+	setBounds(w / 2 - x / 2, h / 2 - y / 2, x, y);*/
 
 
 	//rectY = (getHeight() / 15) + (LOGO_HEIGHT)+50;
-	_emailTextBox.setBounds(startX - (BOX_WIDTH / 2), startY - BOX_HEIGHT / 2 + SPACE_BETWEEN, BOX_WIDTH, BOX_HEIGHT);
-	_passwordTextBox.setBounds(startX - (BOX_WIDTH / 2), startY - BOX_HEIGHT / 2 + SPACE_BETWEEN * 2, BOX_WIDTH, BOX_HEIGHT);
-	_changePasswordButton.setBounds(startX - (BOX_WIDTH / 2), startY - BOX_HEIGHT / 2 + SPACE_BETWEEN * 3, BOX_WIDTH, BOX_HEIGHT);
-	_cancelButton.setBounds(startX - (BOX_WIDTH / 2), startY - BOX_HEIGHT / 2 + SPACE_BETWEEN * 4, BOX_WIDTH, BOX_HEIGHT);
-	_sendTokenButton.setBounds(startX - (BOX_WIDTH / 2), startY - BOX_HEIGHT / 2 + SPACE_BETWEEN * 5, BOX_WIDTH, BOX_HEIGHT);
-	_errorText.setBounds(startX - (BOX_WIDTH / 2), startY - BOX_HEIGHT / 2 - SPACE_BETWEEN, BOX_WIDTH, BOX_HEIGHT);
+	_emailTextBox.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN, BOX_WIDTH, BOX_HEIGHT);
+	_sendTokenButton.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN *2, BOX_WIDTH, BOX_HEIGHT);
+	_tokenTextBox.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 3, BOX_WIDTH, BOX_HEIGHT);
+	_passwordTextBox.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 4, BOX_WIDTH, BOX_HEIGHT);
+	_passwordConfirmationTextBox.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 5, BOX_WIDTH, BOX_HEIGHT);
+	_changePasswordButton.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 6, BOX_WIDTH, BOX_HEIGHT);
+	_cancelButton.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 7, BOX_WIDTH, BOX_HEIGHT);
+	_errorText.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 8, BOX_WIDTH, BOX_HEIGHT);
+	_successText.setBounds((x / 2) - (BOX_WIDTH / 2), (100) + BOX_HEIGHT / 2 + SPACE_BETWEEN * 8, BOX_WIDTH, BOX_HEIGHT);
 
 	// This is called when the MainContentComponent is resized.
 	// If you add any child components, this is where you should
