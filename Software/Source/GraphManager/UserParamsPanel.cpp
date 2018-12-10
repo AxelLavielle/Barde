@@ -12,7 +12,7 @@
 
 UserParamsPanel::UserParamsPanel() : _cmdManager(CmdManager::getInstance())
 {
-	GuiFactory::initMediumTitle("Edit your informations", _titleLabel);
+	GuiFactory::initMediumTitle("Editez vos informations", _titleLabel);
 	addFlexItem(_titleLabel, 200, 30, FlexItem::AlignSelf::stretch, 1);
 
 	GuiFactory::initLittleTitle("", _errorLabel);
@@ -21,16 +21,16 @@ UserParamsPanel::UserParamsPanel() : _cmdManager(CmdManager::getInstance())
 
 	initTextBoxes();
 
-	GuiFactory::initButton("Confirm", "Confirm", this, _confirmButton);
+	GuiFactory::initButton("Confirmer", "Confirm", this, _confirmButton);
 	addFlexItem(_confirmButton, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
 	initTextBoxesPassword();
 
-	GuiFactory::initButton("Change password", "Password", this, _passwordButton);
+	GuiFactory::initButton("Changer le mot de passe", "Password", this, _passwordButton);
 	addFlexItem(_passwordButton, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
-	GuiFactory::initButton("Cancel", "Cancel", this, _cancelButton);
-	addFlexItem(_cancelButton, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
+	//GuiFactory::initButton("Cancel", "Cancel", this, _cancelButton);
+	//addFlexItem(_cancelButton, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
 	_flexBox = GuiFactory::createFlexBox(FlexBox::JustifyContent::center, FlexBox::AlignContent::center, FlexBox::AlignItems::stretch, FlexBox::Direction::column, _items, 500, 50);
 }
@@ -58,14 +58,14 @@ void UserParamsPanel::initTextBoxes()
 		_errorLabel.setLabelText("Connection error.");
 	}
 
-	GuiFactory::initLabeledTextBox("Firstname", _user.getFirstName(), _firstNameTextBox);
+	GuiFactory::initLabeledTextBox("Pr\xc3\xa9nom", _user.getFirstName(), _firstNameTextBox);
 	addFlexItem(_firstNameTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
 
-	GuiFactory::initLabeledTextBox("Lastname", _user.getLastName(), _lastNameTextBox);
+	GuiFactory::initLabeledTextBox("Nom", _user.getLastName(), _lastNameTextBox);
 	addFlexItem(_lastNameTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
-	GuiFactory::initLabeledTextBox("Username", _user.getUserName(), _userNameTextBox);
+	GuiFactory::initLabeledTextBox("Pseudonyme", _user.getUserName(), _userNameTextBox);
 	addFlexItem(_userNameTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
 	GuiFactory::initLabeledTextBox("Email", _user.getEmail(), _emailTextBox);
@@ -73,21 +73,21 @@ void UserParamsPanel::initTextBoxes()
 
 	std::string dateUser = "";
 	if (_user.getDateOfBirth() != "") {
-		std::string dateUser = _user.getDayOfBirth() + "/" + _user.getMonthOfBirth() + "/" + _user.getYearOfBirth();
+		dateUser = _user.getDayOfBirth() + "/" + _user.getMonthOfBirth() + "/" + _user.getYearOfBirth();
 	}
-	GuiFactory::initLabeledTextBox("Date of birth", dateUser, _dateOfBirthTextBox);
+	GuiFactory::initLabeledTextBox("Date de naissance", dateUser, _dateOfBirthTextBox);
 	addFlexItem(_dateOfBirthTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 }
 
 void UserParamsPanel::initTextBoxesPassword()
 {
-	GuiFactory::initLabeledTextBoxPassword("Old password", "", (juce_wchar)0x2022, _oldPasswordTextBox);
+	GuiFactory::initLabeledTextBoxPassword("Ancien mot de passe", "", (juce_wchar)0x2022, _oldPasswordTextBox);
 	addFlexItem(_oldPasswordTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
-	GuiFactory::initLabeledTextBoxPassword("New password", "", (juce_wchar)0x2022, _passwordTextBox);
+	GuiFactory::initLabeledTextBoxPassword("Nouveau mot de passe", "", (juce_wchar)0x2022, _passwordTextBox);
 	addFlexItem(_passwordTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 
-	GuiFactory::initLabeledTextBoxPassword("New password confirmation", "", (juce_wchar)0x2022, _passwordConfirmationTextBox);
+	GuiFactory::initLabeledTextBoxPassword("Nouveau mot de passe confirmation", "", (juce_wchar)0x2022, _passwordConfirmationTextBox);
 	addFlexItem(_passwordConfirmationTextBox, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
 }
 
@@ -174,38 +174,38 @@ bool UserParamsPanel::updateUser()
 	_errorLabel.setColour(Label::textColourId, Colour(Theme::getInstance().getErrorTextColor()));
 	if (!(StringChecker::isNameValid(_firstNameTextBox.getText())))
 	{
-		_errorLabel.setLabelText("Invalid firstName.");
+		_errorLabel.setLabelText("Pr\xc3\xa9nom non valide.");
 		return false;
 	}
 
 
 	if (!(StringChecker::isNameValid(_lastNameTextBox.getText())))
 	{
-		_errorLabel.setLabelText("Invalid lastName.");
+		_errorLabel.setLabelText("Nom non valide.");
 		return false;
 	}
 
 	if (!(StringChecker::isUserNameValid(_userNameTextBox.getText())))
 	{
-		_errorLabel.setLabelText("Invalid userName.");
+		_errorLabel.setLabelText("Pseudonyme non valide.");
 		return false;
 	}
 
 	if (StringChecker::isEmailValid(_emailTextBox.getText()) == false)
 	{
-		_errorLabel.setLabelText("Invalid email.");
+		_errorLabel.setLabelText("Email non valide.");
 		return false;
 	}
 
 	if (!(StringChecker::isDateValid(_dateOfBirthTextBox.getText())))
 	{
-		_errorLabel.setText("Error: Date is not valid", dontSendNotification);
+		_errorLabel.setText("Date non valide", dontSendNotification);
 		return false;
 	}
 
 	if (!(StringChecker::isDateInPast(_dateOfBirthTextBox.getText())))
 	{
-		_errorLabel.setText("Error: Date should not be in the future", dontSendNotification);
+		_errorLabel.setText("La date ne doit pas etre dans le futur.", dontSendNotification);
 		return false;
 	}
 
@@ -251,7 +251,7 @@ bool UserParamsPanel::updatePassword()
 
 	if (_passwordTextBox.getText() != _passwordConfirmationTextBox.getText())
 	{
-		_errorLabel.setLabelText("Error passwords don't match");
+		_errorLabel.setLabelText("Les mots de passes ne sont pas identiques");
 		return false;
 	}
 
@@ -318,7 +318,7 @@ void UserParamsPanel::buttonClicked(Button * button)
 			//TO DO manage theme
 			_errorLabel.setColour(Label::textColourId, Colours::black);
 			initTextBoxes();
-			_errorLabel.setLabelText("Informations updated.");
+			_errorLabel.setLabelText("Informations mises a jour.");
 		}
 	}
 	else if (button->getName() == "Cancel")
@@ -333,7 +333,7 @@ void UserParamsPanel::buttonClicked(Button * button)
 			//TO DO manage theme
 			_errorLabel.setColour(Label::textColourId, Colours::black);
 			initTextBoxes();
-			_errorLabel.setLabelText("Password updated.");
+			_errorLabel.setLabelText("Mot de passe mis a jour.");
 		}
 	}
 }
