@@ -2,7 +2,7 @@
   <div class="container">
     <div class="valign-wrapper">
       <!--   Icon Section   -->
-      <div class="row" id="barde-landing-page">
+      <div class="row hide-on-med-and-down" id="barde-landing-page">
         <div class="col m6 s12 valign-wrapper">
           <div class="section section-left">
             <h1 class="header barde-title center pink-text">Barde</h1>
@@ -52,11 +52,11 @@ export default {
       //      this.$auth.logout();
     }
 
-    var jwtDecode = require("jwt-decode");
+    /*  var jwtDecode = require("jwt-decode");
     this.user = jwtDecode(this.$auth.token("default"));
     if (this.user) {
       d;
-    }
+    } */
   }
 };
 </script>
