@@ -13,6 +13,7 @@
     "@websanova/vue-auth": "^2.20.4-beta",
     "blob-to-arraybuffer": "0.0.1",
     "bufferutil": "^4.0.0",
+    "child_process": "^1.0.2",
     "eslint": "^4.19.1",
     "eslint-plugin-vue": "^4.5.0",
     "file-saver": "^2.0.0",
@@ -33,7 +34,8 @@
     "vue-router": "^3.0.1",
     "vue-socket-cluster": "^1.0.3",
     "vue-socket.io": "^2.1.1-b",
-    "vue-websocket": "^0.2.2"
+    "vue-websocket": "^0.2.2",
+    "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
