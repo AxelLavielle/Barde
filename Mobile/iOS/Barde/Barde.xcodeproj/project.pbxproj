@@ -69,6 +69,7 @@
 		1DD7B1E5204277450038E838 /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7B1E4204277450038E838 /* UserServices.swift */; };
 		1DDF89AB21B550FE00EECCE7 /* BatteryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF89AA21B550FE00EECCE7 /* BatteryViewController.swift */; };
 		1DE7F4032129087100C1123F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1DE7F4012129087100C1123F /* Localizable.strings */; };
+		1DEDBFD421BE931500E88B33 /* ParamsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEDBFD321BE931500E88B33 /* ParamsServices.swift */; };
 		1DFDD10F210D124700B8ECC2 /* AlertServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFDD10E210D124700B8ECC2 /* AlertServices.swift */; };
 		5153432B12B35C53A3111D17 /* Pods_Barde.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C60B6F2CE394949EDAB0D46 /* Pods_Barde.framework */; };
 /* End PBXBuildFile section */
@@ -143,6 +144,7 @@
 		1DE7F4002129006400C1123F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		1DE7F4022129087100C1123F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Barde/Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1DE7F4042129088600C1123F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Barde/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1DEDBFD321BE931500E88B33 /* ParamsServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParamsServices.swift; sourceTree = "<group>"; };
 		1DFDD10E210D124700B8ECC2 /* AlertServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertServices.swift; sourceTree = "<group>"; };
 		548C4468B491C65C570A70ED /* Pods-Barde.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Barde.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Barde/Pods-Barde.debug.xcconfig"; sourceTree = "<group>"; };
 		8C60B6F2CE394949EDAB0D46 /* Pods_Barde.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Barde.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -265,6 +267,7 @@
 				1D21C966207D5B0500F12FB6 /* StyleServices.swift */,
 				1D21C968207D5B2400F12FB6 /* InstrumentServices.swift */,
 				1DFDD10E210D124700B8ECC2 /* AlertServices.swift */,
+				1DEDBFD321BE931500E88B33 /* ParamsServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 				1D1976D920254DD100A390EB /* RootViewController.swift in Sources */,
 				1D6E405D1F8D4E8D006522C8 /* Barde.xcdatamodeld in Sources */,
 				1D1013A01FE9AC6E00913E43 /* LoginViewController.swift in Sources */,
+				1DEDBFD421BE931500E88B33 /* ParamsServices.swift in Sources */,
 				1D4CB1C421B6B58D00940C89 /* UITextViewExtension.swift in Sources */,
 				1D4CB1BB21B5AB6800940C89 /* PageAAViewController.swift in Sources */,
 				1D21C97F207D6DDB00F12FB6 /* Style+CoreDataClass.swift in Sources */,

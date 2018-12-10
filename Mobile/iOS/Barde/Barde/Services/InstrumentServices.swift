@@ -14,7 +14,9 @@ class InstrumentService {
     var instrumentData = [
         "Piano",
         NSLocalizedString("Trumpet.text", comment: ""),
-        "Saxophone"
+        "Saxophone",
+        "Guitare nylon",
+        "Basse acoustique"
     ]
     
     func initData() -> Bool {

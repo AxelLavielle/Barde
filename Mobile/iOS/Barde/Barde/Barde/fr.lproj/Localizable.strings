@@ -131,3 +131,8 @@
 "ConnectionLostButton.text" = "Se reconnecter";
 
 "Generating.text" = "Génération en cours";
+
+"SaveParamDefault.text" = "MesParamètres";
+"SaveParamTitle.text" = "Sauvegarde tes paramètres";
+"SaveParamDesc.text" = "Sauvegarde tes paramètres et retrouve les dans l'onglet \"Mes paramètres\" !";
+"SaveParamButton.text" = "Sauvegarder";

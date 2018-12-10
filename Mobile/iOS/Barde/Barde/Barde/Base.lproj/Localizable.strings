@@ -130,3 +130,9 @@
 "ConnectionLostButton.text" = "Connection";
 
 "Generating.text" = "Generation in progress";
+
+"SaveParamDefault.text" = "MyParameters";
+"SaveParamTitle.text" = "Save your params";
+"SaveParamDesc.text" = "Save your params and found it later in \"My params\" tabs !";
+
+"SaveParamButton.text" = "Save";

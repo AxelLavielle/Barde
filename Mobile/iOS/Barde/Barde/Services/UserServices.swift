@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 import Alamofire
 import SwiftyJSON
+import SwiftSpinner
 
 class UserService {
     
@@ -175,6 +176,8 @@ class UserService {
                     
                 }
             }
+            
+            SwiftSpinner.hide()
         }
     }
     

@@ -379,6 +379,52 @@ class GeneratorViewController: UIViewController {
 //            isPlaying = true
 //        }
     }
+    @IBAction func saveParameters(_ sender: Any) {
+        //1. Create the alert controller.
+    let alert = UIAlertController(title: NSLocalizedString("SaveParamTitle.text", comment: ""), message: NSLocalizedString("SaveParamDesc.text", comment: ""), preferredStyle: .alert)
+        
+        // 3. Grab the value from the text field, and print it when the user clicks OK.
+
+        let okAction = UIAlertAction(title: NSLocalizedString("SaveParamButton.text", comment: ""), style: .default, handler: { [weak alert] (_) in
+            let textField = alert!.textFields![0] // Force unwrapping because we know it exists.
+            print("Params name:", textField.text)
+            
+            UserDefaults.standard.set(textField.text, forKey: "paramsName")
+            
+            ParamsServices().saveParams()
+        })
+        
+        alert.addAction(okAction)
+        
+            //2. Add the text field. You can configure it however you need.
+        alert.addTextField { (textField) in
+        
+            // Observe the UITextFieldTextDidChange notification to be notified in the below block when text is changed
+            NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: textField, queue: OperationQueue.main, using:
+                {_ in
+                    // Being in this block means that something fired the UITextFieldTextDidChange notification.
+                    
+                    // Access the textField object from alertController.addTextField(configurationHandler:) above and get the character count of its non whitespace characters
+                    let textCount = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines).characters.count ?? 0
+                    let textIsNotEmpty = textCount > 0
+                    
+                    // If the text contains non whitespace characters, enable the OK Button
+                    okAction.isEnabled = textIsNotEmpty
+                    
+            })
+            textField.text = NSLocalizedString("SaveParamDefault.text", comment: "")
+
+        }
+        
+        
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel.text", comment: ""), style: .cancel, handler: { (action) -> Void in
+            print("Cancel button tapped")
+        }))
+        
+        // 4. Present the alert.
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 // Helper function inserted by Swift 4.2 migrator.

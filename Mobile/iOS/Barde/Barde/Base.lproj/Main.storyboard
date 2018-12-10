@@ -909,23 +909,28 @@
                                 </connections>
                             </containerView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wqf-IZ-ApV">
-                                <rect key="frame" x="10" y="478" width="210" height="21"/>
+                                <rect key="frame" x="10" y="478" width="215" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z3j-EE-rQG">
-                                <rect key="frame" x="140" y="474" width="40" height="40"/>
+                                <rect key="frame" x="135" y="464" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="1hA-dI-nCe"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="YQ2-sg-OMu"/>
+                                    <constraint firstAttribute="height" constant="50" id="riW-Ew-VjH"/>
+                                </constraints>
                                 <state key="normal" image="icon-play"/>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Etq-6Z-D4P">
-                                <rect key="frame" x="230" y="478" width="80" height="21"/>
+                                <rect key="frame" x="235" y="478" width="75" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="FCg-8i-Ipu">
-                                <rect key="frame" x="8" y="434" width="304" height="31"/>
+                                <rect key="frame" x="8" y="424" width="304" height="31"/>
                                 <color key="minimumTrackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="maximumTrackTintColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="0.30631051936619719" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -952,13 +957,26 @@
                                     <action selector="viewTutorialAction:" destination="vvz-D7-RZt" eventType="touchUpInside" id="b3w-g2-CUa"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0o-VE-C9k">
+                                <rect key="frame" x="278" y="472" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="32" id="9L6-e4-VlP"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="32" id="EKY-ZH-MPT"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="save"/>
+                                <connections>
+                                    <action selector="saveParameters:" destination="vvz-D7-RZt" eventType="touchUpInside" id="qS0-yU-KXI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="uWp-pd-hab" firstAttribute="bottom" secondItem="Z3j-EE-rQG" secondAttribute="bottom" constant="5" id="1Tv-dC-2W0"/>
                             <constraint firstItem="Z3j-EE-rQG" firstAttribute="centerX" secondItem="Q2a-oF-0BK" secondAttribute="centerX" id="2tS-pJ-ZHO"/>
+                            <constraint firstItem="uWp-pd-hab" firstAttribute="bottom" secondItem="a0o-VE-C9k" secondAttribute="bottom" constant="15" id="5Mw-R8-6Qq"/>
                             <constraint firstItem="uWp-pd-hab" firstAttribute="bottom" secondItem="wqf-IZ-ApV" secondAttribute="bottom" constant="20" id="7pg-cu-3OX"/>
                             <constraint firstItem="Z3j-EE-rQG" firstAttribute="top" secondItem="FCg-8i-Ipu" secondAttribute="bottom" constant="10" id="8oI-3f-JqL"/>
+                            <constraint firstItem="uWp-pd-hab" firstAttribute="trailing" secondItem="a0o-VE-C9k" secondAttribute="trailing" constant="10" id="AnY-X1-TLw"/>
                             <constraint firstItem="uWp-pd-hab" firstAttribute="trailing" secondItem="vUe-eS-qja" secondAttribute="trailing" constant="20" id="Bbj-jH-O0M"/>
                             <constraint firstItem="wqf-IZ-ApV" firstAttribute="leading" secondItem="uWp-pd-hab" secondAttribute="leading" constant="10" id="MEZ-Pu-G50"/>
                             <constraint firstItem="Etq-6Z-D4P" firstAttribute="leading" secondItem="wqf-IZ-ApV" secondAttribute="trailing" constant="10" id="U11-H9-lIe"/>
@@ -1801,10 +1819,11 @@
         <image name="ic_twitter" width="37.5" height="37.5"/>
         <image name="icon-list" width="25.54838752746582" height="25.54838752746582"/>
         <image name="icon-music" width="22.5" height="22.5"/>
-        <image name="icon-play" width="40" height="40"/>
+        <image name="icon-play" width="177.23077392578125" height="177.23077392578125"/>
         <image name="icon-profil" width="39.599998474121094" height="39.599998474121094"/>
         <image name="icon-sync" width="19.200000762939453" height="19.200000762939453"/>
         <image name="offline" width="150" height="145"/>
+        <image name="save" width="180" height="180"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Zx9-gt-0Mh"/>

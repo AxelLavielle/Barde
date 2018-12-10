@@ -116,7 +116,7 @@ class StyleViewController: UIViewController {
 //            styleArray.append(styleSelected)
 //        }
 //
-//        UserDefaults.standard.set(styleArray, forKey: "styleArray")
+        UserDefaults.standard.set(styleArray, forKey: "styleArray")
         
     }
     

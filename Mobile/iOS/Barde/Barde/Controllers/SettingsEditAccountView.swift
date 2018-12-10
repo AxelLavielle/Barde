@@ -243,9 +243,6 @@ class SettingsEditAccountView: UIViewController, UITextFieldDelegate {
         UserDefaults.standard.set(date,  forKey: "birthdate")
         
         userService?.updateUserData(tfFirstName: tfFirstName.text!, tfLastName: tfLastName.text!, tfUserName: tfUserName.text!, tfBirthDate: date, email: UserDefaults.standard.string(forKey: "email")!)
-
-        SwiftSpinner.hide()
-
     }
     
     @objc func dismissChange(_ sender: Any) {
