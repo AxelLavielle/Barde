@@ -15,6 +15,7 @@
 #include "LeftPanel.hh"
 #include "ReportPanel.hh"
 #include "../CmdManager.hh"
+#include "../GraphManager/TutorialComponent.h"
 
 class CenterPanel : public FlexView //Need to change heritage
 {
@@ -36,6 +37,7 @@ private:
 	LeftPanel		_leftPanel;
 	UserParamsPanel	_userParamsPanel;
 	ReportPanel		_reportPanel;
+	TutorialComponent        _tutorialPanel;
 	Grid			_grid;
 
 	User			_user;

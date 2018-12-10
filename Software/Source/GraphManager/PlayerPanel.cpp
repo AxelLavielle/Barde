@@ -16,13 +16,13 @@ PlayerPanel::PlayerPanel(MusicParameters & musicParameters) : _musicParameters(m
 	//TO DO remove this list after the beta and use full instrumentList from instrument.hh
 	_instrusChoice = { "ACOUSTICGRANDPIANO", "TRUMPET", "SOPRANOSAX", "ACOUSTICGUITARNYLON", "ACOUSTICBASS"};
 
-	GuiFactory::initBigTitle("Edit your music", _titleLabel);
+	GuiFactory::initBigTitle("Edite ta musique", _titleLabel);
 	addFlexItem(_titleLabel, GuiFactory::getBoxLabelWidth(_titleLabel), GuiFactory::getBoxLabelHeight(_titleLabel));
-	GuiFactory::initLittleTitle("Choose your style", _styleLabel);
+	GuiFactory::initLittleTitle("Choisis ton style", _styleLabel);
 	addFlexItem(_styleLabel, GuiFactory::getBoxLabelWidth(_styleLabel), GuiFactory::getBoxLabelHeight(_styleLabel));
-	GuiFactory::initLittleTitle("Chords instruments", _chordsLabel);
-	GuiFactory::initLittleTitle("Arpeggios instruments", _arpegiosLabel);
-	GuiFactory::initLittleTitle("Drums instruments", _drumsLabel);
+	GuiFactory::initLittleTitle("Accords", _chordsLabel);
+	GuiFactory::initLittleTitle("Arp\xc3\xa8ges", _arpegiosLabel);
+	GuiFactory::initLittleTitle("Batterie", _drumsLabel);
 
 	GuiFactory::initToggleButton("Blues", "Blues", _bluesButton, true);
 	_bluesButton.addListener(this);
@@ -44,10 +44,10 @@ PlayerPanel::PlayerPanel(MusicParameters & musicParameters) : _musicParameters(m
 
 	initInstrumentsButtons(_arpegiosInstrumentButtons, "Arpeggios", _musicParameters.getInstrumentsArpeggios());
 	initInstrumentsButtons(_chordInstrumentButtons, "Chords", _musicParameters.getInstrumentsChords());
-	GuiFactory::initToggleButton("Enable drums", "Drums", _drumsInstrumentButton, true);
+	GuiFactory::initToggleButton("Activer la batterie", "Drums", _drumsInstrumentButton, true);
 	_drumsInstrumentButton.addListener(this);
 
-	GuiFactory::initLittleTitle("Modify the BPM", _bpmTitleLabel);
+	GuiFactory::initLittleTitle("Modifier le BPM", _bpmTitleLabel);
 	addFlexItem(_bpmTitleLabel, GuiFactory::getBoxLabelWidth(_bpmTitleLabel), GuiFactory::getBoxLabelHeight(_bpmTitleLabel));
 
 	_bpmSlider.init(_musicParameters.getBpm(), std::bind(&PlayerPanel::sliderValueChanged, this, std::placeholders::_1));

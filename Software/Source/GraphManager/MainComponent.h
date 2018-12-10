@@ -18,6 +18,7 @@
 #include "PlayerFooter.hh"
 #include "CenterPanel.hh"
 #include "LoginPanel.hh"
+#include "PlayListComponent.h"
 
 //==============================================================================
 /*
@@ -81,6 +82,7 @@ private:
 	PlayerFooter			_playerFooter;
 	CenterPanel				_centerPanel;
 	LoginPanel				_loginPanel;
+	//PlayListComponent		_playLists;
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };

@@ -10,7 +10,7 @@
 
 #include "CenterPanel.hh"
 
-CenterPanel::CenterPanel(MusicParameters & musicParameters) : _musicParameters(musicParameters), _cmdManager(CmdManager::getInstance()), _playerPanel(_musicParameters)
+CenterPanel::CenterPanel(MusicParameters & musicParameters) : _musicParameters(musicParameters), _cmdManager(CmdManager::getInstance()), _playerPanel(_musicParameters), _tutorialPanel(CmdManager::getInstance())
 {
 	//TO DO check the return of that
 	try
@@ -29,6 +29,7 @@ CenterPanel::CenterPanel(MusicParameters & musicParameters) : _musicParameters(m
 	_reportPanel.setChangeViewCallback(std::bind(&CenterPanel::changeViewCallback, this, std::placeholders::_1));
 	_leftPanel.setChangeViewCallback(std::bind(&CenterPanel::changeViewCallback, this, std::placeholders::_1));
 	_userParamsPanel.setChangeViewCallback(std::bind(&CenterPanel::changeViewCallback, this, std::placeholders::_1));
+	_tutorialPanel.setChangeViewCallback(std::bind(&CenterPanel::changeViewCallback, this, std::placeholders::_1));
 	_mainPanel = &_playerPanel;
 	addAndMakeVisible(*_mainPanel);
 
@@ -91,6 +92,14 @@ void CenterPanel::changeViewCallback(std::string viewName)
 	else if (viewName == "Logout")
 	{
 		changeView("Logout");
+	}
+
+	else if (viewName == "Tutorial")
+	{
+		removeChildComponent(1);
+		_mainPanel = &_tutorialPanel;
+		refreshGrid();
+		resized();
 	}
 	_mainPanel->refresh();
 }

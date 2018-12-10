@@ -309,7 +309,7 @@ void UserRegistration::signin(const User & user)
 
 	if (user.getDateOfBirth() != "" && !(StringChecker::isDateInPast(user.getDateOfBirth())))
 	{
-		_errorText.setText("Error: Date should not be in the future", dontSendNotification);
+		_dateOfBirthError.setText("Error: Date should not be in the future", dontSendNotification);
 		noError = false;
 	}
 
@@ -317,7 +317,7 @@ void UserRegistration::signin(const User & user)
 	confirmPassword = _passwordConfirmationTextEditor.getText();
 	if (password != confirmPassword)
 	{
-		_passwordConfirmationError.setText("Error passwords don't match", dontSendNotification);
+		_passwordConfirmationError.setText("Error: passwords don't match", dontSendNotification);
 		noError = false;
 	}
 

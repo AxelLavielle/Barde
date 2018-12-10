@@ -8,6 +8,10 @@
   <MAINGROUP id="r1VLiG" name="BardeClient">
     <GROUP id="{6687DB59-98D3-42FE-E900-5BC523D33DDC}" name="Source">
       <GROUP id="{8AC2CD38-DB9F-38EE-F442-CF7863417114}" name="GraphicPanels">
+        <FILE id="rBphVh" name="PlayListComponent.cpp" compile="1" resource="0"
+              file="Source/GraphManager/PlayListComponent.cpp"/>
+        <FILE id="qny9ZM" name="PlayListComponent.h" compile="0" resource="0"
+              file="Source/GraphManager/PlayListComponent.h"/>
         <FILE id="oAdDpa" name="RegistrationPanel.hh" compile="0" resource="0"
               file="Source/GraphManager/RegistrationPanel.hh"/>
         <FILE id="LwkYBO" name="RegistrationPanel.cpp" compile="1" resource="0"
@@ -96,6 +100,10 @@
       <FILE id="KYXR5E" name="Instrument.cpp" compile="1" resource="0" file="Source/Instrument.cpp"/>
       <FILE id="GCW7x9" name="Instrument.hh" compile="0" resource="0" file="Source/Instrument.hh"/>
       <GROUP id="{3F475B53-E92F-8970-B926-250ECB4D78A3}" name="Ressources">
+        <FILE id="d7aj8t" name="etape1.png" compile="0" resource="1" file="../../../../Downloads/BardeInstallCaptures/etape1.png"/>
+        <FILE id="Qge90J" name="etape4.png" compile="0" resource="1" file="../../../../Downloads/BardeInstallCaptures/etape4.png"/>
+        <FILE id="kg870p" name="etape3.png" compile="0" resource="1" file="../../../../Downloads/BardeInstallCaptures/etape3.png"/>
+        <FILE id="VTYPYz" name="etape2.png" compile="0" resource="1" file="../../../../Downloads/BardeInstallCaptures/etape2.png"/>
         <FILE id="dbqc8v" name="back.png" compile="0" resource="1" file="Source/Ressources/back.png"/>
         <FILE id="YTFWvq" name="logo.png" compile="0" resource="1" file="Source/Ressources/logo.png"/>
       </GROUP>
@@ -129,6 +137,14 @@
         <FILE id="wSJyIx" name="SSLManager.hh" compile="0" resource="0" file="Source/EncryptionManager/SSLManager.hh"/>
       </GROUP>
       <GROUP id="{67A50DD7-6C2C-A059-E512-F0F0D14AB316}" name="GraphManager">
+        <FILE id="aHblwZ" name="TutorialComponent.cpp" compile="1" resource="0"
+              file="Source/GraphManager/TutorialComponent.cpp"/>
+        <FILE id="MFguSI" name="TutorialComponent.h" compile="0" resource="0"
+              file="Source/GraphManager/TutorialComponent.h"/>
+        <FILE id="EmOk9a" name="PlaylistButton.cpp" compile="1" resource="0"
+              file="Source/GraphManager/PlaylistButton.cpp"/>
+        <FILE id="wXBAWk" name="PlaylistButton.h" compile="0" resource="0"
+              file="Source/GraphManager/PlaylistButton.h"/>
         <FILE id="uYLlSK" name="ForgotComponent.cpp" compile="1" resource="0"
               file="Source/GraphManager/ForgotComponent.cpp"/>
         <FILE id="tlz6ux" name="ForgotComponent.h" compile="0" resource="0"
@@ -369,7 +385,7 @@
   </MODULES>
   <JUCEOPTIONS/>
   <LIVE_SETTINGS>
-    <WINDOWS buildEnabled="0" headerPath=".\JsoncppLibrary\&#10;.\LuaLibrary\include&#10;"
+    <WINDOWS buildEnabled="1" headerPath=".\JsoncppLibrary\&#10;.\LuaLibrary\include&#10;"
              defines="SOURCEMARKOV=&quot;$(ProjectDir.Replace('\'\,'/'))../Source/markovSource/&quot;"
              extraDLLs="..\LuaLibrary\lua53.lib"/>
   </LIVE_SETTINGS>

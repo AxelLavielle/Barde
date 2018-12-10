@@ -17,6 +17,7 @@
 #include "LoginComponent.h"
 #include "UserRegistration.h"
 #include "ForgotComponent.h"
+#include "TutorialComponent.h"
 
 class MainWindow : public  DocumentWindow, public ComponentListener
 {
@@ -27,11 +28,14 @@ public:
 	void changeViewCallback(std::string viewName);
 
 private:
+	
 	MainContentComponent	*_mainComponent;
 	LoginComponent			*_loginComponent;
 	UserRegistration		*_userRegistration;
 	ForgotComponent         *_forgotComponent;
 	CmdManager				&_cmdManager;
+	PlayListComponent		*_playListComponent;
+	TutorialComponent		*_tutorialComponent;
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MainWindow)
 };
 

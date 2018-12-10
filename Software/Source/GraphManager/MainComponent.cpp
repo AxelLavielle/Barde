@@ -18,6 +18,7 @@ MainContentComponent::MainContentComponent() : _cmdManager(CmdManager::getInstan
 	_loginPanel.setChangeViewCallback(std::bind(&MainContentComponent::changeViewCallback, this, std::placeholders::_1));
 	_centerPanel.setChangeViewCallback(std::bind(&MainContentComponent::changeViewCallback, this, std::placeholders::_1));
 
+
 	//_currentsPanel.push_back(&_loginPanel);
 
 	_currentsPanel.push_back(&_centerPanel);

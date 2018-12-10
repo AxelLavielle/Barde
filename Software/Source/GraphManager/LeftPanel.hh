@@ -36,6 +36,7 @@ private:
 	TextButton			_homeButton;
 	TextButton			_userButton;
 	TextButton			_reportButton;
+	TextButton			_tutorialButton;
 	TextButton			_disconnectButton;
 
 	User				_user;

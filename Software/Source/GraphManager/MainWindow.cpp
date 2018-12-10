@@ -32,6 +32,8 @@ MainWindow::MainWindow(const std::string &name) : _cmdManager(CmdManager::getIns
 	_loginComponent = new LoginComponent(_cmdManager);
 	_userRegistration = new UserRegistration(_cmdManager);
 	_forgotComponent = new ForgotComponent(_cmdManager);
+	_playListComponent = new PlayListComponent(_cmdManager);
+	_tutorialComponent = new TutorialComponent(_cmdManager);
 	_forgotComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 	_mainComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 	_loginComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
@@ -44,9 +46,11 @@ MainWindow::MainWindow(const std::string &name) : _cmdManager(CmdManager::getIns
 	_loginComponent = new LoginComponent(_cmdManager);
 	_userRegistration = new UserRegistration(_cmdManager);
 	_forgotComponent = new ForgotComponent(_cmdManager);
+	_tutorialComponent = new TutorialComponent(_cmdManager);
 	_mainComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 	_loginComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 	_userRegistration->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
+	_tutorialComponent->setChangeViewCallback(std::bind(&MainWindow::changeViewCallback, this, std::placeholders::_1));
 	setContentNonOwned(_loginComponent, true);
 #endif // DEBUG
 

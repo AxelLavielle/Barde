@@ -17,7 +17,7 @@ LeftPanel::LeftPanel()// : _reportButton("Bug_report", DrawableButton::ButtonSty
    _logoImage.setImage(logo);
    addAndMakeVisible(_logoImage);
 
-   _homeButton.setButtonText("Generation");
+   _homeButton.setButtonText(CharPointer_UTF8("\x47\xc3\xa9\x6e\xc3\xa9\x72\x61\x74\x69\x6f\x6e"));
    _homeButton.setName("Home");
    _homeButton.addListener(this);
    addAndMakeVisible(_homeButton);
@@ -36,16 +36,20 @@ LeftPanel::LeftPanel()// : _reportButton("Bug_report", DrawableButton::ButtonSty
 
    //_reportButton.setImages(&convert);
 
-   _reportButton.setButtonText("Report a bug / Write a comment");
+   _reportButton.setButtonText("Faire un commentaire");
    _reportButton.setName("Report");
    _reportButton.addListener(this);
    addAndMakeVisible(_reportButton);
 
-   _disconnectButton.setButtonText("Logout");
+   _disconnectButton.setButtonText("Se deconnecter");
    _disconnectButton.setName("Logout");
    _disconnectButton.addListener(this);
    addAndMakeVisible(_disconnectButton);
 
+   _tutorialButton.setButtonText("Tutoriel");
+   _tutorialButton.setName("Tutorial");
+   _tutorialButton.addListener(this);
+   addAndMakeVisible(_tutorialButton);
 
    _homeButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
    _homeButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
@@ -59,13 +63,17 @@ LeftPanel::LeftPanel()// : _reportButton("Bug_report", DrawableButton::ButtonSty
    _reportButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
    _reportButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
 
+   _tutorialButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
+   _tutorialButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
+   _tutorialButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
+
    _disconnectButton.setColour(TextButton::buttonColourId, Colour(Theme::getInstance().getButtonColor()));
    _disconnectButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
    _disconnectButton.setColour(TextButton::textColourOnId, Colour(Theme::getInstance().getButtonFontColor()));
 
 
    _flexBox = GuiFactory::createFlexBox(FlexBox::JustifyContent::flexStart, FlexBox::AlignContent::stretch, FlexBox::AlignItems::stretch, FlexBox::Direction::column,
-	   { GuiFactory::createFlexItem(_logoImage, LOGO_WIDTH + 50, LOGO_HEIGHT, 0, 0, FlexItem::AlignSelf::stretch, 1), GuiFactory::createFlexItem(_homeButton, 80, 20), GuiFactory::createFlexItem(_userButton, 80, 20), GuiFactory::createFlexItem(_reportButton, 80, 20), GuiFactory::createFlexItem(_disconnectButton, 80, 20) });
+	   { GuiFactory::createFlexItem(_logoImage, LOGO_WIDTH + 50, LOGO_HEIGHT, 0, 0, FlexItem::AlignSelf::stretch, 1), GuiFactory::createFlexItem(_homeButton, 80, 20), GuiFactory::createFlexItem(_userButton, 80, 20), GuiFactory::createFlexItem(_reportButton, 80, 20), GuiFactory::createFlexItem(_tutorialButton, 80, 20), GuiFactory::createFlexItem(_disconnectButton, 80, 20) });
 }
 
 void LeftPanel::setUser(const User & user)
@@ -73,7 +81,7 @@ void LeftPanel::setUser(const User & user)
 	//TODO FIX THIS
 	_user = user;
 	//_userButton.setButtonText(_user.getFirstName() + " " + _user.getLastName());
-	_userButton.setButtonText("Edit user info");
+	_userButton.setButtonText("Editer le profil");
 }
 
 void LeftPanel::paint(Graphics & g)
@@ -92,6 +100,8 @@ void LeftPanel::buttonClicked(Button * button)
 		changeView("Player");
 	else if (button->getName() == "Logout")
 		changeView("Logout");
+	else if (button->getName() == "Tutorial")
+		changeView("Tutorial");
 }
 
 void LeftPanel::refresh()

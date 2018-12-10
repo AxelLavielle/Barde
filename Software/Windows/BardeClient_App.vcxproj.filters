@@ -409,6 +409,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Source\GraphManager\PlayListComponent.cpp">
+      <Filter>BardeClient\Source\GraphicPanels</Filter>
+    </ClCompile>
     <ClCompile Include="..\Source\GraphManager\RegistrationPanel.cpp">
       <Filter>BardeClient\Source\GraphicPanels</Filter>
     </ClCompile>
@@ -510,6 +513,12 @@
     </ClCompile>
     <ClCompile Include="..\Source\EncryptionManager\SSLManager.cpp">
       <Filter>BardeClient\Source\EncryptionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\GraphManager\TutorialComponent.cpp">
+      <Filter>BardeClient\Source\GraphManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\GraphManager\PlaylistButton.cpp">
+      <Filter>BardeClient\Source\GraphManager</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\GraphManager\ForgotComponent.cpp">
       <Filter>BardeClient\Source\GraphManager</Filter>
@@ -2451,6 +2460,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\GraphManager\PlayListComponent.h">
+      <Filter>BardeClient\Source\GraphicPanels</Filter>
+    </ClInclude>
     <ClInclude Include="..\Source\GraphManager\RegistrationPanel.hh">
       <Filter>BardeClient\Source\GraphicPanels</Filter>
     </ClInclude>
@@ -2567,6 +2579,12 @@
     </ClInclude>
     <ClInclude Include="..\Source\EncryptionManager\SSLManager.hh">
       <Filter>BardeClient\Source\EncryptionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\GraphManager\TutorialComponent.h">
+      <Filter>BardeClient\Source\GraphManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\GraphManager\PlaylistButton.h">
+      <Filter>BardeClient\Source\GraphManager</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\GraphManager\ForgotComponent.h">
       <Filter>BardeClient\Source\GraphManager</Filter>
@@ -4546,6 +4564,18 @@
   <ItemGroup>
     <None Include="..\Source\AI\people.json">
       <Filter>BardeClient\Source\AI</Filter>
+    </None>
+    <None Include="..\..\..\..\..\Downloads\BardeInstallCaptures\etape1.png">
+      <Filter>BardeClient\Source\Ressources</Filter>
+    </None>
+    <None Include="..\..\..\..\..\Downloads\BardeInstallCaptures\etape4.png">
+      <Filter>BardeClient\Source\Ressources</Filter>
+    </None>
+    <None Include="..\..\..\..\..\Downloads\BardeInstallCaptures\etape3.png">
+      <Filter>BardeClient\Source\Ressources</Filter>
+    </None>
+    <None Include="..\..\..\..\..\Downloads\BardeInstallCaptures\etape2.png">
+      <Filter>BardeClient\Source\Ressources</Filter>
     </None>
     <None Include="..\Source\Ressources\back.png">
       <Filter>BardeClient\Source\Ressources</Filter>
