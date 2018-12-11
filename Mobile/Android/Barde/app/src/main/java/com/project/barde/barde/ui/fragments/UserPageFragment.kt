@@ -45,8 +45,22 @@ class UserPageFragment : Fragment(), UserDbHelper.dataListener {
             val c = rawQuery("SELECT * FROM me LIMIT 1", null)
             if (c.count >= 1) {
                 c.moveToFirst()
-                v.findViewById<TextView>(R.id.activity_main_email).setText(c.getString(c.getColumnIndex(UserTable.EMAIL)))
-                v.findViewById<TextView>(R.id.activity_main_full_name).setText(c.getString(c.getColumnIndex(UserTable.FIRSTNAME)) + " " + c.getString(c.getColumnIndex(UserTable.LASTNAME)))
+                if (c.getString(c.getColumnIndex(UserTable.EMAIL)) != null) {
+                    v.findViewById<TextView>(R.id.activity_main_email).setText(c.getString(c.getColumnIndex(UserTable.EMAIL)))
+                }
+                    var full_name = ""
+                    if (c.getString(c.getColumnIndex(UserTable.FIRSTNAME)) != null) {
+                        full_name = c.getString(c.getColumnIndex(UserTable.FIRSTNAME))
+                    }
+                    if (c.getString(c.getColumnIndex(UserTable.LASTNAME)) != null) {
+                        if (full_name.isEmpty()) {
+                            full_name = c.getString(c.getColumnIndex(UserTable.LASTNAME))
+
+                        }else {
+                            full_name = " " + c.getString(c.getColumnIndex(UserTable.LASTNAME))
+                        }
+                    }
+                    v.findViewById<TextView>(R.id.activity_main_full_name).setText(full_name)
             }
         }
     }
@@ -86,8 +100,12 @@ class UserPageFragment : Fragment(), UserDbHelper.dataListener {
             val c = rawQuery("SELECT * FROM user LIMIT 1", null)
             if(c.count >= 1){
                 c.moveToFirst()
-                v.findViewById<TextView>(R.id.activity_main_email).setText(c.getString(c.getColumnIndex(UserTable.EMAIL)))
-                v.findViewById<TextView>(R.id.activity_main_full_name).setText(c.getString(c.getColumnIndex(UserTable.FIRSTNAME)) + " " + c.getString(c.getColumnIndex(UserTable.LASTNAME)))
+                if (c.getString(c.getColumnIndex(UserTable.EMAIL)) != null) {
+                    v.findViewById<TextView>(R.id.activity_main_email).setText(c.getString(c.getColumnIndex(UserTable.EMAIL)))
+                }
+                if (c.getString(c.getColumnIndex(UserTable.FIRSTNAME)) != null || c.getString(c.getColumnIndex(UserTable.LASTNAME)) != null) {
+                    v.findViewById<TextView>(R.id.activity_main_full_name).setText(c.getString(c.getColumnIndex(UserTable.FIRSTNAME)) + " " + c.getString(c.getColumnIndex(UserTable.LASTNAME)))
+                }
             }
         }
     }

@@ -45,6 +45,7 @@
     <string name="str_notification">Notification</string>
     <string name="str_theme">Theme</string>
     <string name="str_Report">Send a comment</string>
+    <string name="str_about">About</string>
     <string name="str_enter_your_name">Enter your name</string>
     <string name="str_your_message">Your message</string>
     <string name="str_submit">Submit</string>
@@ -78,56 +79,58 @@
     <string name="str_show">SHOW</string>
     <string name="str_hide">HIDE</string>
     <string name="str_optional_information">Optional information</string>
-    
+
     //tutorial
-    <string name="activity_tutorail_page_one_title">Bienvenue sur Barde</string>
+    <string name="activity_tutorail_page_one_title">Welcome on Barde</string>
     <string name="activity_tutorail_page_one_subtitle">
-        Barde est une solution de génération de musique d\'ambiance. Mais tu le sais probabblement ddéjà .. ;)
+       Barde is a multiplatform application for generating music. But you probably already know that … ;-)
+\nBut, do you know how it works</string>
+    <string name="activity_tutorail_page_one_text">Swipe left to discover !</string>
 
-        Mais sais-tu comment cela fonctionne</string>
-    <string name="activity_tutorail_page_one_text">Appuie sur "Suivant" pour le découvrir !</string>
-
-    <string name="activity_tutorail_page_two_title">Le style</string>
+    <string name="activity_tutorail_page_two_title">Style</string>
     <string name="activity_tutorail_page_two_subtitle"></string>
     <string name="activity_tutorail_page_two_text">
-        Tu as le choix entre plusieurs style qui te permettent de générer de la musique adaptée à tes goûts
+        You have the choice of several styles that allow you to generate music adapted to your tastes.
     </string>
 
-    <string name="activity_tutorail_page_three_title">Les arpéges et les accords</string>
+    <string name="activity_tutorail_page_three_title">Arpeggios and chords</string>
     <string name="activity_tutorail_page_three_subtitle"></string>
     <string name="activity_tutorail_page_three_text">
-        Choisis tes arpèges, instruments qui constituent la mélodie principale de ta musique
-
-        Maintenant, place aux accord ! Les accords créent l'ambiance principale de ta musique.
-
-        Fais ton choix !
+        Choose your arpeggios, instruments that constitute the main melody of your music.
+\nNow, place to chords! The chords create the main atmosphere of your music.\n\nMake your choice!
     </string>
 
-    <string name="activity_tutorail_page_four_title">La batterie</string>
+    <string name="activity_tutorail_page_four_title">Battery</string>
     <string name="activity_tutorail_page_four_subtitle"></string>
     <string name="activity_tutorail_page_four_text">
-        Tu souhaites avoir un peu de batterie dans ton morceau ? Activie la !
+        You want some battery in your music ?
+
+Add it !
     </string>
 
-    <string name="activity_tutorail_page_five_title">Le rythme</string>
+    <string name="activity_tutorail_page_five_title">BPM</string>
     <string name="activity_tutorail_page_five_subtitle"></string>
     <string name="activity_tutorail_page_five_text">
-        Le BPM détermine le tempo de ta murique. Plus il est élévé, plus ta musique sera rapide.
-        Détermines celui qui te conviens !
+        The BPM determines the tempo of your music. The higher it is, the faster your music will be.
+
+Identify the one who suits you!
     </string>
 
-    <string name="activity_tutorail_page_six_title">Ecoute ta musique</string>
+    <string name="activity_tutorail_page_six_title">Listen your music</string>
     <string name="activity_tutorail_page_six_subtitle"></string>
     <string name="activity_tutorail_page_six_text">
-        C\'est parti : Démarre ta musique en cliquant sur le bouton de lecture
+        You are ready to generate YOUR music.
     </string>
 
-    <string name="activity_tutorail_page_seven_title">C\'est ton tour</string>
+    <string name="activity_tutorail_page_seven_title">It’s your turn !</string>
     <string name="activity_tutorail_page_seven_subtitle">
-        Tu es maintenant prêt à générer Ta musique.
+        You are ready to generate YOUR music.
     </string>
     <string name="activity_tutorail_page_seven_text">
-        Tu peux visualiser à nouveau ce tutoriel depuis la page de "Génération" en cliquant sur le bouton d\'aide.
+        You can see this tutorial from \"Generation\" view by clicking on help button.
+    </string>
+    <string name="tutorial_list_item_view_text_lets_go">
+            Let\'s go !
     </string>
 
     //other

@@ -1,5 +1,6 @@
 package com.project.barde.barde.ui.activities
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -11,6 +12,7 @@ import com.github.kittinunf.fuel.core.FuelManager
 import com.github.kittinunf.fuel.httpPost
 import com.github.kittinunf.result.Result
 import com.google.gson.Gson
+import com.project.barde.barde.AboutActivity
 import com.project.barde.barde.R
 import com.project.barde.barde.db.database
 import com.project.barde.barde.model.Login
@@ -37,7 +39,7 @@ class SettingActivity : AppCompatActivity() {
                 val msg = dialog.findViewById<EditText>(R.id.text_report)
                 if (msg != null){
                     StringBuilder(getString(R.string.api)).append("/report").toString()
-                            .httpPost(listOf("description" to msg.text)).responseString{ request, response, result ->
+                            .httpPost(listOf("description" to msg.text, "device" to "Android")).responseString{ request, response, result ->
                                 println(response.data)
                         val login: Login = Gson().fromJson(String(response.data), Login::class.java)
                         Toast.makeText(this, login.data.message, Toast.LENGTH_SHORT).show()
@@ -47,6 +49,10 @@ class SettingActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
+
+        setting_about.setOnClickListener {
+            startActivity(Intent(this, AboutActivity::class.java))
         }
     }
 }

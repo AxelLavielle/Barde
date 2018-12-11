@@ -128,18 +128,18 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerS
                     AudioBardeManager.serverSocket.sendToServer(intArrayOf(MUSIQUEPARAM, STYLE, JAZZ))
                     instrumentList = listOf(
                             RadioModel(
-                                    getString(R.string.str_style),
+                                    getString(R.string.str_choose_your_style),
                                     styleList),
                             ChoiceModel(
-                                    getString(R.string.str_chords),
                                     getString(R.string.str_choose_your_instrument),
+                                    getString(R.string.str_chords),
                                     listOfInstruementChords,
                                     ADDCHORD,
                                     REMOVECHORD,
                                     "CHORDS"),
                             ChoiceModel(
-                                    getString(R.string.str_arpege),
                                     getString(R.string.str_choose_your_instrument),
+                                    getString(R.string.str_arpege),
                                     listOfInstruementArpeges,
                                     ADDARPEGE,
                                     REMOVEARPEGE,
@@ -567,18 +567,18 @@ class GenerationFragment : Fragment(), MediaPlayer.OnPreparedListener, ListenerS
 
             instrumentList = listOf(
                     RadioModel(
-                            getString(R.string.str_style),
+                            getString(R.string.str_choose_your_instrument),
                             styleList),
                     ChoiceModel(
-                            getString(R.string.str_chords),
                             getString(R.string.str_choose_your_instrument),
+                            getString(R.string.str_chords),
                             listOfInstruementChords,
                             ADDCHORD,
                             REMOVECHORD,
                             "CHORDS"),
                     ChoiceModel(
-                            getString(R.string.str_arpege),
                             getString(R.string.str_choose_your_instrument),
+                            getString(R.string.str_arpege),
                             listOfInstruementArpeges,
                             ADDARPEGE,
                             REMOVEARPEGE,

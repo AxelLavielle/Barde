@@ -11,12 +11,18 @@ import android.support.v7.widget.*
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import com.project.barde.barde.R.id.tutorial_list_item_view_text_lets_go
 import com.project.barde.barde.adapter.TutorialListAdapter
+import com.project.barde.barde.model.Listener
 import com.project.barde.barde.model.TutoPage
 import kotlinx.android.synthetic.main.activity_tutorial.*
 import kotlinx.android.synthetic.main.fragment_generation.*
 
-class TutorialActivity : AppCompatActivity() {
+class TutorialActivity : AppCompatActivity(), Listener {
+    override fun onCLick() {
+        onBackPressed()
+    }
+
     companion object {
         fun startActivity(actualActivity: Context) {
             val intent = Intent(actualActivity, TutorialActivity::class.java)
@@ -66,15 +72,6 @@ class TutorialActivity : AppCompatActivity() {
 
             }
         })
-        activity_tutorial_overlay.setOnClickListener {
-            activity_tutorial_overlay.visibility = View.GONE
-            activity_tutorial_image.visibility = View.GONE
-        }
-
-        activity_tutorial_image.setOnClickListener {
-            activity_tutorial_overlay.visibility = View.GONE
-            activity_tutorial_image.visibility = View.GONE
-        }
     }
 
     private fun changeDrawable(position: Int, id: Int) {
@@ -90,33 +87,34 @@ class TutorialActivity : AppCompatActivity() {
                 TutoPage(
                         getString(R.string.activity_tutorail_page_one_title),
                         getString(R.string.activity_tutorail_page_one_subtitle),
-                        ContextCompat.getDrawable(this, R.drawable.barde),
-                        getString(R.string.activity_tutorail_page_one_text)),
+                        R.drawable.barde,
+                        getString(R.string.activity_tutorail_page_one_text), this),
                 TutoPage(
                         getString(R.string.activity_tutorail_page_two_title),
                         getString(R.string.activity_tutorail_page_two_subtitle),
-                        ContextCompat.getDrawable(this, R.drawable.barde),
-                        getString(R.string.activity_tutorail_page_two_text)),
+                        R.drawable.tuto1,
+                        getString(R.string.activity_tutorail_page_two_text), this),
                 TutoPage(
                         getString(R.string.activity_tutorail_page_three_title),
                         getString(R.string.activity_tutorail_page_three_subtitle),
-                        ContextCompat.getDrawable(this, R.drawable.barde),
-                        getString(R.string.activity_tutorail_page_three_text)),
+                        R.drawable.tuto2,
+                        getString(R.string.activity_tutorail_page_three_text), this),
                 TutoPage(
                         getString(R.string.activity_tutorail_page_four_title),
                         getString(R.string.activity_tutorail_page_four_subtitle),
-                        ContextCompat.getDrawable(this, R.drawable.barde),
-                        getString(R.string.activity_tutorail_page_four_text)),
+                        R.drawable.tuto3,
+                        getString(R.string.activity_tutorail_page_four_text), this),
                 TutoPage(
                         getString(R.string.activity_tutorail_page_six_title),
                         getString(R.string.activity_tutorail_page_six_subtitle),
-                        ContextCompat.getDrawable(this, R.drawable.barde),
-                        getString(R.string.activity_tutorail_page_six_text)),
+                        R.drawable.tuto5,
+                        getString(R.string.activity_tutorail_page_six_text), this),
                 TutoPage(
                         getString(R.string.activity_tutorail_page_seven_title),
                         getString(R.string.activity_tutorail_page_seven_subtitle),
-                        ContextCompat.getDrawable(this, R.drawable.barde),
-                        getString(R.string.activity_tutorail_page_seven_text))
+                        R.drawable.tuto4,
+                        getString(R.string.activity_tutorail_page_seven_text),
+                        this)
         )
         //init pagination
         findViewById<ImageView>(R.id.tuto_pagination_b)

@@ -95,6 +95,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+            <LinearLayout
+                android:padding="10dp"
+                style="?android:attr/buttonBarButtonStyle"
+                android:id="@+id/setting_about"
+                android:background="@drawable/button_rounded_corners_white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+                <TextView
+                    android:gravity="start"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:text="@string/str_about" />
+                <TextView
+                    android:textColor="#000000"
+                    android:text=">"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
            <!-- <Button
                 android:textAllCaps="false"
                 android:gravity="start"

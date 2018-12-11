@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
+    <!--<item
         android:title="@string/str_playlist"
         android:icon="@drawable/ic_queue_music_black_24dp"
         android:id="@+id/menu_playlist"
-        />
+        />-->
     <item
         android:title="@string/str_generation"
-        android:icon="@mipmap/barde"
+        android:icon="@drawable/ic_music_note_white_24dp"
         android:id="@+id/menu_generation"
         />
     <!--<item

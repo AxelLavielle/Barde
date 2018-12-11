@@ -77,4 +77,63 @@
     <string name="str_show">VOIR</string>
     <string name="str_hide">CACHER</string>
     <string name="str_optional_information">Information optionelle</string>
+
+    //tutorial
+    <string name="activity_tutorail_page_one_title">Bienvenue sur Barde</string>
+    <string name="activity_tutorail_page_one_subtitle">
+        Barde est une solution de génération de musique d\'ambiance. Mais tu le sais probabblement ddéjà .. ;)\n
+
+        Mais sais-tu comment cela fonctionne</string>
+    <string name="activity_tutorail_page_one_text">Appuie sur "Suivant" pour le découvrir !</string>
+
+    <string name="activity_tutorail_page_two_title">Le style</string>
+    <string name="activity_tutorail_page_two_subtitle"></string>
+    <string name="activity_tutorail_page_two_text">
+        Tu as le choix entre plusieurs style qui te permettent de générer de la musique adaptée à tes goûts
+    </string>
+
+    <string name="activity_tutorail_page_three_title">Les arpéges et les accords</string>
+    <string name="activity_tutorail_page_three_subtitle"></string>
+    <string name="activity_tutorail_page_three_text">
+        Choisis tes arpèges, instruments qui constituent la mélodie principale de ta musique\n
+
+        Maintenant, place aux accord ! Les accords créent l'ambiance principale de ta musique.\n
+
+        Fais ton choix !
+    </string>
+
+    <string name="activity_tutorail_page_four_title">La batterie</string>
+    <string name="activity_tutorail_page_four_subtitle"></string>
+    <string name="activity_tutorail_page_four_text">
+        Tu souhaites avoir un peu de batterie dans ton morceau ? Activie la !
+    </string>
+
+    <string name="activity_tutorail_page_five_title">Le rythme</string>
+    <string name="activity_tutorail_page_five_subtitle"></string>
+    <string name="activity_tutorail_page_five_text">
+        Le BPM détermine le tempo de ta murique. Plus il est élévé, plus ta musique sera rapide.\n
+        Détermines celui qui te conviens !
+    </string>
+
+    <string name="activity_tutorail_page_six_title">Ecoute ta musique</string>
+    <string name="activity_tutorail_page_six_subtitle"></string>
+    <string name="activity_tutorail_page_six_text">
+        C\'est parti : Démarre ta musique en cliquant sur le bouton de lecture
+    </string>
+
+    <string name="activity_tutorail_page_seven_title">C\'est ton tour</string>
+    <string name="activity_tutorail_page_seven_subtitle">
+        Tu es maintenant prêt à générer Ta musique.
+    </string>
+    <string name="activity_tutorail_page_seven_text">
+        Tu peux visualiser à nouveau ce tutoriel depuis la page de "Génération" en cliquant sur le bouton d\'aide.
+    </string>
+    <string name="tutorial_list_item_view_text_lets_go">
+            C'est parti !
+    </string>
+    //other
+
+    <string name="skip">Annuler</string>
+    <string name="str_about">A propos</string>
+
 </resources>

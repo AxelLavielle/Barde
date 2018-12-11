@@ -11,9 +11,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="30dp"
+        android:layout_margin="10sp"
+        android:paddingTop="30dp"
         android:textColor="@color/colorWhite"
-        android:textSize="40sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,15 +32,37 @@
         app:layout_constraintTop_toBottomOf="@id/tutorial_list_item_view_title"
         tools:text="fezfief fe fefzgrzg rgzrg zG zrgz rgZRGZgzgzg gzrgzRG ZRGzr gzr gzrg zrgzgzgz gr gz gz rgz rgz rgzrg " />
 
+    <View
+        tools:visibility="visible"
+        android:visibility="gone"
+        android:id="@+id/tutorial_list_item_view_line_top"
+        android:layout_width="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tutorial_list_item_view_image"
+        android:background="@color/colorWhite"
+        android:layout_height="3dp"/>
+
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/tutorial_list_item_view_image"
-        android:layout_width="0dp"
-        android:scaleType="centerCrop"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:scaleType="fitCenter"
+        android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tutorial_list_item_view_subtitle"
-        tools:src="@mipmap/barde" />
+        tools:src="@drawable/tuto4" />
+
+    <View
+        tools:visibility="visible"
+        android:visibility="gone"
+        android:id="@+id/tutorial_list_item_view_line"
+        android:layout_width="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tutorial_list_item_view_image"
+        android:background="@color/colorWhite"
+        android:layout_height="3dp"/>
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tutorial_list_item_view_text"
@@ -51,5 +74,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tutorial_list_item_view_image"
         tools:text="zefziofnzf zrf zRFZRGZ RGR GrgRG rgR Grg RGzr grg RG rgR Gr gzrg " />
+    <Button
+        tools:visibility="visible"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tutorial_list_item_view_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="70dp"
+        android:layout_marginLeft="70dp"
+        android:textAllCaps="false"
+        android:text="@string/tutorial_list_item_view_text_lets_go"
+        android:textColor="#ffffff"
+        android:background="@drawable/button_rounded_corners"
+        android:id="@+id/tutorial_list_item_view_text_lets_go"/>
 
 </android.support.constraint.ConstraintLayout>

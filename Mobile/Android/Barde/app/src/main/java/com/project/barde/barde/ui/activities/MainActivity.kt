@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         val generation = GenerationFragment()
         //startActivity(Intent(this, FirstPage::class.java))
         supportFragmentManager.beginTransaction()
-                .add(R.id.container, playlist as Fragment)
+                .add(R.id.container, generation as Fragment)
                 .commit()
         buttonNavigationMenu.setOnNavigationItemSelectedListener{item ->
             when (item.itemId){
@@ -39,11 +39,11 @@ class MainActivity : AppCompatActivity() {
                             .replace(R.id.container, myLists as Fragment)
                             .commit()
                 }*/
-               R.id.menu_playlist -> {
+               /*R.id.menu_playlist -> {
                     supportFragmentManager.beginTransaction()
                             .replace(R.id.container, playlist as Fragment)
                             .commit()
-                }
+                }*/
                 R.id.menu_generation -> {
                     supportFragmentManager.beginTransaction()
                             .replace(R.id.container, generation as Fragment)
