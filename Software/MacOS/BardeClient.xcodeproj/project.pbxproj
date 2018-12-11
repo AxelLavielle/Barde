@@ -244,7 +244,9 @@
 		805239F1559CB3B537A656B4 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		83FDD2639B1FFA7E69CA9323 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AView.hh; path = ../Source/ViewManager/AView.hh; sourceTree = "SOURCE_ROOT"; };
 		84601D50D9D57E3396CF903A = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BardeClient.app; sourceTree = "BUILT_PRODUCTS_DIR"; };
+		84C3210C249E7C9744E2ABC1 = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Barde_step3.png"; path = "../../../../../Downloads/BardeInstallCaptures/Barde_step3.png"; sourceTree = "SOURCE_ROOT"; };
 		86714B581F6EBAA26145F4E9 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = StyleSettings.hh; path = ../Source/AI/StyleSettings.hh; sourceTree = "SOURCE_ROOT"; };
+		86D446A87E880C05A674164C = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Barde_step6.png"; path = "../../../../../Downloads/BardeInstallCaptures/Barde_step6.png"; sourceTree = "SOURCE_ROOT"; };
 		877358EE1FB0C1447B69730C = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = icons.cpp; path = ../Source/icons.cpp; sourceTree = "SOURCE_ROOT"; };
 		89AA9B4C887ADBA26CD05467 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ISoundManager.hpp; path = ../Source/SoundManager/ISoundManager.hpp; sourceTree = "SOURCE_ROOT"; };
 		8BC6453EF1DA1B36F2440108 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SSLManager.cpp; path = ../Source/EncryptionManager/SSLManager.cpp; sourceTree = "SOURCE_ROOT"; };
@@ -254,6 +256,7 @@
 		902CE0405C3723F16FA0D660 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LoginComponent.cpp; path = ../Source/GraphManager/LoginComponent.cpp; sourceTree = "SOURCE_ROOT"; };
 		90568CB8ED05EA68CCC843C9 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = UserRegistration.cpp; path = ../Source/GraphManager/UserRegistration.cpp; sourceTree = "SOURCE_ROOT"; };
 		91E2A281DDCFFD5A418C23D9 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ASoundManager.hh; path = ../Source/SoundManager/ASoundManager.hh; sourceTree = "SOURCE_ROOT"; };
+		92AAD242F1CA5C5E8E455C60 = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Barde_step4.png"; path = "../../../../../Downloads/BardeInstallCaptures/Barde_step4.png"; sourceTree = "SOURCE_ROOT"; };
 		93B5BA2F6619F977392CE0EB = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = MusicParameters.cpp; path = ../Source/MusicParameters.cpp; sourceTree = "SOURCE_ROOT"; };
 		93F0D60A5B9F2ADED0756129 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		96700574ECB4B65AA537237E = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = StringChecker.cpp; path = ../Source/Utils/StringChecker.cpp; sourceTree = "SOURCE_ROOT"; };
@@ -290,6 +293,7 @@
 		B9AC81F8D74F1DC31C34E5CF = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = JuceManager.cpp; path = ../Source/GraphManager/JuceManager.cpp; sourceTree = "SOURCE_ROOT"; };
 		BAC2839A58B20CC041354114 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AComponent.cpp; path = ../Source/GraphManager/AComponent.cpp; sourceTree = "SOURCE_ROOT"; };
 		BB94EA54FA385429DAD02AD7 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = User.hh; path = ../Source/User.hh; sourceTree = "SOURCE_ROOT"; };
+		BBA055FCD6604B353D17A8A3 = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Barde_step5.png"; path = "../../../../../Downloads/BardeInstallCaptures/Barde_step5.png"; sourceTree = "SOURCE_ROOT"; };
 		BD2F71DA4F43933066FCD052 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Authentification.cpp; path = ../Source/Authentification.cpp; sourceTree = "SOURCE_ROOT"; };
 		BE8ED780F90659B70F347C53 = {isa = PBXFileReference; lastKnownFileType = image.png; name = etape1.png; path = ../../../../../Downloads/BardeInstallCaptures/etape1.png; sourceTree = "SOURCE_ROOT"; };
 		BF23A1A6E17A297E81CBC28E = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LabeledTextBox.cpp; path = ../Source/GraphManager/LabeledTextBox.cpp; sourceTree = "SOURCE_ROOT"; };
@@ -304,6 +308,7 @@
 		CBE998D59D7C8DB61FD8667C = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MusicGenerator.hh; path = ../Source/AI/MusicGenerator.hh; sourceTree = "SOURCE_ROOT"; };
 		CBFF0DCB4DEFB90D6C1BE0ED = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FlexView.hh; path = ../Source/ViewManager/FlexView.hh; sourceTree = "SOURCE_ROOT"; };
 		CE2C6CD62AA2E0E1441CEE62 = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_events"; path = "../JuceLibraryCode/modules/juce_events"; sourceTree = "SOURCE_ROOT"; };
+		CEB42C9CDEE8B05B6BB0F52F = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Barde_step1.png"; path = "../../../../../Downloads/BardeInstallCaptures/Barde_step1.png"; sourceTree = "SOURCE_ROOT"; };
 		CFB7289F564DCCFC2D3E94A2 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RegistrationPanel.hh; path = ../Source/GraphManager/RegistrationPanel.hh; sourceTree = "SOURCE_ROOT"; };
 		D27DCF836EB785D22056CEAD = {isa = PBXFileReference; lastKnownFileType = file.nib; name = RecentFilesMenuTemplate.nib; path = RecentFilesMenuTemplate.nib; sourceTree = "SOURCE_ROOT"; };
 		D2B551D4E4FECAB499F7D2C0 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Tools.cpp; path = ../Source/Tools.cpp; sourceTree = "SOURCE_ROOT"; };
@@ -319,6 +324,7 @@
 		DE51185F9B39CBA3092ED5C8 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BinaryData.cpp; path = ../JuceLibraryCode/BinaryData.cpp; sourceTree = "SOURCE_ROOT"; };
 		DF23927347DC25EF65823A74 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		DF6CA1D5CB51529A697CEF78 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PlayListComponent.h; path = ../Source/GraphManager/PlayListComponent.h; sourceTree = "SOURCE_ROOT"; };
+		E207D87D74F2A24D7EC6C944 = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Barde_step2.png"; path = "../../../../../Downloads/BardeInstallCaptures/Barde_step2.png"; sourceTree = "SOURCE_ROOT"; };
 		E2F3E430C034A76D5995F6DC = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "json-forwards.h"; path = "../JsoncppLibrary/json/json-forwards.h"; sourceTree = "SOURCE_ROOT"; };
 		E327D7E11EDBF8199E9BFFEF = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SSLManager.hh; path = ../Source/EncryptionManager/SSLManager.hh; sourceTree = "SOURCE_ROOT"; };
 		E37BD95AE26C8220226A3235 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_audio_processors.mm"; path = "../JuceLibraryCode/include_juce_audio_processors.mm"; sourceTree = "SOURCE_ROOT"; };
@@ -404,6 +410,12 @@
 					112519F920DEEB5128F56855,
 					86714B581F6EBAA26145F4E9, ); name = AI; sourceTree = "<group>"; };
 		7C7609A2DFACA653BC936C01 = {isa = PBXGroup; children = (
+					86D446A87E880C05A674164C,
+					84C3210C249E7C9744E2ABC1,
+					92AAD242F1CA5C5E8E455C60,
+					BBA055FCD6604B353D17A8A3,
+					E207D87D74F2A24D7EC6C944,
+					CEB42C9CDEE8B05B6BB0F52F,
 					BE8ED780F90659B70F347C53,
 					F790560562A01EEDEA8BADDC,
 					4ECF35D8E09C1F06A1B9A3B1,

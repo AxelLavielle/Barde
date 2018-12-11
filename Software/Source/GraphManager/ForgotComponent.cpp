@@ -52,7 +52,7 @@ ForgotComponent::ForgotComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager
 	_emailLabel.setJustificationType(Justification::right);
 
 	addAndMakeVisible(_sendTokenButton);
-	_sendTokenButton.setButtonText("Send token by email");
+	_sendTokenButton.setButtonText("Envoyer le token par email");
 	_sendTokenButton.setName("sendToken");
 	_sendTokenButton.addListener(this);
 
@@ -70,7 +70,7 @@ ForgotComponent::ForgotComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager
 	_passwordTextBox.setPasswordCharacter((juce_wchar)0x2022);//To replace chars with rounds
 
 	addAndMakeVisible(_passwordLabel);
-	_passwordLabel.setText("Password:", dontSendNotification);
+	_passwordLabel.setText("Mot de passe:", dontSendNotification);
 	_passwordLabel.attachToComponent(&_passwordTextBox, true);
 	_passwordLabel.setJustificationType(Justification::right);
 
@@ -80,7 +80,7 @@ ForgotComponent::ForgotComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager
 	_passwordConfirmationTextBox.setPasswordCharacter((juce_wchar)0x2022);//To replace chars with rounds
 
 	addAndMakeVisible(_passwordConfirmationLabel);
-	_passwordConfirmationLabel.setText("Confirm Password:", dontSendNotification);
+	_passwordConfirmationLabel.setText("Confirmer le mot de passe:", dontSendNotification);
 	_passwordConfirmationLabel.attachToComponent(&_passwordConfirmationTextBox, true);
 	_passwordConfirmationLabel.setJustificationType(Justification::right);
 
@@ -91,12 +91,12 @@ ForgotComponent::ForgotComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager
 	_passwordConfirmationTextBox.addListener(this);
 
 	addAndMakeVisible(_changePasswordButton);
-	_changePasswordButton.setButtonText("Reset Password");
+	_changePasswordButton.setButtonText("Reinitialiser le mot de passe");
 	_changePasswordButton.setName("resetPassword");
 	_changePasswordButton.addListener(this);
 
 	addAndMakeVisible(_cancelButton);
-	_cancelButton.setButtonText("Cancel");
+	_cancelButton.setButtonText("Annuler");
 	_cancelButton.setName("cancel");
 	_cancelButton.addListener(this);
 
@@ -125,44 +125,44 @@ void ForgotComponent::changePassword()
 
 	if (password == "" || passwordConfirm == "")
 	{
-		errorMessage = "Invalid password.";
+		errorMessage = "Mot de passe non valide.";
 		noError = false;
 	}
 
 	if (password != passwordConfirm)
 	{
-		errorMessage = "Error passwords don't match";
+		errorMessage = "Les mots de passe ne sont pas identiques";
 		noError = false;
 	}
 
 
 	if (!(StringChecker::isPasswordLongEnough(password)))
 	{
-		errorMessage = "Password should be at least 8 characters long";
+		errorMessage = "Le mot de passe doit faire au moins 8 caracteres de long";
 		noError = false;
 	}
 
 	if (!(StringChecker::containsLowercase(password)))
 	{
-		errorMessage = "Password should contain at least one lowercase letter";
+		errorMessage = "Le mot de passe doit contenir au moins une miniscule";
 		noError = false;
 	}
 
 	if (!(StringChecker::containsUppercase(password)))
 	{
-		errorMessage = "Password should contain at least one uppercase letter";
+		errorMessage = "Le mot de passe doit contenir au moins une majuscule";
 		noError = false;
 	}
 
 	if (!(StringChecker::containsNumber(password)))
 	{
-		errorMessage = "Password should contain at least one number";
+		errorMessage = "Le mot de passe doit contenir au moins un chiffre";
 		noError = false;
 	}
 
 	if (!(StringChecker::containsSpecialChar(password)))
 	{
-		errorMessage = "Password should contain at least one special character";
+		errorMessage = "Le mot de passe doit contenir au moins un caractere special";
 		noError = false;
 	}
 
@@ -171,19 +171,19 @@ void ForgotComponent::changePassword()
 		{
 			if (_cmdManager.resetPassword(email, token, password)) {
 				errorMessage = "";
-				successMessage = "Password updated.";
+				successMessage = "Not de passe mis a jour.";
 			}
 			else
 			{
 				if (_cmdManager.getResponseCode() == 400)
-					errorMessage = "The params are incorrect";
+					errorMessage = "Parametres incorrects";
 				else
-					errorMessage = "There was an error during the process";
+					errorMessage = "Une erreur est survenue";
 			}
 		}
 		catch (RestClientException &e)
 		{
-			errorMessage = "There was an error during the login process";
+			errorMessage = "Une erreur est s";
 		}
 	}
 	_successText.setText(successMessage, juce::NotificationType::sendNotification);
@@ -200,19 +200,19 @@ void ForgotComponent::forgot()
 	{
 		if (_cmdManager.forgetPassword(login)) {
 			errorMessage = "";
-			successMessage = "Mail sent. Check your mail to get your token.";
+			successMessage = "Token envoye. Verifiez vos mails.";
 		}
 		else
 		{
 			if (_cmdManager.getResponseCode() == 400)
-				errorMessage = "The email is incorrect";
+				errorMessage = "L'email est incorrect";
 			else
-				errorMessage = "There was an error during the process";
+				errorMessage = "Une erreur est survenue";
 		}
 	}
 	catch (RestClientException &e)
 	{
-		errorMessage = "There was an error during the login process";
+		errorMessage = "Une erreur est survenue";
 	}
 	_successText.setText(successMessage, juce::NotificationType::sendNotification);
 	_errorText.setText(errorMessage, juce::NotificationType::sendNotification);

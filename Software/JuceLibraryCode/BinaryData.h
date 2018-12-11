@@ -11,6 +11,24 @@ namespace BinaryData
     extern const char*   people_json;
     const int            people_jsonSize = 215;
 
+    extern const char*   Barde_step6_png;
+    const int            Barde_step6_pngSize = 1648;
+
+    extern const char*   Barde_step3_png;
+    const int            Barde_step3_pngSize = 28438;
+
+    extern const char*   Barde_step4_png;
+    const int            Barde_step4_pngSize = 2950;
+
+    extern const char*   Barde_step5_png;
+    const int            Barde_step5_pngSize = 3235;
+
+    extern const char*   Barde_step2_png;
+    const int            Barde_step2_pngSize = 3445;
+
+    extern const char*   Barde_step1_png;
+    const int            Barde_step1_pngSize = 52358;
+
     extern const char*   etape1_png;
     const int            etape1_pngSize = 6855;
 
@@ -33,7 +51,7 @@ namespace BinaryData
     const int            DarkSize = 38;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 8;
+    const int namedResourceListSize = 14;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];

@@ -2607,6 +2607,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Source\AI\people.json"/>
+    <None Include="..\..\..\..\..\Downloads\BardeInstallCaptures\Barde_step6.png"/>
+    <None Include="..\..\..\..\..\Downloads\BardeInstallCaptures\Barde_step3.png"/>
+    <None Include="..\..\..\..\..\Downloads\BardeInstallCaptures\Barde_step4.png"/>
+    <None Include="..\..\..\..\..\Downloads\BardeInstallCaptures\Barde_step5.png"/>
+    <None Include="..\..\..\..\..\Downloads\BardeInstallCaptures\Barde_step2.png"/>
+    <None Include="..\..\..\..\..\Downloads\BardeInstallCaptures\Barde_step1.png"/>
     <None Include="..\..\..\..\..\Downloads\BardeInstallCaptures\etape1.png"/>
     <None Include="..\..\..\..\..\Downloads\BardeInstallCaptures\etape4.png"/>
     <None Include="..\..\..\..\..\Downloads\BardeInstallCaptures\etape3.png"/>

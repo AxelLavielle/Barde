@@ -45,12 +45,12 @@ TutorialComponent::TutorialComponent(CmdManager & cmdManager) : _cmdManager(cmdM
 	step = 0;
 
 
-	images.push_back(ImageCache::getFromMemory(BinaryData::etape1_png, BinaryData::etape1_pngSize));
-	images.push_back(ImageCache::getFromMemory(BinaryData::etape2_png, BinaryData::etape2_pngSize));
-	images.push_back(ImageCache::getFromMemory(BinaryData::etape3_png, BinaryData::etape3_pngSize));
-	images.push_back(ImageCache::getFromMemory(BinaryData::etape4_png, BinaryData::etape4_pngSize));
-	images.push_back(ImageCache::getFromMemory(BinaryData::etape4_png, BinaryData::etape4_pngSize));
-	images.push_back(ImageCache::getFromMemory(BinaryData::etape4_png, BinaryData::etape4_pngSize));
+	images.push_back(ImageCache::getFromMemory(BinaryData::Barde_step1_png, BinaryData::Barde_step1_pngSize));
+	images.push_back(ImageCache::getFromMemory(BinaryData::Barde_step2_png, BinaryData::Barde_step2_pngSize));
+	images.push_back(ImageCache::getFromMemory(BinaryData::Barde_step3_png, BinaryData::Barde_step3_pngSize));
+	images.push_back(ImageCache::getFromMemory(BinaryData::Barde_step4_png, BinaryData::Barde_step4_pngSize));
+	images.push_back(ImageCache::getFromMemory(BinaryData::Barde_step5_png, BinaryData::Barde_step5_pngSize));
+	images.push_back(ImageCache::getFromMemory(BinaryData::Barde_step6_png, BinaryData::Barde_step6_pngSize));
 
 
 
@@ -160,12 +160,13 @@ void TutorialComponent::paint(Graphics& g)
 {
 	int x = getParentWidth() - 300;
 	int y = getParentHeight() - 200;
-
+	//int x = getWidth();
+	//int y = getHeight();
 	g.fillAll(Colour(Theme::getInstance().getBackgroundColor()));
 	Image background = images[step];
 	int imgH = background.getHeight();
 	int imgW = background.getWidth();
-	g.drawImageAt(background, (x/2) - (imgW / 2), (y / 2) - (imgH / 2));
+	g.drawImageAt(background, (x/2) - (imgW / 2), (y / 2) - (imgH / 2) + 90);
 }
 
 void TutorialComponent::resized()

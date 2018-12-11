@@ -233,7 +233,7 @@ bool UserParamsPanel::updateUser()
 	}
 	catch (RestClientException &e)
 	{
-		_errorLabel.setLabelText("Connection error, please reconnect yourself.");
+		_errorLabel.setLabelText("Erreur de connection, merci de vous reconnecter.");
 		return false;
 	}
 	return true;
@@ -245,7 +245,7 @@ bool UserParamsPanel::updatePassword()
 	
 	if (_passwordTextBox.getText() == "" || _passwordConfirmationTextBox.getText() == "" || _oldPasswordTextBox.getText() == "")
 	{
-		_errorLabel.setLabelText("Invalid password.");
+		_errorLabel.setLabelText("Mot de passe invalide.");
 		return false;
 	}
 

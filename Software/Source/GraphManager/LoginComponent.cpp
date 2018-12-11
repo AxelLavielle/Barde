@@ -44,12 +44,12 @@ LoginComponent::LoginComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager)
 
 
 	addAndMakeVisible(_inputLabel1);
-	_inputLabel1.setText("Login:", dontSendNotification);
+	_inputLabel1.setText("Email:", dontSendNotification);
 	_inputLabel1.attachToComponent(&_textEditor1, true);
 	_inputLabel1.setJustificationType(Justification::right);
 
 	addAndMakeVisible(_inputLabel2);
-	_inputLabel2.setText("Password:", dontSendNotification);
+	_inputLabel2.setText("Mot de passe:", dontSendNotification);
 	_inputLabel2.attachToComponent(&_textEditor2, true);
 	_inputLabel2.setJustificationType(Justification::right);
 
@@ -61,12 +61,12 @@ LoginComponent::LoginComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager)
 
 
 	addAndMakeVisible(_loginButton);
-	_loginButton.setButtonText("Login");
+	_loginButton.setButtonText("Se connecter");
 	_loginButton.setName("Login");
 	_loginButton.addListener(this);
 
 	addAndMakeVisible(_signinButton);
-	_signinButton.setButtonText("Sign up");
+	_signinButton.setButtonText("S'inscrire");
 	_signinButton.setName("signup");
 	_signinButton.addListener(this);
 
@@ -74,7 +74,7 @@ LoginComponent::LoginComponent(CmdManager & cmdMaager) : _cmdManager(cmdMaager)
 	//_forgotLabel.setText("LDKSLKDLSAKDLSKDSLKDALSDLk", juce::NotificationType::dontSendNotification);
 
 	addAndMakeVisible(_forgotPasswordButton);
-	_forgotPasswordButton.setButtonText("Forgot Password ?");
+	_forgotPasswordButton.setButtonText(CharPointer_UTF8("Mot de passe oubli\xc3\xa9 ?"));
 	_forgotPasswordButton.setName("Forgot");
 	_forgotPasswordButton.addListener(this);
 
@@ -127,9 +127,9 @@ void LoginComponent::login(const std::string & login, const std::string & passwo
 		else
 		{
 			if (_cmdManager.getResponseCode() == 400)
-				errorMessage = "The email or password is incorrect";
+				errorMessage = "L'email ou le mot de passe est incorrect";
 			else
-				errorMessage = "There was an error during the login process";
+				errorMessage = "Il y a eu une erreur durant le process";
 		}
 	}
 	catch (RestClientException &e)

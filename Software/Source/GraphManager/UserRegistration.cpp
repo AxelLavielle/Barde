@@ -60,17 +60,17 @@ UserRegistration::UserRegistration(CmdManager & cmdManager) : _cmdManager(cmdMan
 
 
 	addAndMakeVisible(_firstNameLabel);
-	_firstNameLabel.setText("FirstName:", dontSendNotification);
+	_firstNameLabel.setText(CharPointer_UTF8("Pr\xc3\xa9nom:"), dontSendNotification);
 	_firstNameLabel.attachToComponent(&_firstNameTextEditor, true);
 	_firstNameLabel.setJustificationType(Justification::right);
 
 	addAndMakeVisible(_lastNameLabel);
-	_lastNameLabel.setText("LastName:", dontSendNotification);
+	_lastNameLabel.setText("Nom:", dontSendNotification);
 	_lastNameLabel.attachToComponent(&_lastNameTextEditor, true);
 	_lastNameLabel.setJustificationType(Justification::right);
 
 	addAndMakeVisible(_userNameLabel);
-	_userNameLabel.setText("*UserName:", dontSendNotification);
+	_userNameLabel.setText("*Pseudonyme:", dontSendNotification);
 	_userNameLabel.attachToComponent(&_userNameTextEditor, true);
 	_userNameLabel.setJustificationType(Justification::right);
 
@@ -80,17 +80,17 @@ UserRegistration::UserRegistration(CmdManager & cmdManager) : _cmdManager(cmdMan
 	_emailLabel.setJustificationType(Justification::right);
 
 	addAndMakeVisible(_dateOfBirthLabel);
-	_dateOfBirthLabel.setText("Date of Birth:", dontSendNotification);
+	_dateOfBirthLabel.setText("Date de naissance:", dontSendNotification);
 	_dateOfBirthLabel.attachToComponent(&_dateOfBirthTextEditor, true);
 	_emailLabel.setJustificationType(Justification::right);
 
 	addAndMakeVisible(_passwordLabel);
-	_passwordLabel.setText("*Password:", dontSendNotification);
+	_passwordLabel.setText("*Mot de passe:", dontSendNotification);
 	_passwordLabel.attachToComponent(&_passwordTextEditor, true);
 	_passwordLabel.setJustificationType(Justification::right);
 
 	addAndMakeVisible(_passwordConfirmationLabel);
-	_passwordConfirmationLabel.setText("*Confirm password:", dontSendNotification);
+	_passwordConfirmationLabel.setText("*Confirmation du mot de passe:", dontSendNotification);
 	_passwordConfirmationLabel.attachToComponent(&_passwordConfirmationTextEditor, true);
 	_passwordConfirmationLabel.setJustificationType(Justification::right);
 
@@ -132,13 +132,13 @@ UserRegistration::UserRegistration(CmdManager & cmdManager) : _cmdManager(cmdMan
 
 
 	addAndMakeVisible(_saveButton);
-	_saveButton.setButtonText("Sign up");
+	_saveButton.setButtonText("S'inscrire");
 	_saveButton.setName("signup");
 	_saveButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN + SPACE_BETWEEN, BOX_WIDTH, BOX_HEIGHT);
 	_saveButton.addListener(this);
 
 	addAndMakeVisible(_cancelButton);
-	_cancelButton.setButtonText("Cancel");
+	_cancelButton.setButtonText("Annuler");
 	_cancelButton.setName("cancel");
 	_cancelButton.setBounds((x / 2) - (BOX_WIDTH / 2), (y / 2) - BOX_HEIGHT / 2 + SPACE_BETWEEN + SPACE_BETWEEN + 100, BOX_WIDTH, BOX_HEIGHT);
 	_cancelButton.addListener(this);
@@ -278,52 +278,56 @@ void UserRegistration::signin(const User & user)
 
 	if (!(StringChecker::isNameValid(user.getFirstName())) && user.getFirstName() != "")
 	{
-		_firstNameError.setText("Error: FirstName is not valid", dontSendNotification);
+		_firstNameError.setText(CharPointer_UTF8("Pr\xc3\xa9nom non valide"), dontSendNotification);
 		noError = false;
 	}
 
 	if (!(StringChecker::isNameValid(user.getLastName())) && user.getLastName() != "")
 	{
-		_lastNameError.setText("Error: LastName is not valid", dontSendNotification);
+		_lastNameError.setText("Nom non valide", dontSendNotification);
 		noError = false;
 	}
 
  
 	if (!(StringChecker::isUserNameValid(user.getUserName())))
 	{
-		_userNameError.setText("Error: UserName is not valid", dontSendNotification);
+		_userNameError.setText("Pseudonyme non valide", dontSendNotification);
 		noError = false;
 	}
 
 	if (!(StringChecker::isEmailValid(user.getEmail())))
 	{
-		_emailError.setText("Error: Email is not valid", dontSendNotification);
+		_emailError.setText("Email non valide", dontSendNotification);
 		noError = false;
 	}
 	
 	if (user.getDateOfBirth() != "" && !(StringChecker::isDateValid(user.getDateOfBirth())))
 	{
-		_dateOfBirthError.setText("Error: Date is not valid", dontSendNotification);
+		_dateOfBirthError.setText("Date non valide", dontSendNotification);
 		noError = false;
 	}
 
-	if (user.getDateOfBirth() != "" && !(StringChecker::isDateInPast(user.getDateOfBirth())))
+	else
 	{
-		_dateOfBirthError.setText("Error: Date should not be in the future", dontSendNotification);
-		noError = false;
+
+		if (user.getDateOfBirth() != "" && !(StringChecker::isDateInPast(user.getDateOfBirth())))
+		{
+			_dateOfBirthError.setText("La date ne peut pas etre dans le futur", dontSendNotification);
+			noError = false;
+		}
 	}
 
 	password = _passwordTextEditor.getText();
 	confirmPassword = _passwordConfirmationTextEditor.getText();
 	if (password != confirmPassword)
 	{
-		_passwordConfirmationError.setText("Error: passwords don't match", dontSendNotification);
+		_passwordConfirmationError.setText("Les mots de passe ne sont pas identiques", dontSendNotification);
 		noError = false;
 	}
 
 	if (password == "")
 	{
-		_passwordError.setText("Password can't be empty", dontSendNotification);
+		_passwordError.setText("Le mot de passe ne peut pas etre vide", dontSendNotification);
 		noError = false;
 	}
 
@@ -335,31 +339,31 @@ void UserRegistration::signin(const User & user)
 
 	if (!(StringChecker::isPasswordLongEnough(password.toStdString())))
 	{
-		_passwordError.setText("Password should be at least 8 characters long", dontSendNotification);
+		_passwordError.setText("Le mot de passe doit faire au moisn 8 characteres de long", dontSendNotification);
 		noError = false;
 	}
 
 	if (!(StringChecker::containsLowercase(password.toStdString())))
 	{
-		_passwordError.setText("Password should contain at least one lowercase letter", dontSendNotification);
+		_passwordError.setText("Le mot de passe doit contenir au moins une miniscule", dontSendNotification);
 		noError = false;
 	}
 
 	if (!(StringChecker::containsUppercase(password.toStdString())))
 	{
-		_passwordError.setText("Password should contain at least one uppercase letter", dontSendNotification);
+		_passwordError.setText("Le mot de passe doit contenir au moins une majuscule", dontSendNotification);
 		noError = false;
 	}
 
 	if (!(StringChecker::containsNumber(password.toStdString())))
 	{
-		_passwordError.setText("Password should contain at least one number", dontSendNotification);
+		_passwordError.setText("Le mot de passe doit contenir au moins un chiffre", dontSendNotification);
 		noError = false;
 	}
 
 	if (!(StringChecker::containsSpecialChar(password.toStdString())))
 	{
-		_passwordError.setText("Password should contain at least one special character", dontSendNotification);
+		_passwordError.setText("Le mot de passe doit contenir au moins un caractere special", dontSendNotification);
 		noError = false;
 	}
 
@@ -370,7 +374,7 @@ void UserRegistration::signin(const User & user)
 			if (_cmdManager.getResponseMsg() != "")
 				_errorText.setText("Error : " + _cmdManager.getResponseMsg(), dontSendNotification);
 			else
-				_errorText.setText("Connexion error", dontSendNotification);
+				_errorText.setText("Erreur de connection", dontSendNotification);
 		}
 		else
 		{

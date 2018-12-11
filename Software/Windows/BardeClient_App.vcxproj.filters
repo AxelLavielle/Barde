@@ -4565,6 +4565,24 @@
     <None Include="..\Source\AI\people.json">
       <Filter>BardeClient\Source\AI</Filter>
     </None>
+    <None Include="..\..\..\..\..\Downloads\BardeInstallCaptures\Barde_step6.png">
+      <Filter>BardeClient\Source\Ressources</Filter>
+    </None>
+    <None Include="..\..\..\..\..\Downloads\BardeInstallCaptures\Barde_step3.png">
+      <Filter>BardeClient\Source\Ressources</Filter>
+    </None>
+    <None Include="..\..\..\..\..\Downloads\BardeInstallCaptures\Barde_step4.png">
+      <Filter>BardeClient\Source\Ressources</Filter>
+    </None>
+    <None Include="..\..\..\..\..\Downloads\BardeInstallCaptures\Barde_step5.png">
+      <Filter>BardeClient\Source\Ressources</Filter>
+    </None>
+    <None Include="..\..\..\..\..\Downloads\BardeInstallCaptures\Barde_step2.png">
+      <Filter>BardeClient\Source\Ressources</Filter>
+    </None>
+    <None Include="..\..\..\..\..\Downloads\BardeInstallCaptures\Barde_step1.png">
+      <Filter>BardeClient\Source\Ressources</Filter>
+    </None>
     <None Include="..\..\..\..\..\Downloads\BardeInstallCaptures\etape1.png">
       <Filter>BardeClient\Source\Ressources</Filter>
     </None>
