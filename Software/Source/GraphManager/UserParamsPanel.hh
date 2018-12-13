@@ -38,6 +38,9 @@ private:
 	void applyTheme();
 
 	SimpleLabel			_titleLabel;
+	SimpleLabel			_emptyLabel1;
+	SimpleLabel			_emptyLabel2;
+	SimpleLabel			_emptyLabel3;
 	SimpleLabel			_errorLabel;
 	LabeledTextBox		_firstNameTextBox;
 	LabeledTextBox		_lastNameTextBox;

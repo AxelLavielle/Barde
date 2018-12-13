@@ -21,13 +21,22 @@ UserParamsPanel::UserParamsPanel() : _cmdManager(CmdManager::getInstance())
 
 	initTextBoxes();
 
+	GuiFactory::initMediumTitle("", _emptyLabel1);
+	addFlexItem(_emptyLabel1, 200, 15, FlexItem::AlignSelf::stretch, 1);
+
 	GuiFactory::initButton("Confirmer", "Confirm", this, _confirmButton);
-	addFlexItem(_confirmButton, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
+	addFlexItem(_confirmButton, TEXTBOX_MIN_WIDTH, 30, FlexItem::AlignSelf::stretch, 1);
+
+	GuiFactory::initMediumTitle("", _emptyLabel2);
+	addFlexItem(_emptyLabel2, 200, 20, FlexItem::AlignSelf::stretch, 1);
 
 	initTextBoxesPassword();
 
+	GuiFactory::initMediumTitle("", _emptyLabel3);
+	addFlexItem(_emptyLabel3, 200, 15, FlexItem::AlignSelf::stretch, 1);
+
 	GuiFactory::initButton("Changer le mot de passe", "Password", this, _passwordButton);
-	addFlexItem(_passwordButton, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);
+	addFlexItem(_passwordButton, TEXTBOX_MIN_WIDTH, 30, FlexItem::AlignSelf::stretch, 1);
 
 	//GuiFactory::initButton("Cancel", "Cancel", this, _cancelButton);
 	//addFlexItem(_cancelButton, TEXTBOX_MIN_WIDTH, TEXTBOX_MIN_HEIGHT, FlexItem::AlignSelf::stretch, 1);

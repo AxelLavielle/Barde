@@ -135,10 +135,10 @@ void PlayerPanel::initInstrumentsGroup()
 
 	GuiFactory::initVerticalFlexGroup( { GuiFactory::createFlexItemLabel(_drumsLabel, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_drumsInstrumentButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1) } , _drumsGroup);
 
-	GuiFactory::initHoryzontalFlexGroup( { GuiFactory::createFlexItem(_chordsGroup, GuiFactory::getBoxLabelWidth(_chordsLabel), 100, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_arpegiosGroup, GuiFactory::getBoxLabelWidth(_arpegiosLabel), 100, FlexItem::AlignSelf::autoAlign, 1),
+	GuiFactory::initHoryzontalFlexGroup( { GuiFactory::createFlexItem(_chordsGroup, GuiFactory::getBoxLabelWidth(_chordsLabel), 200, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_arpegiosGroup, GuiFactory::getBoxLabelWidth(_arpegiosLabel), 100, FlexItem::AlignSelf::autoAlign, 1),
 											GuiFactory::createFlexItem(_drumsGroup, GuiFactory::getBoxLabelWidth(_drumsLabel), 100, FlexItem::AlignSelf::autoAlign, 1) } , _instrumentsGroup);
 
-	addFlexItem(_instrumentsGroup, 300, 100);
+	addFlexItem(_instrumentsGroup, 300, 200);
 }
 
 void PlayerPanel::paint(Graphics & g)

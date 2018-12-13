@@ -16,10 +16,10 @@
 #include "../GraphManager/Theme.h"
 #include "../GraphManager/LabeledTextBox.hh"
 
-#define BIG_TITLE_SIZE	50
-#define MEDIUM_TITLE_SIZE	30
-#define LITTLE_TITLE_SIZE	20
-#define LEGEND_LABEL_SIZE	10
+#define BIG_TITLE_SIZE	70
+#define MEDIUM_TITLE_SIZE	40
+#define LITTLE_TITLE_SIZE	30
+#define LEGEND_LABEL_SIZE	20
 #define LABEL_HEIGHT_PADDING 5
 #define LABEL_WIDTH_PADDING 10
 

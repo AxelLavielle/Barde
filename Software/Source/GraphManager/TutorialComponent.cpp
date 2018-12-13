@@ -104,6 +104,7 @@ void TutorialComponent::ThemeChanged()
 	_nextButton.setColour(TextButton::textColourOffId, Colour(Theme::getInstance().getButtonFontColor()));
 	_stepCountText.setColour(Label::textColourId, Colour(Theme::getInstance().getFontColor()));
 	_title.setColour(Label::textColourId, Colour(Theme::getInstance().getFontColor()));
+	_text.setColour(Label::textColourId, Colour(Theme::getInstance().getFontColor()));
 	this->repaint();
 }
 
