@@ -42,7 +42,7 @@ public:
 	void setInstrumentsDrums(const bool instruments);
 	void setStyleName(const std::string &name);
 	std::string	getStyleName() const;
-	int getFreeChannel() const;
+	int getFreeChannel(NbInstrument nb) const;
 	const short *getFreeChannels() const;
 
 private:

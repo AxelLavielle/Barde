@@ -163,8 +163,25 @@ std::string MusicParameters::getStyleName() const
 	return (_styleName);
 }
 
-int MusicParameters::getFreeChannel() const
+int MusicParameters::getFreeChannel(NbInstrument nb) const
 {
+	//if the same instrument already have this channel return its channel
+	std::vector<Instrument>::const_iterator it;
+
+	for (it = _instrumentsChords.begin(); it != _instrumentsChords.end(); it++)
+	{
+		if (it->nb == nb)
+			return it->channel;
+
+	}
+	for (it = _instrumentsArpeggios.begin(); it != _instrumentsArpeggios.end(); it++)
+	{
+		if (it->nb == nb)
+			return it->channel;
+
+	}
+
+	//else search for a free channel
 	for (size_t i = 0; i < NB_OF_CHANNEL; i++)
 	{
 		if (_freeChannels[i] == 0)

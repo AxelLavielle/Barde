@@ -62,19 +62,20 @@ void PlayerPanel::initMusicParameters()
 	//TO DO CHANGE THAT
 	_musicParameters.setSeed(static_cast<unsigned int>(std::time(NULL)));
 	_musicParameters.setBpm(105);
-	Instrument instru;
-	instru.name = "SOPRANOSAX";
-	instru.nb = SOPRANOSAX;
-	instru.channel = _musicParameters.getFreeChannel();
-	instru.velocity = 100; //Need change
-	_musicParameters.addInstrumentArpeggios(instru);
 
 	Instrument instru2;
 	instru2.name = "ACOUSTICGRANDPIANO";
 	instru2.nb = ACOUSTICGRANDPIANO;
-	instru2.channel = _musicParameters.getFreeChannel();
+	instru2.channel = _musicParameters.getFreeChannel(ACOUSTICGRANDPIANO);
 	instru2.velocity = 100; //Need change
 	_musicParameters.addInstrumentChords(instru2);
+
+	Instrument instru;
+	instru.name = "SOPRANOSAX";
+	instru.nb = SOPRANOSAX;
+	instru.channel = _musicParameters.getFreeChannel(SOPRANOSAX);
+	instru.velocity = 100; //Need change
+	_musicParameters.addInstrumentArpeggios(instru);
 
 	//Instrument instru3;
 	//instru3.name = "ACOUSTICGUITARNYLON";
@@ -159,7 +160,7 @@ void PlayerPanel::buttonClicked(Button * button)
 
 			instru.name = button->getButtonText().toStdString();
 			instru.nb = instrumentList.at(instru.name);
-			instru.channel = _musicParameters.getFreeChannel();
+			instru.channel = _musicParameters.getFreeChannel(instru.nb);
 			instru.velocity = 100; //Need change
 			if (button->getToggleState())
 			{
@@ -176,7 +177,7 @@ void PlayerPanel::buttonClicked(Button * button)
 
 			instru.name = button->getButtonText().toStdString();
 			instru.nb = instrumentList.at(instru.name);
-			instru.channel = _musicParameters.getFreeChannel();
+			instru.channel = _musicParameters.getFreeChannel(instru.nb);
 			instru.velocity = 100; //Need change
 			if (button->getToggleState())
 			{
