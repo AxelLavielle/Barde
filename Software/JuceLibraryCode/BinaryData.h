@@ -27,7 +27,7 @@ namespace BinaryData
     const int            Barde_step2_pngSize = 3445;
 
     extern const char*   Barde_step1_png;
-    const int            Barde_step1_pngSize = 52358;
+    const int            Barde_step1_pngSize = 47059;
 
     extern const char*   etape1_png;
     const int            etape1_pngSize = 6855;
