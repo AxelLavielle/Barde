@@ -8,7 +8,7 @@
             <h1 class="header barde-title center pink-text">Barde</h1>
             <h5 class="left-align">Create an account</h5>
 
-            <form @submit.prevent="register()" class="col s12">
+            <form @change="checkForm" @submit.prevent="register()" class="col s12">
               <div class="row">
                 <div class="input-field col s12">
                   <input
@@ -37,6 +37,19 @@
                     class="validate"
                   >
                   <label for="password">Password</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input
+                    required
+                    v-model="Confirmpassword"
+                    id="Confirmpassword"
+                    type="password"
+                    class="validate"
+                    v-bind:class="{ valid: user.password == Confirmpassword && user.password.lenght > 0, invalid: user.password !== Confirmpassword}"
+                  >
+                  <label for="password">Confirm Password</label>
                 </div>
               </div>
               <div class="row">
@@ -99,9 +112,9 @@
                     </div>
                   </div>
                 </div>
-
                 <input
-                  v-if="!isFetching"
+                  :disabled="!validForm"
+                  v-if="!isFetching || validForm"
                   type="submit"
                   class="waves-effect waves-light btn pink"
                   value="register"
@@ -131,8 +144,19 @@ import "../../assets/js/BardeRegister";
 
 export default {
   name: "HelloWorld",
+  mounted: () => {
+    $(".datepicker").pickadate({
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 100, // Creates a dropdown of 15 years to control year,
+      today: "Today",
+      clear: "Clear",
+      close: "Ok",
+      closeOnSelect: true // Close upon selecting a date,
+    });
+  },
   data() {
     return {
+      validForm: false,
       userNameIsValid: false,
       user: {
         email: "",
@@ -140,10 +164,12 @@ export default {
         firstName: "",
         lastName: "",
         userName: "",
-        dayOfBirth: "01",
-        monthOfBirth: "01",
-        yearOfBirth: "1900"
+        dayOfBirth: "",
+        monthOfBirth: "",
+        yearOfBirth: ""
       },
+      Confirmpassword: "",
+
       isFetching: false
     };
   },
@@ -156,17 +182,28 @@ export default {
     }
   },
   methods: {
+    checkForm() {
+      console.log(
+        "checking form",
+        this.user.password,
+        this.Confirmpassword,
+        this.user.password === this.Confirmpassword
+      );
+      this.validForm = this.user.password === this.Confirmpassword;
+      console.log(this.validForm);
+    },
     register() {
+      console.log(this.user);
       this.$auth.register({
         body: this.user, // Vue-resoruce
 
         success: function(res) {
           this.isFetching = false;
           Materialize.toast(res.data.message, 4000, "green");
-          console.log(res);
         },
         error: function(res) {
           this.isFetching = false;
+          console.log(res);
           Materialize.toast(
             jQuery.parseJSON(res.bodyText).data.message,
             4000,
