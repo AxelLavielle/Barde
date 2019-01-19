@@ -25,7 +25,7 @@ MIDI.Player = MIDI.Player || {};
 
   root.DEBUG = true
   root.USE_XHR = true
-  root.soundfontUrl = './soundfont/'
+  root.soundfontUrl = './static/soundfont/'
 
 	/*
 		MIDI.loadPlugin({

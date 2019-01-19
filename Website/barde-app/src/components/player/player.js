@@ -572,7 +572,7 @@ midi.loadMidiFile = function(onsuccess, onprogress, onerror) {
 		midi.endTime = getLength();
 		///
 		MIDI.loadPlugin({
-		instruments: midi.getFileInstruments(),
+		instruments: ["bright_acoustic_piano"],
 			onsuccess: onsuccess,
 			onprogress: onprogress,
 			onerror: onerror

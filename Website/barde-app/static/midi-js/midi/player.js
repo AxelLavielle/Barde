@@ -63,7 +63,7 @@ if (typeof MIDI.Player === 'undefined') MIDI.Player = {};
 		/// 
     var frame = function () {
       midi.animationFrameId = requestAnimationFrame(frame)
-			///
+			/// 
       if (midi.endTime === 0) {
         return
       }
@@ -82,7 +82,7 @@ if (typeof MIDI.Player === 'undefined') MIDI.Player = {};
 				// paused
         currentTime = midi.currentTime
       }
-			/// 
+			///
       var endTime = midi.endTime
       var percent = currentTime / endTime
       var total = currentTime / 1000
@@ -90,9 +90,8 @@ if (typeof MIDI.Player === 'undefined') MIDI.Player = {};
       var seconds = total - minutes * 60
       var t1 = minutes * 60 + seconds
       var t2 = endTime / 1000
-			///
+			/// 
       if (t2 - t1 < -1.0) {
-
       } else {
         callback({
           now: t1,
@@ -108,6 +107,8 @@ if (typeof MIDI.Player === 'undefined') MIDI.Player = {};
 	// helpers
 
   midi.loadMidiFile = function (onsuccess, onprogress, onerror) {
+    midi.stop()
+
     try {
       midi.replayer = new Replayer(MidiFile(midi.currentData), midi.timeWarp, null, midi.BPM)
       midi.data = midi.replayer.getData()
@@ -116,12 +117,13 @@ if (typeof MIDI.Player === 'undefined') MIDI.Player = {};
 
       console.log(midi.getFileInstruments())
       MIDI.loadPlugin({
-        instruments: midi.getFileInstruments(),
+        instrument: "bright_acoustic_piano",
         onsuccess: onsuccess,
         onprogress: onprogress,
         onerror: onerror
       })
     } catch (event) {
+      console.log(event)
       onerror && onerror(event)
     }
   }

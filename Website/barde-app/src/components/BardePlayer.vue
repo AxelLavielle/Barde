@@ -21,6 +21,7 @@
                 >
                   <i class="material-icons">{{ playing ? 'pause' : 'play_arrow' }}</i>
                 </button>
+                {{now }} - {{end}}
               </p>
             </div>
           </div>
@@ -198,6 +199,9 @@ export default {
       file: null,
       player: null,
       songs: [],
+      now: 0,
+      end: 0,
+      loading: false,
       lastResponse: null,
       responses: [CMD_PLAYER_PLAY_RESPONSE],
       actions: [this.onPlayResponse],
@@ -225,16 +229,14 @@ export default {
     this.initPlayer();
   },
   methods: {
-    start() {
-      console.log("loading ", this.songs);
-      if (this.songs[0]) {
-        this.player.loadFile(
-          this.songs[0],
-          this.midiOnLoadSuccess,
-          this.midiOnLoadProgress,
-          this.midiOnLoadError
-        );
-      }
+    start(file) {
+      console.log("loading file ", file);
+      this.player.loadFile(
+        file,
+        this.midiOnLoadSuccess,
+        this.midiOnLoadProgress,
+        this.midiOnLoadError
+      );
     },
     pause() {},
     formatStyle(styleValue) {
@@ -413,8 +415,22 @@ export default {
       this.websocket.onmessage = this.onMessage;
       this.websocket.onerror = this.onError;
     },
+    millisToMinutesAndSeconds(millis) {
+      var minutes = Math.floor(millis / 60000);
+      var seconds = ((millis % 60000) / 1000).toFixed(0);
+      return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    },
+    updateData(data) {
+      this.now = this.millisToMinutesAndSeconds(data.now); // where we are now
+      this.end = this.millisToMinutesAndSeconds(data.end - 7000); // time when song ends
+      if (this.now == "0:16") {
+        (this.now = "0:00"), this.player.stop();
+        this.player.start();
+      }
+    },
     initPlayer() {
       this.player = MIDI.Player;
+      this.player.addListener(this.updateData);
     },
     onConnect() {
       // this.$refs.console.log("Barde is connected");
@@ -439,11 +455,16 @@ export default {
       return x.responseText;
     },
     midiOnLoadSuccess(success) {
+      this.loading = false;
+      console.log("load success");
+      this.player.resume();
       this.player.start(onStart => {
         this.playing = true;
+        console.log("started");
       });
     },
     midiOnLoadProgress(progress) {
+      this.loading = true;
       console.log("midiOnLoadProgress", progress);
     },
     midiOnLoadError(err) {
@@ -466,9 +487,12 @@ export default {
         reader.readAsDataURL(blob);
         reader.onloadend = function() {
           var base64data = reader.result;
-          if (this.songs.length == 0) {
+          console.log(this.songs.length, this.playing, this.loading);
+          if (this.songs.length === 0 && !this.playing && !this.loading) {
+            this.start(base64data);
+            this.loading = true;
+          } else {
             this.songs.push(base64data);
-            this.start();
           }
         }.bind(this);
       }
@@ -635,11 +659,9 @@ export default {
       return str;
     },
     CommandPlay() {
-      this.playing = true;
       if (this.songs.length === 0) {
         this.sendCommand(CMD_PLAYER_PLAY, "PLAY");
       }
-      this.start();
     },
     CommandPause() {
       /*       this.$refs.console.log("PAUSE", "me");
