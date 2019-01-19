@@ -204,7 +204,9 @@ export default {
  */
   },
   methods: {
-    styleChanged: this.onStyleChange,
+    styleChanged: function() {
+      this.onStyleChange();
+    },
     handleChangeAccords: function(e) {
       const name = e.target.name;
       const value = e.target.value;
@@ -233,7 +235,7 @@ export default {
           }
         });
       } else {
-        console.log("no more ", name, " ", value);
+        //  console.log("no more ", name, " ", value);
         this.onInstrumentChange(value, false);
       }
     }
