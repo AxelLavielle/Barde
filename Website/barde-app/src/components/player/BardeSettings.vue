@@ -38,6 +38,7 @@
             </div>
             <div class="col s12 left-align">
               <input
+                disabled
                 @change="handleChangeAccords($event)"
                 type="checkbox"
                 id="trumpet-accord"
@@ -49,6 +50,7 @@
             </div>
             <div class="col s12 left-align">
               <input
+                disabled
                 @change="handleChangeAccords($event)"
                 type="checkbox"
                 id="saxophone-accord"
@@ -60,6 +62,7 @@
             </div>
             <div class="col s12 left-align">
               <input
+                disabled
                 @change="handleChangeAccords($event)"
                 type="checkbox"
                 id="guitar-accord"
@@ -71,6 +74,7 @@
             </div>
             <div class="col s12 left-align">
               <input
+                disabled
                 @change="handleChangeAccords($event)"
                 type="checkbox"
                 id="bass-accord"
@@ -97,6 +101,7 @@
             </div>
             <div class="col s12 left-align">
               <input
+                disabled
                 @change="handleChangeArpege($event)"
                 type="checkbox"
                 id="trumpet-arpege"
@@ -108,6 +113,7 @@
             </div>
             <div class="col s12 left-align">
               <input
+                disabled
                 @change="handleChangeArpege($event)"
                 type="checkbox"
                 name="saxophone-arpege"
@@ -119,6 +125,7 @@
             </div>
             <div class="col s12 left-align">
               <input
+                disabled
                 @change="handleChangeArpege($event)"
                 type="checkbox"
                 name="guitar-arpege"
@@ -130,6 +137,7 @@
             </div>
             <div class="col s12 left-align">
               <input
+                disabled
                 @change="handleChangeArpege($event)"
                 type="checkbox"
                 name="bass-arpege"
@@ -146,7 +154,7 @@
             <div class="switch left-align">
               <label>
                 Off
-                <input v-model="drums" type="checkbox">
+                <input disabled v-model="drums" type="checkbox">
                 <span class="lever"></span>
                 On
               </label>
@@ -156,7 +164,15 @@
 
         <div v-if="style" class="row">
           <div class="col s8 offset-s1">
-            <input v-model="bpm" @change="onBPMChange" type="range" id="test5" min="60" max="150">
+            <input
+              disabled
+              v-model="bpm"
+              @change="onBPMChange"
+              type="range"
+              id="test5"
+              min="60"
+              max="150"
+            >
           </div>
           <div class="col s2">
             <span>BPM : {{bpm}}</span>
