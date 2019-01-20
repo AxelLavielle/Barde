@@ -12,17 +12,17 @@
         <div class="row">
           <div class="input-field s12 align-center">
             <a href="#/home" class="waves-effect waves-light pink btn">
-              <i class="material-icons right">home</i>Home
+              <i class="material-icons right">home</i>Accueil
             </a>
           </div>
           <div class="input-field s12 align-center">
             <a href="#/settings" class="waves-effect waves-light pink btn">
-              <i class="material-icons right">settings</i>settings
+              <i class="material-icons right">settings</i>Paramètres
             </a>
           </div>
           <div class="input-field s12">
             <a v-on:click="logout" class="waves-effect waves-light pink btn">
-              <i class="material-icons right">exit_to_app</i>Logout
+              <i class="material-icons right">exit_to_app</i>Déconnexion
             </a>
           </div>
         </div>

@@ -11,11 +11,11 @@
               <a
                 href="#/register"
                 class="btn-large waves-effect waves-light white-text pink auth-btn"
-              >Register</a>
+              >S'enregistrer</a>
             </div>
 
             <div class="input-field col s12">
-              <p>Already have an account ?</p>
+              <p>Déja un compte ?</p>
             </div>
             <div class="input-field col s12">
               <a
@@ -28,7 +28,7 @@
 
         <div class="col m6 s12 valign-wrapper">
           <div class="section section-right">
-            <p>Barde is a multiplatform application for generating procedural surround musics. Our service is aimed at professionals in the tertiary sector but the application will also be available to the general public. The user of Barde will be able in a few clicks to create his musical atmosphere in the style of his choice and Barde will be responsible for generating it indefinitely.</p>
+            <p>Barde est une application multiplateforme de génération de musiques d'ambiance procédurales. Notre service s'adresse aux professionnels du secteur tertiaire mais l'application sera également disponible au grand public. L'utilisateur de Barde pourra en quelques clics créer son ambiance musicale dans le style de son choix et Barde se chargera de la générer indéfiniment.</p>
           </div>
         </div>
       </div>

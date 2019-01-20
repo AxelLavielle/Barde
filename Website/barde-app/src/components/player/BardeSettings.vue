@@ -23,7 +23,7 @@
             </div>
           </div>
           <div v-if="style" class="col s4">
-            <h4 class="left-align">Chords</h4>
+            <h4 class="left-align">Accords</h4>
 
             <div class="col s4 left-align">
               <input
@@ -45,7 +45,7 @@
                 name="trumpet"
                 v-model="accords.trumpet"
               >
-              <label for="trumpet-accord">trumpet</label>
+              <label for="trumpet-accord">Trompette</label>
             </div>
             <div class="col s12 left-align">
               <input
@@ -56,7 +56,7 @@
                 value="saxophone:accord:65"
                 v-model="accords.saxophone"
               >
-              <label for="saxophone-accord">saxophone</label>
+              <label for="saxophone-accord">Saxophone</label>
             </div>
             <div class="col s12 left-align">
               <input
@@ -67,7 +67,7 @@
                 value="guitar:accord:25"
                 v-model="accords.guitar"
               >
-              <label for="guitar-accord">guitar</label>
+              <label for="guitar-accord">Guitare</label>
             </div>
             <div class="col s12 left-align">
               <input
@@ -78,12 +78,12 @@
                 value="bass:accord:33"
                 v-model="accords.bass"
               >
-              <label for="bass-accord">Bass</label>
+              <label for="bass-accord">Basse</label>
             </div>
           </div>
 
           <div v-if="style" class="col s4">
-            <h4 class="left-align">Arpeggio</h4>
+            <h4 class="left-align">Arpeges</h4>
             <div class="col s12 left-align">
               <input
                 @change="handleChangeArpege($event)"
@@ -104,7 +104,7 @@
                 value="trumpet:arpege:57"
                 v-model="arpeges.trumpet"
               >
-              <label for="trumpet-arpege">Trumpet</label>
+              <label for="trumpet-arpege">Trompette</label>
             </div>
             <div class="col s12 left-align">
               <input
@@ -126,7 +126,7 @@
                 value="guitar:arpege:25"
                 v-model="arpeges.guitar"
               >
-              <label for="guitar-arpege">Guitar</label>
+              <label for="guitar-arpege">Guitare</label>
             </div>
             <div class="col s12 left-align">
               <input
@@ -137,12 +137,12 @@
                 value="bass:arpege:33"
                 v-model="arpeges.bass"
               >
-              <label for="bass-arpege">Bass</label>
+              <label for="bass-arpege">Basse</label>
             </div>
           </div>
 
           <div class="col s4" v-if="style">
-            <h4 class="left-align">Drums</h4>
+            <h4 class="left-align">Battries</h4>
             <div class="switch left-align">
               <label>
                 Off

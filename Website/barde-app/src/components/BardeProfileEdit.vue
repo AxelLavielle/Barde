@@ -1,13 +1,19 @@
 <template>
   <div class="barde-main-dashboard">
     <div class="container">
-      <h5 class="left-align">Edit Profile</h5>
+      <h5 class="left-align">Édition de profil</h5>
       <div class="row">
         <form class="col s12">
           <div class="row">
             <div class="input-field col s12">
-              <input disabled v-model="form.username"  id="username" type="text" class="validate active">
-              <label class="active" for="username">Username</label>
+              <input
+                disabled
+                v-model="form.username"
+                id="username"
+                type="text"
+                class="validate active"
+              >
+              <label class="active" for="username">Nom d'utilisateur</label>
             </div>
           </div>
           <div class="row">
@@ -19,15 +25,17 @@
           <div class="row">
             <div class="input-field col s6">
               <input v-model="form.firstName" id="firstname" type="text" class="validate">
-              <label class="active" for="firstname">Firstname</label>
+              <label class="active" for="firstname">Prénom</label>
             </div>
             <div class="input-field col s6">
               <input v-model="form.lastName" id="lastname" type="text" class="validate">
-              <label class="active" for="lastname">Lastname</label>
+              <label class="active" for="lastname">Nom</label>
             </div>
           </div>
           <div class="row">
-            <a v-on:click="updateUser()" class="waves-effect waves-light btn pink"><i class="material-icons right">save</i>Save</a>
+            <a v-on:click="updateUser()" class="waves-effect waves-light btn pink">
+              <i class="material-icons right">save</i>Sauvegarder
+            </a>
           </div>
         </form>
       </div>
@@ -36,72 +44,67 @@
 </template>
 
 <script>
-  import BardeProfileSidePanel from '@/components/BardeProfileSidePanel.vue'
-  import Materialize from 'materialize-css/dist/js/materialize.min.js'
+import BardeProfileSidePanel from "@/components/BardeProfileSidePanel.vue";
+import Materialize from "materialize-css/dist/js/materialize.min.js";
 
+import "../../static/css/player.css";
 
-  import '../../static/css/player.css'
-
-  export default {
-    components: {
-      BardeProfileSidePanel
-    },
-    name: 'HelloWorld',
-    data () {
-      return {
-        user : {},
-        form : {
-          'username' : "",
-          'email' : "",
-          'firstName' : "",
-          'lastName' : ""
-        }
+export default {
+  components: {
+    BardeProfileSidePanel
+  },
+  name: "HelloWorld",
+  data() {
+    return {
+      user: {},
+      form: {
+        username: "",
+        email: "",
+        firstName: "",
+        lastName: ""
+      }
+    };
+  },
+  methods: {
+    checkToken() {
+      if (!this.$auth.token("default")) {
+        !this.$auth.logout();
       }
     },
-    methods : {
-      checkToken(){
-        if (!this.$auth.token('default')){
-          !this.$auth.logout();
-        }
-      },
-      getUser(){
-
-        this.$http.get('user/me', {
+    getUser() {
+      this.$http
+        .get("user/me", {
           headers: {
-            Authorization: this.$auth.token('default')
+            Authorization: this.$auth.token("default")
           }
-        }).then(function (res){
+        })
+        .then(function(res) {
           this.user = res.body.data.user;
-
 
           this.form.username = res.body.data.user.name.userName;
           this.form.email = res.body.data.user.email;
           this.form.firstName = res.body.data.user.name.firstName;
           this.form.lastName = res.body.data.user.name.lastName;
-
-
         });
-
-
-      },
-      updateUser(){
-
-
-        this.$http.patch('user', this.form, {
-          headers: {
-            Authorization: this.$auth.token('default')
-          }
-        }).then(function (res){
-          Materialize.toast(res.body.msg, 4000, 'green');
-        }).catch(function (err){
-          Materialize.toast(res.body.msg, 4000, 'red');
-
-        });
-      }
     },
-    beforeMount(){
-      this.getUser();
+    updateUser() {
+      this.$http
+        .patch("user", this.form, {
+          headers: {
+            Authorization: this.$auth.token("default")
+          }
+        })
+        .then(function(res) {
+          Materialize.toast(res.body.msg, 4000, "green");
+        })
+        .catch(function(err) {
+          Materialize.toast(res.body.msg, 4000, "red");
+        });
     }
+  },
+  beforeMount() {
+    this.getUser();
   }
+};
 </script>
 

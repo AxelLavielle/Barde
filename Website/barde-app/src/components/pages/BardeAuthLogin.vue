@@ -6,7 +6,7 @@
         <div class="col m6 s12 valign-wrapper">
           <div class="section section-left">
             <h1 class="header barde-title center pink-text">Barde</h1>
-            <h5 class="left-align">Login</h5>
+            <h5 class="left-align">Connexion</h5>
 
             <form @submit.prevent="login()" class="col s12">
               <div class="row">
@@ -19,7 +19,7 @@
               <div class="row">
                 <div class="input-field col s12">
                   <input v-model="user.password" id="password" type="password" class="validate">
-                  <label for="password">Password</label>
+                  <label for="password">Mot de passe</label>
                 </div>
               </div>
               <div class="row">
@@ -46,15 +46,15 @@
             </form>
 
             <p class="left-align">
-              Not registred ?
-              <a href="#/register">Register now.</a>
+              Pas de compte ?
+              <a href="#/register">S'inscrire ici</a>
             </p>
           </div>
         </div>
 
         <div class="col m6 s12 valign-wrapper">
           <div class="section section-right">
-            <p>Barde is a multiplatform application for generating procedural surround musics. Our service is aimed at professionals in the tertiary sector but the application will also be available to the general public. The user of Barde will be able in a few clicks to create his musical atmosphere in the style of his choice and Barde will be responsible for generating it indefinitely.</p>
+            <p>Barde est une application multiplateforme de génération de musiques d'ambiance procédurales. Notre service s'adresse aux professionnels du secteur tertiaire mais l'application sera également disponible au grand public. L'utilisateur de Barde pourra en quelques clics créer son ambiance musicale dans le style de son choix et Barde se chargera de la générer indéfiniment.</p>
           </div>
         </div>
       </div>
@@ -93,8 +93,9 @@ export default {
         },
         error: function(err) {
           if (err && err.bodyText && err.bodyText) {
+            console.log(err);
             Materialize.toast(
-              jQuery.parseJSON(err.bodyText).data.message,
+              "L'email ou le mot de passe est incorrect",
               4000,
               "red"
             );

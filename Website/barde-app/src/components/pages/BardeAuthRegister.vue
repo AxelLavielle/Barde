@@ -6,7 +6,7 @@
         <div class="col m6 s12 valign-wrapper">
           <div class="section section-left">
             <h1 class="header barde-title center pink-text">Barde</h1>
-            <h5 class="left-align">Create an account</h5>
+            <h5 class="left-align">Créer un compte</h5>
 
             <form @change="checkForm" @submit.prevent="register()" class="col s12">
               <div class="row">
@@ -18,7 +18,7 @@
                     type="text"
                     class="validate required"
                   >
-                  <label for="username">Username</label>
+                  <label for="username">Nom d'utilisateur</label>
                 </div>
               </div>
               <div class="row">
@@ -36,7 +36,7 @@
                     type="password"
                     class="validate"
                   >
-                  <label for="password">Password</label>
+                  <label for="password">Mot de passe</label>
                 </div>
               </div>
               <div class="row">
@@ -49,20 +49,21 @@
                     class="validate"
                     v-bind:class="{ valid: user.password == Confirmpassword && user.password.lenght > 0, invalid: user.password !== Confirmpassword}"
                   >
-                  <label for="password">Confirm Password</label>
+                  <label for="password">Confirmation du mot de passe</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s6">
                   <input v-model="user.firstName" id="firstname" type="text" class="validate">
-                  <label for="firstname">Firstname</label>
+                  <label for="firstname">Prénom</label>
                 </div>
                 <div class="input-field col s6">
                   <input v-model="user.lastName" id="lastname" type="text" class="validate">
-                  <label for="lastname">Lastname</label>
+                  <label for="lastname">Nom</label>
                 </div>
               </div>
               <div class="row">
+                <p>Date de naisance</p>
                 <div class="input-field col s4">
                   <input
                     v-model="user.dayOfBirth"
@@ -73,7 +74,7 @@
                     type="number"
                     class="validate active"
                   >
-                  <label for="firstname">Day of birth</label>
+                  <label for="firstname">Jour</label>
                 </div>
                 <div class="input-field col s4">
                   <input
@@ -84,7 +85,7 @@
                     type="number"
                     class="validate"
                   >
-                  <label for="monthOfBirth">Month of birth</label>
+                  <label for="monthOfBirth">Mois</label>
                 </div>
                 <div class="input-field col s4">
                   <input
@@ -95,7 +96,7 @@
                     type="number"
                     class="validate"
                   >
-                  <label for="monthOfBirth">Year of birth</label>
+                  <label for="monthOfBirth">Année</label>
                 </div>
               </div>
               <div class="row">
@@ -123,15 +124,15 @@
             </form>
 
             <p class="center-align">
-              Already registred ?
-              <a href="#/login">Login</a>
+              Déjà un compte ?
+              <a href="#/login">Connectez-vous ici</a>
             </p>
           </div>
         </div>
 
         <div class="col m6 s12 valign-wrapper">
           <div class="section section-right">
-            <p>Barde is a multiplatform application for generating procedural surround musics. Our service is aimed at professionals in the tertiary sector but the application will also be available to the general public. The user of Barde will be able in a few clicks to create his musical atmosphere in the style of his choice and Barde will be responsible for generating it indefinitely.</p>
+            <p>Barde est une application multiplateforme de génération de musiques d'ambiance procédurales. Notre service s'adresse aux professionnels du secteur tertiaire mais l'application sera également disponible au grand public. L'utilisateur de Barde pourra en quelques clics créer son ambiance musicale dans le style de son choix et Barde se chargera de la générer indéfiniment.</p>
           </div>
         </div>
       </div>
@@ -203,12 +204,25 @@ export default {
         },
         error: function(res) {
           this.isFetching = false;
+
+          var message = "";
+          switch (jQuery.parseJSON(res.bodyText).data.message) {
+            case "The password must have at least one uppercase character.":
+              message = "Le mot de passe doit avoir au moins une majuscule.";
+              break;
+            case "The password must have at least one symbol character.":
+              message = "Le mot de passe doit avoir au moins un symbole.";
+              break;
+            case "The password must have at least one number character.":
+              message = "Le mot de passe doit contenir au moins un chiffre";
+              break;
+            case "The password must have at least eight characters.":
+              message =
+                "Le mot de passe doit avoir une longueur de 8 characteres minimum";
+          }
+
           console.log(res);
-          Materialize.toast(
-            jQuery.parseJSON(res.bodyText).data.message,
-            4000,
-            "red"
-          );
+          Materialize.toast(message, 4000, "red");
           this.error = res.data;
         }
       });

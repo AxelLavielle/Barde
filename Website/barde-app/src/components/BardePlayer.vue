@@ -21,7 +21,6 @@
                 >
                   <i class="material-icons">{{ playing ? 'pause' : 'play_arrow' }}</i>
                 </button>
-                {{now }} - {{end}}
               </p>
             </div>
           </div>
@@ -434,7 +433,7 @@ export default {
     },
     onConnect() {
       // this.$refs.console.log("Barde is connected");
-      this.status = "Connected";
+      this.status = "Connecté";
       this.onDrumsChange(false);
     },
     blobToArrayBuffer(blob) {
@@ -524,7 +523,7 @@ export default {
       return str.replace(/[^ -~]+/g, "");
     },
     onDisconnect() {
-      this.status = "Disconnected";
+      this.status = "Déconnecté";
 
       /*       this.$refs.console.log("disconnected.");
        */
