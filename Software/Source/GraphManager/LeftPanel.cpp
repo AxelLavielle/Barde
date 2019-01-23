@@ -73,7 +73,7 @@ LeftPanel::LeftPanel()// : _reportButton("Bug_report", DrawableButton::ButtonSty
 
 
    _flexBox = GuiFactory::createFlexBox(FlexBox::JustifyContent::flexStart, FlexBox::AlignContent::stretch, FlexBox::AlignItems::stretch, FlexBox::Direction::column,
-	   { GuiFactory::createFlexItem(_logoImage, LOGO_WIDTH + 50, LOGO_HEIGHT + 20, 0, 0, FlexItem::AlignSelf::stretch, 1), GuiFactory::createFlexItem(_homeButton, 80, 30), GuiFactory::createFlexItem(_userButton, 80, 30), GuiFactory::createFlexItem(_reportButton, 80, 30), GuiFactory::createFlexItem(_tutorialButton, 80, 30), GuiFactory::createFlexItem(_disconnectButton, 80, 30) });
+	   { GuiFactory::createFlexItem(_logoImage, LOGO_WIDTH + 45, LOGO_HEIGHT + 10, 0, 0, FlexItem::AlignSelf::stretch, 1), GuiFactory::createFlexItem(_homeButton, 80, 30), GuiFactory::createFlexItem(_userButton, 80, 30), GuiFactory::createFlexItem(_reportButton, 80, 30), GuiFactory::createFlexItem(_tutorialButton, 80, 30), GuiFactory::createFlexItem(_disconnectButton, 80, 30) });
 }
 
 void LeftPanel::setUser(const User & user)

@@ -28,7 +28,7 @@ Theme::Theme()
 	_sliderOffColor = 0xFFFFFFFF;
 	_sliderPointerColor = 0xFFD2005F;
 	_clueColor = 0xFFB7B7B7;
-	_errorTextColor = 0xFF770000;
+	_errorTextColor = 0xFF282828;
 	//_buttonColor = 0xFFD2005F;
 	//_backgroundColor = 0xFFFFFFFF;
 	//_fontColor = 0xFF304B69; 

@@ -12,7 +12,7 @@
 #include "../CmdManager.hh"
 
 PlayerFooter::PlayerFooter(Player & player, MusicParameters &musicParameters) : _player(player), _musicParameters(musicParameters),
-				_controlGroup(FlexBox::JustifyContent::flexStart, FlexBox::AlignContent::center, FlexBox::AlignItems::center, FlexBox::Direction::row)
+				_controlGroup(FlexBox::JustifyContent::center, FlexBox::AlignContent::center, FlexBox::AlignItems::center, FlexBox::Direction::row)
 {
 	
 	_playButton = new PlayingCtrlButton("Play", BUTTON_PLAYING_TYPE::PLAY);
@@ -21,17 +21,17 @@ PlayerFooter::PlayerFooter(Player & player, MusicParameters &musicParameters) : 
 	_stopButton = new PlayingCtrlButton("Stop", BUTTON_PLAYING_TYPE::STOP);
 	_stopButton->addListener(this);
 
-	GuiFactory::initSlider(0, 100, 100, _volumeSlider);
-	_volumeSlider.addListener(this);
-	addAndMakeVisible(_volumeSlider);
+	//GuiFactory::initSlider(0, 100, 100, _volumeSlider);
+	//_volumeSlider.addListener(this);
+	//addAndMakeVisible(_volumeSlider);
 
 	addAndMakeVisible(_controlGroup);
 	FlexItem item(*_playButton);
 	FlexItem item2(*_stopButton);
-	item.alignSelf = FlexItem::AlignSelf::flexStart;
+	item.alignSelf = FlexItem::AlignSelf::stretch;
 	item.margin.left = 10;
 	item.margin.right = 10;
-	item2.alignSelf = FlexItem::AlignSelf::flexStart;
+	item2.alignSelf = FlexItem::AlignSelf::center;
 	_controlGroup.addItem(item.withMinWidth(PLAYING_BUTTON_WIDTH).withMinHeight(PLAYING_BUTTON_HEIGHT));
 	_controlGroup.addItem(item2.withMinWidth(PLAYING_BUTTON_WIDTH).withMinHeight(PLAYING_BUTTON_HEIGHT));
 
@@ -64,20 +64,21 @@ void PlayerFooter::buttonClicked(Button * button)
 	}
 }
 
-void PlayerFooter::sliderValueChanged(Slider * slider)
-{
+//void PlayerFooter::sliderValueChanged(Slider * slider)
+//{
 		//_player.setVolume(slider->getValue());
-}
+//}
 
 void PlayerFooter::initFlexBox()
 {
 	FlexItem groupItem(_controlGroup);
-	FlexItem sliderItem(_volumeSlider);
+	//FlexItem sliderItem(_volumeSlider);
 
 	groupItem.flexGrow = 8;
 	groupItem.alignSelf = FlexItem::AlignSelf::center;
 
-	sliderItem.flexGrow = 1;
-	sliderItem.alignSelf = FlexItem::AlignSelf::center;
-	_flexBox = GuiFactory::createRowCenterFlexBox( { groupItem.withMinWidth(100.0f).withMinHeight(50.0f), sliderItem.withMinWidth(50.0f).withMinHeight(100.0f) } );
+	//sliderItem.flexGrow = 1;
+	//sliderItem.alignSelf = FlexItem::AlignSelf::center;
+	//_flexBox = GuiFactory::createRowCenterFlexBox( { groupItem.withMinWidth(100.0f).withMinHeight(50.0f), sliderItem.withMinWidth(50.0f).withMinHeight(100.0f) } );
+	_flexBox = GuiFactory::createRowCenterFlexBox({ groupItem.withMinWidth(100.0f).withMinHeight(50.0f) });
 }

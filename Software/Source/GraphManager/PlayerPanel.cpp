@@ -35,7 +35,7 @@ PlayerPanel::PlayerPanel(MusicParameters & musicParameters) : _musicParameters(m
 	_houseButton.setRadioGroupId(42, dontSendNotification);
 	_houseButton.setEnabled(false); //remove this
 	_houseButton.setAlpha(0);
-	GuiFactory::initHoryzontalFlexGroup({ GuiFactory::createFlexItem(_bluesButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_reggaeButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_houseButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1) }, _styleGroup);
+	GuiFactory::initHoryzontalFlexGroup({ GuiFactory::createFlexItem(_bluesButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1), GuiFactory::createFlexItem(_reggaeButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1),  GuiFactory::createFlexItem(_houseButton, GuiFactory::getBoxLabelWidth(_drumsLabel), 10, FlexItem::AlignSelf::autoAlign, 1) }, _styleGroup);
 	addFlexItem(_styleGroup, 300, 100);
 
 	initMusicParameters();
@@ -52,9 +52,10 @@ PlayerPanel::PlayerPanel(MusicParameters & musicParameters) : _musicParameters(m
 
 	_bpmSlider.init(_musicParameters.getBpm(), std::bind(&PlayerPanel::sliderValueChanged, this, std::placeholders::_1));
 	addAndMakeVisible(_bpmSlider);
-	_items.push_back(GuiFactory::createFlexItem(_bpmSlider, 500, 50, FlexItem::AlignSelf::center).withMaxWidth(700));
+	_items.push_back(GuiFactory::createFlexItem(_bpmSlider, 500, 50, FlexItem::AlignSelf::center).withMaxWidth(900));
 
 	_flexBox = GuiFactory::createFlexBox(FlexBox::JustifyContent::spaceAround, FlexBox::AlignContent::stretch, FlexBox::AlignItems::stretch, FlexBox::Direction::column, _items);
+
 }
 
 void PlayerPanel::initMusicParameters()

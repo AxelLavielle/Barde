@@ -19,7 +19,7 @@
 #include "../ViewManager/FlexView.hh"
 #include "../CmdManager.hh"
 
-class PlayerFooter : public FlexView, private Button::Listener, private Slider::Listener
+class PlayerFooter : public FlexView, private Button::Listener//, private Slider::Listener
 {
 public:
 	PlayerFooter(Player & player, MusicParameters &musicParameters);
@@ -29,7 +29,7 @@ private:
 	void paint(Graphics& g) override;
 	void resized() override;
 	void buttonClicked(Button * button) override;
-	void sliderValueChanged(Slider *slider) override;
+	//void sliderValueChanged(Slider *slider) override;
 	void initFlexBox();
 
 	Player					&_player;
@@ -39,7 +39,7 @@ private:
 	FlexGroup				_controlGroup;
 	PlayingCtrlButton		*_playButton;
 	PlayingCtrlButton		*_stopButton;
-	Slider					_volumeSlider;
+	//Slider					_volumeSlider;
 	Theme					*_currentTheme; /*!< Theme defining the colors of the elements*/
 
 };

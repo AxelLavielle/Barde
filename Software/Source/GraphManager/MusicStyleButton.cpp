@@ -1,48 +1,65 @@
 /*
   ==============================================================================
 
-    MusicStyleButton.cpp
-    Created: 14 Mar 2017 3:34:30pm
+    MusicStyleButton.h
+    Created: 14 Mar 2017 3:21:14pm
     Author:  Oreo
 
   ==============================================================================
 */
 
-#include "MusicStyleButton.h"
+#ifndef MUSICSTYLEBUTTON_H_INCLUDED
+#define MUSICSTYLEBUTTON_H_INCLUDED
+
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "../Player.hh"
+#include "Theme.h"
+#include "../UserSettings.h"
 
+/*! \class MusicStyleButton
+* \brief classe representing a button for a specific music style
+*
+*  This class generates a music style button
+*/
 
-MusicStyleButton::MusicStyleButton(const String & buttonName, const int width, const int height) : Button(buttonName)
+class MusicStyleButton : public Button
 {
-	_width = width;
-	_height = height;
-}
+public:
+	/*!
+	*  \brief Constructor
+	*
+	*  MusicStyleButton class constructor
+	*
+	*  \param buttonName : name of the button / Text to display
+	*  \param w : Button width
+	*  \param h : Button height
+	*  \param theme : Theme
+	*/
+	MusicStyleButton(const String &buttonName, const int w, const int h);
+	/*!
+	*  \brief Destructor
+	*
+	*  MusicStyleButton class destructor
+	*/
+	~MusicStyleButton();
+	
+private:
+	/*!
+	*  \brief Diplay of the button
+	*
+	*  Function that diplays the button and change with some events
+	*
+	*  \param g : graphic where the button is diplayed
+	*  \param isMouseOverButton : boolean corresponding to the mouse over button event
+	*  \param isButtonDown :boolean corresponding to the button down event
+	*/
+	void paintButton(Graphics& g, const bool isMouseOverButton, const bool isButtonDown) override;
 
-MusicStyleButton::~MusicStyleButton()
-{
-}
 
-void MusicStyleButton::paintButton(Graphics& g, const bool isMouseOverButton, const bool isButtonDown)
-{
-	//Background Color
-	if (isButtonDown)
-	{
-		g.setColour(Colour(Theme::getInstance().getButtonColor()));
-	}
-	else if (isMouseOverButton)
-	{
-	  g.setColour(Colour(Theme::getInstance().getButtonColor()));
-	}
-	else
-	{
-	  g.setColour(Colour(Theme::getInstance().getButtonColor()));
-	}
+	int _width; /*!< Button width*/
+	int _height; /*!< Button height*/
 
-	//Background
-	g.fillRoundedRectangle(0.f, 0.f, static_cast<float>(_width), static_cast<float>(_height), 30.f);
-	//Text
-	g.setColour(Colour(Theme::getInstance().getButtonFontColor()));
-	g.setFont(14.0f);
-	g.drawText(this->getName(), 0, 0, _width, _height, Justification::centred, true);
-}
 
+};
+
+#endif  // MUSICSTYLEBUTTON_H_INCLUDED
